@@ -1,0 +1,51 @@
+{
+  "stateSlug": "alaska",
+  "stateName": "Alaska",
+  "stateAbbrev": "AK",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ak-anchorage",
+      "state": "AK",
+      "stateName": "Alaska",
+      "stateSlug": "alaska",
+      "county": "Anchorage",
+      "countySlug": "anchorage-municipality",
+      "countyFips": "02020",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/AK_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "AK_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "parcel_id", "label": "Parcel ID", "searchable": true },
+            { "name": "owner", "label": "Owner Name", "searchable": true },
+            { "name": "alt_owner", "label": "Alternate Owner Name", "searchable": true },
+            { "name": "property_type", "label": "Property Type (Residential/Commercial/etc.)", "searchable": false },
+            { "name": "property_use", "label": "Property Use Description", "searchable": false },
+            { "name": "land_value", "label": "Land Value", "searchable": false },
+            { "name": "building_value", "label": "Building Value", "searchable": false },
+            { "name": "total_value", "label": "Total Assessed Value", "searchable": false },
+            { "name": "local_gov", "label": "Local Government (filter: Anchorage Municipality)", "searchable": true }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/AK_Parcels/FeatureServer/0/query?where=UPPER(local_gov)+LIKE+'%25ANCHORAGE%25'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,alt_owner,property_type,land_value,total_value,local_gov&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/AK_Parcels/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Alaska Statewide Parcel Layer (combined from local government sources)",
+        "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/AK_Parcels/FeatureServer",
+        "email": null
+      },
+      "notes": "15 fields confirmed: OBJECTID, parcel_id, owner, alt_owner, property_type, property_use, land_value, building_value, total_value, local_gov, datetime_processed, feature_id, Shape__Area, Shape__Length, GlobalID. This is the Alaska Statewide Parcel FeatureServer, combining parcel data from various local government bodies in Alaska. Filter by local_gov field, use UPPER(local_gov) LIKE '%ANCHORAGE%' for Anchorage Municipality parcels (confirmed returning real parcels including United Airlines, residential, etc.). Owner query confirmed working. NOTE: Alaska does not have counties. It has boroughs and a small number of unified municipalities. Anchorage is officially the Municipality of Anchorage (FIPS 02020). This statewide service also covers Fairbanks North Star Borough, Matanuska-Susitna Borough, and other AK jurisdictions via the local_gov field. Coverage and completeness vary by participating jurisdiction."
+    }
+  ]
+}

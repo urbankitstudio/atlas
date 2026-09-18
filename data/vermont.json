@@ -1,0 +1,59 @@
+{
+  "stateSlug": "vermont",
+  "stateName": "Vermont",
+  "stateAbbrev": "VT",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "vt-chittenden",
+      "state": "VT",
+      "stateName": "Vermont",
+      "stateSlug": "vermont",
+      "county": "Chittenden",
+      "countySlug": "chittenden-county",
+      "countyFips": "50007",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/arcgis/rest/services/FS_VCGI_VTPARCELS_WM_NOCACHE_v2/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "Cadastral_VTPARCELS_poly (active parcels)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "SPAN", "label": "School Property Account Number (SPAN), VT parcel key", "searchable": true },
+            { "name": "TOWN", "label": "Town Numeric ID", "searchable": true },
+            { "name": "TNAME", "label": "Town Name", "searchable": true },
+            { "name": "OWNER1", "label": "Owner Name (line 1)", "searchable": true },
+            { "name": "OWNER2", "label": "Owner Name (line 2)", "searchable": true },
+            { "name": "E911ADDR", "label": "E-911 Site Address", "searchable": true },
+            { "name": "PROPTYPE", "label": "Property Type Code", "searchable": false },
+            { "name": "DESCPROP", "label": "Property Description", "searchable": false },
+            { "name": "LOCAPROP", "label": "Location of Property", "searchable": false },
+            { "name": "REAL_FLV", "label": "Real Property Fair Listed Value", "searchable": false },
+            { "name": "LAND_LV", "label": "Land Listed Value", "searchable": false },
+            { "name": "IMPRV_LV", "label": "Improvement Listed Value", "searchable": false },
+            { "name": "ACRESGL", "label": "Acreage (Grand List)", "searchable": false },
+            { "name": "YEAR", "label": "Grand List Year", "searchable": false },
+            { "name": "ADDRGL1", "label": "Mailing Address Line 1", "searchable": false },
+            { "name": "CITYGL", "label": "Mailing City", "searchable": false },
+            { "name": "ZIPGL", "label": "Mailing ZIP", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/arcgis/rest/services/FS_VCGI_VTPARCELS_WM_NOCACHE_v2/FeatureServer/1/query?where=TNAME%3D'BURLINGTON'+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=SPAN,OWNER1,E911ADDR,TNAME,REAL_FLV,ACRESGL&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://vcgi.vermont.gov/data-and-programs/parcel-program",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Vermont Center for Geographic Information (VCGI)",
+        "url": "https://vcgi.vermont.gov/data-and-programs/parcel-program",
+        "email": null
+      },
+      "notes": "VCGI statewide VT parcel service, layer 1 is active parcels (layer 0 = inactive/historical). This single endpoint covers all 14 Vermont counties; filter Chittenden County municipalities by TNAME: BURLINGTON, SOUTH BURLINGTON, WILLISTON, ESSEX, COLCHESTER, WINOOSKI, SHELBURNE, etc. SPAN is the Vermont-standard parcel key joining to the Tax Department grand list. OWNER1/OWNER2 and E911ADDR are public. Data is joined from the annual grand list and updated by VCGI in coordination with municipalities. The Parcel Viewer v4 (released 2024-04-24) uses this service."
+    }
+  ]
+}

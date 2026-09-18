@@ -1,0 +1,384 @@
+{
+  "stateSlug": "wisconsin",
+  "stateName": "Wisconsin",
+  "stateAbbrev": "WI",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "wi-dane",
+      "state": "WI",
+      "stateName": "Wisconsin",
+      "stateSlug": "wisconsin",
+      "county": "Dane",
+      "countySlug": "dane-county",
+      "countyFips": "55025",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://dcimapapps.danecounty.gov/arcgissrv/rest/services/TaxParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELNO",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "CoOwner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ConctOwner",
+              "label": "Contact Owner",
+              "searchable": true
+            },
+            {
+              "name": "PropertyAddress",
+              "label": "Property Address (full)",
+              "searchable": true
+            },
+            {
+              "name": "PrimaryAddress",
+              "label": "Primary Address",
+              "searchable": true
+            },
+            {
+              "name": "PropertyZipCode",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "PropertyZipMuni",
+              "label": "Municipality (ZIP-based)",
+              "searchable": false
+            },
+            {
+              "name": "Municipality",
+              "label": "Municipality Name",
+              "searchable": false
+            },
+            {
+              "name": "MunicipalityCode",
+              "label": "Municipality Code",
+              "searchable": false
+            },
+            {
+              "name": "MunicipalityFIPS",
+              "label": "Municipality FIPS",
+              "searchable": false
+            },
+            {
+              "name": "BillingStreetAddress",
+              "label": "Billing/Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "BillingCity",
+              "label": "Billing City",
+              "searchable": false
+            },
+            {
+              "name": "BillingState",
+              "label": "Billing State",
+              "searchable": false
+            },
+            {
+              "name": "BillingZip",
+              "label": "Billing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "TOWNSHIP",
+              "label": "Township",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://dcimapapps.danecounty.gov/arcgissrv/rest/services/TaxParcels/MapServer/0/query?where=UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELNO,Owner,CoOwner,PropertyAddress,PropertyZipCode,Municipality&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.countyofdane.com/dcis/gis",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Dane County Land Information Office (DCIS GIS)",
+        "url": "https://www.countyofdane.com/dcis/gis",
+        "email": null
+      },
+      "notes": "51 fields confirmed. Key fields include PARCELNO (12-digit parcel number), Owner, CoOwner, ConctOwner, Attention, PropertyAddress, PrimaryAddress, address components (PropertyStreetNum, PropertyNumSuf, PropertyPreDir, PropertyStreetNm, PropertyStreetTyp, PropertySuffixDir, PropertyUnitTyp, PropertyUnitNum, PropertyZipCode, PropertyZipExt, PropertyZipMuni), billing/mailing address (BillingStreetAddress, BillingCtyStZip, BillingCity, BillingState, BillingZip), Municipality, MunicipalityCode, MunicipalityFIPS, MunicipalitySort, TOWNSHIP. Owner query confirmed: UPPER(Owner) LIKE '%SMITH%' returns real residential parcels. Dane County, WI is the Madison metropolitan area and home of the Wisconsin state capital and University of Wisconsin-Madison (FIPS 55025)."
+    },
+    {
+      "id": "wi-milwaukee",
+      "state": "WI",
+      "stateName": "Wisconsin",
+      "stateSlug": "wisconsin",
+      "county": "Milwaukee",
+      "countySlug": "milwaukee-county",
+      "countyFips": "55079",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/s1wgJQKbKJihhhaT/arcgis/rest/services/Milwaukee_County_Parcels_Property_Information_view/FeatureServer/58",
+          "serviceType": "FeatureServer",
+          "layerIndex": 58,
+          "layerName": "Milwaukee County Property Information",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "TAXKEY",
+              "label": "Tax Key (parcel identifier)",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_KEY",
+              "label": "Parcel Key",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME2",
+              "label": "Owner Name (Secondary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME3",
+              "label": "Owner Name (Tertiary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNERADDR",
+              "label": "Owner Street Address",
+              "searchable": true
+            },
+            {
+              "name": "OwnerCtySt",
+              "label": "Owner City and State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZip",
+              "label": "Owner ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "HOUSENR",
+              "label": "Property House Number",
+              "searchable": true
+            },
+            {
+              "name": "STREETNAME",
+              "label": "Property Street Name",
+              "searchable": true
+            },
+            {
+              "name": "MUNINAME",
+              "label": "Municipality Name",
+              "searchable": false
+            },
+            {
+              "name": "MCD",
+              "label": "Municipal Jurisdiction Code",
+              "searchable": false
+            },
+            {
+              "name": "LEGALDESCR",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "CONDO_NAME",
+              "label": "Condominium Name",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acreage",
+              "searchable": false
+            },
+            {
+              "name": "Class",
+              "label": "Property Class",
+              "searchable": false
+            },
+            {
+              "name": "HouseNrSfx",
+              "label": "House Number Suffix",
+              "searchable": false
+            },
+            {
+              "name": "UNITNUMBER",
+              "label": "Unit Number",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/s1wgJQKbKJihhhaT/arcgis/rest/services/Milwaukee_County_Parcels_Property_Information_view/FeatureServer/58/query?where=UPPER(OWNERNAME1)+LIKE+UPPER('%25SMITH%25')&outFields=TAXKEY,OWNERNAME1,OWNERNAME2,HOUSENR,STREETNAME,MUNINAME&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://county.milwaukee.gov/EN/Land-Records",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Milwaukee County Register of Deeds / Land Records",
+        "url": "https://county.milwaukee.gov/EN/Land-Records",
+        "email": null
+      },
+      "notes": "42 fields confirmed. This is Milwaukee County's property information view joined to the cadastral parcel layer. Key fields: TAXKEY (primary parcel identifier), PARCEL_KEY, MAP_ID, RECORD_DATE, MCD (municipal jurisdiction code), COMMENT, RecSource, RecDate, MUNINAME (municipality: City of Milwaukee, Bayside, Cudahy, etc.), OWNERNAME1/2/3, OWNERADDR, OwnerCtySt, OwnerZip, HOUSENR, HouseNrHi, HouseNrSfx, STREETDIR, STREETNAME, STREETTYPE, SuffixDir, UNITNUMBER, LEGALDESCR, CONDO_NAME, UNIT_TYPE, ACRES, Class, Code. Owner query confirmed: UPPER(OWNERNAME1) LIKE '%SMITH%' returns real parcels in various municipalities. Milwaukee County, WI is the largest county in Wisconsin and the heart of the Milwaukee metropolitan area (FIPS 55079)."
+    },
+    {
+      "id": "wi-waukesha",
+      "state": "WI",
+      "stateName": "Wisconsin",
+      "stateSlug": "wisconsin",
+      "county": "Waukesha",
+      "countySlug": "waukesha-county",
+      "countyFips": "55133",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.waukeshacounty.gov/host/rest/services/Web_Tax_Parcel/FeatureServer/2",
+          "serviceType": "FeatureServer",
+          "layerIndex": 2,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "TAXKEY",
+              "label": "Tax Key Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAMEFULL",
+              "label": "Owner Name (Full)",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "SITEADRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "PSTLADRESS",
+              "label": "Postal Address",
+              "searchable": true
+            },
+            {
+              "name": "MUNI",
+              "label": "Municipality",
+              "searchable": false
+            },
+            {
+              "name": "PROPCLASS",
+              "label": "Property Class",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.waukeshacounty.gov/host/rest/services/Web_Tax_Parcel/FeatureServer/2/query?where=UPPER(OWNERNAMEFULL)%20LIKE%20UPPER('%25SMITH%25')&outFields=TAXKEY,OWNERNAMEFULL,SITEADRESS,MUNI&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-waukeshacounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Waukesha County Land Resources and Environment",
+        "url": "https://www.waukeshacounty.gov/interactivemap",
+        "email": null
+      },
+      "notes": "Waukesha County (Milwaukee metro west, county seat Waukesha) exposes Web_Tax_Parcel/FeatureServer with 7 layers; layer 2 (Parcels) is the polygon tax parcel layer. Fields include TAXKEY, OWNERNAMEFULL (concatenated), OWNERNME1, OWNERNME2, SITEADRESS, ZIPCODE, TAXROLLYEAR, PLACENAME, PSTLADRESS, MUNI, PROPCLASS, AUXCLASS, SCHOOLDISTNO, LNDVALUE, IMPVALUE, CNTASSDVALUE, ESTFMKVALUE, GRSPRPTA, NETPRPTA, GISAcres. Query confirmed live: UPPER(OWNERNAMEFULL) LIKE '%SMITH%' returns real results (e.g., 'KENNETH H SMITH AND SUSAN A SMITH' at '17792 W JACOBS DR'). maxRecordCount 2000. The Web_Tax_Parcel FeatureServer layer 0 is Civil Divisions (municipalities), layer 1 is SimultaneousConveyance, layer 2 is the full parcel polygon with ownership data. Wisconsin uses a WIDORCODE (Wisconsin Department of Revenue code) for municipality identification alongside the standard FIPS."
+    },
+    {
+      "id": "wi-brown",
+      "state": "WI",
+      "stateName": "Wisconsin",
+      "stateSlug": "wisconsin",
+      "county": "Brown",
+      "countySlug": "brown-county",
+      "countyFips": "55009",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.browncountywi.gov/arcgis/rest/services/ParcelPolygons/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "TaxParcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "SITEADRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "PSTLADRESS",
+              "label": "Postal Address",
+              "searchable": true
+            },
+            {
+              "name": "Municipality",
+              "label": "Municipality",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.browncountywi.gov/arcgis/rest/services/ParcelPolygons/MapServer/1/query?where=UPPER(OWNERNME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,SITEADRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.browncountywi.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Brown County Land Information Office",
+        "url": "https://www.browncountywi.gov/departments/planning-and-land-services/land-information-office/",
+        "email": null
+      },
+      "notes": "Brown County (Green Bay metro, county seat Green Bay) hosts ParcelPolygons/MapServer with 2 layers; layer 1 (TaxParcel) is the polygon tax parcel layer with ownership fields. Fields include PARCELID, ParcelType, Municipality, MunicipalZoning, OWNERNME1, OWNERNME2, PSTLADRESS, SITEADRESS, PublicOwner, FirstName1/LastName1/FirstName2/LastName2/StreetName fields (individual name parts), RecentOwnershipChangeDate, Parcels2005/2010/2014/2017 (historical vintage flags), Surveys, ROD (Register of Deeds). Query confirmed live: UPPER(OWNERNME1) LIKE '%SMITH%' returns real results (e.g., 'SMITH SUSAN C REVOCABLE TRUST' at '2674 FOXFIRE DR'). Layer 0 (TaxParcel-smallScale) is the same polygon layer rendered at smaller scales. ParcelslDynamic/MapServer/6 (TaxParcels) is an alternate service containing the same ownership data. The county's BrownDog Online GIS map at gis.browncountywi.gov is the public viewer. PublicOwner field is present but may be null for many records, use OWNERNME1/OWNERNME2 for owner search."
+    }
+  ]
+}

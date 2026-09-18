@@ -1,0 +1,132 @@
+{
+  "stateSlug": "indiana",
+  "stateName": "Indiana",
+  "stateAbbrev": "IN",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "in-hamilton",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Hamilton",
+      "countySlug": "hamilton-county",
+      "countyFips": "18057",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis1.hamiltoncounty.in.gov/arcgis/rest/services/HamCoParcelsPublic/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "FMTPRCLNO", "label": "Formatted Parcel Number", "searchable": true },
+            { "name": "DEEDEDOWNR", "label": "Deeded Owner Name", "searchable": true },
+            { "name": "OWNNAME", "label": "Owner Name", "searchable": true },
+            { "name": "OWNADDRESS", "label": "Owner Address", "searchable": true },
+            { "name": "OWNCITY", "label": "Owner City", "searchable": true },
+            { "name": "LOCADDRESS", "label": "Property Address", "searchable": true },
+            { "name": "LOCCITY", "label": "Property City", "searchable": true },
+            { "name": "PROPCLASS", "label": "Property Class", "searchable": false }
+          ],
+          "sampleQuery": "https://gis1.hamiltoncounty.in.gov/arcgis/rest/services/HamCoParcelsPublic/FeatureServer/0/query?where=UPPER(DEEDEDOWNR)%20LIKE%20UPPER('%25SMITH%25')&outFields=FMTPRCLNO,DEEDEDOWNR,LOCADDRESS,LOCCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://geohub.hamiltoncounty.in.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Hamilton County GIS",
+        "url": "https://www.hamiltoncounty.in.gov/442/GIS-and-Maps",
+        "email": null
+      },
+      "notes": "Hamilton County IN (Indianapolis north suburbs, Noblesville, Carmel, Fishers, Westfield) is one of the fastest-growing counties in Indiana. HamCoParcelsPublic/FeatureServer/0 exposes 25+ fields including FMTPRCLNO (formatted parcel number, e.g., '10-11-04-00-00-019.000'), DEEDEDOWNR (full deeded owner), OWNNAME, OWNADDRESS, OWNCITY, OWNSTATE, OWNZIP, OWNCOUNTRY, LOCADDRESS, LOCHSENUMR, LOCSTRDIR, LOCSTRNAME, LOCSTRSUF, LOCCITY, LOCZIP, LEGALDESC, SECTIONNO, TOWNSHIP, RANGE, SUBDIVCODE, SUBDIVNAME, DEEDACRES, PROPCLASS, PROPUSE. Query confirmed live: UPPER(DEEDEDOWNR) LIKE '%SMITH%' returns real results (e.g., 'Smith, Terrance & Alyssa Smith h&w' in Noblesville). Hamilton County IN (FIPS 18057) must not be confused with Hamilton County OH (39061, Cincinnati) or Hamilton County TN (47065, Chattanooga). GeoHub portal at geohub.hamiltoncounty.in.gov. EXPORTDATE field tracks data currency."
+    },
+    {
+      "id": "in-allen",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Allen",
+      "countySlug": "allen-county",
+      "countyFips": "18003",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.acimap.us/services/rest/services/parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "GIS_ID", "label": "GIS ID", "searchable": true },
+            { "name": "OwnerofRecord", "label": "Owner of Record", "searchable": true },
+            { "name": "PropertyAddress1", "label": "Property Address", "searchable": true }
+          ],
+          "sampleQuery": "https://gis.acimap.us/services/rest/services/parcels/MapServer/0/query?where=UPPER(OwnerofRecord)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,OwnerofRecord,PropertyAddress1&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.acimap.us/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Allen County / City of Fort Wayne GIS (ACI Map)",
+        "url": "https://www.acimap.us/",
+        "email": null
+      },
+      "notes": "Allen County IN (Fort Wayne metro, county seat Fort Wayne) provides parcels via gis.acimap.us, a combined City of Fort Wayne / Allen County GIS platform branded 'iMap'. The parcels/MapServer/0 layer is a lean 11-field service: PIN, GIS_ID, OwnerofRecord, PropertyAddress1, TransferDate, lat_add_pt, long_add_pt, Shape_Area, Shape_Length, Shape, OBJECTID. Owner and address search confirmed working: UPPER(OwnerofRecord) LIKE '%SMITH%' returns real results (e.g., 'Smith Halery W & Anna Catherine' on Pleasant Center Rd). The acimap.us server uses TLS renegotiation. Direct curl calls may timeout on Windows; use HTTPS clients that handle renegotiation. The ASSESSOR folder at gis.acimap.us/services/rest/services/Assessor/ contains additional assessment data but requires authentication. Allen County IN (18003) must not be confused with other Allen counties."
+    },
+    {
+      "id": "in-marion",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Marion",
+      "countySlug": "marion-county",
+      "countyFips": "18097",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://xmaps.indy.gov/arcgis/rest/services/Basemaps/IndyBase_Topographic/MapServer/54",
+          "serviceType": "MapServer",
+          "layerIndex": 54,
+          "layerName": "Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL_TAG", "label": "Parcel Tag (internal ID)", "searchable": true },
+            { "name": "PARCEL_I", "label": "Parcel I (identifier)", "searchable": true },
+            { "name": "PARCEL_C", "label": "Parcel C (identifier)", "searchable": true },
+            { "name": "STNUMBER", "label": "Street Number", "searchable": true },
+            { "name": "FULL_STNAME", "label": "Full Street Name", "searchable": true },
+            { "name": "CITY", "label": "City", "searchable": true },
+            { "name": "COUNTY", "label": "County", "searchable": false },
+            { "name": "ZIPCODE", "label": "ZIP Code", "searchable": true },
+            { "name": "ESTSQFT", "label": "Estimated Square Footage", "searchable": false },
+            { "name": "TOWNSHIP", "label": "Township", "searchable": false }
+          ],
+          "sampleQuery": "https://xmaps.indy.gov/arcgis/rest/services/Basemaps/IndyBase_Topographic/MapServer/54/query?where=UPPER(FULL_STNAME)+LIKE+UPPER('%25MAIN%25')&outFields=PARCEL_TAG,STNUMBER,FULL_STNAME,CITY,ZIPCODE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://maps.indy.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "IndyGIS, City of Indianapolis / Marion County Information Services",
+        "url": "https://maps.indy.gov/",
+        "email": null
+      },
+      "notes": "25 fields confirmed: OBJECTID, PARCEL_TAG, PARCEL_I, PARCEL_C, LOTNUM, SUBDIVISION_TAG, SUBDIVNUM, STNUMBER, PRE_DIR, STREET_NAME, SUFFIX, SUF_DIR, FULL_STNAME, CITY, COUNTY, STATE, TOWNSHIP, ZIPCODE, ESTSQFT, BLOCK, MODDATE, STATUS. NOTE: Owner name and mailing address are NOT exposed on this public REST endpoint. This is a geometry + address layer used for the public basemap. Owner data is in the IndyGIS Assessor Property Cards application at maps.indy.gov/AssessorPropertyCards/ (browser-based, no public REST). Marion County is a consolidated city-county (Indianapolis); same parcel layer is also at xmaps.indy.gov/arcgis/rest/services/Accela/AGIS_INDIANAPOLIS/MapServer/15 under the name 'Parcels'. Address query returns real Indianapolis streets and city names."
+    }
+  ]
+}

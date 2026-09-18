@@ -1,0 +1,712 @@
+{
+  "stateSlug": "florida",
+  "stateName": "Florida",
+  "stateAbbrev": "FL",
+  "lastUpdated": "2026-06-06",
+  "counties": [
+    {
+      "id": "fl-miami-dade",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Miami-Dade",
+      "countySlug": "miami-dade-county",
+      "countyFips": "12086",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisweb.miamidade.gov/arcgis/rest/services/MD_LandInformation/MapServer/26",
+          "serviceType": "MapServer",
+          "layerIndex": 26,
+          "layerName": "Parcels @ PaParcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "FOLIO",
+              "label": "Folio Number",
+              "searchable": true
+            },
+            {
+              "name": "TRUE_OWNER1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "TRUE_OWNER2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "TRUE_OWNER3",
+              "label": "Owner Name 3",
+              "searchable": true
+            },
+            {
+              "name": "TRUE_SITE_ADDR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "TRUE_SITE_CITY",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "TRUE_SITE_ZIP_CODE",
+              "label": "Site ZIP",
+              "searchable": true
+            },
+            {
+              "name": "TRUE_MAILING_ADDR1",
+              "label": "Mailing Address",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://gisweb.miamidade.gov/arcgis/rest/services/MD_LandInformation/MapServer/26/query?where=UPPER(TRUE_OWNER1)%20LIKE%20UPPER('%25SMITH%25')&outFields=FOLIO,TRUE_OWNER1,TRUE_SITE_ADDR,TRUE_SITE_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis-mdc.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Miami-Dade County Information Technology Department GIS",
+        "url": "https://gis-mdc.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Miami-Dade County (pop. 2.7 million) uses a folio number as its parcel identifier -- a 13-digit code, not an APN; the county abbreviates its Property Appraiser office as PA or MDPA. The parcel layer is at gisweb.miamidade.gov (MD_LandInformation MapServer, layer 26) and exposes 44 confirmed fields. Owner-name search uses UPPER() LIKE on TRUE_OWNER1; the fields TRUE_OWNER1/2/3 cover up to three named owners. TRUE_SITE_ADDR is the formatted site address. TRUE_MAILING_ADDR1-3 holds the mailing address lines. Valuation fields include LAND_VAL_CUR, BUILDING_VAL_CUR, and TOTAL_VAL_CUR (all current-year). DOR_CODE_CUR and DOR_DESC identify the Florida Department of Revenue land-use classification. A sibling layer (Property @ PaGis, layer 24 of the same service) is a point layer with fewer fields -- use layer 26 for full attribute access. The MDPA portal at miamidade.gov/pa provides the authoritative full-record view including exemptions, appeals, and prior-year values not available on the REST layer. For folio-based lookups, the PA's PAPA search at miamidade.gov/pa/property_search.asp is publicly accessible."
+    },
+    {
+      "id": "fl-orange",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Orange",
+      "countySlug": "orange-county",
+      "countyFips": "12095",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Orange County, Florida GIS (OCGIS) / OC Survey Geospatial Services",
+        "url": "https://ocgis-datahub-ocfl.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "MISREGISTRATION CORRECTED 2026-08-25: this county was registered against www.ocgis.com/arcpub/rest/services/Map_Layers/Parcels/MapServer/0, which is Orange County CALIFORNIA, not Florida. The two share the initials OC GIS. Proof: a spatial query at Orange County FL's Census internal point returns no parcels within 5km, the same query at Orange County CA's returns 5500 IRVINE CENTER DR IRVINE, the layer is projected in wkid 2230 (NAD83 California State Plane Zone VI), and its columns are ASSESSMENT_NO and SITE_ADDRESS. Florida users were being served California parcels. No public REST endpoint for Orange County, Florida is registered yet; the Property Appraiser (OCPA, ocpafl.org) is the authority and maps.ocpafl.org returned 503 when probed. Serving nothing is correct until a real Florida endpoint is verified."
+    },
+    {
+      "id": "fl-hillsborough",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Hillsborough",
+      "countySlug": "hillsborough-county",
+      "countyFips": "12057",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.hcpafl.org/arcgis/rest/services/Webmaps/HillsboroughFL_WebParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WebParcels_NonConfidential",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "folio",
+              "label": "Folio Number (Parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "Owner1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "FullAddress",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "strap",
+              "label": "STRAP (alternate parcel key)",
+              "searchable": true
+            },
+            {
+              "name": "SiteCity",
+              "label": "City",
+              "searchable": false
+            },
+            {
+              "name": "SiteZip",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "Homestead",
+              "label": "Homestead Exemption",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.hcpafl.org/arcgis/rest/services/Webmaps/HillsboroughFL_WebParcels/MapServer/0/query?where=UPPER(Owner1)+LIKE+UPPER('%25SMITH%25')&outFields=folio,Owner1,FullAddress,SiteCity&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.hcpafl.org/",
+          "status": "live",
+          "lastVerified": "2026-06-27",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Hillsborough County Property Appraiser (HCPA)",
+        "url": "https://www.hcpafl.org/",
+        "email": null
+      },
+      "notes": "Hillsborough County Property Appraiser (HCPA) public parcel layer at gis.hcpafl.org, 'WebParcels_NonConfidential', ~527,844 parcels exposing Owner1/Owner2 (owner name), folio (parcel ID), strap (alternate key), and FullAddress. Owner search via UPPER(Owner1) LIKE works; field names are CASE-SENSITIVE (Owner1, folio, FullAddress). Records flagged Confidential (state address-confidentiality program) have owner names suppressed. Replaced the prior SWFWMD regional water-district layer (2026-06-08). NOTE 2026-06-27: query endpoint responds in 13-35s (server-side slowness); the liveness check at 12s timeout always flags this FAIL but the endpoint IS live. Metadata returns immediately. If the liveness checker timeout is raised above ~30s for this endpoint, it will pass."
+    },
+    {
+      "id": "fl-broward",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Broward",
+      "countySlug": "broward-county",
+      "countyFips": "12011",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisweb-adapters.bcpa.net/arcgis/rest/services/BCPA_EXTERNAL_JAN26/MapServer/16",
+          "serviceType": "MapServer",
+          "layerIndex": 16,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "FOLIO",
+              "label": "Folio Number (Parcel ID)",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://gisweb-adapters.bcpa.net/arcgis/rest/services/BCPA_EXTERNAL_JAN26/MapServer/16/query?where=FOLIO%3D%27504201090030%27&outFields=FOLIO&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.bcpa.net/",
+          "status": "live",
+          "lastVerified": "2026-06-06",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Broward County Property Appraiser (BCPA) GIS",
+        "url": "https://www.bcpa.net/",
+        "email": null
+      },
+      "notes": "Broward County Property Appraiser public REST endpoint. The current public layer exposes FOLIO (13-digit parcel ID) only. Owner, site-address, mailing, valuation, and sale fields were removed from public REST in the 2026-06-06 migration (see below). The FL statewide FDOR cadastral (services9.arcgis.com) is a partitioned FeatureServer that routes to individual county subsets. The CO_NO field in that dataset uses FDOR-internal county numbers (not FIPS) and queries outside the locally-routed partition return empty. County-specific endpoints are more reliable for Broward. MIGRATED 2026-06-06: gis.bcpa.net DNS was retired -- the public service moved to gisweb-adapters.bcpa.net (BCPA_EXTERNAL_JAN26/MapServer/16, 556,435 parcels). DEGRADED: the new public layer exposes FOLIO only; the county removed owner, site-address, and mailing fields from public REST. FOLIO lookup only -- owner-name search is no longer possible on this endpoint."
+    },
+    {
+      "id": "fl-duval",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Duval",
+      "countySlug": "duval-county",
+      "countyFips": "12031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.coj.net/coj/rest/services/CityBiz/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "RE",
+              "label": "Real Estate Number (Parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "LNAMEOWNER",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "STREET_NO",
+              "label": "Street Number",
+              "searchable": false
+            },
+            {
+              "name": "ST_NAME",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "ADDRCITY",
+              "label": "Address City",
+              "searchable": false
+            },
+            {
+              "name": "MAILADDR1",
+              "label": "Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "MAILCITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "MAILSTATE",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "MAILZIP",
+              "label": "Mailing ZIP",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.coj.net/coj/rest/services/CityBiz/Parcels/MapServer/0/query?where=UPPER(LNAMEOWNER)+LIKE+UPPER('%25SMITH%25')&outFields=RE,LNAMEOWNER,STREET_NO,ST_NAME,ADDRCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.coj.net/departments/finance/information-technologies/geographic-information-systems-(gis)",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Jacksonville / Duval County GIS (COJ Information Technologies)",
+        "url": "https://www.coj.net/departments/finance/information-technologies/geographic-information-systems-(gis)",
+        "email": null
+      },
+      "notes": "Duval County is consolidated with the City of Jacksonville (consolidated city-county). The CityBiz/Parcels MapServer is the authoritative parcel layer for the consolidated jurisdiction. 70+ fields confirmed including RE (real estate number / parcel ID), LNAMEOWNER, LNAME2, STREET_NO, ST_NAME, ADDRCITY, MAILADDR1/2/3, MAILCITY, MAILSTATE, MAILZIP, PUSE (property use), DESCPU (description), ZIPCODE, FLD_ZONE, ACRES, TOT_LND_VA, TOT_BLD_VA, TOT_IMPR_V, SALESLDD/MM/YY, CAMA_VAL, CURREXEMPT. Owner search uses LNAMEOWNER field (last-name-first format). Verified 2026-05-15: SMITH returns Jacksonville addresses."
+    },
+    {
+      "id": "fl-manatee",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Manatee",
+      "countySlug": "manatee-county",
+      "countyFips": "12081",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.manateepao.com/arcgis/rest/services/Website/WebLayers/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcel Search",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "PAR_OWNER_NAME1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "PAR_OWNER_COUNT",
+              "label": "Number of Owners",
+              "searchable": false
+            },
+            {
+              "name": "SITUS_ADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_POSTAL_CITY",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "SITUS_POSTAL_ZIP",
+              "label": "Site ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PAR_MAIL_ADDR1",
+              "label": "Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "PAR_MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "PAR_MAIL_STATE",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "PAR_MAIL_POSTALCD",
+              "label": "Mailing ZIP",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.manateepao.com/arcgis/rest/services/Website/WebLayers/MapServer/0/query?where=UPPER(PAR_OWNER_NAME1)+LIKE+UPPER('%25SMITH%25')&outFields=PARID,PAR_OWNER_NAME1,SITUS_ADDRESS,SITUS_POSTAL_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.manateepao.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Manatee County Property Appraiser (PAO) GIS",
+        "url": "https://www.manateepao.com/",
+        "email": null
+      },
+      "notes": "Manatee County (Bradenton metro, pop. 420,000) Property Appraiser publishes one of the richest public parcel REST layers in Florida, with 200+ confirmed fields on the PARID-keyed parcel service. Owner fields: PAR_OWNER_NAME1/2. Site address: SITUS_ADDRESS, SITUS_POSTAL_CITY, SITUS_ZIP. Mailing address: PAR_MAIL_ADDR1/2/CITY/STATE/POSTALCD. Valuation: CAD_JUST_VALUE (just value), CAD_ASSESSED_CTY (county assessed), SALE_PRICE_LAST, SALE_DATE_LAST. Land: LAND_ACREAGE_CAMA, PAR_ZONING, PAR_SUBDIV_NAME, PAR_TYPE. Building (prefix BLDG_R1_): YRBUILT, SQFTLIVNG, BEDRMS, BATHSF (full), BATHSH (half), GRGEUNITS, HTDAREA, STORIES. Verified 2026-05-15: owner-name queries return Bradenton and Palmetto area results (SITUS_POSTAL_CITY). Unlike many county layers, Manatee exposes CAMA-grade building detail without requiring a separate records request. The Manatee County Property Appraiser portal at manateepao.com provides the full assessor record view for exemptions and prior-year values not surfaced in the REST layer.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    },
+    {
+      "id": "fl-sarasota",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Sarasota",
+      "countySlug": "sarasota-county",
+      "countyFips": "12115",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/icrWMv7eBkctFu1f/arcgis/rest/services/ParcelHosted/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "ParcelHosted",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "ACCOUNT",
+              "label": "Account Number (Parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "NAME1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "NAME_ADD2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "LOCN",
+              "label": "Location (Street Number)",
+              "searchable": false
+            },
+            {
+              "name": "LOCD",
+              "label": "Street Direction Prefix",
+              "searchable": false
+            },
+            {
+              "name": "LOCS",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "LOCT",
+              "label": "Street Type",
+              "searchable": false
+            },
+            {
+              "name": "CITY",
+              "label": "City",
+              "searchable": false
+            },
+            {
+              "name": "STATE",
+              "label": "State",
+              "searchable": false
+            },
+            {
+              "name": "ZIP",
+              "label": "ZIP Code",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/icrWMv7eBkctFu1f/arcgis/rest/services/ParcelHosted/FeatureServer/0/query?where=UPPER(NAME1)+LIKE+UPPER('%25SMITH%25')&outFields=ACCOUNT,NAME1,LOCN,LOCS,CITY,STATE,ZIP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-sarco.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Sarasota County Property Appraiser (SCPA) / Enterprise GIS",
+        "url": "https://data-sarco.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Sarasota County Property Appraiser parcel dataset hosted on ArcGIS Online (Sarasota County Enterprise GIS). Fields include ACCOUNT (parcel account number), NAME1/NAME_ADD2/3/4/5 (owner name lines), LOCN (street number), LOCD/LOCS/LOCT (direction/name/type), CITY, STATE, ZIP, UNIT. Mailing address uses NAME_ADD lines. Verified 2026-05-15: SMITH returns Sarasota-area addresses (LONGBOAT KEY, SUNAPEE NH mailing). Note CITY field contains mailing city not site city. For site address the LOCN+LOCS+LOCT fields must be concatenated. Sarasota County pop. 464,000."
+    },
+    {
+      "id": "fl-palm-beach",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Palm Beach",
+      "countySlug": "palm-beach-county",
+      "countyFips": "12099",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/ZWOoUZbtaYePLlPw/arcgis/rest/services/Parcels_and_Property_Details_WebMercator/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels and Property Details",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "OWNER_NAME1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "SITE_ADDR_STR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "PARID",
+              "label": "Parcel Control Number (PCN)",
+              "searchable": true
+            },
+            {
+              "name": "MUNICIPALITY",
+              "label": "Municipality",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/ZWOoUZbtaYePLlPw/arcgis/rest/services/Parcels_and_Property_Details_WebMercator/FeatureServer/0/query?where=UPPER(OWNER_NAME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARID,OWNER_NAME1,SITE_ADDR_STR,MUNICIPALITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://opendata2-pbcgov.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Palm Beach County Property Appraiser (PAPA) / PBCGOV GIS",
+        "url": "https://opendata2-pbcgov.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Palm Beach County, Florida (West Palm Beach / Boca Raton, pop. ~1.49M, 3rd most populous FL county) publishes a Property Appraiser parcels FeatureServer through the PBCGOV open-data portal. Owner search uses OWNER_NAME1 (with OWNER_NAME2 as a second owner slot); the combined site address is SITE_ADDR_STR; the parcel control number is PARID; MUNICIPALITY filters by city. Owner LIKE query confirmed live 2026-05-30. Records flagged CONFIDENTIAL under Florida public-records exemptions (s. 119.071, F.S., for law enforcement, judges, and similar protected persons) have owner/mailing data suppressed; the majority of parcels are public."
+    },
+    {
+      "id": "fl-pinellas",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Pinellas",
+      "countySlug": "pinellas-county",
+      "countyFips": "12103",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://egis.pinellas.gov/gis/rest/services/PublicWebGIS/Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID (18-digit)",
+              "searchable": true
+            },
+            {
+              "name": "STRAP",
+              "label": "STRAP Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNER1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "SITE_ADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNADD_1",
+              "label": "Mailing Address",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://egis.pinellas.gov/gis/rest/services/PublicWebGIS/Parcels/MapServer/1/query?where=UPPER(OWNER1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCELID,OWNER1,SITE_ADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://egis.pinellas.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-27",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Pinellas County Property Appraiser (PCPAO) / Pinellas County Enterprise GIS",
+        "url": "https://www.pcpao.gov/",
+        "email": null
+      },
+      "notes": "Pinellas County, Florida (St. Petersburg / Clearwater, pop. ~960K) serves parcels through the Pinellas eGIS PublicWebGIS folder. The sibling AGO/Parcels/MapServer/0 layer on the same host exposes only survey/title fields (PGIS.ParcelsPublic.*) with no mailable owner name -- use PublicWebGIS/Parcels/MapServer/1, which carries OWNER1/OWNER2 plus owner mailing (OWNADD_1/OWNADD_2/OWNCITY/OWNSTATE/OWNZIP), SITE_ADDRESS, PARCELID (18-digit), STRAP, TAXABLE_VALUE, HOMESTEAD_EXEMP, USE_CODE, LAND_VALUE, IMP_VALUE, SALEDATE1, SALEPRICE1. Owner search uses UPPER(OWNER1) LIKE. Verified live 2026-05-30. NOTE 2026-06-27: all declared fields confirmed present in live schema; query endpoint responds in 13-35s (server-side slowness); liveness check at 12s timeout flags FAIL but endpoint IS live. Metadata returns immediately."
+    },
+    {
+      "id": "fl-lee",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Lee",
+      "countySlug": "lee-county",
+      "countyFips": "12071",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/LvWGAAhHwbCJ2GMP/arcgis/rest/services/Lee_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Lee County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "STRAP",
+              "label": "STRAP Number (16-char)",
+              "searchable": true
+            },
+            {
+              "name": "FOLIOID",
+              "label": "Folio ID",
+              "searchable": true
+            },
+            {
+              "name": "O_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "O_OTHERS",
+              "label": "Other Owners",
+              "searchable": false
+            },
+            {
+              "name": "SITEADDR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "O_ADDR1",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/LvWGAAhHwbCJ2GMP/arcgis/rest/services/Lee_County_Parcels/FeatureServer/0/query?where=UPPER(O_NAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=STRAP,O_NAME,SITEADDR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://hub.arcgis.com/datasets/LeeGIS::lee-county-parcels/explore",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Lee County Property Appraiser / Lee County GIS (LeeGIS)",
+        "url": "https://www.leepa.org/",
+        "email": null
+      },
+      "notes": "Lee County, Florida (Fort Myers / Cape Coral, pop. ~760K) publishes parcels via an ArcGIS Online FeatureServer hosted by Lee County GIS (org LvWGAAhHwbCJ2GMP). Owner name is O_NAME (with O_OTHERS for additional owners); owner mailing is O_ADDR1/O_ADDR2/O_CITY/O_STATE/O_ZIP; the site address is SITEADDR/SITECITY; the parcel identifier is STRAP (16-character) with a numeric FOLIOID. Owner search uses UPPER(O_NAME) LIKE. Verified live 2026-05-30 (O_NAME = BECK DEAN R TR). The authoritative full record (exemptions, prior-year values) is at the Lee County Property Appraiser, leepa.org."
+    },
+    {
+      "id": "fl-pasco",
+      "state": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "county": "Pasco",
+      "countySlug": "pasco-county",
+      "countyFips": "12101",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.pascopa.com/arcgis/rest/services/Parcels/MapServer/3",
+          "serviceType": "MapServer",
+          "layerIndex": 3,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "ParcelID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "NAD_NAME_1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "NAD_NAME_2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "PHYS_STREET",
+              "label": "Site Street Address",
+              "searchable": true
+            },
+            {
+              "name": "PHYS_CITY",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "NAD_ADD_1",
+              "label": "Mailing Address",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.pascopa.com/arcgis/rest/services/Parcels/MapServer/3/query?where=UPPER(NAD_NAME_1)%20LIKE%20UPPER('%25SMITH%25')&outFields=ParcelID,NAD_NAME_1,PHYS_STREET&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://maps.pascopa.com/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Pasco County Property Appraiser (PA) GIS",
+        "url": "https://pascopa.com/",
+        "email": null
+      },
+      "notes": "Pasco County, Florida (New Port Richey / Wesley Chapel / Zephyrhills, pop. ~600K) serves parcels from the Pasco County Property Appraiser GIS (maps.pascopa.com). Owner names are NAD_NAME_1/NAD_NAME_2; owner mailing is NAD_ADD_1/NAD_ADD_2/NAD_CITY/NAD_STATE/NAD_ZIP; the site address is PHYS_STREET/PHYS_CITY/PHYS_STATE; the parcel identifier is ParcelID (format 12-26-15-0020-05200-0220). Owner search uses UPPER(NAD_NAME_1) LIKE. Verified live 2026-05-30 (NAD_NAME_1 = PWS HOLDINGS LLC)."
+    }
+  ]
+}

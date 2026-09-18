@@ -1,0 +1,430 @@
+{
+  "stateSlug": "texas",
+  "stateName": "Texas",
+  "stateAbbrev": "TX",
+  "lastUpdated": "2026-06-06",
+  "counties": [
+    {
+      "id": "tx-harris",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Harris",
+      "countySlug": "harris-county",
+      "countyFips": "48201",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://www.gis.hctx.net/arcgis/rest/services/HCAD/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "HCAD Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "HCAD_NUM", "label": "HCAD Parcel Number", "searchable": true },
+            { "name": "acct_num", "label": "Account Number", "searchable": true },
+            { "name": "owner_name_1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "owner_name_2", "label": "Owner Name 2", "searchable": true },
+            { "name": "site_str_num", "label": "Site Street Number", "searchable": true },
+            { "name": "site_str_name", "label": "Site Street Name", "searchable": true },
+            { "name": "site_city", "label": "Site City", "searchable": true },
+            { "name": "site_zip", "label": "Site ZIP", "searchable": true },
+            { "name": "mail_addr_1", "label": "Mailing Address", "searchable": true }
+          ],
+          "sampleQuery": "https://www.gis.hctx.net/arcgis/rest/services/HCAD/Parcels/MapServer/0/query?where=UPPER(owner_name_1)%20LIKE%20UPPER('%25SMITH%25')&outFields=HCAD_NUM,owner_name_1,site_str_num,site_str_name,site_city&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://geo-harriscounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Harris County Appraisal District (HCAD) GIS Division",
+        "url": "https://geo-harriscounty.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Harris County, Texas (Houston metro, pop. 4.7M, county seat Houston) is the most populous Texas county and third-most populous in the US. The data authority is HCAD, Harris Central Appraisal District, which maintains property appraisal records independently of the county government. 62 fields confirmed, including HCAD_NUM (parcel ID), acct_num, owner_name_1/2/3 (up to three ownership slots with own_pct_1/2/3 percentage shares), site_str_num, site_str_name, site_city, site_zip, mail_addr_1/2/3, mail_city, mail_state, mail_zip, land_use, land_value, bld_value, total_appraised_val, new_owner_date, and yr_impr. Owner name is public under the Texas Public Information Act; Texas Tax Code §25.025 allows certain categories of persons (peace officers, judges, domestic violence victims, and others) to request suppression of their home address from appraisal district records. Owner-name LIKE query confirmed live. Max record count = 1000 per query. The HCAD open-data hub at geo-harriscounty.opendata.arcgis.com provides bulk downloads. A sibling service on the same server covers HCAD_MUD (Municipal Utility District) boundaries."
+    },
+    {
+      "id": "tx-travis",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Travis",
+      "countySlug": "travis-county",
+      "countyFips": "48453",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/0L95CJ0VTaxqcmED/arcgis/rest/services/EXTERNAL_tcad_parcel/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "TCAD Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PROP_ID", "label": "Property ID", "searchable": true },
+            { "name": "PID_10", "label": "Parcel ID (10-char)", "searchable": true },
+            { "name": "SITUS", "label": "Situs Address", "searchable": true }
+          ],
+          "sampleQuery": "https://services.arcgis.com/0L95CJ0VTaxqcmED/arcgis/rest/services/EXTERNAL_tcad_parcel/FeatureServer/0/query?where=SITUS+LIKE+'%25CONGRESS%25'&outFields=PROP_ID,PID_10,SITUS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://tnr-traviscountytx.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Travis County Transportation & Natural Resources (TNR) GIS",
+        "url": "https://tnr-traviscountytx.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Travis County, Texas (Austin metro, pop. 1.3M, county seat Austin) is home to the state capital and the University of Texas at Austin. The REST layer (\"TCAD Parcels\", an ArcGIS Online hosted FeatureServer, ~386,682 parcels) is sourced from Travis Central Appraisal District (TCAD) and published through Travis County Transportation and Natural Resources (TNR) GIS. Searchable fields: PROP_ID (property ID), PID_10 (10-character parcel key), and SITUS (combined situs address). Owner name is NOT included. Travis County publishes the parcel geometry and identifiers as a public layer while keeping ownership data behind TCAD's property search portal at traviscad.org. For owner-name lookups, search traviscad.org by address or property ID. Texas Tax Code §25.025 permits certain persons (peace officers, judges, domestic violence victims, and similar categories) to request that their home address be withheld from appraisal records; such records may appear with address fields redacted at TCAD's portal. The county's former on-premise endpoint at gis.traviscountytx.gov/server1 went offline in 2026 (the ArcGIS host returned an HTTP 500 .NET host error); this hosted FeatureServer is the current public source. Open-data hub: tnr-traviscountytx.opendata.arcgis.com.",
+      "ownerFieldNote": {
+        "body": "Owner name isn't in Travis County / TCAD's public REST layer. It exposes Property ID (PROP_ID), the 10-character parcel key, and situs address only. Search by property ID or address below, or look up the owner of record at the Travis Central Appraisal District.",
+        "source": { "label": "Owner search at traviscad.org", "url": "https://traviscad.org/propertysearch/" }
+      },
+      "relatedZoningCitySlug": "austin",
+      "relatedPropertyCitySlug": "austin"
+    },
+    {
+      "id": "tx-tarrant",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Tarrant",
+      "countySlug": "tarrant-county",
+      "countyFips": "48439",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://mapit.tarrantcounty.com/arcgis/rest/services/Tax/TCProperty/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Tarrant County Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "TAXPIN", "label": "Tax Parcel ID", "searchable": true },
+            { "name": "ACCOUNT", "label": "Appraisal Account Number", "searchable": true },
+            { "name": "OWNER_NAME", "label": "Owner Name", "searchable": true },
+            { "name": "SITUS_ADDR", "label": "Situs Address", "searchable": true },
+            { "name": "OWNER_ADDR", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "OWNER_CITY", "label": "Owner City", "searchable": true },
+            { "name": "ZIPCODE", "label": "Situs ZIP Code", "searchable": true }
+          ],
+          "sampleQuery": "https://mapit.tarrantcounty.com/arcgis/rest/services/Tax/TCProperty/MapServer/0/query?where=UPPER(OWNER_NAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=TAXPIN,OWNER_NAME,SITUS_ADDR,OWNER_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-tarrantcounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Tarrant County GIS / Tarrant Appraisal District",
+        "url": "https://gis-tad.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Tarrant County, Texas (Fort Worth / Arlington metro, pop. 2.1M, county seat Fort Worth) is the fourth-most populous Texas county. The data authority is TAD, Tarrant Appraisal District. 56 fields confirmed including TAXPIN, ACCOUNT, OWNER_NAME, SITUS_ADDR, OWNER_ADDR, OWNER_CITY, ZIPCODE, DEED_DATE, DEED_BOOK, DEED_PAGE, YEAR_BUILT, LIVING_ARE, BEDROOMS, BATHROOMS, SW_POOL, LAND_ACRES, APPRAISEDV, LAND_VALUE, IMPR_VALUE, and TOTAL_VALU. Owner-name query via UPPER() LIKE on OWNER_NAME returns real results. Texas Tax Code §25.025 (address-confidentiality program) permits certain protected persons, peace officers, judges, domestic violence victims, and similar categories, to request that their address be withheld from public appraisal records; records subject to §25.025 may not appear in REST query results or may appear with address fields suppressed. A sibling TADParcelsApp/MapServer/0 exists on the same server but carries only TAXPIN geometry. It is the display layer for TAD's parcel viewer and has no attribute data. TAD open-data hub: gis-tad.opendata.arcgis.com. Tarrant County open data: data-tarrantcounty.opendata.arcgis.com."
+    }
+  ,
+    {
+      "id": "tx-dallas",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Dallas",
+      "countySlug": "dallas-county",
+      "countyFips": "48113",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/arcgis/rest/services/DallasTaxParcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "TaxParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "ACCT", "label": "DCAD Account Number (17-digit)", "searchable": true },
+            { "name": "GIS_ACCT", "label": "GIS Account Number", "searchable": true },
+            { "name": "TAXPANAME1", "label": "Taxpayer / Owner Name (Primary)", "searchable": true },
+            { "name": "TAXPANAME2", "label": "Taxpayer / Owner Name 2", "searchable": true },
+            { "name": "ST_NUM", "label": "Street Number", "searchable": true },
+            { "name": "ST_NAME", "label": "Street Name", "searchable": true },
+            { "name": "ST_TYPE", "label": "Street Type", "searchable": false },
+            { "name": "CITY", "label": "City", "searchable": false },
+            { "name": "COUNTY", "label": "County Label", "searchable": false },
+            { "name": "TAXPAADD1", "label": "Taxpayer Mailing Address 1", "searchable": true },
+            { "name": "TAXPACITY", "label": "Taxpayer Mailing City", "searchable": false },
+            { "name": "PROP_CL", "label": "Property Class", "searchable": false },
+            { "name": "APPRAISALYEAR", "label": "Appraisal Year", "searchable": false },
+            { "name": "BUSNAME", "label": "Business Name", "searchable": true }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/arcgis/rest/services/DallasTaxParcels/FeatureServer/0/query?where=UPPER(TAXPANAME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=ACCT,TAXPANAME1,ST_NUM,ST_NAME,CITY,COUNTY,APPRAISALYEAR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.dallascityhall.com/departments/gis",
+          "status": "live",
+          "lastVerified": "2026-05-14",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "City of Dallas GIS / Dallas Central Appraisal District (DCAD)",
+        "url": "https://www.dallascad.org/",
+        "email": null
+      },
+      "notes": "41 fields confirmed including ACCT (17-digit DCAD account number), TAXPANAME1/2 (taxpayer names), TAXPAADD1-4, TAXPACITY, TAXPASTA, TAXPAZIP, ST_NUM, ST_NAME, ST_TYPE, ST_DIR, CITY, COUNTY, SCHOOL, SPTBCODE (special purpose district), PROP_CL, BLDG_CL, LEGAL_1-5, MAPSCO_GR, TOTEXEMPT, BUSNAME, PROPNAM, ResCom, APPRAISALYEAR. Owner search uses TAXPANAME1 (the taxpayer of record). APPRAISALYEAR in live records reads 2019. This is the snapshot vintage of the City of Dallas GIS's DallasTaxParcels layer, which sources from DCAD annual export. The authoritative real-time DCAD parcel lookup is at dcad.org; the gis.dallascounty.org REST server does NOT expose a public parcel service (only SampleWorldCities and CommissionerDistricts). This layer covers all of Dallas County, not just the City of Dallas city limits. CITY field contains the incorporated municipality (Dallas, Rowlett, Garland, Irving, etc.). The COUNTY field confirms 'DALLAS COUNTY' for all records. Texas Tax Code §25.025 (address-confidentiality program for protected persons, peace officers, judges, victims of family violence, etc.) may suppress some owner names in a future data refresh; query TAXPANAME2 as fallback. maxRecordCount=1000.",
+      "dataVintage": {
+        "body": "This layer is a DCAD annual-export snapshot, its APPRAISALYEAR field reads 2019. Account numbers, owner names, and addresses still locate a parcel, but for the current owner of record and 2025 appraised value, use DCAD's live records. It covers every incorporated city in Dallas County via the CITY field (Dallas, Garland, Irving, Rowlett, and the rest), not just the City of Dallas.",
+        "source": { "label": "Current records at dallascad.org", "url": "https://www.dallascad.org/" }
+      },
+      "relatedPropertyCitySlug": "dallas"
+    },
+    {
+      "id": "tx-bexar",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Bexar",
+      "countySlug": "bexar-county",
+      "countyFips": "48029",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PropID", "label": "Property ID (numeric)", "searchable": true },
+            { "name": "AcctNumb", "label": "BCAD Account Number (XX-XXXX-XXX-XXXX)", "searchable": true },
+            { "name": "Owner", "label": "Owner Name", "searchable": true },
+            { "name": "Situs", "label": "Situs Address", "searchable": true },
+            { "name": "AddrLn1", "label": "Owner Mailing Address Line 1", "searchable": true },
+            { "name": "AddrCity", "label": "Owner Mailing City", "searchable": false },
+            { "name": "AddrSt", "label": "Owner Mailing State", "searchable": false },
+            { "name": "Zip", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "LandVal", "label": "Land Value", "searchable": false },
+            { "name": "ImprVal", "label": "Improvement Value", "searchable": false },
+            { "name": "TotVal", "label": "Total Appraised Value", "searchable": false },
+            { "name": "YrBlt", "label": "Year Built", "searchable": false },
+            { "name": "GBA", "label": "Gross Building Area", "searchable": false },
+            { "name": "PropUse", "label": "Property Use Code", "searchable": false },
+            { "name": "LglDesc", "label": "Legal Description", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query?where=UPPER(Owner)%20LIKE%20UPPER('%25SMITH%25')&outFields=PropID,Owner,Situs,AcctNumb,LandVal,ImprVal,TotVal,YrBlt,PropUse&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.bexar.org/2720/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-05-14",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Bexar County Information Technology, GIS Division / Bexar County Appraisal District (BCAD)",
+        "url": "https://www.bexar.org/2720/GIS-Data",
+        "email": null
+      },
+      "notes": "39 fields confirmed including PropID (numeric parcel ID), AcctNumb (BCAD formatted account number, e.g. '04126-236-0090'), Owner, Situs (situs address), AddrLn1/2/3, AddrCity, AddrSt, Country, Zip, Zip4, DBA, LglDesc, LandVal, ImprVal, TotVal, Nbhd (neighborhood code), GBA, TOT_GBA, YrBlt, Stories, NumRooms, Houses, Detached, State_cd, LglAcres, Acres, TaxUnits, Exempts, IS_UDI, UDIPARNT, Roll, SWP, PropUse. Owner LIKE search (including UPPER()) returns real results. The service description notes the data was sourced from BCAD FTP as of October 2022 and was last updated October 2021. This is a periodic export, not a live feed. The current version is ArcGIS Server 11.3. The supportsQuery field shows null in layer-level metadata (common with this ArcGIS version); the service capabilities string 'Map,Query,Data' confirms query support. maps.bexar.org is the authoritative Bexar County GIS host; gis.bexar.org NXDOMAINs. BCAD's own server (bcad.org) does not expose a public REST parcel endpoint. maxRecordCount=1000. Texas Tax Code §25.025 (address-confidentiality program for protected persons) may suppress certain owner names."
+    },
+    {
+      "id": "tx-collin",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Collin",
+      "countySlug": "collin-county",
+      "countyFips": "48085",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gismaps.cityofallen.org/arcgis/rest/services/ReferenceData/Collin_County_Appraisal_District_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Collin County Appraisal District Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "GIS_DBO_AD_Entity_file_as_name", "label": "Owner Name", "searchable": true },
+            { "name": "GIS_DBO_AD_Entity_situs_display", "label": "Situs Address", "searchable": true },
+            { "name": "GIS_DBO_Parcel_PROP_ID", "label": "Property ID (key)", "searchable": true },
+            { "name": "GIS_DBO_Parcel_GEO_ID", "label": "Geographic ID", "searchable": true }
+          ],
+          "sampleQuery": "https://gismaps.cityofallen.org/arcgis/rest/services/ReferenceData/Collin_County_Appraisal_District_Parcels/MapServer/1/query?where=UPPER(GIS_DBO_AD_Entity_file_as_name)%20LIKE%20UPPER('%25SMITH%25')&outFields=GIS_DBO_Parcel_PROP_ID,GIS_DBO_AD_Entity_file_as_name,GIS_DBO_AD_Entity_situs_display&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.collincad.org/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Collin Central Appraisal District (CCAD), hosted via City of Allen GIS",
+        "url": "https://www.collincad.org/",
+        "email": null
+      },
+      "notes": "Collin County, Texas (Plano / Frisco / McKinney, pop. ~1.1M, among the fastest-growing US counties) publishes Collin Central Appraisal District (CCAD) parcels through a City of Allen ArcGIS MapServer. Owner search uses the joined field GIS_DBO_AD_Entity_file_as_name; the situs (site) address is GIS_DBO_AD_Entity_situs_display; the parcel key is GIS_DBO_Parcel_PROP_ID. The GIS_DBO_ table-join prefixes must be used verbatim in WHERE clauses. Owner LIKE query confirmed live 2026-05-30. Texas Tax Code §25.025 lets protected persons (peace officers, judges, family-violence victims) suppress owner/address records."
+    },
+    {
+      "id": "tx-denton",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Denton",
+      "countySlug": "denton-county",
+      "countyFips": "48121",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.dentoncounty.gov/arcgis/rest/services/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "OWNER_NAME", "label": "Owner Name", "searchable": true },
+            { "name": "SITUS", "label": "Situs Address", "searchable": true },
+            { "name": "CITY", "label": "City", "searchable": true },
+            { "name": "prop_id", "label": "Property ID (DCAD)", "searchable": true }
+          ],
+          "sampleQuery": "https://gis.dentoncounty.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=UPPER(OWNER_NAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=OWNER_NAME,SITUS,CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.dentoncounty.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Denton County GIS / Denton Central Appraisal District (DCAD)",
+        "url": "https://gis.dentoncounty.gov/",
+        "email": null
+      },
+      "notes": "Denton County, Texas (north Dallas–Fort Worth metroplex, Frisco, Flower Mound, Lewisville, pop. ~900K) serves parcels via a Denton County GIS MapServer. Owner search uses OWNER_NAME; the combined site address is SITUS; CITY holds the municipality; the appraisal-district identifier is prop_id. Owner LIKE query confirmed live 2026-05-30. Texas Tax Code §25.025 confidentiality provisions apply to protected persons."
+    },
+    {
+      "id": "tx-el-paso",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "El Paso",
+      "countySlug": "el-paso-county",
+      "countyFips": "48141",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.elpasotexas.gov/arcgis/rest/services/EPParcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "EP Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "NAMEREAL", "label": "Owner Name", "searchable": true },
+            { "name": "LOCADDRESS", "label": "Location Address", "searchable": true },
+            { "name": "PIDN", "label": "Parcel ID Number", "searchable": true }
+          ],
+          "sampleQuery": "https://gis.elpasotexas.gov/arcgis/rest/services/EPParcels/FeatureServer/0/query?where=UPPER(NAMEREAL)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIDN,NAMEREAL,LOCADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.elpasotexas.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of El Paso GIS / El Paso Central Appraisal District (EPCAD)",
+        "url": "https://gis.elpasotexas.gov/",
+        "email": null
+      },
+      "notes": "El Paso County, Texas (county seat El Paso, US–Mexico border metro, pop. ~870K) serves parcels via a City of El Paso ArcGIS FeatureServer covering the county. Owner name is NAMEREAL; the combined location address is LOCADDRESS; the parcel identifier is PIDN (a 20-character EPCAD ID). Coordinates are Texas State Plane (WKID 2277). Owner LIKE query confirmed live 2026-05-30. Texas Tax Code §25.025 confidentiality provisions apply."
+    },
+    {
+      "id": "tx-fort-bend",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Fort Bend",
+      "countySlug": "fort-bend-county",
+      "countyFips": "48157",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisportal.fortbendcountytx.gov/arcgis/rest/services/InteractiveMap/Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "CAD_Reference_Number", "label": "CAD Reference Number (R-number)", "searchable": true },
+            { "name": "Property_Number", "label": "Property Number", "searchable": true },
+            { "name": "Owner_Name", "label": "Owner Name", "searchable": true },
+            { "name": "Situs", "label": "Situs Address", "searchable": true },
+            { "name": "Owner_Address_1", "label": "Owner Mailing Address", "searchable": false },
+            { "name": "Owner_City", "label": "Owner City", "searchable": false }
+          ],
+          "sampleQuery": "https://gisportal.fortbendcountytx.gov/arcgis/rest/services/InteractiveMap/Parcels_Public/FeatureServer/1/query?where=UPPER(Owner_Name)%20LIKE%20UPPER('%25SMITH%25')&outFields=CAD_Reference_Number,Owner_Name,Situs&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://fbcad-open-data-hub-fortbend.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-09-12",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Fort Bend County GIS / Fort Bend Central Appraisal District (FBCAD)",
+        "url": "https://www.fbcad.org/",
+        "email": null
+      },
+      "notes": "Fort Bend County, Texas (Katy / Sugar Land / Missouri City, southwest Houston metro, pop. ~880K) serves parcels from a Fort Bend County GIS MapServer sourced from Fort Bend Central Appraisal District (FBCAD). Owner name is Owner_Name (the layer display field); owner mailing is Owner_Address_1/2/3 with Owner_City/Owner_State/Owner_Zip; the site address is Situs; identifiers are CAD_Reference_Number (R-number, e.g. R328356) and Property_Number. Owner search uses UPPER(Owner_Name) LIKE. Verified live 2026-05-30 (OwnerName = Shimmel John). Under Texas Tax Code §25.025, protected persons (peace officers, judges, family-violence victims) may have their owner/address records withheld. MIGRATED 2026-06-06: gisweb.fortbendcountytx.gov was decommissioned (Cloudflare 522) -- the public service moved to gisportal.fortbendcountytx.gov InteractiveMap/Parcels_Public/FeatureServer/1 (ArcGIS 11.3, 359,954 parcels; OwnerName search re-verified live), and at that point the field names had dropped their underscores (CADReferenceNumber, OwnerName). RENAMED BACK 2026-09-12: the same layer (the service's only layer) publishes the underscore names again (Owner_Name, CAD_Reference_Number, Property_Number, Owner_Address_1, Owner_City; 49 fields, displayField Owner_Name). The liveness probe read that rename as field-drift on 2026-09-10 and autoheal PR #632 tried to drop the five fields; nothing was removed upstream, so the fields were re-pointed at the current names and owner search re-verified live (10 rows for %SMITH%, e.g. R100208)."
+    },
+    {
+      "id": "tx-williamson",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Williamson",
+      "countySlug": "williamson-county",
+      "countyFips": "48491",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.wilco.org/arcgis/rest/services/public/county_wcad_parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WCAD Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PropertyNumber", "label": "Property Number (R-number)", "searchable": true },
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "FullName", "label": "Owner Name (formatted)", "searchable": true },
+            { "name": "PrimaryOwner", "label": "Primary Owner", "searchable": true },
+            { "name": "MailingAddress", "label": "Mailing Address", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.wilco.org/arcgis/rest/services/public/county_wcad_parcels/MapServer/0/query?where=UPPER(FullName)%20LIKE%20UPPER('%25SMITH%25')&outFields=PropertyNumber,FullName,MailingAddress&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.wcad.org/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Williamson County GIS / Williamson Central Appraisal District (WCAD)",
+        "url": "https://www.wcad.org/",
+        "email": null
+      },
+      "notes": "Williamson County, Texas (Round Rock / Georgetown / Cedar Park, north Austin metro, pop. ~750K) serves a parcel layer updated daily from Williamson Central Appraisal District (WCAD) via Williamson County GIS (gis.wilco.org). Owner name is available as FullName (formatted) and PrimaryOwner, with NameFirst/NameMiddle/NameLast and CNVYNAME (conveyance name) components; mailing is MailingAddress; identifiers are PropertyNumber (R-number, e.g. R-01-1100-0012-0009) and PARCELID. Owner search uses UPPER(FullName) LIKE. Verified live 2026-05-30 (FullName = GOVELLAN, JUAN). Texas Tax Code §25.025 confidentiality provisions apply to protected persons."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "stateSlug": "new-hampshire",
+  "stateName": "New Hampshire",
+  "stateAbbrev": "NH",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "nh-hillsborough",
+      "state": "NH",
+      "stateName": "New Hampshire",
+      "stateSlug": "new-hampshire",
+      "county": "Hillsborough",
+      "countySlug": "hillsborough-county",
+      "countyFips": "33011",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "NH GRANIT (Geographically Referenced Analysis and Information Transfer System), UNH",
+        "url": "https://granit.unh.edu/",
+        "email": null
+      },
+      "notes": "No token-free public REST endpoint found for Hillsborough County. NH GRANIT maintains a statewide NH Parcel Mosaic at nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosiac/MapServer but it requires an authentication token (HTTP 499 returned). The NH Geodata Portal (new-hampshire-geodata-portal-1-nhgranit.hub.arcgis.com) hosts the dataset as ArcGIS Hub but downloads/queries require GRANIT account. Individual Hillsborough County municipalities (Manchester, Nashua, etc.) maintain their own parcel viewers via AxisGIS and Vision Government Solutions but these are non-REST property search UIs, not queryable endpoints. Fallback: Regrid covers NH; NHGRANIT account (granit.unh.edu) required for REST access to the parcel mosaic."
+    },
+    {
+      "id": "nh-rockingham",
+      "state": "NH",
+      "stateName": "New Hampshire",
+      "stateSlug": "new-hampshire",
+      "county": "Rockingham",
+      "countySlug": "rockingham-county",
+      "countyFips": "33015",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "NH GRANIT (Geographically Referenced Analysis and Information Transfer System), UNH",
+        "url": "https://granit.unh.edu/",
+        "email": null
+      },
+      "notes": "No token-free public REST endpoint exists for Rockingham County parcel data. The same authentication barrier that blocks Hillsborough County applies here: NH GRANIT's statewide NH Parcel Mosaic (nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosiac/MapServer) returns HTTP 499 without a valid GRANIT token. Rockingham is New Hampshire's most populous county (pop. 330,000), covering Portsmouth, Salem, Derry, Londonderry, and the southern tier of Manchester suburbs. Individual municipalities use fragmented vendor solutions -- Vision Government Solutions hosts assessor data for Salem, Derry, and several others; AxisGIS serves Rye, Deerfield, and others -- but none expose a standard queryable ArcGIS FeatureServer. For programmatic owner-level access, a GRANIT account (granit.unh.edu) is required. Regrid covers NH at commercial tier. The Rockingham County Registry of Deeds (ecourt.rockinghamregistry.com) is publicly searchable for recorded instruments but does not expose a REST parcel layer."
+    }
+  ]
+}

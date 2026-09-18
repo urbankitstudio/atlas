@@ -1,0 +1,208 @@
+{
+  "stateSlug": "louisiana",
+  "stateName": "Louisiana",
+  "stateAbbrev": "LA",
+  "lastUpdated": "2026-08-04",
+  "counties": [
+    {
+      "id": "la-east-baton-rouge-parish",
+      "state": "LA",
+      "stateName": "Louisiana",
+      "stateSlug": "louisiana",
+      "county": "East Baton Rouge Parish",
+      "countySlug": "east-baton-rouge-parish",
+      "countyFips": "22033",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.brla.gov/gis/rest/services/Cadastral/Tax_Parcel/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "ASSESSMENT_NUM",
+              "label": "Assessment Number (Parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "PRONO",
+              "label": "Property Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNER",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_ADDRESS",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_CITY_STATE_ZIP",
+              "label": "Owner City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PHYSICAL_ADDRESS",
+              "label": "Physical Address",
+              "searchable": true
+            },
+            {
+              "name": "SUBDIVISION",
+              "label": "Subdivision",
+              "searchable": false
+            },
+            {
+              "name": "WARD_SECTION",
+              "label": "Ward/Section",
+              "searchable": false
+            },
+            {
+              "name": "SALE_YEAR",
+              "label": "Sale Year",
+              "searchable": false
+            },
+            {
+              "name": "SUM_FAIR_MARKET_VALUE",
+              "label": "Fair Market Value",
+              "searchable": false
+            },
+            {
+              "name": "SUM_ASSESSED_VALUE",
+              "label": "Assessed Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.brla.gov/gis/rest/services/Cadastral/Tax_Parcel/MapServer/0/query?where=UPPER(OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=ASSESSMENT_NUM,OWNER,OWNER_ADDRESS,PHYSICAL_ADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://web-ebrgis.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "East Baton Rouge Parish / City of Baton Rouge GIS Program (EBRGIS)",
+        "url": "https://web-ebrgis.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "East Baton Rouge Parish (Baton Rouge, pop. 456,000; state capital) Tax Parcel layer. Louisiana uses 'parish' instead of 'county'. East Baton Rouge Parish is the combined city/parish government. 21 fields confirmed: ID, ASSESSMENT_NUM, PRONO, OWNER, OWNER_ADDRESS, OWNER_CITY_STATE_ZIP, PHYSICAL_ADDRESS, SUBDIVISION, WARD_SECTION, LOT, BLOCK, LEGAL_DESCRIPTION, FLOOD_ZONE, SALE_YEAR, STATUS, SUM_HOMESTEAD_EXEMPTION, SUM_LOT_VALUE, SUM_LAND_VALUE, SUM_IMPROVEMENT_VALUE, SUM_FAIR_MARKET_VALUE, SUM_ASSESSED_VALUE. Verified 2026-05-15: SMITH returns Baton Rouge addresses (e.g., '12523 MERLIN AVE', '9758 W TAMS DR'). EBRGIS manages 200+ public datasets.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    },
+    {
+      "id": "la-orleans-parish",
+      "state": "LA",
+      "stateName": "Louisiana",
+      "stateSlug": "louisiana",
+      "county": "Orleans Parish",
+      "countySlug": "orleans-parish",
+      "countyFips": "22071",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.nola.gov/arcgis/rest/services/apps/property3/MapServer/15",
+          "serviceType": "MapServer",
+          "layerIndex": 15,
+          "layerName": "Property Information [Parcels]",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "TAXBILLID",
+              "label": "Tax Bill ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME1",
+              "label": "Owner Name 1",
+              "searchable": false
+            },
+            {
+              "name": "OWNERNME2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "SITEADDRESS",
+              "label": "Site Address",
+              "searchable": false
+            },
+            {
+              "name": "BUILDING",
+              "label": "Building Number",
+              "searchable": false
+            },
+            {
+              "name": "UNIT",
+              "label": "Unit",
+              "searchable": false
+            },
+            {
+              "name": "PSTLADDRESS",
+              "label": "Postal (Mailing) Address",
+              "searchable": false
+            },
+            {
+              "name": "PSTLCITY",
+              "label": "Postal City",
+              "searchable": false
+            },
+            {
+              "name": "PSTLSTATE",
+              "label": "Postal State",
+              "searchable": false
+            },
+            {
+              "name": "PSTLZIP5",
+              "label": "Postal ZIP",
+              "searchable": false
+            },
+            {
+              "name": "USECD",
+              "label": "Use Code",
+              "searchable": false
+            },
+            {
+              "name": "LOT",
+              "label": "Lot",
+              "searchable": false
+            },
+            {
+              "name": "SQUARE",
+              "label": "Square",
+              "searchable": false
+            },
+            {
+              "name": "PARID",
+              "label": "Parcel Account ID",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://gis.nola.gov/arcgis/rest/services/apps/property3/MapServer/15/query?where=PARCELID+IS+NOT+NULL&outFields=PARCELID,OWNERNME1,SITEADDRESS,PSTLADDRESS,PSTLCITY&returnGeometry=false&f=json&resultRecordCount=5",
+          "license": "public",
+          "licenseUrl": "https://gis.nola.gov/",
+          "status": "unreachable",
+          "lastVerified": "2026-08-29",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of New Orleans GIS (NOLA GIS)",
+        "url": "https://gis.nola.gov/",
+        "email": null
+      },
+      "notes": "MARKED UNREACHABLE 2026-08-29. Layer 15 metadata answers and lists PARCELID, OWNERNME1, SITEADDRESS, PSTLADDRESS, but ANY query that names those columns in outFields returns ArcGIS 400 \"Failed to execute query\" in ~250 ms (measured 2026-08-29: PARCELID IS NOT NULL, 1=1, OBJECTID=1 and a 30 m spatial query all fail with specific outFields). outFields=* succeeds and takes 27-44 s; even outFields=OBJECTID took 27.5 s. The enrich pipeline requests specific columns, so every paid lookup here fails and refunds; the liveness probe sends the declared sampleQuery and fails the same way, which is why this parish has never once probed ok (463 consecutive failures). Layers 0-14 of the same service are zoning, overlays and address points, not parcels, and ArcGIS Hub lists no city-owned parcel feature service. County-side defect; nothing to re-point to. Liveness keeps watching. Prior notes: Orleans Parish's public parcel layer still serves metadata, but its attribute-query operation is currently failing on the county's ArcGIS server. Owner and address searches are unavailable while the county repairs the service; automatic probes continue to check for recovery. New Orleans uses Square/Lot identifiers for legal parcels. The city also publishes a weekly situs-and-geometry dataset on data.nola.gov, but it does not include owner names. An older 2018 parcel snapshot was not substituted because its ownership data is dated and the service was unstable during verification. LIVENESS 2026-08-04: the layer's metadata still loads, but EVERY query against it times out, including a bare returnCountOnly count. 161 consecutive failed checks and last_ok_at has never been set. This is a county-side outage, not a schema drift; there is nothing to fix on our side and the endpoint stays honestly degraded until New Orleans repairs it."
+    }
+  ]
+}

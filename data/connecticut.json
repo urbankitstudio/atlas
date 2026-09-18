@@ -1,0 +1,1223 @@
+{
+  "stateSlug": "connecticut",
+  "stateName": "Connecticut",
+  "stateAbbrev": "CT",
+  "lastUpdated": "2026-08-26",
+  "counties": [
+    {
+      "id": "ct-capitol",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Capitol Planning Region",
+      "countySlug": "capitol-planning-region",
+      "countyFips": "09110",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Andover', 'Avon', 'Berlin', 'Bloomfield', 'Bolton', 'Canton', 'Columbia', 'Coventry', 'East Granby', 'East Hartford', 'East Windsor', 'Ellington', 'Enfield', 'Farmington', 'Glastonbury', 'Granby', 'Hartford', 'Hebron', 'Manchester', 'Mansfield', 'Marlborough', 'New Britain', 'Newington', 'Plainville', 'Rocky Hill', 'Simsbury', 'Somers', 'South Windsor', 'Southington', 'Stafford', 'Suffield', 'Tolland', 'Vernon', 'West Hartford', 'Wethersfield', 'Willington', 'Windsor', 'Windsor Locks')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Andover address with 09110. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Capitol Planning Region, 38 towns and 363,509 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-greater-bridgeport",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Greater Bridgeport Planning Region",
+      "countySlug": "greater-bridgeport-planning-region",
+      "countyFips": "09120",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Bridgeport', 'Easton', 'Fairfield', 'Monroe', 'Stratford', 'Trumbull')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Bridgeport address with 09120. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Greater Bridgeport Planning Region, 6 towns and 88,768 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-lower-connecticut-river-valley",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Lower Connecticut River Valley Planning Region",
+      "countySlug": "lower-connecticut-river-valley-planning-region",
+      "countyFips": "09130",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Chester', 'Clinton', 'Cromwell', 'Deep River', 'Durham', 'East Haddam', 'East Hampton', 'Essex', 'Haddam', 'Killingworth', 'Lyme', 'Middlefield', 'Middletown', 'Old Lyme', 'Old Saybrook', 'Portland', 'Westbrook')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Chester address with 09130. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Lower Connecticut River Valley Planning Region, 17 towns and 83,000 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-naugatuck-valley",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Naugatuck Valley Planning Region",
+      "countySlug": "naugatuck-valley-planning-region",
+      "countyFips": "09140",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Ansonia', 'Beacon Falls', 'Bethlehem', 'Bristol', 'Cheshire', 'Derby', 'Middlebury', 'Naugatuck', 'Oxford', 'Plymouth', 'Prospect', 'Seymour', 'Shelton', 'Southbury', 'Thomaston', 'Waterbury', 'Watertown', 'Wolcott', 'Woodbury')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Ansonia address with 09140. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Naugatuck Valley Planning Region, 19 towns and 158,234 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-northeastern-connecticut",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Northeastern Connecticut Planning Region",
+      "countySlug": "northeastern-connecticut-planning-region",
+      "countyFips": "09150",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Ashford', 'Brooklyn', 'Canterbury', 'Chaplin', 'Eastford', 'Hampton', 'Killingly', 'Plainfield', 'Pomfret', 'Putnam', 'Scotland', 'Sterling', 'Thompson', 'Union', 'Voluntown', 'Woodstock')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Ashford address with 09150. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Northeastern Connecticut Planning Region, 16 towns and 48,434 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-northwest-hills",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Northwest Hills Planning Region",
+      "countySlug": "northwest-hills-planning-region",
+      "countyFips": "09160",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Barkhamsted', 'Burlington', 'Canaan', 'Colebrook', 'Cornwall', 'Goshen', 'Hartland', 'Harwinton', 'Kent', 'Litchfield', 'Morris', 'New Hartford', 'Norfolk', 'North Canaan', 'Roxbury', 'Salisbury', 'Sharon', 'Torrington', 'Warren', 'Washington', 'Winchester')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Barkhamsted address with 09160. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Northwest Hills Planning Region, 21 towns and 64,101 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-south-central-connecticut",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "South Central Connecticut Planning Region",
+      "countySlug": "south-central-connecticut-planning-region",
+      "countyFips": "09170",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Bethany', 'Branford', 'East Haven', 'Guilford', 'Hamden', 'Madison', 'Meriden', 'Milford', 'New Haven', 'North Branford', 'North Haven', 'Orange', 'Wallingford', 'West Haven', 'Woodbridge')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Bethany address with 09170. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is South Central Connecticut Planning Region, 15 towns and 185,729 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-southeastern-connecticut",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Southeastern Connecticut Planning Region",
+      "countySlug": "southeastern-connecticut-planning-region",
+      "countyFips": "09180",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Bozrah', 'Colchester', 'East Lyme', 'Franklin', 'Griswold', 'Groton', 'Lebanon', 'Ledyard', 'Lisbon', 'Montville', 'New London', 'North Stonington', 'Norwich', 'Preston', 'Salem', 'Sprague', 'Stonington', 'Waterford', 'Windham')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Bozrah address with 09180. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Southeastern Connecticut Planning Region, 19 towns and 110,249 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    },
+    {
+      "id": "ct-western-connecticut",
+      "state": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "county": "Western Connecticut Planning Region",
+      "countySlug": "western-connecticut-planning-region",
+      "countyFips": "09190",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Connecticut_CAMA_and_Parcel_Layer",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Town_Name",
+              "label": "Town Name (filter to Hartford-area towns, e.g. Hartford, West Hartford, East Hartford)",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Co_Owner",
+              "label": "Co-Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_State",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Location_1",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_City",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Total",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Land",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Assessed_Building",
+              "label": "Building Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Land",
+              "label": "Appraised Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Appraised_Building",
+              "label": "Appraised Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Valuation_Year",
+              "label": "Valuation Year",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Price",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "Sale_Date",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "State_Use",
+              "label": "State Use Code",
+              "searchable": false
+            },
+            {
+              "name": "State_Use_Description",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Living_Area",
+              "label": "Living Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+          "status": "live",
+          "lastVerified": "2026-08-26",
+          "verifiedBy": "manual",
+          "scopeWhere": "Town_Name IN ('Bethel', 'Bridgewater', 'Brookfield', 'Danbury', 'Darien', 'Greenwich', 'New Canaan', 'New Fairfield', 'New Milford', 'Newtown', 'Norwalk', 'Redding', 'Ridgefield', 'Sherman', 'Stamford', 'Weston', 'Westport', 'Wilton')"
+        }
+      ],
+      "contact": {
+        "department": "Connecticut Office of Policy and Management (OPM), GIS Data",
+        "url": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
+        "email": null
+      },
+      "notes": "Connecticut has no counties as Census geography. The state replaced them with nine COG planning regions, and the Census geocoder answers a Bethel address with 09190. The registry previously held retired county codes (09001/09003/09009), which findCountyByFips matches exactly, so every Connecticut address returned county-not-indexed. This entry is Western Connecticut Planning Region, 18 towns and 188,172 parcels on the statewide CAMA layer. Scope is Town_Name IN (...) because the layer is town-based, not region-based; every town name was matched against the layer's own distinct values rather than derived from the Census spelling, which writes \"Hartford town\" where the layer writes \"Hartford\". The nine regions together cover all 1,290,196 parcels in the layer, so the partition is exact. Owner, mailing address and assessed values are populated statewide. ENDPOINT QUIRK, measured 2026-08-26: this service rejects a spatial query with resultRecordCount >= the number of matching features, answering \"Cannot perform query. Invalid query parameters.\" Repeated 4x per case: a point with 3 parcels fails at resultRecordCount=3 and 25 but succeeds with the parameter omitted; a point with 4 parcels succeeds at 3 and fails at 25. Attribute searches that match more rows than the cap are unaffected, which is why the browser lookup tool works. Omit the parameter for point-in-polygon queries against this layer."
+    }
+  ]
+}

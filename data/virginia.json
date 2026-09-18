@@ -1,0 +1,88 @@
+{
+  "stateSlug": "virginia",
+  "stateName": "Virginia",
+  "stateAbbrev": "VA",
+  "lastUpdated": "2026-08-04",
+  "counties": [
+    {
+      "id": "va-fairfax",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Fairfax",
+      "countySlug": "fairfax-county",
+      "countyFips": "51059",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://www.fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "PARCEL_KEY", "label": "Parcel Key (numeric)", "searchable": true },
+            { "name": "PARCEL_TYPE", "label": "Parcel Type (ORDINARY / CONDO)", "searchable": false },
+            { "name": "SRC_CONTROL", "label": "Source Control", "searchable": false }
+          ],
+          "sampleQuery": "https://www.fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/MapServer/0/query?where=PIN+LIKE+%270304%25%27&outFields=PIN,PARCEL_TYPE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.fairfaxcounty.gov/maps/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Fairfax County GIS Division (Department of Information Technology)",
+        "url": "https://www.fairfaxcounty.gov/maps/",
+        "email": null
+      },
+      "notes": "Fairfax County (Northern Virginia, pop. 1.15 million) is the most populous jurisdiction in Virginia and covers 406 square miles, entirely distinct from Fairfax City -- a separate independent city (FIPS 51600) that sits geographically within the county but is governed and assessed independently. The county-direct parcel layer at fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/MapServer/0 exposes PIN, PARCEL_KEY, PARCEL_TYPE (ORDINARY vs. CONDO), and SRC_CONTROL -- but no owner name. Fairfax keeps ownership data in a non-spatial table not exposed on this REST endpoint. For owner-name lookup, use the Fairfax County Real Estate Assessment Database at realestate.fairfaxcounty.gov; it supports search by address, parcel ID, and owner name. The GIS/Property MapServer at fairfaxcounty.gov/euclid/rest has 54 layers (parcels, tax districts, easements, flood zones, annotations) but also does not surface owner in the queryable parcel layer. PIN format is space-padded with section/block/lot grouping (e.g., '0304 39  0029'). Verified 2026-05-11: 369,267 polygon parcels. Updated daily from county cadastral."
+    },
+    {
+      "id": "va-prince-william",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Prince William",
+      "countySlug": "prince-william-county",
+      "countyFips": "51153",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisweb.pwcva.gov/arcgis/rest/services/OpenData/OpenData/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "CAMA_OWNER_CUR", "label": "Owner Name (current, from CAMA)", "searchable": true },
+            { "name": "CAMA_DEEDOWNER", "label": "Deed Owner Name", "searchable": true },
+            { "name": "GPIN", "label": "GPIN (Geographic Parcel ID, e.g. 7201-09-8851)", "searchable": true },
+            { "name": "ST_NO", "label": "Street Number", "searchable": true },
+            { "name": "ST_NAME", "label": "Street Name", "searchable": true },
+            { "name": "ST_TYPE", "label": "Street Type", "searchable": false },
+            { "name": "CITY", "label": "City", "searchable": false },
+            { "name": "ZIP", "label": "ZIP Code", "searchable": false }
+          ],
+          "sampleQuery": "https://gisweb.pwcva.gov/arcgis/rest/services/OpenData/OpenData/MapServer/0/query?where=UPPER(CAMA_OWNER_CUR)+LIKE+UPPER('%25SMITH%25')&outFields=GPIN,CAMA_OWNER_CUR,ST_NO,ST_NAME,ST_TYPE,CITY,ZIP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.pwcva.gov/department/geographic-information-systems-gis",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Prince William County GIS",
+        "url": "https://www.pwcva.gov/department/geographic-information-systems-gis",
+        "email": null
+      },
+      "notes": "Prince William County (Northern Virginia, pop. ~490,000; county seat unincorporated, courts in Manassas) publishes an Open Data parcel MapServer at gisweb.pwcva.gov (note the host is gisweb.pwcva.gov, NOT pwcgov.org). Layer 0 exposes 49 fields and -- unlike neighboring Fairfax County -- includes owner name directly: CAMA_OWNER_CUR (current owner from the CAMA system) and CAMA_DEEDOWNER (deed owner). Parcel identifier is GPIN, a hyphenated geographic id (e.g. '7201-09-8851'). Site address is split across ST_NO / ST_NAME / ST_TYPE / CITY / ZIP. Verified 2026-06-20: 159,174 parcels; UPPER(CAMA_OWNER_CUR) LIKE '%SMITH%' returns real owners with Haymarket/Manassas-area addresses and ZIPs. IMPORTANT: this entry covers Prince William COUNTY only. The independent cities of Manassas (FIPS 51683) and Manassas Park (FIPS 51685) sit within the county's geographic bounds but are separate Census FIPS jurisdictions, governed and assessed independently. For authoritative assessment records use the PWC Real Estate Assessments office. LIVENESS 2026-08-04: answers a home-network probe in ~2.6s with 10 correct parcel rows, but exceeds even the raised 15s host budget from the Vercel probe region on 112 consecutive checks. That pattern reads as datacenter-IP throttling rather than a slow server, so raising the budget further would risk the 60s shard ceiling for no gain. Stays honestly degraded."
+    }
+  ]
+}

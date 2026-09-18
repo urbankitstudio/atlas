@@ -1,0 +1,49 @@
+{
+  "stateSlug": "oklahoma",
+  "stateName": "Oklahoma",
+  "stateAbbrev": "OK",
+  "lastUpdated": "2026-06-05",
+  "counties": [
+    {
+      "id": "ok-oklahoma",
+      "state": "OK",
+      "stateName": "Oklahoma",
+      "stateSlug": "oklahoma",
+      "county": "Oklahoma",
+      "countySlug": "oklahoma-county",
+      "countyFips": "40109",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/TaxParcelsPublics_view/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "TaxParcelPublic",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "accountno", "label": "Account Number (APN)", "searchable": true },
+            { "name": "name1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "name2", "label": "Owner Name 2", "searchable": true },
+            { "name": "name3", "label": "Owner Name 3", "searchable": true },
+            { "name": "location", "label": "Property Address", "searchable": true },
+            { "name": "locationcity", "label": "Property City", "searchable": true },
+            { "name": "mailingaddress1", "label": "Mailing Address", "searchable": true }
+          ],
+          "sampleQuery": "https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/TaxParcelsPublics_view/FeatureServer/0/query?where=UPPER(name1)+LIKE+UPPER('%25SMITH%25')&outFields=accountno,name1,name2,mailingaddress1,city,location,locationcity&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://ok-county-gis-hub-ok-co.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-06-05",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Oklahoma County GIS",
+        "url": "https://ok-county-gis-hub-ok-co.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Oklahoma County is Oklahoma's most populous county (pop. 810,000; county seat Oklahoma City). The TaxParcelsPublics_view FeatureServer is hosted on ArcGIS Online (services8.arcgis.com, org ID euhkr1dAJeQBIjV0) and published via the OK County GIS Hub at ok-county-gis-hub-ok-co.hub.arcgis.com. Live query confirmed 336,922 parcels and owner-name exposure. Key fields: accountno (R-prefixed account number, e.g. 'R189878000'), name1/name2/name3 (up to three owners), mailingaddress1, city (mailing city), location (combined property address when populated, e.g. '17622 N INDIAN MERIDIAN RD OKLAHOMA CITY'), locationcity (property city), propertyid (numeric internal ID), taxdistrict, taxdistrictname, currentmarket, currentassessed, currenttaxable, landvalue, legal (legal description), subname, lot, block, section, township, range, acreage. Note: location and locationcity fields may be null for some rural parcels, when null, use legal/section/township/range for location. The former county ArcGIS Server at oklahomacounty.geocortex.com is no longer reachable (DNS fails as of 2026-06); the ArcGIS Online hosted view is the current canonical public layer. Oklahoma County Assessor portal at assessor.oklahomacounty.org provides the full record with appeals and valuation history."
+    }
+  ]
+}

@@ -1,0 +1,576 @@
+{
+  "stateSlug": "new-jersey",
+  "stateName": "New Jersey",
+  "stateAbbrev": "NJ",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "nj-bergen",
+      "state": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "county": "Bergen",
+      "countySlug": "bergen-county",
+      "ownerFieldNote": {
+        "body": "New Jersey's statewide parcel composite documents an OWNER_NAME column for Bergen County, but it is not populated on the public web service: a live sample of 300 records filtered to COUNTY='BERGEN' returned no value in any row, so no query can retrieve ownership here. The NJ Office of GIS states in the service description that the OWNER_NAME field is redacted per Daniel's Law for public web access. PAMS parcel identifier, municipality, property location, assessed values and sale price are populated and searchable. Ownership is available from the municipal tax assessor.",
+        "source": {
+          "label": "New Jersey Office of GIS, statewide MOD-IV parcel composite",
+          "url": "https://www.nj.gov/njgin/"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "restricted",
+          "basis": {
+            "type": "county_cited_statute",
+            "note": "The statewide composite layer's OWNER_NAME column returns no value for any Bergen County record, and the NJ Office of GIS states in the service description that the field is redacted per Daniel's Law for public web access.",
+            "citation": "N.J. Daniel's Law",
+            "attributedTo": "NJ Office of GIS (service description)",
+            "sourceUrl": "https://www.nj.gov/njgin/"
+          }
+        }
+      },
+      "countyFips": "34003",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Cad_parcel_mod4",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PAMS_PIN",
+              "label": "PAMS Parcel Identifier (MUN_BLOCK_LOT)",
+              "searchable": true
+            },
+            {
+              "name": "COUNTY",
+              "label": "County Name (uppercase, e.g. BERGEN)",
+              "searchable": true
+            },
+            {
+              "name": "MUN_NAME",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME",
+              "label": "Owner Name (blank per NJ bulk-data policy)",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "IMPRVT_VAL",
+              "label": "Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "NET_VALUE",
+              "label": "Net Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "YR_CONSTR",
+              "label": "Year of Construction",
+              "searchable": false
+            },
+            {
+              "name": "BLDG_DESC",
+              "label": "Building Description",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?where=COUNTY%3D'BERGEN'+AND+MUN_NAME+LIKE+'%25HACKENSACK%25'&outFields=PAMS_PIN,COUNTY,MUN_NAME,PROP_LOC,LAND_VAL,NET_VALUE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.njogis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "NJ Office of GIS (NJOGIS), Statewide MOD-IV Composite",
+        "url": "https://www.njogis.com/",
+        "email": null
+      },
+      "notes": "NJ statewide MOD-IV Composite parcel layer, covers all 21 counties; filter by COUNTY='BERGEN' (uppercase county name). Bergen County has 20,553+ parcels confirmed. IMPORTANT: OWNER_NAME field is present in the schema but intentionally blank for all records, NJ state policy restricts bulk owner-name lookup via the public REST layer. Parcel data includes address, assessed values, sale price, year built, deed book/page, and building description. For owner lookup, see NJ MOD-IV database via county tax assessors or NJACTB. This hosted service (Web Mercator 3857 projection) is maintained by NJOGIS and mirrors the official New Jersey Division of Taxation MOD-IV database."
+    },
+    {
+      "id": "nj-monmouth",
+      "state": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "county": "Monmouth",
+      "countySlug": "monmouth-county",
+      "capabilityOverrides": {
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Mailing addresses are published for most parcels, but New Jersey's Daniel's Law lets protected individuals such as judges, law enforcement and domestic-violence victims suppress their address, so affected rows return null or redacted values.",
+            "citation": "N.J. P.L. 2021, c.371 (Daniel's Law)"
+          }
+        }
+      },
+      "countyFips": "34025",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services9.arcgis.com/GCI7uwdn5grdMNX1/arcgis/rest/services/GEO_MC_Parcels/FeatureServer/9",
+          "serviceType": "FeatureServer",
+          "layerIndex": 9,
+          "layerName": "GEO.MC.Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PAMS_PIN",
+              "label": "Property Account Management System PIN",
+              "searchable": true
+            },
+            {
+              "name": "OwnersName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PropertyLocation",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "MUN_NAME",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "MUN",
+              "label": "Municipality Code",
+              "searchable": true
+            },
+            {
+              "name": "BLOCK",
+              "label": "Tax Block",
+              "searchable": true
+            },
+            {
+              "name": "LOT",
+              "label": "Tax Lot",
+              "searchable": true
+            },
+            {
+              "name": "QCODE",
+              "label": "Qualifier Code",
+              "searchable": true
+            },
+            {
+              "name": "PropertyClass",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "Acreage",
+              "label": "Acreage",
+              "searchable": false
+            },
+            {
+              "name": "TotalAssmnt",
+              "label": "Total Assessment",
+              "searchable": false
+            },
+            {
+              "name": "LandAssmnt",
+              "label": "Land Assessment",
+              "searchable": false
+            },
+            {
+              "name": "BuildingAssmnt",
+              "label": "Building Assessment",
+              "searchable": false
+            },
+            {
+              "name": "SaleDate",
+              "label": "Last Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "SalePrice",
+              "label": "Last Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "YrBuilt",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "Zone_",
+              "label": "Zoning Code",
+              "searchable": false
+            },
+            {
+              "name": "CityStateZip",
+              "label": "Owner Mailing City/State/ZIP",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services9.arcgis.com/GCI7uwdn5grdMNX1/arcgis/rest/services/GEO_MC_Parcels/FeatureServer/9/query?where=UPPER(OwnersName)+LIKE+UPPER('%25SMITH%25')&outFields=PAMS_PIN,OwnersName,PropertyLocation,MUN_NAME,TotalAssmnt,SalePrice&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis-monmouthnj.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Monmouth County GIS Office",
+        "url": "https://gis-monmouthnj.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Monmouth County (pop. 643,000; Jersey Shore and inland suburbs) uses a county-direct FeatureServer separate from the NJOGIS statewide layer. The service at services9.arcgis.com (GEO_MC_Parcels, layer 9) reflects Monmouth County GIS's own MOD-IV data pull. PAMS_PIN is the statewide identifier, structured as county code + municipality code + block + lot + qualifier code (QCODE). OwnersName is public and queryable. Assessment fields include TotalAssmnt, LandAssmnt, BuildingAssmnt, SaleDate, SalePrice, and YrBuilt. CityStateZip is a single concatenated field for owner mailing address. The MUN and MUN_NAME fields identify the 53-municipality breakdown within the county (e.g., Freehold Borough, Long Branch, Red Bank, Asbury Park). Note: NJ Daniel's Law (P.L. 2021, c.371) allows protected individuals -- judges, law enforcement, domestic-violence victims -- to suppress their address from public records; the county layer may return null or redacted values for mailing addresses on affected parcels. For unredacted deed and transfer records, the Monmouth County Clerk's office portal at mcgifts.co.monmouth.nj.us is the authoritative source."
+    },
+    {
+      "id": "nj-ocean",
+      "state": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "county": "Ocean",
+      "countySlug": "ocean-county",
+      "ownerFieldNote": {
+        "body": "New Jersey's statewide cadastral parcel layer documents an OWNER_NAME column, but it is not populated on the public web service: a live sample of 300 records filtered to COUNTY='OCEAN' returned no value in any row, so no query can retrieve ownership here. PAMS parcel identifier, municipality, property location, assessed values and sale price are populated and searchable. Ownership is available from the municipal tax assessor.",
+        "source": {
+          "label": "New Jersey Office of GIS, statewide cadastral parcel layer",
+          "url": "https://www.nj.gov/njgin/"
+        }
+      },
+      "countyFips": "34029",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels (NJ Statewide Cadastral)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY",
+              "label": "County Name (use 'OCEAN')",
+              "searchable": true
+            },
+            {
+              "name": "MUN_NAME",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PAMS_PIN",
+              "label": "PAMS Property Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "IMPRVT_VAL",
+              "label": "Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "NET_VALUE",
+              "label": "Net Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "CALC_ACRE",
+              "label": "Calculated Acreage",
+              "searchable": false
+            },
+            {
+              "name": "YR_CONSTR",
+              "label": "Year Constructed",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "DEED_DATE",
+              "label": "Deed Date",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=COUNTY%3D'OCEAN'+AND+UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY,MUN_NAME,PAMS_PIN,PROP_LOC,OWNER_NAME,NET_VALUE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nj.gov/njgin/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = 'OCEAN'"
+        }
+      ],
+      "contact": {
+        "department": "NJ Office of Information Technology, Office of GIS (NJOGIS)",
+        "url": "https://www.nj.gov/njgin/",
+        "email": null
+      },
+      "notes": "Ocean County (pop. 637,000; Pine Barrens and Jersey Shore barrier islands) has no county-direct REST parcel layer. Parcel and owner data route through the NJOGIS statewide cadastral MapServer at maps.nj.gov (Framework/Cadastral/MapServer/0). Filter with COUNTY='OCEAN'. Key fields: OWNER_NAME (public, queryable), PAMS_PIN (county-municipality-block-lot-qualifier format), PROP_LOC (property street address), MUN_NAME (municipality), PROP_CLASS, LAND_VAL, IMPRVT_VAL, NET_VALUE, SALE_PRICE, YR_CONSTR, and DEED_DATE. New Jersey lets protected individuals -- judges, law enforcement, domestic-violence victims -- suppress address information from public records; expect null or generic mailing-address entries for affected parcels. Ocean County's 33 municipalities range from Toms River to barrier-island towns like Long Beach Township and Seaside Heights. The NJOGIS layer is updated quarterly from county submissions to the MOD-IV tax-assessment system. For recorded deeds and chain-of-title, the Ocean County Clerk's document search at oceanrecorder.com is publicly accessible.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "New Jersey's statewide cadastral layer documents an OWNER_NAME column, but it is empty on every one of the 3,481,240 records the service publishes, so no query can return ownership here. The service states no reason. Monmouth County, on a separate county-run service, does publish owner names.",
+            "sourceUrl": "https://www.nj.gov/njgin/"
+          }
+        }
+      }
+    },
+    {
+      "id": "nj-camden",
+      "state": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "county": "Camden",
+      "countySlug": "camden-county",
+      "ownerFieldNote": {
+        "body": "New Jersey's statewide cadastral parcel layer documents an OWNER_NAME column, but it is not populated on the public web service: a live sample of 300 records filtered to COUNTY='CAMDEN' returned no value in any row, so no query can retrieve ownership here. PAMS parcel identifier, municipality, property location, assessed values and sale price are populated and searchable. Ownership is available from the municipal tax assessor.",
+        "source": {
+          "label": "New Jersey Office of GIS, statewide cadastral parcel layer",
+          "url": "https://www.nj.gov/njgin/"
+        }
+      },
+      "countyFips": "34007",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels (NJ Statewide Cadastral)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY",
+              "label": "County Name (use 'CAMDEN')",
+              "searchable": true
+            },
+            {
+              "name": "MUN_NAME",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PAMS_PIN",
+              "label": "PAMS Property Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "IMPRVT_VAL",
+              "label": "Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "NET_VALUE",
+              "label": "Net Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "CALC_ACRE",
+              "label": "Calculated Acreage",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=COUNTY%3D'CAMDEN'+AND+UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY,MUN_NAME,PAMS_PIN,PROP_LOC,OWNER_NAME,NET_VALUE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nj.gov/njgin/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = 'CAMDEN'"
+        }
+      ],
+      "contact": {
+        "department": "NJ Office of Information Technology, Office of GIS (NJOGIS)",
+        "url": "https://www.nj.gov/njgin/",
+        "email": null
+      },
+      "notes": "Camden County (pop. 521,000; Philadelphia metro east bank) has no county-direct REST parcel layer. Data routes through the NJOGIS statewide cadastral MapServer at maps.nj.gov (Framework/Cadastral/MapServer/0). Filter with COUNTY='CAMDEN'. Fields include OWNER_NAME, PAMS_PIN (block-lot-qualifier MOD-IV identifier), PROP_LOC, MUN_NAME, PROP_CLASS, LAND_VAL, IMPRVT_VAL, NET_VALUE, SALE_PRICE, and CALC_ACRE. The county spans 37 municipalities from the dense urban core of Camden City through inner suburbs (Cherry Hill, Gloucester Township) to smaller boroughs like Haddonfield and Barrington. Camden City often has high parcel-change velocity; the NJOGIS layer captures these at the quarterly MOD-IV update cycle. New Jersey's address-redaction rules for protected individuals apply countywide. For deed-level detail, the Camden County Clerk's office maintains online document search. The county also participates in NJ Treasury's Property Tax Administration system, which cross-references the same PAMS_PIN identifiers used in this REST layer.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "New Jersey's statewide cadastral layer documents an OWNER_NAME column, but it is empty on every one of the 3,481,240 records the service publishes, so no query can return ownership here. The service states no reason. Monmouth County, on a separate county-run service, does publish owner names.",
+            "sourceUrl": "https://www.nj.gov/njgin/"
+          }
+        }
+      }
+    },
+    {
+      "id": "nj-morris",
+      "state": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "county": "Morris",
+      "countySlug": "morris-county",
+      "ownerFieldNote": {
+        "body": "New Jersey's statewide cadastral parcel layer documents an OWNER_NAME column, but it is not populated on the public web service: a live sample of 300 records filtered to COUNTY='MORRIS' returned no value in any row, so no query can retrieve ownership here. PAMS parcel identifier, municipality, property location, assessed values and sale price are populated and searchable. Ownership is available from the municipal tax assessor.",
+        "source": {
+          "label": "New Jersey Office of GIS, statewide cadastral parcel layer",
+          "url": "https://www.nj.gov/njgin/"
+        }
+      },
+      "countyFips": "34027",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels (NJ Statewide Cadastral)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY",
+              "label": "County Name (use 'MORRIS')",
+              "searchable": true
+            },
+            {
+              "name": "MUN_NAME",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PAMS_PIN",
+              "label": "PAMS Property Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "IMPRVT_VAL",
+              "label": "Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "NET_VALUE",
+              "label": "Net Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "CALC_ACRE",
+              "label": "Calculated Acreage",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=COUNTY%3D'MORRIS'+AND+UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY,MUN_NAME,PAMS_PIN,PROP_LOC,OWNER_NAME,NET_VALUE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nj.gov/njgin/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = 'MORRIS'"
+        }
+      ],
+      "contact": {
+        "department": "NJ Office of Information Technology, Office of GIS (NJOGIS)",
+        "url": "https://www.nj.gov/njgin/",
+        "email": null
+      },
+      "notes": "Morris County (pop. 510,000; northern NJ exurbs) has no county-direct REST parcel layer that exposes owner data. The local morrisgisapps.co.morris.nj.us MapServer exists but returns only PAMS_PIN and shape geometry -- insufficient for owner or address lookup. The NJOGIS statewide cadastral layer at maps.nj.gov (Framework/Cadastral/MapServer/0) is the practical choice; filter with COUNTY='MORRIS'. Fields include OWNER_NAME, PAMS_PIN, PROP_LOC, MUN_NAME, PROP_CLASS, LAND_VAL, IMPRVT_VAL, NET_VALUE, SALE_PRICE, YR_CONSTR, and CALC_ACRE. Morris County's 39 municipalities include Morristown, Parsippany-Troy Hills, Dover, Rockaway Township, Randolph, and several with significant commercial and industrial parcels along I-80 and Route 10. The MOD-IV quarterly update cycle applies; data reflects the prior quarter's county submission. New Jersey's address-redaction rules for protected individuals apply. For recorded instruments, the Morris County Clerk document portal is at morriscountyclerk.org.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "New Jersey's statewide cadastral layer documents an OWNER_NAME column, but it is empty on every one of the 3,481,240 records the service publishes, so no query can return ownership here. The service states no reason. Monmouth County, on a separate county-run service, does publish owner names.",
+            "sourceUrl": "https://www.nj.gov/njgin/"
+          }
+        }
+      }
+    }
+  ]
+}

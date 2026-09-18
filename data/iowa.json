@@ -1,0 +1,51 @@
+{
+  "stateSlug": "iowa",
+  "stateName": "Iowa",
+  "stateAbbrev": "IA",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ia-johnson",
+      "state": "IA",
+      "stateName": "Iowa",
+      "stateSlug": "iowa",
+      "county": "Johnson",
+      "countySlug": "johnson-county",
+      "countyFips": "19103",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.johnsoncountyiowa.gov/arcgis/rest/services/Parcels_AddressPoints_Roads_IC/FeatureServer/2",
+          "serviceType": "FeatureServer",
+          "layerIndex": 2,
+          "layerName": "Parcels_Auditor_Year",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PPN", "label": "Parcel Permanent Number", "searchable": true },
+            { "name": "DeedHolder1", "label": "Deed Holder 1 (Owner)", "searchable": true },
+            { "name": "DeedHolder2", "label": "Deed Holder 2", "searchable": true },
+            { "name": "DeedHolder3", "label": "Deed Holder 3", "searchable": true },
+            { "name": "MailingName", "label": "Mailing Name", "searchable": true },
+            { "name": "MailingAddress1", "label": "Mailing Address", "searchable": true },
+            { "name": "MailingZipCode", "label": "Mailing ZIP Code", "searchable": false },
+            { "name": "ContractOwner1", "label": "Contract Owner 1", "searchable": true },
+            { "name": "CityTownship", "label": "City/Township", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.johnsoncountyiowa.gov/arcgis/rest/services/Parcels_AddressPoints_Roads_IC/FeatureServer/2/query?where=UPPER(DeedHolder1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PPN,DeedHolder1,MailingName,MailingAddress1&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.johnsoncountyiowa.gov/department-of-geographic-information-systems",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Johnson County Iowa Department of Geographic Information Systems",
+        "url": "https://www.johnsoncountyiowa.gov/department-of-geographic-information-systems",
+        "email": null
+      },
+      "notes": "Johnson County IA (Iowa City metro, University of Iowa, county seat Iowa City) hosts Parcels_AddressPoints_Roads_IC/FeatureServer with 3 layers; layer 2 (Parcels_Auditor_Year) is the polygon parcel layer joined to Auditor data. Fields include PPN, FeaType, Dist, Districtname, AreaSchool, CityTownShipAbbrev, SchoolAbbrev, CityTownship, School, AlternateID, MailingName, MailingAddress1/2/3, MailingZipCode, Section, Township, Range, SubDivision, Block, LegalDescription, DeedHolder1/2/3, ContractOwner1/2/3/4. Query confirmed live: UPPER(DeedHolder1) LIKE '%SMITH%' returns real results (e.g., 'JEAN E MANASMITH REVOCABLE TRUST' with MailingName='JEAN E MANASMITH'). Layer 0 is Site_Addresses (address points), layer 1 is Road Centerlines. Johnson County IA (FIPS 19103) must not be confused with Johnson County KS (20091), Johnson County IN (18081), or Johnson County TX (48251). The Property Information Viewer at gis.johnsoncountyiowa.gov/piv/ provides the public map interface."
+    }
+  ]
+}

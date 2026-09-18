@@ -1,0 +1,412 @@
+{
+  "version": "0.3.0",
+  "lastUpdated": "2026-09-02",
+  "totals": {
+    "states": 50,
+    "counties": 171,
+    "endpoints": 174,
+    "countiesWithEndpoint": 166
+  },
+  "states": [
+    {
+      "slug": "alabama",
+      "name": "Alabama",
+      "abbrev": "AL",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "alaska",
+      "name": "Alaska",
+      "abbrev": "AK",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "arizona",
+      "name": "Arizona",
+      "abbrev": "AZ",
+      "countyCount": 3,
+      "endpointCount": 3,
+      "populated": true
+    },
+    {
+      "slug": "arkansas",
+      "name": "Arkansas",
+      "abbrev": "AR",
+      "countyCount": 3,
+      "endpointCount": 3,
+      "populated": true
+    },
+    {
+      "slug": "california",
+      "name": "California",
+      "abbrev": "CA",
+      "countyCount": 10,
+      "endpointCount": 10,
+      "populated": true
+    },
+    {
+      "slug": "colorado",
+      "name": "Colorado",
+      "abbrev": "CO",
+      "countyCount": 3,
+      "endpointCount": 3,
+      "populated": true
+    },
+    {
+      "slug": "connecticut",
+      "name": "Connecticut",
+      "abbrev": "CT",
+      "countyCount": 9,
+      "endpointCount": 9,
+      "populated": true
+    },
+    {
+      "slug": "delaware",
+      "name": "Delaware",
+      "abbrev": "DE",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "florida",
+      "name": "Florida",
+      "abbrev": "FL",
+      "countyCount": 11,
+      "endpointCount": 10,
+      "populated": true
+    },
+    {
+      "slug": "georgia",
+      "name": "Georgia",
+      "abbrev": "GA",
+      "countyCount": 5,
+      "endpointCount": 5,
+      "populated": true
+    },
+    {
+      "slug": "hawaii",
+      "name": "Hawaii",
+      "abbrev": "HI",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "idaho",
+      "name": "Idaho",
+      "abbrev": "ID",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "illinois",
+      "name": "Illinois",
+      "abbrev": "IL",
+      "countyCount": 9,
+      "endpointCount": 8,
+      "populated": true
+    },
+    {
+      "slug": "indiana",
+      "name": "Indiana",
+      "abbrev": "IN",
+      "countyCount": 3,
+      "endpointCount": 3,
+      "populated": true
+    },
+    {
+      "slug": "iowa",
+      "name": "Iowa",
+      "abbrev": "IA",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "kansas",
+      "name": "Kansas",
+      "abbrev": "KS",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "kentucky",
+      "name": "Kentucky",
+      "abbrev": "KY",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "louisiana",
+      "name": "Louisiana",
+      "abbrev": "LA",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "maine",
+      "name": "Maine",
+      "abbrev": "ME",
+      "countyCount": 2,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "maryland",
+      "name": "Maryland",
+      "abbrev": "MD",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "massachusetts",
+      "name": "Massachusetts",
+      "abbrev": "MA",
+      "countyCount": 1,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "michigan",
+      "name": "Michigan",
+      "abbrev": "MI",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "minnesota",
+      "name": "Minnesota",
+      "abbrev": "MN",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "mississippi",
+      "name": "Mississippi",
+      "abbrev": "MS",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "missouri",
+      "name": "Missouri",
+      "abbrev": "MO",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "montana",
+      "name": "Montana",
+      "abbrev": "MT",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "nebraska",
+      "name": "Nebraska",
+      "abbrev": "NE",
+      "countyCount": 3,
+      "endpointCount": 3,
+      "populated": true
+    },
+    {
+      "slug": "nevada",
+      "name": "Nevada",
+      "abbrev": "NV",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "new-hampshire",
+      "name": "New Hampshire",
+      "abbrev": "NH",
+      "countyCount": 2,
+      "endpointCount": 0,
+      "populated": true
+    },
+    {
+      "slug": "new-jersey",
+      "name": "New Jersey",
+      "abbrev": "NJ",
+      "countyCount": 5,
+      "endpointCount": 5,
+      "populated": true
+    },
+    {
+      "slug": "new-mexico",
+      "name": "New Mexico",
+      "abbrev": "NM",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "new-york",
+      "name": "New York",
+      "abbrev": "NY",
+      "countyCount": 10,
+      "endpointCount": 15,
+      "populated": true
+    },
+    {
+      "slug": "north-carolina",
+      "name": "North Carolina",
+      "abbrev": "NC",
+      "countyCount": 7,
+      "endpointCount": 7,
+      "populated": true
+    },
+    {
+      "slug": "north-dakota",
+      "name": "North Dakota",
+      "abbrev": "ND",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "ohio",
+      "name": "Ohio",
+      "abbrev": "OH",
+      "countyCount": 7,
+      "endpointCount": 7,
+      "populated": true
+    },
+    {
+      "slug": "oklahoma",
+      "name": "Oklahoma",
+      "abbrev": "OK",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "oregon",
+      "name": "Oregon",
+      "abbrev": "OR",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "pennsylvania",
+      "name": "Pennsylvania",
+      "abbrev": "PA",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "rhode-island",
+      "name": "Rhode Island",
+      "abbrev": "RI",
+      "countyCount": 1,
+      "endpointCount": 0,
+      "populated": true
+    },
+    {
+      "slug": "south-carolina",
+      "name": "South Carolina",
+      "abbrev": "SC",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "south-dakota",
+      "name": "South Dakota",
+      "abbrev": "SD",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "tennessee",
+      "name": "Tennessee",
+      "abbrev": "TN",
+      "countyCount": 3,
+      "endpointCount": 3,
+      "populated": true
+    },
+    {
+      "slug": "texas",
+      "name": "Texas",
+      "abbrev": "TX",
+      "countyCount": 10,
+      "endpointCount": 10,
+      "populated": true
+    },
+    {
+      "slug": "utah",
+      "name": "Utah",
+      "abbrev": "UT",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "vermont",
+      "name": "Vermont",
+      "abbrev": "VT",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "virginia",
+      "name": "Virginia",
+      "abbrev": "VA",
+      "countyCount": 2,
+      "endpointCount": 2,
+      "populated": true
+    },
+    {
+      "slug": "washington",
+      "name": "Washington",
+      "abbrev": "WA",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "west-virginia",
+      "name": "West Virginia",
+      "abbrev": "WV",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "wisconsin",
+      "name": "Wisconsin",
+      "abbrev": "WI",
+      "countyCount": 4,
+      "endpointCount": 4,
+      "populated": true
+    },
+    {
+      "slug": "wyoming",
+      "name": "Wyoming",
+      "abbrev": "WY",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    }
+  ]
+}

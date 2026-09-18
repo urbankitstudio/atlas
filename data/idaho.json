@@ -1,0 +1,119 @@
+{
+  "stateSlug": "idaho",
+  "stateName": "Idaho",
+  "stateAbbrev": "ID",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "id-ada",
+      "state": "ID",
+      "stateName": "Idaho",
+      "stateSlug": "idaho",
+      "county": "Ada",
+      "countySlug": "ada-county",
+      "ownerFieldNote": {
+        "body": "Ada County's public parcel layer publishes no owner name column at all. The nearest match by field name is HOMEEXEMPT, labelled Homeowner Exemption, and it is a currency column rather than a name: a live sample of 300 records returned 0 for most rows and negative dollar amounts such as -125000 for the rest. An exemption amount is not ownership, so no query can retrieve owner data here. Parcel number, property address, street name, zoning, acreage and total assessed value are populated and searchable. Ownership is available from the Ada County Assessor.",
+        "source": {
+          "label": "Ada County Assessor's Office GIS",
+          "url": "https://www.adacounty.id.gov/assessor/gis/"
+        }
+      },
+      "countyFips": "16001",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/dgGjZc6xAH5m5JyP/arcgis/rest/services/Parcels/FeatureServer/5",
+          "serviceType": "FeatureServer",
+          "layerIndex": 5,
+          "layerName": "Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCEL",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "PROPADDNUM",
+              "label": "Address Number",
+              "searchable": true
+            },
+            {
+              "name": "PROPSTNM",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "CITY_STATE",
+              "label": "City and State",
+              "searchable": false
+            },
+            {
+              "name": "TOTALVALUE",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "ZONING",
+              "label": "Zoning Code",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acreage",
+              "searchable": false
+            },
+            {
+              "name": "HOMEEXEMPT",
+              "label": "Homeowner Exemption",
+              "searchable": false
+            },
+            {
+              "name": "PROPYEAR",
+              "label": "Property Year",
+              "searchable": false
+            },
+            {
+              "name": "SUBNM",
+              "label": "Subdivision Name",
+              "searchable": false
+            },
+            {
+              "name": "CODEAREA",
+              "label": "Tax Code Area",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/dgGjZc6xAH5m5JyP/arcgis/rest/services/Parcels/FeatureServer/5/query?where=UPPER(ADDRESS)+LIKE+UPPER('%25MAIN+ST%25')&outFields=PARCEL,ADDRESS,CITY_STATE,TOTALVALUE,ZONING&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.adacounty.id.gov/assessor/gis/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Ada County Assessor's Office GIS",
+        "url": "https://www.adacounty.id.gov/assessor/gis/",
+        "email": null
+      },
+      "notes": "28 fields confirmed. This is the Ada County Assessor parcel layer backing the county's GIS parcel viewer. Key fields: PARCEL (parcel number), ADDRESS (full formatted address), property address components (PROPADDNUM, PROPPREDIR, PROPSTNM, PROPSTTYPE, PROPPOST, PROPUNIT, PROPUNUM), CITY_STATE, legal description lines (LEGAL1-LEGAL5), ZONING, BANKCODE, CODEAREA (tax code area), TOTALVALUE (total assessed value), HOMEEXEMPT (homeowner exemption amount), ACRES, SECTION, SUBNM (subdivision name). NOTE: Owner name is NOT available on this public REST layer. Ada County keeps ownership data in a separate non-public table. For owner lookup, use the Ada County Assessor property search portal at assessor.adacounty.id.gov. Ada County, ID is the Boise metropolitan area (FIPS 16001); Boise is the state capital of Idaho.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "Ada County's public parcel layer publishes no owner name column. The closest field by name, HOMEEXEMPT, is a homeowner exemption amount in dollars rather than a name, so no query can return ownership here.",
+            "sourceUrl": "https://www.adacounty.id.gov/assessor/gis/"
+          }
+        }
+      }
+    }
+  ]
+}

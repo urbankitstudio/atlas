@@ -1,0 +1,103 @@
+{
+  "stateSlug": "alabama",
+  "stateName": "Alabama",
+  "stateAbbrev": "AL",
+  "lastUpdated": "2026-06-20",
+  "counties": [
+    {
+      "id": "al-shelby",
+      "state": "AL",
+      "stateName": "Alabama",
+      "stateSlug": "alabama",
+      "county": "Shelby",
+      "countySlug": "shelby-county",
+      "countyFips": "01117",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.shelbyal.com/gisserver/rest/services/LegacyServices/Cadastral_2022/MapServer/91",
+          "serviceType": "MapServer",
+          "layerIndex": 91,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "Parcel_Num", "label": "Parcel Number", "searchable": true },
+            { "name": "NAM1", "label": "Owner Name 1", "searchable": true },
+            { "name": "NAM2", "label": "Owner Name 2", "searchable": false },
+            { "name": "ADR1", "label": "Owner Address Line 1", "searchable": false },
+            { "name": "ADR2", "label": "Owner Address Line 2", "searchable": false },
+            { "name": "CITY", "label": "Owner City", "searchable": false },
+            { "name": "STATE", "label": "Owner State", "searchable": false },
+            { "name": "ZIP", "label": "Owner ZIP", "searchable": false },
+            { "name": "PROP_ADR", "label": "Property Address", "searchable": true },
+            { "name": "Subd_Name", "label": "Subdivision Name", "searchable": false },
+            { "name": "Zoning", "label": "Zoning", "searchable": false },
+            { "name": "ACRES", "label": "Acres", "searchable": false },
+            { "name": "PROP_CLASS", "label": "Property Class", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.shelbyal.com/gisserver/rest/services/LegacyServices/Cadastral_2022/MapServer/91/query?where=UPPER(NAM1)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_Num,NAM1,NAM2,ADR1,CITY,PROP_ADR,Subd_Name&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://maps.shelbyal.com/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Shelby County GIS / Shelby County Commission",
+        "url": "https://maps.shelbyal.com/",
+        "email": null
+      },
+      "notes": "Shelby County AL (Birmingham south suburbs, Hoover, Alabaster, Helena, Pelham, Calera; county seat Columbiana; FIPS 01117; fastest-growing county in AL) uses MapServer layer 91 (layerIndex=91) in the Cadastral_2022 service at maps.shelbyal.com. The layer has 160+ fields including Parcel_Num, NAM1, NAM2 (owner names), ADR1/ADR2, CITY, STATE, ZIP, ZIP4 (owner mailing address), PROP_ADR (property address), Subd_Name, Zoning, ACRES, SQUARE_FEET, PROP_CLASS, DIST, SCH_DIST, LN_VL1/LN_VL2, CUR_USE_VL, various CIMP/IMP improvement codes and values, tax sale fields, and audit timestamps. Owner search via UPPER(NAM1) LIKE on NAM1 works. Verified 2026-06-20: SMITH returns Shelby County addresses (e.g., 'SMITH GLENDA & ADAMS MIRIAM ROLLS & MIKE'). Note: layerIndex 91 is non-standard. Must specify /91 in the URL. Do not confuse with Shelby County TN (Memphis, FIPS 47157) already in the atlas."
+    },
+    {
+      "id": "al-jefferson",
+      "state": "AL",
+      "stateName": "Alabama",
+      "stateSlug": "alabama",
+      "county": "Jefferson",
+      "countySlug": "jefferson-county",
+      "countyFips": "01073",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://jccgis.jccal.org/server/rest/services/Basemap/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "OWNERNAME", "label": "Owner Name", "searchable": true },
+            { "name": "PROP_MAIL", "label": "Property Mailing Address", "searchable": false },
+            { "name": "Street_Name", "label": "Street Name", "searchable": true },
+            { "name": "Bldg_Number", "label": "Building Number", "searchable": false },
+            { "name": "ADDR_PSPR", "label": "Address (Street Number+Prefix)", "searchable": false },
+            { "name": "APARTMENT", "label": "Apartment", "searchable": false },
+            { "name": "CITYMAIL", "label": "Mailing City", "searchable": false },
+            { "name": "ZIP_MAIL", "label": "Mailing ZIP", "searchable": false },
+            { "name": "STATE_Mail", "label": "Mailing State", "searchable": false },
+            { "name": "Legal_Desc", "label": "Legal Description", "searchable": false },
+            { "name": "Property_City", "label": "Property City", "searchable": false },
+            { "name": "ACRES_APR", "label": "Appraised Acres", "searchable": false },
+            { "name": "AssdValue", "label": "Assessed Value", "searchable": false }
+          ],
+          "sampleQuery": "https://jccgis.jccal.org/server/rest/services/Basemap/Parcels/MapServer/0/query?where=UPPER(OWNERNAME)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNAME,PROP_MAIL,Street_Name,Property_City&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.jccal.org/Default.asp?ID=1220&pg=Enterprise+GIS",
+          "status": "live",
+          "lastVerified": "2026-06-27",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Jefferson County Commission GIS / Information Technology Services, EGIS",
+        "url": "https://data-jeffco-al.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Jefferson County AL (Birmingham, pop. 670,000; FIPS 01073) Basemap/Parcels layer. Data maintained by Jefferson County Tax Assessor Office and updated nightly. 76 fields in live schema as of 2026-06-27: OBJECTID, Unique_ID, PID, TAX_TOWNSH, ISP_SECTION, SEC, QSECTION, BLOCK, PARCEL, PARCELID, APP_PID, DISTRICT, ESN_NUM, ADDR_PSPR, Bldg_Number, Street_Name, Street_Type, Street_Dir, APARTMENT, ADDRAPT_PS, OWNERNAME, PROP_MAIL, CITYMAIL, ZIP_MAIL, STATE_Mail, Legal_Desc, Property_City, Property_State, NEIGHBOR_N, SUBDIV_NAME, ADDR_APR, ZIP, TotalMHValue, PrevParcelLand/Imp/Total, Water, Sewer, Gas, ACRES_APR, GIS_ACRES, Remarks, Name2, Plat_Book/Page (×2), NbhdCd, Ownership, Topography, RoadAcc, MaintDate, CITY, NbhName, PriMunCode, SecMunCode, PriAcreage, SecAcreage, LegalRemarks, ParcelNo, Division, RecordYear, SchDist, MapNumber, Sqft, FIREDEPTNAME, Cls, BLDG_IND, TAX_CODE, OBY_IND, AssdValue, Territory, FireFee_District. NOTE 2026-06-27: ZONING_BOE is no longer in the live schema (schema drift), removed from searchFields. OWNERNAME field returns padded fixed-width strings (trim on use). Note: distinct from Jefferson County CO (FIPS 08059) and Jefferson County KY (Louisville; FIPS 21111) already in atlas. Verified 2026-06-27: metadata 200, query 200, 410K+ parcels."
+    }
+  ]
+}

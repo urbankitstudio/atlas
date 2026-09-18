@@ -1,0 +1,337 @@
+{
+  "stateSlug": "illinois",
+  "stateName": "Illinois",
+  "stateAbbrev": "IL",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "il-kane",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Kane",
+      "countySlug": "kane-county",
+      "countyFips": "17089",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gistech.countyofkane.org/arcgis/rest/services/KanePINList/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Kane.DBO.Parcels_v2025",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number (PIN)", "searchable": true },
+            { "name": "TaxName", "label": "Taxpayer Name", "searchable": true },
+            { "name": "SiteAddress", "label": "Site Address", "searchable": true },
+            { "name": "SiteCity", "label": "Site City", "searchable": true },
+            { "name": "MailingAddress", "label": "Mailing Address", "searchable": true }
+          ],
+          "sampleQuery": "https://gistech.countyofkane.org/arcgis/rest/services/KanePINList/MapServer/0/query?where=UPPER(TaxName)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,TaxName,SiteAddress,SiteCity&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Kane County GIS-Technologies",
+        "url": "https://www.kanecountyil.gov/pages/gis.aspx",
+        "email": null
+      },
+      "notes": "Kane County is the highest-impression Illinois county in our GSC data; users search for 'kane county illinois gis rest api mapserver featureserver owner name'. The county migrated their GIS server from gis.co.kane.il.us to gistech.countyofkane.org in 2026. The old hostname now NXDOMAINs. The current layer is KanePINList/MapServer/0 (named Kane.DBO.Parcels_v2025), a snapshot of the active parcel polygon layer from the cadastral source. 35+ fields including PIN, TaxName, SiteAddress, MailingAddress, LegalDesc, UseCodeDescription, plus jurisdictional districts (Township, AirportDistrict, AmbulanceDistrict, etc.). Owner-style search uses the TaxName field (legal taxpayer name)."
+    },
+    {
+      "id": "il-cook",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Cook",
+      "countySlug": "cook-county",
+      "countyFips": "17031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis12.cookcountyil.gov/traditional/rest/services/CookViewer3Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN10", "label": "10-digit Property Index Number", "searchable": true },
+            { "name": "PIN14_dash", "label": "14-digit PIN (XX-XX-XXX-XXX-XXXX)", "searchable": true },
+            { "name": "street_address", "label": "Street Address", "searchable": true }
+          ],
+          "sampleQuery": "https://gis12.cookcountyil.gov/traditional/rest/services/CookViewer3Parcels/MapServer/0/query?where=PIN14_dash%3D%2717-09-128-001-0000%27&outFields=PIN10,PIN14_dash,street_address&returnGeometry=false&f=json",
+          "license": "public",
+          "licenseUrl": "https://datacatalog.cookcountyil.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Cook County GIS Department",
+        "url": "https://www.cookcountyil.gov/agency/geographic-information-systems-gis",
+        "email": null
+      },
+      "notes": "Cook County uses the 14-digit PIN format (XX-XX-XXX-XXX-XXXX), exposed as PIN14_dash on this layer. The legacy cookVwHosted/Cook_County_Parcels/FeatureServer was retired in 2026; the active replacement is CookViewer3Parcels/MapServer/0 (1.86M+ parcels). Public fields are geometry, PIN10, PIN14_dash, and street_address only. Owner name is NOT on this layer. For ownership lookups, use the Cook County Property Tax Portal at cookcountypropertyinfo.com, keyed by PIN. Cook County reassesses on a triennial cycle divided into three geographic triads: the City of Chicago triad, the north suburban triad, and the south/west suburban triad. Each triad goes through a full reassessment every three years on a rotating schedule (north triad reassessed 2025, south/west triad 2026). The county has 5.2M+ residents and 1.86M taxable parcels, the largest county in Illinois by both metrics. The Assessor's office is the valuation authority; the Treasurer's office (cookcountytreasurer.com) handles tax payment records.",
+      "relatedPropertyCitySlug": "chicago"
+    },
+    {
+      "id": "il-dupage",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "DuPage",
+      "countySlug": "dupage-county",
+      "countyFips": "17043",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.dupageco.org/arcgis/rest/services/DuPage_County_IL/ParcelsWithRealEstateCC/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "ParcelsRealEstate",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Property Index Number", "searchable": true },
+            { "name": "BILLNAME", "label": "Billing Name (Taxpayer)", "searchable": true },
+            { "name": "PROPSTNAME", "label": "Property Street Name", "searchable": true },
+            { "name": "PROPCITY", "label": "Property City", "searchable": true },
+            { "name": "MUNICIPALITY", "label": "Municipality", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.dupageco.org/arcgis/rest/services/DuPage_County_IL/ParcelsWithRealEstateCC/MapServer/0/query?where=PIN%3D%270101101001%27&outFields=PIN,BILLNAME,PROPSTNAME,PROPCITY&returnGeometry=false&f=json",
+          "license": "public",
+          "licenseUrl": "https://gisdata-dupage.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "DuPage County GIS",
+        "url": "https://www.dupagecounty.gov/government/departments/gis/",
+        "email": null
+      },
+      "notes": "DuPage County migrated their public GIS server from gis.dupagecounty.gov to gis.dupageco.org in 2026. The old hostname now NXDOMAINs. The ParcelsWithRealEstateCC MapServer joins the parcel polygon layer to the weekly real estate file, exposing 60+ fields including PIN, BILLNAME (taxpayer billing name), BILLSTNUM/BILLSTNAME (billing address), PROPSTNUM/PROPSTNAME/PROPCITY (property address), BILLVALUE, TAXAMOUNT, MUNICIPALITY, and taxing district fields. 337k features. The open-data portal at gisdata-dupage.opendata.arcgis.com mirrors the same data. Note on BILLNAME: this is the taxpayer of record for the current tax bill. It can differ from the legal owner when a recent sale has been deeded but the billing file has not yet been updated, or when a trust holds title but the trustee name appears as BILLNAME. For the chain-of-title legal owner, cross-reference the DuPage County Recorder's instrument search at recorder.dupageco.org. DuPage is Illinois's third-most populous county (pop. 930,000, county seat Wheaton)."
+    },
+    {
+      "id": "il-dekalb",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "DeKalb",
+      "countySlug": "dekalb-county",
+      "countyFips": "17037",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services7.arcgis.com/hEXJrPwm89CLXBYe/arcgis/rest/services/DeKalbIL_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "Parcel_Number", "label": "Parcel Number", "searchable": true },
+            { "name": "Owner", "label": "Owner Name", "searchable": true },
+            { "name": "SiteAddress", "label": "Site Address", "searchable": true },
+            { "name": "TaxBillMailedTo", "label": "Tax Bill Mailed To", "searchable": true },
+            { "name": "MailingAddress", "label": "Mailing Address", "searchable": true }
+          ],
+          "sampleQuery": "https://services7.arcgis.com/hEXJrPwm89CLXBYe/arcgis/rest/services/DeKalbIL_Parcels/FeatureServer/0/query?where=UPPER(Owner)%20LIKE%20UPPER('%25SMITH%25')&outFields=Parcel_Number,Owner,SiteAddress&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "DeKalb County Information Management Office",
+        "url": "https://dekalbcounty.org/services/property-data-and-maps/",
+        "email": "gis@dekalbcounty.org"
+      },
+      "notes": "This is DeKalb County, Illinois (county seat Sycamore, home to Northern Illinois University in DeKalb city), not to be confused with DeKalb County, Georgia (Atlanta metro, FIPS 13089). The Illinois county (FIPS 17037) is an outer-collar county roughly 60 miles west of Chicago. Hosted on ArcGIS Online (services7.arcgis.com), the county's WAB viewer config points at this FeatureServer as the backing data layer. 27 fields total including Parcel_Number, Owner, SiteAddress, MailingAddress, tax_code, net_taxable_value, Zone_Code, and QTAS/Compass hyperlinks. Owner-name search by UPPER() LIKE on the Owner field works directly; no token required. The public-facing viewer at spatial.dekalbcounty.org uses VertiGIS/Geocortex as its front-end but queries the same FeatureServer. DeKalb County GIS is administered by the county's Information Management Office (gis@dekalbcounty.org). Owner and TaxBillMailedTo are distinct fields. TaxBillMailedTo reflects the current billing addressee, which may differ from the recorded owner in cases involving trusts or recent transfers."
+    },
+    {
+      "id": "il-will",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Will",
+      "countySlug": "will-county",
+      "countyFips": "17197",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.willcountyillinois.com/server/rest/services/Basemap/Parcels_20/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels_20",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true }
+          ],
+          "sampleQuery": "https://gis.willcountyillinois.com/server/rest/services/Basemap/Parcels_20/MapServer/0/query?where=PIN%3D'1909142050020000'&outFields=*&f=json",
+          "license": "public",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-06-27",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Will County GIS Division",
+        "url": "https://willcounty.gov/County-Offices/Administration/GIS-Division",
+        "email": "gis@willcounty.gov"
+      },
+      "notes": "NOTE 2026-06-27: Parcels_21/MapServer became a zombie service (service listed but layers:[]. All layer queries return HTTP 500 'json' error). Parcels_20/MapServer/0 is the active fallback (prior-year snapshot, 276,644 parcels confirmed live). No Parcels_22 or newer service exists on the server as of 2026-06-27. URL updated from Parcels_21 to Parcels_20. Owner-name and address fields are NOT exposed in this public endpoint, only PIN and subtype metadata (Base Parcel, Condo, Leasehold, Mineral Rights, etc.). Owner/address data exists in the county's Geocortex viewer at gisapp.willcountyillinois.com but is not queryable via REST without a token. The ParcelFabric folder on the same server is token-gated. FIPS 17197 (Joliet / Chicago south suburbs). Contact GIS Division at gis@willcounty.gov for endpoint status updates.",
+      "ownerFieldNote": {
+        "body": "Will County's public parcel REST layer exposes only the Parcel Identification Number (PIN), no owner-name or address field. Search by PIN below, or look up the owner of record at the Will County Supervisor of Assessments.",
+        "source": { "label": "Property search at willcountysoa.com", "url": "https://www.willcountysoa.com/PropertySearchPortal" }
+      }
+    },
+    {
+      "id": "il-mchenry",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "McHenry",
+      "countySlug": "mchenry-county",
+      "countyFips": "17111",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/6iYC5AXXYapRVNzl/arcgis/rest/services/McHenry_County_TaxParcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "McHenry County TaxParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "ParcelNumber", "label": "Parcel Number", "searchable": true },
+            { "name": "Owner", "label": "Owner", "searchable": true },
+            { "name": "SiteAddress", "label": "Site Address", "searchable": true },
+            { "name": "SiteAddressCity", "label": "Site Address City", "searchable": true },
+            { "name": "MailToAddress1", "label": "Mailing Address (line 1)", "searchable": true },
+            { "name": "PropertyClass", "label": "Property Class", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/6iYC5AXXYapRVNzl/arcgis/rest/services/McHenry_County_TaxParcels/FeatureServer/0/query?where=UPPER(Owner)%20LIKE%20UPPER('%25SMITH%25')&outFields=ParcelNumber,Owner,SiteAddress,SiteAddressCity&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://data-mchenrycountygis.opendata.arcgis.com/datasets/Mchenrycountygis::mchenry-county-taxparcels",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "McHenry County GIS",
+        "url": "https://data-mchenrycountygis.opendata.arcgis.com/",
+        "email": "gis@mchenrycountyil.gov"
+      },
+      "notes": "McHenry County (northernmost Illinois collar county, bordering Wisconsin; county seat Woodstock, pop. 315,000) includes Crystal Lake, Elgin (partial), and the Fox River corridor. The legacy on-prem server at mchenrycountygis.org/arcgis/rest/services/parcels/MapServer was firewalled (HTTP 403) in early 2026. The replacement is now hosted on the county's ArcGIS Online open-data hub at data-mchenrycountygis.opendata.arcgis.com, with the McHenry_County_TaxParcels FeatureServer (services1.arcgis.com/6iYC5AXXYapRVNzl) as the canonical public endpoint. The license is 'open-data', permitting unrestricted use. Roughly 150k parcels, 50+ fields including ParcelNumber, Owner (owner name, searchable via UPPER() LIKE), MailToAddress1, MailToAddress2, MailToCity, MailToState, MailToZip, SiteAddress, SiteAddressHouseNumber, SiteAddressStreetName, SiteAddressStreetType, SiteAddressSuffix, SiteAddressCity, SiteAddressZip, PropertyClass, TaxStatus, and taxing-district assignment fields (Library, ParkDistrict, FireDistrict, GradeSchoolDistrict, HighSchoolDistrict). Owner field exposes the legal owner name; MailToAddress reflects the billing addressee, which may differ for trusts and entities. The open-data hub at data-mchenrycountygis.opendata.arcgis.com has bulk download links for the same dataset."
+    },
+    {
+      "id": "il-lake",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Lake",
+      "countySlug": "lake-county",
+      "countyFips": "17097",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.lakecountyil.gov/arcgis/rest/services/GISMapping/WABParcels/MapServer/12",
+          "serviceType": "MapServer",
+          "layerIndex": 12,
+          "layerName": "Tax Parcel Information",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "taxpayer_name", "label": "Taxpayer Name", "searchable": true },
+            { "name": "situs_addr_line_1", "label": "Situs Address", "searchable": true },
+            { "name": "situs_addr_city", "label": "Situs City", "searchable": true }
+          ],
+          "sampleQuery": "https://maps.lakecountyil.gov/arcgis/rest/services/GISMapping/WABParcels/MapServer/12/query?where=UPPER(taxpayer_name)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,taxpayer_name,situs_addr_line_1,situs_addr_city&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Lake County, Illinois GIS Division",
+        "url": "https://www.lakecountyil.gov/636/GISMaps",
+        "email": null
+      },
+      "notes": "Lake County is the northernmost Illinois collar county, bordering Wisconsin (county seat Waukegan, pop. 710,000). WABParcels/MapServer is a 13-layer service; layer 12 (Tax Parcel Information) is the rich parcel polygon layer with 190+ fields covering PIN, taxpayer_name, situs address, assessment values, building characteristics, flood zone, and political boundaries. Owner-name search works via UPPER() LIKE on the taxpayer_name field. The county also exposes CCAO/TaxParcelViewer/MapServer but its layer 14 has only a Name field. WABParcels/12 is the correct layer for rich queries. Key fields beyond PIN and taxpayer_name include situs_addr_line_1, situs_addr_city, situs_zip, mail_addr_line_1, mail_city, mail_zip, property_class, tax_rate, tot_assessed_val, year_built, liv_area_sqft, zoning_district, flood_zone, and multiple political-boundary fields (congressional_district, state_rep_district, school_district, fire_district). The endpoint is at maps.lakecountyil.gov, not to be confused with Lake County Indiana or Lake County Ohio, which use separate GIS systems."
+    },
+    {
+      "id": "il-winnebago",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Winnebago",
+      "countySlug": "winnebago-county",
+      "countyFips": "17201",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "WinGIS (Winnebago County GIS partner)",
+        "url": "https://wingis.org/",
+        "email": null
+      },
+      "notes": "Winnebago County IL GIS is operated by WinGIS (wingis.org), a regional GIS services company on a subscription model. Their ArcGIS REST server at maps.wingis.org/public/rest/services/PropertySearch/MapServer is indexed as containing Parcel & Lot Lines, Parcel Owner, PIN Labels, and Parcel Dimensions layers, but all REST queries return HTTP 499 (Token Required) as of 2026-05-15. The word 'public' in the URL path is a directory naming convention, not an access grant. The public-facing search at wingis.org/maps/propertysearch is browser-only and not queryable. No alternative county-hosted ArcGIS REST endpoint was found. The Supervisor of Assessments at assessor.wincoil.gov has a property lookup UI but no public REST API."
+    },
+    {
+      "id": "il-st-clair",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "St. Clair",
+      "countySlug": "st-clair-county",
+      "countyFips": "17163",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://arcgispublicmap.co.st-clair.il.us/server/rest/services/SCC_parcel_map_data/MapServer/29",
+          "serviceType": "MapServer",
+          "layerIndex": 29,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "parcel_number", "label": "Parcel Number", "searchable": true },
+            { "name": "parcelid", "label": "Parcel ID", "searchable": true },
+            { "name": "owner", "label": "Owner Name", "searchable": true },
+            { "name": "siteadr1", "label": "Site Address (line 1)", "searchable": true },
+            { "name": "sitecity", "label": "Site City", "searchable": true },
+            { "name": "address", "label": "Mailing Address", "searchable": true }
+          ],
+          "sampleQuery": "https://arcgispublicmap.co.st-clair.il.us/server/rest/services/SCC_parcel_map_data/MapServer/29/query?where=UPPER(owner)%20LIKE%20UPPER('%25SMITH%25')&outFields=parcel_number,parcelid,owner,siteadr1,sitecity&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.co.st-clair.il.us/departments/gis",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "St. Clair County GIS Department",
+        "url": "https://www.co.st-clair.il.us/departments/gis",
+        "email": null
+      },
+      "notes": "St. Clair County is Illinois's 8th most populous (Metro East / Greater St. Louis area, county seat Belleville). The SCC_parcel_map_data MapServer is a 31-layer cadastral service; layer 29 (Parcels, 147k+ features) is the polygon parcel layer with 50+ fields including parcel_number, parcelid, owner, address, address2, cityst, zipcode, siteadr1, siteadr2, sitenum/sitepref/sitename/sitetype/sitesuff/siteunit, sitecity/sitest/sitezip, legal1-4, subdiv, twp/twpname, tcacode, class, landuse. Owner-name search via UPPER() LIKE on owner works. Other layers in the service are annotation layers (layers 0-28) and Roads (layer 30). The county GIS data pricing page notes bulk shapefile/geodatabase downloads are paid; the live REST query API is free."
+    }
+  ]
+}

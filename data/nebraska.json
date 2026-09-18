@@ -1,0 +1,137 @@
+{
+  "stateSlug": "nebraska",
+  "stateName": "Nebraska",
+  "stateAbbrev": "NE",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ne-douglas",
+      "state": "NE",
+      "stateName": "Nebraska",
+      "stateSlug": "nebraska",
+      "county": "Douglas",
+      "countySlug": "douglas-county",
+      "countyFips": "31055",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://dcgis.org/server/rest/services/vector/Parcels_public/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "OWNER_NAME", "label": "Owner Name", "searchable": true },
+            { "name": "ADDRESS1", "label": "Owner Address 1", "searchable": true },
+            { "name": "ADDRESS2", "label": "Owner Address 2", "searchable": true },
+            { "name": "OWNER_CITY", "label": "Owner City", "searchable": true },
+            { "name": "OWNER_STAT", "label": "Owner State", "searchable": true },
+            { "name": "OWNER_ZIP", "label": "Owner ZIP", "searchable": true },
+            { "name": "PROPERTY_A", "label": "Property Address", "searchable": true },
+            { "name": "HOUSE", "label": "House Number", "searchable": true },
+            { "name": "STREET_NAM", "label": "Street Name", "searchable": true },
+            { "name": "PROP_CITY", "label": "Property City", "searchable": true }
+          ],
+          "sampleQuery": "https://dcgis.org/server/rest/services/vector/Parcels_public/FeatureServer/0/query?where=UPPER(OWNER_NAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,OWNER_NAME,PROPERTY_A,PROP_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-dogis.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Douglas-Omaha GIS (DOGIS)",
+        "url": "https://dogis.org/",
+        "email": null
+      },
+      "notes": "Douglas County NE (Omaha metro, county seat Omaha) is served by DOGIS (Douglas-Omaha Geographic Information System), a joint city-county GIS agency. The Parcels_public FeatureServer/0 exposes 25 fields: PIN, OWNER_NAME, ADDRESS1/2 (owner mailing), OWNER_CITY, OWNER_STAT, OWNER_ZIP, PROPERTY_A (property address), HOUSE, STREET_DIR, STREET_NAM, STREET_TYP, APARTMENT, PROP_CITY, PROP_ZIP, SEC_TWN_RN, ADDITION_N, BLOCK, LOT, LEGAL1/2/3/4, DCAACCTYPE. Query confirmed live: UPPER(OWNER_NAME) LIKE '%SMITH%' returns real results (e.g., 'SMITH MARKITA T'). Note that PROPERTY_A and PROP_CITY may be empty. The address join may be incomplete for some parcels; use HOUSE + STREET_NAM for address search if needed. The main DOGIS portal is at dogis.org and the open data portal at data-dogis.opendata.arcgis.com. The dcgis.org server also hosts engineering/project imagery. The vector/ folder is the correct path for parcel data. Douglas County NE (FIPS 31055) must not be confused with Douglas County CO (08035), Douglas County GA (13097), or other Douglas counties."
+    },
+    {
+      "id": "ne-lancaster",
+      "state": "NE",
+      "stateName": "Nebraska",
+      "stateSlug": "nebraska",
+      "county": "Lancaster",
+      "countySlug": "lancaster-county",
+      "countyFips": "31109",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.lincoln.ne.gov/integration/rest/services/Assessor/TaxParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "LOWPARCELID", "label": "Low Parcel ID", "searchable": true },
+            { "name": "OWNERNME1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "OWNERNME2", "label": "Owner Name 2", "searchable": true },
+            { "name": "CNVYNAME", "label": "Conveyance Name", "searchable": true },
+            { "name": "SITEADDRESS", "label": "Site Address (combined)", "searchable": true },
+            { "name": "CVTTXCD", "label": "City/Village/Township Tax Code", "searchable": false },
+            { "name": "SCHLTXCD", "label": "School Tax Code", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.lincoln.ne.gov/integration/rest/services/Assessor/TaxParcels/MapServer/0/query?where=UPPER(OWNERNME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,OWNERNME2&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.lancaster.ne.gov/821/Maps-GIS-Services",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "City of Lincoln / Lancaster County GIS",
+        "url": "https://www.lancaster.ne.gov/1485/GIS",
+        "email": null
+      },
+      "notes": "Lancaster County NE (Lincoln metro, county seat Lincoln, state capital) uses a joint City/County GIS server at gis.lincoln.ne.gov. The Assessor/TaxParcels/MapServer/0 layer uses Local Government Information Model (LGIM) schema: PARCELID, LOWPARCELID, OWNERNME1, OWNERNME2, CNVYNAME, PSTLADDRES, PSTLCITYSTZIP, SITEADDRESS, CVTTXCD, CVTTXDSCRP, SCHLTXCD, SCHLDSCRP, LGLSTARTDT, CLASSCD, CLASSDSCRP, NBHDCD, TAXABLEVALU, TOTVALUEBASE, RESYRBLT, RESFLRAREA. Query confirmed live: UPPER(OWNERNME1) LIKE '%SMITH%' returns real results (e.g., 'SMITH, DOUGLAS R LIFE ESTATE'). Three alternate GIS servers cover Lancaster County: gis.lincoln.ne.gov (multiple subfolders), gisext.lincoln.ne.gov (Assessor/Pub_Parcels, Assessor/Asr_Landbase), and gis.lincoln.ne.gov/public (Assessor/ParcelLinesAerial). Lancaster County NE (FIPS 31109) must not be confused with Lancaster County PA (42071), Lancaster County SC (45057), or Lancaster County VA (51103). The TaxParcels service (integration subfolder) is the richest public-access parcel layer."
+    },
+    {
+      "id": "ne-sarpy",
+      "state": "NE",
+      "stateName": "Nebraska",
+      "stateSlug": "nebraska",
+      "county": "Sarpy",
+      "countySlug": "sarpy-county",
+      "countyFips": "31153",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://geodata.sarpy.gov/arcgis/rest/services/Cadastral/LandRecordsSearch/FeatureServer/5",
+          "serviceType": "FeatureServer",
+          "layerIndex": 5,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "OWNERNME1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "OWNERNME2", "label": "Owner Name 2", "searchable": true },
+            { "name": "CNVYNAME", "label": "Conveyance Name", "searchable": true },
+            { "name": "SITEADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "CVTTXDSCRP", "label": "City/Village/Township Description", "searchable": false },
+            { "name": "SCHLDSCRP", "label": "School District Description", "searchable": false },
+            { "name": "CLASSCD", "label": "Class Code", "searchable": false }
+          ],
+          "sampleQuery": "https://geodata.sarpy.gov/arcgis/rest/services/Cadastral/LandRecordsSearch/FeatureServer/5/query?where=UPPER(OWNERNME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,SITEADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.sarpy.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Sarpy County GIS",
+        "url": "https://www.sarpy.gov/187/Geographic-Information-System-GIS",
+        "email": null
+      },
+      "notes": "Sarpy County NE (Omaha south/west suburbs, Bellevue, Papillion, La Vista, Gretna) hosts LandRecordsSearch/FeatureServer with 10 layers; layer 5 (Tax Parcels) is the polygon parcel layer with ownership data. Fields follow LGIM schema: PARCELID, OWNERNME1, OWNERNME2, CNVYNAME, PSTLADDRES, SITEADDRESS, CVTTXCD/CVTTXDSCRP, SCHLTXCD/SCHLDSCRP, USEDSCRP, NGHBRHDCD, CLASSCD, CLASSDSCRP, LNDVALUE, CNTASSDVAL, CNTTXBLVAL, RESFLRAREA, RESYRBLT. Query confirmed live: UPPER(OWNERNME1) LIKE '%SMITH%' returns real results (e.g., 'SMITH/SHAWN L' at '11106 S 18TH CIR BELLEVUE NE 68123'). The Cadastral/LandRecordsDynamic/MapServer provides the same parcels as a cached tile service. Sarpy County is the fastest-growing county in Nebraska. GIS portal at gis.sarpy.gov and open data at data2-sarpy.opendata.arcgis.com. The SIMS parcel viewer (maps.sarpy.gov/html5viewer/?Viewer=SIMS) is the public-facing tool."
+    }
+  ]
+}

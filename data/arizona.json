@@ -1,0 +1,149 @@
+{
+  "stateSlug": "arizona",
+  "stateName": "Arizona",
+  "stateAbbrev": "AZ",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "az-maricopa",
+      "state": "AZ",
+      "stateName": "Arizona",
+      "stateSlug": "arizona",
+      "county": "Maricopa",
+      "countySlug": "maricopa-county",
+      "relatedPropertyCitySlug": "phoenix",
+      "countyFips": "04013",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/MaricopaDynamicQueryService/MapServer/3",
+          "serviceType": "MapServer",
+          "layerIndex": 3,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor Parcel Number (APN)", "searchable": true },
+            { "name": "APN_DASH", "label": "APN with dashes", "searchable": true },
+            { "name": "OWNER_NAME", "label": "Owner Name", "searchable": true },
+            { "name": "MAIL_ADDR1", "label": "Mailing Address 1", "searchable": true },
+            { "name": "MAIL_ADDR2", "label": "Mailing Address 2", "searchable": true },
+            { "name": "MAIL_CITY", "label": "Mailing City", "searchable": false },
+            { "name": "MAIL_STATE", "label": "Mailing State", "searchable": false },
+            { "name": "PHYSICAL_ADDRESS", "label": "Physical Address (combined)", "searchable": true },
+            { "name": "PHYSICAL_CITY", "label": "Physical City", "searchable": false },
+            { "name": "SALE_DATE", "label": "Sale Date", "searchable": false },
+            { "name": "SALE_PRICE", "label": "Sale Price", "searchable": false },
+            { "name": "FCV_CUR", "label": "Full Cash Value (current year)", "searchable": false },
+            { "name": "LPV_CUR", "label": "Limited Property Value (current)", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/MaricopaDynamicQueryService/MapServer/3/query?where=UPPER(OWNER_NAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=APN,OWNER_NAME,PHYSICAL_ADDRESS,PHYSICAL_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://maps.mcassessor.maricopa.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Maricopa County Assessor's Office, GIS Division",
+        "url": "https://maps.mcassessor.maricopa.gov/",
+        "email": null
+      },
+      "notes": "57 fields confirmed including APN, APN_DASH, BOOK, MAP, ITEM, FLOOR, OWNER_NAME, MAIL_ADDR1/2, MAIL_CITY, MAIL_STATE, MAIL_ZIP, MAIL_CNTRY, PHYSICAL_ADDRESS, PHYSICAL_CITY, PHYSICAL_ZIP, PHYSICAL_STREET_NUM/DIR/NAME/TYPE, DEED_NUMBER, DEED_DATE, SALE_DATE, SALE_PRICE, MCRNUM, SUBNAME, LAND_SIZE, LOT_NUM, CONST_YEAR, LIVING_SPACE, INCAREOF, FCV_CUR/PREV, LPV_CUR/PREV, TAX_YR_CUR/PREV, CITY_ZONING, JURISDICTION, BLOCK, TRACT. Owner query tested and confirmed. The MaricopaDynamicQueryService layer 3 (Parcels) is the full-attribute layer backing the Parcel Viewer at maps.mcassessor.maricopa.gov. A separate 'Parcels' MapServer at gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer also exists but has fewer fields. APN format: 8-digit with no dashes (e.g. '10101347'); APN_DASH adds dashes (e.g. '101-01-347')."
+    }
+  ,
+    {
+      "id": "az-pima",
+      "state": "AZ",
+      "stateName": "Arizona",
+      "stateSlug": "arizona",
+      "county": "Pima",
+      "countySlug": "pima-county",
+      "countyFips": "04019",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://mapdata.tucsonaz.gov/public/rest/services/PublicMaps/PropertyHousing/MapServer/17",
+          "serviceType": "MapServer",
+          "layerIndex": 17,
+          "layerName": "PAREGION",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL", "label": "Parcel Number (Pima County APN)", "searchable": true },
+            { "name": "ADDRESSEE", "label": "Owner / Addressee Name", "searchable": true },
+            { "name": "SITE_ADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "SITE_ZIPCITY", "label": "Site City", "searchable": false },
+            { "name": "TAXAREA", "label": "Tax Area Code", "searchable": false },
+            { "name": "FCV", "label": "Full Cash Value", "searchable": false },
+            { "name": "USE_DESC", "label": "Use Description", "searchable": false },
+            { "name": "TAXYR", "label": "Tax Year", "searchable": false },
+            { "name": "YearBuilt", "label": "Year Built", "searchable": false },
+            { "name": "MAIL1", "label": "Mailing Address Line 1", "searchable": true },
+            { "name": "MAIL2", "label": "Mailing Address Line 2", "searchable": true },
+            { "name": "legal_desc", "label": "Legal Description", "searchable": false }
+          ],
+          "sampleQuery": "https://mapdata.tucsonaz.gov/public/rest/services/PublicMaps/PropertyHousing/MapServer/17/query?where=UPPER(ADDRESSEE)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCEL,ADDRESSEE,SITE_ADDRESS,SITE_ZIPCITY,TAXYR,FCV,USE_DESC&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://mapdata.tucsonaz.gov/public/rest/services/PublicMaps/PropertyHousing/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-14",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "City of Tucson / Pima County GIS, PropertyHousing MapServer (Pima Assessor PAREGION data)",
+        "url": "https://www.pima.gov/1796/Geographic-Information-Systems",
+        "email": null
+      },
+      "notes": "75 fields confirmed. The PAREGION layer (layer 17) is the county-wide Pima County Assessor parcel layer, hosted on the City of Tucson mapdata.tucsonaz.gov ArcGIS server, which aggregates both City of Tucson and unincorporated Pima County parcels. Layer 40 (PAREGION_TUCSON) is the Tucson-only subset; use layer 17 for full county coverage. Owner-name field is ADDRESSEE (holds the assessor's addressee/taxpayer name, equivalent to owner name for most records). PARCEL format is alphanumeric (e.g. '101013880'). Also exposes FCV (Full Cash Value), TAXYR, USE_DESC, MAIL1-5 (mailing address), LEGAL1-5 (legal description), SITE_ADDRESS, SITE_ZIPCITY, SITE_ZIP, TAXAREA, GISACRES, CURZONE_OL (zoning), and YearBuilt. The supportsQuery field reads null in layer metadata (ArcGIS 11.3 quirk), but the service capabilities string is 'Map,Query,Data'. Queries work as confirmed by live testing. maxRecordCount=2000. The gisweb.pima.gov hostname NXDOMAINs; mapdata.tucsonaz.gov is the correct publicly accessible host."
+    },
+    {
+      "id": "az-pinal",
+      "state": "AZ",
+      "stateName": "Arizona",
+      "stateSlug": "arizona",
+      "county": "Pinal",
+      "countySlug": "pinal-county",
+      "countyFips": "04021",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://rogue.casagrandeaz.gov/arcgis/rest/services/Pinal_County/Pinal_County_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Pinal County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID (APN)", "searchable": true },
+            { "name": "LOWPARCELID", "label": "Lower Parcel ID", "searchable": true },
+            { "name": "OWNERNME1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "OWNERNME2", "label": "Owner Name (Secondary)", "searchable": true },
+            { "name": "SITEADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "CVTTXCD", "label": "Converted Tax Code", "searchable": false },
+            { "name": "CVTTXDSCRP", "label": "Tax Code Description", "searchable": false },
+            { "name": "USECD", "label": "Use Code", "searchable": false },
+            { "name": "USEDSCRP", "label": "Use Description", "searchable": false },
+            { "name": "CLASSCD", "label": "Class Code", "searchable": false },
+            { "name": "CLASSDSCRP", "label": "Class Description", "searchable": false },
+            { "name": "PRPRTYDSCRP", "label": "Property Description", "searchable": false }
+          ],
+          "sampleQuery": "https://rogue.casagrandeaz.gov/arcgis/rest/services/Pinal_County/Pinal_County_Parcels/MapServer/0/query?where=PARCELID+LIKE+'%25302%25'&outFields=PARCELID,SITEADDRESS,OWNERNME1,CLASSCD,CLASSDSCRP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.pinal.gov/630/GIS",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Pinal County GIS / Assessor's Office",
+        "url": "https://www.pinal.gov/630/GIS",
+        "email": null
+      },
+      "notes": "74 fields confirmed including OBJECTID, LOWPARCELID, PARCELID, BUILDING, UNIT, LGLSTARTDT, CVTTXCD, CVTTXDSCRP, SCHLTXCD, SCHLDSCRP, USECD, USEDSCRP, NGHBRHDCD, CLASSCD, CLASSDSCRP, SITEADDRESS, PRPRTYDSCRP, CNVYNAME, OWNERNME1, OWNERNME2. Owner name confirmed live: PARCELID LIKE '%302%' returns OWNERNME1='FELDMEIER BRIAN' in Arizona City AZ 85123. PARCELID format is typically 9-digit numeric string. Hosted on the City of Casa Grande ArcGIS server (rogue.casagrandeaz.gov) which serves Pinal County parcel data for the Phoenix metro south area (Chandler/Gilbert/Queen Creek/Maricopa City/Casa Grande). Capabilities: Query, Map, Data. maxRecordCount=1000. Note: the gismaps.pinalcountyaz.gov server is currently not externally accessible (HTTP 000); the Casa Grande mirror is the reliable public endpoint."
+    }
+  ]
+}

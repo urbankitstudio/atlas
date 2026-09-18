@@ -1,0 +1,374 @@
+{
+  "stateSlug": "georgia",
+  "stateName": "Georgia",
+  "stateAbbrev": "GA",
+  "lastUpdated": "2026-08-25",
+  "counties": [
+    {
+      "id": "ga-fulton",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Fulton",
+      "countySlug": "fulton-county",
+      "relatedPropertyCitySlug": "atlanta",
+      "countyFips": "13121",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gismaps.fultoncountyga.gov/arcgispub2/rest/services/PropertyMapViewer/PropertyMapViewer/MapServer/11",
+          "serviceType": "MapServer",
+          "layerIndex": 11,
+          "layerName": "Tax Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "ParcelID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address",
+              "label": "Site Address (full)",
+              "searchable": true
+            },
+            {
+              "name": "AddrNumber",
+              "label": "Address Number",
+              "searchable": true
+            },
+            {
+              "name": "AddrStreet",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "OwnerAddr1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddr2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "TaxYear",
+              "label": "Tax Year",
+              "searchable": false
+            },
+            {
+              "name": "TaxDist",
+              "label": "Tax District",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gismaps.fultoncountyga.gov/arcgispub2/rest/services/PropertyMapViewer/PropertyMapViewer/MapServer/11/query?where=UPPER(Owner)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=ParcelID,Owner,Address&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisdata.fultoncountyga.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Fulton County GIS (Department of Information Technology)",
+        "url": "https://fultoncountyga.gov/maps",
+        "email": null
+      },
+      "notes": "372,900 polygon tax parcels covering Atlanta and the rest of Fulton County. Verified 2026-05-11: UPPER(Owner) LIKE '%SMITH%' returns real owners with full Atlanta-area site addresses (e.g., '6760 JULES TRC', '528 SOUTH MAIN ST'). Owner names use last-name-first concatenated format (e.g., 'SMITH FAITH L SMITH MARIO D' for joint ownership). Both site address AND owner mailing address are exposed. Layer 11 of the PropertyMapViewer composite, neighbor layers include 'Tax Parcel Address Labels' (id 9) for cartographic use."
+    },
+    {
+      "id": "ga-cobb",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Cobb",
+      "countySlug": "cobb-county",
+      "countyFips": "13067",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.cobbcounty.gov/gisserver/rest/services/tax/taxassessorsdaily/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "CobbParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "PARID",
+              "label": "Parcel Account ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAM1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAM2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "SITUS_ADDR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_ADDR",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_CITY",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_STAT",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_ZIP",
+              "label": "Owner ZIP",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.cobbcounty.gov/gisserver/rest/services/tax/taxassessorsdaily/MapServer/0/query?where=UPPER(OWNER_NAM1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,OWNER_NAM1,SITUS_ADDR,OWNER_ADDR,OWNER_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.cobbcounty.gov/information-technology-services/cobb-county-gis",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Cobb County GIS (Information Technology Services)",
+        "url": "https://geo-cobbcountyga.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Cobb County (Marietta seat, pop. 766,000; Atlanta metro northwest) maintains a Tax Assessor parcel layer at gis.cobbcounty.org that refreshes nightly from CAMA data -- the service name 'taxassessorsdaily' reflects this cadence. 36+ confirmed fields: PIN, PARID, PARCEL_TYPE, OWNER_NAM1/2 (owner names), SITUS_ADDR (site address), OWNER_ADDR/CITY/STAT/ZIP (owner mailing address), TAXDIST, ACRES, FMV_LAND (fair-market land value), FMV_BLDG, FMV_TOTAL, ASV_LAND (assessed land), ASV_BLDG, ASV_TOTAL, CLASS (property class), NBHOOD_NUM (neighborhood code). Verified 2026-05-15: SMITH returns results from Acworth, Marietta, Powder Springs, and Kennesaw. Cobb County borders Atlanta only in limited segments and has no parcel-boundary overlap with the city. The county's GIS Hub at geo-cobbcountyga.hub.arcgis.com and the Property Search portal at gis.cobbcounty.org/PropertySearch.html both provide web-interface access. The Cobb County Board of Tax Assessors (cobbassessor.org) is the authoritative record for appeals, exemptions, and recent reassessment values."
+    },
+    {
+      "id": "ga-dekalb",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "DeKalb",
+      "countySlug": "dekalb-county",
+      "countyFips": "13089",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://dcgis.dekalbcountyga.gov/hosted/rest/services/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "SITEADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "USECD",
+              "label": "Use Code",
+              "searchable": false
+            },
+            {
+              "name": "USEDSCRP",
+              "label": "Use Description",
+              "searchable": false
+            },
+            {
+              "name": "CVTTXCD",
+              "label": "City/County Tax Code",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://dcgis.dekalbcountyga.gov/hosted/rest/services/Parcels/MapServer/0/query?where=UPPER(OWNERNME1)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,SITEADDRESS,USEDSCRP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://dcgis-dekalbgis.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "DeKalb County GIS Department",
+        "url": "https://dcgis-dekalbgis.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "DeKalb County (pop. 764,000; Atlanta metro east and north core) should not be confused with DeKalb County IL (FIPS 17037) or DeKalb County IN in the atlas. The GA DeKalb parcel REST layer at dcgis.dekalbcountyga.gov/hosted/rest/services/Parcels/MapServer exposes 20+ confirmed fields. PARCELID is an 11-digit identifier with spaces (e.g., '06 249 03 007') reflecting district, map sheet, block, and parcel components. Owner fields: OWNERNME1/2. Site address: SITEADDRESS. The CVTTXCD and CVTTXDSCRP fields identify the city/tax district, which matters because several cities -- Decatur, Brookhaven, Dunwoody, Tucker, Doraville, Stone Mountain -- maintain separate municipal boundaries within the county. SCHLTXCD and SCHLDSCRP identify the school tax district. Classification: USECD, USEDSCRP, CLASSCD, CLASSDSCRP, and PRPRTYDSCRP. Verified 2026-05-15: SMITH returns Doraville and Atlanta-DeKalb addresses. For full assessment and exemption records, the DeKalb County Tax Commissioner portal at tax.dekalbcountyga.gov is the authoritative lookup."
+    },
+    {
+      "id": "ga-gwinnett",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Gwinnett",
+      "countySlug": "gwinnett-county",
+      "countyFips": "13135",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/Property_and_Tax/FeatureServer/3",
+          "serviceType": "FeatureServer",
+          "layerIndex": 3,
+          "layerName": "Tax Master Table",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "OWNER1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "PIN",
+              "label": "Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "LOCADDR",
+              "label": "Property (Location) Address",
+              "searchable": true
+            },
+            {
+              "name": "LOCCITY",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "LOCZIP",
+              "label": "Property ZIP",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/Property_and_Tax/FeatureServer/3/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,OWNER1,OWNER2,LOCADDR,LOCCITY,LOCZIP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gwin-gwinnettcounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Gwinnett County GIS / Tax Assessor",
+        "url": "https://www.gwinnettcounty.com/web/gwinnett/departments/financialservices/taxassessorsoffice",
+        "email": null
+      },
+      "notes": "Gwinnett County (pop. ~975,000; Lawrenceville seat; Atlanta metro northeast, Georgia's second-most-populous county) publishes a Property_and_Tax FeatureServer. IMPORTANT: owner data lives on LAYER 3 (the 'Tax Master Table', a non-spatial Table with 35 fields including OWNER1, OWNER2, PIN, LOCADDR, LOCCITY, LOCZIP), NOT on layer 0, which is the parcel geometry layer carrying PIN but no owner name. Query layer 3 for owner-name search; join to layer 0 on PIN if geometry is needed. Verified 2026-06-20: layer 3 holds 314,998 records; UPPER(OWNER1) LIKE '%SMITH%' returns real owners with Duluth/Norcross addresses and ZIPs (e.g. '4078 STILLWATER DR, DULUTH 30096'). Because layer 3 is a Table, query results return no geometry. Cities within the county include Lawrenceville, Duluth, Norcross, Snellville, Suwanee, Lilburn, Buford, Sugar Hill, Grayson, Loganville, Berkeley Lake, Dacula, Auburn, Braselton, Peachtree Corners. For authoritative assessment/appeal records use the Gwinnett County Tax Assessor's office."
+    },
+    {
+      "id": "ga-chatham",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Chatham",
+      "countySlug": "chatham-county",
+      "countyFips": "13051",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://pub.sagis.org/arcgis/rest/services/OpenData/Parcels/FeatureServer/27",
+          "serviceType": "FeatureServer",
+          "layerIndex": 27,
+          "layerName": "Parcel Digest 2025",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "PropAddress_Full",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "PropAddress_City",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_City",
+              "label": "Owner Mailing City",
+              "searchable": true
+            },
+            {
+              "name": "Property_Use",
+              "label": "Land Use",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://pub.sagis.org/arcgis/rest/services/OpenData/Parcels/FeatureServer/27/query?where=UPPER(Owner)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,Owner,Owner2,PropAddress_Full,PropAddress_City,Mailing_Address&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://www.sagis.org/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Savannah Area GIS (SAGIS)",
+        "url": "https://www.sagis.org/",
+        "email": null
+      },
+      "notes": "Savannah and Chatham County, published by SAGIS. 125,326 parcels with owner names on 124,952 rows (99.7 percent), and the fullest field set in this batch: parcel id, two owner columns, a complete mailing address, a combined situs and split situs parts. IMPORTANT for maintenance: this service holds 28 year-versioned layers, 0 to 17 being Historic Parcels 1998 to 2015 and 18 to 27 being Parcel Digest 2016 to 2025. Layer 27 is the newest today. When SAGIS publishes Parcel Digest 2026 it will be layer 28 and this entry will silently go a year stale, so the layer index needs checking whenever this record is reverified."
+    }
+  ]
+}

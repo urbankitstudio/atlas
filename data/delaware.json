@@ -1,0 +1,46 @@
+{
+  "stateSlug": "delaware",
+  "stateName": "Delaware",
+  "stateAbbrev": "DE",
+  "lastUpdated": "2026-06-20",
+  "counties": [
+    {
+      "id": "de-new-castle",
+      "state": "DE",
+      "stateName": "Delaware",
+      "stateSlug": "delaware",
+      "county": "New Castle",
+      "countySlug": "new-castle-county",
+      "countyFips": "10003",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.nccde.org/entserver/rest/services/Foundation/Base_Layers/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PRCLID", "label": "Parcel ID (APN)", "searchable": true },
+            { "name": "CNTCTLAST", "label": "Owner Last Name / Contact", "searchable": true },
+            { "name": "OWNADDR", "label": "Owner Mailing Address", "searchable": false },
+            { "name": "ADDRESS", "label": "Property Address", "searchable": true }
+          ],
+          "sampleQuery": "https://gis.nccde.org/entserver/rest/services/Foundation/Base_Layers/MapServer/0/query?where=UPPER(CNTCTLAST)+LIKE+UPPER('%25SMITH%25')&outFields=PRCLID,CNTCTLAST,ADDRESS,OWNADDR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.nccde.org/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "New Castle County Government, Office of Land Use / GIS (NCCDE)",
+        "url": "https://gis.nccde.org/",
+        "email": null
+      },
+      "notes": "New Castle County DE (Wilmington/Newark metro; county seat Wilmington; FIPS 10003; most populous of Delaware's 3 counties, pop. ~570,000) publishes a public ArcGIS MapServer parcel layer hosted by NCCDE GIS (Foundation/Base_Layers/MapServer/0, 'Parcels', ~203,753 features, no token required). Key fields: PRCLID (parcel ID / APN), CNTCTLAST (owner last name / contact, the searchable owner field), OWNADDR (owner mailing address), ADDRESS (property situs address). Owner-name search via UPPER(CNTCTLAST) LIKE UPPER('%NAME%') works. Verified 2026-06-20: UPPER(CNTCTLAST) LIKE UPPER('%SMITH%') returns Wilmington-area parcels. Delaware has only 3 counties (New Castle, Kent, Sussex); Kent and Sussex are served separately. Do not confuse with New Castle in Pennsylvania (Lawrence County, PA)."
+    }
+  ]
+}

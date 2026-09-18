@@ -1,0 +1,101 @@
+{
+  "stateSlug": "south-carolina",
+  "stateName": "South Carolina",
+  "stateAbbrev": "SC",
+  "lastUpdated": "2026-06-06",
+  "counties": [
+    {
+      "id": "sc-greenville",
+      "state": "SC",
+      "stateName": "South Carolina",
+      "stateSlug": "south-carolina",
+      "county": "Greenville",
+      "countySlug": "greenville-county",
+      "countyFips": "45045",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://www.gcgis.org/arcgis/rest/services/GreenvilleJS/Map_Layers_JS/MapServer/52",
+          "serviceType": "MapServer",
+          "layerIndex": 52,
+          "layerName": "Tax Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "OWNAM1", "label": "Owner Name 1", "searchable": true },
+            { "name": "OWNAM2", "label": "Owner Name 2", "searchable": false },
+            { "name": "STREET", "label": "Street Address", "searchable": true },
+            { "name": "CITY", "label": "City", "searchable": false },
+            { "name": "STATE", "label": "State", "searchable": false },
+            { "name": "ZIP5", "label": "ZIP Code", "searchable": false },
+            { "name": "NAMECO", "label": "County Name", "searchable": false },
+            { "name": "POWNNM", "label": "Previous Owner Name", "searchable": false },
+            { "name": "DEEDDATE", "label": "Deed Date", "searchable": false },
+            { "name": "DIST", "label": "Tax District", "searchable": false },
+            { "name": "LANDUSE", "label": "Land Use Code", "searchable": false },
+            { "name": "DESCR", "label": "Description", "searchable": false },
+            { "name": "SUBDIV", "label": "Subdivision", "searchable": false }
+          ],
+          "sampleQuery": "https://www.gcgis.org/arcgis/rest/services/GreenvilleJS/Map_Layers_JS/MapServer/52/query?where=UPPER(OWNAM1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,OWNAM1,STREET,CITY,STATE,ZIP5&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.gcgis.org/",
+          "status": "unreachable",
+          "lastVerified": "2026-08-29",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Greenville County GIS Division",
+        "url": "https://www.gcgis.org/",
+        "email": "gis@greenvillecounty.org"
+      },
+      "notes": "MARKED UNREACHABLE 2026-08-29 after 25 days down (297 consecutive liveness failures since 2026-08-04). The registered service answers verbatim \"Service GreenvilleJS/Map_Layers_JS/MapServer not started\"; the county's own iMAP service (imap/iMAP/MapServer) is also not started; the GreenvilleJS and imap folders list no services; the one visible service (GCGIA/Greenville_Base, 61 layers) has no parcel layer; ArcGIS Hub lists no county-owned parcel feature service. The county has taken its map services down and nothing replaces them yet. Liveness keeps probing; flip back to live when it recovers. Owner search remains available at the county's non-GIS Real Property Search. Prior notes: Greenville County (pop. 530,000; seat: Greenville) Tax Parcel layer is within the Map_Layers_JS composite MapServer at layer index 52. 20 fields confirmed: PIN, OWNAM1/2, STREET, CITY, STATE, ZIP5, NAMECO, POWNNM, DEEDDATE, CUBOOK, CUPAGE, PLTBK1, PPAGE1, DIST, MKTAREA, JURIS, LANDUSE, DESCR, SUBDIV. Verified 2026-05-15: SMITH returns Greenville SC addresses (e.g., '124 MCDANIEL GREENE', '218 BUTLER AVE'). The same MapServer contains 95+ other layers (zoning, census, drainage, etc.). Layer 52 is specifically Tax Parcel. The GCGIS GreenvilleJS MapServer is the public-facing viewer service."
+    },
+    {
+      "id": "sc-charleston",
+      "state": "SC",
+      "stateName": "South Carolina",
+      "stateSlug": "south-carolina",
+      "county": "Charleston",
+      "countySlug": "charleston-county",
+      "countyFips": "45019",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/New_Parcel_Search/MapServer/4",
+          "serviceType": "MapServer",
+          "layerIndex": 4,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PID", "label": "Parcel ID", "searchable": true },
+            { "name": "OWNER1", "label": "Owner Name 1", "searchable": true },
+            { "name": "OWNER2", "label": "Owner Name 2", "searchable": false },
+            { "name": "MAIL_ST_NAME", "label": "Mailing Street Name", "searchable": false },
+            { "name": "MAIL_ST_NO", "label": "Mailing Street Number", "searchable": false },
+            { "name": "MAIL_CITY", "label": "Mailing City", "searchable": false },
+            { "name": "MAIL_STATE", "label": "Mailing State", "searchable": false },
+            { "name": "MAIL_ZIP", "label": "Mailing ZIP", "searchable": false },
+            { "name": "TAX_DISTRICT", "label": "Tax District", "searchable": false },
+            { "name": "LEGAL_DESCR", "label": "Legal Description", "searchable": false },
+            { "name": "SUBDIVISION", "label": "Subdivision", "searchable": false }
+          ],
+          "sampleQuery": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/New_Parcel_Search/MapServer/4/query?where=UPPER(OWNER1)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=PID,OWNER1,OWNER2,MAIL_ST_NAME&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://charleston-county-gis-chascogis.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-09-17",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Charleston County GIS (BCS / Charleston County GIS)",
+        "url": "https://charleston-county-gis-chascogis.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Charleston County (pop. 430,000; includes Charleston, North Charleston, Mount Pleasant). Parcels live on GIS_VIEWER/New_Parcel_Search/MapServer layer 4. Field names are unqualified (PID, OWNER1, ...); the FEATURES.SDE.* prefixes an older revision of this entry described no longer apply, and neither GPIN nor ACRES_CAL exists here. Layer 4 carries 27 fields, including several the registry does not map: ACREAGE, CLASS_CODE, DEED_BOOK_PAGE, PLAT_BOOK_PAGE, SALE_PRICE, RECORDED_DATE and DOC_DATE. WATCH THIS COUNTY: it has now renumbered its parcel layer twice. 2026-06-06 moved Parcel_Search/4 to New_Parcel_Search/61 after the old service 404'd; 2026-09-17 moved it again to New_Parcel_Search/4, which is why the endpoint sat down with last_ok_at null. Both times the service name and the field names survived and only the layer index changed, so an index-only drift check would catch the next one. Re-verified live 2026-09-17: layer 61 answers ArcGIS error 404 'Layer not found' while layer 4 returns features for both query shapes the tool sends, UPPER(OWNER1) LIKE and PID LIKE."
+    }
+  ]
+}

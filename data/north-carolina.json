@@ -1,0 +1,536 @@
+{
+  "stateSlug": "north-carolina",
+  "stateName": "North Carolina",
+  "stateAbbrev": "NC",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "nc-wake",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Wake",
+      "countySlug": "wake-county",
+      "countyFips": "37183",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.wake.gov/arcgis/rest/services/Property/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Property",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PIN_NUM",
+              "label": "Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "REID",
+              "label": "Real Estate ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNER",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "SITE_ADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "ADDR1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "ADDR2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "ADDR3",
+              "label": "Owner Mailing Address 3",
+              "searchable": false
+            },
+            {
+              "name": "TOWNSHIP",
+              "label": "Township Code",
+              "searchable": false
+            },
+            {
+              "name": "TOWNSHIP_DECODE",
+              "label": "Township Name",
+              "searchable": false
+            },
+            {
+              "name": "OLD_PARCEL_NUMBER",
+              "label": "Legacy Parcel Number",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://maps.wake.gov/arcgis/rest/services/Property/Parcels/MapServer/0/query?where=UPPER(OWNER)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=PIN_NUM,REID,OWNER,SITE_ADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://maps.wake.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Wake County GIS Services (Department of Information Services)",
+        "url": "https://maps.wake.gov/",
+        "email": null
+      },
+      "notes": "Wake County (Raleigh metro, pop. 1.17 million) hosts 435,382 parcel polygons in its county-direct ArcGIS FeatureServer. Owner-name queries use UPPER(OWNER) LIKE '%SMITH%' and return real site addresses (verified 2026-05-11). Two identifiers matter: PIN_NUM is a 10-digit code derived from State Plane grid coordinates and uniquely locates the parcel geographically; REID (Real Estate ID) is the assessor's account key, used by the Wake County Register of Deeds and the iMAPS application for cross-reference. The layer also carries OLD_PARCEL_NUMBER for reconciling legacy records that predate current PIN_NUM assignment. Wake County GIS and Raleigh GIS jointly maintain iMAPS (maps.raleighnc.gov/iMAPS) as a parallel lookup tool supporting owner, address, PIN, and REID searches. NC OneMap aggregates Wake data quarterly as well; the county's own FeatureServer is more current for recent splits and consolidations.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    },
+    {
+      "id": "nc-mecklenburg",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Mecklenburg",
+      "countySlug": "mecklenburg-county",
+      "countyFips": "37119",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.charlottenc.gov/arcgis/rest/services/CountyData/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "NC_PIN",
+              "label": "NC Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "PID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "MAP_BOOK",
+              "label": "Map Book",
+              "searchable": false
+            },
+            {
+              "name": "MAP_PAGE",
+              "label": "Map Page",
+              "searchable": false
+            },
+            {
+              "name": "LOT_NUM",
+              "label": "Lot Number",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.charlottenc.gov/arcgis/rest/services/CountyData/Parcels/MapServer/0/query?where=NC_PIN%3D'11906103'&outFields=NC_PIN,PID,MAP_BOOK,MAP_PAGE&returnGeometry=false&f=json",
+          "license": "public",
+          "licenseUrl": "https://gis.mecknc.gov/data-center",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Mecklenburg County GIS, Geospatial Information Services (Charlotte-Mecklenburg joint GIS)",
+        "url": "https://gis.mecknc.gov/",
+        "email": null
+      },
+      "notes": "Mecklenburg County (Charlotte, pop. 1.2M) GIS endpoint is hosted on Charlotte's ArcGIS server (gis.charlottenc.gov). 13 fields on this public layer: OBJECTID, MAP_BOOK, MAP_PAGE, MAP_BLOCK, LOT_NUM, NC_PIN, PID, PARCEL_TYPE, CONDO_TOWN_FLAG, Legal_From, Shape. NOTE: Owner name and address are NOT exposed on this public REST endpoint. The Charlotte/Mecklenburg POLARIS system provides owner-name lookups at polaris3g.mecklenburgcountync.gov but does not expose a public REST API. For parcel + owner data, Mecklenburg County's Geospatial Information Services (GIS) division provides full POLARIS data through the county open mapping site. This endpoint is geometry + PIN only."
+    },
+    {
+      "id": "nc-forsyth",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Forsyth",
+      "countySlug": "forsyth-county",
+      "countyFips": "37067",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '067' = Forsyth)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyfips%3D'067'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Forsyth'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Forsyth County (Winston-Salem, pop. 385,000) is served via the NC Geographic Information Coordinating Council's NC1Map statewide parcel aggregation (services.gis.nc.gov). Filter by cntyfips='067' (3-digit string). Key fields: parno (parcel number), ownname/ownname2 (owner names), siteadd/scity/szip (site address), mailadd/mcity/mstate/mzip (mailing address), parval (total parcel value), landval, improvval, gisacres, parusecode/parusedesc (land use), saledate, legdecfull (legal description), subdivisio, owntype, and cntyname. The NC1Map layer is updated quarterly from county submissions to the GICC. Forsyth County also maintains MapForsyth (mapforsyth.org), a county-direct open data portal with weekly-updated parcel and address layers -- for the most current data, MapForsyth is the better path. The county Tax Assessor's Geo-Data Explorer (forsyth.cc/tax/geodata.aspx) provides parcel search by address, owner, and parcel ID."
+    },
+    {
+      "id": "nc-guilford",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Guilford",
+      "countySlug": "guilford-county",
+      "countyFips": "37081",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '081' = Guilford)",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyfips%3D'081'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Guilford'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Guilford County (Greensboro and High Point metro, pop. 540,000) is served via the NC1Map statewide parcel aggregation (services.gis.nc.gov). Filter by cntyfips='081'. The same field schema applies as other NC1Map counties: ownname/ownname2, siteadd/scity/szip, mailadd/mcity, parval, landval, improvval, parusecode/parusedesc, saledate, and legdecfull. Guilford covers two large municipalities -- Greensboro and High Point -- whose parcel data are both captured in this single county layer; the scity field distinguishes them. Guilford County GIS Hub (gcgis.guilfordcountync.gov) exposes boundary and road layers but not the full parcel-plus-owner REST path; NC1Map remains the only public REST route for owner-level queries. Verified 2026-05-15: cntyfips='081' returns Greensboro and High Point addresses. Quarterly update cycle from county to GICC may lag recent deed recordings by up to 3 months."
+    },
+    {
+      "id": "nc-durham",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Durham",
+      "countySlug": "durham-county",
+      "countyFips": "37063",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://webgis.durhamnc.gov/server/rest/services/PublicServices/Property/MapServer/4",
+          "serviceType": "MapServer",
+          "layerIndex": 4,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "REID",
+              "label": "Real Estate ID",
+              "searchable": true
+            },
+            {
+              "name": "PROPERTY_OWNER",
+              "label": "Property Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "LOCATION_ADDR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "PHYADDR_CITY",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_MAIL_1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_MAIL_CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_MAIL_STATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_PROP_VALUE",
+              "label": "Total Property Value",
+              "searchable": false
+            },
+            {
+              "name": "DEED_DATE",
+              "label": "Deed Date",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://webgis.durhamnc.gov/server/rest/services/PublicServices/Property/MapServer/4/query?where=UPPER(PROPERTY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,PROPERTY_OWNER,LOCATION_ADDR,PHYADDR_CITY,OWNER_MAIL_1&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.durhamnc.gov/1455/Interactive-Maps",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City-County GIS (Durham City + Durham County joint)",
+        "url": "https://live-durhamnc.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Durham County (Research Triangle, pop. 330,000) provides its parcel layer via a City/County joint GIS operation separate from NC1Map. The layer exposes 75+ confirmed fields. Key identifiers: PIN (parcel identification number) and REID (real estate ID, the assessor account key). PROPERTY_OWNER uses a semicolon-delimited format for co-owners (e.g., 'SMITH, CAROLYN D;SMITH, FRANK Q'). Address fields include LOCATION_ADDR and PHYADDR_CITY/STATE/ZIP for the site, plus OWNER_MAIL_1/2/3/CITY/STATE/ZIP/PLUS_4 for the mailing address. Valuation fields include TOTAL_LAND_VALUE_ASSESSED, TOTAL_BLDG_VALUE_ASSESSED, and TOTAL_PROP_VALUE. Deed fields DEED_DATE, DEED_BOOK, and DEED_PAGE point directly to recorded instruments. ZONING, LAND_CLASS, and TOWNSHIP provide planning context. Verified 2026-05-15: PROPERTY_OWNER queries return Durham addresses. For fuller record detail, the Durham County Tax Administration property search at dconc.gov is the authoritative portal."
+    },
+    {
+      "id": "nc-cumberland",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Cumberland",
+      "countySlug": "cumberland-county",
+      "countyFips": "37051",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '051' = Cumberland)",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyfips%3D'051'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Cumberland'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Cumberland County (Fayetteville, pop. 335,000; includes Fort Liberty, formerly Fort Bragg) is served via the NC1Map statewide parcel aggregation (services.gis.nc.gov). Filter by cntyfips='051'. The NC1Map field schema applies: ownname/ownname2, siteadd/scity/szip, mailadd/mcity/mstate/mzip, parval, landval, improvval, parusecode/parusedesc, saledate, and legdecfull. Cumberland's parcel inventory includes the substantial federal footprint of Fort Liberty; military installation parcels typically appear with US Government as owner and may carry limited attribute data. The county seat Fayetteville and surrounding municipalities like Spring Lake and Hope Mills are fully covered. Quarterly update cycle from county to GICC applies. For current ownership, the Cumberland County Tax Administration portal at co.cumberland.nc.us handles property search by owner, address, and parcel ID. Cumberland County also maintains an open data portal at opendata.co.cumberland.nc.us with downloadable parcel layers."
+    },
+    {
+      "id": "nc-buncombe",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Buncombe",
+      "countySlug": "buncombe-county",
+      "countyFips": "37021",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.buncombecounty.org/arcgis/rest/services/property_bc_dis/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Property",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "pinnum",
+              "label": "PIN Number (Parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "pin",
+              "label": "PIN",
+              "searchable": true
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "HouseNumber",
+              "label": "House Number",
+              "searchable": false
+            },
+            {
+              "name": "NumberSuffix",
+              "label": "Number Suffix",
+              "searchable": false
+            },
+            {
+              "name": "TaxYear",
+              "label": "Tax Year",
+              "searchable": false
+            },
+            {
+              "name": "DeedBook",
+              "label": "Deed Book",
+              "searchable": false
+            },
+            {
+              "name": "DeedPage",
+              "label": "Deed Page",
+              "searchable": false
+            },
+            {
+              "name": "SubName",
+              "label": "Subdivision Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.buncombecounty.org/arcgis/rest/services/property_bc_dis/MapServer/1/query?where=UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=pinnum,owner,HouseNumber,NumberSuffix&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.buncombecounty.org/governing/depts/gis/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Buncombe County GIS Department",
+        "url": "https://www.buncombecounty.org/governing/depts/gis/",
+        "email": null
+      },
+      "notes": "Buncombe County (Asheville, pop. 275,000) hosts its parcel layer on a county-direct ArcGIS service. The service name is property_bc_dis (dis = district); layer 1 of 3 is the parcel polygon layer (layer 0 is County Boundary, layer 2 is Street Centerline). The primary parcel identifier is pinnum, a 15-digit number. The owner field is named owner (lowercase). Building fields include HouseNumber, NumberSuffix, TaxYear, DeedBook, DeedPage, PlatBook, PlatPage, SubName, SubLot, SubBlock, SubSect, CondoUnit, and CondoBuilding. Data is refreshed daily at 6 a.m. on weekdays from CAMA sources. Verified 2026-05-15: SMITH returns Asheville-area addresses. Buncombe County's GIS portal (gis.buncombenc.gov/buncomap) is the primary web interface. For assessment detail, the SpatialEst Property Record Search at prc-buncombe.spatialest.com is the county-linked assessor lookup. Hurricane Helene (September 2024) caused significant disruptions in Asheville; some parcels in flood-affected areas may carry amended ownership or assessment data."
+    }
+  ]
+}

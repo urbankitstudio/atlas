@@ -1,0 +1,82 @@
+{
+  "stateSlug": "hawaii",
+  "stateName": "Hawaii",
+  "stateAbbrev": "HI",
+  "lastUpdated": "2026-06-20",
+  "counties": [
+    {
+      "id": "hi-kauai",
+      "state": "HI",
+      "stateName": "Hawaii",
+      "stateSlug": "hawaii",
+      "county": "Kauai",
+      "countySlug": "kauai-county",
+      "countyFips": "15007",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/9",
+          "serviceType": "MapServer",
+          "layerIndex": 9,
+          "layerName": "Kauai County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "owner", "label": "Owner Name", "searchable": true },
+            { "name": "tmk_txt", "label": "Tax Map Key (9-digit TMK / APN)", "searchable": true },
+            { "name": "cty_tmk", "label": "County TMK (8-digit)", "searchable": true }
+          ],
+          "sampleQuery": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/9/query?where=UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=owner,tmk_txt,cty_tmk&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://geoportal.hawaii.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "State of Hawaii Office of Planning and Sustainable Development, Statewide GIS Program",
+        "url": "https://planning.hawaii.gov/gis/",
+        "email": null
+      },
+      "notes": "Kauai County HI (the island of Kauai plus Niihau; county seat Lihue; FIPS 15007; pop. ~73,000) parcels are published on the State of Hawaii statewide GIS portal (geodata.hawaii.gov ParcelsZoning/MapServer/9, 'Kauai County Parcels', ~25,119 features, no token required). Hawaii uses the Tax Map Key (TMK) system rather than a conventional APN: tmk_txt is the 9-digit TMK, cty_tmk the 8-digit county form. Key fields: owner (owner name, searchable), tmk_txt (9-digit TMK), cty_tmk (8-digit TMK). Owner-name search via UPPER(owner) LIKE UPPER('%NAME%') works. Verified 2026-06-20: UPPER(owner) LIKE UPPER('%SMITH%') returns Kauai parcels. Hawaii has only 5 county-equivalents statewide; each of the four main counties (Honolulu, Hawaii, Maui, Kauai) is a separate layer on the statewide ParcelsZoning service."
+    },
+    {
+      "id": "hi-maui",
+      "state": "HI",
+      "stateName": "Hawaii",
+      "stateSlug": "hawaii",
+      "county": "Maui",
+      "countySlug": "maui-county",
+      "countyFips": "15009",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/x4h61KaW16vFs7PM/arcgis/rest/services/Parcels_2024_Owners/FeatureServer/196",
+          "serviceType": "FeatureServer",
+          "layerIndex": 196,
+          "layerName": "Parcels 2024 Owners",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "OWNER", "label": "Owner Name", "searchable": true },
+            { "name": "tmk_txt", "label": "Tax Map Key (TMK / APN)", "searchable": true },
+            { "name": "TMK_1", "label": "Tax Map Key (alternate)", "searchable": true }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/x4h61KaW16vFs7PM/arcgis/rest/services/Parcels_2024_Owners/FeatureServer/196/query?where=OWNER+LIKE+'%25SMITH%25'&outFields=OWNER,tmk_txt,TMK_1&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mauicounty.gov/1933/GIS-Maps",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "County of Maui, GIS Division",
+        "url": "https://www.mauicounty.gov/1933/GIS-Maps",
+        "email": null
+      },
+      "notes": "Maui County HI (the islands of Maui, Molokai, and Lanai; county seat Wailuku; FIPS 15009; pop. ~165,000) publishes a public ArcGIS Online FeatureServer parcel layer (Parcels_2024_Owners/FeatureServer/196, no token required). Hawaii uses the Tax Map Key (TMK) system: tmk_txt and TMK_1 hold the TMK (APN equivalent). Key fields: OWNER (owner name, searchable, already stored UPPERCASE), tmk_txt / TMK_1 (TMK). IMPORTANT. Owner search must use OWNER LIKE '%NAME%' WITHOUT UPPER(): this layer returns HTTP 400 if UPPER() is applied to the field, and the data is already uppercase so no case folding is needed. CAVEAT: multi-owner parcels are duplicated. The layer has one row per owner, so the ~141,239 feature count exceeds the number of unique parcels; dedupe on tmk_txt when counting distinct parcels. Verified 2026-06-20: OWNER LIKE '%SMITH%' returns Maui/Molokai/Lanai parcels."
+    }
+  ]
+}

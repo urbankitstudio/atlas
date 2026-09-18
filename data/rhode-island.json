@@ -1,0 +1,25 @@
+{
+  "stateSlug": "rhode-island",
+  "stateName": "Rhode Island",
+  "stateAbbrev": "RI",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ri-providence",
+      "state": "RI",
+      "stateName": "Rhode Island",
+      "stateSlug": "rhode-island",
+      "county": "Providence",
+      "countySlug": "providence-county",
+      "countyFips": "44007",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "RIGIS (Rhode Island Geographic Information System) / RI Division of Statewide Planning",
+        "url": "https://www.rigis.org/",
+        "email": null
+      },
+      "notes": "No public queryable REST endpoint found for Providence County parcel data. Rhode Island has no county government, GIS and parcel authority rests with individual municipalities. RIGIS (risegis.ri.gov) hosts only a MuniGIS_Resources MapServer that tracks metadata (last-updated status) per municipality, not actual parcel polygons. The state GIS server at gis.ri.gov/arcgis/rest/services/RIDOA/Muni_Parcel/MapServer was unreachable at time of research. Providence City has its own GIS portal (webgis.providenceri.gov, pvdgis.maps.arcgis.com) with parcel data, but the server was refusing connections in May 2026. Fallback: download shapefiles for individual RI cities and towns from RIGIS data distribution (rigis.org). Commercial options: Regrid covers RI with full parcel attribute data."
+    }
+  ]
+}

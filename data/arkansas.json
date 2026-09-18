@@ -1,0 +1,278 @@
+{
+  "stateSlug": "arkansas",
+  "stateName": "Arkansas",
+  "stateAbbrev": "AR",
+  "lastUpdated": "2026-06-20",
+  "counties": [
+    {
+      "id": "ar-pulaski",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Pulaski",
+      "countySlug": "pulaski-county",
+      "countyFips": "05119",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (05119 = Pulaski)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'05119'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "countyfips = '05119'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Pulaski County AR (Little Rock, pop. 400,000; state capital; county seat Little Rock; FIPS 05119) is served by the Arkansas statewide parcel layer hosted by the Arkansas GIS Office (AGISO). The Planning_Cadastre/FeatureServer/6 layer aggregates parcels from all 75 AR counties, filter by countyfips='05119' to query Pulaski County specifically. Key fields: parcelid (parcel identifier), ownername (owner name), adrnum+pstrnam+adrcity+adrzip5 (address components), adrlabel (full address string), countyfips (5-digit FIPS, '05119' for Pulaski), countyid, county (county name text), parceltype, assessvalue, impvalue, landvalue, totalvalue, subdivision, section/township/range, camakey, dataprov, pubdate. Owner-name search via UPPER(ownername) LIKE works across all AR counties. Verified 2026-06-20: countyfips='05119' AND SMITH returns Little Rock addresses. The statewide layer is compiled from county assessor data and may lag 6–12 months from deed recording."
+    },
+    {
+      "id": "ar-benton",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Benton",
+      "countySlug": "benton-county",
+      "countyFips": "05007",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (05007 = Benton)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'05007'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "countyfips = '05007'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Benton County AR (Bentonville/Rogers/Fayetteville metro north; county seat Bentonville; FIPS 05007; home to Walmart HQ) is served by the Arkansas statewide parcel layer. Filter countyfips='05007' to scope to Benton County. Same schema and endpoint as Pulaski County (AR statewide FeatureServer/6). Benton County is the fastest-growing county in Arkansas. Verified 2026-06-20: SMITH query returns Bentonville-area addresses."
+    },
+    {
+      "id": "ar-washington",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Washington",
+      "countySlug": "washington-county",
+      "countyFips": "05143",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (05143 = Washington)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'05143'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "countyfips = '05143'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Washington County AR (Fayetteville metro; county seat Fayetteville; FIPS 05143; home to University of Arkansas) is served by the Arkansas statewide parcel layer. Filter countyfips='05143' to scope to Washington County. Same schema and endpoint as Pulaski and Benton counties (AR statewide FeatureServer/6). Washington County AR must not be confused with Washington County in other states. Verified 2026-06-20: SMITH query returns Fayetteville-area addresses."
+    }
+  ]
+}

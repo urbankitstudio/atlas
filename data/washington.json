@@ -1,0 +1,183 @@
+{
+  "stateSlug": "washington",
+  "stateName": "Washington",
+  "stateAbbrev": "WA",
+  "lastUpdated": "2026-06-06",
+  "counties": [
+    {
+      "id": "wa-king",
+      "state": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "county": "King",
+      "countySlug": "king-county",
+      "countyFips": "53033",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gismaps.kingcounty.gov/arcgis/rest/services/Property/KingCo_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "King County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "MAJOR", "label": "Major (first 6 of PIN)", "searchable": true },
+            { "name": "MINOR", "label": "Minor (last 4 of PIN)", "searchable": true }
+          ],
+          "sampleQuery": "https://gismaps.kingcounty.gov/arcgis/rest/services/Property/KingCo_Parcels/MapServer/0/query?where=PIN%3D%270000200001%27&outFields=*&f=json",
+          "license": "public",
+          "licenseUrl": "https://kingcounty.gov/services/gis/GISData.aspx",
+          "status": "live",
+          "lastVerified": "2026-06-06",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "King County GIS Center",
+        "url": "https://kingcounty.gov/services/gis.aspx",
+        "email": null
+      },
+      "notes": "King County, Washington (Seattle metro, pop. 2.3M, county seat Seattle) is the most populous Washington county, containing Seattle, Bellevue, Redmond, Renton, and Kent. The KingCo_Parcels MapServer layer publishes parcel polygons with three identifier fields: PIN (10-digit Parcel Identification Number), MAJOR (first 6 digits of PIN, identifying the parcel block), and MINOR (last 4 digits, the parcel within the block). No owner name, situs address, or assessment values are on this public REST layer. Washington State law broadly restricts owner-name exposure on public REST endpoints; King County follows this consistently. Confirmed live 2026-06-06 -- 638,577 parcels, PIN-searchable. For ownership lookups, use the King County Assessor's eReal Property portal at info.kingcounty.gov/assessor/emap/ (search by address, PIN, or complex name). The interactive Parcel Viewer is at gismaps.kingcounty.gov/parcelviewer2/. Bulk GIS downloads: kingcounty.gov/services/gis/GISData.aspx.\n\nKing County's open-data portal at data.kingcounty.gov runs on Socrata and does not carry a live, address-searchable parcel master table. The id tise-fzs9 surfaces in King County parcel searches; it identifies a Metro vanpool-ridership dataset, not parcels. Two Socrata tables carry the same PIN format used above and stay current: Property Legal Descriptions (id 4854-i48r, filter by parcel_number, https://data.kingcounty.gov/resource/4854-i48r.csv) and Real Property Tax Receivables (id dkna-i698, filter by account_number, https://data.kingcounty.gov/resource/dkna-i698.csv). Resolve an address to a PIN with eReal Property or Parcel Viewer above, then query either table with that PIN as the filter value. Parcel 0000200001, the same PIN in the ArcGIS sample query, returns its legal description at https://data.kingcounty.gov/resource/4854-i48r.csv?parcel_number=0000200001.",
+      "relatedPropertyCitySlug": "seattle"
+    },
+    {
+      "id": "wa-spokane",
+      "state": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "county": "Spokane",
+      "countySlug": "spokane-county",
+      "countyFips": "53063",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/ozNll27nt9ZtPWOn/arcgis/rest/services/Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PID_NUM", "label": "Parcel ID Number", "searchable": true },
+            { "name": "parcel", "label": "Parcel Number (display format)", "searchable": true },
+            { "name": "site_address", "label": "Site Address", "searchable": true },
+            { "name": "site_city", "label": "Site City", "searchable": false },
+            { "name": "site_zip", "label": "Site ZIP", "searchable": false },
+            { "name": "acreage", "label": "Acreage", "searchable": false },
+            { "name": "assessed_amt", "label": "Assessed Amount", "searchable": false },
+            { "name": "taxable_amt", "label": "Taxable Amount", "searchable": false },
+            { "name": "prop_use_desc", "label": "Property Use Description", "searchable": false },
+            { "name": "tax_year", "label": "Tax Year", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/ozNll27nt9ZtPWOn/arcgis/rest/services/Parcels/FeatureServer/0/query?where=parcel+LIKE+'%2535163%25'&outFields=PID_NUM,parcel,site_address,site_city,acreage,assessed_amt&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisdatacatalog-spokanecounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Spokane County GIS / Assessor's Department",
+        "url": "https://gisdatacatalog-spokanecounty.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "43 fields confirmed including PID_NUM, ACO_NUM, PIDMAP, parcel, exmp_code, exmp_amt, nbhd_code, nbhd_name, prop_use_code, prop_use_desc, tax_year, site_address, site_str_nbr, site_str_nbr_suf, site_str_dir, site_str_dir_suf, site_str_name, site_str_type, site_apartment, site_city, site_state, site_zip, soil_id, bldg_only_flag, vacant_land_flag, res_com_flag, appraiser_id, acreage, assessed_amt, taxable_amt, tax_code_area, inspection_cycle, parcel_location, land_value, asmt_year_exmp_code, asmt_year_exmp_amt, eff_from_date, eff_to_date, asmt_year, seg_status, Shape__Area, Shape__Length. Live query confirmed: parcel LIKE '35163%' returns Spokane addresses with assessed values. NOTE: Owner name is NOT on this public FeatureServer, per Washington State law (RCW 42.56.070(8)) owner name data is restricted. Hosted on ArcGIS Online (services1.arcgis.com/ozNll27nt9ZtPWOn). Item ID: 228db1be1d6940a3b5e3f2104e470134. maxRecordCount=2000."
+    },
+    {
+      "id": "wa-snohomish",
+      "state": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "county": "Snohomish",
+      "countySlug": "snohomish-county",
+      "countyFips": "53061",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/z6WYi9VRHfgwgtyW/arcgis/rest/services/Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL_ID", "label": "Parcel ID", "searchable": true },
+            { "name": "OWNERNAME", "label": "Owner Name", "searchable": true },
+            { "name": "TAXPRNAME", "label": "Taxpayer Name", "searchable": true },
+            { "name": "SITUSHOUSE", "label": "Situs House Number", "searchable": false },
+            { "name": "SITUSLINE1", "label": "Situs Street Name", "searchable": true },
+            { "name": "SITUSCITY", "label": "Situs City", "searchable": true },
+            { "name": "SITUSSTATE", "label": "Situs State", "searchable": false },
+            { "name": "SITUSZIP", "label": "Situs ZIP", "searchable": false },
+            { "name": "MKLND", "label": "Market Value (Land)", "searchable": false },
+            { "name": "MKIMP", "label": "Market Value (Improvements)", "searchable": false },
+            { "name": "MKTTL", "label": "Market Value (Total)", "searchable": false },
+            { "name": "USECODE", "label": "Use Code", "searchable": false }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/z6WYi9VRHfgwgtyW/arcgis/rest/services/Parcels/FeatureServer/0/query?where=UPPER(OWNERNAME)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,SITUSLINE1,SITUSHOUSE,SITUSCITY,SITUSZIP,OWNERNAME,MKLND,MKIMP,MKTTL&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://snohomish-county-open-data-portal-snoco-gis.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-06-27",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Snohomish County GIS / Assessor's Office",
+        "url": "https://snohomish-county-open-data-portal-snoco-gis.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "54 fields in live schema as of 2026-06-27: OBJECTID, PARCEL_ID, PAR_OID, REVOBJID, TAX_YEAR, STATUS, CREATEDATE, CORRDATE, RETIREDATE, SOURCE, COMMENT, GIS_SQ_FT, GIS_ACRES, TAB_ACRES, TCANUMBER, USECODE, TVR, MKIMP, MKLND, CUIMP, CULND, MKTTL, XMPTDESCR, SITUSLINE1, SITUSHOUSE, SITUSPREFX, SITUSSTRT, SITUSSTTYP, SITUSPOSTD, SITUSUNIT, SITUSCITY, SITUSSTATE, SITUSZIP, TAXPRNAME, TAXPRLINE1-3, TAXPRCITY, TAXPRSTATE, TAXPRZIP, OWNERNAME, OWNERLINE1-3, OWNERCITY, OWNERSTATE, OWNERZIP, NBHDCODE, STACKED, FLATTEN, X_COORD, Y_COORD, SHAPE__Area, SHAPE__Length. NOTE 2026-06-27: LRSN (Assessor Account Number) is no longer in the live schema (schema drift), removed from searchFields. REVOBJID is a revision object identifier present in the live schema but is not a direct replacement for LRSN. Owner name confirmed live (OWNERNAME field present). Unlike most WA counties, Snohomish exposes OWNERNAME on the public layer. Hosted on ArcGIS Online (services6.arcgis.com/z6WYi9VRHfgwgtyW). Item ID: 60a6a62688db48e2a5f2ab7712b95658. Updated 3x/week. maxRecordCount=2000. Verified 2026-06-27: metadata 200, query 200, 319K parcels."
+    },
+    {
+      "id": "wa-thurston",
+      "state": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "county": "Thurston",
+      "countySlug": "thurston-county",
+      "countyFips": "53067",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://map.co.thurston.wa.us/arcgis/rest/services/Thurston/Thurston_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL_NO", "label": "Parcel Number", "searchable": true },
+            { "name": "ADDRESS1", "label": "Mailing Address Line 1", "searchable": true },
+            { "name": "ADDRESS2", "label": "Mailing Address Line 2", "searchable": true },
+            { "name": "SITUS_STRE", "label": "Situs Street Address", "searchable": true },
+            { "name": "SITUS_CITY", "label": "Situs City", "searchable": true },
+            { "name": "SITUS_ZIP", "label": "Situs ZIP", "searchable": false },
+            { "name": "TOTAL_ACRES", "label": "Total Acres", "searchable": false },
+            { "name": "BLDG_VALUE", "label": "Building Value", "searchable": false },
+            { "name": "LAND_VALUE", "label": "Land Value", "searchable": false },
+            { "name": "TOTAL_VALUE", "label": "Total Assessed Value", "searchable": false },
+            { "name": "ANNUAL_TAX", "label": "Annual Tax", "searchable": false },
+            { "name": "YEAR_BUILT", "label": "Year Built", "searchable": false },
+            { "name": "USE_CODE", "label": "Use Code", "searchable": false }
+          ],
+          "sampleQuery": "https://map.co.thurston.wa.us/arcgis/rest/services/Thurston/Thurston_Parcels/FeatureServer/0/query?where=PARCEL_NO+LIKE+'%2521820%25'&outFields=PARCEL_NO,ADDRESS1,SITUS_STRE,SITUS_CITY,TOTAL_VALUE,ANNUAL_TAX&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisdata-thurston.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Thurston County GeoData Center / Assessor's Department",
+        "url": "https://gisdata-thurston.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "45 fields confirmed including PARCEL_NO, ADDRESS1, ADDRESS2, CITY, STATE, ZIP, COUNTRY, SITUS_STRE, SITUS_CITY, SITUS_ZIP, SD_NAME, LEGAL_DESC, TOTAL_ACRES, BLDG_VALUE, LAND_VALUE, TOTAL_VALUE, ANNUAL_TAX, STATUS_IND, PROP_SUBTY, O_NEIGHBOR, PROP_TYPE, INSPCT_CYC, REGION, MULT_PARCL, SALE_DATE, SALE_PRICE, SALE_VRFY, USE_CODE, SIGMA_YEAR, TAXABLE, EXEMPT_TY, LOCAL_IND, TCA, CURR_USE, INCORP, YEAR_BUILT, EFF_YR_BUI, RES_QUAL, RES_COND, REC_VOLPAG, SECTTIE, PARENT, MapSource, GlobalID. Live query confirmed: PARCEL_NO LIKE '%21820%' returns Thurston County parcels with mailing address and value data. NOTE: Owner name is NOT on this public layer per WA State law; ADDRESS1/2 is the mailing address (generally owner's address). Data from ASCEND and SIGMA databases. Item ID: 4ca0091703b345f8a72f68a4d173d9be. maxRecordCount=1000."
+    }
+  ]
+}

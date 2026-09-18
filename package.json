@@ -1,0 +1,71 @@
+{
+  "name": "@urbankitstudio/atlas",
+  "version": "0.6.3",
+  "description": "JS SDK for the UrbanKit County Parcel REST API Atlas: 171 counties across all 50 US states, 174 verified public ArcGIS REST endpoints for county parcel data, with searchable field metadata, sample queries and license info.",
+  "keywords": [
+    "parcel",
+    "arcgis",
+    "gis",
+    "county",
+    "assessor",
+    "rest",
+    "api",
+    "geojson",
+    "featureserver",
+    "mapserver",
+    "real-estate",
+    "property"
+  ],
+  "homepage": "https://urbankitstudio.com/parcel-atlas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LEOyrh/urbankitstudio.git",
+    "directory": "packages/atlas"
+  },
+  "bugs": {
+    "url": "https://github.com/LEOyrh/urbankitstudio/issues"
+  },
+  "author": "UrbanKit Studio <urbankitstudio@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

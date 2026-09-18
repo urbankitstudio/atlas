@@ -1,0 +1,155 @@
+{
+  "stateSlug": "tennessee",
+  "stateName": "Tennessee",
+  "stateAbbrev": "TN",
+  "lastUpdated": "2026-06-06",
+  "counties": [
+    {
+      "id": "tn-davidson",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Davidson",
+      "countySlug": "davidson-county",
+      "countyFips": "47037",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.nashville.gov/arcgis/rest/services/Cadastral/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Ownership Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "ParID", "label": "Parcel ID", "searchable": true },
+            { "name": "Owner", "label": "Owner Name", "searchable": true },
+            { "name": "OwnDate", "label": "Ownership Date", "searchable": false },
+            { "name": "OwnInstr", "label": "Ownership Instrument", "searchable": false },
+            { "name": "OwnAddr1", "label": "Owner Address 1", "searchable": true },
+            { "name": "OwnAddr2", "label": "Owner Address 2", "searchable": false },
+            { "name": "OwnCity", "label": "Owner City", "searchable": false },
+            { "name": "OwnState", "label": "Owner State", "searchable": false },
+            { "name": "OwnZip", "label": "Owner ZIP", "searchable": false },
+            { "name": "PropAddr", "label": "Property Address", "searchable": true },
+            { "name": "PropHouse", "label": "Property House Number", "searchable": false },
+            { "name": "PropStreet", "label": "Property Street", "searchable": true },
+            { "name": "PropCity", "label": "Property City", "searchable": false },
+            { "name": "PropZip", "label": "Property ZIP", "searchable": false },
+            { "name": "SalePrice", "label": "Sale Price", "searchable": false },
+            { "name": "LandAppr", "label": "Land Appraisal Value", "searchable": false },
+            { "name": "TotlAppr", "label": "Total Appraisal Value", "searchable": false },
+            { "name": "Acres", "label": "Acreage", "searchable": false },
+            { "name": "LUCode", "label": "Land Use Code", "searchable": false },
+            { "name": "STANPAR", "label": "State Parcel Number", "searchable": true },
+            { "name": "APN", "label": "Assessor Parcel Number", "searchable": true }
+          ],
+          "sampleQuery": "https://maps.nashville.gov/arcgis/rest/services/Cadastral/Parcels/MapServer/0/query?where=UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=ParID,Owner,PropAddr,PropCity,SalePrice,TotlAppr&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://maps.nashville.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Metro Nashville GIS, Planning Department",
+        "url": "https://maps.nashville.gov/",
+        "email": null
+      },
+      "notes": "57 fields confirmed including ParID, DateEst, IsActive, FeatureType, Tract, Council, TaxDist, ParType, Owner, OwnDate, SaleCode, SaleSrc, ValidSale, OwnInstr, OwnAddr1/2/3, OwnCity, OwnState, OwnCountry, OwnZip, PropAddr, PropHouse, PropStreet, PropSuite, PropCity, PropState, PropZip, LegalDesc, PropInstr, PropDate, Front, Side, IsRegular, LUCode, LUDesc, AssessDate, PropFraction, StatedArea, SalePrice, Acres, LandAppr, ImprAppr, TotlAppr, LandAssd, ImprAssd, TotlAssd, STANPAR, DeededAcreage, APN. Owner query tested and confirmed: returns real Nashville addresses (e.g., 'SMITH, BRADLEY N JR' at '8300 SAWYER BROWN RD A-304 NASHVILLE'). Davidson County is a consolidated city-county with Nashville as the metro seat (pop. 715,000). APN is the assessor parcel number; STANPAR is the state parcel number. A separate Parcels_SP (State Plane) service exists at the same path with different spatial reference.",
+      "relatedPropertyCitySlug": "nashville"
+    },
+    {
+      "id": "tn-shelby",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Shelby",
+      "countySlug": "shelby-county",
+      "countyFips": "47157",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://scgis.shelbycountytn.gov/serverhigh/rest/services/Parcel/CurrentParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Current Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "PARID", "label": "Parcel Account ID", "searchable": true },
+            { "name": "OWNER", "label": "Owner Name", "searchable": true },
+            { "name": "OWN_ADDR1", "label": "Owner Address 1", "searchable": false },
+            { "name": "OWN_ADDR2", "label": "Owner Address 2", "searchable": false },
+            { "name": "OWN_ADDR3", "label": "Owner Address 3", "searchable": false },
+            { "name": "OWN_CITY", "label": "Owner City", "searchable": false },
+            { "name": "OWN_STATE", "label": "Owner State", "searchable": false },
+            { "name": "OWN_ZIP", "label": "Owner ZIP", "searchable": false },
+            { "name": "PAR_ADDR1", "label": "Parcel Site Address", "searchable": true },
+            { "name": "MUNI", "label": "Municipality", "searchable": false },
+            { "name": "LUC", "label": "Land Use Code", "searchable": false },
+            { "name": "ZONING", "label": "Zoning", "searchable": false }
+          ],
+          "sampleQuery": "https://scgis.shelbycountytn.gov/serverhigh/rest/services/Parcel/CurrentParcels/MapServer/0/query?where=UPPER(OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNER,OWN_ADDR1,PAR_ADDR1,MUNI&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.shelbycountytn.gov/467/REGIS-Regional-GIS",
+          "status": "live",
+          "lastVerified": "2026-06-06",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Shelby County ReGIS (Regional Geographic Information Systems)",
+        "url": "https://www.shelbycountytn.gov/467/REGIS-Regional-GIS",
+        "email": null
+      },
+      "notes": "Shelby County (Memphis and suburbs, pop. 934,000) hosts parcel data through ReGIS (Regional Geographic Information Systems), a multi-jurisdictional GIS consortium established by the Shelby County Commission in 2004. The CurrentParcels MapServer at scgis.shelbycountytn.gov exposes 47 confirmed fields. Parcel identifiers: PARCELID (primary display key) and PARID (the CAMA account ID used by the Shelby County Assessor of Property). Owner field is OWNER; OWNER_EXT holds overflow text. Mailing address is split across OWN_ADRNO, ADRPREDIR, ADRSTR, ADRSUF, ADRPOSTDIR for the street component, plus OWN_CITY, OWN_STATE, OWN_ZIP/ZIP4; also available concatenated as OWN_ADDR1/2/3. The MUNI field identifies the municipality -- Memphis, Bartlett, Collierville, Germantown, Lakeland, Millington, or blank for unincorporated Shelby County. That distinction carries real workflow consequences: Memphis's Division of Planning handles incorporated parcels, while the Shelby County Land Use Control Board handles unincorporated ones. Verified 2026-05-15: SMITH returns results from Germantown, Arlington, and unincorporated areas. Last countywide reappraisal was 2025; next scheduled 2029. LEGACY TLS (first documented 2026-06-06, confirmed 2026-06-27): scgis.shelbycountytn.gov requires legacy TLS renegotiation (UNSAFE_LEGACY_RENEGOTIATION). Modern runtimes (Node.js 18+, undici fetch, Python 3.10+ ssl, standard curl) reject the handshake; curl --legacy-server-connect or OpenSSL OP_LEGACY_SERVER_CONNECT succeeds. The endpoint itself is live (353,448 parcels). RESOLVED (2026-07-21): the canonical liveness prober (api/cron/liveness.ts) and the server-side parcel fetch (api/_lib/atlas-resilient-fetch.ts) both use a narrow legacy-TLS path scoped to this hostname alone, so the endpoint probes and fetches correctly; global TLS behavior is unchanged."
+    },
+    {
+      "id": "tn-hamilton",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Hamilton",
+      "countySlug": "hamilton-county",
+      "countyFips": "47065",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://mapsdev.hamiltontn.gov/hcwa03/rest/services/Live_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PBA_NUM", "label": "Parcel Book Account Number", "searchable": true },
+            { "name": "GISLINK", "label": "GIS Link (Parcel ID)", "searchable": true },
+            { "name": "OWNERNAME1", "label": "Owner Name 1", "searchable": true },
+            { "name": "OWNERNAME2", "label": "Owner Name 2", "searchable": false },
+            { "name": "ADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "STNUM", "label": "Street Number", "searchable": false },
+            { "name": "STNAME", "label": "Street Name", "searchable": true },
+            { "name": "MAP", "label": "Map Number", "searchable": false },
+            { "name": "PARCEL", "label": "Parcel Code", "searchable": false }
+          ],
+          "sampleQuery": "https://mapsdev.hamiltontn.gov/hcwa03/rest/services/Live_Parcels/MapServer/0/query?where=UPPER(OWNERNAME1)+LIKE+UPPER('%25SMITH%25')&outFields=PBA_NUM,OWNERNAME1,ADDRESS,GISLINK&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.hamiltontn.gov/",
+          "status": "live",
+          "lastVerified": "2026-08-29",
+          "verifiedBy": "manual",
+          "notes": "Re-verified live 2026-08-29 (was stamped unreachable 2026-06-06 with no probe record, and the flag was wrong at least by 2026-08-29): the enrich-shape query (point + 30 m, OWNERNAME1/ADDRESS/PBA_NUM) at Chattanooga City Hall answered in 0.3 s with owner names; where=1=1 count 169,568. Rows mid-republish carry 'Update in Progress' in OWNERNAME1 with blank ADDRESS/PBA_NUM - the enrich path maps those to source-updating (refundable), not to an owner name."
+        }
+      ],
+      "contact": {
+        "department": "Hamilton County Geospatial Technology",
+        "url": "https://gis.hamiltontn.gov/",
+        "email": null
+      },
+      "notes": "Hamilton County (Chattanooga, pop. 375,000) Live_Parcels layer, service name 'Live' indicates real-time feed from the assessor. Service is on mapsdev.hamiltontn.gov (hcwa03 subdirectory). 15 fields confirmed: OBJECTID, PARCEL_TYP, PBA_NUM, GISLINK, OWNERNAME1/2, STNUM, DIRPFX, STNAME, TYPESFX, ADDRESS, MAP, GROUP_, PARCEL. PBA_NUM is the full parcel book/account number (e.g., '033006    00302P000'); GISLINK is the trimmed parcel ID. Verified 2026-05-15: SMITH returns addresses like '16909 DAYTON PIKE', '703 GRAYSVILLE RD'. Note: distinct from Hamilton County OH (Cincinnati, FIPS 39061) in the atlas. SERVICE RETIRED (verified 2026-06-06): Live_Parcels/MapServer was removed from mapsdev.hamiltontn.gov ('Could not find service'). No public REST replacement exists -- Live_RealProperty is a 155-record county-owned-property inventory, not a parcel layer, and assessor.hamiltontn.gov has no REST API. Status set to unreachable pending a county-side replacement."
+    }
+  ]
+}

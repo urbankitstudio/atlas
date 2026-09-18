@@ -1,0 +1,264 @@
+{
+  "stateSlug": "pennsylvania",
+  "stateName": "Pennsylvania",
+  "stateAbbrev": "PA",
+  "lastUpdated": "2026-08-25",
+  "counties": [
+    {
+      "id": "pa-allegheny",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Allegheny",
+      "countySlug": "allegheny-county",
+      "countyFips": "42003",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisdata.alleghenycounty.us/arcgis/rest/services/EGIS/Web_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "MAPBLOCKLOT",
+              "label": "Map-Block-Lot Reference",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://gisdata.alleghenycounty.us/arcgis/rest/services/EGIS/Web_Parcels/MapServer/0/query?where=PIN+LIKE+'%250364%25'&outFields=PIN,MAPBLOCKLOT&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://openac-alcogis.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Allegheny County Department of Information Technology, GIS Division",
+        "url": "https://openac-alcogis.opendata.arcgis.com/",
+        "email": "gis@alleghenycounty.us"
+      },
+      "notes": "Only 5 fields on the public Web_Parcels endpoint: OBJECTID, PIN, MAPBLOCKLOT, SHAPE, SHAPE.STArea(), SHAPE.STLength(). This is geometry + parcel ID only. Owner name is NOT exposed on the public REST layer. The EGIS folder on gisdata.alleghenycounty.us contains only 4 services (Web_Parcels, Buildings, Municipalities, AC_AddressPointsWithLabels). Full owner/address data is accessible through the Allegheny County Real Estate portal at alleghenyco.us/property-assessment and the county's block-lot lookup at property.alleghenycounty.us. These are browser-only, not REST-queryable. The WPRDC open data portal at data.wprdc.org has property assessment data as a CSV/API download."
+    },
+    {
+      "id": "pa-philadelphia",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Philadelphia",
+      "countySlug": "philadelphia-county",
+      "countyFips": "42101",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/PWD_PARCELS/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "PWD_PARCELS",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "brt_id",
+              "label": "BRT Account Number (OPA identifier)",
+              "searchable": true
+            },
+            {
+              "name": "owner1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "address",
+              "label": "Street Address",
+              "searchable": true
+            },
+            {
+              "name": "bldg_code",
+              "label": "Building Code",
+              "searchable": false
+            },
+            {
+              "name": "bldg_desc",
+              "label": "Building Description",
+              "searchable": false
+            },
+            {
+              "name": "gross_area",
+              "label": "Gross Area (sq ft)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/PWD_PARCELS/FeatureServer/0/query?where=UPPER(owner1)%20LIKE%20UPPER('%25SMITH%25')&outFields=parcelid,owner1,address,brt_id&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-phl.opendata.arcgis.com/datasets/PWD-Parcels",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Philadelphia, Office of Innovation and Technology (OIT) CityGeo / Philadelphia Water Department",
+        "url": "https://data-phl.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "15 fields confirmed including parcelid, owner1, owner2, address, brt_id (BRT = Board of Revision of Taxes, now OPA = Office of Property Assessment), bldg_code, bldg_desc, gross_area, pin, tencode. Owner query tested and confirmed. The parcelid here is an integer OBJECTID; the brt_id (9-digit string, e.g. '171006315') is the stable OPA/BRT account number used in the assessor system. For deeper property assessment data (market value, sale price, exemptions, zoning), the OPA Properties dataset at opendataphilly.org/datasets/opa-properties-public has 78+ fields but is distributed as a CSV/API download rather than a REST FeatureServer with geometry. Philadelphia parcels are city-county unified (Philadelphia City = Philadelphia County)."
+    },
+    {
+      "id": "pa-montgomery",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Montgomery",
+      "countySlug": "montgomery-county",
+      "countyFips": "42091",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/kOChldNuKsox8qZD/arcgis/rest/services/Montgomery_County_Parcels/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Montgomery County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TAXPIN",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OWN1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWN2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "LOCATION1",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "ADDR1",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "ZIP1_ZIP2",
+              "label": "Owner Mailing ZIP",
+              "searchable": true
+            },
+            {
+              "name": "MUNI_CODE",
+              "label": "Municipality",
+              "searchable": false
+            },
+            {
+              "name": "LAND_USE",
+              "label": "Land Use",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/kOChldNuKsox8qZD/arcgis/rest/services/Montgomery_County_Parcels/FeatureServer/6/query?where=UPPER(OWN1)%20LIKE%20UPPER('%25SMITH%25')&outFields=TAXPIN,OWN1,OWN2,LOCATION1,ADDR1,ZIP1_ZIP2&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://data-montcopa.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Montgomery County GIS",
+        "url": "https://data-montcopa.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Parcel layer at layer index 6 of the Montgomery County Parcels service. Layer 0 does not exist and returns 'The requested layer (layerId: 0) was not found', so the index matters. 310,070 parcels with owner names on 302,241 rows (97.5 percent). One of the richer records in the registry at 122 columns, including a mailing address (ADDR1 through ADDR3 with ZIP1_ZIP2), a combined situs in LOCATION1, and split situs parts in LOC_NO, LOC_DIR, LOC_STR and LOC_SUF. The combined column is used, so no composite address assembly is needed."
+    },
+    {
+      "id": "pa-bucks",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Bucks",
+      "countySlug": "bucks-county",
+      "countyFips": "42017",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/SP47Tddf7RK32lBU/arcgis/rest/services/Bucks_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Bucks County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_NUM",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNER1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "MUNICIPALITY",
+              "label": "Municipality",
+              "searchable": true
+            },
+            {
+              "name": "LAND_USE_CODE",
+              "label": "Land Use",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/SP47Tddf7RK32lBU/arcgis/rest/services/Bucks_County_Parcels/FeatureServer/0/query?where=UPPER(OWNER1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCEL_NUM,OWNER1,OWNER2,ADDRESS,MUNICIPALITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://data-buckscounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Bucks County GIS",
+        "url": "https://data-buckscounty.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Countywide parcel layer, 237,884 parcels with owner names on 237,576 rows, the highest owner coverage in this batch at 99.9 percent. Columns: PARCEL_NUM, OWNER1, OWNER2, CARE_OF, ADDRESS, MUNICIPALITY, plus land, building and total value. There is no mailing-address column, so owner mailing lookups are unavailable here even though owner names are not."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "stateSlug": "wyoming",
+  "stateName": "Wyoming",
+  "stateAbbrev": "WY",
+  "lastUpdated": "2026-06-20",
+  "counties": [
+    {
+      "id": "wy-laramie",
+      "state": "WY",
+      "stateName": "Wyoming",
+      "stateSlug": "wyoming",
+      "county": "Laramie",
+      "countySlug": "laramie-county",
+      "countyFips": "56021",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.laramiecounty.com/arcgis/rest/services/Planning/SmartGovParcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "SmartGovParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "statepidn", "label": "State Parcel ID Number", "searchable": true },
+            { "name": "accountno", "label": "Account Number", "searchable": true },
+            { "name": "owner_name1", "label": "Owner Name 1", "searchable": true },
+            { "name": "owner_name2", "label": "Owner Name 2", "searchable": false },
+            { "name": "owner_address", "label": "Owner Address", "searchable": false },
+            { "name": "owner_town", "label": "Owner Town", "searchable": false },
+            { "name": "owner_state", "label": "Owner State", "searchable": false },
+            { "name": "owner_zip", "label": "Owner ZIP", "searchable": false },
+            { "name": "site_address1", "label": "Site Address", "searchable": true },
+            { "name": "site_address2", "label": "Site Address 2", "searchable": false },
+            { "name": "site_town", "label": "Site Town", "searchable": false },
+            { "name": "site_state", "label": "Site State", "searchable": false },
+            { "name": "site_zip", "label": "Site ZIP", "searchable": false },
+            { "name": "trsec", "label": "Township/Range/Section", "searchable": false },
+            { "name": "fema_zone", "label": "FEMA Flood Zone", "searchable": false },
+            { "name": "latitude", "label": "Latitude", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.laramiecounty.com/arcgis/rest/services/Planning/SmartGovParcels/MapServer/1/query?where=UPPER(owner_name1)+LIKE+UPPER('%25SMITH%25')&outFields=statepidn,owner_name1,owner_name2,owner_address,owner_town,site_address1,site_town&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://maps.laramiecounty.com/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Laramie County GIS / Laramie County Planning and Development",
+        "url": "https://www.laramiecounty.com/171/GIS",
+        "email": null
+      },
+      "notes": "Laramie County WY (Cheyenne; county seat Cheyenne; state capital; FIPS 56021; most populous county in WY, pop. 100,000) provides parcel data via maps.laramiecounty.com. The Planning/SmartGovParcels/MapServer layer at layerIndex=1 (NOT layer 0) exposes 20 fields: objectid, statepidn (14-digit state parcel ID, e.g., '12600210000200'), accountno, fema_zone, trsec, site_address1/2, site_town, site_state, site_zip, owner_name1, owner_name2, owner_address, owner_town, owner_state, owner_zip, latitude, and shape fields. CRITICAL: use layerIndex=1 (the /1 suffix). Layer 0 is a different geometry layer. Owner search via UPPER(owner_name1) LIKE works well. Verified 2026-06-20: SMITH query returns Cheyenne-area addresses (e.g., owner_name1 'BAKER, KATHARINE M LIVING TR' at '261 ROAD 164' Pine Bluffs). Laramie County WY (FIPS 56021) must not be confused with the City of Laramie (Albany County WY). The county seat is Cheyenne, not Laramie city."
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "stateSlug": "maine",
+  "stateName": "Maine",
+  "stateAbbrev": "ME",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "me-cumberland",
+      "state": "ME",
+      "stateName": "Maine",
+      "stateSlug": "maine",
+      "county": "Cumberland",
+      "countySlug": "cumberland-county",
+      "countyFips": "23005",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/10",
+          "serviceType": "FeatureServer",
+          "layerIndex": 10,
+          "layerName": "Maine Parcels Organized Towns (polygon)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY",
+              "label": "County Name (e.g. CUMBERLAND)",
+              "searchable": true
+            },
+            {
+              "name": "TOWN",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "MAP_BK_LOT",
+              "label": "Map-Book-Lot Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "STATE_ID",
+              "label": "State Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "GEOCODE",
+              "label": "Geocode",
+              "searchable": true
+            },
+            {
+              "name": "TYPE",
+              "label": "Polygon Type",
+              "searchable": false
+            },
+            {
+              "name": "FMUPDAT",
+              "label": "Last Update Date",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/10/query?where=COUNTY%3D'CUMBERLAND'+AND+UPPER(PROP_LOC)+LIKE+UPPER('%25MAIN%25')&outFields=COUNTY,TOWN,PROP_LOC,MAP_BK_LOT,STATE_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.maine.gov/geolib/data/index.html",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = 'Cumberland'"
+        },
+        {
+          "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9",
+          "serviceType": "FeatureServer",
+          "layerIndex": 9,
+          "layerName": "Maine Parcels Organized Towns ADB (assessor table)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "MAP_BK_LOT",
+              "label": "Map-Book-Lot (join key to polygon layer 10)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER1",
+              "label": "Owner Name (line 1)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name (line 2)",
+              "searchable": true
+            },
+            {
+              "name": "OWN_ADDR1",
+              "label": "Owner Mailing Address Line 1",
+              "searchable": false
+            },
+            {
+              "name": "OWN_CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "OWN_STATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "OWN_ZIP",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "BLDG_VAL",
+              "label": "Building Value",
+              "searchable": false
+            },
+            {
+              "name": "LOT_SIZE",
+              "label": "Lot Size",
+              "searchable": false
+            },
+            {
+              "name": "LAND_USE",
+              "label": "Land Use Code",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL,BLDG_VAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.maine.gov/geolib/data/index.html",
+          "status": "live",
+          "lastVerified": "2026-08-29",
+          "verifiedBy": "manual",
+          "scopeWhere": "GEOCODE IN ('05010','05020','05030','05040','05050','05060','05070','05080','05090','05100','05110','05120','05125','05130','05140','05150','05170','05180','05190','05200','05210','05220','05230','05240','05250','05260')"
+        }
+      ],
+      "contact": {
+        "department": "Maine Office of GIS (MEGIS) / Maine GeoLibrary",
+        "url": "https://www.maine.gov/geolib/data/index.html",
+        "email": null
+      },
+      "notes": "Maine GeoLibrary statewide organized-towns parcel service. Layer 10 carries polygon geometry with COUNTY, TOWN, and location fields. Layer 9 is the assessor attribute table (no geometry) with OWNER1/OWNER2 and mailing address, join on MAP_BK_LOT. Filter Cumberland County with COUNTY='CUMBERLAND'; includes Portland, South Portland, Westbrook, Scarborough, Gorham, Windham, etc. Note: submissions are voluntary from municipalities and some towns may have stale data (updated irregularly). Unorganized territories use a separate service (gis.maine.gov/mapservices)."
+    },
+    {
+      "id": "me-york",
+      "state": "ME",
+      "stateName": "Maine",
+      "stateSlug": "maine",
+      "county": "York",
+      "countySlug": "york-county",
+      "countyFips": "23031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/10",
+          "serviceType": "FeatureServer",
+          "layerIndex": 10,
+          "layerName": "Maine Parcels Organized Towns (polygon)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY",
+              "label": "County Name (use 'YORK')",
+              "searchable": true
+            },
+            {
+              "name": "TOWN",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "MAP_BK_LOT",
+              "label": "Map-Book-Lot Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "STATE_ID",
+              "label": "State Parcel ID",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/10/query?where=COUNTY%3D'YORK'&outFields=COUNTY,TOWN,PROP_LOC,MAP_BK_LOT,STATE_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.maine.gov/geolib/data/index.html",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = 'York'"
+        },
+        {
+          "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9",
+          "serviceType": "FeatureServer",
+          "layerIndex": 9,
+          "layerName": "Maine Parcels Organized Towns ADB (assessor table)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "MAP_BK_LOT",
+              "label": "Map-Book-Lot (join key to polygon layer 10)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER1",
+              "label": "Owner Name (line 1)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name (line 2)",
+              "searchable": true
+            },
+            {
+              "name": "OWN_ADDR1",
+              "label": "Owner Mailing Address Line 1",
+              "searchable": false
+            },
+            {
+              "name": "OWN_CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.maine.gov/geolib/data/index.html",
+          "status": "live",
+          "lastVerified": "2026-08-29",
+          "verifiedBy": "manual",
+          "scopeWhere": "GEOCODE IN ('31010','31030','31040','31050','31060','31080','31090','31100','31110','31120','31130','31140','31150','31160','31170','31190','31197','31200','31220','31230','31240','31250','31270','31280')"
+        }
+      ],
+      "contact": {
+        "department": "Maine Office of GIS (MEGIS) / Maine GeoLibrary",
+        "url": "https://www.maine.gov/geolib/data/index.html",
+        "email": null
+      },
+      "notes": "York County is Maine's southernmost county and its most densely populated outside the Portland area, with seasonal coastal communities driving heavy property-lookup demand. The data comes from the same Maine GeoLibrary statewide organized-towns service used by Cumberland County. Layer 10 (FeatureServer/10) carries polygon geometry with COUNTY, TOWN, PROP_LOC, MAP_BK_LOT, and STATE_ID. Layer 9 (FeatureServer/9) is the assessor attribute table -- no geometry -- carrying OWNER1/OWNER2 and mailing address fields; join to layer 10 on MAP_BK_LOT. Filter to York County with COUNTY='YORK'; municipalities include Biddeford, Saco, Sanford, Kennebunk, York, Kittery, Wells, and Berwick. Important caveat: GeoLibrary submissions are voluntary and asynchronous -- some towns update quarterly, others lag by a year or more. For current ownership or assessment, check the individual town assessor's office or the Maine Revenue Services PAS database. Unorganized territories in York County use a separate MEGIS service."
+    }
+  ]
+}

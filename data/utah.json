@@ -1,0 +1,193 @@
+{
+  "stateSlug": "utah",
+  "stateName": "Utah",
+  "stateAbbrev": "UT",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ut-salt-lake",
+      "state": "UT",
+      "stateName": "Utah",
+      "stateSlug": "utah",
+      "county": "Salt Lake",
+      "countySlug": "salt-lake-county",
+      "countyFips": "49035",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_SaltLake_LIR/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels_SaltLake_LIR",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL_ID", "label": "Parcel ID (Serial Number)", "searchable": true },
+            { "name": "SERIAL_NUM", "label": "Serial Number", "searchable": true },
+            { "name": "PARCEL_ADD", "label": "Parcel Address", "searchable": true },
+            { "name": "PARCEL_CITY", "label": "Parcel City", "searchable": true },
+            { "name": "TOTAL_MKT_VALUE", "label": "Total Market Value", "searchable": false },
+            { "name": "LAND_MKT_VALUE", "label": "Land Market Value", "searchable": false },
+            { "name": "PARCEL_ACRES", "label": "Parcel Acreage", "searchable": false },
+            { "name": "PROP_CLASS", "label": "Property Class", "searchable": false },
+            { "name": "SUBDIV_NAME", "label": "Subdivision Name", "searchable": false },
+            { "name": "BLDG_SQFT", "label": "Building Square Footage", "searchable": false },
+            { "name": "BUILT_YR", "label": "Year Built", "searchable": false },
+            { "name": "TAX_DISTRICT", "label": "Tax District", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_SaltLake_LIR/FeatureServer/0/query?where=PARCEL_CITY%3D'SALT+LAKE+CITY'&outFields=PARCEL_ID,PARCEL_ADD,PARCEL_CITY,TOTAL_MKT_VALUE,PROP_CLASS,BLDG_SQFT,BUILT_YR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.utah.gov/data/cadastre/parcels/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Utah Geospatial Resource Center (UGRC) / Salt Lake County Assessor",
+        "url": "https://gis.utah.gov/data/cadastre/parcels/",
+        "email": null
+      },
+      "notes": "30 fields confirmed including PARCEL_ID, COUNTY_NAME, COUNTY_ID, ASSESSOR_SRC, BOUNDARY_SRC, CURRENT_ASOF, PARCEL_ADD, PARCEL_CITY, TAXEXEMPT_TYPE, TAX_DISTRICT, TOTAL_MKT_VALUE, LAND_MKT_VALUE, PARCEL_ACRES, PROP_CLASS, PRIMARY_RES, HOUSE_CNT, SUBDIV_NAME, BLDG_SQFT, FLOORS_CNT, BUILT_YR, EFFBUILT_YR, CONST_MATERIAL, PROP_TYPE. Query confirmed: returns real Salt Lake City addresses with market values. NOTE: Owner name is NOT included in this public LIR (Land Information Record) layer. Owner data is available through the Salt Lake County Assessor's Parcel Viewer at apps.saltlakecounty.gov/assessor/new/ParcelViewer/. PARCEL_ID is the 14-digit serial number. This dataset is maintained by UGRC (Utah Geospatial Resource Center) in coordination with the Salt Lake County Assessor; data is updated monthly. A basic geometry-only version (Parcels_SaltLake) also exists on the same service with 17 fields and no value data."
+    }
+  ,
+    {
+      "id": "ut-davis",
+      "state": "UT",
+      "stateName": "Utah",
+      "stateSlug": "utah",
+      "county": "Davis",
+      "countySlug": "davis-county",
+      "countyFips": "49011",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Davis_LIR/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels_Davis_LIR",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL_ID", "label": "Parcel ID (Serial Number)", "searchable": true },
+            { "name": "SERIAL_NUM", "label": "Serial Number", "searchable": true },
+            { "name": "PARCEL_ADD", "label": "Parcel Address", "searchable": true },
+            { "name": "PARCEL_CITY", "label": "Parcel City", "searchable": true },
+            { "name": "TOTAL_MKT_VALUE", "label": "Total Market Value", "searchable": false },
+            { "name": "LAND_MKT_VALUE", "label": "Land Market Value", "searchable": false },
+            { "name": "PARCEL_ACRES", "label": "Parcel Acreage", "searchable": false },
+            { "name": "PROP_CLASS", "label": "Property Class", "searchable": false },
+            { "name": "SUBDIV_NAME", "label": "Subdivision Name", "searchable": false },
+            { "name": "BLDG_SQFT", "label": "Building Square Footage", "searchable": false },
+            { "name": "BUILT_YR", "label": "Year Built", "searchable": false },
+            { "name": "TAX_DISTRICT", "label": "Tax District", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Davis_LIR/FeatureServer/0/query?where=PARCEL_CITY%3D'BOUNTIFUL'&outFields=PARCEL_ID,PARCEL_ADD,PARCEL_CITY,TOTAL_MKT_VALUE,PROP_CLASS,BLDG_SQFT,BUILT_YR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.utah.gov/data/cadastre/parcels/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Utah Geospatial Resource Center (UGRC) / Davis County Assessor",
+        "url": "https://gis.utah.gov/data/cadastre/parcels/",
+        "email": null
+      },
+      "notes": "Davis County (Salt Lake metro north, pop. 365,000, county seat Farmington) includes Bountiful, Layton, Clearfield, Kaysville, and Hill Air Force Base. This layer follows the Utah Geospatial Resource Center (UGRC) standardized Land Information Record (LIR) schema, established under HB113 (2005) which directed UGRC to aggregate county assessor data into a common statewide format. 29 fields confirmed: COUNTY_NAME, COUNTY_ID, ASSESSOR_SRC, BOUNDARY_SRC, DISCLAIMER, CURRENT_ASOF (data currency date), PARCEL_ID (14-digit serial number), SERIAL_NUM, PARCEL_ADD, PARCEL_CITY, TAXEXEMPT_TYPE, TAX_DISTRICT, TOTAL_MKT_VALUE, LAND_MKT_VALUE, PARCEL_ACRES, PROP_CLASS, PRIMARY_RES, HOUSE_CNT, SUBDIV_NAME, BLDG_SQFT, BLDG_SQFT_INFO, FLOORS_CNT, FLOORS_INFO, BUILT_YR, EFFBUILT_YR, CONST_MATERIAL, Shape__Area, Shape__Length. Owner name is NOT included in any UGRC LIR layer, county assessors provide annual tax assessment data voluntarily to UGRC, but ownership names are not part of the agreed-upon LIR schema. For owner lookup, use the Davis County Assessor's property search at assessor.co.davis.ut.us. Endpoint hosted on ArcGIS Online (services1.arcgis.com/99lidPhWCzftIe9K). maxRecordCount=2000."
+    },
+    {
+      "id": "ut-utah",
+      "state": "UT",
+      "stateName": "Utah",
+      "stateSlug": "utah",
+      "county": "Utah",
+      "countySlug": "utah-county",
+      "countyFips": "49049",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Utah_LIR/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels_Utah_LIR",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL_ID", "label": "Parcel ID (Serial Number)", "searchable": true },
+            { "name": "SERIAL_NUM", "label": "Serial Number", "searchable": true },
+            { "name": "PARCEL_ADD", "label": "Parcel Address", "searchable": true },
+            { "name": "PARCEL_CITY", "label": "Parcel City", "searchable": true },
+            { "name": "TOTAL_MKT_VALUE", "label": "Total Market Value", "searchable": false },
+            { "name": "LAND_MKT_VALUE", "label": "Land Market Value", "searchable": false },
+            { "name": "PARCEL_ACRES", "label": "Parcel Acreage", "searchable": false },
+            { "name": "PROP_CLASS", "label": "Property Class", "searchable": false },
+            { "name": "SUBDIV_NAME", "label": "Subdivision Name", "searchable": false },
+            { "name": "BLDG_SQFT", "label": "Building Square Footage", "searchable": false },
+            { "name": "BUILT_YR", "label": "Year Built", "searchable": false },
+            { "name": "TAX_DISTRICT", "label": "Tax District", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Utah_LIR/FeatureServer/0/query?where=PARCEL_CITY%3D'PROVO'&outFields=PARCEL_ID,PARCEL_ADD,PARCEL_CITY,TOTAL_MKT_VALUE,PROP_CLASS,BLDG_SQFT,BUILT_YR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.utah.gov/data/cadastre/parcels/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Utah Geospatial Resource Center (UGRC) / Utah County Assessor",
+        "url": "https://gis.utah.gov/data/cadastre/parcels/",
+        "email": null
+      },
+      "notes": "Utah County (pop. 660,000, county seat Provo) is the second-most populous Utah county and should not be confused with the state of Utah itself. It contains Provo, Orem, American Fork, Springville, Spanish Fork, Payson, and the Brigham Young University campus. This layer follows the same UGRC LIR schema as all Utah county LIR layers (established under HB113, 2005). 29 fields confirmed: same structure as Salt Lake and Davis LIR layers, PARCEL_ID (14-digit serial number), PARCEL_ADD, PARCEL_CITY, CURRENT_ASOF (data currency date), TOTAL_MKT_VALUE, LAND_MKT_VALUE, PARCEL_ACRES, PROP_CLASS, PRIMARY_RES, HOUSE_CNT, SUBDIV_NAME, BLDG_SQFT, FLOORS_CNT, BUILT_YR, EFFBUILT_YR, CONST_MATERIAL, TAX_DISTRICT, TAXEXEMPT_TYPE, and boundary/source metadata fields. Owner name is NOT included. This is an intentional exclusion across all UGRC LIR layers, not a per-county decision. For ownership data, use the Utah County Assessor's property search at assessor.utahcounty.gov. Endpoint hosted on ArcGIS Online (services1.arcgis.com/99lidPhWCzftIe9K). Capabilities: Query, Extract. maxRecordCount=2000."
+    },
+    {
+      "id": "ut-weber",
+      "state": "UT",
+      "stateName": "Utah",
+      "stateSlug": "utah",
+      "county": "Weber",
+      "countySlug": "weber-county",
+      "countyFips": "49057",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Weber_LIR/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels_Weber_LIR",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCEL_ID", "label": "Parcel ID (Serial Number)", "searchable": true },
+            { "name": "SERIAL_NUM", "label": "Serial Number", "searchable": true },
+            { "name": "PARCEL_ADD", "label": "Parcel Address", "searchable": true },
+            { "name": "PARCEL_CITY", "label": "Parcel City", "searchable": true },
+            { "name": "TOTAL_MKT_VALUE", "label": "Total Market Value", "searchable": false },
+            { "name": "LAND_MKT_VALUE", "label": "Land Market Value", "searchable": false },
+            { "name": "PARCEL_ACRES", "label": "Parcel Acreage", "searchable": false },
+            { "name": "PROP_CLASS", "label": "Property Class", "searchable": false },
+            { "name": "SUBDIV_NAME", "label": "Subdivision Name", "searchable": false },
+            { "name": "BLDG_SQFT", "label": "Building Square Footage", "searchable": false },
+            { "name": "BUILT_YR", "label": "Year Built", "searchable": false },
+            { "name": "TAX_DISTRICT", "label": "Tax District", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Weber_LIR/FeatureServer/0/query?where=PARCEL_CITY%3D'OGDEN'&outFields=PARCEL_ID,PARCEL_ADD,PARCEL_CITY,TOTAL_MKT_VALUE,PROP_CLASS,BLDG_SQFT,BUILT_YR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.utah.gov/data/cadastre/parcels/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Utah Geospatial Resource Center (UGRC) / Weber County Assessor",
+        "url": "https://gis.utah.gov/data/cadastre/parcels/",
+        "email": null
+      },
+      "notes": "Weber County (pop. 260,000, county seat Ogden) anchors the northern end of the Wasatch Front urban corridor, roughly 35 miles north of Salt Lake City. It contains Ogden, Roy, Layton (shared with Davis County), Riverdale, and portions of the Ogden metro. This layer follows the same UGRC LIR schema as all Utah county LIR layers (established under HB113, 2005). 29 fields confirmed: same structure as Salt Lake, Davis, and Utah County LIR layers, PARCEL_ID (14-digit serial number), PARCEL_ADD, PARCEL_CITY, CURRENT_ASOF (data currency date), TOTAL_MKT_VALUE, LAND_MKT_VALUE, PARCEL_ACRES, PROP_CLASS, PRIMARY_RES, HOUSE_CNT, SUBDIV_NAME, BLDG_SQFT, FLOORS_CNT, BUILT_YR, EFFBUILT_YR, CONST_MATERIAL, TAX_DISTRICT, and TAXEXEMPT_TYPE. Owner name is NOT included, a deliberate exclusion in the statewide LIR schema agreement between UGRC and county assessors. For ownership data, use the Weber County property search at webercountyutah.gov/assessor or the statewide UGRC parcel viewer at parcels.utah.gov. Endpoint hosted on ArcGIS Online (services1.arcgis.com/99lidPhWCzftIe9K). maxRecordCount=2000."
+    }
+  ]
+}

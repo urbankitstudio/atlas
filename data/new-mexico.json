@@ -1,0 +1,49 @@
+{
+  "stateSlug": "new-mexico",
+  "stateName": "New Mexico",
+  "stateAbbrev": "NM",
+  "lastUpdated": "2026-06-05",
+  "counties": [
+    {
+      "id": "nm-bernalillo",
+      "state": "NM",
+      "stateName": "New Mexico",
+      "stateSlug": "new-mexico",
+      "county": "Bernalillo",
+      "countySlug": "bernalillo-county",
+      "countyFips": "35001",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://assessormap.bernco.gov/server/rest/services/Enterprise_Assessment_And_Tax/Public_Access_Parcel_Data_EAT/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "UPC", "label": "Unique Parcel Code (APN)", "searchable": true },
+            { "name": "OWNER", "label": "Owner Name", "searchable": true },
+            { "name": "SITUSADD", "label": "Situs Address", "searchable": true },
+            { "name": "SITUSCITY", "label": "Situs City", "searchable": true },
+            { "name": "OWNADD", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "OWNCITY", "label": "Owner Mailing City", "searchable": true },
+            { "name": "OWNZIPCODE", "label": "Owner ZIP Code", "searchable": true }
+          ],
+          "sampleQuery": "https://assessormap.bernco.gov/server/rest/services/Enterprise_Assessment_And_Tax/Public_Access_Parcel_Data_EAT/MapServer/0/query?where=UPPER(OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=UPC,OWNER,SITUSADD,SITUSCITY,OWNADD,OWNCITY,OWNZIPCODE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.bernco.gov/assessor/assessors-gis-maps/",
+          "status": "live",
+          "lastVerified": "2026-06-05",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Bernalillo County Assessor's Office GIS",
+        "url": "https://www.bernco.gov/assessor/assessors-gis-maps/",
+        "email": null
+      },
+      "notes": "Bernalillo County is New Mexico's most populous county (pop. 680,000; county seat Albuquerque, which contains roughly 90% of the county population). The Public_Access_Parcel_Data_EAT MapServer on assessormap.bernco.gov (ArcGIS Server 11.1) is the Bernalillo County Assessor's enterprise assessment and tax parcel layer. Live query confirmed 256,034 parcels with full owner-name and situs-address exposure. Key fields: UPC (Unique Parcel Code, a 20-character alphanumeric ID, e.g. '102106049820341601AL'), TAXYR, OWNER, SITUSADD (full situs address, e.g. '3501 JUAN TABO NE J1'), SITUSCITY, SITUSSTATE, SITUSZIP, OWNADD, OWNADD2, OWNCITY, OWNSTATE, OWNCOUNTRY, OWNZIPCODE, OWNZIP4 (full owner mailing address), TAXDIST, LEGALDESC, ROLLTYPE, VALCLASS, PROPCLASS, LANDVALUE, AGVALUE, IMPTVALUE, TOTVALUE, TOTTXBLE, NETTAXABLE, ACREAGE. UPC format encodes township/range/section/parcel in a compound alphanumeric string. Owner-name search via UPPER() LIKE on OWNER works. The assessor also maintains a public property search UI at assessor.bernco.gov. Note: assessormap.bernco.gov is a separate subdomain from the county's PDS GIS server at pdsgismaps.bernco.gov. Both are public; only assessormap.bernco.gov has the parcel-with-owner layer. The county GIS server at pdsgismaps.bernco.gov has the canvass parcel polygons (BernCo_Public_Canvass_Update/MapServer layer 6) but that layer has only UPC + situs address, not owner name."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "stateSlug": "south-dakota",
+  "stateName": "South Dakota",
+  "stateAbbrev": "SD",
+  "lastUpdated": "2026-08-04",
+  "counties": [
+    {
+      "id": "sd-minnehaha",
+      "state": "SD",
+      "stateName": "South Dakota",
+      "stateSlug": "south-dakota",
+      "county": "Minnehaha",
+      "countySlug": "minnehaha-county",
+      "countyFips": "46099",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.minnehahacounty.gov/minnemap/rest/services/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "TAG", "label": "Parcel Tag (Parcel ID)", "searchable": true },
+            { "name": "MRTNM1", "label": "Owner Name 1", "searchable": true },
+            { "name": "MRTNM2", "label": "Owner Name 2", "searchable": false },
+            { "name": "MRTCTY", "label": "Owner City", "searchable": false },
+            { "name": "MRTSTATE", "label": "Owner State", "searchable": false },
+            { "name": "MRTZPC", "label": "Owner ZIP", "searchable": false },
+            { "name": "FULL_ADDRESS", "label": "Property Full Address", "searchable": true },
+            { "name": "NWLOCN", "label": "New Location (property street number)", "searchable": false },
+            { "name": "NWPRED", "label": "Street Pre-directional", "searchable": false },
+            { "name": "NWLOCS", "label": "Street Name", "searchable": true },
+            { "name": "NWSTYP", "label": "Street Type", "searchable": false },
+            { "name": "MAP_ID", "label": "Map ID", "searchable": false },
+            { "name": "LOT", "label": "Lot", "searchable": false },
+            { "name": "BLOCK", "label": "Block", "searchable": false },
+            { "name": "TRACT", "label": "Tract", "searchable": false },
+            { "name": "SUBDIVISION", "label": "Subdivision", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.minnehahacounty.gov/minnemap/rest/services/Parcels/MapServer/0/query?where=UPPER(MRTNM1)+LIKE+UPPER('%25SMITH%25')&outFields=TAG,MRTNM1,MRTNM2,MRTCTY,FULL_ADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.minnehahacounty.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Minnehaha County GIS / Minnehaha County Equalization",
+        "url": "https://www.minnehahacounty.org/dept/eq/eq.php",
+        "email": null
+      },
+      "notes": "Minnehaha County SD (Sioux Falls metro; county seat Sioux Falls; FIPS 46099; most populous county in SD, pop. 210,000) provides parcel data via gis.minnehahacounty.gov. The Parcels/MapServer/0 layer exposes 20 fields: OBJECTID, FULL_ADDRESS, TAG (parcel ID), MAP_ID, MRRDID, MRTNM1 (owner name 1), MRTNM2 (owner name 2), MRTCTY (owner city), MRTSTATE, MRTZPC (ZIP), MRTZPC2, NWLOCN, NWPRED, NWLOCS (street name), NWSTYP, NWPOSD, LOT, BLOCK, TRACT, SUBDIVISION. Owner search via UPPER(MRTNM1) LIKE on MRTNM1. To get both owners, also query MRTNM2. Verified 2026-06-20: SMITH query returns Sioux Falls addresses. Minnehaha County SD (FIPS 46099) must not be confused with Minnehaha County in any other state."
+    }
+  ]
+}

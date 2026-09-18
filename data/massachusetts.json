@@ -1,0 +1,160 @@
+{
+  "stateSlug": "massachusetts",
+  "stateName": "Massachusetts",
+  "stateAbbrev": "MA",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ma-statewide",
+      "state": "MA",
+      "stateName": "Massachusetts",
+      "stateSlug": "massachusetts",
+      "county": "Statewide",
+      "countySlug": "statewide",
+      "countyFips": null,
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "TOWN_ID",
+              "label": "Town/City Numeric ID (filter by municipality)",
+              "searchable": true
+            },
+            {
+              "name": "MAP_PAR_ID",
+              "label": "Map-Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "LOC_ID",
+              "label": "Location ID (links to L3_ASSESS table)",
+              "searchable": true
+            },
+            {
+              "name": "POLY_TYPE",
+              "label": "Polygon Type Code",
+              "searchable": false
+            },
+            {
+              "name": "LU_CODES",
+              "label": "Land Use Codes",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/1/query?where=TOWN_ID%3D274&outFields=TOWN_ID,MAP_PAR_ID,LOC_ID,LU_CODES&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        },
+        {
+          "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/4",
+          "serviceType": "FeatureServer",
+          "layerIndex": 4,
+          "layerName": "GISDATA.L3_ASSESS (Assessor Table)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "LOC_ID",
+              "label": "Location ID (join key to Tax Parcels layer 1)",
+              "searchable": true
+            },
+            {
+              "name": "PROP_ID",
+              "label": "Property ID",
+              "searchable": true
+            },
+            {
+              "name": "MA_PROP_ID",
+              "label": "Statewide Property ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNER1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "SITE_ADDR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "FULL_STR",
+              "label": "Full Street Name",
+              "searchable": true
+            },
+            {
+              "name": "CITY",
+              "label": "City / Town",
+              "searchable": true
+            },
+            {
+              "name": "ZIP",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_VAL",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "BLDG_VAL",
+              "label": "Building Value",
+              "searchable": false
+            },
+            {
+              "name": "USE_CODE",
+              "label": "Use Code",
+              "searchable": false
+            },
+            {
+              "name": "YEAR_BUILT",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "ZONING",
+              "label": "Zoning Code",
+              "searchable": false
+            },
+            {
+              "name": "TOWN_ID",
+              "label": "Town Numeric ID",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/4/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,SITE_ADDR,CITY,ZIP,TOTAL_VAL,MA_PROP_ID,TOWN_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "MassGIS (Bureau of Geographic Information), Executive Office of Technology Services and Security",
+        "url": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+        "email": null
+      },
+      "notes": "MassGIS Level 3 (L3) Standardized Assessors' Parcel data, a single statewide service covering all 351 Massachusetts municipalities including all 6 target counties: Suffolk (Boston), Middlesex, Worcester, Norfolk, Essex, and Plymouth. Parcels are organized by municipality (TOWN_ID numeric code), not by county. To filter by county: Suffolk towns include Boston (274), Chelsea (54), Revere (223), Winthrop (349); Middlesex includes Cambridge (49), Lowell (168), Newton (195); use the MassGIS town-code lookup at mass.gov for the full list. Two-layer workflow: layer 1 (Tax Parcels) carries polygon geometry and parcel ID; layer 4 (L3_ASSESS table, no geometry) carries owner name, address, and assessment data, join on LOC_ID. OWNER_NAME field is public.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    }
+  ]
+}

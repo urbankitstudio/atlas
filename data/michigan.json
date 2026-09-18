@@ -1,0 +1,302 @@
+{
+  "stateSlug": "michigan",
+  "stateName": "Michigan",
+  "stateAbbrev": "MI",
+  "lastUpdated": "2026-08-25",
+  "counties": [
+    {
+      "id": "mi-kent",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Kent",
+      "countySlug": "kent-county",
+      "countyFips": "26081",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.kentcountymi.gov/agisprod/rest/services/ParcelsWithCondos/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels With Condos",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PPN",
+              "label": "Parcel Permanent Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "OWNERADDRESS",
+              "label": "Owner Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNERCITY",
+              "label": "Owner City",
+              "searchable": true
+            },
+            {
+              "name": "PROPERTYADDRESS",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "PROPADDRESSCITY",
+              "label": "Property Address City",
+              "searchable": true
+            },
+            {
+              "name": "PROPERTYCLASS",
+              "label": "Property Class",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.kentcountymi.gov/agisprod/rest/services/ParcelsWithCondos/MapServer/0/query?where=UPPER(OWNERNAME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PPN,OWNERNAME1,PROPERTYADDRESS,PROPADDRESSCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.kentcountymi-accesskent.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-08-29",
+          "verifiedBy": "manual",
+          "notes": "Re-verified live 2026-08-29 (was stamped unreachable 2026-06-06 with no probe record, and the flag was wrong at least by 2026-08-29): the enrich-shape query (point + 30 m, OWNERNAME1/OWNERADDRESS/PROPERTYADDRESS/PPN) at Grand Rapids City Hall answered in 0.8 s with owner names and mailing addresses; where=1=1 count 232,036. Values are space-padded (trim before matching)."
+        }
+      ],
+      "contact": {
+        "department": "Kent County GIS",
+        "url": "https://www.kentcountymi.gov/246/Geographic-Information-System-GIS",
+        "email": null
+      },
+      "notes": "Kent County (Grand Rapids metro) hosts ParcelsWithCondos/MapServer/0, a countywide parcel layer including condominium units. 22 fields: PPN, TAXPARCEL_FLAG, OWNERNAME1, OWNERNAME2, OWNERCAREOF, OWNERADDRESS, OWNERCITY, OWNERZIPCODE, PROPERTYADDRESS, PROPADDRESSCITY, PROPADDRESSSTATE_ZIPCODE, PROPERTYCLASS, GOVERNMENTALUNIT, SCHOOLDISTRICT, SEV/TAXABLE fields (2 tribunals), ACREAGE, PNUM, geometry. Query confirmed live: UPPER(OWNERNAME1) LIKE '%SMITH%' returns real owner names (e.g., 'SMITH TIMOTHY J & STARKS-SMITH MARY'). Owner mailing address is in OWNERADDRESS/OWNERCITY/OWNERZIPCODE. The county's open data hub at kentcountymi-accesskent.opendata.arcgis.com mirrors the same data. Michigan parcel ID (PPN) format is 10-digit county-township-parcel. INFRASTRUCTURE OUTAGE (verified 2026-06-06): the entire agisprod ArcGIS server is offline ('Could not access any server machines') -- every service and the portal are affected. Looks transient rather than a retirement; recheck around 2026-07-06."
+    },
+    {
+      "id": "mi-oakland",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Oakland",
+      "countySlug": "oakland-county",
+      "ownerFieldNote": {
+        "body": "Oakland County's public parcel layer documents NAME1 and NAME2 as owner columns, but neither is populated on the public service: a live sample of 300 records returned no value in either, so no query can retrieve ownership here. The service publishes no stated reason. Key PIN, parcel identification number, site address, site city and property class code are populated and searchable. Ownership is available from the county directly.",
+        "source": {
+          "label": "Oakland County Enterprise GIS",
+          "url": "https://www.oakgov.com/government/information-technology/enterprise-gis"
+        }
+      },
+      "countyFips": "26125",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservices.oakgov.com/arcgis/rest/services/Enterprise/EnterpriseOpenParcelDataMapService/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Tax Parcel Plus",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "KEYPIN",
+              "label": "Key PIN",
+              "searchable": true
+            },
+            {
+              "name": "PIN",
+              "label": "Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "NAME1",
+              "label": "Owner Name 1 (redacted on public layer)",
+              "searchable": false
+            },
+            {
+              "name": "NAME2",
+              "label": "Owner Name 2 (redacted on public layer)",
+              "searchable": false
+            },
+            {
+              "name": "SITEADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "SITECITY",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "CVTTAXDESCRIPTION",
+              "label": "City/Village/Township Tax Description",
+              "searchable": false
+            },
+            {
+              "name": "CLASSCODE",
+              "label": "Property Class Code",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.oakgov.com/arcgis/rest/services/Enterprise/EnterpriseOpenParcelDataMapService/MapServer/1/query?where=PIN%3D'2536483012'&outFields=PIN,NAME1,SITEADDRESS,SITECITY&returnGeometry=false&f=json",
+          "license": "public",
+          "licenseUrl": "https://accessoakland.oakgov.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Oakland County Enterprise GIS",
+        "url": "https://www.oakgov.com/government/information-technology/enterprise-gis",
+        "email": "servicecenter@oakgov.com"
+      },
+      "notes": "Oakland County (Detroit metro NW, county seat Pontiac) serves 332k+ parcels via EnterpriseOpenParcelDataMapService/MapServer/1 (branded 'Tax Parcel Plus'). The public layer exposes PIN, KEYPIN, SITEADDRESS, SITECITY, SITESTATE, SITEZIP5, POSTALADDRESS, CLASSCODE, CVTTAXCODE, CVTTAXDESCRIPTION, ASSESSEDVALUE, TAXABLEVALUE, STRUCTURE_DESC, LIVING_AREA_SQFT, NUM_BEDS, NUM_BATHS. OWNER NAME REDACTED: NAME1 and NAME2 fields are present in the schema but return null in all public query results as of 2026-05-15. Full owner data is available only through the fee-based Property Gateway at gis.oakgov.com/PropertyGateway/. The public Access Oakland portal (accessoakland.oakgov.com) hosts the same OC Tax Parcels (Public) dataset. PIN format is 10-digit Michigan standard. For parcel-boundary-only use cases (without owner), this endpoint is fully functional.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "Oakland County's public parcel layer documents NAME1 and NAME2 as owner columns, but neither carries a value in any record sampled, so no query can return ownership here. The service states no reason.",
+            "sourceUrl": "https://www.oakgov.com/government/information-technology/enterprise-gis"
+          }
+        }
+      }
+    },
+    {
+      "id": "mi-wayne",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Wayne",
+      "countySlug": "wayne-county",
+      "countyFips": "26163",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/b6rkZNtCd6Mx2gvB/arcgis/rest/services/Wayne_County_Parcel_Shape_File/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Wayne County Parcel Shape File",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "packedParc",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "propstreet",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "propcity",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "propstate",
+              "label": "Site State",
+              "searchable": false
+            },
+            {
+              "name": "propzip",
+              "label": "Site ZIP",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/b6rkZNtCd6Mx2gvB/arcgis/rest/services/Wayne_County_Parcel_Shape_File/FeatureServer/0/query?where=UPPER(ownername1)%20LIKE%20UPPER('%25SMITH%25')&outFields=packedParc,ownername1,propstreet,propcity,propzip&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://data-wayne.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Wayne County GIS",
+        "url": "https://data-wayne.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Countywide parcel layer covering all of Wayne County, not Detroit alone: 768,119 parcels across 125 distinct propcity values including Livonia, Dearborn, Canton, Westland, Taylor, Redford and the Grosse Pointes. Owner names are populated on 744,052 rows (96.9 percent) and are real individuals, verified outside Detroit. Six usable columns: packedParc, ownername1, propstreet, propcity, propstate, propzip. There is no mailing-address column. Caveat for anyone filtering on it: propcity is dirty, carrying misspellings such as DETRIOT and GARDEN CTIY and a handful of rows where an owner name leaked into the city column. Spatial lookup is unaffected."
+    },
+    {
+      "id": "mi-macomb",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Macomb",
+      "countySlug": "macomb-county",
+      "countyFips": "26099",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/K0qS4r8AEJxrE8em/arcgis/rest/services/Macomb_County_Parcel_Data/FeatureServer/10",
+          "serviceType": "FeatureServer",
+          "layerIndex": 10,
+          "layerName": "Macomb County Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TAX_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "propstreetcombined",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "propertyCityStateZip",
+              "label": "Site City, State and ZIP",
+              "searchable": true
+            },
+            {
+              "name": "CVT_NAME",
+              "label": "Community",
+              "searchable": true
+            },
+            {
+              "name": "zoning",
+              "label": "Zoning",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/K0qS4r8AEJxrE8em/arcgis/rest/services/Macomb_County_Parcel_Data/FeatureServer/10/query?where=UPPER(ownername1)%20LIKE%20UPPER('%25SMITH%25')&outFields=TAX_ID,ownername1,propstreetcombined,propertyCityStateZip&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Macomb County GIS",
+        "url": "https://gis.macombgov.org/",
+        "email": null
+      },
+      "notes": "Tax parcel layer at layer index 10 of the Macomb County Parcel Data service, not layer 0. 332,971 parcels with owner names on 331,114 rows (99.4 percent), real individuals. Columns: TAX_ID, ownername1, propstreetcombined, propertyCityStateZip, CVT_NAME, zoning. No mailing address. The service metadata reports wkid null, which normally signals a projection problem, but the buffered spatial query answers correctly and was verified against a live address; the null is a metadata quirk rather than a broken layer."
+    }
+  ]
+}

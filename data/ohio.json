@@ -1,0 +1,309 @@
+{
+  "stateSlug": "ohio",
+  "stateName": "Ohio",
+  "stateAbbrev": "OH",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "oh-montgomery",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Montgomery",
+      "countySlug": "montgomery-county",
+      "countyFips": "39113",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/ArcGIS/rest/services/Montgomery_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Montgomery_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PRINT_KEY", "label": "Parcel Print Key", "searchable": true },
+            { "name": "OWNER1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "OWNER2", "label": "Owner Name 2", "searchable": true },
+            { "name": "OWNER", "label": "Owner (combined)", "searchable": true },
+            { "name": "PROP_ADDR", "label": "Property Address", "searchable": true },
+            { "name": "LOC_STREET", "label": "Location Street", "searchable": true },
+            { "name": "LOC_NUMBER", "label": "Location Number", "searchable": true }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/ArcGIS/rest/services/Montgomery_County_Parcels/FeatureServer/0/query?where=UPPER(OWNER1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PRINT_KEY,OWNER1,PROP_ADDR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://opendata-mcgov-gis.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Montgomery County Auditor GIS",
+        "url": "https://opendata-mcgov-gis.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Montgomery County OH (Dayton metro, county seat Dayton) provides parcels via ArcGIS Online FeatureServer (services6.arcgis.com). Spatial extent confirmed to cover Ohio coordinates. Key fields: PRINT_KEY (parcel key), OWNER1, OWNER2, OWNER, PROP_ADDR, LOC_NUMBER, LOC_STREET, MUNI, SBL, GISAcres, SWIS, EASTING, NORTHING, CHANGE_DAT, SECNO, ACCOUNT_NU. Query confirmed live: UPPER(OWNER1) LIKE '%SMITH%' returns real Ohio parcels (e.g., 'Smith, Gregory R' at '148 HICKORY RIDGE DR'). Montgomery County OH (FIPS 39113) must not be confused with Montgomery County MD (24031), Montgomery County PA (42091), or Montgomery County AL (01101). Open Data Hub at opendata-mcgov-gis.hub.arcgis.com. Auditor parcel viewer at gis.mcohio.org/VPCore/VP.html?config=aud."
+    },
+    {
+      "id": "oh-stark",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Stark",
+      "countySlug": "stark-county",
+      "countyFips": "39151",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/StarkCountyParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Stark County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "OWNER", "label": "Owner Name", "searchable": true },
+            { "name": "OWNER_ADDRESS", "label": "Owner Address (combined)", "searchable": true },
+            { "name": "MAILING_NAME", "label": "Mailing Name", "searchable": true },
+            { "name": "MAILING_ADDRESS", "label": "Mailing Address", "searchable": true },
+            { "name": "SITE_ADDRESS", "label": "Site Address (with city/state/zip)", "searchable": true },
+            { "name": "TAX_DISTRICT_NAME", "label": "Tax District Name", "searchable": false },
+            { "name": "LAND_USE_DESCRIPTION", "label": "Land Use Description", "searchable": false }
+          ],
+          "sampleQuery": "https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/StarkCountyParcels/MapServer/0/query?where=UPPER(OWNER)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,OWNER,SITE_ADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://portal-starkcountyohio.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Stark County IT / GIS",
+        "url": "https://www.starkcountyohio.gov/government/offices/information_technology/geographic_information_systems/",
+        "email": "gis@starkcountyohio.gov"
+      },
+      "notes": "Stark County OH (Canton metro, county seat Canton) provides StarkCountyParcels/MapServer/0 with 30+ fields: PIN, TAXYR, SITE_ADDRESS (full city/state/zip included), ROUTING_NUMBER, CLASSIFICATION, LAND_USE_CODE, LAND_USE_DESCRIPTION, NBHD, ACRES, TAX_DISTRICT_CODE, TAX_DISTRICT_NAME, GROSS_TAX_RATE, EFFECTIVE_TAX_RATE, OWNER_OCCUPANCY_CREDIT, OWNER, OWNER_ADDRESS, OWNER_ADDR1/2/3, MAILING_NAME, MAILING_ADDRESS, MORTGAGE_COMPANY, LEGAL_DESCRIPTION, HOMESTEAD_EXEMPTION, DISABLED_VETERAN_BENEFIT, PREVIOUS_OWNER. Query confirmed live: UPPER(OWNER) LIKE '%SMITH%' returns real results (e.g., 'SMITH LAWRENCE K JR & JODI' at '13180 PATTERSON RD NORTH LAWRENCE OH 44666 9732'). SITE_ADDRESS includes full city/state/zip in one field. Auditor/ParcelData/MapServer is an alternate service at the same host providing polygon appraisal layers. GIS Hub at portal-starkcountyohio.opendata.arcgis.com has downloads. Contact: (330) 451-7193."
+    },
+    {
+      "id": "oh-franklin",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Franklin",
+      "countySlug": "franklin-county",
+      "countyFips": "39049",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "LOWPARCELID", "label": "Low Parcel ID", "searchable": true },
+            { "name": "OWNERNME1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "OWNERNME2", "label": "Owner Name 2", "searchable": true },
+            { "name": "SITEADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "ZIPCD", "label": "ZIP Code", "searchable": true },
+            { "name": "CLASSCD", "label": "Property Class Code", "searchable": false },
+            { "name": "TOTVALUEBASE", "label": "Total Base Value", "searchable": false },
+            { "name": "SALEDATE", "label": "Sale Date", "searchable": false },
+            { "name": "SALEPRICE", "label": "Sale Price", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/MapServer/0/query?where=UPPER(OWNERNME1)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,SITEADDRESS,ZIPCD&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-franklincova.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Franklin County Auditor GIS / Franklin County IT",
+        "url": "https://data-franklincova.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Franklin County, Ohio (Columbus metro, pop. 1.35M, county seat Columbus) is the most populous Ohio county. In Ohio, the county Auditor, not the Assessor, is the statutory data custodian for parcel records; the Franklin County Auditor's office publishes this GIS layer. 115+ fields confirmed including OWNERNME1/2/3, SITEADDRESS, PSTLADDRES, PSTLCITYSTZIP, CLASSCD/CLASSDSCRP, NBHDCD, CVTTXCD (tax district code), SCHLTXCD (school district), LNDVALUEBASE, BLDVALUEBASE, TOTVALUEBASE, SALEDATE, SALEPRICE, RESFLRAREA, RESYRBLT, RESSTRTYP, FLOORCOUNT, ROOMS, BATHS, HBATHS, BEDRMS, FIREPLC, AIRCOND, WALL, COND, GRADE, FLOOD, WATERSERV, SEWERSERV, OWNEROCCUPIED, RENTAL. Max record count 3000; owner query tested and confirmed returning real Columbus-area results. Parcel ID format: 'XXX-XXXXXX' (3-digit + 6-digit with hyphen). The service follows the ESRI Local Government Information Model (LGIM) parcel schema. Layer is updated Monday through Friday at 7:00 PM Eastern. Open-data downloads available at auditor-fca.opendata.arcgis.com. The Auditor's parcel viewer at property.franklincountyauditor.com is the browser-facing interface over the same data."
+    },
+    {
+      "id": "oh-cuyahoga",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Cuyahoga",
+      "countySlug": "cuyahoga-county",
+      "countyFips": "39035",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.cuyahogacounty.gov/server/rest/services/CCFO/Parcel_Fabric_Taxparcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcel Fabric Taxparcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "parcelpin", "label": "Parcel PIN", "searchable": true },
+            { "name": "parcel_id", "label": "Parcel ID", "searchable": true },
+            { "name": "parcel_owner", "label": "Owner Name", "searchable": true },
+            { "name": "second_owner", "label": "Second Owner Name", "searchable": true },
+            { "name": "par_addr_all", "label": "Parcel Address (full)", "searchable": true },
+            { "name": "mail_name", "label": "Mailing Name", "searchable": false },
+            { "name": "mail_addr_street", "label": "Mailing Address", "searchable": false },
+            { "name": "mail_city", "label": "Mailing City", "searchable": false },
+            { "name": "mail_state", "label": "Mailing State", "searchable": false },
+            { "name": "mail_zip", "label": "Mailing ZIP", "searchable": false },
+            { "name": "parcel_city", "label": "City", "searchable": false },
+            { "name": "parcel_zip", "label": "ZIP Code", "searchable": false },
+            { "name": "tax_luc", "label": "Tax Land Use Code", "searchable": false },
+            { "name": "certified_tax_total", "label": "Certified Tax Total", "searchable": false },
+            { "name": "last_transfer_date", "label": "Last Transfer Date", "searchable": false },
+            { "name": "last_sales_amount", "label": "Last Sale Amount", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.cuyahogacounty.gov/server/rest/services/CCFO/Parcel_Fabric_Taxparcels/FeatureServer/0/query?where=UPPER(parcel_owner)%20LIKE%20UPPER('%25SMITH%25')&outFields=parcelpin,parcel_owner,par_addr_all,mail_addr_street,mail_city&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://fiscalhub.gis.cuyahogacounty.gov/",
+          "status": "live",
+          "lastVerified": "2026-08-29",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Cuyahoga County Fiscal Office GIS",
+        "url": "https://fiscalhub.gis.cuyahogacounty.gov/",
+        "email": "gis@cuyahogacounty.us"
+      },
+      "notes": "RE-POINTED 2026-08-29. The MyPLACE service this entry used since registration was stopped by the county on ~2026-08-18 (\"Service MyPLACE/Parcels_WMA_GJOIN_WGS84/MapServer not started\", 137 consecutive liveness failures); the MyPLACE folder now lists no services. The Fiscal Office's current layer, CCFO/Parcel_Fabric_Taxparcels on the .gov host, carries the same columns and adds mailing: measured 2026-08-29, 520,911 parcels, parcel_owner populated on 519,551, par_addr_all (full situs, city+state+zip in one field) on 518,445, mail_addr_street on 517,883. The first rows at offset 0 are NULL import artefacts; sample mid-table. transfer_date/sales_amount are now last_transfer_date/last_sales_amount; deeded_owner is gone (grantor/grantee remain). Spatial queries answer (30m at Public Square -> MONUMENTAL PARK, 100 PUBLIC SQUARE). maxRecordCount 5000. Previous url kept for the record: https://gis.cuyahogacounty.us/server/rest/services/MyPLACE/Parcels_WMA_GJOIN_WGS84/MapServer/2"
+    },
+    {
+      "id": "oh-hamilton",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Hamilton",
+      "countySlug": "hamilton-county",
+      "countyFips": "39061",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://cagisonline.hamilton-co.org/arcgis/rest/services/HCE/Cadastral/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "CAGIS.Ham_Parcel_Poly",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "AUDPCLID", "label": "Auditor Parcel ID", "searchable": true },
+            { "name": "OWNNM1", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "OWNNM2", "label": "Owner Name (Secondary)", "searchable": true },
+            { "name": "OWNAD1", "label": "Owner Address Line 1", "searchable": true },
+            { "name": "OWNAD1A", "label": "Owner Address Line 1A", "searchable": true },
+            { "name": "OWNAD2", "label": "Owner Address Line 2 (City, State ZIP)", "searchable": false },
+            { "name": "TAXDST", "label": "Tax District", "searchable": false },
+            { "name": "LGLDS1", "label": "Legal Description Line 1", "searchable": false },
+            { "name": "LGLDS2", "label": "Legal Description Line 2", "searchable": false },
+            { "name": "BOOK", "label": "Deed Book", "searchable": false },
+            { "name": "PAGE", "label": "Deed Page", "searchable": false }
+          ],
+          "sampleQuery": "https://cagisonline.hamilton-co.org/arcgis/rest/services/HCE/Cadastral/MapServer/0/query?where=UPPER(OWNNM1)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNNM1,OWNNM2,OWNAD1,AUDPCLID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.hamilton-co.org/auditor/maps",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "CAGIS (Cincinnati Area Geographic Information System), Hamilton County Auditor",
+        "url": "https://www.hamilton-co.org/auditor/maps",
+        "email": null
+      },
+      "notes": "99 fields confirmed. This is the CAGIS (Cincinnati Area Geographic Information System) cadastral parcel polygon layer. Key fields include: PARCELID (12-digit parcel ID), AUDPCLID (auditor parcel ID), OWNNM1/OWNNM2 (owner names), OWNAD1/OWNAD1A/OWNAD2 (owner address), LGLDS1/LGLDS2/LGLDS3 (legal description), PREVOWN1/PREVOWN2 (previous owners), BOOK/PAGE (deed reference), TAXDST (tax district), MLTOWN (municipality), GRPPCLID (group parcel ID), PNTPCLID (point parcel ID), PROPTYID (property ID). Condo layers are separate (layers 5 and 6). Layer 2 (Hamilton County Parcel Attributes) joins assessment data. Layer 0 is the polygon geometry with ownership. Owner query confirmed: UPPER(OWNNM1) LIKE '%SMITH%' returns real parcels. Hamilton County, OH is the Cincinnati metropolitan area (FIPS 39061)."
+    },
+    {
+      "id": "oh-summit",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Summit",
+      "countySlug": "summit-county",
+      "countyFips": "39153",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.summitcounty.org/arcgis/rest/services/Maps/ParcelQuery/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "ParcelQuery",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "TXTACCOUNT", "label": "Account Number", "searchable": true },
+            { "name": "OwnershipTable_OWNER", "label": "Owner Name", "searchable": true },
+            { "name": "OwnershipTable_SITUS", "label": "Situs Address", "searchable": true },
+            { "name": "OwnershipTable_ADDRESS1", "label": "Owner Mailing Address", "searchable": false },
+            { "name": "OwnershipTable_CITY", "label": "Owner City", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.summitcounty.org/arcgis/rest/services/Maps/ParcelQuery/MapServer/0/query?where=UPPER(OwnershipTable_OWNER)%20LIKE%20UPPER('%25SMITH%25')&outFields=TXTACCOUNT,OwnershipTable_OWNER,OwnershipTable_SITUS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-summitgis.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Summit County Fiscal Office / GIS",
+        "url": "https://data-summitgis.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Summit County, Ohio (Akron metro, county seat Akron, pop. ~540K) serves parcels via a ParcelQuery MapServer joining the county's OwnershipTable. In Ohio the county Fiscal Officer / Auditor is the statutory parcel-data custodian. Owner name is OwnershipTable_OWNER; owner mailing is OwnershipTable_ADDRESS1/ADDRESS2/CITY/STATE/ZIP; the site address is OwnershipTable_SITUS (with INCAREOF); identifiers are TXTACCOUNT, OwnershipTable_ACCOUNT, OwnershipTable_SERIAL and the integer Parcels_GISID. Field names carry the OwnershipTable_ join prefix; use them as-is in WHERE clauses. Owner search uses UPPER(OwnershipTable_OWNER) LIKE. Verified live 2026-05-30 (OwnershipTable_OWNER = STOUT PAUL DOUGLAS)."
+    },
+    {
+      "id": "oh-lucas",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Lucas",
+      "countySlug": "lucas-county",
+      "countyFips": "39095",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://lcaudgis.co.lucas.oh.us/gisaudserver/rest/services/Hosted/OSE_ParcelsAddresses_AREIS/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels Addresses (AREIS)",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "assessor_num", "label": "Assessor Number (8-digit)", "searchable": true },
+            { "name": "parid", "label": "Parcel ID (7-digit)", "searchable": true },
+            { "name": "owner", "label": "Owner Name", "searchable": true },
+            { "name": "property_address", "label": "Property Address", "searchable": true },
+            { "name": "mailing_address", "label": "Mailing Address", "searchable": false }
+          ],
+          "sampleQuery": "https://lcaudgis.co.lucas.oh.us/gisaudserver/rest/services/Hosted/OSE_ParcelsAddresses_AREIS/FeatureServer/0/query?where=UPPER(owner)%20LIKE%20UPPER('%25SMITH%25')&outFields=assessor_num,owner,property_address&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://auditor-lucascountyohio.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-30",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Lucas County Auditor (AREIS) GIS",
+        "url": "https://auditor-lucascountyohio.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Lucas County, Ohio (Toledo metro, county seat Toledo, pop. ~430K) serves parcels from the Lucas County Auditor's AREIS (Assessment Real Estate Information System) via a hosted FeatureServer. Owner name is owner; the site address is property_address (full street/city/state/zip in one field); mailing is mailing_address; identifiers are assessor_num (8-digit) and parid (7-digit). The county's canonical Cadastre_Dataset FeatureServer (layer 8) carries only lot/block geometry with no owner field -- use OSE_ParcelsAddresses_AREIS for owner-name queries. Owner search uses UPPER(owner) LIKE. Verified live 2026-05-30 (owner = MARTRE TAMERA L & BILL)."
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "stateSlug": "minnesota",
+  "stateName": "Minnesota",
+  "stateAbbrev": "MN",
+  "lastUpdated": "2026-06-06",
+  "counties": [
+    {
+      "id": "mn-ramsey",
+      "state": "MN",
+      "stateName": "Minnesota",
+      "stateSlug": "minnesota",
+      "county": "Ramsey",
+      "countySlug": "ramsey-county",
+      "countyFips": "27123",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.co.ramsey.mn.us/arcgis/rest/services/ParcelData/AttributedData/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels MultiUse",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "ParcelID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "OwnerLastName",
+              "label": "Owner Last Name",
+              "searchable": true
+            },
+            {
+              "name": "SiteAddress",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "SiteCityName",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "TaxName1",
+              "label": "Tax Name 1",
+              "searchable": true
+            },
+            {
+              "name": "TaxName2",
+              "label": "Tax Name 2",
+              "searchable": true
+            },
+            {
+              "name": "LandUseCodeDescription",
+              "label": "Land Use Code Description",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.co.ramsey.mn.us/arcgis/rest/services/ParcelData/AttributedData/MapServer/0/query?where=UPPER(OwnerName)%20LIKE%20UPPER('%25SMITH%25')&outFields=ParcelID,OwnerName,SiteAddress,SiteCityName&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.ramseycounty.us/residents/property/property-information",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Ramsey County GIS",
+        "url": "https://maps.co.ramsey.mn.us/MapRamsey/",
+        "email": null
+      },
+      "notes": "Ramsey County (St. Paul metro, county seat St. Paul) hosts one of the richest public parcel REST layers in Minnesota. ParcelData/AttributedData/MapServer/0 (Parcels MultiUse) exposes 90+ fields including OwnerName/OwnerName1/OwnerName2/OwnerLastName, OwnerAddress1/2, OwnerCityStateZIP, TaxName1/2, TaxAddress1/2, TaxCityStateZIP, HomesteadName1/2, SiteAddress, SiteCityName, SiteZIP, EMV Land/Building/Total, TotalTax, LandUseCodeDescription, DwellingType, LivingAreaSquareFeet, YearBuilt, GarageYN, LastSaleDate, SalePrice, ParcelAcresDeed, SchoolDistrictName, WatershedDistrictNameTax. maxRecordCount is 1000. Query confirmed live: UPPER(OwnerName) LIKE '%SMITH%' returns real results (e.g., 'KING SMITH LLC' at '598 SMITH AVE S' in Saint Paul). Ramsey County is adjacent to Hennepin to the west and contains the state capital."
+    },
+    {
+      "id": "mn-hennepin",
+      "state": "MN",
+      "stateName": "Minnesota",
+      "stateSlug": "minnesota",
+      "county": "Hennepin",
+      "countySlug": "hennepin-county",
+      "countyFips": "27053",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.hennepin.us/arcgis/rest/services/HennepinData/LAND_PROPERTY/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PID",
+              "label": "Property ID (13-digit)",
+              "searchable": true
+            },
+            {
+              "name": "PID_TEXT",
+              "label": "Property ID Text",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NM",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "HOUSE_NO",
+              "label": "House Number",
+              "searchable": true
+            },
+            {
+              "name": "STREET_NM",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "MAILING_MUNIC_NM",
+              "label": "Mailing Municipality",
+              "searchable": true
+            },
+            {
+              "name": "ZIP_CD",
+              "label": "ZIP Code",
+              "searchable": true
+            },
+            {
+              "name": "FEATURECODE",
+              "label": "Feature Code",
+              "searchable": false
+            },
+            {
+              "name": "FRAC_HOUSE_NO",
+              "label": "House Number Fraction",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.hennepin.us/arcgis/rest/services/HennepinData/LAND_PROPERTY/MapServer/1/query?where=UPPER(OWNER_NM)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=PID,OWNER_NM,STREET_NM,MAILING_MUNIC_NM&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis-hennepin.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-06-06",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Hennepin County Geographic Information Systems",
+        "url": "https://gis-hennepin.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "448,036 polygon parcels covering Minneapolis and the rest of Hennepin County. Verified 2026-05-11: UPPER(OWNER_NM) LIKE '%SMITH%' returns real owners (e.g., 'ALEX D SMITH', 'PAUL LOUIS SMITH'). Owner names are space-padded fixed-width, wrap searches in UPPER() and trim whitespace client-side. Full residential address columns present (HOUSE_NO, FRAC_HOUSE_NO, STREET_NM, MAILING_MUNIC_NM, ZIP_CD). PID is 13-digit composite (parcel-fragment-municipality-section). TORRENS_TYP flag distinguishes Torrens vs. Abstract land per Minnesota's dual-title system. OUTAGE RESOLVED 2026-06-06: the 2026-05 county-side outage cleared -- service re-verified live (448,083 parcels; OWNER_NM queries return real owners)."
+    }
+  ]
+}

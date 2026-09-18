@@ -1,0 +1,1312 @@
+{
+  "stateSlug": "new-york",
+  "stateName": "New York",
+  "stateAbbrev": "NY",
+  "lastUpdated": "2026-05-14",
+  "counties": [
+    {
+      "id": "ny-bronx",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Bronx",
+      "countySlug": "bronx-county",
+      "countyFips": "36005",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "MAPPLUTO",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "BBL",
+              "label": "Borough-Block-Lot (BBL) Identifier",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address",
+              "label": "Tax Lot Address",
+              "searchable": true
+            },
+            {
+              "name": "Borough",
+              "label": "Borough Code (MN/BX/BK/QN/SI)",
+              "searchable": true
+            },
+            {
+              "name": "Block",
+              "label": "Block Number",
+              "searchable": true
+            },
+            {
+              "name": "Lot",
+              "label": "Lot Number",
+              "searchable": true
+            },
+            {
+              "name": "ZipCode",
+              "label": "ZIP Code",
+              "searchable": true
+            },
+            {
+              "name": "ZoneDist1",
+              "label": "Zoning District 1",
+              "searchable": false
+            },
+            {
+              "name": "LandUse",
+              "label": "Land Use Code",
+              "searchable": false
+            },
+            {
+              "name": "AssessTot",
+              "label": "Total Assessment",
+              "searchable": false
+            },
+            {
+              "name": "YearBuilt",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=Borough%3D%27BX%27+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=BBL,OwnerName,Address,Borough&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://nycplanning.github.io/db-pluto/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual",
+          "scopeWhere": "Borough='BX'"
+        },
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Bronx'"
+        }
+      ],
+      "contact": {
+        "department": "NYC Department of City Planning (MAPPLUTO) / NYS Office of Information Technology Services GIS (statewide)",
+        "url": "https://nycplanning.github.io/db-pluto/",
+        "email": null
+      },
+      "notes": "the Bronx is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='BX' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+    },
+    {
+      "id": "ny-erie",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Erie",
+      "countySlug": "erie-county",
+      "countyFips": "36029",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/CgOSc11uky3egK6O/arcgis/rest/services/Erie_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Erie_County_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel Identification Number",
+              "searchable": true
+            },
+            {
+              "name": "SBL",
+              "label": "Section-Block-Lot (SBL) Key",
+              "searchable": true
+            },
+            {
+              "name": "OWNER1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name (Secondary)",
+              "searchable": true
+            },
+            {
+              "name": "MAILAD1",
+              "label": "Mailing Address Line 1",
+              "searchable": true
+            },
+            {
+              "name": "MAILAD2",
+              "label": "Mailing Address Line 2",
+              "searchable": true
+            },
+            {
+              "name": "STREET",
+              "label": "Property Street Address",
+              "searchable": true
+            },
+            {
+              "name": "CITY",
+              "label": "Property City",
+              "searchable": false
+            },
+            {
+              "name": "ZIP",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "ZIP4",
+              "label": "ZIP+4",
+              "searchable": false
+            },
+            {
+              "name": "CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "PROP_TYPE",
+              "label": "Property Type",
+              "searchable": false
+            },
+            {
+              "name": "PROP_DESC",
+              "label": "Property Description",
+              "searchable": false
+            },
+            {
+              "name": "SCHOOL",
+              "label": "School District Name",
+              "searchable": false
+            },
+            {
+              "name": "SCHL_DIST",
+              "label": "School District Code",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/CgOSc11uky3egK6O/arcgis/rest/services/Erie_County_Parcels/FeatureServer/0/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,SBL,OWNER1,OWNER2,STREET,CITY,ZIP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.erie.gov/environment/gis",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Erie County Department of Environment and Planning, GIS Division",
+        "url": "https://www.erie.gov/environment/gis",
+        "email": null
+      },
+      "notes": "54 fields confirmed. Includes PIN (21-char unique parcel ID), SBL (section-block-lot key), OWNER1, OWNER2, mailing address (MAILAD1/MAILAD2), property address (STREET, CITY, ZIP, ZIP4), property class (CLASS), property type/description, school district (SCHOOL, SCHL_DIST), SWIS code, lot dimensions (FRONT, DEPTH), acreage (ASSESSACRE, CALCACRES). Owner query tested and confirmed: UPPER(OWNER1) LIKE UPPER('%SMITH%') returns real residential parcels. This is the 2023 vintage Erie County parcel dataset. Erie County, NY is the Buffalo metropolitan area (FIPS 36029)."
+    },
+    {
+      "id": "ny-kings",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Kings",
+      "countySlug": "kings-county",
+      "countyFips": "36047",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "MAPPLUTO",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "BBL",
+              "label": "Borough-Block-Lot (BBL) Identifier",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address",
+              "label": "Tax Lot Address",
+              "searchable": true
+            },
+            {
+              "name": "Borough",
+              "label": "Borough Code (MN/BX/BK/QN/SI)",
+              "searchable": true
+            },
+            {
+              "name": "Block",
+              "label": "Block Number",
+              "searchable": true
+            },
+            {
+              "name": "Lot",
+              "label": "Lot Number",
+              "searchable": true
+            },
+            {
+              "name": "ZipCode",
+              "label": "ZIP Code",
+              "searchable": true
+            },
+            {
+              "name": "ZoneDist1",
+              "label": "Zoning District 1",
+              "searchable": false
+            },
+            {
+              "name": "LandUse",
+              "label": "Land Use Code",
+              "searchable": false
+            },
+            {
+              "name": "AssessTot",
+              "label": "Total Assessment",
+              "searchable": false
+            },
+            {
+              "name": "YearBuilt",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=Borough%3D%27BK%27+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=BBL,OwnerName,Address,Borough&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://nycplanning.github.io/db-pluto/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual",
+          "scopeWhere": "Borough='BK'"
+        },
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Kings'"
+        }
+      ],
+      "contact": {
+        "department": "NYC Department of City Planning (MAPPLUTO) / NYS Office of Information Technology Services GIS (statewide)",
+        "url": "https://nycplanning.github.io/db-pluto/",
+        "email": null
+      },
+      "notes": "Brooklyn is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='BK' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+    },
+    {
+      "id": "ny-monroe",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Monroe",
+      "countySlug": "monroe-county",
+      "countyFips": "36055",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/yisUfwZZ4fyubK3R/arcgis/rest/services/Monroe_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "BASE_MC_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTYSBL",
+              "label": "County SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "PRINTKEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME1",
+              "label": "Owner Name (Primary)",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME2",
+              "label": "Owner Name (Secondary)",
+              "searchable": true
+            },
+            {
+              "name": "PARCELADDRESS",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "PARCELADDRESSCITY",
+              "label": "Property City",
+              "searchable": true
+            },
+            {
+              "name": "PARCELADDRESSZIPCODE",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "PROPERTYCLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "PROPERTYCLASSDESCRIPTION",
+              "label": "Property Class Description",
+              "searchable": false
+            },
+            {
+              "name": "TOTALASSESSEDVALUE",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "LANDASSESSEDVALUE",
+              "label": "Land Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "YEARBUILT",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "SQUAREFEETLIVINGAREA",
+              "label": "Square Feet Living Area",
+              "searchable": false
+            },
+            {
+              "name": "SCHOOLDISTRICTNAME",
+              "label": "School District",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/yisUfwZZ4fyubK3R/arcgis/rest/services/Monroe_County_Parcels/FeatureServer/0/query?where=UPPER(OWNERNAME1)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTYSBL,OWNERNAME1,OWNERNAME2,PARCELADDRESS,PARCELADDRESSCITY,PARCELADDRESSZIPCODE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.monroecounty.gov/planning-gis",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Monroe County Planning Department GIS",
+        "url": "https://www.monroecounty.gov/planning-gis",
+        "email": null
+      },
+      "notes": "Monroe County is the Rochester metropolitan area (FIPS 36055, pop. 745,000 county-wide). The county-direct FeatureServer at services1.arcgis.com returns 67 confirmed fields on the BASE_MC_Parcels layer, maintained by the Monroe County Planning Department. Key identifiers: COUNTYSBL (full county SBL string, e.g. '141.03-2-47'), PRINTKEY (the formatted print key used on tax maps), and SWIS (the 6-digit State-Wide Information System code that identifies the assessing municipality within Monroe). Owner fields OWNERNAME1/OWNERNAME2 are public. Mailing address is in OWNERSTREETADDRESS, OWNERPOBOX, and OWNERCITYSTATEZIPCODE as a single concatenated field. Building detail fields include BUILDINGSTYLE, EXTERIORWALLMATERIAL, NUMBEROFSTORIES, SQUAREFEETLIVINGAREA, NUMBEROFBEDROOMS, BASEMENTTYPE, CENTRALAIR, and HEATTYPE -- unusually granular for a county REST layer. SEWERTYPE and WATERSUPPLY distinguish municipal vs. private systems. Owner-name queries confirmed live. For current deed and sale records, Monroe County's property lookup is at monroecounty.gov/gis."
+    },
+    {
+      "id": "ny-new-york",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "New York",
+      "countySlug": "new-york-county",
+      "countyFips": "36061",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "MAPPLUTO",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "BBL",
+              "label": "Borough-Block-Lot (BBL) Identifier",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address",
+              "label": "Tax Lot Address",
+              "searchable": true
+            },
+            {
+              "name": "Borough",
+              "label": "Borough Code (MN/BX/BK/QN/SI)",
+              "searchable": true
+            },
+            {
+              "name": "Block",
+              "label": "Block Number",
+              "searchable": true
+            },
+            {
+              "name": "Lot",
+              "label": "Lot Number",
+              "searchable": true
+            },
+            {
+              "name": "ZipCode",
+              "label": "ZIP Code",
+              "searchable": true
+            },
+            {
+              "name": "ZoneDist1",
+              "label": "Zoning District 1",
+              "searchable": false
+            },
+            {
+              "name": "LandUse",
+              "label": "Land Use Code",
+              "searchable": false
+            },
+            {
+              "name": "AssessTot",
+              "label": "Total Assessment",
+              "searchable": false
+            },
+            {
+              "name": "YearBuilt",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=UPPER(OwnerName)%20LIKE%20UPPER('%25SMITH%25')&outFields=BBL,OwnerName,Address,Borough,ZipCode&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://nycplanning.github.io/db-pluto/",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual",
+          "scopeWhere": "Borough='MN'"
+        },
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='NewYork'"
+        }
+      ],
+      "contact": {
+        "department": "NYC Department of City Planning (MAPPLUTO) / NYS Office of Information Technology Services GIS (statewide)",
+        "url": "https://nycplanning.github.io/db-pluto/",
+        "email": null
+      },
+      "notes": "New York County (FIPS 36061) is the formal name for the borough of Manhattan, but both endpoints below cover ALL FIVE NYC boroughs. Use either to query Brooklyn (Kings, 36047), Queens (36081), Bronx (36005), or Staten Island (Richmond, 36085). MAPPLUTO (96 fields) is the DCP-maintained primary source: BBL as the unique identifier, OwnerName, full zoning (ZoneDist1-4, overlays, FAR), building characteristics, political geography. Filter MAPPLUTO by Borough field with codes MN/BX/BK/QN/SI. The NYS Tax Parcels service (75+ fields) covers all 62 NY counties, filter by COUNTY_NAME='Kings'/'Queens'/'New York'/'Bronx'/'Richmond' for NYC boroughs, or any upstate county name for statewide reach."
+    },
+    {
+      "id": "ny-onondaga",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Onondaga",
+      "countySlug": "onondaga-county",
+      "countyFips": "36067",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (e.g. Onondaga)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Onondaga'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Onondaga'"
+        }
+      ],
+      "contact": {
+        "department": "NYS Office of Information Technology Services GIS (statewide layer)",
+        "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+        "email": null
+      },
+      "notes": "Onondaga County (Syracuse, FIPS 36067) is served by the NYS Tax Parcels Public statewide layer, filter with COUNTY_NAME='Onondaga'. 75+ fields including PRIMARY_OWNER, PARCEL_ADDR, SWIS_SBL_ID, PRINT_KEY, MAIL_ADDR, MAIL_CITY, TOTAL_AV, PROP_CLASS, YR_BLT. Owner query confirmed returning real residential parcels (Smith, Gregg S at 2647 Ellsworth Rd). This same statewide endpoint covers all 62 NY counties; see the NYC entry for borough-specific filtering. Note: Monroe County (Rochester, 36055) has its own dedicated hosted service with richer attributes, see ny-monroe entry. The NYS statewide service may not always return Monroe data; use the dedicated Monroe endpoint for that county.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    },
+    {
+      "id": "ny-queens",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Queens",
+      "countySlug": "queens-county",
+      "countyFips": "36081",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "MAPPLUTO",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "BBL",
+              "label": "Borough-Block-Lot (BBL) Identifier",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address",
+              "label": "Tax Lot Address",
+              "searchable": true
+            },
+            {
+              "name": "Borough",
+              "label": "Borough Code (MN/BX/BK/QN/SI)",
+              "searchable": true
+            },
+            {
+              "name": "Block",
+              "label": "Block Number",
+              "searchable": true
+            },
+            {
+              "name": "Lot",
+              "label": "Lot Number",
+              "searchable": true
+            },
+            {
+              "name": "ZipCode",
+              "label": "ZIP Code",
+              "searchable": true
+            },
+            {
+              "name": "ZoneDist1",
+              "label": "Zoning District 1",
+              "searchable": false
+            },
+            {
+              "name": "LandUse",
+              "label": "Land Use Code",
+              "searchable": false
+            },
+            {
+              "name": "AssessTot",
+              "label": "Total Assessment",
+              "searchable": false
+            },
+            {
+              "name": "YearBuilt",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=Borough%3D%27QN%27+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=BBL,OwnerName,Address,Borough&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://nycplanning.github.io/db-pluto/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual",
+          "scopeWhere": "Borough='QN'"
+        },
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Queens'"
+        }
+      ],
+      "contact": {
+        "department": "NYC Department of City Planning (MAPPLUTO) / NYS Office of Information Technology Services GIS (statewide)",
+        "url": "https://nycplanning.github.io/db-pluto/",
+        "email": null
+      },
+      "notes": "Queens is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='QN' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+    },
+    {
+      "id": "ny-richmond",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Richmond",
+      "countySlug": "richmond-county",
+      "countyFips": "36085",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "MAPPLUTO",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "BBL",
+              "label": "Borough-Block-Lot (BBL) Identifier",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address",
+              "label": "Tax Lot Address",
+              "searchable": true
+            },
+            {
+              "name": "Borough",
+              "label": "Borough Code (MN/BX/BK/QN/SI)",
+              "searchable": true
+            },
+            {
+              "name": "Block",
+              "label": "Block Number",
+              "searchable": true
+            },
+            {
+              "name": "Lot",
+              "label": "Lot Number",
+              "searchable": true
+            },
+            {
+              "name": "ZipCode",
+              "label": "ZIP Code",
+              "searchable": true
+            },
+            {
+              "name": "ZoneDist1",
+              "label": "Zoning District 1",
+              "searchable": false
+            },
+            {
+              "name": "LandUse",
+              "label": "Land Use Code",
+              "searchable": false
+            },
+            {
+              "name": "AssessTot",
+              "label": "Total Assessment",
+              "searchable": false
+            },
+            {
+              "name": "YearBuilt",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=Borough%3D%27SI%27+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=BBL,OwnerName,Address,Borough&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://nycplanning.github.io/db-pluto/",
+          "status": "live",
+          "lastVerified": "2026-08-25",
+          "verifiedBy": "manual",
+          "scopeWhere": "Borough='SI'"
+        },
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-11",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Richmond'"
+        }
+      ],
+      "contact": {
+        "department": "NYC Department of City Planning (MAPPLUTO) / NYS Office of Information Technology Services GIS (statewide)",
+        "url": "https://nycplanning.github.io/db-pluto/",
+        "email": null
+      },
+      "notes": "Staten Island is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='SI' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+    },
+    {
+      "id": "ny-suffolk",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Suffolk",
+      "countySlug": "suffolk-county",
+      "countyFips": "36103",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name, filter with 'Suffolk'",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ADD_OWNER",
+              "label": "Additional Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key (tax map reference)",
+              "searchable": true
+            },
+            {
+              "name": "MUNI_NAME",
+              "label": "Municipality Name",
+              "searchable": false
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ZIP",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "FULL_MARKET_VAL",
+              "label": "Full Market Value",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "NBR_BEDROOMS",
+              "label": "Bedrooms",
+              "searchable": false
+            },
+            {
+              "name": "SCHOOL_NAME",
+              "label": "School District Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Suffolk'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID,MUNI_NAME,TOTAL_AV&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-14",
+          "verifiedBy": "automated",
+          "scopeWhere": "COUNTY_NAME='Suffolk'"
+        }
+      ],
+      "contact": {
+        "department": "NYS Office of Information Technology Services (ITS) GIS Program Office",
+        "url": "https://www.its.ny.gov/gis",
+        "email": null
+      },
+      "notes": "75+ fields confirmed. This is the same NYS Tax Parcels Public statewide endpoint used for New York County (Manhattan), filter by COUNTY_NAME='Suffolk' for Suffolk County. Suffolk is the most populous county on Long Island (~1.5M residents). SWIS_SBL_ID is the canonical parcel identifier (26-character SWIS + SBL concatenation); PRINT_KEY is the human-readable tax map reference (e.g. '1.-1-1'). PRIMARY_OWNER is the assessed owner. Note the NYC-area MAPPLUTO endpoint does NOT cover Suffolk. That endpoint is for the five NYC boroughs only. This statewide layer has 75+ attributes including assessed values, market values, year built, building style, heat/fuel type, bedrooms, school district, sewer/water type. Data is the annual NYS Real Property System roll export updated each September/October. ROLL_YR=2025 confirmed in live query results. Municipalities within Suffolk include Babylon, Brookhaven, East Hampton, Huntington, Islip, Riverhead, Shelter Island, Smithtown, Southampton, Southold, all accessible via the same COUNTY_NAME='Suffolk' filter.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    },
+    {
+      "id": "ny-westchester",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Westchester",
+      "countySlug": "westchester-county",
+      "countyFips": "36119",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name, filter with 'Westchester'",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ADD_OWNER",
+              "label": "Additional Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key (tax map reference)",
+              "searchable": true
+            },
+            {
+              "name": "MUNI_NAME",
+              "label": "Municipality Name",
+              "searchable": false
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "FULL_MARKET_VAL",
+              "label": "Full Market Value",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "SCHOOL_NAME",
+              "label": "School District Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Westchester'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID,MUNI_NAME,TOTAL_AV&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-05-14",
+          "verifiedBy": "automated",
+          "scopeWhere": "COUNTY_NAME='Westchester'"
+        }
+      ],
+      "contact": {
+        "department": "NYS Office of Information Technology Services (ITS) GIS Program Office",
+        "url": "https://www.its.ny.gov/gis",
+        "email": null
+      },
+      "notes": "75+ fields confirmed. Same NYS Tax Parcels Public statewide endpoint as New York County (Manhattan) and Suffolk County, filter by COUNTY_NAME='Westchester'. Westchester is the most affluent large county in the lower Hudson Valley (~1M residents), and a high-search-intent county for public notice tools. PRIMARY_OWNER is the assessed owner name. Municipalities within Westchester accessible via this layer include Yonkers, White Plains, New Rochelle, Mount Vernon, Scarsdale, Ardsley, Tarrytown, Port Chester, Mamaroneck, and 35+ other cities/towns/villages, all filtered by COUNTY_NAME='Westchester'. Data is NYS RPS annual roll export (ROLL_YR=2025 confirmed in live query). The Westchester County GIS portal at gis.westchestergov.com offers a browser-based property viewer but does NOT expose a separate county-run public parcel REST endpoint for owner-name search; the NYS statewide service is the only public REST option. For both Suffolk and Westchester, always pair COUNTY_NAME with the owner query (as shown in sampleQuery) to avoid cross-county false matches in this multi-county statewide layer.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    }
+  ]
+}

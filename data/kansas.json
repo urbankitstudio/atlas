@@ -1,0 +1,49 @@
+{
+  "stateSlug": "kansas",
+  "stateName": "Kansas",
+  "stateAbbrev": "KS",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ks-shawnee",
+      "state": "KS",
+      "stateName": "Kansas",
+      "stateSlug": "kansas",
+      "county": "Shawnee",
+      "countySlug": "shawnee-county",
+      "countyFips": "20177",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.sncoapps.us/arcgis2/rest/services/Appraiser/AppraisalDataPro/MapServer/4",
+          "serviceType": "MapServer",
+          "layerIndex": 4,
+          "layerName": "Current Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARCELNUM", "label": "Parcel Number", "searchable": true },
+            { "name": "PID", "label": "Parcel ID", "searchable": true },
+            { "name": "QUICKREFID", "label": "Quick Reference ID", "searchable": true },
+            { "name": "ONAME", "label": "Owner Name", "searchable": true },
+            { "name": "PADDRESS", "label": "Property Address", "searchable": true },
+            { "name": "PADDRESS2", "label": "Property Address 2", "searchable": true },
+            { "name": "TAXUNIT", "label": "Tax Unit", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.sncoapps.us/arcgis2/rest/services/Appraiser/AppraisalDataPro/MapServer/4/query?where=UPPER(ONAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCELNUM,ONAME,PADDRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-sncoks-gis.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-06-27",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Shawnee County Appraiser's Office GIS",
+        "url": "https://snco.gov/ap/mapping.php",
+        "email": null
+      },
+      "notes": "Shawnee County KS (Topeka metro, county seat and state capital Topeka) provides AppraisalDataPro/MapServer/4 (Current Parcels) via the county appraiser's GIS server. This is a 20-field service: OBJECTID, PARCELNUM, ACRES, PID, QUICKREFID, ONAME (owner name), PADDRESS, PADDRESS2, DBOOKPAGE, SUBS (subdivision), NBHD (neighborhood), TAXUNIT, USD (unified school district), LBCSFUNCTION, LBCSACTIVITY, LDVAL, BLDGVAL, TOTVAL, Shape, Shape area. Query confirmed live: UPPER(ONAME) LIKE '%SMITH%' returns real results (e.g., 'SMITH, NEIL K & JONI' on SE 105TH ST). The same service has layer 0 (Parcel Information with Labels), layer 3 (Parcels 1-1-2024, prior year snapshot), and layer 4 (Current Parcels). The Shawnee County Open Data Portal at data-sncoks-gis.opendata.arcgis.com provides additional datasets. The property search app is at gis.sncoapps.us/propertysearch/. Shawnee County KS (FIPS 20177) must not be confused with Shawnee County Ohio or Shawnee Township. NOTE 2026-06-27: query endpoint responds in 13-35s (server-side slowness. Returns 437,436 features when polled with 35s timeout); liveness check at 12s flags FAIL but endpoint IS live. Metadata returns immediately."
+    }
+  ]
+}

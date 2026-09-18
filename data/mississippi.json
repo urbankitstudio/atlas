@@ -1,0 +1,98 @@
+{
+  "stateSlug": "mississippi",
+  "stateName": "Mississippi",
+  "stateAbbrev": "MS",
+  "lastUpdated": "2026-06-06",
+  "counties": [
+    {
+      "id": "ms-hinds",
+      "state": "MS",
+      "stateName": "Mississippi",
+      "stateSlug": "mississippi",
+      "county": "Hinds",
+      "countySlug": "hinds-county",
+      "countyFips": "28049",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://opcgis.deq.state.ms.us/opcgis/rest/services/Government/HINDS_PARCELS/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "HINDS_PARCELS",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PARNO", "label": "Parcel Number", "searchable": true },
+            { "name": "ALTPARNO", "label": "Alternate Parcel Number", "searchable": true },
+            { "name": "PPIN", "label": "PPIN", "searchable": true },
+            { "name": "OWNNAME", "label": "Owner Name", "searchable": true },
+            { "name": "MAILADD1", "label": "Mailing Address 1", "searchable": false },
+            { "name": "MCITY1", "label": "Mailing City 1", "searchable": false },
+            { "name": "MSTATE1", "label": "Mailing State 1", "searchable": false },
+            { "name": "MZIP1", "label": "Mailing ZIP 1", "searchable": false },
+            { "name": "SITEADD", "label": "Site Address", "searchable": true },
+            { "name": "SCITY", "label": "Site City", "searchable": false },
+            { "name": "SSTATE", "label": "Site State", "searchable": false },
+            { "name": "SZIP", "label": "Site ZIP", "searchable": false },
+            { "name": "SUBNAME", "label": "Subdivision Name", "searchable": false }
+          ],
+          "sampleQuery": "https://opcgis.deq.state.ms.us/opcgis/rest/services/Government/HINDS_PARCELS/MapServer/0/query?where=UPPER(OWNNAME)+LIKE+UPPER('%25SMITH%25')&outFields=PARNO,OWNNAME,MAILADD1,SITEADD,SCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.gis.ms.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Mississippi Department of Environmental Quality (MDEQ) OPCGIS. Hosts county parcel layers",
+        "url": "https://www.gis.ms.gov/",
+        "email": null
+      },
+      "notes": "Hinds County (Jackson, pop. 231,000; state capital) parcel layer hosted on MDEQ OPCGIS server. Mississippi DEQ hosts parcel layers for many MS counties under the 'Government' folder on opcgis.deq.state.ms.us. 20 fields confirmed: OBJECTID, CAMA, PARNO, ALTPARNO, PPIN, OWNNAME, MAILADD1/2, MCITY1/2, MSTATE1/2, MZIP1/2, SITEADD, SCITY, SSTATE, SZIP, SUBNAME. OWNNAME field returns owner name in mixed format. Verified 2026-05-15: SMITH returns Jackson MS addresses. The same server also has DeSoto County parcels and other MS county datasets."
+    },
+    {
+      "id": "ms-desoto",
+      "state": "MS",
+      "stateName": "Mississippi",
+      "stateSlug": "mississippi",
+      "county": "DeSoto",
+      "countySlug": "desoto-county",
+      "countyFips": "28033",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.desotocountyms.gov/arcgis/rest/services/CountyWebMap/Tax_Assessors_County_Web_Map/MapServer/29",
+          "serviceType": "MapServer",
+          "layerIndex": 29,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "OWNER_NAME", "label": "Owner Name", "searchable": true },
+            { "name": "SECOND_OWNER", "label": "Second Owner", "searchable": false },
+            { "name": "OWNER_ADDRESS", "label": "Owner Address", "searchable": false },
+            { "name": "CITY", "label": "City", "searchable": false },
+            { "name": "STATE", "label": "State", "searchable": false },
+            { "name": "ZIP_CODE", "label": "ZIP Code", "searchable": false },
+            { "name": "FULL_ADDR", "label": "Full Site Address", "searchable": true },
+            { "name": "ACREAGE", "label": "Acreage", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.desotocountyms.gov/arcgis/rest/services/CountyWebMap/Tax_Assessors_County_Web_Map/MapServer/29/query?where=UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,OWNER_NAME,FULL_ADDR,CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.desotocountyms.gov/205/GIS-Maps-Data",
+          "status": "live",
+          "lastVerified": "2026-06-06",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "DeSoto County GIS Department",
+        "url": "https://desotocounty-dcms-gis.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "DeSoto County (Southaven and Olive Branch; pop. 185,000; Memphis metro south) is Mississippi's fastest-growing county and carries the highest parcel-lookup demand in the state. The Tax Parcels layer sits at index 28 of the DeSoto County Layers MapServer (maps.desotocountyms.gov). 15 confirmed fields: PIN, ACREAGE, FULL_ADDR (site address), OWNER_NAME, SECOND_OWNER (co-owner), OWNER_ADDRESS, CITY, STATE, ZIP_CODE, DEED_BOOK1, DEED_PAGE1, WD_Link (warranty deed hyperlink), Tax_Info (hyperlink to county tax record), and Tax_Map (tax map hyperlink). Owner-name queries confirmed live 2026-05-15; SMITH returns Olive Branch MS addresses. WD_Link and Tax_Info are URL fields that deep-link directly into the county's deed and tax systems -- a convenience not common in Mississippi public layers. DeSoto County's GIS Hub at desotocounty-dcms-gis.hub.arcgis.com provides bulk downloads. The county tax assessor portal at desotocountyms.gov handles exemption and appeal records not surfaced in the REST layer. MIGRATED 2026-06-06: Layer 28 of Layers/MapServer was retired (ArcGIS 404) -- parcels now at CountyWebMap/Tax_Assessors_County_Web_Map/MapServer/29 (84,713 parcels; OWNER_NAME search re-verified live). Deed/tax hyperlink fields from the old layer are not confirmed on the new one."
+    }
+  ]
+}

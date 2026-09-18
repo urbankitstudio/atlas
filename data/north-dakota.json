@@ -1,0 +1,57 @@
+{
+  "stateSlug": "north-dakota",
+  "stateName": "North Dakota",
+  "stateAbbrev": "ND",
+  "lastUpdated": "2026-06-20",
+  "counties": [
+    {
+      "id": "nd-cass",
+      "state": "ND",
+      "stateName": "North Dakota",
+      "stateSlug": "north-dakota",
+      "county": "Cass",
+      "countySlug": "cass-county",
+      "countyFips": "38017",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisweb.casscountynd.gov/arcgis/rest/services/Public/CountyParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "CountyParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "GISPIN", "label": "GIS Parcel ID", "searchable": true },
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "DASHPIN", "label": "Dash PIN", "searchable": true },
+            { "name": "Name", "label": "Owner Name", "searchable": true },
+            { "name": "PropertyAddress", "label": "Property Address", "searchable": true },
+            { "name": "LMVENU", "label": "Land Market Value (per unit)", "searchable": false },
+            { "name": "VENUDESC", "label": "Venue Description", "searchable": false },
+            { "name": "Section", "label": "Section", "searchable": false },
+            { "name": "Lot", "label": "Lot", "searchable": false },
+            { "name": "CommRes", "label": "Commercial/Residential flag", "searchable": false },
+            { "name": "Exempt", "label": "Exempt flag", "searchable": false },
+            { "name": "ACRES", "label": "Acres", "searchable": false },
+            { "name": "LGDESC", "label": "Legal Description", "searchable": false },
+            { "name": "SchoolDistrict", "label": "School District", "searchable": false },
+            { "name": "FireDistrict", "label": "Fire District", "searchable": false }
+          ],
+          "sampleQuery": "https://gisweb.casscountynd.gov/arcgis/rest/services/Public/CountyParcels/MapServer/0/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=GISPIN,PIN,Name,PropertyAddress,SchoolDistrict&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisweb.casscountynd.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Cass County GIS / Cass County Commission",
+        "url": "https://www.casscountynd.gov/county/depts/gis/Pages/default.aspx",
+        "email": null
+      },
+      "notes": "Cass County ND (Fargo metro; county seat Fargo; FIPS 38017; most populous county in ND, pop. 193,000) provides parcel data via gisweb.casscountynd.gov. The Public/CountyParcels/MapServer/0 layer exposes 20 fields: OBJECTID, GISPIN (14-digit GIS parcel ID, e.g., '64160000340000'), DASHPIN, PIN, ALTPIN, LMVENU, VENUDESC, Name (owner name), Section, Lot, CommRes, Exempt, As400Acres, ACRES, LGDESC (legal description), PLATID, PropertyAddress, SchoolDistrict, FireDistrict. Owner search via UPPER(Name) LIKE returns full owner name strings. Verified 2026-06-20: SMITH returns Fargo-area addresses (e.g., GISPIN '01001000210000', owner 'DANIEL N & LORETTA K WENTZ' at 2315 UNIVERSITY DR N). Note: the Name field holds the full owner name as a single string. Cass County ND (FIPS 38017) must not be confused with Cass County MO, NE, IL, or TX."
+    }
+  ]
+}

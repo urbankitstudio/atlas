@@ -1,0 +1,288 @@
+{
+  "stateSlug": "west-virginia",
+  "stateName": "West Virginia",
+  "stateAbbrev": "WV",
+  "lastUpdated": "2026-08-04",
+  "counties": [
+    {
+      "id": "wv-kanawha",
+      "state": "WV",
+      "stateName": "West Virginia",
+      "stateSlug": "west-virginia",
+      "county": "Kanawha",
+      "countySlug": "kanawha-county",
+      "countyFips": "54039",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WVParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "CleanParcelID",
+              "label": "Parcel ID (20-digit compound)",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerName",
+              "label": "Full Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "FullPhysicalAddress",
+              "label": "Physical (Situs) Address",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "FullLegalDescription",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "CountyID",
+              "label": "County ID string ('20' = Kanawha)",
+              "searchable": false
+            },
+            {
+              "name": "GISPID",
+              "label": "GIS Parcel ID",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=CountyID%3D'20'+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mapwv.gov/parcel/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "COUNTY = '20'"
+        }
+      ],
+      "contact": {
+        "department": "WV GIS Technical Center (WVGISTC) / West Virginia University",
+        "url": "https://www.mapwv.gov/",
+        "email": null
+      },
+      "notes": "Kanawha County WV (Charleston; state capital; county seat Charleston; FIPS 54039; most populous WV county, pop. 178,000) uses the statewide WV parcel layer hosted by the WV GIS Technical Center (WVGISTC) at WVU (services.wvgis.wvu.edu). CRITICAL: CountyID is a zero-padded 2-digit string ('20' for Kanawha, NOT integer 20), use WHERE CountyID='20' with quotes. Key fields: CleanParcelID (20-digit: CountyID-District-Map-ParcelPrefix-ParcelSuffix-SpecialID), FullOwnerName, FullOwnerAddress, FullPhysicalAddress, FullLegalDescription, GISPID, CountyID, Acres_C. All 55 WV counties share this single statewide endpoint. Verified 2026-06-20: CountyID='20' AND SMITH returns Charleston-area owner names. The mapwv.gov/parcel public viewer uses this same WVU-hosted layer. Updated from legacy WV DOH/Transportation server URL to authoritative WVU WVGISTC server 2026-06-20."
+    },
+    {
+      "id": "wv-monongalia",
+      "state": "WV",
+      "stateName": "West Virginia",
+      "stateSlug": "west-virginia",
+      "county": "Monongalia",
+      "countySlug": "monongalia-county",
+      "countyFips": "54061",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WVParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "CleanParcelID",
+              "label": "Parcel ID (20-digit compound)",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerName",
+              "label": "Full Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "FullPhysicalAddress",
+              "label": "Physical (Situs) Address",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "FullLegalDescription",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "CountyID",
+              "label": "County ID string ('31' = Monongalia)",
+              "searchable": false
+            },
+            {
+              "name": "GISPID",
+              "label": "GIS Parcel ID",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=CountyID%3D'31'+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mapwv.gov/parcel/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "COUNTY = '31'"
+        }
+      ],
+      "contact": {
+        "department": "WV GIS Technical Center (WVGISTC) / West Virginia University",
+        "url": "https://www.mapwv.gov/",
+        "email": null
+      },
+      "notes": "Monongalia County WV (Morgantown; county seat Morgantown; FIPS 54061; home to WVU main campus) uses the statewide WV parcel layer (CountyID='31'). CRITICAL: CountyID is a string, use CountyID='31' (with quotes). Verified 2026-06-20: SMITH query returns Morgantown-area addresses. Same endpoint and schema as all WV counties on the WVU WVGISTC server."
+    },
+    {
+      "id": "wv-raleigh",
+      "state": "WV",
+      "stateName": "West Virginia",
+      "stateSlug": "west-virginia",
+      "county": "Raleigh",
+      "countySlug": "raleigh-county",
+      "countyFips": "54081",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WVParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "CleanParcelID",
+              "label": "Parcel ID (20-digit compound)",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerName",
+              "label": "Full Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "FullPhysicalAddress",
+              "label": "Physical (Situs) Address",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "FullLegalDescription",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "CountyID",
+              "label": "County ID string ('40' = Raleigh)",
+              "searchable": false
+            },
+            {
+              "name": "GISPID",
+              "label": "GIS Parcel ID",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=CountyID%3D'40'+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mapwv.gov/parcel/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "COUNTY = '41'"
+        }
+      ],
+      "contact": {
+        "department": "WV GIS Technical Center (WVGISTC) / West Virginia University",
+        "url": "https://www.mapwv.gov/",
+        "email": null
+      },
+      "notes": "Raleigh County WV (Beckley; county seat Beckley; FIPS 54081) uses the statewide WV parcel layer (CountyID='40'). CRITICAL: CountyID is a string, use CountyID='40' (with quotes). Verified 2026-06-20: SMITH query returns Beckley-area addresses. Same endpoint and schema as all WV counties on the WVU WVGISTC server."
+    },
+    {
+      "id": "wv-cabell",
+      "state": "WV",
+      "stateName": "West Virginia",
+      "stateSlug": "west-virginia",
+      "county": "Cabell",
+      "countySlug": "cabell-county",
+      "countyFips": "54011",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WVParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "CleanParcelID",
+              "label": "Parcel ID (20-digit compound)",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerName",
+              "label": "Full Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "FullPhysicalAddress",
+              "label": "Physical (Situs) Address",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "FullLegalDescription",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "CountyID",
+              "label": "County ID string ('06' = Cabell)",
+              "searchable": false
+            },
+            {
+              "name": "GISPID",
+              "label": "GIS Parcel ID",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=CountyID%3D'06'+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mapwv.gov/parcel/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "COUNTY = '06'"
+        }
+      ],
+      "contact": {
+        "department": "WV GIS Technical Center (WVGISTC) / West Virginia University",
+        "url": "https://www.mapwv.gov/",
+        "email": null
+      },
+      "notes": "Cabell County WV (Huntington; county seat Huntington; FIPS 54011) uses the statewide WV parcel layer (CountyID='06'). CRITICAL: CountyID is a zero-padded string, use CountyID='06' (with quotes and leading zero). Verified 2026-06-20: SMITH query returns Huntington-area addresses. Same endpoint and schema as all WV counties on the WVU WVGISTC server."
+    }
+  ]
+}

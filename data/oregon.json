@@ -1,0 +1,190 @@
+{
+  "stateSlug": "oregon",
+  "stateName": "Oregon",
+  "stateAbbrev": "OR",
+  "lastUpdated": "2026-09-02",
+  "counties": [
+    {
+      "id": "or-multnomah",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Multnomah",
+      "countySlug": "multnomah-county",
+      "countyFips": "41051",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/x7DNZL1YqNQVNykA/arcgis/rest/services/Multnomah_County_Taxlot_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Multnomah County Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "MAPTAXLOT", "label": "Map-Taxlot", "searchable": true },
+            { "name": "PROPID", "label": "Property ID", "searchable": true },
+            { "name": "NAME", "label": "Owner Name", "searchable": true },
+            { "name": "NAME2", "label": "Owner Name 2", "searchable": false },
+            { "name": "ADDR1", "label": "Owner Address", "searchable": true },
+            { "name": "CITY", "label": "Owner City", "searchable": false },
+            { "name": "STATE", "label": "Owner State", "searchable": false },
+            { "name": "ZIP", "label": "Owner ZIP", "searchable": false },
+            { "name": "SITUSADDR", "label": "Site Address", "searchable": true },
+            { "name": "SITUSCITY", "label": "Site City", "searchable": false },
+            { "name": "SALE_DATE", "label": "Sale Date", "searchable": false },
+            { "name": "SALE_PRICE", "label": "Sale Price", "searchable": false }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/x7DNZL1YqNQVNykA/arcgis/rest/services/Multnomah_County_Taxlot_Parcels/FeatureServer/0/query?where=UPPER(NAME)+LIKE+UPPER('%25SMITH%25')&outFields=MAPTAXLOT,PROPID,NAME,ADDR1,CITY,SITUSADDR&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis-multco.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-09-02",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Multnomah County Department of Assessment, Recording and Taxation, GIS",
+        "url": "https://gis-multco.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "56 fields confirmed 2026-09-02 including MAPTAXLOT, PROPID, ALTACCTNUM, NAME, NAME2, ADDR1, ADDR2, CITY, STATE, ZIP, SITUSADDR, SITUSCITY, SITUSZIP, LEGAL, DEED_TYPE, INST_NUM, DEED_DATE, SALE_PRICE, SALE_DATE, ZONING, SIZEACRES, ROLLYEAR, ROLLLAND, ROLLIMP. Owner name confirmed live (NAME, e.g. 'SMITH,JENNIFER Q & SMITH,JEREMY C' with ADDR1 and SITUSADDR). Until 2026-09-02 this entry carried the Umatilla County Tax Lots layer (services3.arcgis.com/tNPgIZWOB0Efvm0g), whose own description names Umatilla. That layer now lives under Umatilla County."
+    },
+    {
+      "id": "or-lane",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Lane",
+      "countySlug": "lane-county",
+      "countyFips": "41039",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://lcgispubags.lanecountyor.gov/arcgis/rest/services/LaneCountyMaps/AddressParcel/MapServer/2",
+          "serviceType": "MapServer",
+          "layerIndex": 2,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "RLID", "label": "RLID (Regional Land Information Database ID)", "searchable": true },
+            { "name": "MAPTAXLOT", "label": "Map-Taxlot Number", "searchable": true },
+            { "name": "OWNNAME", "label": "Owner Name", "searchable": true },
+            { "name": "ADDR1", "label": "Owner Address Line 1", "searchable": true },
+            { "name": "ADDR2", "label": "Owner Address Line 2", "searchable": true },
+            { "name": "ADDR3", "label": "Owner Address Line 3", "searchable": true },
+            { "name": "OWNERCITY", "label": "Owner City", "searchable": false },
+            { "name": "OWNERPRVST", "label": "Owner State", "searchable": false },
+            { "name": "OWNERZIP", "label": "Owner ZIP", "searchable": false }
+          ],
+          "sampleQuery": "https://lcgispubags.lanecountyor.gov/arcgis/rest/services/LaneCountyMaps/AddressParcel/MapServer/2/query?where=UPPER(OWNNAME)+LIKE+UPPER('%25SMITH%25')&outFields=RLID,MAPTAXLOT,OWNNAME,ADDR1&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.lanecounty.org/business/maps",
+          "status": "live",
+          "lastVerified": "2026-09-02",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Lane County Information Services, Maps & GIS",
+        "url": "https://www.lanecounty.org/business/maps",
+        "email": null
+      },
+      "notes": "24 fields confirmed including OBJECTID, RLID, PROPACCT, MAPTAXLOT, MAPNUMBER, TAXLOT, ACCTNO, OWNNAME, ADDR1, ADDR2, ADDR3, OWNERCITY, OWNERPRVST, OWNERZIP, OWNERCNTRY, MAPACRES, GEOCITY, UGB, AscendAcres, Shape_Length, Shape_Area, zoningdesc, plandesdesc. Owner name confirmed live: OWNNAME field returns real owner names (e.g., 'SMITH, BENJAMIN C 25%...'). MIGRATED 2026-06-06: lcmaps.lanecounty.org was retired (HTTP 500). The service moved to lcgispubags.lanecountyor.gov LaneCountyMaps/AddressParcel/MapServer/2 over HTTPS (159,028 parcels; OWNNAME search re-verified live). Situs and market-value columns from the old layer are not yet confirmed on the new one. searchFields trimmed to confirmed columns. RLID is the Regional Land Information Database identifier. Real Market Value fields are available (RMVLND, RMVIMP, RMVTOTAL). maxRecordCount=1000. Capabilities: Map, Query, Data. OUTAGE 2026-09-01: this path answered 404 'Service not found' for the Oregon probe; live again on 2026-09-02 (200, 75 fields, owner query returns rows). The county also publishes the same parcels at AT/AddressParcelSales/MapServer/2 (26 fields, weekly RLIDgeo publish); use it if this path drops again."
+    },
+    {
+      "id": "or-marion",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Marion",
+      "countySlug": "marion-county",
+      "countyFips": "41047",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.co.marion.or.us/arcgis/rest/services/Public/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "TAXLOT", "label": "Tax Lot Number", "searchable": true },
+            { "name": "TAXACCT", "label": "Tax Account Number", "searchable": true },
+            { "name": "OWNERNAME", "label": "Owner Name", "searchable": true },
+            { "name": "SITUS", "label": "Situs Address", "searchable": true },
+            { "name": "ACRES", "label": "Map Acreage", "searchable": false },
+            { "name": "RMVLND", "label": "Real Market Value (Land)", "searchable": false },
+            { "name": "RMVIMP", "label": "Real Market Value (Improvements)", "searchable": false },
+            { "name": "RMVTOTAL", "label": "Real Market Value (Total)", "searchable": false },
+            { "name": "ASSDVAL", "label": "Assessed Value", "searchable": false },
+            { "name": "TAXCODE", "label": "Tax Code Area", "searchable": false },
+            { "name": "ZONECODE", "label": "Zoning Code", "searchable": false },
+            { "name": "YEARBUILT", "label": "Year Built", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.co.marion.or.us/arcgis/rest/services/Public/Parcels/MapServer/0/query?where=UPPER(OWNERNAME)+LIKE+UPPER('%25SMITH%25')&outFields=TAXLOT,TAXACCT,OWNERNAME,SITUS,ACRES,RMVTOTAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.co.marion.or.us/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Marion County GIS / Marion County Assessment & Taxation",
+        "url": "https://gis.co.marion.or.us/",
+        "email": null
+      },
+      "notes": "46 fields confirmed including OBJECTID, SHAPE, TAXLOT, TAXACCT, OTHERACCTS, ALT_TAXLOT, ALT_TAXACCT, STREETNUM, PRE_DIR, STREETNAME, STREETTYPE, POST_DIR, UNITNUM, SITUS, SITUSCSZ, PLATNAME, BLOCK, LOT, ACRES, LASTUPDATE, INSTNUM, INSTTYPE, INSTDATE, SALEPRICE, OWNERNAME, OWNERADDR, OWNERCSZ, ZONECODE, ZONEAUTH, ZONEWEB, YEARBUILT, BLDGAREA, LIVINGAREA, PROPCLASS, PRPCLSDESC, RMVLND, RMVIMP, RMVTOTAL, ASSDVAL, TAXCODE, CITY, SCHLDIST, FIREDIST, REFLINK, MAPLINK, TAXLOTNS. Owner name confirmed live: OWNERNAME field returns real owner names (e.g., 'SMITH, BENJAMIN C 25% & SMITH, CYNTHIA 25%...'). Covers Salem metro and all of Marion County. SITUS is the combined situs address string; SITUSCSZ is the city-state-ZIP. Capabilities: Map, Query, Data. maxRecordCount=1000."
+    },
+    {
+      "id": "or-umatilla",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Umatilla",
+      "countySlug": "umatilla-county",
+      "countyFips": "41059",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/tNPgIZWOB0Efvm0g/ArcGIS/rest/services/Tax_Lots/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Tax Lots",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "TLID", "label": "Tax Lot ID", "searchable": true },
+            { "name": "account_id", "label": "Account ID", "searchable": true },
+            { "name": "MAILING_NA", "label": "Mailing Name (Owner)", "searchable": true },
+            { "name": "M_ADDRESS", "label": "Mailing Address", "searchable": true },
+            { "name": "M_CITY", "label": "Mailing City", "searchable": false },
+            { "name": "M_STATE", "label": "Mailing State", "searchable": false },
+            { "name": "zip", "label": "Mailing ZIP", "searchable": false },
+            { "name": "SITUS_HOUS", "label": "Situs House Number", "searchable": false },
+            { "name": "SITUS_STRE", "label": "Situs Street Name", "searchable": true },
+            { "name": "SITUS_CITY", "label": "Situs City", "searchable": true },
+            { "name": "SITUS_ZIP", "label": "Situs ZIP", "searchable": false },
+            { "name": "RMV_PROPER", "label": "Real Market Value (Property)", "searchable": false },
+            { "name": "PROPERTY_C", "label": "Property Class", "searchable": false }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/tNPgIZWOB0Efvm0g/ArcGIS/rest/services/Tax_Lots/FeatureServer/0/query?where=UPPER(MAILING_NA)+LIKE+UPPER('%25SMITH%25')&outFields=TLID,MAILING_NA,M_ADDRESS,SITUS_HOUS,SITUS_STRE,SITUS_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.umatillacounty.gov/departments/at/gis",
+          "status": "live",
+          "lastVerified": "2026-09-02",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Umatilla County Assessment and Taxation, GIS",
+        "url": "https://www.umatillacounty.gov/departments/at/gis",
+        "email": null
+      },
+      "notes": "46 fields confirmed including TLID, GlobalID, StatedArea, ID, account_id, tax_status, map_tax, MAP, Taxlot, S_I_TYPE, SI_NUMBER, MAILING_NA, IN_CARE_OF, AGENT, M_ADDRESS, M_CITY, M_STATE, zip, YEAR, ma, sa, nh, RMV_PROPER, PROPERTY_C, CODE_AREA, SUM_OF_ACR, SUM_OF_SQF, SITUS_HOUS (house number), SITUS_STRE, SITUS_ST_1, SITUS_DIRE, SITUS_UNIT, SITUS_CITY, SITUS_STAT, SITUS_ZIP, SITUS_PRE_. Owner name search via UPPER() LIKE on MAILING_NA returns real results (e.g., 'SMITH TIMOTHY BLAIR & KAREN KAY'). Hosted on ArcGIS Online (services3.arcgis.com/tNPgIZWOB0Efvm0g). Parcel boundaries are approximated, not for determining legal property boundaries. This data is from Umatilla County GIS (Assessment and Taxation) and covers all of Umatilla County. Capabilities: Query, Sync. Filed under Multnomah until 2026-09-02: the layer's own description reads 'a Umatilla County GIS layer depicting land partition and ownership within Umatilla County' (copyright Umatilla County GIS, service TaxLot_situs_08_06_2025, 44,849 tax lots)."
+    }
+  ]
+}

@@ -1,0 +1,467 @@
+{
+  "stateSlug": "california",
+  "stateName": "California",
+  "stateAbbrev": "CA",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "ca-los-angeles",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Los Angeles",
+      "countySlug": "los-angeles-county",
+      "countyFips": "06037",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://public.gis.lacounty.gov/public/rest/services/LACounty_Cache/LACounty_Parcel/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "LA County Parcel",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "AIN", "label": "Assessor Identification Number (AIN)", "searchable": true },
+            { "name": "APN", "label": "Assessor Parcel Number (formatted)", "searchable": true },
+            { "name": "SitusFullAddress", "label": "Situs Address", "searchable": true },
+            { "name": "SitusCity", "label": "City", "searchable": false },
+            { "name": "SitusZIP", "label": "ZIP Code", "searchable": false },
+            { "name": "UseCode", "label": "Use Code", "searchable": false },
+            { "name": "UseDescription", "label": "Use Description", "searchable": false },
+            { "name": "YearBuilt1", "label": "Year Built", "searchable": false }
+          ],
+          "sampleQuery": "https://public.gis.lacounty.gov/public/rest/services/LACounty_Cache/LACounty_Parcel/MapServer/0/query?where=AIN%3D%274321002009%27&outFields=*&f=json",
+          "license": "public",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-06-04",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Los Angeles County GIS",
+        "url": "https://egis-lacounty.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Los Angeles County is the most populous US county (pop. 10M+) and contains 88 incorporated cities plus a large unincorporated area. The Assessor Identification Number (AIN) is a 10-digit numeric code unique to each parcel. The public LACounty_Cache/LACounty_Parcel MapServer layer exposes AIN, APN, and SitusFullAddress (no owner name), because the county does not publish an owner column on this layer. (Why California counties differ on this is explained on the California state page.) For ownership data, use the LA County Assessor's portal at assessor.lacounty.gov; the Assessor's office manages roughly 2.5 million parcels and publishes annual assessment rolls. Re-verified live 2026-06-04, a sample AIN query returned a real parcel. The EGIS open-data hub at egis-lacounty.hub.arcgis.com has downloadable parcel shapefiles. AIN queries use exact match: AIN='4321002009' (no dashes)."
+    },
+    {
+      "id": "ca-sacramento",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Sacramento",
+      "countySlug": "sacramento-county",
+      "countyFips": "06067",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor Parcel Number", "searchable": true },
+            { "name": "STREET_NBR", "label": "Street Number", "searchable": true },
+            { "name": "STREET_NAM", "label": "Street Name", "searchable": true },
+            { "name": "CITY", "label": "City", "searchable": true },
+            { "name": "ZIP", "label": "ZIP Code", "searchable": false },
+            { "name": "TRA", "label": "Tax Rate Area", "searchable": false },
+            { "name": "LANDUSE", "label": "Land Use Code", "searchable": false },
+            { "name": "LU_GENERAL", "label": "Land Use (General)", "searchable": false },
+            { "name": "LOT_SIZE", "label": "Lot Size (sq ft)", "searchable": false },
+            { "name": "JURISDICTION", "label": "Jurisdiction", "searchable": true },
+            { "name": "PRCL_TYPE", "label": "Parcel Type", "searchable": false }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/Parcels/FeatureServer/0/query?where=JURISDICTION%3D'CITRUS+HEIGHTS'&outFields=APN,STREET_NAM,STREET_NBR,CITY,ZIP,TRA,LANDUSE,LOT_SIZE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-sacramentocounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Sacramento County GIS / Planning and Environmental Review",
+        "url": "https://data-sacramentocounty.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "22 fields confirmed: OBJECTID, APN, LOT_SIZE, NEIBRHC, JURISDICTION, STREET_NBR, STREET_NAM, CITY, ZIP, TRA, SUBDIVISIO, LOT, LANDUSE, LU_GENERAL, LU_SPECIF, LU_DETAIL, LU_USE, LU_SEC_USE, PRCL_KEY, PRCL_TYPE, Shape__Area, Shape__Length. Live query confirmed: JURISDICTION='CITRUS HEIGHTS' returns real Sacramento County parcels. NOTE: Owner name is NOT on this public layer. APN is the 14-character Sacramento County parcel number. Land use fields are detailed (LU_GENERAL, LU_SPECIF, LU_DETAIL). ArcGIS item ID: 8d011b99aebc46d48060b2e5bdd7f4a0. Hosted on ArcGIS Online (services1.arcgis.com/5NARefyPVtAeuJPU). Capabilities: Query, Extract. maxRecordCount=2000."
+    },
+    {
+      "id": "ca-sonoma",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Sonoma",
+      "countySlug": "sonoma-county",
+      "countyFips": "06097",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://socogis.sonomacounty.ca.gov/map/rest/services/OWTSPublic/Cities_GIS_Parcel_Base/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Cities GIS Parcel Base",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor's Parcel Number", "searchable": true },
+            { "name": "SitusFormatted1", "label": "Situs Address (line 1)", "searchable": true },
+            { "name": "SitusStreetName", "label": "Situs Street Name", "searchable": true },
+            { "name": "SitusCity", "label": "Situs City", "searchable": true }
+          ],
+          "sampleQuery": "https://socogis.sonomacounty.ca.gov/map/rest/services/OWTSPublic/Cities_GIS_Parcel_Base/FeatureServer/0/query?where=APN%3D%27029-201-001%27&outFields=APN,SitusFormatted1,SitusStreetName,SitusCity&f=json",
+          "license": "public",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Sonoma County GIS",
+        "url": "https://gis-sonomacounty.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Sonoma County (county seat Santa Rosa, pop. 490,000) publishes parcels through the OWTSPublic Cities_GIS_Parcel_Base FeatureServer. APN format is XXX-XXX-XXX with hyphens (e.g. '029-201-001'). Owner name is NOT exposed on this public layer; for ownership, use the county Assessor. (Why California counties differ on this is explained on the California state page.) The Sonoma County Assessor's parcel search is at sonomacounty.ca.gov/assessor. The address schema on this layer was refactored in 2026: the prior single SitusAddress string field was replaced by two formatted address lines (SitusFormatted1, SitusFormatted2) plus fully structured components, SitusStreetNo, SitusDirection, SitusStreetName, SitusStreetType, SitusUnitNumber, SitusCity, SitusState, SitusZip. Queries on the old SitusAddress field name will fail against the current layer; use SitusFormatted1 or SitusStreetName instead. The endpoint is hosted on the county's own ArcGIS server (socogis.sonomacounty.ca.gov). The Sonoma County GIS open-data hub is at gis-sonomacounty.hub.arcgis.com."
+    },
+    {
+      "id": "ca-orange",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Orange",
+      "countySlug": "orange-county",
+      "countyFips": "06059",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://www.ocgis.com/arcpub/rest/services/Map_Layers/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "ASSESSMENT_NO", "label": "Assessment Number (APN)", "searchable": true },
+            { "name": "SITE_ADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "YEAR_BUILT", "label": "Year Built", "searchable": false },
+            { "name": "NBR_BEDROOMS", "label": "Bedrooms", "searchable": false }
+          ],
+          "sampleQuery": "https://www.ocgis.com/arcpub/rest/services/Map_Layers/Parcels/MapServer/0/query?where=ASSESSMENT_NO+LIKE+'%25072-478%25'&outFields=ASSESSMENT_NO,SITE_ADDRESS,YEAR_BUILT&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-ocpw.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Orange County Public Works GIS / OC Survey",
+        "url": "https://data-ocpw.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "Orange County CA (Anaheim/Santa Ana/Irvine), 687,000+ parcels. Only 6 fields on the public REST endpoint: ASSESSMENT_NO, SITE_ADDRESS, YEAR_BUILT, NBR_BEDROOMS, SHAPE, OBJECTID. Owner name is NOT on this public layer. The ASSESSMENT_NO is the APN with hyphens (e.g. '072-478-23'). Full assessor data is available through the ParcelQuest partnership at the county assessor portal (ocassessor.gov). This domain (ocgis.com) is Orange County California Public Works GIS. Note that Orange County Florida's GIS uses ocfl.net."
+    },
+    {
+      "id": "ca-san-bernardino",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "San Bernardino",
+      "countySlug": "san-bernardino-county",
+      "countyFips": "06071",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/Parcels_for_San_Bernardino_County/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "ParcelNumber", "label": "Parcel Number (APN)", "searchable": true },
+            { "name": "OwnerName", "label": "Owner Name (redacted per CA Gov Code 7928.205)", "searchable": false },
+            { "name": "LandValue", "label": "Land Value", "searchable": false },
+            { "name": "ImprovementValue", "label": "Improvement Value", "searchable": false },
+            { "name": "Zoning", "label": "Zoning Code", "searchable": true },
+            { "name": "Acreage", "label": "Acreage", "searchable": false }
+          ],
+          "sampleQuery": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/Parcels_for_San_Bernardino_County/FeatureServer/0/query?where=ParcelNumber+LIKE+'%25033406%25'&outFields=ParcelNumber,OwnerName,LandValue,Zoning,Acreage&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-sbcounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "County of San Bernardino, Geographic Information Management Systems (GIMS)",
+        "url": "https://data-sbcounty.opendata.arcgis.com/",
+        "email": null
+      },
+      "notes": "San Bernardino County is the largest county by land area in the contiguous United States (20,000+ sq mi, extending from the Inland Empire to the Nevada and Arizona borders), with a population of approximately 2.2M. 21 fields confirmed including ParcelNumber (the APN), OwnerName, LandValue, ImprovementValue, PersonalPropertyValue, ExemptionValue, HomeOwnerExemption, Acreage, TaxStatus, TaxRateArea, Zoning, ZoningDescription, Jurisdiction. Critical limitation: the OwnerName field exists in the schema and is returned in query results, but its value is redacted to the string 'Protected Per CA Gov Code 7928.205' on every public record. This is a deliberate redaction applied server-side under California Assembly Bill 1785 (effective January 2023), not a field that varies by parcel. ParcelNumber, LandValue, ImprovementValue, Zoning, and Acreage remain accessible and unredacted. Hosted on ArcGIS Online (services.arcgis.com/aA3snZwJfFkVyDuP). The county Assessor portal at arc.sbcounty.gov/property-information/ provides ownership data by APN. The Geographic Information Management Systems (GIMS) division manages the spatial data. Open-data hub: data-sbcounty.opendata.arcgis.com.",
+      "ownerFieldNote": {
+        "body": "San Bernardino County's public parcel layer returns an OwnerName field, but every row's value is the literal string \"Protected Per CA Gov Code 7928.205\" rather than a name. The redaction is applied server-side to the whole layer, so no query can retrieve ownership here. Parcel number, land and improvement value, zoning, and acreage are unredacted and searchable; ownership by APN is available from the county Assessor's own portal.",
+        "source": {
+          "label": "San Bernardino County Assessor property information",
+          "url": "https://arc.sbcounty.gov/property-information/"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "restricted",
+          "basis": {
+            "type": "county_cited_statute",
+            "note": "Every row's OwnerName value is the literal string \"Protected Per CA Gov Code 7928.205\" rather than a name. The county applies the redaction server-side to the whole layer and cites that section itself. The section protects the home address of elected and appointed officials, so this is the county's own reading applied to every parcel, not a statewide rule. Read narrowly, the section would cover a small number of parcels. The county applies it to every one.",
+            "citation": "Cal. Gov. Code 7928.205",
+            "attributedTo": "San Bernardino County",
+            "sourceUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=7928.205&lawCode=GOV"
+          },
+          "lawfulAlternativeUrl": "https://arc.sbcounty.gov/property-information/"
+        }
+      }
+    },
+    {
+      "id": "ca-san-diego",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "San Diego",
+      "countySlug": "san-diego-county",
+      "countyFips": "06073",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis-public.sandiegocounty.gov/arcgis/rest/services/cosd_warehouse/parcels_all_for_public_use/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor Parcel Number", "searchable": true },
+            { "name": "APN_8", "label": "APN (8-digit)", "searchable": true },
+            { "name": "SITUS_ADDRESS", "label": "Situs Street Number", "searchable": true },
+            { "name": "SITUS_STREET", "label": "Situs Street Name", "searchable": true },
+            { "name": "SITUS_SUFFIX", "label": "Situs Street Suffix", "searchable": false },
+            { "name": "SITUS_PRE_DIR", "label": "Situs Pre-direction", "searchable": false },
+            { "name": "SITUS_POST_DIR", "label": "Situs Post-direction", "searchable": false },
+            { "name": "SITUS_BUILDING", "label": "Situs Building", "searchable": false },
+            { "name": "SITUS_SUITE", "label": "Situs Suite", "searchable": false },
+            { "name": "SITUS_ZIP", "label": "Situs ZIP", "searchable": true },
+            { "name": "SITUS_JURIS", "label": "Situs Jurisdiction Code", "searchable": false },
+            { "name": "ACREAGE", "label": "Acreage", "searchable": false }
+          ],
+          "sampleQuery": "https://gis-public.sandiegocounty.gov/arcgis/rest/services/cosd_warehouse/parcels_all_for_public_use/MapServer/0/query?where=APN%3D%274982603900%27&outFields=APN,APN_8,SITUS_ADDRESS,SITUS_STREET,SITUS_SUFFIX,SITUS_ZIP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "http://web.sangis.org/Legal_Notice.htm",
+          "status": "live",
+          "lastVerified": "2026-09-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "SanGIS / County of San Diego Assessor",
+        "url": "https://gis-public.sandiegocounty.gov/",
+        "email": null
+      },
+      "notes": "16 fields confirmed 2026-09-03 on the County of San Diego's public parcel layer (service copyright 'SanGIS, County of San Diego Assessor', service description 'County of San Diego Assessors Parcels (PARCELS_ALL) redacted for public use', ~1.09M rows, maxRecordCount 1000, native State Plane feet, add outSR=4326 for lon/lat): APN, APN_8, SITUS_ADDRESS (house number), SITUS_PRE_DIR, SITUS_STREET, SITUS_SUFFIX, SITUS_POST_DIR, SITUS_FRACTION, SITUS_BUILDING, SITUS_SUITE, SITUS_ZIP, SITUS_JURIS, ACREAGE, QUAL_CLASS_SHAPE and geometry. No owner name, mailing address, sale date, value or community name: the county redacts them on every public derivative. Until 2026-09-03 this entry pointed at the City of San Diego's GeocoderMerged/MapServer/1, which then served owner names (OWN_NAME1-3, OWN_ADDR1-4) and answered ArcGIS error 500 'Service GeocoderMerged/MapServer not started' from 2026-09-02 20:45Z (autoheal #581); a made-up service name on that host errored differently, so the service existed and was stopped. Probed 2026-09-17: the city service is RUNNING again, reports 56 fields, and no longer serves owner names. Asking it for OWN_NAME1/2/3 returns ArcGIS error 400 'Failed to execute query' while the identical request for APN and ASR_TOTAL returns a feature, so the field was withdrawn rather than the service being down. It still reports displayFieldName 'OWN_NAME1' in every response, so a metadata-only or liveness-only check reads this endpoint as owner-bearing and healthy. Do not restore it as the owner source on a restart signal alone: ask for the field.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The County of San Diego's public parcel layer (cosd_warehouse/parcels_all_for_public_use) carries APN and situs address only; owner name, owner mailing address, sale date and assessed value are removed by county policy. The county's owner-attributed layer exists but its own metadata says it is not authorized for public use, so the atlas does not point at it.",
+            "sourceUrl": "http://web.sangis.org/Legal_Notice.htm"
+          }
+        }
+      }
+    },
+    {
+      "id": "ca-santa-clara",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Santa Clara",
+      "countySlug": "santa-clara-county",
+      "countyFips": "06085",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services8.arcgis.com/fpjs8A5Vtkshblnd/arcgis/rest/services/Santa_Clara_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Santa_Clara_County_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "apn", "label": "Assessor Parcel Number", "searchable": true },
+            { "name": "situs_hous", "label": "Situs House Number", "searchable": false },
+            { "name": "situs_ho_1", "label": "Situs House Number Suffix", "searchable": false },
+            { "name": "situs_stre", "label": "Situs Street Name", "searchable": true },
+            { "name": "situs_unit", "label": "Situs Unit", "searchable": false },
+            { "name": "situs_city", "label": "Situs City", "searchable": true },
+            { "name": "situs_zip_", "label": "Situs ZIP", "searchable": false },
+            { "name": "tax_rate_a", "label": "Tax Rate Area", "searchable": false },
+            { "name": "ap_lp", "label": "Air/Land Parcel Type", "searchable": false }
+          ],
+          "sampleQuery": "https://services8.arcgis.com/fpjs8A5Vtkshblnd/arcgis/rest/services/Santa_Clara_County_Parcels/FeatureServer/0/query?where=situs_city%3D'SAN+JOSE'&outFields=apn,situs_city,situs_stre,situs_hous,situs_zip_&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://prod-sccgov.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "County of Santa Clara, Geographic Information Services",
+        "url": "https://gis.santaclaracounty.gov/",
+        "email": null
+      },
+      "notes": "19 fields confirmed: FID, ap_lp, apn, number_of_, objectid, shape_area, shape_leng, situs_city, situs_hous, situs_ho_1, situs_stat, situs_stre, situs_st_1, situs_st_2, situs_unit, situs_zip_, tax_rate_a, Shape__Area, Shape__Length. Live query confirmed: situs_city='SAN JOSE' returns real parcel data. NOTE: Owner name is NOT exposed on this public layer; for ownership, use the county Assessor. (Why California counties differ on this is explained on the California state page.) No value/assessment fields available. APN format is numeric without dashes. ArcGIS item ID: 5d3c68c25b3e443893577fb6ecf54ba7. Hosted on ArcGIS Online (services8.arcgis.com/fpjs8A5Vtkshblnd). Parcel data updated annually around August. Capabilities: Query only. maxRecordCount=2000."
+    },
+    {
+      "id": "ca-alameda",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Alameda",
+      "countySlug": "alameda-county",
+      "countyFips": "06001",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/arcgis/rest/services/Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcel Boundaries",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor Parcel Number", "searchable": true },
+            { "name": "SitusStreetNumber", "label": "Situs Street Number", "searchable": false },
+            { "name": "SitusStreetName", "label": "Situs Street Name", "searchable": true },
+            { "name": "SitusUnit", "label": "Situs Unit", "searchable": false },
+            { "name": "SitusCity", "label": "Situs City", "searchable": true },
+            { "name": "SitusZip", "label": "Situs ZIP", "searchable": false },
+            { "name": "SitusAddress", "label": "Situs Address (combined)", "searchable": true },
+            { "name": "Land", "label": "Land Value", "searchable": false },
+            { "name": "Imps", "label": "Improvements Value", "searchable": false },
+            { "name": "TotalNetValue", "label": "Total Net Value", "searchable": false },
+            { "name": "UseCode", "label": "Use Code", "searchable": false },
+            { "name": "TRAPrimary", "label": "Tax Rate Area (Primary)", "searchable": false },
+            { "name": "LatestDocumentDate", "label": "Latest Document Date", "searchable": false }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/arcgis/rest/services/Parcels/FeatureServer/0/query?where=SitusCity%3D'OAKLAND'&outFields=APN,SitusStreetNumber,SitusStreetName,SitusCity,SitusZip,Land,Imps,TotalNetValue&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data.acgov.org/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Alameda County GIS / Assessor's Office",
+        "url": "https://data.acgov.org/",
+        "email": null
+      },
+      "notes": "42 fields confirmed including APN, APN_SORT, BOOK, PAGE, PARCEL, SUB_PARCEL, CLCA_CATEGORY, CENTROID_X, CENTROID_Y, SortParcel, PrintParcel, TRAPrimary, TRASecondary, SitusStreetNumber, SitusStreetName, SitusUnit, SitusCity, SitusZip, SitusZip_4, Land, Imps, CLCALand, CLCAImps, HOEX, OTEX, TotalNetValue, LatestDocument_Prefix, LatestDocumentSeries, LatestDocumentDate, MailingAddressStreet, MailingAddressUnit, MailingAddressCityState, MailingAddressZip, MailingAddressZip_4, UseCode, EconUnit, EconomicUnit, SitusAddress, MailingAddress, Shape__Area, Shape__Length. Live query confirmed: SitusCity='OAKLAND' returns real parcel data (APN='15-1338-24', Land=458816). NOTE: Owner name is NOT exposed on this public layer; for ownership, use the county Assessor. (Why California counties differ on this is explained on the California state page.) Mailing address (owner's mailing) is available via MailingAddress/MailingAddressStreet. APN format uses dashes (e.g. '15-1338-24'). ArcGIS item ID: 2b026350b5dd40b18ed7a321fdcdba81. Hosted on ArcGIS Online (services5.arcgis.com/ROBnTHSNjoZ2Wm1P). Capabilities: Query, Extract. maxRecordCount=2000."
+    },
+    {
+      "id": "ca-contra-costa",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Contra Costa",
+      "countySlug": "contra-costa-county",
+      "countyFips": "06013",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.cccounty.us/arcgis/rest/services/CCMAP/Assessment_Parcels_ArcPro/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Assessment Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor Parcel Number", "searchable": true },
+            { "name": "N_STR_NM", "label": "Situs Street Name", "searchable": true },
+            { "name": "N_STR_NBR", "label": "Situs Street Number", "searchable": false },
+            { "name": "N_CTY_ST", "label": "Situs City/State", "searchable": true },
+            { "name": "N_ZIP", "label": "Situs ZIP", "searchable": false },
+            { "name": "LAND_VALUE", "label": "Land Value", "searchable": false },
+            { "name": "IMP_VAL", "label": "Improvement Value", "searchable": false },
+            { "name": "TRA", "label": "Tax Rate Area", "searchable": false },
+            { "name": "USE_CODE", "label": "Use Code", "searchable": false },
+            { "name": "ACREAGE", "label": "Acreage", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.cccounty.us/arcgis/rest/services/CCMAP/Assessment_Parcels_ArcPro/MapServer/0/query?where=N_CTY_ST+LIKE+'CONCORD%25'&outFields=APN,N_STR_NM,N_STR_NBR,N_CTY_ST,LAND_VALUE,IMP_VAL,ACREAGE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.contracosta.ca.gov/1818/GIS",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Contra Costa County GIS / CCMAP, DOIT GIS Division",
+        "url": "https://contra-costa-gis-cocogis.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "42 fields confirmed including APN, APN_CHECK, TRA, N_STR_NM, N_STR_SUF, N_ODD_EVN, N_STR_NBR, N_FRAC, N_APT_NBR, N_CTY_ST, N_ZIP, N_ZIP_EXT, DESC_, VIEW_, ACREAGE, C_DED_NBR, C_DED_DT, USE_CODE, LAND_VALUE, IMP_VAL, PER_PRPTY, TOT_AREA, XMP_CODE1, XMP_AMT1. Live query confirmed: N_CTY_ST LIKE 'CONCORD%' returns real Concord CA parcels (APN='510052007', LAND_VALUE=512317). NOTE: Owner name is NOT exposed on this public layer; for ownership, use the county Assessor. (Why California counties differ on this is explained on the California state page.) The CCMAP Assessment Parcels service is the county-maintained assessor parcel layer for Contra Costa County (Concord, Richmond, Walnut Creek, Antioch, etc.). Hosted on the county's GIS server (gis.cccounty.us). The main CCMAP MapServer (/CCMAP/CCMAP) has no external query layer. maxRecordCount=2000. Capabilities: Map, Query, Data."
+    },
+    {
+      "id": "ca-ventura",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Ventura",
+      "countySlug": "ventura-county",
+      "countyFips": "06111",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.ventura.org/arcgis/rest/services/SDs/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor Parcel Number", "searchable": true },
+            { "name": "APN10", "label": "APN (10-digit)", "searchable": true },
+            { "name": "SITUS", "label": "Situs Address", "searchable": true },
+            { "name": "SITUS_NR", "label": "Situs Street Number", "searchable": false },
+            { "name": "SITUS_DIR", "label": "Situs Street Direction", "searchable": false },
+            { "name": "SITUS_STRE", "label": "Situs Street Name", "searchable": true },
+            { "name": "SITUS_TYP", "label": "Situs Street Type", "searchable": false },
+            { "name": "ZONE", "label": "Zoning", "searchable": false },
+            { "name": "ACREAGE", "label": "Acreage", "searchable": false },
+            { "name": "L_V", "label": "Land Value", "searchable": false },
+            { "name": "I_V", "label": "Improvement Value", "searchable": false },
+            { "name": "TRA", "label": "Tax Rate Area", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.ventura.org/arcgis/rest/services/SDs/Parcels/MapServer/0/query?where=SITUS+LIKE+'%251000+E+MAIN%25'&outFields=APN,APN10,SITUS,ZONE,ACREAGE,L_V,I_V&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://venturacountydatadownloads-vcitsgis.hub.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Ventura County Information Technology Services, GIS Division",
+        "url": "https://venturacountydatadownloads-vcitsgis.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "40 fields confirmed: APN_SUFFIX, APN_STATUS, DOC_NR, DOC_DT, DOC_TYPE, SITUS_NR, SITUS_DIR, SITUS_STRE, SITUS_TYP, TRACT, MAP_NR, ZONE, ACREAGE, L_V, I_V, APN10, SITUS, BOOK, PAGE, BLOCK, PARCEL, NON_TX_CD, SHAPE.AREA, SHAPE.LEN, OBJECTID, APN, TRA, APL_CD, CL, DIST, DT_V_TRF_Y, NGH, NUIS, QC, SQ_FT_I, STRUC_FAIL, TRAFFIC, VIEW_, SP, SHAPE. Live query confirmed: SITUS LIKE '%1000 E MAIN%' returns real Ventura County parcel data. NOTE: Owner name is NOT exposed on this public layer; for ownership, use the county Assessor. (Why California counties differ on this is explained on the California state page.) APN is the base parcel number; APN10 is the 10-digit version. Land Value (L_V) and Improvement Value (I_V) are available. SITUS is the combined site address. Hosted on Ventura County's GIS server (maps.ventura.org). Capabilities: Map, Query, Data. maxRecordCount=1000."
+    }
+  ]
+}

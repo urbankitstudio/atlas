@@ -1,0 +1,408 @@
+{
+  "stateSlug": "montana",
+  "stateName": "Montana",
+  "stateAbbrev": "MT",
+  "lastUpdated": "2026-08-04",
+  "counties": [
+    {
+      "id": "mt-yellowstone",
+      "state": "MT",
+      "stateName": "Montana",
+      "stateSlug": "montana",
+      "county": "Yellowstone",
+      "countySlug": "yellowstone-county",
+      "countyFips": "30111",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Montana Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OwnerAddress1",
+              "label": "Owner Address Line 1",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddress2",
+              "label": "Owner Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZipCode",
+              "label": "Owner ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "AddressLine1",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "CityStateZip",
+              "label": "Property City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "CountyName",
+              "label": "County Name (Yellowstone)",
+              "searchable": false
+            },
+            {
+              "name": "COUNTYCD",
+              "label": "County Code (3 = Yellowstone)",
+              "searchable": false
+            },
+            {
+              "name": "TotalValue",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TaxYear",
+              "label": "Tax Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1/query?where=CountyName%3D'Yellowstone'+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OwnerName,AddressLine1,CityStateZip,CountyName&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservice.mt.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "CountyName = 'Yellowstone'"
+        }
+      ],
+      "contact": {
+        "department": "Montana State Library / Montana Spatial Data Infrastructure (MSDI)",
+        "url": "https://msl.mt.gov/geoinfo/",
+        "email": null
+      },
+      "notes": "Yellowstone County MT (Billings metro; county seat Billings; FIPS 30111; most populous MT county, pop. 164,000) is served by the Montana statewide parcel layer hosted by the Montana State Library / MSDI Framework. Filter CountyName='Yellowstone' (TitleCase) to scope to Yellowstone County (COUNTYCD=3). Key fields: PARCELID, PropertyID, AssessmentCode, OwnerName, OwnerAddress1/2, OwnerCity, OwnerState, OwnerZipCode, AddressLine1, AddressLine2, CityStateZip, PropType, PropAccess, LevyDistrict, Township, Range, Section, LegalDescriptionShort, GISAcres, TotalBuildingValue, TotalLandValue, TotalValue, TaxYear. Verified 2026-06-20: CountyName='Yellowstone' AND SMITH returns Billings-area addresses. Do not confuse with Yellowstone National Park (in WY, ID, and MT, not a county)."
+    },
+    {
+      "id": "mt-missoula",
+      "state": "MT",
+      "stateName": "Montana",
+      "stateSlug": "montana",
+      "county": "Missoula",
+      "countySlug": "missoula-county",
+      "countyFips": "30063",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Montana Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OwnerAddress1",
+              "label": "Owner Address Line 1",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddress2",
+              "label": "Owner Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZipCode",
+              "label": "Owner ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "AddressLine1",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "CityStateZip",
+              "label": "Property City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "CountyName",
+              "label": "County Name (Missoula)",
+              "searchable": false
+            },
+            {
+              "name": "COUNTYCD",
+              "label": "County Code (4 = Missoula)",
+              "searchable": false
+            },
+            {
+              "name": "TotalValue",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TaxYear",
+              "label": "Tax Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1/query?where=CountyName%3D'Missoula'+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OwnerName,AddressLine1,CityStateZip,CountyName&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservice.mt.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "CountyName = 'Missoula'"
+        }
+      ],
+      "contact": {
+        "department": "Montana State Library / Montana Spatial Data Infrastructure (MSDI)",
+        "url": "https://msl.mt.gov/geoinfo/",
+        "email": null
+      },
+      "notes": "Missoula County MT (Missoula; county seat Missoula; FIPS 30063; home to University of Montana) is served by the Montana statewide parcel layer (COUNTYCD=4). Filter CountyName='Missoula' to scope to this county. Same schema and endpoint as other Montana counties (MSDI Framework Parcels/MapServer/0). Verified 2026-06-20: SMITH query returns Missoula-area addresses."
+    },
+    {
+      "id": "mt-cascade",
+      "state": "MT",
+      "stateName": "Montana",
+      "stateSlug": "montana",
+      "county": "Cascade",
+      "countySlug": "cascade-county",
+      "countyFips": "30013",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Montana Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OwnerAddress1",
+              "label": "Owner Address Line 1",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddress2",
+              "label": "Owner Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZipCode",
+              "label": "Owner ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "AddressLine1",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "CityStateZip",
+              "label": "Property City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "CountyName",
+              "label": "County Name (Cascade)",
+              "searchable": false
+            },
+            {
+              "name": "COUNTYCD",
+              "label": "County Code (2 = Cascade)",
+              "searchable": false
+            },
+            {
+              "name": "TotalValue",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TaxYear",
+              "label": "Tax Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1/query?where=CountyName%3D'Cascade'+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OwnerName,AddressLine1,CityStateZip,CountyName&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservice.mt.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "CountyName = 'Cascade'"
+        }
+      ],
+      "contact": {
+        "department": "Montana State Library / Montana Spatial Data Infrastructure (MSDI)",
+        "url": "https://msl.mt.gov/geoinfo/",
+        "email": null
+      },
+      "notes": "Cascade County MT (Great Falls; county seat Great Falls; FIPS 30013) is served by the Montana statewide parcel layer (COUNTYCD=2). Filter CountyName='Cascade' to scope to this county. Same schema and endpoint as other Montana counties. Verified 2026-06-20: SMITH query returns Great Falls-area addresses."
+    },
+    {
+      "id": "mt-flathead",
+      "state": "MT",
+      "stateName": "Montana",
+      "stateSlug": "montana",
+      "county": "Flathead",
+      "countySlug": "flathead-county",
+      "countyFips": "30029",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Montana Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OwnerAddress1",
+              "label": "Owner Address Line 1",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddress2",
+              "label": "Owner Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZipCode",
+              "label": "Owner ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "AddressLine1",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "CityStateZip",
+              "label": "Property City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "CountyName",
+              "label": "County Name (Flathead)",
+              "searchable": false
+            },
+            {
+              "name": "COUNTYCD",
+              "label": "County Code (7 = Flathead)",
+              "searchable": false
+            },
+            {
+              "name": "TotalValue",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TaxYear",
+              "label": "Tax Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1/query?where=CountyName%3D'Flathead'+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OwnerName,AddressLine1,CityStateZip,CountyName&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservice.mt.gov/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated",
+          "scopeWhere": "CountyName = 'Flathead'"
+        }
+      ],
+      "contact": {
+        "department": "Montana State Library / Montana Spatial Data Infrastructure (MSDI)",
+        "url": "https://msl.mt.gov/geoinfo/",
+        "email": null
+      },
+      "notes": "Flathead County MT (Kalispell; county seat Kalispell; FIPS 30029; gateway to Glacier National Park) is served by the Montana statewide parcel layer (COUNTYCD=7). Filter CountyName='Flathead' to scope to this county. Same schema and endpoint as other Montana counties. Verified 2026-06-20: SMITH query returns Kalispell-area addresses."
+    }
+  ]
+}

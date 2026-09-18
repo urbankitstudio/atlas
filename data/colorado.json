@@ -1,0 +1,305 @@
+{
+  "stateSlug": "colorado",
+  "stateName": "Colorado",
+  "stateAbbrev": "CO",
+  "lastUpdated": "2026-05-15",
+  "counties": [
+    {
+      "id": "co-denver",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Denver",
+      "countySlug": "denver-county",
+      "countyFips": "08031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_PROP_PARCELS_A/FeatureServer/245",
+          "serviceType": "FeatureServer",
+          "layerIndex": 245,
+          "layerName": "PROP_PARCELS_A",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "SCHEDNUM",
+              "label": "Schedule Number (13-digit parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_ADDRESS_LINE1",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_ADDRESS_LINE1",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_CITY",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_ZIP",
+              "label": "Situs ZIP",
+              "searchable": true
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_PROP_PARCELS_A/FeatureServer/245/query?where=UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=SCHEDNUM,OWNER_NAME,SITUS_ADDRESS_LINE1,SITUS_CITY,SITUS_ZIP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://denvergov.org/opendata",
+          "status": "live",
+          "lastVerified": "2026-08-24",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "34 fields confirmed including parcel_id, countyName, countyFips, situsAdd, sitAddCty, sitAddZip, owner, owner2, ownerAdd, ownAddCty, ownAddStt, ownAddZip, legalDesc, landSqft, landAcres, block, lot, subCode, subName, zoningCode, zoningDesc, landUseCde, landUseDsc, saleDate, salePrice, apprValTot, asedValTot, URL, dateReceived. This is a statewide composite. Query by countyName='Denver' OR countyFips='031' (note: FIPS here is the 3-digit county portion, not the full 5-digit). Owner query tested and confirmed with real Denver addresses. This same endpoint covers all 64 Colorado counties; filter by countyName or countyFips for any of them. Denver is a consolidated city-county (countyName='Denver' and cityName='Denver' are the same entity)."
+    },
+    {
+      "id": "co-el-paso",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "El Paso",
+      "countySlug": "el-paso-county",
+      "ownerFieldNote": {
+        "body": "The Colorado statewide parcel layer documents an owner column, but it is not populated for El Paso County. A live sample of 300 records filtered to countyName='EL PASO' returned no value in any row, so no query can retrieve ownership here. This is El Paso County, Colorado; El Paso County, Texas is a separate record in this atlas and does publish owner names on its own layer. The parcel id is populated and searchable; the situs address, situs city and ZIP, legal description, sale date and appraised value columns also measure empty for this county, while other counties on the same statewide layer, such as Denver and Jefferson, are fully populated. Ownership is available from the county Assessor.",
+        "source": {
+          "label": "Colorado Office of Information Technology, Colorado GIS Program",
+          "url": "https://gis.colorado.gov/"
+        }
+      },
+      "countyFips": "08041",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'El Paso')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '041')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'El+Paso'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'El Paso'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "El Paso County (Colorado Springs metro, pop. 730,000, county seat Colorado Springs) is the second-most populous Colorado county and home to Fort Carson, Peterson Space Force Base, and Schriever Space Force Base. Like all Colorado counties, it uses the Colorado Governor's OIT statewide composite endpoint, query by countyName='El Paso' or countyFips='041' (the statewide layer uses the 3-digit county FIPS, not the full 5-digit '08041'). Owner query confirmed live with real Colorado Springs results (e.g., 'SMITH CHERYL LYNNE'). The composite layer exposes parcel_id, owner/owner2, ownerAdd/ownAddCty/ownAddStt/ownAddZip, situsAdd/sitAddCty/sitAddZip, legalDesc, landSqft/landAcres, zoningCode/zoningDesc, landUseCde/landUseDsc, saleDate, salePrice, apprValTot, asedValTot, and dateReceived (currency indicator for when each county's data was loaded). The El Paso County Assessor at assessor.elpasoco.com handles formal reassessment disputes. Colorado assesses on a biennial cycle, unlike Illinois or California, which use triennial or annual schedules.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The Colorado statewide parcel layer documents an owner column, but it carries no value in any El Paso County record sampled, so no query can return ownership here. Other counties on the same statewide layer do publish owner names.",
+            "sourceUrl": "https://gis.colorado.gov/"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The Colorado statewide parcel layer documents this column, but it carries no value in any El Paso County record sampled - rows read at offsets 25,000 and 90,000 returned null in every row. Other counties on the same statewide layer do publish it (Denver returns a full street address in the same column), so this is specific to El Paso County, not a layer-wide gap.",
+            "sourceUrl": "https://gis.colorado.gov/"
+          }
+        },
+        "situs_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The Colorado statewide parcel layer documents this column, but it carries no value in any El Paso County record sampled - rows read at offsets 25,000 and 90,000 returned null in every row. Other counties on the same statewide layer do publish it (Denver returns a full street address in the same column), so this is specific to El Paso County, not a layer-wide gap.",
+            "sourceUrl": "https://gis.colorado.gov/"
+          }
+        }
+      }
+    },
+    {
+      "id": "co-jefferson",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Jefferson",
+      "countySlug": "jefferson-county",
+      "countyFips": "08059",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Jefferson')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '059')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Jefferson'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Jefferson'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Jefferson County (Denver's west-side suburbs, Lakewood, Arvada, Wheat Ridge, Evergreen, Golden; pop. 582,000, county seat Golden) is a mixed urban-mountain county extending from the Denver metro edge into the foothills and lower Rockies. Like all Colorado counties, it uses the Colorado Governor's OIT statewide composite endpoint, query by countyName='Jefferson' or countyFips='059' (3-digit county portion; full 5-digit is '08059'). Owner query confirmed live: returns real Jefferson County results (e.g., 'SMITH STEVEN W' at '7347 W FREMONT DR LITTLETON'). The composite layer exposes parcel_id, owner/owner2 (owner name fields), ownerAdd/ownAddCty/ownAddStt/ownAddZip (owner mailing address), situsAdd/sitAddCty/sitAddZip (situs address), legalDesc, landSqft/landAcres, zoningCode/zoningDesc, landUseCde/landUseDsc, saleDate/salePrice, apprValTot/asedValTot, and dateReceived. The Jefferson County Assessor at jeffco.us/1304/Assessor administers biennial reassessments (Colorado assesses on a two-year cycle, not triennial). Open-data downloads available at jeffco.us/GIS."
+    }
+  ]
+}

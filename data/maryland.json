@@ -1,0 +1,183 @@
+{
+  "stateSlug": "maryland",
+  "stateName": "Maryland",
+  "stateAbbrev": "MD",
+  "lastUpdated": "2026-06-05",
+  "counties": [
+    {
+      "id": "md-montgomery",
+      "state": "MD",
+      "stateName": "Maryland",
+      "stateSlug": "maryland",
+      "county": "Montgomery",
+      "countySlug": "montgomery-county",
+      "countyFips": "24031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://mcmaps.org/server11/rest/services/Overlays/MCAtlas_Property_Points/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Property Points",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "TAX_NO",
+              "label": "Tax Account Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNERS_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNERS_NAME2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "PREMISE_ADDR_HOUSENO",
+              "label": "Site House Number",
+              "searchable": true
+            },
+            {
+              "name": "PREMISE_ADDR_STREET",
+              "label": "Site Street Name",
+              "searchable": true
+            },
+            {
+              "name": "PREMISE_ADDR_CITY",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "OWNERS_ADDR1",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "OWNERS_CITY",
+              "label": "Owner Mailing City",
+              "searchable": true
+            },
+            {
+              "name": "CONDO_UNIT_NO",
+              "label": "Condo Unit Number",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://mcmaps.org/server11/rest/services/Overlays/MCAtlas_Property_Points/FeatureServer/0/query?where=UPPER(OWNERS_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=TAX_NO,OWNERS_NAME,PREMISE_ADDR_HOUSENO,PREMISE_ADDR_STREET,PREMISE_ADDR_CITY,OWNERS_ADDR1&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.montgomerycountymd.gov/gis/",
+          "status": "live",
+          "lastVerified": "2026-06-05",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Montgomery County Maryland GIS (MCAtlas)",
+        "url": "https://www.montgomerycountymd.gov/gis/",
+        "email": null
+      },
+      "notes": "Montgomery County is Maryland's most populous county (pop. 1.06 million; county seat Rockville) and one of the wealthiest in the US. The MCAtlas_Property_Points FeatureServer on mcmaps.org (mcmaps.org/server11) is the county's ArcGIS Server backing the MCAtlas web viewer; it exposes 97 fields as point geometry. Live query confirmed 351,703 parcels. Owner-name search uses UPPER() LIKE on OWNERS_NAME. Key fields: TAX_NO (Maryland 8-digit tax account number), OWNERS_NAME, OWNERS_NAME2, OWNERS_ADDR1/ADDR2/ADDR3, OWNERS_CITY/STATE/ZIP (full mailing address), PREMISE_ADDR_HOUSENO/STREET/STREET_TYPE/CITY/ZIP (situs address components), LAND_ASSMT, IMPROV_ASSMT, LEGAL_DESC, TRANSFER_DATE, SALES_PRICE, YEAR_BUILT, LANDUSE_CODE. The county uses Maryland SDAT (State Department of Assessments and Taxation) as the authoritative property record; mcmaps.org mirrors a subset of that data. Note: property points are centroid-located, not parcel polygons. For polygon geometry, Maryland's statewide parcel boundary layer is at geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer but does not expose owner data directly.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
+    },
+    {
+      "id": "md-prince-georges",
+      "state": "MD",
+      "stateName": "Maryland",
+      "stateSlug": "maryland",
+      "county": "Prince George's",
+      "countySlug": "prince-georges-county",
+      "countyFips": "24033",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.princegeorgescountymd.gov/arcgis/rest/services/Property/Property_Flattened/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Property Flattened",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "ACCOUNT",
+              "label": "Account Number",
+              "searchable": true
+            },
+            {
+              "name": "PROPERTY_ID",
+              "label": "Property ID",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ICO_NAME",
+              "label": "In Care Of Name",
+              "searchable": true
+            },
+            {
+              "name": "HOUSE_NUMBER",
+              "label": "Site House Number",
+              "searchable": true
+            },
+            {
+              "name": "STREET_NAME",
+              "label": "Site Street Name",
+              "searchable": true
+            },
+            {
+              "name": "STREET_TYPE",
+              "label": "Site Street Type",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_STREET",
+              "label": "Mailing Street Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ZIP5",
+              "label": "Mailing ZIP",
+              "searchable": true
+            },
+            {
+              "name": "HOUSE_SUFFIX",
+              "label": "House Number Suffix",
+              "searchable": false
+            },
+            {
+              "name": "UNIT",
+              "label": "Unit Number",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.princegeorgescountymd.gov/arcgis/rest/services/Property/Property_Flattened/MapServer/0/query?where=UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=ACCOUNT,PROPERTY_ID,OWNER_NAME,HOUSE_NUMBER,STREET_NAME,STREET_TYPE,MAIL_STREET,MAIL_CITY,MAIL_ZIP5&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.princegeorgescountymd.gov/665/Geographic-Information-Systems-GIS",
+          "status": "live",
+          "lastVerified": "2026-06-05",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Prince George's County Maryland GIS",
+        "url": "https://www.princegeorgescountymd.gov/665/Geographic-Information-Systems-GIS",
+        "email": null
+      },
+      "notes": "Prince George's County is Maryland's second-most populous county (pop. 910,000; county seat Upper Marlboro). The Property_Flattened MapServer on gis.princegeorgescountymd.gov (ArcGIS Server 11.5) is the county's canonical public property layer with 112 fields and 352,791 parcels. Live query confirmed OWNER_NAME exposure. Key fields: ACCOUNT (county account number, 7 digits), PROPERTY_ID (prefixed as '12' + ACCOUNT for the full 9-digit SDAT account number), OWNER_NAME, ICO_NAME (in-care-of), HOUSE_NUMBER (zero-padded 6-digit, e.g. '002909'), STREET_NAME, STREET_TYPE, STREET_DIRECTION, MAIL_STREET/CITY/STATE/ZIP5 (owner mailing address), ASSESS_DIST (assessment district), LAND_AREA_ACRE, LAND_AREA_SQFT, LIBER, FOLIO, SUB_NAME, CONDO_UNIT_NUMBER, TAXMAPGRID. The situs address is split across HOUSE_NUMBER + STREET_NAME + STREET_TYPE. There is no single combined site address field on this layer. The county belongs to the M-NCPPC (Maryland-National Capital Park and Planning Commission) planning region and uses Maryland SDAT for the authoritative ownership record. Prince George's County borders DC and contains the University of Maryland (College Park) and Joint Base Andrews."
+    }
+  ]
+}

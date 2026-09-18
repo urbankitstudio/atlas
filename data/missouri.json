@@ -1,0 +1,99 @@
+{
+  "stateSlug": "missouri",
+  "stateName": "Missouri",
+  "stateAbbrev": "MO",
+  "lastUpdated": "2026-06-20",
+  "counties": [
+    {
+      "id": "mo-jackson",
+      "state": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "county": "Jackson",
+      "countySlug": "jackson-county",
+      "countyFips": "29095",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.mijackson.org/countygis/rest/services/RealEstate/RealEstateParcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "RealEstateParcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
+            { "name": "OWNER", "label": "Owner Name", "searchable": true },
+            { "name": "OWNER2", "label": "Owner Name 2", "searchable": false },
+            { "name": "O_ADDRESS", "label": "Owner Address", "searchable": false },
+            { "name": "O_CITY", "label": "Owner City", "searchable": false },
+            { "name": "O_STATE", "label": "Owner State", "searchable": false },
+            { "name": "O_ZIP", "label": "Owner ZIP", "searchable": false },
+            { "name": "P_FULLADD", "label": "Property Full Address", "searchable": true },
+            { "name": "P_CITY", "label": "Property City", "searchable": false },
+            { "name": "P_STATE", "label": "Property State", "searchable": false },
+            { "name": "P_ZIP", "label": "Property ZIP", "searchable": false },
+            { "name": "P_ACREAGE", "label": "Acreage", "searchable": false },
+            { "name": "LIBERPAGE", "label": "Liber/Page (deed reference)", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.mijackson.org/countygis/rest/services/RealEstate/RealEstateParcels/FeatureServer/0/query?where=UPPER(OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,OWNER,OWNER2,O_ADDRESS,O_CITY,P_FULLADD,P_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.mijackson.org/",
+          "status": "live",
+          "lastVerified": "2026-06-20",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "Jackson County GIS (Assessed Services Division)",
+        "url": "https://jacksongov.org/residents/property-information",
+        "email": null
+      },
+      "notes": "Jackson County MO (Kansas City metro; county seat Kansas City; FIPS 29095; pop. 715,000, largest county in MO) provides parcel data via gis.mijackson.org. The RealEstate/RealEstateParcels/FeatureServer/0 layer exposes 20 fields: PIN (parcel ID), LIBERPAGE, O_CITY, OWNER, OWNER2, O_STATE, O_ADDRESS, O_ZIP, P_CITY, P_FULLADD, P_STATE, P_ZIP, P_STATUS, P_ACREAGE, P_ASSMBOR1-4, P_HPERCENT. Owner search via UPPER(OWNER) LIKE works well. Verified 2026-06-20: SMITH returns Kansas City-area addresses. Jackson County MO includes Kansas City proper and inner suburbs (Independence, Lee's Summit, Blue Springs). Do not confuse with Jackson County in other states. The GIS portal is at gis.mijackson.org."
+    },
+    {
+      "id": "mo-st-louis",
+      "state": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "county": "St. Louis",
+      "countySlug": "st-louis-county",
+      "countyFips": "29189",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            { "name": "LOCATOR", "label": "Parcel Locator Number", "searchable": true },
+            { "name": "PARENT_LOC", "label": "Parent Locator", "searchable": true },
+            { "name": "OWNER_NAME", "label": "Owner Name", "searchable": true },
+            { "name": "OWN_ADD", "label": "Owner Address", "searchable": true },
+            { "name": "OWN_CITY", "label": "Owner City", "searchable": true },
+            { "name": "OWN_STATE", "label": "Owner State", "searchable": true },
+            { "name": "OWN_ZIP", "label": "Owner ZIP", "searchable": true },
+            { "name": "PROP_ADD", "label": "Property Address", "searchable": true },
+            { "name": "PROP_ZIP", "label": "Property ZIP", "searchable": true },
+            { "name": "PROPCLASS", "label": "Property Class", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Parcels/MapServer/0/query?where=UPPER(OWNER_NAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=LOCATOR,OWNER_NAME,PROP_ADD&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://data-stlcogis.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-05-15",
+          "verifiedBy": "automated"
+        }
+      ],
+      "contact": {
+        "department": "St. Louis County Geospatial Data Center",
+        "url": "https://gis.stlouiscountymo.gov/",
+        "email": null
+      },
+      "notes": "St. Louis County MO (St. Louis metro west/south, county seat Clayton, NOT the independent City of St. Louis) provides AGS_Parcels/MapServer/0 with 30+ fields: LOCATOR (parcel ID), PARENT_LOC, TAXYR, OWNER_NAME, PROP_ADRNUM, PROP_ADD, PROP_ZIP, OWN_ADD, OWN_CITY, OWN_STATE, OWN_ZIP, SCHSUB (school subdivision), MUNYCODE (municipality code), TAXCODE, ASSTIMPVAL, TOTASSMT, APPLANDVAL, APPIMPVAL, TOTAPVAL, PROPCLASS, LUC, LANDUSE2, LUCODE, TENURE, BLDGNAME, TWPNAME. Query confirmed live: UPPER(OWNER_NAME) LIKE '%SMITH%' returns real results (e.g., 'SMITH KIMBERLY & ANTHONY T/E' at '11041 LILAC AVE'). St. Louis County MO (FIPS 29189) is a separate entity from the City of St. Louis (FIPS 29510, an independent city not part of any county). The GeoData portal at data-stlcogis.opendata.arcgis.com provides open data downloads and GeoServices API links. The maps.stlouisco.com server is the live REST host."
+    }
+  ]
+}
