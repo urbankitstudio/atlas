@@ -1,5 +1,32 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.6 — 2026-09-22
+
+**No API change and no data change.** `totals` stay at **227 counties / 241
+endpoints / 50 states**, `src/` is untouched, and `data/` is byte-identical to
+0.6.5. If you are on 0.6.5 you gain nothing functional by upgrading.
+
+What you gain is that you can **verify where this came from**. 0.6.6 is the
+first release of this package published with a [provenance
+attestation](https://docs.npmjs.com/generating-provenance-statements): npm
+attaches one only on an OIDC publish from a **public** repository, and every
+release up to and including 0.6.5 was published from a private one, so none of
+them could have had it. From 0.6.6 the package publishes from
+[`urbankitstudio/atlas`](https://github.com/urbankitstudio/atlas), and
+`npm view @urbankitstudio/atlas` will show the signed link back to the commit
+and workflow run that built the tarball.
+
+The package is still **authored** in the private monorepo — `data/` is generated
+from the parcel registry that lives there — and mirrored out. So the source of
+truth has not moved; only the thing that presses publish has.
+
+Deliberately a **patch**, for the same reason 0.5.3, 0.6.1 and 0.6.5 gave: the
+README says to pin `^0.x`, and `^0.6.0` resolves to `>=0.6.0 <0.7.0`, so a patch
+reaches everyone already installed. A release that changes no API and no data is
+exactly what a patch is for, and a `0.7.0` would reach nobody without a manual
+bump — which would be the wrong shape for a change whose whole point is that
+existing users get a verifiable artifact.
+
 ## 0.6.5 — 2026-09-20
 
 Data refresh. No API change. `totals` move from **171 counties / 174
