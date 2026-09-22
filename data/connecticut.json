@@ -258,7 +258,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Bridgeport'%2C+'Easton'%2C+'Fairfield'%2C+'Monroe'%2C+'Stratford'%2C+'Trumbull'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",
@@ -393,7 +393,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Chester'%2C+'Clinton'%2C+'Cromwell'%2C+'Deep+River'%2C+'Durham'%2C+'East+Haddam'%2C+'East+Hampton'%2C+'Essex'%2C+'Haddam'%2C+'Killingworth'%2C+'Lyme'%2C+'Middlefield'%2C+'Middletown'%2C+'Old+Lyme'%2C+'Old+Saybrook'%2C+'Portland'%2C+'Westbrook'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",
@@ -528,7 +528,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Ansonia'%2C+'Beacon+Falls'%2C+'Bethlehem'%2C+'Bristol'%2C+'Cheshire'%2C+'Derby'%2C+'Middlebury'%2C+'Naugatuck'%2C+'Oxford'%2C+'Plymouth'%2C+'Prospect'%2C+'Seymour'%2C+'Shelton'%2C+'Southbury'%2C+'Thomaston'%2C+'Waterbury'%2C+'Watertown'%2C+'Wolcott'%2C+'Woodbury'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",
@@ -663,7 +663,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Ashford'%2C+'Brooklyn'%2C+'Canterbury'%2C+'Chaplin'%2C+'Eastford'%2C+'Hampton'%2C+'Killingly'%2C+'Plainfield'%2C+'Pomfret'%2C+'Putnam'%2C+'Scotland'%2C+'Sterling'%2C+'Thompson'%2C+'Union'%2C+'Voluntown'%2C+'Woodstock'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",
@@ -798,7 +798,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Barkhamsted'%2C+'Burlington'%2C+'Canaan'%2C+'Colebrook'%2C+'Cornwall'%2C+'Goshen'%2C+'Hartland'%2C+'Harwinton'%2C+'Kent'%2C+'Litchfield'%2C+'Morris'%2C+'New+Hartford'%2C+'Norfolk'%2C+'North+Canaan'%2C+'Roxbury'%2C+'Salisbury'%2C+'Sharon'%2C+'Torrington'%2C+'Warren'%2C+'Washington'%2C+'Winchester'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",
@@ -933,7 +933,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Bethany'%2C+'Branford'%2C+'East+Haven'%2C+'Guilford'%2C+'Hamden'%2C+'Madison'%2C+'Meriden'%2C+'Milford'%2C+'New+Haven'%2C+'North+Branford'%2C+'North+Haven'%2C+'Orange'%2C+'Wallingford'%2C+'West+Haven'%2C+'Woodbridge'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",
@@ -1068,7 +1068,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Bozrah'%2C+'Colchester'%2C+'East+Lyme'%2C+'Franklin'%2C+'Griswold'%2C+'Groton'%2C+'Lebanon'%2C+'Ledyard'%2C+'Lisbon'%2C+'Montville'%2C+'New+London'%2C+'North+Stonington'%2C+'Norwich'%2C+'Preston'%2C+'Salem'%2C+'Sprague'%2C+'Stonington'%2C+'Waterford'%2C+'Windham'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",
@@ -1203,7 +1203,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=Town_Name%3D'Hartford'+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/arcgis/rest/services/Connecticut_CAMA_and_Parcel_Layer_2024/FeatureServer/0/query?where=(Town_Name+IN+('Bethel'%2C+'Bridgewater'%2C+'Brookfield'%2C+'Danbury'%2C+'Darien'%2C+'Greenwich'%2C+'New+Canaan'%2C+'New+Fairfield'%2C+'New+Milford'%2C+'Newtown'%2C+'Norwalk'%2C+'Redding'%2C+'Ridgefield'%2C+'Sherman'%2C+'Stamford'%2C+'Weston'%2C+'Westport'%2C+'Wilton'))+AND+UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Town_Name,Owner,Location_1,Assessed_Total&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://portal.ct.gov/OPM/IGPP/Publications/GIS-Data",
           "status": "live",

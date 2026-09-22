@@ -145,7 +145,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=(COUNTY_NAME%3D'Bronx')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
           "status": "live",
@@ -605,7 +605,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=UPPER(OwnerName)%20LIKE%20UPPER('%25SMITH%25')&outFields=BBL,OwnerName,Address,Borough,ZipCode&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=(Borough%3D'MN')+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=BBL,OwnerName,Address,Borough,ZipCode&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://nycplanning.github.io/db-pluto/",
           "status": "live",
@@ -672,7 +672,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=(COUNTY_NAME%3D'NewYork')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
           "status": "live",
@@ -916,7 +916,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=(COUNTY_NAME%3D'Queens')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
           "status": "live",
@@ -1073,7 +1073,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=(COUNTY_NAME%3D'Richmond')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
           "status": "live",

@@ -198,7 +198,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=CountyID%3D'40'+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=(COUNTY+%3D+'41')+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.mapwv.gov/parcel/",
           "status": "live",

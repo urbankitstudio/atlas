@@ -135,7 +135,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL,BLDG_VAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('05010'%2C'05020'%2C'05030'%2C'05040'%2C'05050'%2C'05060'%2C'05070'%2C'05080'%2C'05090'%2C'05100'%2C'05110'%2C'05120'%2C'05125'%2C'05130'%2C'05140'%2C'05150'%2C'05170'%2C'05180'%2C'05190'%2C'05200'%2C'05210'%2C'05220'%2C'05230'%2C'05240'%2C'05250'%2C'05260'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL,BLDG_VAL&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.maine.gov/geolib/data/index.html",
           "status": "live",
@@ -242,7 +242,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('31010'%2C'31030'%2C'31040'%2C'31050'%2C'31060'%2C'31080'%2C'31090'%2C'31100'%2C'31110'%2C'31120'%2C'31130'%2C'31140'%2C'31150'%2C'31160'%2C'31170'%2C'31190'%2C'31197'%2C'31200'%2C'31220'%2C'31230'%2C'31240'%2C'31250'%2C'31270'%2C'31280'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.maine.gov/geolib/data/index.html",
           "status": "live",
