@@ -28,6 +28,13 @@
 # that one cannot. Exactly one of the two may be live. Do not delete the
 # monorepo's workflow before the repoint, and do not leave it enabled after.
 #
+# 🔴 THE `npm-publish` ENVIRONMENT MUST EXIST AND MUST BE RESTRICTED TO `main`.
+# GitHub creates an environment on first reference with NO protection rules, so
+# a merely-referenced environment is not a control. Its deployment-branch rule
+# is the outer guard that keeps this job from starting on any other ref; the
+# `release` gate below is the inner one. Both, because the outer one is a
+# setting somebody can change in a web UI without touching this file.
+#
 # NO NODE_AUTH_TOKEN ANYWHERE. npm mints a short-lived credential from the OIDC
 # identity minted by `permissions: id-token: write` below. There is no npm token
 # in this repo's secrets and there must not be one.
@@ -54,6 +61,15 @@ concurrency:
 permissions:
   contents: read
 
+# GitHub's DEFAULT shell for `run:` on Linux is `bash -e {0}` -- WITHOUT
+# pipefail. Naming bash explicitly gets `bash --noprofile --norc -eo pipefail
+# {0}`. It matters in a job that publishes: `npm pack | tail -1` would otherwise
+# swallow a pack failure and hand the verifier an empty filename, and a check
+# that cannot fail is worse here than anywhere else in the repo.
+defaults:
+  run:
+    shell: bash
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -63,19 +79,22 @@ jobs:
     # npm checks the OIDC token for an `environment` claim once the Trusted
     # Publisher entry names one, and GitHub only puts that claim in the token
     # when the JOB declares an environment -- it is not inherited from the
-    # repository, and it is not optional once npm expects it. Without this line
-    # the token is minted without the claim and every publish is rejected as
-    # unauthorised, which reads like a credential problem rather than a missing
-    # key. Setting the field on npm BEFORE this line exists breaks publishing in
-    # between; that is how mcp-atlas 0.2.5 came to be released.
-    #
-    # The environment itself restricts deployments to `main`, so this also means
-    # a publish can only ever run from a ref that rule admits.
+    # repository, and it is not optional once npm expects it. Setting the field
+    # on npm BEFORE this line exists breaks publishing in between; that is how
+    # mcp-atlas 0.2.5 came to be released.
     environment: npm-publish
     permissions:
       contents: read
       # This is what mints the OIDC identity npm exchanges for a publish
       # credential. Without it the publish fails as if unauthorised.
+      #
+      # 🔴 IT IS A JOB-LEVEL PERMISSION, so the token-minting environment
+      # variables are present for EVERY step, not just the publish. That is why
+      # the ref check below lives in the `release` gate rather than only on the
+      # Publish step: `npm ci` and `npm pack` execute package lifecycle scripts,
+      # and gating only the last step would still run them with a mintable
+      # publish identity in scope. An adversarial review found exactly that hole
+      # in the first version of this file.
       id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -86,16 +105,34 @@ jobs:
       # than running the whole gate only to fail on "already published". This
       # matters more here than in a hand-edited repo: the sync from the monorepo
       # pushes on every data regeneration, and most of those carry no bump.
-      - name: Did this push change the version?
+      - name: Is this a release, and from the right ref?
         id: bump
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.before }}
+          REF: ${{ github.ref }}
         run: |
           NEW=$(node -p "require('./package.json').version")
+
+          # 🔴 VALIDATED BEFORE ANYTHING IS WRITTEN TO $GITHUB_OUTPUT, and with
+          # node rather than grep. `grep -Eq '^...$'` anchors PER LINE and
+          # short-circuits on the first match, so a version containing a newline
+          # passes -- verified: NEW=$'1.2.3\nrelease=true' satisfies the regex,
+          # and `echo "version=$NEW" >> $GITHUB_OUTPUT` then writes a second
+          # line that forges `release=true`. The previous version of this file
+          # carried a comment claiming the check prevented exactly that. A JS
+          # regex without /m anchors the WHOLE string, and passing the value as
+          # argv keeps it out of the shell entirely.
+          if ! node -e "process.exit(/^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$/.test(process.argv[1]) ? 0 : 1)" "$NEW"; then
+            echo "::error::package.json version is not a plain semver. Refusing to continue."
+            exit 1
+          fi
+
           # The state of main BEFORE this push, not "one commit before the tip".
           # They are the same for a squash merge and different for any push
           # landing several commits, where HEAD~1 would already carry the bump
           # and the release would be skipped in silence.
-          BASE="${{ github.event.before }}"
-          if [ "${{ github.event_name }}" != "push" ] \
+          if [ "$EVENT" != "push" ] \
              || [ -z "$BASE" ] \
              || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
             # No push baseline exists (a dispatch, or a first push). Do NOT fall
@@ -106,30 +143,25 @@ jobs:
             OLD=$(git show "$BASE:package.json" 2>/dev/null \
                   | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).version" 2>/dev/null || echo "none")
           fi
-          echo "old=$OLD new=$NEW"
-          if [ "$OLD" = "$NEW" ]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "version unchanged at $NEW - not a release" >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
-          # Whether the run should behave as a release at all. A dispatch always
-          # should, including a re-dispatch at an unchanged version for recovery,
-          # which is why this is not just `changed`.
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$OLD" != "$NEW" ]; then
+          echo "ref=$REF event=$EVENT old=$OLD new=$NEW"
+
+          # 🔴 THE REF CHECK IS PART OF `release`, NOT JUST OF `Publish`.
+          # Every heavy step below is gated on this output, and several of them
+          # run repo-controlled npm lifecycle scripts while the job holds a
+          # mintable publish identity. Gating only the final `npm publish` would
+          # leave those running on any dispatched branch, even a dry run. The
+          # cost is that a feature branch cannot be rehearsed here; that is the
+          # intended trade, and ci.yml already gates feature branches.
+          if [ "$REF" != "refs/heads/main" ]; then
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            echo "not on main ($REF) - nothing will run" >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$EVENT" = "workflow_dispatch" ] || [ "$OLD" != "$NEW" ]; then
+            # A dispatch always counts as a release attempt, including a
+            # re-dispatch at an unchanged version for recovery.
             echo "release=true" >> "$GITHUB_OUTPUT"
           else
             echo "release=false" >> "$GITHUB_OUTPUT"
-          fi
-          # $NEW comes from package.json and is written to GITHUB_OUTPUT, then
-          # read back into a later step. Two things go wrong if it is not a
-          # plain semver: a newline forges additional step outputs, and a
-          # backtick or $( ) becomes shell once the value is interpolated. Check
-          # it here, at the one place it enters the workflow, rather than
-          # escaping it at every point of use.
-          if ! printf '%s' "$NEW" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
-            echo "::error::package.json version '$NEW' is not a plain semver. Refusing to continue."
-            exit 1
+            echo "version unchanged at $NEW - not a release" >> "$GITHUB_STEP_SUMMARY"
           fi
           echo "version=$NEW" >> "$GITHUB_OUTPUT"
 
@@ -184,63 +216,49 @@ jobs:
           npm test
           npm run build
 
-      - name: Verify the tarball before it can go anywhere
+      # The SAME script ci.yml runs, against the EXTRACTED TARBALL. Sharing one
+      # implementation is the point: when these were two inline shell blocks
+      # they had already drifted, and the weaker of the two was the one guarding
+      # the registry. The script asserts in JS rather than shell because the
+      # shell version failed OPEN -- `[ "undefined" -lt 100 ]` errors and is
+      # then treated as a false clause, so a missing `totals.counties` defeated
+      # the only data check outright.
+      - name: Verify the package that would ship
         if: ${{ steps.bump.outputs.release == 'true' }}
         run: |
           TARBALL=$(npm pack --silent | tail -1)
           echo "packed: $TARBALL"
-          mkdir -p /tmp/verify-atlas && tar -xzf "$TARBALL" -C /tmp/verify-atlas
-          cd /tmp/verify-atlas/package
-
-          VERSION=$(node -p "require('./package.json').version")
-          FILES=$(find . -type f | wc -l)
-          echo "version=$VERSION files=$FILES"
-
-          # The data IS the product. An atlas package with no counties installs
-          # cleanly and answers nothing, which is a worse outcome than a failed
-          # publish because it only surfaces in a consumer's project.
-          if [ ! -f data/index.json ]; then
-            echo "::error::data/index.json is not in the tarball; this would publish an atlas with no data"
-            exit 1
-          fi
-          COUNTIES=$(node -p "require('./data/index.json').totals.counties")
-          if [ "$COUNTIES" -lt 100 ]; then
-            echo "::error::data/index.json reports only $COUNTIES counties; the sync looks truncated"
-            exit 1
-          fi
-
-          # Every entry point package.json promises must exist in the TARBALL,
-          # not merely in the build directory. npm checks none of them.
-          for FIELD in main module types; do
-            P=$(node -p "require('./package.json').$FIELD || ''")
-            if [ -z "$P" ] || [ ! -f "$P" ]; then
-              echo "::error::package.json $FIELD is '$P', which is not in the tarball"
-              exit 1
-            fi
-          done
+          mkdir -p /tmp/verify-atlas
+          tar -xzf "$TARBALL" -C /tmp/verify-atlas
+          node scripts/verify-package.mjs /tmp/verify-atlas/package
 
           # Only on a real publish. A dry run at an already-published version is
           # a legitimate rehearsal, and failing it would make the rehearsal
           # useless exactly when you most want one.
           if [ "${{ steps.mode.outputs.dry }}" != "true" ]; then
+            VERSION=$(node -p "require('./package.json').version")
             if npm view "@urbankitstudio/atlas@$VERSION" version >/dev/null 2>&1; then
               echo "::error::@urbankitstudio/atlas@$VERSION is already published. Bump the version in the MONOREPO (packages/atlas), not here."
               exit 1
             fi
           fi
-          echo "tarball verified: $VERSION, $FILES files, $COUNTIES counties"
 
       # No NODE_AUTH_TOKEN: npm mints a short-lived credential from the OIDC
       # identity above. A 404 or "not configured for trusted publishing" here
       # means the Trusted Publisher entry on npmjs.com does not name THIS repo
       # and THIS filename exactly. See the header.
+      #
+      # KNOWN GAP, stated rather than hidden: `npm publish` re-packs the working
+      # directory, so the archive that ships is not literally the one verified
+      # above, and `prepublishOnly` runs only on publish. Publishing the packed
+      # tarball would close that -- but npm's docs do not say whether provenance
+      # survives a pre-packed tarball publish, and provenance is the entire
+      # reason this package publishes from a public repo. So the lifecycle
+      # scripts are pinned to an allow-list in verify-package.mjs instead, which
+      # blocks the mechanism rather than the symptom.
       - name: Publish
         id: publish
-        # A dispatch runs against whatever ref it was dispatched on, so without
-        # the ref check, dispatching a feature branch with dry_run unchecked
-        # publishes unmerged work to npm.
-        if: ${{ steps.mode.outputs.dry != 'true' && steps.bump.outputs.release == 'true'
-            && github.ref == 'refs/heads/main' }}
+        if: ${{ steps.mode.outputs.dry != 'true' && steps.bump.outputs.release == 'true' }}
         run: |
           # Idempotent on purpose, so a re-run after a downstream failure is not
           # refused just because the version already landed.

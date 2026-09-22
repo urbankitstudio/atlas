@@ -8,8 +8,16 @@
 #
 # So this is not a code review gate -- nobody hand-edits files here. It is a
 # check that what arrived is installable, type-clean, passing its own tests, and
-# packable, run BEFORE publish.yml can act on a version change. A sync that
-# lands something broken fails here rather than on the registry.
+# packable. A sync that lands something broken fails here rather than on the
+# registry.
+#
+# 🔴 THIS WORKFLOW CANNOT STOP A PUBLISH, AND THAT IS WHY THE REAL CHECKS LIVE
+# IN A SCRIPT. It and publish.yml trigger independently on a push to main, with
+# no `needs:` between them, so a red run here does not block a release. An
+# adversarial review found the first version had exactly that hole: the package
+# checks here were stronger than the ones in publish.yml, so the only gate that
+# could actually block a publish was the weaker one. Both now call
+# `scripts/verify-package.mjs`, one implementation, so they cannot drift again.
 #
 # It deliberately does not run on a schedule. A repo whose contents only change
 # when the monorepo pushes has nothing to re-check in between.
@@ -28,6 +36,14 @@ concurrency:
 
 permissions:
   contents: read
+
+# GitHub's DEFAULT shell for `run:` on Linux is `bash -e {0}` -- WITHOUT
+# pipefail. Naming bash explicitly gets `bash --noprofile --norc -eo pipefail
+# {0}`. It matters below: `npm pack | tail -1` would otherwise swallow a pack
+# failure and hand the next step an empty filename.
+defaults:
+  run:
+    shell: bash
 
 jobs:
   gate:
@@ -54,72 +70,15 @@ jobs:
       - name: Build
         run: npm run build
 
-      # The package declares `main`, `module` and `types`, and npm does not
-      # check that any of them exist. A build that silently emits nothing
-      # publishes an installable package that resolves to no code -- which is
-      # worse than a failed publish, because it only surfaces in a consumer's
-      # project.
-      - name: The build emitted what package.json promises
-        run: |
-          MISSING=0
-          for FIELD in main module types; do
-            P=$(node -p "require('./package.json').$FIELD || ''")
-            if [ -z "$P" ]; then
-              echo "::error::package.json declares no $FIELD"
-              MISSING=1
-            elif [ ! -f "$P" ]; then
-              echo "::error::package.json $FIELD points at '$P', which the build did not produce"
-              MISSING=1
-            else
-              echo "ok  $FIELD -> $P"
-            fi
-          done
-          exit $MISSING
-
-      # `files` ships `data/`, and the data IS the product: an atlas package
-      # with no counties installs cleanly and answers nothing. Assert against
-      # the tarball rather than the working tree, because `files` and
-      # .npmignore decide what actually ships and the working tree does not.
-      - name: The tarball carries the atlas data
+      # Against the EXTRACTED TARBALL, never the working tree: `files` and
+      # .npmignore decide what ships, and the working tree does not.
+      - name: Verify the package that would ship
         run: |
           TARBALL=$(npm pack --silent | tail -1)
           echo "packed: $TARBALL"
-          mkdir -p /tmp/verify-atlas && tar -xzf "$TARBALL" -C /tmp/verify-atlas
-          cd /tmp/verify-atlas/package
-
-          if [ ! -f data/index.json ]; then
-            echo "::error::data/index.json is not in the tarball; the package would install with no atlas"
-            exit 1
-          fi
-          COUNTIES=$(node -p "require('./data/index.json').totals.counties")
-          ENDPOINTS=$(node -p "require('./data/index.json').totals.endpoints")
-          JSON_FILES=$(find data -name '*.json' -type f | wc -l)
-          echo "counties=$COUNTIES endpoints=$ENDPOINTS json files=$JSON_FILES"
-
-          # A floor, not an exact number: this repo is downstream of a registry
-          # that grows, so pinning the count here would fail on every real
-          # update. The floor is only here to catch an EMPTY or truncated sync,
-          # which is the failure that would otherwise publish quietly.
-          if [ "$COUNTIES" -lt 100 ] || [ "$JSON_FILES" -lt 10 ]; then
-            echo "::error::the atlas data looks truncated: $COUNTIES counties across $JSON_FILES json files"
-            exit 1
-          fi
-
-          # The README and the npm description are the first thing a consumer
-          # reads, and both stated 155 counties for two releases after the atlas
-          # reached 170. The monorepo pins them against the bundled index there;
-          # this is the same check on what actually shipped.
-          for SURFACE in README.md; do
-            if ! grep -q "$COUNTIES counties" "$SURFACE"; then
-              echo "::error::$SURFACE does not say \"$COUNTIES counties\", which is what data/index.json bundles"
-              exit 1
-            fi
-          done
-          DESC=$(node -p "require('./package.json').description")
-          case "$DESC" in
-            *"$COUNTIES counties"*) echo "ok  description states $COUNTIES counties" ;;
-            *) echo "::error::package.json description does not state \"$COUNTIES counties\""; exit 1 ;;
-          esac
+          mkdir -p /tmp/verify-atlas
+          tar -xzf "$TARBALL" -C /tmp/verify-atlas
+          node scripts/verify-package.mjs /tmp/verify-atlas/package
 
       - name: Report
         if: ${{ always() }}
@@ -127,7 +86,7 @@ jobs:
           {
             echo "### @urbankitstudio/atlas CI"
             echo ""
-            echo "- gates: install, typecheck, test, build, entry points exist, tarball carries the data and states its own counts"
+            echo "- gates: install, typecheck, test, build, then \`scripts/verify-package.mjs\` against the packed tarball"
             echo ""
             echo "This repo's contents are synced from \`urbankitstudio/urbankitstudio\` (\`packages/atlas\`), where the data is generated. Fix problems THERE, not here -- an edit made in this repo is overwritten by the next sync."
           } >> "$GITHUB_STEP_SUMMARY"
