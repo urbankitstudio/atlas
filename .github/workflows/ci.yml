@@ -1,0 +1,133 @@
+# Gate every push and PR to @urbankitstudio/atlas.
+#
+# WHAT THIS REPO IS, because it changes what CI is for. The package is AUTHORED
+# in urbankitstudio/urbankitstudio, under `packages/atlas`: its `data/` is
+# generated there from the parcel registry, which is why the package cannot
+# simply move. This repo is where it PUBLISHES from, and its contents arrive by
+# an automated sync push from the monorepo.
+#
+# So this is not a code review gate -- nobody hand-edits files here. It is a
+# check that what arrived is installable, type-clean, passing its own tests, and
+# packable, run BEFORE publish.yml can act on a version change. A sync that
+# lands something broken fails here rather than on the registry.
+#
+# It deliberately does not run on a schedule. A repo whose contents only change
+# when the monorepo pushes has nothing to re-check in between.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.19.0'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # The package declares `main`, `module` and `types`, and npm does not
+      # check that any of them exist. A build that silently emits nothing
+      # publishes an installable package that resolves to no code -- which is
+      # worse than a failed publish, because it only surfaces in a consumer's
+      # project.
+      - name: The build emitted what package.json promises
+        run: |
+          MISSING=0
+          for FIELD in main module types; do
+            P=$(node -p "require('./package.json').$FIELD || ''")
+            if [ -z "$P" ]; then
+              echo "::error::package.json declares no $FIELD"
+              MISSING=1
+            elif [ ! -f "$P" ]; then
+              echo "::error::package.json $FIELD points at '$P', which the build did not produce"
+              MISSING=1
+            else
+              echo "ok  $FIELD -> $P"
+            fi
+          done
+          exit $MISSING
+
+      # `files` ships `data/`, and the data IS the product: an atlas package
+      # with no counties installs cleanly and answers nothing. Assert against
+      # the tarball rather than the working tree, because `files` and
+      # .npmignore decide what actually ships and the working tree does not.
+      - name: The tarball carries the atlas data
+        run: |
+          TARBALL=$(npm pack --silent | tail -1)
+          echo "packed: $TARBALL"
+          mkdir -p /tmp/verify-atlas && tar -xzf "$TARBALL" -C /tmp/verify-atlas
+          cd /tmp/verify-atlas/package
+
+          if [ ! -f data/index.json ]; then
+            echo "::error::data/index.json is not in the tarball; the package would install with no atlas"
+            exit 1
+          fi
+          COUNTIES=$(node -p "require('./data/index.json').totals.counties")
+          ENDPOINTS=$(node -p "require('./data/index.json').totals.endpoints")
+          JSON_FILES=$(find data -name '*.json' -type f | wc -l)
+          echo "counties=$COUNTIES endpoints=$ENDPOINTS json files=$JSON_FILES"
+
+          # A floor, not an exact number: this repo is downstream of a registry
+          # that grows, so pinning the count here would fail on every real
+          # update. The floor is only here to catch an EMPTY or truncated sync,
+          # which is the failure that would otherwise publish quietly.
+          if [ "$COUNTIES" -lt 100 ] || [ "$JSON_FILES" -lt 10 ]; then
+            echo "::error::the atlas data looks truncated: $COUNTIES counties across $JSON_FILES json files"
+            exit 1
+          fi
+
+          # The README and the npm description are the first thing a consumer
+          # reads, and both stated 155 counties for two releases after the atlas
+          # reached 170. The monorepo pins them against the bundled index there;
+          # this is the same check on what actually shipped.
+          for SURFACE in README.md; do
+            if ! grep -q "$COUNTIES counties" "$SURFACE"; then
+              echo "::error::$SURFACE does not say \"$COUNTIES counties\", which is what data/index.json bundles"
+              exit 1
+            fi
+          done
+          DESC=$(node -p "require('./package.json').description")
+          case "$DESC" in
+            *"$COUNTIES counties"*) echo "ok  description states $COUNTIES counties" ;;
+            *) echo "::error::package.json description does not state \"$COUNTIES counties\""; exit 1 ;;
+          esac
+
+      - name: Report
+        if: ${{ always() }}
+        run: |
+          {
+            echo "### @urbankitstudio/atlas CI"
+            echo ""
+            echo "- gates: install, typecheck, test, build, entry points exist, tarball carries the data and states its own counts"
+            echo ""
+            echo "This repo's contents are synced from \`urbankitstudio/urbankitstudio\` (\`packages/atlas\`), where the data is generated. Fix problems THERE, not here -- an edit made in this repo is overwritten by the next sync."
+          } >> "$GITHUB_STEP_SUMMARY"
