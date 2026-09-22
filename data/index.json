@@ -1,11 +1,12 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-09-02",
+  "lastUpdated": "2026-09-20",
   "totals": {
     "states": 50,
-    "counties": 171,
-    "endpoints": 174,
-    "countiesWithEndpoint": 166
+    "counties": 227,
+    "endpoints": 241,
+    "countiesWithEndpoint": 223,
+    "countiesUnprobeable": 1
   },
   "states": [
     {
@@ -76,8 +77,8 @@
       "slug": "florida",
       "name": "Florida",
       "abbrev": "FL",
-      "countyCount": 11,
-      "endpointCount": 10,
+      "countyCount": 67,
+      "endpointCount": 77,
       "populated": true
     },
     {

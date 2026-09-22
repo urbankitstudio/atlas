@@ -187,5 +187,12 @@ export interface AtlasIndex {
      *  published none, which is how published copy came to claim 155 verified
      *  endpoints. Prefer this when the sentence is about queryable coverage. */
     countiesWithEndpoint: number;
+    /** Counties that publish endpoints the liveness cron can never reach,
+     *  because it keys its worklist by countyFips and skips records without
+     *  one. SHOULD BE ZERO. Computed over the state files at generation time
+     *  and checked by validate-atlas, rather than derived by subtracting a
+     *  live health count from this static file - that subtraction let a stale
+     *  row cancel a real gap to zero. */
+    countiesUnprobeable: number;
   };
 }
