@@ -1,5 +1,48 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.5 — 2026-09-20
+
+Data refresh. No API change. `totals` move from **171 counties / 174
+endpoints / 50 states** to **227 counties / 241 endpoints / 50 states**;
+223 of the 227 now carry a verified endpoint (was 166 of 171).
+
+### Data refresh — Florida
+
+- **Florida: 11 → 67 counties, 10 → 77 endpoints.** Every Florida county is
+  now registered, not just the largest ten. Florida was already a populated
+  state (registered in `POPULATED_STATES` since before this release), so
+  `findState`/`findCounty`/`listCountiesByState`/`atlas.byStateSlug` needed
+  no source change — only `packages/atlas/data/florida.json` and
+  `data/index.json` grew. `src/*.ts` is unchanged by this release.
+
+Deliberately a **patch**, for the reason 0.5.3 and 0.6.1 gave: the README
+says to pin `^0.x`, and `^0.6.0` resolves to `>=0.6.0 <0.7.0` — so this
+reaches everyone already installed, and a `0.7.0` would not. Adding county
+rows to an already-registered state is exactly the 0.6.1 shape (Connecticut's
+nine planning regions, the four NYC boroughs), not the 0.4.0/0.5.0 shape
+(registering a *new* state key, which changes what an existing function
+returns for inputs it previously answered `undefined` for).
+
+## 0.6.4 — 2026-09-18
+
+Data corrections. No API change. `totals` stay at **171 counties / 174
+endpoints / 50 states**; five of those counties publish no endpoint, and the
+README's coverage sentence is now checked against the data by a test, because
+the prose had been wrong twice.
+
+- New York: the four boroughs that shared the id `ny-new-york` are now
+  `ny-bronx`, `ny-kings`, `ny-queens` and `ny-richmond`.
+- South Carolina: Charleston County's parcels moved from `MapServer/61` to
+  `MapServer/4`; re-pointed and re-verified 2026-09-17.
+- Texas: Fort Bend renamed its fields (`OwnerName` → `Owner_Name` and the
+  rest); re-pointed rather than dropped, re-verified 2026-09-12.
+- California: San Diego's record now explains that every owner name comes back
+  as the literal `Protected Per CA Gov Code 7928.205`.
+- Manifest: keywords gain `real-estate` and `property`; the README carries the
+  Socket badge.
+
+`^0.6.0` reaches everyone already installed.
+
 ## 0.6.3 — 2026-09-03
 
 Metadata only. No data or API change. The package author, the license

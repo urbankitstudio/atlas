@@ -63,9 +63,9 @@
       "hasPublicRest": true,
       "endpoints": [
         {
-          "url": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/New_Parcel_Search/MapServer/4",
+          "url": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/External_GIS_Website/MapServer/7",
           "serviceType": "MapServer",
-          "layerIndex": 4,
+          "layerIndex": 7,
           "layerName": "Parcels",
           "supportsQuery": true,
           "corsEnabled": null,
@@ -82,11 +82,11 @@
             { "name": "LEGAL_DESCR", "label": "Legal Description", "searchable": false },
             { "name": "SUBDIVISION", "label": "Subdivision", "searchable": false }
           ],
-          "sampleQuery": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/New_Parcel_Search/MapServer/4/query?where=UPPER(OWNER1)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=PID,OWNER1,OWNER2,MAIL_ST_NAME&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/External_GIS_Website/MapServer/7/query?where=UPPER(OWNER1)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=PID,OWNER1,OWNER2,MAIL_ST_NAME&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://charleston-county-gis-chascogis.hub.arcgis.com/",
           "status": "live",
-          "lastVerified": "2026-09-17",
+          "lastVerified": "2026-09-21",
           "verifiedBy": "manual"
         }
       ],
@@ -95,7 +95,7 @@
         "url": "https://charleston-county-gis-chascogis.hub.arcgis.com/",
         "email": null
       },
-      "notes": "Charleston County (pop. 430,000; includes Charleston, North Charleston, Mount Pleasant). Parcels live on GIS_VIEWER/New_Parcel_Search/MapServer layer 4. Field names are unqualified (PID, OWNER1, ...); the FEATURES.SDE.* prefixes an older revision of this entry described no longer apply, and neither GPIN nor ACRES_CAL exists here. Layer 4 carries 27 fields, including several the registry does not map: ACREAGE, CLASS_CODE, DEED_BOOK_PAGE, PLAT_BOOK_PAGE, SALE_PRICE, RECORDED_DATE and DOC_DATE. WATCH THIS COUNTY: it has now renumbered its parcel layer twice. 2026-06-06 moved Parcel_Search/4 to New_Parcel_Search/61 after the old service 404'd; 2026-09-17 moved it again to New_Parcel_Search/4, which is why the endpoint sat down with last_ok_at null. Both times the service name and the field names survived and only the layer index changed, so an index-only drift check would catch the next one. Re-verified live 2026-09-17: layer 61 answers ArcGIS error 404 'Layer not found' while layer 4 returns features for both query shapes the tool sends, UPPER(OWNER1) LIKE and PID LIKE."
+      "notes": "Charleston County (pop. 430,000; includes Charleston, North Charleston, Mount Pleasant) has moved its parcel layer THREE times since June 2026, most recently on 2026-09-21, when the county withdrew the entire New_Parcel_Search service. Re-verify this URL before you rely on it. Parcels now live on GIS_VIEWER/External_GIS_Website/MapServer layer 7, whose upstream layer name is 'Parcels ***Assessor Maintained***'; the registry keeps the display name 'Parcels'. Field names are unqualified (PID, OWNER1, ...) rather than FEATURES.SDE.*-prefixed, and neither GPIN nor ACRES_CAL exists here. Layer 7 carries 27 fields, including several the registry does not map: ACREAGE, CLASS_CODE, DEED_BOOK_PAGE, PLAT_BOOK_PAGE, SALE_PRICE, RECORDED_DATE and DOC_DATE. The moves were 2026-06-06 (Parcel_Search/4 to New_Parcel_Search/61, after the old service began returning 404), 2026-09-17 (to New_Parcel_Search/4) and 2026-09-21 (to External_GIS_Website/7). If you monitor this endpoint, two things make the failure easy to miss: the first two moves changed only the layer index, so an index-only drift check looks sufficient and is not - this third move withdrew the service itself - and the dead URL still answers HTTP 200 while carrying the failure in an ArcGIS error BODY (code 500, 'Service ... not started'), with New_Parcel_Search gone from the GIS_VIEWER folder listing entirely. A check that reads only the status code calls that healthy. Re-verified live 2026-09-21: metadata, a where=1=1 query and the declared sampleQuery (UPPER(OWNER1) LIKE '%SMITH%', 10 rows) all return real features, and every one of the 11 mapped searchFields is present unchanged."
     }
   ]
 }
