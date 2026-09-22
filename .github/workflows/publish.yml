@@ -1,0 +1,305 @@
+# Publish @urbankitstudio/atlas to npm over OIDC Trusted Publishing.
+#
+# 🔴 THE FILENAME OF THIS FILE IS LOAD-BEARING. npm's Trusted Publisher entry
+# names a repository AND a workflow filename, and it matches BOTH exactly. If
+# the entry says `publish.yaml` and this file is `publish.yml`, every publish
+# fails at the OIDC exchange with:
+#
+#     npm error code E404
+#     npm error 404 Not Found - PUT https://registry.npmjs.org/@urbankitstudio%2fatlas
+#
+# npm returns 404 rather than 403 for an unauthorised OIDC publish, so that
+# error looks like a missing package and is not one.
+#
+# WHERE THIS PACKAGE IS AUTHORED, because it is not here. `packages/atlas` in
+# urbankitstudio/urbankitstudio is the source: its `data/` is GENERATED there
+# from the parcel registry, so the package cannot leave that repo, only publish
+# from this one. Contents arrive by an automated sync push. A version bump is
+# made THERE, syncs here, and this workflow reacts to it.
+#
+# WHY PUBLISH FROM HERE AT ALL. npm attaches a provenance attestation
+# automatically on an OIDC publish from a PUBLIC repository, which is impossible
+# from a private one. The monorepo is private; this repo is public.
+#
+# 🔴 ORDER OF OPERATIONS WITH THE MONOREPO, which has one dangerous window.
+# Until npm's Trusted Publisher entry for @urbankitstudio/atlas is repointed
+# from `urbankitstudio/urbankitstudio` + `publish-atlas-package.yml` to THIS
+# repo + `publish.yml`, this workflow cannot publish -- and after the repoint,
+# that one cannot. Exactly one of the two may be live. Do not delete the
+# monorepo's workflow before the repoint, and do not leave it enabled after.
+#
+# 🔴 THE `npm-publish` ENVIRONMENT MUST EXIST AND MUST BE RESTRICTED TO `main`.
+# GitHub creates an environment on first reference with NO protection rules, so
+# a merely-referenced environment is not a control. Its deployment-branch rule
+# is the outer guard that keeps this job from starting on any other ref; the
+# `release` gate below is the inner one. Both, because the outer one is a
+# setting somebody can change in a web UI without touching this file.
+#
+# NO NODE_AUTH_TOKEN ANYWHERE. npm mints a short-lived credential from the OIDC
+# identity minted by `permissions: id-token: write` below. There is no npm token
+# in this repo's secrets and there must not be one.
+
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run every gate but do not publish'
+        type: boolean
+        # 🔴 DEFAULTS TO TRUE. A dispatch without `-f dry_run=false` is a
+        # rehearsal: it publishes nothing and still concludes green. A green run
+        # is NOT a publish. The registry is the only proof.
+        default: true
+
+concurrency:
+  group: publish-atlas
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+# GitHub's DEFAULT shell for `run:` on Linux is `bash -e {0}` -- WITHOUT
+# pipefail. Naming bash explicitly gets `bash --noprofile --norc -eo pipefail
+# {0}`. It matters in a job that publishes: `npm pack | tail -1` would otherwise
+# swallow a pack failure and hand the verifier an empty filename, and a check
+# that cannot fail is worse here than anywhere else in the repo.
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # A hung job holds a MINTABLE npm publish identity for GitHub's default six
+    # hours.
+    timeout-minutes: 15
+    # npm checks the OIDC token for an `environment` claim once the Trusted
+    # Publisher entry names one, and GitHub only puts that claim in the token
+    # when the JOB declares an environment -- it is not inherited from the
+    # repository, and it is not optional once npm expects it. Setting the field
+    # on npm BEFORE this line exists breaks publishing in between; that is how
+    # mcp-atlas 0.2.5 came to be released.
+    environment: npm-publish
+    permissions:
+      contents: read
+      # This is what mints the OIDC identity npm exchanges for a publish
+      # credential. Without it the publish fails as if unauthorised.
+      #
+      # 🔴 IT IS A JOB-LEVEL PERMISSION, so the token-minting environment
+      # variables are present for EVERY step, not just the publish. That is why
+      # the ref check below lives in the `release` gate rather than only on the
+      # Publish step: `npm ci` and `npm pack` execute package lifecycle scripts,
+      # and gating only the last step would still run them with a mintable
+      # publish identity in scope. An adversarial review found exactly that hole
+      # in the first version of this file.
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      # A push that did not move the version is not a release. Stop here rather
+      # than running the whole gate only to fail on "already published". This
+      # matters more here than in a hand-edited repo: the sync from the monorepo
+      # pushes on every data regeneration, and most of those carry no bump.
+      - name: Is this a release, and from the right ref?
+        id: bump
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.before }}
+          REF: ${{ github.ref }}
+        run: |
+          NEW=$(node -p "require('./package.json').version")
+
+          # 🔴 VALIDATED BEFORE ANYTHING IS WRITTEN TO $GITHUB_OUTPUT, and with
+          # node rather than grep. `grep -Eq '^...$'` anchors PER LINE and
+          # short-circuits on the first match, so a version containing a newline
+          # passes -- verified: NEW=$'1.2.3\nrelease=true' satisfies the regex,
+          # and `echo "version=$NEW" >> $GITHUB_OUTPUT` then writes a second
+          # line that forges `release=true`. The previous version of this file
+          # carried a comment claiming the check prevented exactly that. A JS
+          # regex without /m anchors the WHOLE string, and passing the value as
+          # argv keeps it out of the shell entirely.
+          if ! node -e "process.exit(/^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$/.test(process.argv[1]) ? 0 : 1)" "$NEW"; then
+            echo "::error::package.json version is not a plain semver. Refusing to continue."
+            exit 1
+          fi
+
+          # The state of main BEFORE this push, not "one commit before the tip".
+          # They are the same for a squash merge and different for any push
+          # landing several commits, where HEAD~1 would already carry the bump
+          # and the release would be skipped in silence.
+          if [ "$EVENT" != "push" ] \
+             || [ -z "$BASE" ] \
+             || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            # No push baseline exists (a dispatch, or a first push). Do NOT fall
+            # through to `git show :path`, which is not an error - it means
+            # index stage 0 and would hand back the current file.
+            OLD="none"
+          else
+            OLD=$(git show "$BASE:package.json" 2>/dev/null \
+                  | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).version" 2>/dev/null || echo "none")
+          fi
+          echo "ref=$REF event=$EVENT old=$OLD new=$NEW"
+
+          # 🔴 THE REF CHECK IS PART OF `release`, NOT JUST OF `Publish`.
+          # Every heavy step below is gated on this output, and several of them
+          # run repo-controlled npm lifecycle scripts while the job holds a
+          # mintable publish identity. Gating only the final `npm publish` would
+          # leave those running on any dispatched branch, even a dry run. The
+          # cost is that a feature branch cannot be rehearsed here; that is the
+          # intended trade, and ci.yml already gates feature branches.
+          if [ "$REF" != "refs/heads/main" ]; then
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            echo "not on main ($REF) - nothing will run" >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$EVENT" = "workflow_dispatch" ] || [ "$OLD" != "$NEW" ]; then
+            # A dispatch always counts as a release attempt, including a
+            # re-dispatch at an unchanged version for recovery.
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            echo "version unchanged at $NEW - not a release" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "version=$NEW" >> "$GITHUB_OUTPUT"
+
+      # A push to main is a real release, by design -- that is how a synced
+      # version bump ships. A manual dispatch is a REHEARSAL unless dry_run was
+      # explicitly unchecked.
+      #
+      # 🔴 WHICH WAY THIS FAILS IS THE WHOLE POINT. Anything that is not the
+      # exact string "false" -- including empty -- is a dry run. Written the
+      # obvious way round (`inputs.dry_run || false`) a renamed or removed input
+      # collapses to `false`, and a dispatch that meant to rehearse PUBLISHES.
+      # Here the same mistake costs a wasted run rather than a release.
+      - name: Decide dry run
+        id: mode
+        env:
+          EVENT: ${{ github.event_name }}
+          DRY_INPUT: ${{ inputs.dry_run }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            if [ "$DRY_INPUT" = "false" ]; then dry=false; else dry=true; fi
+          else
+            dry=false
+          fi
+          echo "event=$EVENT dry_run input='$DRY_INPUT' -> dry=$dry"
+          echo "dry=$dry" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.19.0'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Bounded to major 11, NOT pinned. `npm@11` is a semver range and resolves
+      # to the newest 11.x at run time, inside the job that holds the OIDC
+      # identity -- so the publish tool does move under a release, it just
+      # cannot cross a major. Runs on dry runs too: a rehearsal that skips a
+      # step cannot rehearse it.
+      - name: Upgrade npm for OIDC publishing
+        if: ${{ steps.bump.outputs.release == 'true' }}
+        run: |
+          npm install -g npm@11
+          echo "npm $(npm --version)"
+
+      - name: Install
+        if: ${{ steps.bump.outputs.release == 'true' }}
+        run: npm ci
+
+      - name: Gate (typecheck, test, build)
+        if: ${{ steps.bump.outputs.release == 'true' }}
+        run: |
+          npm run typecheck
+          npm test
+          npm run build
+
+      # The SAME script ci.yml runs, against the EXTRACTED TARBALL. Sharing one
+      # implementation is the point: when these were two inline shell blocks
+      # they had already drifted, and the weaker of the two was the one guarding
+      # the registry. The script asserts in JS rather than shell because the
+      # shell version failed OPEN -- `[ "undefined" -lt 100 ]` errors and is
+      # then treated as a false clause, so a missing `totals.counties` defeated
+      # the only data check outright.
+      - name: Verify the package that would ship
+        if: ${{ steps.bump.outputs.release == 'true' }}
+        run: |
+          TARBALL=$(npm pack --silent | tail -1)
+          echo "packed: $TARBALL"
+          mkdir -p /tmp/verify-atlas
+          tar -xzf "$TARBALL" -C /tmp/verify-atlas
+          node scripts/verify-package.mjs /tmp/verify-atlas/package
+
+          # Only on a real publish. A dry run at an already-published version is
+          # a legitimate rehearsal, and failing it would make the rehearsal
+          # useless exactly when you most want one.
+          if [ "${{ steps.mode.outputs.dry }}" != "true" ]; then
+            VERSION=$(node -p "require('./package.json').version")
+            if npm view "@urbankitstudio/atlas@$VERSION" version >/dev/null 2>&1; then
+              echo "::error::@urbankitstudio/atlas@$VERSION is already published. Bump the version in the MONOREPO (packages/atlas), not here."
+              exit 1
+            fi
+          fi
+
+      # No NODE_AUTH_TOKEN: npm mints a short-lived credential from the OIDC
+      # identity above. A 404 or "not configured for trusted publishing" here
+      # means the Trusted Publisher entry on npmjs.com does not name THIS repo
+      # and THIS filename exactly. See the header.
+      #
+      # KNOWN GAP, stated rather than hidden: `npm publish` re-packs the working
+      # directory, so the archive that ships is not literally the one verified
+      # above, and `prepublishOnly` runs only on publish. Publishing the packed
+      # tarball would close that -- but npm's docs do not say whether provenance
+      # survives a pre-packed tarball publish, and provenance is the entire
+      # reason this package publishes from a public repo. So the lifecycle
+      # scripts are pinned to an allow-list in verify-package.mjs instead, which
+      # blocks the mechanism rather than the symptom.
+      - name: Publish
+        id: publish
+        if: ${{ steps.mode.outputs.dry != 'true' && steps.bump.outputs.release == 'true' }}
+        run: |
+          # Idempotent on purpose, so a re-run after a downstream failure is not
+          # refused just because the version already landed.
+          if npm publish --access public; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+          else
+            VERSION=$(node -p "require('./package.json').version")
+            if npm view "@urbankitstudio/atlas@$VERSION" version >/dev/null 2>&1; then
+              echo "::warning::$VERSION is already on the registry; treating this publish as already done."
+              echo "published=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "::error::publish failed and $VERSION is NOT on the registry."
+              exit 1
+            fi
+          fi
+
+      # Values reach this step through `env:`, never through `${{ }}` inside
+      # `run:`. An expression interpolated into a shell IS shell, and this step
+      # is `if: always()`, so it runs even after every gate has failed -- the
+      # worst place to have a sink.
+      - name: Report
+        if: ${{ always() }}
+        env:
+          VERSION: ${{ steps.bump.outputs.version }}
+          RELEASE: ${{ steps.bump.outputs.release }}
+          DRY: ${{ steps.mode.outputs.dry }}
+          PUBLISHED: ${{ steps.publish.outputs.published || 'no' }}
+        run: |
+          {
+            echo "### @urbankitstudio/atlas"
+            echo ""
+            echo "- version: \`$VERSION\`"
+            echo "- release: \`$RELEASE\`"
+            echo "- dry run: \`$DRY\`"
+            echo "- published: \`$PUBLISHED\`"
+            echo ""
+            echo "A green run is NOT a publish. Confirm on the registry:"
+            echo ""
+            echo '```'
+            echo "npm view @urbankitstudio/atlas version"
+            echo '```'
+            echo ""
+            echo "npm's \`/latest\` has lagged a concluded run by ~80 seconds before, so an immediate read is not evidence of failure."
+          } >> "$GITHUB_STEP_SUMMARY"
