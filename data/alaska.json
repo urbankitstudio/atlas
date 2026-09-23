@@ -9,7 +9,7 @@
       "state": "AK",
       "stateName": "Alaska",
       "stateSlug": "alaska",
-      "county": "Anchorage",
+      "county": "Anchorage Municipality",
       "countySlug": "anchorage-municipality",
       "countyFips": "02020",
       "hasPublicRest": true,
