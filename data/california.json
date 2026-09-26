@@ -2,7 +2,7 @@
   "stateSlug": "california",
   "stateName": "California",
   "stateAbbrev": "CA",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-09-26",
   "counties": [
     {
       "id": "ca-los-angeles",
@@ -462,6 +462,61 @@
         "email": null
       },
       "notes": "40 fields confirmed: APN_SUFFIX, APN_STATUS, DOC_NR, DOC_DT, DOC_TYPE, SITUS_NR, SITUS_DIR, SITUS_STRE, SITUS_TYP, TRACT, MAP_NR, ZONE, ACREAGE, L_V, I_V, APN10, SITUS, BOOK, PAGE, BLOCK, PARCEL, NON_TX_CD, SHAPE.AREA, SHAPE.LEN, OBJECTID, APN, TRA, APL_CD, CL, DIST, DT_V_TRF_Y, NGH, NUIS, QC, SQ_FT_I, STRUC_FAIL, TRAFFIC, VIEW_, SP, SHAPE. Live query confirmed: SITUS LIKE '%1000 E MAIN%' returns real Ventura County parcel data. NOTE: Owner name is NOT exposed on this public layer; for ownership, use the county Assessor. (Why California counties differ on this is explained on the California state page.) APN is the base parcel number; APN10 is the 10-digit version. Land Value (L_V) and Improvement Value (I_V) are available. SITUS is the combined site address. Hosted on Ventura County's GIS server (maps.ventura.org). Capabilities: Map, Query, Data. maxRecordCount=1000."
+    },
+    {
+      "id": "ca-riverside",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Riverside",
+      "countySlug": "riverside-county",
+      "countyFips": "06065",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.countyofriverside.us/arcgis_mapping/rest/services/OpenData/Assessor/MapServer/50",
+          "serviceType": "MapServer",
+          "layerIndex": 50,
+          "layerName": "PARCELS_CREST",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "APN", "label": "Assessor's Parcel Number", "searchable": true },
+            { "name": "SITUS_STREET", "label": "Site Street Address", "searchable": true },
+            { "name": "SITUS_CITY", "label": "Site City", "searchable": true },
+            { "name": "ZIP_CODE", "label": "Site ZIP", "searchable": false },
+            { "name": "MAIL_STREET", "label": "Mailing Street Address", "searchable": true },
+            { "name": "MAIL_CITY", "label": "Mailing City", "searchable": false },
+            { "name": "SUBDIVISION_NAME", "label": "Subdivision Name", "searchable": false },
+            { "name": "ACREAGE", "label": "Assessed Acreage", "searchable": false },
+            { "name": "LAND", "label": "Assessed Land Value", "searchable": false },
+            { "name": "STRUCTURES", "label": "Assessed Structure Value", "searchable": false },
+            { "name": "CLASS_CODE", "label": "Land Use Class", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.countyofriverside.us/arcgis_mapping/rest/services/OpenData/Assessor/MapServer/50/query?where=UPPER(SITUS_CITY)+LIKE+UPPER('%25RIVERSIDE%25')&outFields=APN,SITUS_STREET,SITUS_CITY,MAIL_STREET,MAIL_CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://gis.rivco.org/pages/data-distribution",
+          "status": "live",
+          "lastVerified": "2026-09-26",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Riverside County Assessor-County Clerk-Recorder / Riverside County Information Technology (RCIT) GIS",
+        "url": "https://gis.rivco.org/pages/data-distribution",
+        "email": null
+      },
+      "notes": "Riverside County publishes assessor parcels on its arcgis_mapping host as layer 50 PARCELS_CREST of the OpenData/Assessor MapServer. The layer carries the APN, the situs address (SITUS_STREET, SITUS_CITY and the street components), the owner's mailing address without a name (MAIL_STREET, MAIL_CITY), and the subdivision, acreage, land-use class and assessed land and structure values. The service description names PRIMARY_OWNER and ALL_OWNER_LIST fields, but the public schema carries neither, and naming PRIMARY_OWNER in outFields fails with 'Failed to execute query.' Owner name is therefore recorded as not published (see capabilityOverrides). The county's other public host, arcgis_public, exposes only APN and FLAG on its parcel layer. CORS reflects the request's Origin. Re-verified 2026-09-26: the layer holds 846,251 parcels and a situs-city query returned live rows.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "PARCELS_CREST's own service description names PRIMARY_OWNER and ALL_OWNER_LIST as fields, but the live fields array returned by the public endpoint (?f=json) has no such column, and naming PRIMARY_OWNER in outFields fails with 'Failed to execute query.' The joined CREST tables on the same service carry no owner-name column either, and Riverside's other public host (arcgis_public) exposes only APN and FLAG on its Assessor Parcel layer, so no owner name is published on any Riverside County public REST endpoint found.",
+            "sourceUrl": "https://gis.countyofriverside.us/arcgis_mapping/rest/services/OpenData/Assessor/MapServer/50"
+          }
+        }
+      }
     }
   ]
 }

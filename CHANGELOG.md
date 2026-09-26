@@ -1,5 +1,29 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.7 — 2026-09-26
+
+Data refresh. No API change. `totals` move from **227 counties / 241
+endpoints / 50 states** to **233 counties / 245 endpoints / 50 states**;
+227 of the 233 now carry a verified endpoint (was 223 of 227).
+
+### Data refresh — six counties in four registered states
+
+- **Michigan:** Lenawee County, with a verified endpoint, and Iron County,
+  which ships with `hasPublicRest: false`. Iron's map viewer has no public
+  query API, and Michigan has no statewide parcel layer to fall back on.
+- **California:** Riverside County. Its public layer carries APN, situs and
+  mailing address but no owner name, and `capabilityOverrides.owner_name`
+  records that as `not_published`.
+- **Maryland:** Baltimore County, the county rather than Baltimore City.
+- **Oregon:** Coos County, with a verified endpoint, and Clackamas County,
+  which ships with `hasPublicRest: false` because the county does not
+  publish owner names online.
+
+All four states were already registered in `POPULATED_STATES`, so `src/*.ts`
+is unchanged and only `data/` grew. Deliberately a **patch**, for the reason
+0.6.5 gave: adding county rows to an already-registered state is the 0.6.1
+shape, and `^0.6.0` reaches everyone already installed.
+
 ## 0.6.6 — 2026-09-22
 
 **No API change and no data change.** `totals` stay at **227 counties / 241

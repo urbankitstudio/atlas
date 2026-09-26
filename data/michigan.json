@@ -2,7 +2,7 @@
   "stateSlug": "michigan",
   "stateName": "Michigan",
   "stateAbbrev": "MI",
-  "lastUpdated": "2026-08-25",
+  "lastUpdated": "2026-09-26",
   "counties": [
     {
       "id": "mi-kent",
@@ -297,6 +297,102 @@
         "email": null
       },
       "notes": "Tax parcel layer at layer index 10 of the Macomb County Parcel Data service, not layer 0. 332,971 parcels with owner names on 331,114 rows (99.4 percent), real individuals. Columns: TAX_ID, ownername1, propstreetcombined, propertyCityStateZip, CVT_NAME, zoning. No mailing address. The service metadata reports wkid null, which normally signals a projection problem, but the buffered spatial query answers correctly and was verified against a live address; the null is a metadata quirk rather than a broken layer."
+    },
+    {
+      "id": "mi-lenawee",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Lenawee",
+      "countySlug": "lenawee-county",
+      "countyFips": "26091",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/mjEvhc9AE3ceAXtG/arcgis/rest/services/Lenawee_Parcels_Public/FeatureServer/2",
+          "serviceType": "FeatureServer",
+          "layerIndex": 2,
+          "layerName": "Lenawee Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TAXID",
+              "label": "Parcel ID (Tax ID)",
+              "searchable": true
+            },
+            {
+              "name": "PACKPARNUM",
+              "label": "Packed Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNNM1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNNM2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "PRADDCOMB",
+              "label": "Property Address (Combined)",
+              "searchable": true
+            },
+            {
+              "name": "PRADDRCITY",
+              "label": "Property Address City",
+              "searchable": true
+            },
+            {
+              "name": "LIBERPAGE",
+              "label": "Liber/Page (Deed Reference)",
+              "searchable": false
+            },
+            {
+              "name": "ACRECALC",
+              "label": "Calculated Acreage",
+              "searchable": false
+            },
+            {
+              "name": "BSALink",
+              "label": "BS&A Online Record Link",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/mjEvhc9AE3ceAXtG/arcgis/rest/services/Lenawee_Parcels_Public/FeatureServer/2/query?where=UPPER(OWNNM1)%20LIKE%20UPPER('%25SMITH%25')&outFields=TAXID,PACKPARNUM,OWNNM1,OWNNM2,PRADDCOMB,PRADDRCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.lenawee.mi.us/214/Mapping-GIS",
+          "status": "live",
+          "lastVerified": "2026-09-26",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Lenawee County Equalization Department, GIS Division",
+        "url": "https://www.lenawee.mi.us/214/Mapping-GIS",
+        "email": null
+      },
+      "notes": "Lenawee County (county seat Adrian) publishes its countywide parcels as layer 2 'Lenawee Parcels' of the hosted feature service Lenawee_Parcels_Public. The layer carries TAXID, the dashed Michigan parcel number (for example RG0-109-4150-00), and its packed form PACKPARNUM; owner names OWNNM1 and OWNNM2; and the property (situs) address in PRADDCOMB with its components PRADDRNUM, PRADDRSTR, PRADDRCITY and PRADDRZIP. There is no owner mailing-address field. LIBERPAGE is the deed liber and page, and BSALink is a per-parcel link into the county's BS&A Online record for deed and tax detail. Re-verified 2026-09-26: the layer holds 55,211 parcels and an UPPER(OWNNM1) LIKE '%SMITH%' query returned live owner rows. CORS is open (Access-Control-Allow-Origin: *). The layer's item page carries the county's standard disclaimer that the map is for reference only and is not a legal description."
+    },
+    {
+      "id": "mi-iron",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Iron",
+      "countySlug": "iron-county",
+      "countyFips": "26071",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Iron County Equalization Department",
+        "url": "https://ironmi.com/equalization",
+        "email": null
+      },
+      "notes": "No public ArcGIS REST parcel layer was found for Iron County, Michigan (county seat Crystal Falls) as of 2026-09-25. The county's GIS map viewer, linked from its equalization page, runs on Colligo GIS, a proprietary web platform with no documented public query API. Michigan has no statewide public parcel REST layer to fall back on. Parcel and tax records can be searched by name, address or parcel number through the county's BS&A Online portal, which returns no geometry and offers no field-level API. Two same-name ArcGIS parcel applications belong to other states and do not cover this county: Iron County, Utah's 'County Parcel Locator' and Iron County, Missouri's assessment map hosted by the Southeast Missouri Regional Planning Commission."
     }
   ]
 }

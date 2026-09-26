@@ -2,7 +2,7 @@
   "stateSlug": "oregon",
   "stateName": "Oregon",
   "stateAbbrev": "OR",
-  "lastUpdated": "2026-09-02",
+  "lastUpdated": "2026-09-26",
   "counties": [
     {
       "id": "or-multnomah",
@@ -185,6 +185,71 @@
         "email": null
       },
       "notes": "46 fields confirmed including TLID, GlobalID, StatedArea, ID, account_id, tax_status, map_tax, MAP, Taxlot, S_I_TYPE, SI_NUMBER, MAILING_NA, IN_CARE_OF, AGENT, M_ADDRESS, M_CITY, M_STATE, zip, YEAR, ma, sa, nh, RMV_PROPER, PROPERTY_C, CODE_AREA, SUM_OF_ACR, SUM_OF_SQF, SITUS_HOUS (house number), SITUS_STRE, SITUS_ST_1, SITUS_DIRE, SITUS_UNIT, SITUS_CITY, SITUS_STAT, SITUS_ZIP, SITUS_PRE_. Owner name search via UPPER() LIKE on MAILING_NA returns real results (e.g., 'SMITH TIMOTHY BLAIR & KAREN KAY'). Hosted on ArcGIS Online (services3.arcgis.com/tNPgIZWOB0Efvm0g). Parcel boundaries are approximated, not for determining legal property boundaries. This data is from Umatilla County GIS (Assessment and Taxation) and covers all of Umatilla County. Capabilities: Query, Sync. Filed under Multnomah until 2026-09-02: the layer's own description reads 'a Umatilla County GIS layer depicting land partition and ownership within Umatilla County' (copyright Umatilla County GIS, service TaxLot_situs_08_06_2025, 44,849 tax lots)."
+    },
+    {
+      "id": "or-coos",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Coos",
+      "countySlug": "coos-county",
+      "countyFips": "41011",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services8.arcgis.com/Mg5lKoVeyQMwwiX3/ArcGIS/rest/services/Coos_County_Parcels/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "Coos County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "TLID", "label": "Tax Lot ID", "searchable": true },
+            { "name": "Map_No", "label": "Map Number", "searchable": false },
+            { "name": "Parcel_No", "label": "Tax Lot Number (within map)", "searchable": false },
+            { "name": "OWNER1", "label": "Owner Name 1", "searchable": true },
+            { "name": "OWNER2", "label": "Owner Name 2", "searchable": false },
+            { "name": "OWNER3", "label": "Owner Name 3", "searchable": false },
+            { "name": "SITUSSTR", "label": "Situs Street Address", "searchable": true },
+            { "name": "SITUSCITY", "label": "Situs City", "searchable": true },
+            { "name": "SITUSZIP", "label": "Situs ZIP", "searchable": false },
+            { "name": "ACRES", "label": "Acres", "searchable": false },
+            { "name": "PLAN_ZONE", "label": "Plan/Zoning Code", "searchable": false },
+            { "name": "AV", "label": "Assessed Value", "searchable": false },
+            { "name": "RMVLAND", "label": "Real Market Value (Land)", "searchable": false },
+            { "name": "RMVIMPR", "label": "Real Market Value (Improvements)", "searchable": false }
+          ],
+          "sampleQuery": "https://services8.arcgis.com/Mg5lKoVeyQMwwiX3/ArcGIS/rest/services/Coos_County_Parcels/FeatureServer/1/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=TLID,OWNER1,SITUSSTR,SITUSCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-09-26",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Coos County Assessor's Office (GIS hosted via City of Coquille ArcGIS Online organization)",
+        "url": "https://co.coos.or.us",
+        "email": null
+      },
+      "notes": "Coos County's public parcel layer is hosted on ArcGIS Online by the City of Coquille's organization, as layer 1 'Coos County Parcels' of the Coos_County_Parcels feature service, whose own description reads 'Parcels via Coos County'. The layer carries the unique tax lot ID (TLID, for example 23S12W07BCTL0012300), the assessor map number (Map_No) and the tax lot number within that map (Parcel_No, which repeats across maps and is not unique on its own), owner names OWNER1 to OWNER3, the situs address (SITUSSTR, SITUSCITY, SITUSZIP), acreage, plan zone, assessed value and real market land and improvement values. There is no owner mailing-address field. CORS is open (Access-Control-Allow-Origin: *). Re-verified 2026-09-26: the layer holds 42,056 parcels and an owner-name query returned live rows. The ArcGIS item is public but states no license, and no county GIS terms page was found, so the license is recorded as unknown."
+    },
+    {
+      "id": "or-clackamas",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Clackamas",
+      "countySlug": "clackamas-county",
+      "countyFips": "41005",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Clackamas County Department of Assessment and Taxation / Technology Services GIS",
+        "url": "https://www.clackamas.us/gis",
+        "email": "gisquestions@clackamas.us"
+      },
+      "notes": "No public REST parcel layer with owner names was found for Clackamas County (county seat Oregon City) as of 2026-09-26. The county states that it does not publish property owner names online and directs owner-information requests to Assessment and Taxation, and its GIS shapefile downloads require accepting a data licensing agreement. No county-hosted ArcGIS REST catalog was found; the public tools, CMap and AscendWeb, are interactive viewers. Two statewide layers cover the county but neither can serve an owner search: the Oregon Department of Forestry's taxlot layer named 'Clackamas County' declares owner fields but has query disabled, and the Oregon Department of Transportation's taxlot layer is queryable but carries only map and taxlot numbers. Metro's regional RLIS 'Taxlots (Public)' dataset, per its listing, excludes ownership."
     }
   ]
 }

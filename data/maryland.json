@@ -2,7 +2,7 @@
   "stateSlug": "maryland",
   "stateName": "Maryland",
   "stateAbbrev": "MD",
-  "lastUpdated": "2026-06-05",
+  "lastUpdated": "2026-09-26",
   "counties": [
     {
       "id": "md-montgomery",
@@ -178,6 +178,115 @@
         "email": null
       },
       "notes": "Prince George's County is Maryland's second-most populous county (pop. 910,000; county seat Upper Marlboro). The Property_Flattened MapServer on gis.princegeorgescountymd.gov (ArcGIS Server 11.5) is the county's canonical public property layer with 112 fields and 352,791 parcels. Live query confirmed OWNER_NAME exposure. Key fields: ACCOUNT (county account number, 7 digits), PROPERTY_ID (prefixed as '12' + ACCOUNT for the full 9-digit SDAT account number), OWNER_NAME, ICO_NAME (in-care-of), HOUSE_NUMBER (zero-padded 6-digit, e.g. '002909'), STREET_NAME, STREET_TYPE, STREET_DIRECTION, MAIL_STREET/CITY/STATE/ZIP5 (owner mailing address), ASSESS_DIST (assessment district), LAND_AREA_ACRE, LAND_AREA_SQFT, LIBER, FOLIO, SUB_NAME, CONDO_UNIT_NUMBER, TAXMAPGRID. The situs address is split across HOUSE_NUMBER + STREET_NAME + STREET_TYPE. There is no single combined site address field on this layer. The county belongs to the M-NCPPC (Maryland-National Capital Park and Planning Commission) planning region and uses Maryland SDAT for the authoritative ownership record. Prince George's County borders DC and contains the University of Maryland (College Park) and Joint Base Andrews."
+    },
+    {
+      "id": "md-baltimore",
+      "state": "MD",
+      "stateName": "Maryland",
+      "stateSlug": "maryland",
+      "county": "Baltimore",
+      "countySlug": "baltimore-county",
+      "countyFips": "24005",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://bcgis.baltimorecountymd.gov/arcgis/rest/services/Property/Property/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Tax parcel",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TAXPIN",
+              "label": "Tax PIN",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NA1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NA2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "PREMISE_ADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS_1",
+              "label": "Owner Mailing Address 1",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS_2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "OWNERSTATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "OWNER_ZIP",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ST_NUM",
+              "label": "Site Street Number",
+              "searchable": false
+            },
+            {
+              "name": "STREETNAME",
+              "label": "Site Street Name",
+              "searchable": true
+            },
+            {
+              "name": "CITY",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "ZIP_CODE",
+              "label": "Site ZIP",
+              "searchable": false
+            },
+            {
+              "name": "DISTRICT",
+              "label": "Assessment District",
+              "searchable": false
+            },
+            {
+              "name": "YEAR_BUILT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://bcgis.baltimorecountymd.gov/arcgis/rest/services/Property/Property/MapServer/1/query?where=UPPER(OWNER_NA1)+LIKE+UPPER('%25SMITH%25')&outFields=TAXPIN,OWNER_NA1,ADDRESS_1,ST_NUM,STREETNAME,CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://opendata.baltimorecountymd.gov/pages/data-license",
+          "status": "live",
+          "lastVerified": "2026-09-26",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Baltimore County Government, Office of Information Technology, GIS",
+        "url": "https://www.baltimorecountymd.gov/departments/information-technology/gis",
+        "email": null
+      },
+      "notes": "Baltimore County (county seat Towson; a separate jurisdiction from Baltimore City) publishes tax parcels as sub-layer 1 'Tax parcel' of the Property/Property MapServer on bcgis.baltimorecountymd.gov, and bcgisdata.baltimorecountymd.gov serves the identical service as a fallback. The layer carries the tax account number (TAXPIN), owner names (OWNER_NA1, OWNER_NA2 and the combined FULL_OWNER_NAME), the owner mailing address (ADDRESS_1, ADDRESS_2, OWNER_CITY, OWNERSTATE, OWNER_ZIP), the premise address (PREMISE_ADDRESS plus ST_NUM, STREETNAME, CITY and ZIP_CODE), land use, year built, total value and a link to the state SDAT record. CORS: the server reflects the request's Origin in Access-Control-Allow-Origin, and it also sends a misspelled Allow-Control-Allow-Origin: * header that browsers ignore. Re-verified 2026-09-26: the layer holds 374,909 parcels and an owner-name query returned live rows. Maryland's statewide MD_PropertyData layer carries owner mailing addresses but no owner names, so this county layer is the better source."
     }
   ]
 }

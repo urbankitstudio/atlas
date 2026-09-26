@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-09-20",
+  "lastUpdated": "2026-09-26",
   "totals": {
     "states": 50,
-    "counties": 227,
-    "endpoints": 241,
-    "countiesWithEndpoint": 223,
+    "counties": 233,
+    "endpoints": 245,
+    "countiesWithEndpoint": 227,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -45,8 +45,8 @@
       "slug": "california",
       "name": "California",
       "abbrev": "CA",
-      "countyCount": 10,
-      "endpointCount": 10,
+      "countyCount": 11,
+      "endpointCount": 11,
       "populated": true
     },
     {
@@ -165,8 +165,8 @@
       "slug": "maryland",
       "name": "Maryland",
       "abbrev": "MD",
-      "countyCount": 2,
-      "endpointCount": 2,
+      "countyCount": 3,
+      "endpointCount": 3,
       "populated": true
     },
     {
@@ -181,8 +181,8 @@
       "slug": "michigan",
       "name": "Michigan",
       "abbrev": "MI",
-      "countyCount": 4,
-      "endpointCount": 4,
+      "countyCount": 6,
+      "endpointCount": 5,
       "populated": true
     },
     {
@@ -301,8 +301,8 @@
       "slug": "oregon",
       "name": "Oregon",
       "abbrev": "OR",
-      "countyCount": 4,
-      "endpointCount": 4,
+      "countyCount": 6,
+      "endpointCount": 5,
       "populated": true
     },
     {

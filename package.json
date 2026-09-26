@@ -1,7 +1,7 @@
 {
   "name": "@urbankitstudio/atlas",
-  "version": "0.6.6",
-  "description": "JS SDK for the UrbanKit County Parcel REST API Atlas: 227 counties across all 50 US states, 241 verified public ArcGIS REST endpoints for county parcel data, with searchable field metadata, sample queries and license info.",
+  "version": "0.6.7",
+  "description": "JS SDK for the UrbanKit County Parcel REST API Atlas: 233 counties across all 50 US states, 245 verified public ArcGIS REST endpoints for county parcel data, with searchable field metadata, sample queries and license info.",
   "keywords": [
     "parcel",
     "arcgis",
