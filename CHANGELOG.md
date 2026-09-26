@@ -1,5 +1,37 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.8 — 2026-09-26
+
+Data refresh. No API change. `totals` move from **233 counties / 245
+endpoints / 50 states** to **234 counties / 246 endpoints / 50 states**;
+228 of the 234 now carry a verified endpoint (was 227 of 233).
+
+### Data refresh — one county added, one record corrected
+
+- **Ohio:** Mahoning County, with a verified endpoint. Its parcel layer
+  answers only `outFields=*`: a query that names its fields is refused
+  with "Failed to execute query." The record's `sampleQuery` already sends
+  `outFields=*` and its `notes` record the quirk, so a client that builds
+  its own query should request every field and read the columns it needs.
+- **Mississippi:** Hinds County's layer (MDEQ OPCGIS, HINDS_PARCELS) now
+  refuses a named `outFields` list the same way, measured 2026-09-26 on
+  the enrichment, radius and liveness query shapes; it answered a named
+  list in May. Its `sampleQuery` now sends `outFields=*`, its `notes` say
+  so, and `lastVerified` moves to 2026-09-26. The record also stops listing
+  `MAILADD1`, `MCITY1`, `MSTATE1` and `MZIP1` under `searchFields`: those
+  columns exist in the layer's schema but are blank on every one of its
+  114,814 parcels (`returnCountOnly` with `<field> IS NOT NULL AND <field>
+  <> ''` counts 0 for each, against 114,547 for `OWNNAME` and 114,514 for
+  `SITEADD`, measured 2026-09-26), so the county serves owner names and
+  site addresses, not mailing addresses, and a client reading
+  `searchFields` for a mailing column no longer finds one there. No count
+  changes.
+
+Ohio was already registered in `POPULATED_STATES`, so `src/*.ts` is
+unchanged and only `data/` grew. Deliberately a **patch**, for the reason
+0.6.5 gave: adding county rows to an already-registered state is the 0.6.1
+shape, and `^0.6.0` reaches everyone already installed.
+
 ## 0.6.7 — 2026-09-26
 
 Data refresh. No API change. `totals` move from **227 counties / 241

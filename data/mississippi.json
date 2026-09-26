@@ -26,21 +26,17 @@
             { "name": "ALTPARNO", "label": "Alternate Parcel Number", "searchable": true },
             { "name": "PPIN", "label": "PPIN", "searchable": true },
             { "name": "OWNNAME", "label": "Owner Name", "searchable": true },
-            { "name": "MAILADD1", "label": "Mailing Address 1", "searchable": false },
-            { "name": "MCITY1", "label": "Mailing City 1", "searchable": false },
-            { "name": "MSTATE1", "label": "Mailing State 1", "searchable": false },
-            { "name": "MZIP1", "label": "Mailing ZIP 1", "searchable": false },
             { "name": "SITEADD", "label": "Site Address", "searchable": true },
             { "name": "SCITY", "label": "Site City", "searchable": false },
             { "name": "SSTATE", "label": "Site State", "searchable": false },
             { "name": "SZIP", "label": "Site ZIP", "searchable": false },
             { "name": "SUBNAME", "label": "Subdivision Name", "searchable": false }
           ],
-          "sampleQuery": "https://opcgis.deq.state.ms.us/opcgis/rest/services/Government/HINDS_PARCELS/MapServer/0/query?where=UPPER(OWNNAME)+LIKE+UPPER('%25SMITH%25')&outFields=PARNO,OWNNAME,MAILADD1,SITEADD,SCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://opcgis.deq.state.ms.us/opcgis/rest/services/Government/HINDS_PARCELS/MapServer/0/query?where=UPPER(OWNNAME)+LIKE+UPPER('%25SMITH%25')&outFields=*&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.gis.ms.gov/",
           "status": "live",
-          "lastVerified": "2026-05-15",
+          "lastVerified": "2026-09-26",
           "verifiedBy": "manual"
         }
       ],
@@ -49,7 +45,7 @@
         "url": "https://www.gis.ms.gov/",
         "email": null
       },
-      "notes": "Hinds County (Jackson, pop. 231,000; state capital) parcel layer hosted on MDEQ OPCGIS server. Mississippi DEQ hosts parcel layers for many MS counties under the 'Government' folder on opcgis.deq.state.ms.us. 20 fields confirmed: OBJECTID, CAMA, PARNO, ALTPARNO, PPIN, OWNNAME, MAILADD1/2, MCITY1/2, MSTATE1/2, MZIP1/2, SITEADD, SCITY, SSTATE, SZIP, SUBNAME. OWNNAME field returns owner name in mixed format. Verified 2026-05-15: SMITH returns Jackson MS addresses. The same server also has DeSoto County parcels and other MS county datasets."
+      "notes": "Hinds County (Jackson, pop. 231,000; state capital) parcel layer hosted on MDEQ OPCGIS server. Mississippi DEQ hosts parcel layers for many MS counties under the 'Government' folder on opcgis.deq.state.ms.us. The layer publishes 54 fields: OBJECTID, CAMA, PARNO, ALTPARNO, PPIN, OWNNAME, MAILADD1/2, MCITY1/2, MSTATE1/2, MZIP1/2, SITEADD, SCITY, SSTATE, SZIP, SUBNAME, deed and plat references, assessed values, acreage, ZONING, LEGLDESC and geometry measures. OWNNAME field returns owner name in mixed format. Verified 2026-05-15: SMITH returns Jackson MS site addresses. The same server also has DeSoto County parcels and other MS county datasets. 2026-09-26: the layer now refuses any query that names its outFields (HTTP 200 carrying error 400 \"Failed to execute query.\", measured twice each on the enrichment, radius and liveness query shapes) and answers outFields=* with 54 fields, so every UrbanKit query to this service sends outFields=* and the sample query above does the same. Measured the same day with returnCountOnly: MAILADD1, MAILADD2, MCITY1, MSTATE1 and MZIP1 are blank on every one of the layer's 114,814 parcels (0 rows each where the column IS NOT NULL AND <> '', against 114,547 for OWNNAME and 114,514 for SITEADD), so the record lists no mailing field and this county serves owner names and site addresses, not mailing addresses."
     },
     {
       "id": "ms-desoto",

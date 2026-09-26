@@ -3,9 +3,9 @@
   "lastUpdated": "2026-09-26",
   "totals": {
     "states": 50,
-    "counties": 233,
-    "endpoints": 245,
-    "countiesWithEndpoint": 227,
+    "counties": 234,
+    "endpoints": 246,
+    "countiesWithEndpoint": 228,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -285,8 +285,8 @@
       "slug": "ohio",
       "name": "Ohio",
       "abbrev": "OH",
-      "countyCount": 7,
-      "endpointCount": 7,
+      "countyCount": 8,
+      "endpointCount": 8,
       "populated": true
     },
     {

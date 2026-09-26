@@ -2,7 +2,7 @@
   "stateSlug": "ohio",
   "stateName": "Ohio",
   "stateAbbrev": "OH",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-09-26",
   "counties": [
     {
       "id": "oh-montgomery",
@@ -304,6 +304,53 @@
         "email": null
       },
       "notes": "Lucas County, Ohio (Toledo metro, county seat Toledo, pop. ~430K) serves parcels from the Lucas County Auditor's AREIS (Assessment Real Estate Information System) via a hosted FeatureServer. Owner name is owner; the site address is property_address (full street/city/state/zip in one field); mailing is mailing_address; identifiers are assessor_num (8-digit) and parid (7-digit). The county's canonical Cadastre_Dataset FeatureServer (layer 8) carries only lot/block geometry with no owner field -- use OSE_ParcelsAddresses_AREIS for owner-name queries. Owner search uses UPPER(owner) LIKE. Verified live 2026-05-30 (owner = MARTRE TAMERA L & BILL)."
+    },
+    {
+      "id": "oh-mahoning",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Mahoning",
+      "countySlug": "mahoning-county",
+      "countyFips": "39099",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisapp.mahoningcountyoh.gov/arcgis/rest/services/PUBLIC_WEBSITE_CADASTRAL/MapServer/2",
+          "serviceType": "MapServer",
+          "layerIndex": 2,
+          "layerName": "PROPERTY BOUNDARIES",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "PARCEL_ID", "label": "Parcel ID", "searchable": true },
+            { "name": "OWNNAME1", "label": "Owner Name 1", "searchable": true },
+            { "name": "OWNNAME2", "label": "Owner Name 2", "searchable": true },
+            { "name": "MVP_ADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "LOCSTREET", "label": "Site Street Name", "searchable": true },
+            { "name": "LOCCITY", "label": "Site City", "searchable": true },
+            { "name": "LOCZIP", "label": "Site ZIP", "searchable": true },
+            { "name": "MAIL_ADDRESS", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "MAILCITY", "label": "Owner Mailing City", "searchable": true },
+            { "name": "MAILSTATE", "label": "Owner Mailing State", "searchable": false },
+            { "name": "MAILZIP", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "LANDUSE", "label": "Land Use Code", "searchable": false },
+            { "name": "ACRES", "label": "Acres", "searchable": false }
+          ],
+          "sampleQuery": "https://gisapp.mahoningcountyoh.gov/arcgis/rest/services/PUBLIC_WEBSITE_CADASTRAL/MapServer/2/query?where=UPPER(OWNNAME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=*&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://www.mahoningcountyoh.gov/161/GIS",
+          "status": "live",
+          "lastVerified": "2026-09-26",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Mahoning County GIS",
+        "url": "https://www.mahoningcountyoh.gov/161/GIS",
+        "email": null
+      },
+      "notes": "Mahoning County (county seat Youngstown) publishes its parcels as layer 2 'PROPERTY BOUNDARIES' of the PUBLIC_WEBSITE_CADASTRAL MapServer on its own ArcGIS Server. The layer carries PARCEL_ID, owner names OWNNAME1 to OWNNAME3, the site address (MVP_ADDRESS combined, LOC* components), the owner mailing address (MAIL_ADDRESS combined, MAIL* components), a separate tax-bill mailing block (TAX*), land use, market values and the last sale. SERVER QUIRK: any query that names specific outFields fails with HTTP 400 'Failed to execute query.', and only outFields=* succeeds, so a client must request every field and pick columns out of the response. Measured across seven request variants on 2026-09-25 and confirmed again on 2026-09-26. CORS reflects the request's Origin. Re-verified 2026-09-26: the layer holds 160,722 parcels and an owner-name query returned live rows. The county's GIS page describes its maps as informational only and not suitable for legal, engineering or surveying use; no open-data license is stated."
     }
   ]
 }
