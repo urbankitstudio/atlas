@@ -1,0 +1,52 @@
+{
+  "stateSlug": "district-of-columbia",
+  "stateName": "District of Columbia",
+  "stateAbbrev": "DC",
+  "lastUpdated": "2026-09-26",
+  "counties": [
+    {
+      "id": "dc-district-of-columbia",
+      "state": "DC",
+      "stateName": "District of Columbia",
+      "stateSlug": "district-of-columbia",
+      "county": "District of Columbia",
+      "countySlug": "district-of-columbia",
+      "countyFips": "11001",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/FeatureServer/40",
+          "serviceType": "FeatureServer",
+          "layerIndex": 40,
+          "layerName": "Owner Polygons (Common Ownership Layer)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "SSL", "label": "Square, Suffix, Lot (Parcel ID)", "searchable": true },
+            { "name": "OWNERNAME", "label": "Owner Name", "searchable": true },
+            { "name": "CAREOFNAME", "label": "Care Of Name", "searchable": false },
+            { "name": "PREMISEADD", "label": "Premise (Situs) Address", "searchable": true },
+            { "name": "ADDRESS1", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "ADDRESS2", "label": "Owner Mailing Address 2", "searchable": false },
+            { "name": "CITYSTZIP", "label": "Owner Mailing City/State/ZIP", "searchable": true },
+            { "name": "USECODE", "label": "Use Code", "searchable": false },
+            { "name": "LANDAREA", "label": "Land Area", "searchable": false },
+            { "name": "ASSESSMENT", "label": "Assessment", "searchable": false }
+          ],
+          "sampleQuery": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/FeatureServer/40/query?where=OWNERNAME%20LIKE%20'SMITH%25'&outFields=SSL,OWNERNAME,PREMISEADD,ADDRESS1,CITYSTZIP&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "status": "live",
+          "lastVerified": "2026-09-26",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "DC Office of the Chief Technology Officer (OCTO) GIS and Office of the Surveyor; data attributed daily from the Office of Tax and Revenue's Real Property Tax Administration (RPTA) Integrated Tax System Public Extract (ITSPE)",
+        "url": "https://opendata.dc.gov/datasets/DCGIS::common-ownership-lots",
+        "email": null
+      },
+      "notes": "The District of Columbia is one county-equivalent (FIPS 11001) with no counties inside it. Layer 40, Owner Polygons (Common Ownership Layer), is the District's general ownership layer: 137,400 lot polygons merged from the Record, Tax, Parcel, Reservation and Air Rights lot layers and regenerated daily from the Office of Tax and Revenue's Integrated Tax System Public Extract (ITSPE). Layers 49 (District Land) and 50 (Federal Land) on the same service are narrower views of it. The parcel ID is the SSL (square, suffix, lot), written either as 'SQUARE SUFFIX LOT' (e.g. '1929    7056') or as 'PAR NNNNNNNN' for Parcel-type lots; both answer an SSL LIKE prefix search. The owner mailing address (ADDRESS1, ADDRESS2, CITYSTZIP) is separate from the premise address (PREMISEADD). Verified 2026-09-26: OWNERNAME LIKE 'SMITH%' returns 939 lots, and a PREMISEADD search returns individual homeowners alongside institutions.\n\nCoverage: the layer maps land, one polygon per lot. A condominium building is a single lot on it, and 3,921 of its 4,142 condominium lots carry no owner name, so an owner search finds lot owners, not unit owners. The tax extract published on the same service lists 221,622 records; unit-level condominium data sits in separate tables there, which this layer does not join. The service's ArcGIS Online item (Common Ownership Lots, item 1f6708b1f3774306bef2fa81e612a725, owner DCGISopendata) licenses the data under Creative Commons Attribution 4.0 International, so reuse credits the District of Columbia; the District's open-data terms apply CC0 only where no other license is noted, and this item notes one. OTR's Real Property Public Extract is a different product: a bulk file restricted to mortgage companies."
+    }
+  ]
+}

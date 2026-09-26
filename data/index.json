@@ -2,10 +2,10 @@
   "version": "0.3.0",
   "lastUpdated": "2026-09-26",
   "totals": {
-    "states": 50,
-    "counties": 234,
-    "endpoints": 246,
-    "countiesWithEndpoint": 228,
+    "states": 51,
+    "counties": 235,
+    "endpoints": 247,
+    "countiesWithEndpoint": 229,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -69,6 +69,14 @@
       "slug": "delaware",
       "name": "Delaware",
       "abbrev": "DE",
+      "countyCount": 1,
+      "endpointCount": 1,
+      "populated": true
+    },
+    {
+      "slug": "district-of-columbia",
+      "name": "District of Columbia",
+      "abbrev": "DC",
       "countyCount": 1,
       "endpointCount": 1,
       "populated": true

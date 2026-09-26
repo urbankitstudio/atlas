@@ -46,12 +46,15 @@ describe("README coverage numbers match the shipped data", () => {
   it("states the county, state and endpoint totals the index reports", () => {
     const [counties, states] = stated(
       "the county/state headline",
-      /\*\*(\d+) counties across all (\d+) US states\*\*/,
+      /\*\*(\d+) counties across all (\d+) US states and DC\*\*/,
     );
     const [endpoints] = stated("the endpoint count", /\((\d+) verified endpoints\)/);
 
     expect(counties).toBe(atlas.totals.counties);
-    expect(states).toBe(atlas.totals.states);
+    // totals.states counts the District of Columbia, which the headline names
+    // on its own rather than as a 51st state.
+    expect(atlas.states.some((s) => s.slug === "district-of-columbia")).toBe(true);
+    expect(states).toBe(atlas.totals.states - 1);
     expect(endpoints).toBe(atlas.totals.endpoints);
   });
 

@@ -1,5 +1,48 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.9 — 2026-09-26
+
+Adds the District of Columbia and fixes one helper. `totals` move from
+**234 counties / 246 endpoints** to **235 counties / 247 endpoints**; 229 of
+the 235 now carry a verified endpoint (was 228 of 234). `totals.states` moves
+from 50 to 51 because the index now lists DC beside the 50 states. It is not
+a state, so count `listStates()` entries by `slug` if you need states only.
+
+### Added: the District of Columbia
+
+- `data/index.json` gains a populated `district-of-columbia` entry (abbrev
+  `DC`), and `data/district-of-columbia.json` carries one record: `District
+  of Columbia`, FIPS 11001, countySlug `district-of-columbia`, on DC GIS's
+  Owner Polygons layer (Property_and_Land_WebMercator FeatureServer, layer 40).
+- Registered in `POPULATED_STATES`, so `findState("district-of-columbia")`,
+  `findCounty("district-of-columbia", "district-of-columbia")`,
+  `listCountiesByState` and `atlas.byStateSlug` resolve it. `listStates()`
+  returns 51 entries.
+- The District has no counties. Its one record is the District itself, the
+  county equivalent the Census Bureau lists as 11001. The layer maps land, one
+  polygon per lot. A condominium building is a single lot on it, usually with
+  no owner name, so an owner search finds lot owners, not unit owners.
+
+### Fixed: `countySlugFromName` knew four unit names
+
+It recognised County, Parish, Borough and Census Area and appended " County"
+to every other name: `countySlugFromName("Anchorage Municipality")` returned
+`anchorage-municipality-county` while the bundled record is
+`anchorage-municipality`. The same was true of the nine Connecticut planning
+regions and Massachusetts' `Statewide` record. It now uses the site's rule,
+which also knows Municipality, City, Statewide, Planning Region and District
+of Columbia, and it trims the name first. A name ending in `City` now slugs as
+it stands, which is right for the independent cities and wrong for two
+Virginia counties the registry does not carry, James City County and Charles
+City County, whose base names end in City: the old rule gave
+`james-city-county`, this one gives `james-city`. If either joins the
+registry its stored name is the full `James City County`. If you stored slugs
+this function produced for one of those names, they change; the bundled
+`countySlug` values do not.
+
+This is a **patch** for the reason 0.5.3 gave: `^0.6.0` has to reach everyone
+already installed.
+
 ## 0.6.8 — 2026-09-26
 
 Data refresh. No API change. `totals` move from **233 counties / 245

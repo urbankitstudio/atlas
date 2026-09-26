@@ -9,6 +9,7 @@ import californiaJson from "../data/california.json" with { type: "json" };
 import coloradoJson from "../data/colorado.json" with { type: "json" };
 import connecticutJson from "../data/connecticut.json" with { type: "json" };
 import delawareJson from "../data/delaware.json" with { type: "json" };
+import districtOfColumbiaJson from "../data/district-of-columbia.json" with { type: "json" };
 import floridaJson from "../data/florida.json" with { type: "json" };
 import georgiaJson from "../data/georgia.json" with { type: "json" };
 import hawaiiJson from "../data/hawaii.json" with { type: "json" };
@@ -63,6 +64,7 @@ const POPULATED_STATES: Record<string, StateFile> = {
   colorado: coloradoJson as StateFile,
   connecticut: connecticutJson as StateFile,
   delaware: delawareJson as StateFile,
+  "district-of-columbia": districtOfColumbiaJson as StateFile,
   florida: floridaJson as StateFile,
   georgia: georgiaJson as StateFile,
   hawaii: hawaiiJson as StateFile,

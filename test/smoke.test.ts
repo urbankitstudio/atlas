@@ -39,9 +39,9 @@ describe("@urbankitstudio/atlas smoke", () => {
     expect(findState("not-a-state")).toBeUndefined();
   });
 
-  it("listStates returns all 50 states from the index", () => {
+  it("listStates returns all 50 states and DC from the index", () => {
     const states = listStates();
-    expect(states.length).toBe(50);
+    expect(states.length).toBe(51);
     const il = states.find((s) => s.slug === "illinois");
     expect(il).toBeDefined();
     expect(il!.populated).toBe(true);
@@ -56,15 +56,15 @@ describe("@urbankitstudio/atlas smoke", () => {
   it("atlas root export exposes byStateSlug Map and totals", () => {
     expect(atlas.byStateSlug).toBeInstanceOf(Map);
     expect(atlas.byStateSlug.has("illinois")).toBe(true);
-    expect(atlas.totals.states).toBe(50);
+    expect(atlas.totals.states).toBe(51);
     // Pinned on purpose - a literal catches the bundle shipping stale data.
     // Update BOTH on every data release. These sat at 155 while the data grew to
     // 170, red and unseen, because the root suite excludes packages/** and this
     // file only runs at prepublishOnly. A root-suite guard
     // (src/lib/__tests__/atlas-package-parity.test.ts) now asserts these literals
     // match the bundled index, so the drift is caught at every gate.
-    expect(atlas.totals.counties).toBe(234);
-    expect(atlas.totals.endpoints).toBe(246);
+    expect(atlas.totals.counties).toBe(235);
+    expect(atlas.totals.endpoints).toBe(247);
     expect(atlasIndex.version).toBeDefined();
   });
 
@@ -85,6 +85,9 @@ describe("@urbankitstudio/atlas smoke", () => {
     expect(slugify("New York")).toBe("new-york");
     expect(countySlugFromName("Kane")).toBe("kane-county");
     expect(countySlugFromName("Orleans Parish")).toBe("orleans-parish");
+    expect(countySlugFromName("District of Columbia")).toBe("district-of-columbia");
+    expect(countySlugFromName("Anchorage Municipality")).toBe("anchorage-municipality");
+    expect(findCounty("district-of-columbia", "district-of-columbia")?.countyFips).toBe("11001");
     expect(statePath("illinois")).toBe("/parcel-atlas/illinois");
     expect(countyPath("illinois", "kane-county")).toBe(
       "/parcel-atlas/illinois/kane-county"

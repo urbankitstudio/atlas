@@ -7,14 +7,19 @@ export function slugify(s: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+// The site's rule (countyDisplayName in urbankitstudio's src/lib/atlas.ts): a
+// name that already carries its unit type ("Orleans Parish", "Anchorage
+// Municipality", "Capitol Planning Region", "Statewide", "District of
+// Columbia") is slugged as it stands; any other name gets " County". Until
+// 0.6.9 this copy knew four units and returned "anchorage-municipality-county"
+// for a record stored as "anchorage-municipality". The site repo's
+// atlas-package-slug-parity.test.ts holds the two copies equal.
+const COUNTY_UNIT_SUFFIX =
+  /\b(?:County|Parish|Borough|Municipality|Census Area|City|Statewide|Planning Region|District of Columbia)$/i;
+
 export function countySlugFromName(county: string): string {
-  const lc = county.toLowerCase();
-  const hasSuffix =
-    lc.endsWith(" county") ||
-    lc.endsWith(" parish") ||
-    lc.endsWith(" borough") ||
-    lc.endsWith(" census area");
-  return slugify(hasSuffix ? county : `${county} County`);
+  const name = county.trim();
+  return slugify(COUNTY_UNIT_SUFFIX.test(name) ? name : `${name} County`);
 }
 
 export function buildParcelLookupDeepLink(
