@@ -1,0 +1,78 @@
+# Is the published @urbankitstudio/atlas current? Asked every day.
+#
+# WHY IT EXISTS. On 2026-09-26 Leo made the packages AI agents install, this
+# one and the MCP servers, the FIRST surface of every UrbanKit Studio change: a
+# new county, tool or fix reaches npm before the paid tiers are touched and
+# before the site's free tools. That order holds only if a lag gets noticed,
+# and the facts that show a lag live OUTSIDE this repo: the version npm serves,
+# and the data urbankitstudio.com serves. npm and the live site hold the truth,
+# so no hermetic test can catch a lag, and ci.yml cannot. Modelled on the
+# monorepo's advertised-version-drift.yml, the one check there that looks
+# outward.
+#
+# WHAT IT ASKS (detail in the header of scripts/check-package-currency.mjs):
+#   PUBLISH LAG    npm's latest against package.json here
+#   DATA LAG       the live site's atlas index against data/index.json here
+#   UNBUMPED DATA  data/ changed after the commit that set the version
+# The script's own tests run first, so a check that has stopped checking goes
+# red before it gets the chance to pass.
+#
+# WHY NOT ON PUSH OR PULL REQUEST. It needs the network, and a network flake
+# must never become a required check: a gate that fails on a DNS hiccup trains
+# people to re-run it without reading. ci.yml stays the hermetic gate for
+# pushes; this one reports once a day, where a red gets read.
+#
+# WHY 07:25 UTC. The monorepo runs its drift checks at 06:25 and 06:40 and its
+# mirror push into this repo at 06:55; the mcp-atlas repo's check runs at
+# 07:10. This runs after the day's mirror push has landed, and contends with
+# none of them for a runner.
+#
+# THIS FILE SURVIVES THE MIRROR. The monorepo's atlas-sync-push.yml rsyncs
+# packages/atlas over this repo with --delete, excluding .github/ and scripts/,
+# the paths this repo owns. Anything added here outside those is deleted by
+# the next sync.
+#
+# GitHub disables schedules in a repo with 60 days of no activity, and the
+# monorepo once saw a schedule stay unregistered until its cron expression
+# changed. If this never runs, nudge the minute before doubting the file.
+
+name: Package currency
+
+on:
+  schedule:
+    - cron: '25 7 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: package-currency
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  currency:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # The whole history: UNBUMPED DATA walks back to the commit that set the
+      # version. A shallow clone would end that walk at its graft, so the
+      # script refuses one rather than pass without checking. Nothing here
+      # pushes, so the token is not kept in the checkout.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.19.0'
+
+      # No `npm ci`: the script and its tests use only node builtins and
+      # global fetch, so no dependency can break or slow the check.
+      - name: The check's own tests
+        run: node --test scripts/package-currency.test.mjs
+
+      - name: npm and the live site against this checkout
+        run: node scripts/check-package-currency.mjs
