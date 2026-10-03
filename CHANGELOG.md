@@ -1,5 +1,50 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.10 — 2026-10-03
+
+Data refresh. No API change. `totals` move from **235 counties / 247
+endpoints** to **239 counties / 251 endpoints**; 233 of the 239 now carry a
+verified endpoint (was 229 of 235).
+
+### Data refresh — four counties added
+
+- **Georgia:** Dougherty County (FIPS 13095, Albany), with a verified
+  endpoint on Albany GIS's `Parcels_Public_View` FeatureServer, covering the
+  city and county jurisdictions (38,007 parcels). Searchable by owner name
+  (`Name`), parcel number (`ParcelNum`), site address (`Address`) and the
+  owner mailing address (`MailAddress1`, `MailCity`). String fields are
+  space padded, so match with `LIKE 'SMITH%'`. The layer is in wkid 102667,
+  so request `outSR=4326` for longitude and latitude. No license is stated.
+- **Alabama:** Mobile County (FIPS 01097), with a verified endpoint on the
+  Mobile County Revenue Commission's `MCRC_Public_Parcels` FeatureServer
+  (214,040 parcels, updated 2026-09-22). Searchable by owner name (`Name1`,
+  `Name2`), parcel number (`Parcel_Number`) and site address (`PropAddr1`).
+  The layer has no owner mailing-address columns. String fields are space
+  padded, so match with `LIKE 'SMITH%'`. The layer is in wkid 102630, so
+  request `outSR=4326` for longitude and latitude. No license is stated.
+- **Oregon:** Malheur County (FIPS 41045, Vale), with a verified endpoint on
+  the county's `County_GIS_Portal_WFL1` FeatureServer (20,570 tax lots).
+  Searchable by owner name (`OWNERSNAME`), map and taxlot id (`MapTaxlot`),
+  site address (`SITUSADD`, `CITY`) and the owner mailing address (`ADD1`,
+  `CITYSTATE`). The layer name and index are month-stamped (`TL Jun2026`,
+  layer 16) and the county republishes monthly. A client that finds the
+  layer gone should list the FeatureServer's layers and pick the one whose
+  name starts with `TL ` and which carries `OWNERSNAME`. No license is
+  stated.
+- **Washington:** Island County (FIPS 53029, Coupeville), with a verified
+  endpoint on the Assessor's `Geocortex/Base` MapServer layer 0. Searchable
+  by owner name (`taxpayer`), parcel id (`ParcelNo`), site address
+  (`physical_addr`) and the owner mailing address (`mailing_addr1`,
+  `mailing_addr_city`). Values carry trailing spaces, so trim them. CORS
+  reflects the request origin rather than answering `*`. No license is
+  stated.
+
+Georgia, Alabama, Oregon and Washington were already registered in
+`POPULATED_STATES`, so
+`src/*.ts` is unchanged and only `data/` grew. Deliberately a **patch**, for
+the reason 0.6.5 gave: adding county rows to an already-registered state is
+the 0.6.1 shape, and `^0.6.0` reaches everyone already installed.
+
 ## 0.6.9 — 2026-09-26
 
 Adds the District of Columbia and fixes one helper. `totals` move from

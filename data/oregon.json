@@ -2,7 +2,7 @@
   "stateSlug": "oregon",
   "stateName": "Oregon",
   "stateAbbrev": "OR",
-  "lastUpdated": "2026-09-26",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "or-multnomah",
@@ -250,6 +250,51 @@
         "email": "gisquestions@clackamas.us"
       },
       "notes": "No public REST parcel layer with owner names was found for Clackamas County (county seat Oregon City) as of 2026-09-26. The county states that it does not publish property owner names online and directs owner-information requests to Assessment and Taxation, and its GIS shapefile downloads require accepting a data licensing agreement. No county-hosted ArcGIS REST catalog was found; the public tools, CMap and AscendWeb, are interactive viewers. Two statewide layers cover the county but neither can serve an owner search: the Oregon Department of Forestry's taxlot layer named 'Clackamas County' declares owner fields but has query disabled, and the Oregon Department of Transportation's taxlot layer is queryable but carries only map and taxlot numbers. Metro's regional RLIS 'Taxlots (Public)' dataset, per its listing, excludes ownership."
+    },
+    {
+      "id": "or-malheur",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Malheur",
+      "countySlug": "malheur-county",
+      "countyFips": "41045",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/ZfBm5CKxbEBYLP3J/arcgis/rest/services/County_GIS_Portal_WFL1/FeatureServer/16",
+          "serviceType": "FeatureServer",
+          "layerIndex": 16,
+          "layerName": "TL Jun2026",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "OWNERSNAME", "label": "Owner Name", "searchable": true },
+            { "name": "MapTaxlot", "label": "Map and Taxlot ID", "searchable": true },
+            { "name": "Taxlot", "label": "Taxlot", "searchable": false },
+            { "name": "SITUSADD", "label": "Site Address", "searchable": true },
+            { "name": "CITY", "label": "Site City", "searchable": true },
+            { "name": "ADD1", "label": "Owner Mailing Address Line 1", "searchable": true },
+            { "name": "ADD2", "label": "Owner Mailing Address Line 2", "searchable": false },
+            { "name": "CITYSTATE", "label": "Owner Mailing City and State", "searchable": true },
+            { "name": "ZIP", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "ZONING", "label": "Zoning", "searchable": false },
+            { "name": "TOTACRE", "label": "Total Acres", "searchable": false }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/ZfBm5CKxbEBYLP3J/arcgis/rest/services/County_GIS_Portal_WFL1/FeatureServer/16/query?where=UPPER(OWNERSNAME)%20LIKE%20'SMITH%25'&outFields=MapTaxlot,OWNERSNAME,ADD1,CITYSTATE,SITUSADD,CITY&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.malheurco.org/gis/",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Malheur County GIS (GIS Specialist), 251 B St W #2, Vale, OR 97918, (541) 473-5574",
+        "url": "https://www.malheurco.org/gis/",
+        "email": null
+      },
+      "notes": "Malheur County, Oregon (county seat Vale) publishes its tax lots as a layer of the County_GIS_Portal_WFL1 FeatureServer, the data source of the county's public Malheur County Tax Lot Map experience (linked from malheurco.org/gis). 20,570 features as of 2026-10-03. The owner is OWNERSNAME, the parcel id MapTaxlot (for example 15S47E28B04702), the site address SITUSADD with CITY, and the owner mailing address ADD1/ADD2/CITYSTATE/ZIP. SITUSADD is sometimes a bare zero and ADD1 is often null. MAINTENANCE QUIRK: the layer name and index are month-stamped (currently layer 16, 'TL Jun2026'; the siblings are 'NonTL Jun2026' at 17 and Zoning_2026 at 25) and the county republishes monthly, so the name or index can change. When the liveness probe flags this record, re-resolve it: list the FeatureServer's layers, pick the one whose name starts with 'TL ' and which carries an OWNERSNAME field, then update layerIndex, layerName and the url. Do not hard-code 16 forever. Named outFields are accepted. CORS answers Access-Control-Allow-Origin *. The layer states no license; the county GIS page links a Data Licensing Agreement for bulk data. The statewide ODF layer for Malheur has an owner line but query disabled, and Malheur is not in the OWRD layer, so there is no usable fallback. Verified live 2026-10-03: owner SMITH returned rows (first owner SMITH, JAMIE LEE, 15S47E28B04702, Ontario)."
     }
   ]
 }

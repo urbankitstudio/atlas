@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-09-26",
+  "lastUpdated": "2026-10-03",
   "totals": {
     "states": 51,
-    "counties": 235,
-    "endpoints": 247,
-    "countiesWithEndpoint": 229,
+    "counties": 239,
+    "endpoints": 251,
+    "countiesWithEndpoint": 233,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -13,8 +13,8 @@
       "slug": "alabama",
       "name": "Alabama",
       "abbrev": "AL",
-      "countyCount": 2,
-      "endpointCount": 2,
+      "countyCount": 3,
+      "endpointCount": 3,
       "populated": true
     },
     {
@@ -93,8 +93,8 @@
       "slug": "georgia",
       "name": "Georgia",
       "abbrev": "GA",
-      "countyCount": 5,
-      "endpointCount": 5,
+      "countyCount": 6,
+      "endpointCount": 6,
       "populated": true
     },
     {
@@ -309,8 +309,8 @@
       "slug": "oregon",
       "name": "Oregon",
       "abbrev": "OR",
-      "countyCount": 6,
-      "endpointCount": 5,
+      "countyCount": 7,
+      "endpointCount": 6,
       "populated": true
     },
     {
@@ -389,8 +389,8 @@
       "slug": "washington",
       "name": "Washington",
       "abbrev": "WA",
-      "countyCount": 4,
-      "endpointCount": 4,
+      "countyCount": 5,
+      "endpointCount": 5,
       "populated": true
     },
     {

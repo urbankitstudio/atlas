@@ -2,7 +2,7 @@
   "stateSlug": "alabama",
   "stateName": "Alabama",
   "stateAbbrev": "AL",
-  "lastUpdated": "2026-06-20",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "al-shelby",
@@ -98,6 +98,48 @@
         "email": null
       },
       "notes": "Jefferson County AL (Birmingham, pop. 670,000; FIPS 01073) Basemap/Parcels layer. Data maintained by Jefferson County Tax Assessor Office and updated nightly. 76 fields in live schema as of 2026-06-27: OBJECTID, Unique_ID, PID, TAX_TOWNSH, ISP_SECTION, SEC, QSECTION, BLOCK, PARCEL, PARCELID, APP_PID, DISTRICT, ESN_NUM, ADDR_PSPR, Bldg_Number, Street_Name, Street_Type, Street_Dir, APARTMENT, ADDRAPT_PS, OWNERNAME, PROP_MAIL, CITYMAIL, ZIP_MAIL, STATE_Mail, Legal_Desc, Property_City, Property_State, NEIGHBOR_N, SUBDIV_NAME, ADDR_APR, ZIP, TotalMHValue, PrevParcelLand/Imp/Total, Water, Sewer, Gas, ACRES_APR, GIS_ACRES, Remarks, Name2, Plat_Book/Page (×2), NbhdCd, Ownership, Topography, RoadAcc, MaintDate, CITY, NbhName, PriMunCode, SecMunCode, PriAcreage, SecAcreage, LegalRemarks, ParcelNo, Division, RecordYear, SchDist, MapNumber, Sqft, FIREDEPTNAME, Cls, BLDG_IND, TAX_CODE, OBY_IND, AssdValue, Territory, FireFee_District. NOTE 2026-06-27: ZONING_BOE is no longer in the live schema (schema drift), removed from searchFields. OWNERNAME field returns padded fixed-width strings (trim on use). Note: distinct from Jefferson County CO (FIPS 08059) and Jefferson County KY (Louisville; FIPS 21111) already in atlas. Verified 2026-06-27: metadata 200, query 200, 410K+ parcels."
+    },
+    {
+      "id": "al-mobile",
+      "state": "AL",
+      "stateName": "Alabama",
+      "stateSlug": "alabama",
+      "county": "Mobile",
+      "countySlug": "mobile-county",
+      "countyFips": "01097",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services8.arcgis.com/HND1NcQt6vgOGn1z/arcgis/rest/services/MCRC_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "MCRC_Public_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "Name1", "label": "Owner Name 1", "searchable": true },
+            { "name": "Name2", "label": "Owner Name 2", "searchable": true },
+            { "name": "Parcel_Number", "label": "Parcel ID", "searchable": true },
+            { "name": "Account_Number", "label": "Account Number", "searchable": true },
+            { "name": "PropAddr1", "label": "Site Address", "searchable": true },
+            { "name": "PropCity", "label": "Site City", "searchable": true },
+            { "name": "PropZip", "label": "Site ZIP", "searchable": false },
+            { "name": "Acreage", "label": "Acres", "searchable": false }
+          ],
+          "sampleQuery": "https://services8.arcgis.com/HND1NcQt6vgOGn1z/arcgis/rest/services/MCRC_Public_Parcels/FeatureServer/0/query?where=UPPER(Name1)%20LIKE%20%27SMITH%25%27&outFields=*&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=07c93ca64bbf4fb8a8d49b7ea80ef067",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Mapping Department, Mobile County Revenue Commission",
+        "url": null,
+        "email": null
+      },
+      "notes": "Mobile County, Alabama (Mobile; FIPS 01097) publishes its parcels as the 'Mobile County Alabama Tax Parcels' FeatureServer, authored by the Mobile County Revenue Commission's Mapping Department and updated 2026-09-22. 214,040 parcels, countywide. The owner is in Name1 (and Name2), the parcel id in Parcel_Number (ParcelNo is the formatted form), and the site address in PropAddr1 with PropCity and PropZip. The layer has NO owner mailing-address fields (its columns are OBJECTID, Parcel_Number, Account_Number, ParcelNo, Name1, Name2, PropAddr1, PropAddr2, PropCity, PropState, PropZip, Acreage, Sqft, KeyNum), so it serves owner names and site addresses, not mailing addresses. String fields are heavily space padded (Name1 is 255 wide), so trim them and search with UPPER(Name1) LIKE 'SMITH%', never equality. The spatial reference is wkid 102630, so send outSR=4326 if you need longitude and latitude. CORS answers Access-Control-Allow-Origin *. No open-data license is stated; the item carries only an informational-use disclaimer. Verified live 2026-10-03: owner SMITH returned rows (first owner SMITH BONNIE G, 0104430000006.000, 20240 HIGHWAY 43, Mount Vernon)."
     }
   ]
 }

@@ -2,7 +2,7 @@
   "stateSlug": "georgia",
   "stateName": "Georgia",
   "stateAbbrev": "GA",
-  "lastUpdated": "2026-08-25",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "ga-fulton",
@@ -369,6 +369,51 @@
         "email": null
       },
       "notes": "Savannah and Chatham County, published by SAGIS. 125,326 parcels with owner names on 124,952 rows (99.7 percent), and the fullest field set in this batch: parcel id, two owner columns, a complete mailing address, a combined situs and split situs parts. IMPORTANT for maintenance: this service holds 28 year-versioned layers, 0 to 17 being Historic Parcels 1998 to 2015 and 18 to 27 being Parcel Digest 2016 to 2025. Layer 27 is the newest today. When SAGIS publishes Parcel Digest 2026 it will be layer 28 and this entry will silently go a year stale, so the layer index needs checking whenever this record is reverified."
+    },
+    {
+      "id": "ga-dougherty",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Dougherty",
+      "countySlug": "dougherty-county",
+      "countyFips": "13095",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/VKHi8CC6pMIyYUIs/arcgis/rest/services/Parcels_Public_View/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "Name", "label": "Owner Name", "searchable": true },
+            { "name": "ParcelNum", "label": "Parcel ID", "searchable": true },
+            { "name": "Address", "label": "Site Address", "searchable": true },
+            { "name": "SiteCity", "label": "Site City", "searchable": true },
+            { "name": "SiteZip", "label": "Site ZIP", "searchable": false },
+            { "name": "MailAddress1", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "MailCity", "label": "Owner Mailing City", "searchable": true },
+            { "name": "MailState", "label": "Owner Mailing State", "searchable": false },
+            { "name": "MailZip", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "Jurisdiction", "label": "Jurisdiction (City or County)", "searchable": false },
+            { "name": "TotalAcerage", "label": "Acres", "searchable": false }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/VKHi8CC6pMIyYUIs/arcgis/rest/services/Parcels_Public_View/FeatureServer/0/query?where=UPPER(Name)%20LIKE%20%27SMITH%25%27&outFields=*&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=9729f520dfab47fab85484908994ef1f",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Albany GIS (Albany-Dougherty Geographic Information System)",
+        "url": null,
+        "email": null
+      },
+      "notes": "Dougherty County, Georgia (county seat Albany) publishes its parcels as the 'Dougherty County Land Parcels Dataset' FeatureServer, maintained by Albany GIS, covering both the CITY and COUNTY jurisdictions (the Jurisdiction column says which). 38,007 parcels as of 2026-10-03. The owner is in Name, the parcel id in ParcelNum, the site address in Address (with SiteCity and SiteZip) and the owner mailing address in MailAddress1/MailCity/MailState/MailZip; MailAddress1 was empty on the first rows sampled. String fields are space padded to their full width, so trim them and search with UPPER(Name) LIKE 'SMITH%', never equality. The layer's spatial reference is wkid 102667 (latestWkid 2240), so send outSR=4326 if you need longitude and latitude. CORS answers Access-Control-Allow-Origin *. No open-data license is stated; the item carries only a disclaimer that Albany GIS makes every effort at accuracy and that all data is subject to change. A third-party count of 39,443 parcels is slightly higher than the layer's, so the public view may be a subset. Verified live 2026-10-03: owner SMITH returned rows (first owner SMITH SHIRLEY PEARL, 0000S/00003/03A, 2803 ELTON ST, Albany)."
     }
   ]
 }
