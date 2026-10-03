@@ -2,7 +2,7 @@
   "stateSlug": "minnesota",
   "stateName": "Minnesota",
   "stateAbbrev": "MN",
-  "lastUpdated": "2026-06-06",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "mn-ramsey",
@@ -166,6 +166,50 @@
         "email": null
       },
       "notes": "448,036 polygon parcels covering Minneapolis and the rest of Hennepin County. Verified 2026-05-11: UPPER(OWNER_NM) LIKE '%SMITH%' returns real owners (e.g., 'ALEX D SMITH', 'PAUL LOUIS SMITH'). Owner names are space-padded fixed-width, wrap searches in UPPER() and trim whitespace client-side. Full residential address columns present (HOUSE_NO, FRAC_HOUSE_NO, STREET_NM, MAILING_MUNIC_NM, ZIP_CD). PID is 13-digit composite (parcel-fragment-municipality-section). TORRENS_TYP flag distinguishes Torrens vs. Abstract land per Minnesota's dual-title system. OUTAGE RESOLVED 2026-06-06: the 2026-05 county-side outage cleared -- service re-verified live (448,083 parcels; OWNER_NM queries return real owners)."
+    },
+    {
+      "id": "mn-mille-lacs",
+      "state": "MN",
+      "stateName": "Minnesota",
+      "stateSlug": "minnesota",
+      "county": "Mille Lacs",
+      "countySlug": "mille-lacs-county",
+      "countyFips": "27095",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.co.mille-lacs.mn.us/arcgis/rest/services/MilleLacs_Public_101/MapServer/35",
+          "serviceType": "MapServer",
+          "layerIndex": 35,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "TAXPAYER_NAME", "label": "Taxpayer Name", "searchable": true },
+            { "name": "PARCELID", "label": "Parcel Number", "searchable": true },
+            { "name": "PROPERTY_ADDRESS", "label": "Property Address", "searchable": true },
+            { "name": "PROPERTY_ZIP", "label": "Property ZIP", "searchable": false },
+            { "name": "CITY_TWP_NAME", "label": "City/Township Name", "searchable": true },
+            { "name": "TAXPAYER_ADDRESS_1", "label": "Taxpayer Mailing Address 1", "searchable": true },
+            { "name": "TAXPAYER_ADDRESS_2", "label": "Taxpayer Mailing Address 2", "searchable": false },
+            { "name": "TAXPAYER_ADDRESS_3", "label": "Taxpayer Mailing Address 3", "searchable": false },
+            { "name": "TAXPAYER_ADDRESS_4", "label": "Taxpayer Mailing Address 4", "searchable": false },
+            { "name": "DEEDED_ACRES", "label": "Deeded Acres", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.co.mille-lacs.mn.us/arcgis/rest/services/MilleLacs_Public_101/MapServer/35/query?where=UPPER(TAXPAYER_NAME)%20LIKE%20%27%25SMITH%25%27&outFields=PARCELID,TAXPAYER_NAME,PROPERTY_ADDRESS,TAXPAYER_ADDRESS_1,CITY_TWP_NAME&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.millelacs.mn.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Mille Lacs County GIS / Assessor's Office",
+        "url": "https://www.millelacs.mn.gov/1185/Assessors-Office",
+        "email": null
+      },
+      "notes": "Mille Lacs County, Minnesota (county seat Milaca) publishes its parcels on its own ArcGIS Server 11.3 as MilleLacs_Public_101/MapServer layer 35 (Parcels), 20,083 rows with a taxpayer name on 2026-10-03. THE OWNER IS IN TAXPAYER_NAME, stored LAST/FIRST with a slash (SMITH/BRIAN & ASHLEY). A column called OWNER_NAME exists but is an empty string on about 97 percent of rows (544 of 20,083 populated on 2026-10-03; not NULL, so IS NOT NULL passes while the value is blank), and where it is populated it names a different party from TAXPAYER_NAME (a contract-for-deed holder or an LLC, for example), so the taxpayer is not always the owner of record. UPPER(OWNER_NAME) LIKE 'SMITH%' returns 0 features. OWNER_NAME is deliberately NOT listed as a search field here: the enrichment classifier takes the first owner-looking field, so listing it would route owner lookups to a mostly blank column. The mailing address is TAXPAYER_ADDRESS_1 to _4 (use _1 for the street); the matching OWNER_ADDRESS_1 to _4 columns were not checked. The site address is PROPERTY_ADDRESS with PROPERTY_ZIP and CITY_TWP_NAME. Search with UPPER(TAXPAYER_NAME) LIKE '%SMITH%'. maxRecordCount is 2000. CORS reflects the request Origin (Access-Control-Allow-Origin echoed back, credentials true), and named outFields work. No license text was found. Do not use the statewide Minnesota parcel layers for owner search: the DNR plan_parcels_minnesota layer has owner_name but no county, parcel id or address field, so a query bleeds into neighbouring counties, and the MnGeo plan_parcels_open layer filters by co_code 27095 (20,928 rows) but its owner_name is blank for all but 550 rows (control: Itasca 27061, 0 populated). The same county server also lists Assessors/TaxParcels/MapServer/0, which has only a parcel name and geometry. Verified live 2026-10-03: taxpayer SMITH returned rows (first SMITH/BRIAN & ASHLEY, parcel 11-010-0100, 17903 130TH AVE, Milaca Township)."
     }
   ]
 }

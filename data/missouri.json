@@ -2,7 +2,7 @@
   "stateSlug": "missouri",
   "stateName": "Missouri",
   "stateAbbrev": "MO",
-  "lastUpdated": "2026-06-20",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "mo-jackson",
@@ -94,6 +94,49 @@
         "email": null
       },
       "notes": "St. Louis County MO (St. Louis metro west/south, county seat Clayton, NOT the independent City of St. Louis) provides AGS_Parcels/MapServer/0 with 30+ fields: LOCATOR (parcel ID), PARENT_LOC, TAXYR, OWNER_NAME, PROP_ADRNUM, PROP_ADD, PROP_ZIP, OWN_ADD, OWN_CITY, OWN_STATE, OWN_ZIP, SCHSUB (school subdivision), MUNYCODE (municipality code), TAXCODE, ASSTIMPVAL, TOTASSMT, APPLANDVAL, APPIMPVAL, TOTAPVAL, PROPCLASS, LUC, LANDUSE2, LUCODE, TENURE, BLDGNAME, TWPNAME. Query confirmed live: UPPER(OWNER_NAME) LIKE '%SMITH%' returns real results (e.g., 'SMITH KIMBERLY & ANTHONY T/E' at '11041 LILAC AVE'). St. Louis County MO (FIPS 29189) is a separate entity from the City of St. Louis (FIPS 29510, an independent city not part of any county). The GeoData portal at data-stlcogis.opendata.arcgis.com provides open data downloads and GeoServices API links. The maps.stlouisco.com server is the live REST host."
+    },
+    {
+      "id": "mo-st-louis-city",
+      "state": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "county": "St. Louis city",
+      "countySlug": "st-louis-city",
+      "countyFips": "29510",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps8.stlouis-mo.gov/arcgis/rest/services/ASSESSOR/Assessor_Public_Parcels/MapServer/11",
+          "serviceType": "MapServer",
+          "layerIndex": 11,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": false,
+          "searchFields": [
+            { "name": "OwnerName", "label": "Owner Name", "searchable": true },
+            { "name": "OwnerName2", "label": "Owner Name 2", "searchable": false },
+            { "name": "ParcelId", "label": "Parcel ID", "searchable": true },
+            { "name": "SITEADDR", "label": "Site Address", "searchable": true },
+            { "name": "OwnerAddr", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "OwnerCity", "label": "Owner Mailing City", "searchable": false },
+            { "name": "OwnerState", "label": "Owner Mailing State", "searchable": false },
+            { "name": "OwnerZIP", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "ZIP", "label": "Site ZIP", "searchable": false }
+          ],
+          "sampleQuery": "https://maps8.stlouis-mo.gov/arcgis/rest/services/ASSESSOR/Assessor_Public_Parcels/MapServer/11/query?where=UPPER(OwnerName)%20LIKE%20%27SMITH%25%27&outFields=ParcelId,OwnerName,OwnerAddr,OwnerCity,SITEADDR&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.stlouis-mo.gov/data/parcels.cfm",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of St. Louis Assessor's Office",
+        "url": "https://www.stlouis-mo.gov/data/parcels.cfm",
+        "email": null
+      },
+      "notes": "City of St. Louis, Missouri (FIPS 29510) is an independent city that belongs to no county, and it is NOT St. Louis County (29189, a separate record in this file on a different server). The Assessor's public parcels layer is ASSESSOR/Assessor_Public_Parcels/MapServer layer 11 (Parcels) on ArcGIS Server 11.2, listed on the city's data page. SERVER-SIDE ONLY: the server sends Access-Control-Allow-Origin only to its own origin (www.stlouis-mo.gov); for any other Origin a GET and its preflight return only Vary: Origin and Access-Control-Allow-Private-Network: true, so a browser on another site cannot read it and corsEnabled is false. Query it from a server, the metered API or the MCP, not from page script. The owner is OwnerName (max 40 characters, so long names are truncated at the source) with OwnerName2; the mailing address is OwnerAddr plus OwnerCity (max 13 characters, can read ST LOUIS MO) with OwnerState, OwnerZIP and OwnerCountry; the parcel id is ParcelId (11 digits, LowerParcelId also exists). SITEADDR carries runs of internal spaces (2233   PARK AV) and trailing padding, so a LIKE on a full street string misses; search on the house number plus a street word, or collapse whitespace on the client. Search with UPPER(OwnerName) LIKE 'SMITH%'; broad searches return exceededTransferLimit true at the 2000-row page. The layer has 194 fields and this record lists a subset. Layer 11 includes condominium master parcels, and the sub-accounts are layer 10 (not examined). No license or terms text is published on the data page. Verified live 2026-10-03: owner SMITH returned rows (first SMITH, DAVID E & SANDRA L TRS, parcel 22669130000, 2233 PARK AVE)."
     }
   ]
 }

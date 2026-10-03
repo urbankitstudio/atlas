@@ -1,5 +1,39 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.12 — 2026-10-03
+
+Data refresh. No API change. `totals` move from **239 counties / 251
+endpoints** to **241 counties / 253 endpoints**; 235 of the 241 now carry a
+verified endpoint (was 233 of 239).
+
+### Data refresh — two counties added
+
+- **Minnesota:** Mille Lacs County (FIPS 27095, Milaca), with a verified
+  endpoint on the county's own `MilleLacs_Public_101` MapServer, layer 35
+  (20,083 parcels with a taxpayer name). Searchable by taxpayer name
+  (`TAXPAYER_NAME`, stored `LAST/FIRST`, e.g. `SMITH/BRIAN & ASHLEY`), parcel
+  number (`PARCELID`), site address (`PROPERTY_ADDRESS`, `CITY_TWP_NAME`) and
+  the taxpayer mailing address (`TAXPAYER_ADDRESS_1` to `_4`). The layer also
+  has an `OWNER_NAME` column, but it is blank on about 97 percent of rows and
+  names a different party where it is filled, so it is deliberately not listed
+  and owner search uses `TAXPAYER_NAME`. CORS
+  reflects the request origin. No license is stated.
+- **Missouri:** the independent City of St. Louis (FIPS 29510, no county; not
+  St. Louis County, 29189), with a verified endpoint on the Assessor's
+  `Assessor_Public_Parcels` MapServer, layer 11. Searchable by owner name
+  (`OwnerName`, truncated to 40 characters at the source), parcel id
+  (`ParcelId`), site address (`SITEADDR`, which carries runs of internal
+  spaces, so search on a house number plus a street word) and the owner
+  mailing address (`OwnerAddr`, `OwnerCity`). **The server sends no
+  `Access-Control-Allow-Origin` header, so `corsEnabled` is `false`:** a
+  browser on another origin cannot read it, and it must be queried from a
+  server. No license is stated.
+
+Minnesota and Missouri were already registered in `POPULATED_STATES`, so
+`src/*.ts` is unchanged and only `data/` grew. Deliberately a **patch**, for
+the reason 0.6.5 gave: adding county rows to an already-registered state is
+the 0.6.1 shape, and `^0.6.0` reaches everyone already installed.
+
 ## 0.6.11 — 2026-10-03
 
 Repairs three registrations the liveness probe flagged (Monmouth NJ, Prince

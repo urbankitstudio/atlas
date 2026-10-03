@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-03",
   "totals": {
     "states": 51,
-    "counties": 239,
-    "endpoints": 251,
-    "countiesWithEndpoint": 233,
+    "counties": 241,
+    "endpoints": 253,
+    "countiesWithEndpoint": 235,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -197,8 +197,8 @@
       "slug": "minnesota",
       "name": "Minnesota",
       "abbrev": "MN",
-      "countyCount": 2,
-      "endpointCount": 2,
+      "countyCount": 3,
+      "endpointCount": 3,
       "populated": true
     },
     {
@@ -213,8 +213,8 @@
       "slug": "missouri",
       "name": "Missouri",
       "abbrev": "MO",
-      "countyCount": 2,
-      "endpointCount": 2,
+      "countyCount": 3,
+      "endpointCount": 3,
       "populated": true
     },
     {
