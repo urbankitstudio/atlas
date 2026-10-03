@@ -1,5 +1,54 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.11 — 2026-10-03
+
+Repairs three registrations the liveness probe flagged (Monmouth NJ, Prince
+George's MD, Pinal AZ), records why Greenville SC stays unreachable, fixes the
+three Arkansas scopes that returned nothing without an error, reorders
+Washoe NV's owner fields, and declares two endpoint fields the bundled data
+already carried. `totals` are unchanged: 239 counties / 251 endpoints.
+
+### Fixed: Arkansas county scopes
+- The statewide Planning_Cadastre layer now stores `countyfips` as the 3-digit
+  county code. `scopeWhere` and `sampleQuery` for Pulaski, Benton and
+  Washington move from '05119'/'05007'/'05143' to '119'/'007'/'143'. The old
+  values matched 0 rows, so every scoped attribute search for these counties
+  returned nothing. The new scopes count 180,229, 175,795 and 114,791 rows
+  (2026-10-03).
+
+### Fixed: endpoints
+- Monmouth County NJ moves to the county's new ArcGIS Online layer
+  (Monmouth_County_Parcels FeatureServer/0 on services1.arcgis.com). The old
+  services9 GEO_MC_Parcels service is gone. Field names change: PAMSPIN,
+  Owner_Name, Location, Class, Net_Value, Land_Value, Impr_Value, Sale_Date,
+  Sale_Price, Year_Built, Zone. Owner mailing is now Owner_Street plus
+  Owner_Csz, replacing CityStateZip, so the `mailing` role a consumer derives
+  moves from a city/state/zip column to a street column. Acreage is dropped.
+  Value and date fields are strings on this layer.
+- Prince George's County MD moves to the Planning Department's hosted copy
+  (Property_Flattened_Py FeatureServer/0 on services1.arcgis.com), with the
+  same field names. The county host answers "Layer not found" on about every
+  second request. The hosted copy refreshes periodically, not live.
+- Pinal County AZ: the county renamed every field to long-form names (for
+  example PARCELID to Parcel_Identification_Number, OWNERNME1 to
+  First_Owner_Name). All searchFields and the sampleQuery are re-mapped. The
+  layer now publishes owner mailing address (Postal_Address, Postal_City,
+  Postal_State, Postal_Zip_Code_5/4), so `owner_mailing_address` for Pinal
+  moves from not_published to available.
+- Greenville County SC: notes only. It stays `unreachable` because the county
+  deleted its GreenvilleJS services folder.
+- Washoe County NV: LASTNAME now precedes FIRSTNAME in `searchFields`, so a
+  consumer that takes the first owner column searches surnames, as the
+  record's own sampleQuery does. A derived owner value for a Washoe row is
+  therefore the surname alone (was the first-name column).
+
+### Added: two optional fields on `EndpointRecord`
+- `scopeWhere?: string`: the predicate ANDed into every attribute search on a
+  layer shared by several counties. The bundled data already carried it, and
+  the type now declares it.
+- `attributeSearch?: "unsupported"`: marks a layer that cannot serve a
+  `where`-clause search. Set today on the 67 Florida FDOR registrations.
+
 ## 0.6.10 — 2026-10-03
 
 Data refresh. No API change. `totals` move from **235 counties / 247

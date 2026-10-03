@@ -117,24 +117,29 @@
           "supportsQuery": true,
           "corsEnabled": null,
           "searchFields": [
-            { "name": "PARCELID", "label": "Parcel ID (APN)", "searchable": true },
-            { "name": "LOWPARCELID", "label": "Lower Parcel ID", "searchable": true },
-            { "name": "OWNERNME1", "label": "Owner Name (Primary)", "searchable": true },
-            { "name": "OWNERNME2", "label": "Owner Name (Secondary)", "searchable": true },
-            { "name": "SITEADDRESS", "label": "Site Address", "searchable": true },
-            { "name": "CVTTXCD", "label": "Converted Tax Code", "searchable": false },
-            { "name": "CVTTXDSCRP", "label": "Tax Code Description", "searchable": false },
-            { "name": "USECD", "label": "Use Code", "searchable": false },
-            { "name": "USEDSCRP", "label": "Use Description", "searchable": false },
-            { "name": "CLASSCD", "label": "Class Code", "searchable": false },
-            { "name": "CLASSDSCRP", "label": "Class Description", "searchable": false },
-            { "name": "PRPRTYDSCRP", "label": "Property Description", "searchable": false }
+            { "name": "Parcel_Identification_Number", "label": "Parcel ID (APN)", "searchable": true },
+            { "name": "Lowest_Parcel_Identification_Number", "label": "Lower Parcel ID", "searchable": true },
+            { "name": "First_Owner_Name", "label": "Owner Name (Primary)", "searchable": true },
+            { "name": "Second_Owner_Name", "label": "Owner Name (Secondary)", "searchable": true },
+            { "name": "Site_Address", "label": "Site Address", "searchable": true },
+            { "name": "Postal_Address", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "Postal_City", "label": "Owner Mailing City", "searchable": true },
+            { "name": "Postal_State", "label": "Owner Mailing State", "searchable": false },
+            { "name": "Postal_Zip_Code_5", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "Postal_Zip_Code_4", "label": "Owner Mailing ZIP+4", "searchable": false },
+            { "name": "Tax_District_Code", "label": "Converted Tax Code", "searchable": false },
+            { "name": "Tax_District_Description", "label": "Tax Code Description", "searchable": false },
+            { "name": "Assessing_Use_Code", "label": "Use Code", "searchable": false },
+            { "name": "Assessing_Use_Description", "label": "Use Description", "searchable": false },
+            { "name": "Property_Class_Code", "label": "Class Code", "searchable": false },
+            { "name": "Property_Class", "label": "Class Description", "searchable": false },
+            { "name": "Property_Description", "label": "Property Description", "searchable": false }
           ],
-          "sampleQuery": "https://rogue.casagrandeaz.gov/arcgis/rest/services/Pinal_County/Pinal_County_Parcels/MapServer/0/query?where=PARCELID+LIKE+'%25302%25'&outFields=PARCELID,SITEADDRESS,OWNERNME1,CLASSCD,CLASSDSCRP&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://rogue.casagrandeaz.gov/arcgis/rest/services/Pinal_County/Pinal_County_Parcels/MapServer/0/query?where=Parcel_Identification_Number+LIKE+'%25302%25'&outFields=Parcel_Identification_Number,Site_Address,First_Owner_Name,Property_Class_Code,Property_Class&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.pinal.gov/630/GIS",
           "status": "live",
-          "lastVerified": "2026-05-15",
+          "lastVerified": "2026-10-03",
           "verifiedBy": "manual"
         }
       ],
@@ -143,7 +148,7 @@
         "url": "https://www.pinal.gov/630/GIS",
         "email": null
       },
-      "notes": "74 fields confirmed including OBJECTID, LOWPARCELID, PARCELID, BUILDING, UNIT, LGLSTARTDT, CVTTXCD, CVTTXDSCRP, SCHLTXCD, SCHLDSCRP, USECD, USEDSCRP, NGHBRHDCD, CLASSCD, CLASSDSCRP, SITEADDRESS, PRPRTYDSCRP, CNVYNAME, OWNERNME1, OWNERNME2. Owner name confirmed live: PARCELID LIKE '%302%' returns OWNERNME1='FELDMEIER BRIAN' in Arizona City AZ 85123. PARCELID format is typically 9-digit numeric string. Hosted on the City of Casa Grande ArcGIS server (rogue.casagrandeaz.gov) which serves Pinal County parcel data for the Phoenix metro south area (Chandler/Gilbert/Queen Creek/Maricopa City/Casa Grande). Capabilities: Query, Map, Data. maxRecordCount=1000. Note: the gismaps.pinalcountyaz.gov server is currently not externally accessible (HTTP 000); the Casa Grande mirror is the reliable public endpoint."
+      "notes": "74 fields confirmed including OBJECTID, Lowest_Parcel_Identification_Number, Parcel_Identification_Number, Building_Number, Unit_Number, Legal_Start_Date, Tax_District_Code, Tax_District_Description, School_District_Code, School_District_Description, Assessing_Use_Code, Assessing_Use_Description, Assessing_Neighborhood_Code, Property_Class_Code, Property_Class, Site_Address, Property_Description, Sub_or_Condo_Name, First_Owner_Name, Second_Owner_Name, Postal_Address, Postal_City, Postal_State, Postal_Zip_Code_5, Postal_Zip_Code_4. In September 2026 the county renamed every field to these long-form names (field count, ids and values unchanged; e.g. PARCELID became Parcel_Identification_Number, OWNERNME1 became First_Owner_Name, SITEADDRESS became Site_Address, CLASSCD became Property_Class_Code), which broke every declared field and the old sampleQuery; the record was re-mapped on 2026-10-03. The rename also exposed owner mailing address for the first time (Postal_Address, Postal_City, Postal_State, Postal_Zip_Code_5, Postal_Zip_Code_4). Site_Address now carries city, state and ZIP in one string (e.g. 9865 W BATTAGLIA DR ARIZONA CITY, AZ 85123). Owner name confirmed live: Parcel_Identification_Number LIKE '%302%' returns First_Owner_Name='FELDMEIER BRIAN' in Arizona City AZ 85123. Parcel_Identification_Number is typically a 9-digit numeric string; a where=1=1 probe returns a placeholder row with Parcel_Identification_Number 'NAP', which is still a valid features array. Named outFields work on this server. Hosted on the City of Casa Grande ArcGIS server (rogue.casagrandeaz.gov) which serves Pinal County parcel data for the Phoenix metro south area (Chandler/Gilbert/Queen Creek/Maricopa City/Casa Grande). Capabilities: Query, Map, Data. maxRecordCount=2000 (was 1000 before the September 2026 republish). Note: the gismaps.pinalcountyaz.gov server is currently not externally accessible (HTTP 000; last checked before 2026-10-03, not re-tested then); the Casa Grande mirror is the reliable public endpoint."
     }
   ]
 }

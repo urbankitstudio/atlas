@@ -96,12 +96,12 @@
       "hasPublicRest": true,
       "endpoints": [
         {
-          "url": "https://gis.princegeorgescountymd.gov/arcgis/rest/services/Property/Property_Flattened/MapServer/0",
-          "serviceType": "MapServer",
+          "url": "https://services1.arcgis.com/qS7AYixGtf3sv8B6/arcgis/rest/services/Property_Flattened_Py/FeatureServer/0",
+          "serviceType": "FeatureServer",
           "layerIndex": 0,
-          "layerName": "Property Flattened",
+          "layerName": "Property_Flattened_Py",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
             {
               "name": "ACCOUNT",
@@ -164,12 +164,12 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://gis.princegeorgescountymd.gov/arcgis/rest/services/Property/Property_Flattened/MapServer/0/query?where=UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=ACCOUNT,PROPERTY_ID,OWNER_NAME,HOUSE_NUMBER,STREET_NAME,STREET_TYPE,MAIL_STREET,MAIL_CITY,MAIL_ZIP5&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services1.arcgis.com/qS7AYixGtf3sv8B6/arcgis/rest/services/Property_Flattened_Py/FeatureServer/0/query?where=UPPER(OWNER_NAME)+LIKE+UPPER('%25SMITH%25')&outFields=ACCOUNT,PROPERTY_ID,OWNER_NAME,HOUSE_NUMBER,STREET_NAME,STREET_TYPE,MAIL_STREET,MAIL_CITY,MAIL_ZIP5&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.princegeorgescountymd.gov/665/Geographic-Information-Systems-GIS",
           "status": "live",
-          "lastVerified": "2026-06-05",
-          "verifiedBy": "automated"
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
         }
       ],
       "contact": {
@@ -177,7 +177,7 @@
         "url": "https://www.princegeorgescountymd.gov/665/Geographic-Information-Systems-GIS",
         "email": null
       },
-      "notes": "Prince George's County is Maryland's second-most populous county (pop. 910,000; county seat Upper Marlboro). The Property_Flattened MapServer on gis.princegeorgescountymd.gov (ArcGIS Server 11.5) is the county's canonical public property layer with 112 fields and 352,791 parcels. Live query confirmed OWNER_NAME exposure. Key fields: ACCOUNT (county account number, 7 digits), PROPERTY_ID (prefixed as '12' + ACCOUNT for the full 9-digit SDAT account number), OWNER_NAME, ICO_NAME (in-care-of), HOUSE_NUMBER (zero-padded 6-digit, e.g. '002909'), STREET_NAME, STREET_TYPE, STREET_DIRECTION, MAIL_STREET/CITY/STATE/ZIP5 (owner mailing address), ASSESS_DIST (assessment district), LAND_AREA_ACRE, LAND_AREA_SQFT, LIBER, FOLIO, SUB_NAME, CONDO_UNIT_NUMBER, TAXMAPGRID. The situs address is split across HOUSE_NUMBER + STREET_NAME + STREET_TYPE. There is no single combined site address field on this layer. The county belongs to the M-NCPPC (Maryland-National Capital Park and Planning Commission) planning region and uses Maryland SDAT for the authoritative ownership record. Prince George's County borders DC and contains the University of Maryland (College Park) and Joint Base Andrews."
+      "notes": "Prince George's County is Maryland's second-most populous county (pop. 910,000; county seat Upper Marlboro). The Property_Flattened MapServer on gis.princegeorgescountymd.gov (ArcGIS Server 11.5) is the county's canonical public property layer with 112 fields and 352,791 parcels. Live query confirmed OWNER_NAME exposure. Key fields: ACCOUNT (county account number, 7 digits), PROPERTY_ID (prefixed as '12' + ACCOUNT for the full 9-digit SDAT account number), OWNER_NAME, ICO_NAME (in-care-of), HOUSE_NUMBER (zero-padded 6-digit, e.g. '002909'), STREET_NAME, STREET_TYPE, STREET_DIRECTION, MAIL_STREET/CITY/STATE/ZIP5 (owner mailing address), ASSESS_DIST (assessment district), LAND_AREA_ACRE, LAND_AREA_SQFT, LIBER, FOLIO, SUB_NAME, CONDO_UNIT_NUMBER, TAXMAPGRID. The situs address is split across HOUSE_NUMBER + STREET_NAME + STREET_TYPE. There is no single combined site address field on this layer. The county belongs to the M-NCPPC (Maryland-National Capital Park and Planning Commission) planning region and uses Maryland SDAT for the authoritative ownership record. Prince George's County borders DC and contains the University of Maryland (College Park) and Joint Base Andrews. 2026-10-03: the registered endpoint moved from the county MapServer to the Planning Department's hosted ArcGIS Online copy of the same layer (Property_Flattened_Py FeatureServer on services1.arcgis.com, owner Planning_PGCO_MD, CORS open, maxRecordCount 2000, 353,381 parcels). The reason is a county-side defect, not a schema change: gis.princegeorgescountymd.gov is load-balanced and one backend node lacks the layers, so about every second request to any service on the host (Property_Flattened, Property_Centroids, Property, AddressPoints) answers HTTP 200 with a Layer not found error body, metadata and queries alike, whatever the where clause. The liveness cron does not retry an HTTP 200 error body, so the county flapped between live and degraded. The hosted copy has the same field names (every declared searchField present, plus MAIL_STATE) and returned the same first row as the county host on its good turns, with 18 of 18 probes answering. The old host is deliberately not kept as a second endpoint, because the cron grades a county by its worst endpoint. Caveat: the hosted copy is a periodic refresh by the Planning Department (stamped Updated 20260923), so its freshness is days, not minutes; switch back once the county host answers consistently."
     },
     {
       "id": "md-baltimore",

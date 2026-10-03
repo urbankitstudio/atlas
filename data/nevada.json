@@ -62,8 +62,8 @@
           "corsEnabled": null,
           "searchFields": [
             { "name": "APN", "label": "Assessor Parcel Number", "searchable": true },
-            { "name": "FIRSTNAME", "label": "Owner First Name", "searchable": true },
             { "name": "LASTNAME", "label": "Owner Last Name", "searchable": true },
+            { "name": "FIRSTNAME", "label": "Owner First Name", "searchable": true },
             { "name": "STREET", "label": "Situs Street Name", "searchable": true },
             { "name": "STREETNUM", "label": "Situs Street Number", "searchable": false },
             { "name": "CITY", "label": "Situs City", "searchable": true },
@@ -92,7 +92,7 @@
         "url": "https://explore-washoe.opendata.arcgis.com/",
         "email": null
       },
-      "notes": "71 fields confirmed including OBJECTID, APN, REGION, PIN, RECMAP, BOOK, PAGE, BLOCK, PARCEL, SUBNAME, TOWNSHIP, RANGE, SECTION_, FLOOR, MAPLINK, FLR, Shape, Shape.STArea(), STREETNUM, STREETDIR, STREET, CITY, SITUSZIP, FIRSTNAME, LASTNAME, MAILING1, MAILING2, MAILCITY, MAILSTATE, MAILZIP, LAND_USE, Zoning, WATER, SEWER, ACREAGE, TAXDIST, BEDROOMS, BATHS, YEARBLT, LANDASS, BUILDASS, TOTALASS, LANDAPR, BUILDAPR, TOTALAPR, DEPRECIATION, SALEDATE, SALEPRICE, OCCUPANCY, PROPCODE, TAXYEAR, STORIES, TOWNHOUSE, SQFEET, UNITS, AVCONSYEAR, BUILDINGTYPE, NBHD, SPECPROPCODE, QC, LAND_BASE, NBC, Fireplaces, HeatType, SecHeatType, Agency, AG_ABBR, FullAddress, ZoningWithDetail, Zoning_GIS, STRAP. Owner name available as FIRSTNAME + LASTNAME (split fields). Live query confirmed: APN 134087 returns 'MIEKO E SPAHR' in RENO 89503. maxRecordCount=1000. Covers Reno, Sparks, and unincorporated Washoe County (pop. 480,000). Note: owner name is public per Nevada law (unlike Clark County which also has a public layer but no owner). Current version 11.4."
+      "notes": "71 fields confirmed including OBJECTID, APN, REGION, PIN, RECMAP, BOOK, PAGE, BLOCK, PARCEL, SUBNAME, TOWNSHIP, RANGE, SECTION_, FLOOR, MAPLINK, FLR, Shape, Shape.STArea(), STREETNUM, STREETDIR, STREET, CITY, SITUSZIP, FIRSTNAME, LASTNAME, MAILING1, MAILING2, MAILCITY, MAILSTATE, MAILZIP, LAND_USE, Zoning, WATER, SEWER, ACREAGE, TAXDIST, BEDROOMS, BATHS, YEARBLT, LANDASS, BUILDASS, TOTALASS, LANDAPR, BUILDAPR, TOTALAPR, DEPRECIATION, SALEDATE, SALEPRICE, OCCUPANCY, PROPCODE, TAXYEAR, STORIES, TOWNHOUSE, SQFEET, UNITS, AVCONSYEAR, BUILDINGTYPE, NBHD, SPECPROPCODE, QC, LAND_BASE, NBC, Fireplaces, HeatType, SecHeatType, Agency, AG_ABBR, FullAddress, ZoningWithDetail, Zoning_GIS, STRAP. Owner name available as FIRSTNAME + LASTNAME (split fields). 2026-10-03: LASTNAME is now declared before FIRSTNAME, because the site's owner-field classifier and the stdio MCP server both search the FIRST owner-matching field, so a surname search was running against first names (FIRSTNAME holds values like EDWARD M III; LASTNAME holds SMITH). The sampleQuery already searched LASTNAME and still returns rows. Live query confirmed: APN 134087 returns 'MIEKO E SPAHR' in RENO 89503. maxRecordCount=1000. Covers Reno, Sparks, and unincorporated Washoe County (pop. 480,000). Note: owner name is public per Nevada law (unlike Clark County which also has a public layer but no owner). Current version 11.4."
     }
   ]
 }

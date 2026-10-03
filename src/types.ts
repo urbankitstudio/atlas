@@ -45,6 +45,54 @@ export interface EndpointRecord {
   supportsQuery: boolean;
   corsEnabled: boolean | null;
   searchFields: SearchField[];
+  /** ANDed into every ATTRIBUTE search against this endpoint. Only needed when
+   *  one endpoint serves several counties - NYC's MAPPLUTO layer carries all
+   *  five boroughs, so without this a Brooklyn owner search returns Queens
+   *  parcels. Spatial lookups do not need it: the buffer already sits on the
+   *  address, which is why the paid enrichment path is unaffected. */
+  scopeWhere?: string;
+  /**
+   * Declares that this layer CANNOT serve an ATTRIBUTE search - a `where`-clause
+   * query on a column, which is what "search by owner name / APN / address text"
+   * means everywhere on the site. Absent (the default, and true of every
+   * registration except the 67 Florida counties on the shared FDOR layer, one
+   * layer and one live case, see below) means an attribute search IS offered.
+   *
+   * THIS IS THE ONE FLAG. Do not add a second field, and do not express this
+   * with `searchable: false` on every column: `searchable` is a FIELD-level
+   * record of whether a `where` clause may name that column (the generator sets
+   * it from the column's type), it is set inconsistently by hand, and six
+   * different owner-capability rules already read it. This says something
+   * different and says it once, at the level where it is true - the endpoint.
+   *
+   * Honoured by `offersAttributeSearch` / `countyOffersAttributeSearch` in
+   * capability-core.ts, which every surface that DESCRIBES a search must go
+   * through. Field-availability functions deliberately do NOT read it: a layer
+   * flagged here still answers owner and address fields SPATIALLY, which is
+   * what the billed lookup, bulk enrichment and radius paths use, so flipping
+   * owner_name to not_published would be a false claim about data we do serve
+   * and do bill for. Search and availability are different questions.
+   *
+   * THE ONE LIVE CASE, and what would retire it. Florida's FDOR statewide
+   * cadastral layer carries all 67 counties and 10.8M parcels, and CO_NO - the
+   * county code, the only column identifying a county, and therefore every
+   * Florida registration's scopeWhere - is NOT INDEXED. Its declared indexes
+   * are OBJECTID, Shape, Shape__Area, Shape__Length and PARCEL_ID. A
+   * county-scoped attribute search therefore scans the roll from the top:
+   * measured across all 67 counties on 2026-09-20, only 4 answered inside 12s
+   * and the rest hit the service's ~55s ceiling. The conjunct poisons an
+   * indexed predicate too - PARCEL_ID LIKE '00%' alone answers in 0.9s, and
+   * `CO_NO=77 AND PARCEL_ID LIKE '00%'` times out - so there is no cheaper
+   * column to scope on. Dropping the scope is not an option either: an unscoped
+   * attribute search on a shared layer answers with every other county's
+   * parcels, which is exactly what shared-endpoint-scope.test.ts forbids.
+   * Scoped is unaffordable and unscoped is wrong, so attribute search is not
+   * offered at all.
+   *
+   * IF FDOR EVER INDEXES CO_NO, delete the flag from those 67 endpoint records
+   * and every surface re-offers the search on its own. Nothing else changes.
+   */
+  attributeSearch?: "unsupported";
   sampleQuery: string | null;
   license: LicenseType;
   licenseUrl: string | null;
