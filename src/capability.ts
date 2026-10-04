@@ -1,4 +1,30 @@
-import type { CountyRecord, CapabilityField, CapabilityOverrides } from "./types.js";
+import type { CountyRecord, CapabilityField, CapabilityOverrides, EndpointRecord } from "./types.js";
+
+/**
+ * Can this layer take a `where`-clause search at all (owner name, address text,
+ * a field filter)? False on a layer flagged `attributeSearch: "unsupported"`,
+ * which answers SPATIAL queries only: query it by geometry, as its
+ * `sampleQuery` shows, and read the owner and address fields off the hits.
+ *
+ * This is the package's one reader of that flag, so test it rather than the
+ * raw field. It is held equal to the site's reader (offersAttributeSearch in
+ * the monorepo's src/lib/capability-core.ts) on every bundled endpoint by the
+ * monorepo's atlas-package-capability-parity test.
+ */
+export function offersAttributeSearch(
+  endpoint: Pick<EndpointRecord, "attributeSearch"> | null | undefined,
+): boolean {
+  return !!endpoint && endpoint.attributeSearch !== "unsupported";
+}
+
+/**
+ * Does ANY of this county's layers take a `where` clause? Miami-Dade answers
+ * true through its own layer although its statewide FDOR layer is flagged.
+ */
+export function countyOffersAttributeSearch(county: Pick<CountyRecord, "endpoints">): boolean {
+  const endpoints = Array.isArray(county.endpoints) ? county.endpoints : [];
+  return endpoints.some(offersAttributeSearch);
+}
 
 /**
  * The reviewed capability assertion for one field, or null when none exists.

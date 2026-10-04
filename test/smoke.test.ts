@@ -7,6 +7,9 @@ import {
   slugify,
   countySlugFromName,
   buildParcelLookupDeepLink,
+  canonicalLayerUrl,
+  offersAttributeSearch,
+  countyOffersAttributeSearch,
   statePath,
   countyPath,
   atlas,
@@ -101,5 +104,130 @@ describe("@urbankitstudio/atlas smoke", () => {
       true
     );
     expect(link).toContain("endpoint=");
+  });
+
+  // #905. The controls for the cases below: an unflagged single-county layer
+  // keeps the generic link, with its owner fieldHint when the owner rule
+  // matches a column (Harris: owner_name_1; Kane's TaxName does not match it),
+  // with or without a county argument.
+  it("buildParcelLookupDeepLink: an unflagged single-county layer keeps the generic link and its fieldHint", () => {
+    for (const [stateSlug, countySlug, hint] of [
+      ["texas", "harris-county", "owner_name_1"],
+      ["illinois", "kane-county", null],
+    ] as const) {
+      const county = findCounty(stateSlug, countySlug)!;
+      const ep = county.endpoints[0];
+      expect(offersAttributeSearch(ep)).toBe(true);
+      expect(ep.scopeWhere).toBeUndefined();
+      for (const link of [buildParcelLookupDeepLink(ep), buildParcelLookupDeepLink(ep, undefined, county)]) {
+        const url = new URL(link);
+        expect(url.pathname).toBe("/tools/parcel-lookup");
+        expect(url.searchParams.get("endpoint")).toBe(ep.url);
+        expect(url.searchParams.get("fieldHint")).toBe(hint);
+      }
+    }
+  });
+
+  it("buildParcelLookupDeepLink: a flagged FDOR layer goes to the county route given a county", () => {
+    const alachua = findCounty("florida", "alachua-county")!;
+    const ep = alachua.endpoints[0];
+    expect(offersAttributeSearch(ep)).toBe(false);
+    const generic = new URL(buildParcelLookupDeepLink(ep));
+    expect(generic.searchParams.get("endpoint")).toBe(ep.url);
+    // FDOR's owner column is OWN_NAME, which the owner rule never matched, so
+    // this layer had no fieldHint before #905 either. Orleans, below, is the
+    // case that proves a flagged layer's fieldHint is dropped.
+    expect(generic.searchParams.has("fieldHint")).toBe(false);
+    expect(buildParcelLookupDeepLink(ep, undefined, alachua)).toBe(
+      "https://urbankitstudio.com/tools/parcel-lookup/florida/alachua-county"
+    );
+  });
+
+  it("buildParcelLookupDeepLink: Orleans drops its owner fieldHint, and goes to the county route though unscoped", () => {
+    const orleans = findCounty("louisiana", "orleans-parish")!;
+    const ep = orleans.endpoints[0];
+    expect(ep.scopeWhere).toBeUndefined();
+    // OWNERNME1 matches the owner rule, so before #905 this link carried
+    // fieldHint=OWNERNME1 and pre-selected an owner search that never answers.
+    expect(ep.searchFields.some((f) => f.name === "OWNERNME1")).toBe(true);
+    expect(new URL(buildParcelLookupDeepLink(ep)).searchParams.has("fieldHint")).toBe(false);
+    expect(buildParcelLookupDeepLink(ep, "/tools/parcel-lookup", orleans)).toBe(
+      "/tools/parcel-lookup/louisiana/orleans-parish"
+    );
+  });
+
+  it("buildParcelLookupDeepLink: an unflagged SHARED layer goes to the county route, which scopes it", () => {
+    const kings = findCounty("new-york", "kings-county")!;
+    const ep = kings.endpoints.find((e) => e.scopeWhere)!;
+    expect(offersAttributeSearch(ep)).toBe(true);
+    expect(buildParcelLookupDeepLink(ep, undefined, kings)).toBe(
+      "https://urbankitstudio.com/tools/parcel-lookup/new-york/kings-county"
+    );
+  });
+
+  // The county route always loads county.endpoints[0], so only that endpoint
+  // may be sent there. Broward is one of ten Florida counties whose primary is
+  // the county's own layer and whose flagged FDOR layer is second.
+  it("buildParcelLookupDeepLink: Broward's flagged FDOR secondary keeps a generic link to itself, with no fieldHint", () => {
+    const broward = findCounty("florida", "broward-county")!;
+    const fdor = broward.endpoints[1];
+    expect(offersAttributeSearch(fdor)).toBe(false);
+    expect(canonicalLayerUrl(fdor.url)).not.toBe(canonicalLayerUrl(broward.endpoints[0].url));
+    const url = new URL(buildParcelLookupDeepLink(fdor, undefined, broward));
+    expect(url.pathname).toBe("/tools/parcel-lookup");
+    expect(url.searchParams.get("endpoint")).toBe(fdor.url);
+    expect(url.searchParams.has("fieldHint")).toBe(false);
+  });
+
+  it("buildParcelLookupDeepLink: Broward's own primary layer keeps its unchanged generic link", () => {
+    const broward = findCounty("florida", "broward-county")!;
+    const own = broward.endpoints[0];
+    expect(offersAttributeSearch(own)).toBe(true);
+    expect(own.scopeWhere).toBeUndefined();
+    expect(buildParcelLookupDeepLink(own, undefined, broward)).toBe(buildParcelLookupDeepLink(own));
+  });
+
+  it("buildParcelLookupDeepLink: Kings' second scoped layer (NYS, not MapPLUTO) keeps the generic link it had before #905", () => {
+    const kings = findCounty("new-york", "kings-county")!;
+    const [pluto, nys] = kings.endpoints;
+    expect(pluto.scopeWhere).toBeDefined();
+    expect(nys.scopeWhere).toBeDefined();
+    expect(canonicalLayerUrl(nys.url)).not.toBe(canonicalLayerUrl(pluto.url));
+    expect(buildParcelLookupDeepLink(pluto, undefined, kings)).toBe(
+      "https://urbankitstudio.com/tools/parcel-lookup/new-york/kings-county"
+    );
+    expect(buildParcelLookupDeepLink(nys, undefined, kings)).toBe(buildParcelLookupDeepLink(nys));
+  });
+
+  it("buildParcelLookupDeepLink: a county passed without endpoints is taken as vouching for the endpoint", () => {
+    const fdor = findCounty("florida", "broward-county")!.endpoints[1];
+    expect(
+      buildParcelLookupDeepLink(fdor, undefined, { stateSlug: "florida", countySlug: "broward-county" })
+    ).toBe("https://urbankitstudio.com/tools/parcel-lookup/florida/broward-county");
+  });
+
+  it("buildParcelLookupDeepLink: Kane with its county is byte-identical to the link before #905", () => {
+    const kane = findCounty("illinois", "kane-county")!;
+    // The literal main's helper returns for this endpoint.
+    expect(buildParcelLookupDeepLink(kane.endpoints[0], undefined, kane)).toBe(
+      "https://urbankitstudio.com/tools/parcel-lookup?endpoint=https%3A%2F%2Fgistech.countyofkane.org%2Farcgis%2Frest%2Fservices%2FKanePINList%2FMapServer%2F0"
+    );
+  });
+
+  it("canonicalLayerUrl: spellings of one layer meet, neighbouring layer ids do not", () => {
+    const k = canonicalLayerUrl("https://gis.nola.gov/arcgis/rest/services/apps/property3/MapServer/15");
+    expect(k).toBe("gis.nola.gov/arcgis/rest/services/apps/property3/mapserver/15");
+    expect(canonicalLayerUrl("http://GIS.nola.gov:80/arcgis//rest/services/apps/./property3/MapServer/15/query?f=json#x")).toBe(k);
+    expect(canonicalLayerUrl("https://gis.nola.gov:443/arcgis/rest/services/apps/property3/MapServer/15/")).toBe(k);
+    expect(canonicalLayerUrl("https://gis.nola.gov/arcgis/rest/services/apps/property3/MapServer/1")).not.toBe(k);
+    expect(canonicalLayerUrl("https://gis.nola.gov/arcgis/rest/services/apps/property3/MapServer/150")).not.toBe(k);
+    expect(canonicalLayerUrl(" Not A URL/ ")).toBe("not a url");
+  });
+
+  it("countyOffersAttributeSearch: Miami-Dade's own layer is searchable though its FDOR layer is not", () => {
+    const md = findCounty("florida", "miami-dade-county")!;
+    expect(md.endpoints.map(offersAttributeSearch)).toEqual([true, false]);
+    expect(countyOffersAttributeSearch(md)).toBe(true);
+    expect(countyOffersAttributeSearch(findCounty("florida", "alachua-county")!)).toBe(false);
   });
 });

@@ -20,7 +20,12 @@ export type {
 
 // Reviewed, human-entered capability assertions. This package deliberately does
 // NOT derive the mechanical half; see CapabilityOverrides in types.ts for why.
-export { reviewedCapability, isReviewedUnservable } from "./capability.js";
+export {
+  reviewedCapability,
+  isReviewedUnservable,
+  offersAttributeSearch,
+  countyOffersAttributeSearch,
+} from "./capability.js";
 
 // The bundled `status` field is a publish-time claim; this is where to ask what
 // is true now. Exported as a value so consumers do not hardcode the URL.
@@ -36,9 +41,12 @@ export {
   slugify,
   countySlugFromName,
   buildParcelLookupDeepLink,
+  canonicalLayerUrl,
   statePath,
   countyPath,
 } from "./helpers.js";
+
+export type { DeepLinkCounty } from "./helpers.js";
 
 export { atlas, atlasIndex } from "./data.js";
 export type { Atlas } from "./data.js";

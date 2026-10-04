@@ -1,5 +1,60 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.15 — 2026-10-03
+
+SDK change, no data change. `totals` stay at **246 counties / 258
+endpoints**. This release lets an agent tell which layers take a typed search,
+and fixes the deep-link helper, which sent people to a search that cannot run
+(GitHub #905). One existing output changes; see "Changed".
+
+68 endpoints carry `attributeSearch: "unsupported"`: the 67 Florida counties on
+the shared FDOR cadastral layer, whose county column is not indexed, and
+Orleans Parish LA, whose server never finishes a table scan. Those layers
+answer spatial queries and return owner, address and parcel fields on every
+hit. They do not answer a `where` clause. Until now the package exposed the
+flag but no reader for it, and `buildParcelLookupDeepLink` ignored it.
+
+### Added
+
+- **`offersAttributeSearch(endpoint)`**: false when the layer refuses a
+  `where` clause. Query such a layer by geometry, as its `sampleQuery` shows.
+  It gives the same answer as the reader urbankitstudio.com uses, on every
+  bundled endpoint; a monorepo test holds the two equal.
+- **`countyOffersAttributeSearch(county)`**: true when ANY of the county's
+  layers takes a `where` clause. Miami-Dade answers true through its own layer
+  although its FDOR layer is flagged.
+- **`buildParcelLookupDeepLink(endpoint, base?, county?)`**: an optional third
+  argument, the `CountyRecord` (or any `{ stateSlug, countySlug, endpoints? }`,
+  exported as the `DeepLinkCounty` type). When given, the county's PRIMARY
+  layer (`endpoints[0]`) links to the county route
+  `/tools/parcel-lookup/<state>/<county>` if it is flagged or shared
+  (`scopeWhere` set). Only that route knows the county, so only it can scope a
+  shared layer and show a flagged one as lookup by location. It always loads
+  the primary layer, so any other endpoint keeps the generic `?endpoint=` link
+  to itself: Broward's flagged FDOR layer sits behind the county's own layer,
+  as it does in nine other Florida counties. Passed without `endpoints`, the
+  county is taken as vouching that the endpoint is its primary.
+- **`canonicalLayerUrl(url)`**: one key per layer, used for that comparison.
+  An http(s) URL keys on host and path, with the scheme, a default port, the
+  query string, the fragment, a trailing `/query`, repeated slashes, dot
+  segments, trailing slashes and letter case folded away. urbankitstudio.com
+  keys its own registry lookup the same way.
+
+### Changed — existing output, as a bug fix
+
+- `buildParcelLookupDeepLink` no longer adds `fieldHint` for a flagged layer,
+  with or without the new argument. This changes what an existing call
+  returns: Orleans Parish lost `fieldHint=OWNERNME1`, which pre-selected an
+  owner search that never answers. The FDOR layers had no `fieldHint` before.
+  Calls on unflagged layers return exactly what they returned in 0.6.14. It
+  ships as a patch because the old link opened a search that never answers,
+  and before 1.0 a bug fix that changes a returned string is still a patch.
+- The `attributeSearch` doc comment counted 67 flagged registrations. It now
+  says 68 and names Orleans Parish.
+- The README's deep-link example showed `fieldHint=TaxName` for Kane County.
+  The helper never produced that, because `TaxName` does not match its owner
+  rule. The example now shows the real output.
+
 ## 0.6.14 — 2026-10-03
 
 Data refresh. No API change. `totals` move from **241 counties / 253

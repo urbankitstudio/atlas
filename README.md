@@ -67,7 +67,14 @@ import { findCounty, buildParcelLookupDeepLink } from "@urbankitstudio/atlas";
 
 const kane = findCounty("illinois", "kane-county")!;
 const link = buildParcelLookupDeepLink(kane.endpoints[0]);
-// → https://urbankitstudio.com/tools/parcel-lookup?endpoint=https%3A%2F%2F...&fieldHint=TaxName
+// → https://urbankitstudio.com/tools/parcel-lookup?endpoint=https%3A%2F%2F...
+
+// Pass the county record as well and its primary layer (endpoints[0]), when
+// that layer refuses typed search or several counties share it, links to the
+// county's own page, which scopes it. Any other endpoint keeps the generic link:
+const alachua = findCounty("florida", "alachua-county")!;
+buildParcelLookupDeepLink(alachua.endpoints[0], undefined, alachua);
+// → https://urbankitstudio.com/tools/parcel-lookup/florida/alachua-county
 
 For single-address owner lookups in the browser, the free [Owner Lookup](https://urbankitstudio.com/tools/owner-lookup) tool reads the same county layers this package indexes.
 ```
@@ -81,7 +88,10 @@ For single-address owner lookups in the browser, the free [Owner Lookup](https:/
 | `findCounty(stateSlug, countySlug)` | `CountyRecord \| undefined` |
 | `findCountyByFips(fips)` | `CountyRecord \| undefined` — match by 5-digit county FIPS |
 | `listCountiesByState(stateSlug)` | `CountyRecord[]` |
-| `buildParcelLookupDeepLink(endpoint)` | URL string into the UrbanKit lookup tool |
+| `buildParcelLookupDeepLink(endpoint, base?, county?)` | URL string into the UrbanKit lookup tool; with `county`, the county route when the endpoint is that county's flagged or shared primary layer |
+| `canonicalLayerUrl(url)` | one key per layer: host + path, scheme, default port, query, fragment, a trailing `/query` and case folded away |
+| `offersAttributeSearch(endpoint)` | `false` when the layer refuses a `where` clause (`attributeSearch: "unsupported"`); query it by geometry instead |
+| `countyOffersAttributeSearch(county)` | `true` when any of the county's layers takes a `where` clause |
 | `slugify(s)`, `countySlugFromName(s)` | string helpers matching the atlas slug convention |
 | `statePath(slug)`, `countyPath(state, county)` | URL paths under `/parcel-atlas` |
 

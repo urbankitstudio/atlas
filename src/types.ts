@@ -55,8 +55,12 @@ export interface EndpointRecord {
    * Declares that this layer CANNOT serve an ATTRIBUTE search - a `where`-clause
    * query on a column, which is what "search by owner name / APN / address text"
    * means everywhere on the site. Absent (the default, and true of every
-   * registration except the 67 Florida counties on the shared FDOR layer, one
-   * layer and one live case, see below) means an attribute search IS offered.
+   * registration except 68: the 67 Florida counties on the shared FDOR layer,
+   * see below, and Orleans Parish LA, whose own layer never finishes a table
+   * scan) means an attribute search IS offered.
+   *
+   * Read it through `offersAttributeSearch` / `countyOffersAttributeSearch`,
+   * exported by this package, rather than comparing the string yourself.
    *
    * THIS IS THE ONE FLAG. Do not add a second field, and do not express this
    * with `searchable: false` on every column: `searchable` is a FIELD-level
@@ -73,7 +77,7 @@ export interface EndpointRecord {
    * owner_name to not_published would be a false claim about data we do serve
    * and do bill for. Search and availability are different questions.
    *
-   * THE ONE LIVE CASE, and what would retire it. Florida's FDOR statewide
+   * THE SHARED-LAYER CASE, and what would retire it. Florida's FDOR statewide
    * cadastral layer carries all 67 counties and 10.8M parcels, and CO_NO - the
    * county code, the only column identifying a county, and therefore every
    * Florida registration's scopeWhere - is NOT INDEXED. Its declared indexes
