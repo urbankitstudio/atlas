@@ -2,7 +2,7 @@
   "stateSlug": "nebraska",
   "stateName": "Nebraska",
   "stateAbbrev": "NE",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "ne-douglas",
@@ -132,6 +132,116 @@
         "email": null
       },
       "notes": "Sarpy County NE (Omaha south/west suburbs, Bellevue, Papillion, La Vista, Gretna) hosts LandRecordsSearch/FeatureServer with 10 layers; layer 5 (Tax Parcels) is the polygon parcel layer with ownership data. Fields follow LGIM schema: PARCELID, OWNERNME1, OWNERNME2, CNVYNAME, PSTLADDRES, SITEADDRESS, CVTTXCD/CVTTXDSCRP, SCHLTXCD/SCHLDSCRP, USEDSCRP, NGHBRHDCD, CLASSCD, CLASSDSCRP, LNDVALUE, CNTASSDVAL, CNTTXBLVAL, RESFLRAREA, RESYRBLT. Query confirmed live: UPPER(OWNERNME1) LIKE '%SMITH%' returns real results (e.g., 'SMITH/SHAWN L' at '11106 S 18TH CIR BELLEVUE NE 68123'). The Cadastral/LandRecordsDynamic/MapServer provides the same parcels as a cached tile service. Sarpy County is the fastest-growing county in Nebraska. GIS portal at gis.sarpy.gov and open data at data2-sarpy.opendata.arcgis.com. The SIMS parcel viewer (maps.sarpy.gov/html5viewer/?Viewer=SIMS) is the public-facing tool."
+    },
+    {
+      "id": "ne-phelps",
+      "state": "NE",
+      "stateName": "Nebraska",
+      "stateSlug": "nebraska",
+      "county": "Phelps",
+      "countySlug": "phelps-county",
+      "countyFips": "31137",
+      "ownerFieldNote": {
+        "body": "Phelps County's parcels are published only through Nebraska's statewide parcel layer, which carries the parcel ID, situs address, legal description and assessed values but no owner name and no owner mailing address. Search by address or parcel ID here. Owner records are on the county assessor's gWorks property search.",
+        "source": {
+          "label": "Phelps County property search (gWorks)",
+          "url": "https://phelps.gworks.com/"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "Nebraska's statewide StatewideParcelsExternal layer, the only public REST layer carrying Phelps County attributes, has no owner-name column in its field list. The county's gWorks vendor server exposes only a parcel key and acreage, and only to a browser.",
+            "sourceUrl": "https://www.nebraskamap.gov/"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "Nebraska's statewide StatewideParcelsExternal layer, the only public REST layer carrying Phelps County attributes, has no owner mailing-address column in its field list. It carries the parcel ID, situs address, values and legal description only.",
+            "sourceUrl": "https://www.nebraskamap.gov/"
+          }
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://giscat.ne.gov/enterprise/rest/services/StatewideParcelsExternal/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "StatewideParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "State_PID",
+              "label": "State Parcel ID (county code + parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "Situs_Address",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Ph_City",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "Legal_Description",
+              "label": "Legal Description",
+              "searchable": true
+            },
+            {
+              "name": "Total_Assessed_Value",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Land_Value",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Improvements_Value",
+              "label": "Improvements Value",
+              "searchable": false
+            },
+            {
+              "name": "Classification_Code",
+              "label": "Property Classification Code",
+              "searchable": false
+            },
+            {
+              "name": "Acres_Deeded",
+              "label": "Deeded Acres",
+              "searchable": false
+            }
+          ],
+          "scopeWhere": "County_ID='137'",
+          "sampleQuery": "https://giscat.ne.gov/enterprise/rest/services/StatewideParcelsExternal/MapServer/0/query?where=County_ID%3D%27137%27%20AND%20Parcel_ID%3C%3E%27%27%20AND%20UPPER(Situs_Address)%20LIKE%20%27%25748%20RD%25%27&outFields=State_PID,Parcel_ID,Situs_Address,Ph_Full_Address,Total_Assessed_Value&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.nebraskamap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Phelps County Assessor (statewide layer compiled by the Nebraska Office of the CIO)",
+        "url": "https://phelps.gworks.com/",
+        "email": null
+      },
+      "notes": "Phelps County, Nebraska (county seat Holdrege) has no county-run public REST parcel layer with attributes. Its parcels are carried on Nebraska's statewide StatewideParcelsExternal MapServer layer 0 (StatewideParcels) at giscat.ne.gov, which the Office of the Chief Information Officer compiles from each county's CAMA and GIS data. Scope with County_ID='137' (the three-digit county code): 7,664 of the layer's 1,154,898 rows on 2026-10-03, of which 59 are polygons with blank attributes (Parcel_ID=''); add AND Parcel_ID<>'' to skip them, as the sample query does. THERE IS NO OWNER NAME AND NO OWNER MAILING ADDRESS in the layer's field list. Ownership_Type and Parcel_URL exist but were blank on the Phelps rows sampled, and Ownership_Type is deliberately not listed because the owner classifier would read it as an owner column. Searchable: Parcel_ID (e.g. 0000002.00), State_PID (county code plus parcel ID, e.g. 1370000002.00), Situs_Address (e.g. 10401 748 RD) and Legal_Description. Ph_Full_Address joins the situs with city and ZIP but was blank on most rows sampled. Assessed, land and improvement values, classification code, deeded acres, sale date and sale value are carried. CORS reflects the request Origin (Access-Control-Allow-Origin echoed back, credentials true) and maxRecordCount is 2000. The layer states no licence; its description says the data is compiled for official, internal use by the State of Nebraska. The county's own vendor server (mapserver01.gworks.com, Phelps_County_NE_Assessor) exposes only a parcel key and acreage and answers 403 without a browser referer, so it is not registered. The older TaxParcels2023 and HistoricalParcels services that search results list now return 404. Owner search is available only through the county's gWorks property search. Verified live 2026-10-03: County_ID='137' AND Parcel_ID<>'' returned rows (first Parcel_ID 0000002.00, 10401 748 RD, Overton)."
     }
   ]
 }

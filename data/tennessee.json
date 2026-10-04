@@ -2,7 +2,7 @@
   "stateSlug": "tennessee",
   "stateName": "Tennessee",
   "stateAbbrev": "TN",
-  "lastUpdated": "2026-06-06",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "tn-davidson",
@@ -150,6 +150,91 @@
         "email": null
       },
       "notes": "Hamilton County (Chattanooga, pop. 375,000) Live_Parcels layer, service name 'Live' indicates real-time feed from the assessor. Service is on mapsdev.hamiltontn.gov (hcwa03 subdirectory). 15 fields confirmed: OBJECTID, PARCEL_TYP, PBA_NUM, GISLINK, OWNERNAME1/2, STNUM, DIRPFX, STNAME, TYPESFX, ADDRESS, MAP, GROUP_, PARCEL. PBA_NUM is the full parcel book/account number (e.g., '033006    00302P000'); GISLINK is the trimmed parcel ID. Verified 2026-05-15: SMITH returns addresses like '16909 DAYTON PIKE', '703 GRAYSVILLE RD'. Note: distinct from Hamilton County OH (Cincinnati, FIPS 39061) in the atlas. SERVICE RETIRED (verified 2026-06-06): Live_Parcels/MapServer was removed from mapsdev.hamiltontn.gov ('Could not find service'). No public REST replacement exists -- Live_RealProperty is a 155-record county-owned-property inventory, not a parcel layer, and assessor.hamiltontn.gov has no REST API. Status set to unreachable pending a county-side replacement."
+    },
+    {
+      "id": "tn-sullivan",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Sullivan",
+      "countySlug": "sullivan-county",
+      "countyFips": "47163",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.johnsoncitytn.org/arcgis/rest/services/ParcelPublishing/TaxParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "OWNER",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "GISLINK",
+              "label": "Parcel ID (GIS link, e.g. 082029B A 01600)",
+              "searchable": true
+            },
+            {
+              "name": "ID",
+              "label": "Parcel Display ID (e.g. 029B A 016.00)",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS",
+              "label": "Property Address (street name first, house number last)",
+              "searchable": true
+            },
+            {
+              "name": "MAILADDR",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAILCITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "LANDUSE",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "APPRAISAL",
+              "label": "Total Appraisal",
+              "searchable": false
+            },
+            {
+              "name": "CALC_ACRE",
+              "label": "Calculated Acreage",
+              "searchable": false
+            }
+          ],
+          "scopeWhere": "COUNTYNAME='Sullivan County'",
+          "sampleQuery": "https://gis.johnsoncitytn.org/arcgis/rest/services/ParcelPublishing/TaxParcels/MapServer/0/query?where=COUNTYNAME%3D%27Sullivan%20County%27%20AND%20UPPER(OWNER)%20LIKE%20%27SMITH%25%27&outFields=OWNER,GISLINK,ID,ADDRESS,MAILADDR,MAILCITY&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "restricted",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=ec2949776f6448ef8e6401cc81a4d018",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Johnson City GIS Division (regional parcel layer covering Sullivan County)",
+        "url": "https://gis.johnsoncitytn.org/",
+        "email": null
+      },
+      "notes": "Sullivan County, Tennessee (county seat Blountville; Kingsport and Bristol) has no county-run public REST parcel layer with owner names. Its parcels are carried on the City of Johnson City's regional ParcelPublishing/TaxParcels MapServer layer 0 (Tax Parcels), which also holds Washington, Carter, Unicoi and neighbouring counties. Filter with COUNTYNAME='Sullivan County' (78,958 of the layer's 183,538 rows on 2026-10-03); the plain value 'Sullivan' matches nothing. About 313 Sullivan parcels (GISLINK starting 082) carry a NULL or different COUNTYNAME and fall outside this scope, roughly 0.4 percent; COUNTY_ID=82 catches them but admits 314 rows from outside the county, so the name scope stays. The owner is OWNER (with OWNER2); the parcel ID is GISLINK (e.g. 082029B A 01600) with ID as the display form (029B A 016.00), and PARID is NULL for Sullivan rows. ADDRESS stores the street name first and the house number last (BRENTWOOD DR 377), so search on a street word: a number-first LIKE ('%377 BRENTWOOD DR%') returns nothing, and only 647 of 78,737 Sullivan addresses start with a digit, so the free tools' address auto-lookup will miss most Sullivan addresses until they retry number-last. The owner mailing address is MAILADDR with MAILCITY, STATE and ZIP. CARDURL links each parcel to the state's TPAD property card. CORS reflects the request Origin (Access-Control-Allow-Origin echoed back, credentials true); a request without an Origin gets no CORS header. maxRecordCount is 2000. LICENCE: RESTRICTED. The ArcGIS item's licence text reads: \"Read access only for all city staff. Delivered products are not to be resold by the purchaser for any reason and may not be reproduced without the written permission of the staff of the Johnson City GIS Division.\" The item and the REST endpoint are public, but the terms restrict resale and reproduction, so the atlas records only the query URL, stores no copy of the layer beyond the short-lived server cache every live query passes through, and serves this county by live query only; Leo reviewed and accepted that exposure on 2026-10-03. The data was last refreshed in October 2025. Sullivan County's own SULLIVAN service on ArcGIS Online has no owner field, and Tennessee publishes no statewide parcel REST layer. Verified live 2026-10-03: owner SMITH returned rows (first SMITH BETTY TRUSTEE, GISLINK 082029B A 01600, BRENTWOOD DR 377, mailing 377 BRENTWOOD DRIVE KINGSPORT)."
     }
   ]
 }

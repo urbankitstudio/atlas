@@ -242,14 +242,66 @@
       "county": "Clackamas",
       "countySlug": "clackamas-county",
       "countyFips": "41005",
-      "hasPublicRest": false,
-      "endpoints": [],
+      "ownerFieldNote": {
+        "body": "Clackamas County does not publish owner names or owner mailing addresses on any public layer. Its own taxlot layer carries the parcel number, map and taxlot number, site address and assessed values, so search by address or parcel number here. The county directs ownership questions to Assessment and Taxation (503-655-8671, propertytaxinfo@clackamas.us).",
+        "source": {
+          "label": "Clackamas County GIS",
+          "url": "https://www.clackamas.us/gis"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Taxlots_CMap layer has no owner-name column in its field list, and the county publishes no owner name on any public layer; it routes owner questions to Assessment and Taxation.",
+            "sourceUrl": "https://www.clackamas.us/gis"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Taxlots_CMap layer has no owner mailing-address column in its field list, and the county publishes no owner mailing address on any public layer; it routes owner questions to Assessment and Taxation.",
+            "sourceUrl": "https://www.clackamas.us/gis"
+          }
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/I2eWXOndpF9m8oKC/arcgis/rest/services/Taxlots_CMap/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "tax_taxlot_cmap",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "PARCEL_NUMBER", "label": "Parcel Number", "searchable": true },
+            { "name": "TLNO", "label": "Map and Taxlot Number", "searchable": true },
+            { "name": "SITUS", "label": "Situs Address", "searchable": true },
+            { "name": "SITUS_CITY", "label": "Situs City", "searchable": true },
+            { "name": "SITUS_ZIP", "label": "Situs ZIP", "searchable": false },
+            { "name": "TOTALVAL", "label": "Total Value", "searchable": false },
+            { "name": "ASSESSEDVAL", "label": "Assessed Value", "searchable": false },
+            { "name": "LANDCLASS", "label": "Land Class Code", "searchable": false },
+            { "name": "YEARBLT", "label": "Year Built", "searchable": false },
+            { "name": "SALE_PRICE", "label": "Last Sale Price", "searchable": false }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/I2eWXOndpF9m8oKC/arcgis/rest/services/Taxlots_CMap/FeatureServer/0/query?where=UPPER(SITUS)%20LIKE%20%27%25MAIN%20ST%25%27&outFields=PARCEL_NUMBER,TLNO,SITUS,SITUS_CITY,TOTALVAL,LANDCLASS&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=ba94373905a54b82b05946e164e38ec9",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
       "contact": {
         "department": "Clackamas County Department of Assessment and Taxation / Technology Services GIS",
         "url": "https://www.clackamas.us/gis",
         "email": "gisquestions@clackamas.us"
       },
-      "notes": "No public REST parcel layer with owner names was found for Clackamas County (county seat Oregon City) as of 2026-09-26. The county states that it does not publish property owner names online and directs owner-information requests to Assessment and Taxation, and its GIS shapefile downloads require accepting a data licensing agreement. No county-hosted ArcGIS REST catalog was found; the public tools, CMap and AscendWeb, are interactive viewers. Two statewide layers cover the county but neither can serve an owner search: the Oregon Department of Forestry's taxlot layer named 'Clackamas County' declares owner fields but has query disabled, and the Oregon Department of Transportation's taxlot layer is queryable but carries only map and taxlot numbers. Metro's regional RLIS 'Taxlots (Public)' dataset, per its listing, excludes ownership."
+      "notes": "Clackamas County, Oregon (county seat Oregon City) publishes its taxlots on ArcGIS Online as Taxlots_CMap FeatureServer layer 0 (tax_taxlot_cmap), from the county GIS organisation that feeds its CMap viewer: 163,927 taxlots on 2026-10-03. THERE IS NO OWNER NAME AND NO OWNER MAILING ADDRESS in the layer's field list. The county states that it does not publish property owner names online and directs owner questions to Assessment and Taxation. Searchable: PARCEL_NUMBER (8 digits, e.g. 01099411), TLNO (map and taxlot, e.g. 52E09CD01302), SITUS (site address) and SITUS_CITY, with SITUS_ZIP and SITUS_FULL alongside. The layer also carries assessed, land, building and total values, land class, year built, living area, bedrooms and bathrooms, and the last sale price and document. CORS is open (Access-Control-Allow-Origin: *) and maxRecordCount is 2000. The item's licence text is a disclaimer only (provided as is, not a land survey); the county's GIS shapefile downloads separately require accepting a data licensing agreement. A slimmer sibling service, Taxlots FeatureServer layer 0, carries only the parcel, taxlot and situs columns. Statewide layers add nothing for owner search: the Oregon Water Resources Department taxlot layer (Tax_Lots_Public_View_WGS84 MapServer layer 2, county_name='Clackamas') adds an owner mailing street with no owner name and is not registered here, the Oregon Department of Forestry's 'Clackamas County' taxlot layer declares owner fields but has query disabled, and Metro's regional RLIS 'Taxlots (Public)' dataset, per its listing, excludes ownership. Verified live 2026-10-03: UPPER(SITUS) LIKE '%MAIN ST%' returned rows (first PARCEL_NUMBER 01099411, 528 E MAIN ST, Molalla)."
     },
     {
       "id": "or-malheur",

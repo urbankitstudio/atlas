@@ -2,7 +2,7 @@
   "stateSlug": "oklahoma",
   "stateName": "Oklahoma",
   "stateAbbrev": "OK",
-  "lastUpdated": "2026-06-05",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "ok-oklahoma",
@@ -44,6 +44,23 @@
         "email": null
       },
       "notes": "Oklahoma County is Oklahoma's most populous county (pop. 810,000; county seat Oklahoma City). The TaxParcelsPublics_view FeatureServer is hosted on ArcGIS Online (services8.arcgis.com, org ID euhkr1dAJeQBIjV0) and published via the OK County GIS Hub at ok-county-gis-hub-ok-co.hub.arcgis.com. Live query confirmed 336,922 parcels and owner-name exposure. Key fields: accountno (R-prefixed account number, e.g. 'R189878000'), name1/name2/name3 (up to three owners), mailingaddress1, city (mailing city), location (combined property address when populated, e.g. '17622 N INDIAN MERIDIAN RD OKLAHOMA CITY'), locationcity (property city), propertyid (numeric internal ID), taxdistrict, taxdistrictname, currentmarket, currentassessed, currenttaxable, landvalue, legal (legal description), subname, lot, block, section, township, range, acreage. Note: location and locationcity fields may be null for some rural parcels, when null, use legal/section/township/range for location. The former county ArcGIS Server at oklahomacounty.geocortex.com is no longer reachable (DNS fails as of 2026-06); the ArcGIS Online hosted view is the current canonical public layer. Oklahoma County Assessor portal at assessor.oklahomacounty.org provides the full record with appeals and valuation history."
+    },
+    {
+      "id": "ok-garfield",
+      "state": "OK",
+      "stateName": "Oklahoma",
+      "stateSlug": "oklahoma",
+      "county": "Garfield",
+      "countySlug": "garfield-county",
+      "countyFips": "40047",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Garfield County Assessor",
+        "url": "https://www.assessor.garfieldok.com/",
+        "email": null
+      },
+      "notes": "No public REST parcel layer was found for Garfield County, Oklahoma (county seat Enid) as of 2026-10-03. The assessor's parcel viewer runs on Spatialest (property.spatialest.com/ok/garfield), whose map comes from a GeoServer at geo2.spatialest.com (workspace garfield-ok) that serves WMS images only: WFS is disabled, so there is no attribute or owner query. Oklahoma has no statewide parcel REST service. ArcGIS Hub and ArcGIS Online searches for Garfield County, Oklahoma parcels returned no items, while the same searches for Mahoning County parcels returned results, so the absence is meaningful. The one near miss is a 'Parcel Information' layer on ArcGIS Online (services1.arcgis.com/XDIvp05ZrOXRft7s) with owner, situs and parcel columns, but it covers only the Town of North Enid (540 parcels), not the county or the City of Enid, and is not registered. Results for 'Garfield County Land Explorer' belong to Garfield County, Colorado. Parcel and owner records are available through the assessor's Spatialest viewer."
     }
   ]
 }

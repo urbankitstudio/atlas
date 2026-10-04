@@ -2,7 +2,7 @@
   "stateSlug": "california",
   "stateName": "California",
   "stateAbbrev": "CA",
-  "lastUpdated": "2026-09-26",
+  "lastUpdated": "2026-10-03",
   "counties": [
     {
       "id": "ca-los-angeles",
@@ -517,6 +517,113 @@
           }
         }
       }
+    },
+    {
+      "id": "ca-tulare",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Tulare",
+      "countySlug": "tulare-county",
+      "countyFips": "06107",
+      "ownerFieldNote": {
+        "body": "Tulare County's public parcel layer carries the APN, legal description, use code and acreage only: no owner name, no site address and no mailing address. Search by APN here. Ownership and addresses are held by the County Assessor. The City of Tulare's parcel layer at maps.tulare.ca.gov covers the city only and is not this county's layer.",
+        "source": {
+          "label": "Tulare County Assessor",
+          "url": "https://tularecounty.ca.gov/assessor/"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels_(Public_View) layer carries APN, legal description, use code and acreage only; its field list has no owner-name column, and no other parcel service in the county's ArcGIS organisation carries one.",
+            "sourceUrl": "https://www.arcgis.com/home/item.html?id=8eb4a5d77ca64debbe9e391cd04cadf4"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels_(Public_View) layer carries APN, legal description, use code and acreage only; its field list has no owner mailing-address column.",
+            "sourceUrl": "https://www.arcgis.com/home/item.html?id=8eb4a5d77ca64debbe9e391cd04cadf4"
+          }
+        },
+        "situs_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels_(Public_View) layer carries APN, legal description, use code and acreage only; its field list has no site-address column, so a parcel cannot be found by street address here.",
+            "sourceUrl": "https://www.arcgis.com/home/item.html?id=8eb4a5d77ca64debbe9e391cd04cadf4"
+          }
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/bYBANhmQGwSSLC0l/ArcGIS/rest/services/Parcels_(Public_View)/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Current Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "APN",
+              "label": "APN (9 digits, stored as text)",
+              "searchable": true
+            },
+            {
+              "name": "APNFormatted",
+              "label": "APN, formatted (000-000-000)",
+              "searchable": true
+            },
+            {
+              "name": "LegalDescription",
+              "label": "Legal Description",
+              "searchable": true
+            },
+            {
+              "name": "UseCodeDescription",
+              "label": "Use Code Description",
+              "searchable": false
+            },
+            {
+              "name": "UseCode",
+              "label": "Use Code",
+              "searchable": false
+            },
+            {
+              "name": "TaxRateArea",
+              "label": "Tax Rate Area",
+              "searchable": false
+            },
+            {
+              "name": "AcresAssessor",
+              "label": "Acres (Assessor)",
+              "searchable": false
+            },
+            {
+              "name": "AcresGIS",
+              "label": "Acres (GIS)",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/bYBANhmQGwSSLC0l/ArcGIS/rest/services/Parcels_(Public_View)/FeatureServer/0/query?where=APN%20LIKE%20%270090%25%27&outFields=APN,APNFormatted,LegalDescription,UseCodeDescription,AcresGIS&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=8eb4a5d77ca64debbe9e391cd04cadf4",
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Tulare County Assessor, Cadastral Mapping and GIS",
+        "url": "https://tularecounty.ca.gov/assessor/",
+        "email": null
+      },
+      "notes": "Tulare County, California (county seat Visalia) publishes its parcels from the county GIS ArcGIS Online organisation as Parcels_(Public_View) FeatureServer layer 0 (Current Parcels): 166,875 rows on 2026-10-03. THE LAYER IS APN-ONLY. Its field list has no owner name, no site address and no mailing address, so this county answers an APN or legal-description search and nothing else. APN is a nine-digit TEXT value (e.g. 009040002), so compare it as a string: APN LIKE '0090%' or APN='009040002' works, and a numeric APN=1051002 comparison returns no rows. APNFormatted carries the dashed form (009-040-002). The layer also carries LegalDescription, TaxRateArea, UseCode, UseCodeDescription, ClassCode, CONTRACT and PRESERVE flags, SECTION, TOWNSHIP, AcresAssessor and AcresGIS. CORS is open (Access-Control-Allow-Origin: *) and maxRecordCount is 1000, half the usual page. The ArcGIS item states no licence. A richer sibling, Public_Parcels FeatureServer layer 0, adds land, improvement and personal-property values and the owner's postal state and ZIP only, still with no owner name and no street address; the org's Public_Parcel_Search, Regional Parcels and n01_Parcels services carry no owner either. Do not confuse this with maps.tulare.ca.gov, the CITY of Tulare: its Public_Parcels__Tulare_County layer covers only the city's urban growth boundary with no owner or address fields, and its housing-site layers carry owners for a few hand-picked city parcels. The assessor's web pages answer HTTP 403 to automated requests. Verified live 2026-10-03: APN LIKE '0090%' returned rows (first APN 009040002, 009-040-002, POR OF NW/4 5-15-28)."
     }
   ]
 }

@@ -1,5 +1,77 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.14 — 2026-10-03
+
+Data refresh. No API change. `totals` move from **241 counties / 253
+endpoints** to **246 counties / 258 endpoints**; 240 of the 246 now carry a
+verified endpoint (was 235 of 241). Five endpoints are added: four new counties
+and Clackamas OR, which was already on record without one. Garfield OK is
+added without an endpoint. Only Sullivan TN adds an owner-name search. The
+other four endpoints answer by parcel number and, except Tulare, by address,
+and each records why owner data is absent in `capabilityOverrides` and
+`ownerFieldNote`.
+
+### Data refresh — five endpoints, one county without one
+
+- **New Jersey:** Essex County (FIPS 34013, Newark), on the NJ Office of GIS
+  statewide Parcels and MOD-IV composite (`Parcels_Composite_NJ_WM`, layer 0),
+  scoped `COUNTY='ESSEX'` (178,089 of 3,481,240 rows). Searchable by PAMS
+  parcel identifier (`PAMS_PIN`), property location (`PROP_LOC`),
+  municipality (`MUN_NAME`) and the mailing street on the tax record
+  (`ST_ADDRESS`). **Not searchable by owner:** `OWNER_NAME` is an empty string
+  on every row statewide, and the NJ Office of GIS states in the service
+  description that it is redacted per Daniel's Law for public web access, so
+  the column is not listed and `owner_name` is `restricted`, attributed to
+  NJOGIS, as for Bergen. Licence: public. Because the composite is now shared,
+  Bergen's registration gains the matching `scopeWhere` `COUNTY='BERGEN'`.
+- **Oregon:** Clackamas County (FIPS 41005, Oregon City), already on record
+  without an endpoint, now carries the county's `Taxlots_CMap` FeatureServer,
+  layer 0 (163,927 taxlots). Searchable by parcel number (`PARCEL_NUMBER`),
+  map and taxlot (`TLNO`), site address (`SITUS`) and city (`SITUS_CITY`).
+  **Not searchable by owner and no mailing address:** the layer has neither
+  column and the county publishes owner names on no public layer, routing owner
+  questions to Assessment and Taxation; `owner_name` and
+  `owner_mailing_address` are `not_published`. No scope (county layer).
+  Licence: disclaimer only, recorded `unknown`.
+- **Nebraska:** Phelps County (FIPS 31137, Holdrege), on Nebraska's statewide
+  `StatewideParcelsExternal` MapServer, layer 0, scoped `County_ID='137'`
+  (7,664 of 1,154,898 rows; 59 are blank-attribute polygons, which the
+  sample query skips with `Parcel_ID<>''`). Searchable by parcel ID (`Parcel_ID`,
+  `State_PID`), situs address (`Situs_Address`) and legal description.
+  **Not searchable by owner and no mailing address:** the statewide layer has
+  neither column, and the county's gWorks vendor server exposes only a parcel
+  key; `owner_name` and `owner_mailing_address` are `not_published`. CORS
+  reflects the request origin. Licence: none stated, recorded `unknown`.
+- **California:** Tulare County (FIPS 06107, Visalia), on the county's
+  `Parcels_(Public_View)` FeatureServer, layer 0 (166,875 parcels).
+  Searchable by APN only (`APN`, nine-digit text, and `APNFormatted`) plus
+  legal description. **No owner, no site address, no mailing address** in the
+  layer; `owner_name`, `owner_mailing_address` and `situs_address` are
+  `not_published`. `maxRecordCount` is 1000. No scope (county layer). Not the
+  City of Tulare's layer at maps.tulare.ca.gov. Licence: none stated, recorded
+  `unknown`.
+- **Tennessee:** Sullivan County (FIPS 47163, Blountville), on the City of
+  Johnson City's regional `ParcelPublishing/TaxParcels` MapServer, layer 0,
+  scoped `COUNTYNAME='Sullivan County'` (78,958 of 183,538 rows; the bare value
+  `Sullivan` matches nothing). Searchable by owner name (`OWNER`), parcel ID
+  (`GISLINK`, `ID`), property address (`ADDRESS`, stored street first and house
+  number last) and owner mailing address (`MAILADDR`). CORS reflects the
+  request origin. **Licence: `restricted`.** The item's terms say delivered
+  products "are not to be resold by the purchaser for any reason and may not be
+  reproduced without the written permission of the staff of the Johnson City
+  GIS Division"; the record holds only the query URL and the county is served
+  by live query.
+- **Oklahoma:** Garfield County (FIPS 40047, Enid), **no endpoint**
+  (`hasPublicRest: false`). The assessor's Spatialest viewer is backed by a
+  GeoServer that serves WMS images only with WFS disabled, and Oklahoma has no
+  statewide parcel REST layer. The `notes` record the search, with controls, so
+  it is not repeated.
+
+All six states were already registered in `POPULATED_STATES`, so `src/*.ts`
+is unchanged and only `data/` grew. Deliberately a **patch**, for the reason
+0.6.5 gave: adding county rows to an already-registered state is the 0.6.1
+shape, and `^0.6.0` reaches everyone already installed.
+
 ## 0.6.13 — 2026-10-03
 
 Data refresh. No API change. `totals` unchanged at **241 counties / 253

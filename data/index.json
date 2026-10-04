@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-03",
   "totals": {
     "states": 51,
-    "counties": 241,
-    "endpoints": 253,
-    "countiesWithEndpoint": 235,
+    "counties": 246,
+    "endpoints": 258,
+    "countiesWithEndpoint": 240,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -45,8 +45,8 @@
       "slug": "california",
       "name": "California",
       "abbrev": "CA",
-      "countyCount": 11,
-      "endpointCount": 11,
+      "countyCount": 12,
+      "endpointCount": 12,
       "populated": true
     },
     {
@@ -229,8 +229,8 @@
       "slug": "nebraska",
       "name": "Nebraska",
       "abbrev": "NE",
-      "countyCount": 3,
-      "endpointCount": 3,
+      "countyCount": 4,
+      "endpointCount": 4,
       "populated": true
     },
     {
@@ -253,8 +253,8 @@
       "slug": "new-jersey",
       "name": "New Jersey",
       "abbrev": "NJ",
-      "countyCount": 5,
-      "endpointCount": 5,
+      "countyCount": 6,
+      "endpointCount": 6,
       "populated": true
     },
     {
@@ -301,7 +301,7 @@
       "slug": "oklahoma",
       "name": "Oklahoma",
       "abbrev": "OK",
-      "countyCount": 1,
+      "countyCount": 2,
       "endpointCount": 1,
       "populated": true
     },
@@ -310,7 +310,7 @@
       "name": "Oregon",
       "abbrev": "OR",
       "countyCount": 7,
-      "endpointCount": 6,
+      "endpointCount": 7,
       "populated": true
     },
     {
@@ -349,8 +349,8 @@
       "slug": "tennessee",
       "name": "Tennessee",
       "abbrev": "TN",
-      "countyCount": 3,
-      "endpointCount": 3,
+      "countyCount": 4,
+      "endpointCount": 4,
       "populated": true
     },
     {
