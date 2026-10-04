@@ -111,11 +111,16 @@
           "layerIndex": 15,
           "layerName": "Property Information [Parcels]",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
             {
+              "name": "PARID",
+              "label": "Parcel ID (PARID, per unit)",
+              "searchable": true
+            },
+            {
               "name": "PARCELID",
-              "label": "Parcel ID",
+              "label": "GeoPIN (lot id, shared by condo units)",
               "searchable": true
             },
             {
@@ -182,19 +187,15 @@
               "name": "SQUARE",
               "label": "Square",
               "searchable": false
-            },
-            {
-              "name": "PARID",
-              "label": "Parcel Account ID",
-              "searchable": true
             }
           ],
-          "sampleQuery": "https://gis.nola.gov/arcgis/rest/services/apps/property3/MapServer/15/query?where=PARCELID+IS+NOT+NULL&outFields=PARCELID,OWNERNME1,SITEADDRESS,PSTLADDRESS,PSTLCITY&returnGeometry=false&f=json&resultRecordCount=5",
+          "sampleQuery": "https://gis.nola.gov/arcgis/rest/services/apps/property3/MapServer/15/query?where=PARCELID%3D%2741033176%27&outFields=*&returnGeometry=false&f=json&resultRecordCount=1",
           "license": "public",
           "licenseUrl": "https://gis.nola.gov/",
-          "status": "unreachable",
-          "lastVerified": "2026-08-29",
-          "verifiedBy": "manual"
+          "status": "live",
+          "lastVerified": "2026-10-03",
+          "verifiedBy": "manual",
+          "attributeSearch": "unsupported"
         }
       ],
       "contact": {
@@ -202,7 +203,7 @@
         "url": "https://gis.nola.gov/",
         "email": null
       },
-      "notes": "MARKED UNREACHABLE 2026-08-29. Layer 15 metadata answers and lists PARCELID, OWNERNME1, SITEADDRESS, PSTLADDRESS, but ANY query that names those columns in outFields returns ArcGIS 400 \"Failed to execute query\" in ~250 ms (measured 2026-08-29: PARCELID IS NOT NULL, 1=1, OBJECTID=1 and a 30 m spatial query all fail with specific outFields). outFields=* succeeds and takes 27-44 s; even outFields=OBJECTID took 27.5 s. The enrich pipeline requests specific columns, so every paid lookup here fails and refunds; the liveness probe sends the declared sampleQuery and fails the same way, which is why this parish has never once probed ok (463 consecutive failures). Layers 0-14 of the same service are zoning, overlays and address points, not parcels, and ArcGIS Hub lists no city-owned parcel feature service. County-side defect; nothing to re-point to. Liveness keeps watching. Prior notes: Orleans Parish's public parcel layer still serves metadata, but its attribute-query operation is currently failing on the county's ArcGIS server. Owner and address searches are unavailable while the county repairs the service; automatic probes continue to check for recovery. New Orleans uses Square/Lot identifiers for legal parcels. The city also publishes a weekly situs-and-geometry dataset on data.nola.gov, but it does not include owner names. An older 2018 parcel snapshot was not substituted because its ownership data is dated and the service was unstable during verification. LIVENESS 2026-08-04: the layer's metadata still loads, but EVERY query against it times out, including a bare returnCountOnly count. 161 consecutive failed checks and last_ok_at has never been set. This is a county-side outage, not a schema drift; there is nothing to fix on our side and the endpoint stays honestly degraded until New Orleans repairs it."
+      "notes": "LIVE 2026-10-03 for lookup by location in clients that complete the TLS chain (see TLS below); no attribute search. Layer 15 refuses any query that NAMES its outFields except an exact PARCELID equality: measured 2026-10-03 on the paid shapes (point + 30 m buffer; 800 m envelope with geometry) and on a scan (OBJECTID>0, resultRecordCount=1), every named column list answers HTTP 200 carrying ArcGIS error 400 \"Failed to execute query.\" in about 0.2 s, while the identical request with outFields=* answers 40 features in 0.28 s and 501 features (957 KB) in 0.65 s. UrbanKit sends outFields=* to this layer (api/_lib/arcgis-quirks.ts, WILDCARD_OUT_FIELDS) and keeps only the role columns. Any predicate that scans the table (1=1, OBJECTID>0, PARCELID IS NOT NULL, an owner LIKE) runs past 40 s even for a single row, so no where-clause search is offered (attributeSearch: unsupported) and owner-name lookup is not available here; the owner columns (OWNERNME1, OWNERNME2) and the mailing address (PSTLADDRESS, PSTLCITY, PSTLSTATE, PSTLZIP5) are returned on every spatial hit (a UrbanKit row keeps PSTLADDRESS, the street line). IDS: PARID is the assessor's per-unit parcel id (e.g. 622-SALEXANDERST) and is listed first so rows key by unit; PARCELID is the GeoPIN, a lot id shared by every condo unit on the lot (a 30 m buffer in the CBD: 40 units, 3 lots, 39 owners), so keying on it would collapse a notice list to one row per lot; TAXBILLID is the tax bill number. Exact PARCELID equality answers in 0.2 s and is the sample query, which is also the predicate the liveness probe falls back to when its first shape (1=1) times out. CORS reflects the request origin. TLS: the server sends an INCOMPLETE certificate chain (leaf without its Sectigo intermediate). Clients that fetch the missing intermediate themselves (curl on Windows, Chromium and Safari through the OS store) connect; Node's fetch fails the handshake with UNABLE_TO_VERIFY_LEAF_SIGNATURE (measured 2026-10-04). UrbanKit's billed bulk-enrichment and radius paths run on Vercel's Edge runtime, which cannot be given a certificate authority and whose handling of an incomplete chain is undocumented and not yet measured, so assume they cannot serve this parish until a keyed test on the deployed function shows otherwise; today an Orleans row ends county-unavailable and is refunded, unchanged from before. The liveness probe pins the intermediate, so its ok reflects the layer, not the paid paths. An agent that fetches this URL from Node must trust the Sectigo intermediate or the request fails before any query runs. Tracked in GitHub issue #906. HISTORY: marked unreachable 2026-08-29 after 463 consecutive failed probes whose predicate (PARCELID IS NOT NULL) is a table scan; the layer was answering spatial queries the whole time. Ownership data looked dated during the 2026-08 checks; the 2026-10-03 rows carry current-looking owner names."
     }
   ]
 }

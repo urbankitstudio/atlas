@@ -1,5 +1,48 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.13 — 2026-10-03
+
+Data refresh. No API change. `totals` unchanged at **241 counties / 253
+endpoints**; one county moves from `unreachable` to `live`.
+
+### Data refresh — Orleans Parish LA is live again, for location queries
+
+- **Louisiana:** Orleans Parish (FIPS 22071, New Orleans), `apps/property3`
+  MapServer layer 15, `status` **`unreachable` → `live`**, `lastVerified`
+  2026-10-03. The layer was never down: it refuses any query that names its
+  `outFields` (every named list answers HTTP 200 carrying ArcGIS error 400
+  "Failed to execute query." in about 0.2 s) and never finishes a table scan
+  (`1=1`, `OBJECTID>0` and `PARCELID IS NOT NULL` all ran past 40 s for a
+  single row), which is the shape the old sample query and 463 consecutive
+  probes used. With `outFields=*` the same layer answers a point + 30 m query
+  in 0.28 s (40 features) and an 800 m envelope with geometry in 0.65 s (501
+  features). The record now carries **`attributeSearch: "unsupported"`**: no
+  `where`-clause search is offered, so a consumer that reads the flag offers
+  lookup by location only. The owner columns (`OWNERNME1`, `OWNERNME2`) and the
+  mailing address (`PSTLADDRESS`, `PSTLCITY`, `PSTLSTATE`, `PSTLZIP5`) are
+  returned on every spatial hit. `sampleQuery` is an exact `PARCELID`
+  equality with `outFields=*`, the one predicate shape that answers quickly.
+  `corsEnabled` `null` → `true` (the header reflects the request origin).
+  `notes` rewritten to the measured facts. Consumers that name their columns
+  must send `*` to this layer; the site does so through its wildcard list.
+  **TLS caveat, stated in `notes`:** the server sends an incomplete
+  certificate chain (leaf without its Sectigo intermediate). Clients that
+  fetch the missing intermediate themselves (curl on Windows, Chromium and
+  Safari through the OS store) connect; Node's `fetch` fails the handshake
+  with `UNABLE_TO_VERIFY_LEAF_SIGNATURE` (measured 2026-10-04). UrbanKit's
+  billed enrichment and radius paths run on Vercel's Edge runtime, which
+  cannot be given a certificate authority and whose handling of an incomplete
+  chain is undocumented and not yet measured, so assume they cannot serve this
+  parish until a keyed test on the deployed function says otherwise; today an
+  Orleans row ends `county-unavailable` and is refunded, unchanged from
+  before. The liveness probe pins the intermediate, so its ok describes the
+  layer, not those paths. A Node consumer of this record must trust the
+  Sectigo intermediate before any query runs. Tracked in urbankitstudio#906.
+  **Field order:** `PARID` (the assessor's per-unit parcel id) is listed first
+  and `PARCELID` (the GeoPIN, a lot id shared by every condo unit on a lot)
+  second, so a consumer that keys rows by the first parcel-id field keys by
+  unit: a 30 m buffer in the CBD returns 40 units on 3 lots with 39 owners.
+
 ## 0.6.12 — 2026-10-03
 
 Data refresh. No API change. `totals` move from **239 counties / 251
