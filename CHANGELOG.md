@@ -1,5 +1,34 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.17 — 2026-10-05
+
+New county, one new optional field, no breaking change. `totals` move to **247
+counties / 259 endpoints** (241 with a verified endpoint).
+
+### New county — Schenectady NY (36093)
+
+Asked for through the site's free tools on 2026-10-04 and not in the NYS Tax
+Parcels Public statewide layer (a count on `COUNTY_NAME='Schenectady'` returns
+0 where the Albany control returns 112,804). The record registers the public
+hosted layer published by Spatial Data Logic, the vendor behind the county's
+property system: 59,235 parcels, owner names published, parcel id (tax-map
+print key), situs and owner mailing address. It carries a `dataVintage`
+advisory, because the layer's data was last edited on 2023-09-28.
+
+### New field — `addedAt`
+
+A county may now carry `addedAt` (`YYYY-MM-DD`), the date it entered the
+atlas. It is optional (counties added before this release carry none) and,
+unlike `lastVerified`, it never moves. Schenectady is the first record to carry
+it.
+
+### Re-checked, still no public REST — Iron MI (26071), Garfield OK (40047)
+
+Both were asked for and both stay `hasPublicRest: false`; their `notes` now
+record the 2026-10-05 re-check (Michigan's state ArcGIS server lists no parcel
+layer; Garfield's Spatialest GeoServer still has WFS disabled, and Oklahoma has
+no statewide parcel service).
+
 ## 0.6.16 — 2026-10-04
 
 Data refresh. No API change. `totals` unchanged at **246 counties / 258

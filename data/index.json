@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-05",
   "totals": {
     "states": 51,
-    "counties": 246,
-    "endpoints": 258,
-    "countiesWithEndpoint": 240,
+    "counties": 247,
+    "endpoints": 259,
+    "countiesWithEndpoint": 241,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -269,8 +269,8 @@
       "slug": "new-york",
       "name": "New York",
       "abbrev": "NY",
-      "countyCount": 10,
-      "endpointCount": 15,
+      "countyCount": 11,
+      "endpointCount": 16,
       "populated": true
     },
     {

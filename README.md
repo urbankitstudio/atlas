@@ -142,11 +142,20 @@ Treat both as *unknown*. Neither should render as "up".
 
 Omit `?fips=` to get every tracked county in one call.
 
+## `addedAt` is the one date that never moves
+
+A county may carry `addedAt` (YYYY-MM-DD): the date it entered the atlas. It is
+optional, because counties added before 2026-10-05 carry none, and it is the
+only date here that is not re-stamped: `lastVerified` moves on every
+re-verification, so a county verified yesterday can look brand new. When you
+need to know whether a county is new to the atlas rather than recently checked,
+read `addedAt` and fall back to the oldest `lastVerified` only when it is absent.
+
 ## Coverage today
 
-The atlas bundles **246 counties across all 50 US states and DC** (258 verified endpoints), covering the largest counties in each. Call `listStates()` to enumerate the full set.
+The atlas bundles **247 counties across all 50 US states and DC** (259 verified endpoints), covering the largest counties in each. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 240 of the 246 carry a verified endpoint. The other 6 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 241 of the 247 carry a verified endpoint. The other 6 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 Counties are added as their public REST endpoints are verified. Package versions bump when data refreshes — pin to a minor range (`^0.x`) to receive new counties without breaking changes.
 

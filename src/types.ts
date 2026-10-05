@@ -197,6 +197,12 @@ export interface CountyRecord {
   contact: ContactInfo | null;
   hasPublicRest: boolean;
   notes: string | null;
+  /**
+   * The date (YYYY-MM-DD) this county entered the atlas. Optional: records
+   * added before 2026-10-05 carry no date. Unlike `lastVerified` on each
+   * endpoint, which moves on every re-verification, this never moves.
+   */
+  addedAt?: string | null;
   /** Curated caveat about owner data on this county's public layer. */
   ownerFieldNote?: CountyAdvisory | null;
   /** Curated caveat about how old the county's published data is. */

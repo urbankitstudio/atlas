@@ -2,7 +2,7 @@
   "stateSlug": "new-york",
   "stateName": "New York",
   "stateAbbrev": "NY",
-  "lastUpdated": "2026-05-14",
+  "lastUpdated": "2026-10-05",
   "counties": [
     {
       "id": "ny-bronx",
@@ -1088,6 +1088,93 @@
         "email": null
       },
       "notes": "Staten Island is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='SI' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+    },
+    {
+      "id": "ny-schenectady",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Schenectady",
+      "countySlug": "schenectady-county",
+      "countyFips": "36093",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/DvTqoyLKkslnGFR5/arcgis/rest/services/Final21/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Final21",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PRINT_KEY",
+              "label": "Tax Map Parcel ID (Print Key)",
+              "searchable": true
+            },
+            {
+              "name": "OWNER",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PROP_ADDR",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "STREET",
+              "label": "Owner Mailing Street",
+              "searchable": false
+            },
+            {
+              "name": "CITY_STATE",
+              "label": "Owner Mailing City, State, ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "CURR_TOT",
+              "label": "Current Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "SWIS",
+              "label": "SWIS Municipality Code",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/DvTqoyLKkslnGFR5/arcgis/rest/services/Final21/FeatureServer/0/query?where=UPPER(OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=PRINT_KEY,OWNER,PROP_ADDR,STREET,CITY_STATE,PROP_CLASS&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-05",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Schenectady County Real Property Tax Service Agency",
+        "url": "https://www.schenectadycountyny.gov/taxmaps",
+        "email": null
+      },
+      "notes": "Schenectady County NY (Capital Region: the city of Schenectady, Niskayuna, Rotterdam, Glenville, Scotia; FIPS 36093) is not in the NYS Tax Parcels Public statewide layer (COUNTY_NAME='Schenectady' counts 0 on 2026-10-05 while the Albany control counts 112,804), so this record uses the public hosted layer published by Spatial Data Logic, the vendor behind the county's SIMS/ImageMate property system; the county's own simsgis.org service sits behind a login. Single-county layer, 59,235 parcels, no scopeWhere needed. Owner names are published in OWNER as 'LAST, FIRST' for individuals (e.g. 'SMITH, ARNOLD L.') and with a trailing comma for entities (e.g. 'CITY OF SCHENECTADY,', about 6,800 of the 59,235 rows); the owner mailing address is STREET plus CITY_STATE; the situs is PROP_ADDR; the parcel id is the tax-map print key (PRINT_KEY, e.g. 39.72-4-1). An exact point intersect can fall in the right-of-way, so point lookups use a small distance buffer. Verified 2026-10-05 by a row query, an owner sample query and a point query at 105 Jay St (City of Schenectady).",
+      "addedAt": "2026-10-05",
+      "dataVintage": {
+        "body": "The layer's data was last edited on 2023-09-28 (its dataLastEditDate), so owner names and mailing addresses can lag the current assessment roll by two or more years. Parcel ids and situs addresses still locate a parcel; for the owner of record today, use the county's Real Property Tax Service records.",
+        "source": {
+          "label": "Schenectady County Real Property Tax Service Agency",
+          "url": "https://www.schenectadycountyny.gov/taxmaps"
+        }
+      }
     },
     {
       "id": "ny-suffolk",
