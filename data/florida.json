@@ -179,7 +179,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.50375%2C25.61601&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D23)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -315,7 +315,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.32328%2C28.51439&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D58)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -507,7 +507,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.37999%2C27.89315&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D39)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -664,7 +664,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.47668%2C26.19354&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D16)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -861,7 +861,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.64811%2C30.33525&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D26)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -1063,7 +1063,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.39314%2C27.47556&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D51)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -1267,7 +1267,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.42371%2C27.22533&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D68)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -1444,7 +1444,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.44835%2C26.64913&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D60)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -1626,7 +1626,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.79807%2C27.90534&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D62)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -1808,7 +1808,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.98418%2C26.56327&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D46)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -1990,7 +1990,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.51101%2C28.30982&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D61)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -2126,7 +2126,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.35722%2C29.67574&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D11)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -2262,7 +2262,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.30228%2C30.32444&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D12)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -2398,7 +2398,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-85.5344%2C30.15914&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D13)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -2534,7 +2534,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.1667%2C29.95239&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D14)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -2670,7 +2670,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.70033%2C28.29831&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D15)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -2806,7 +2806,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-85.19791%2C30.3888&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D17)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -2942,7 +2942,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.00366%2C26.9064&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D18)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -3078,7 +3078,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.59555%2C28.85029&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D19)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -3214,7 +3214,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.86504%2C29.98658&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D20)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -3350,7 +3350,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.40095%2C26.11879&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D21)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -3486,7 +3486,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.62337%2C30.22165&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D22)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -3622,7 +3622,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.80625%2C27.19058&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D24)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -3758,7 +3758,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-83.23623%2C29.55268&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D25)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -3894,7 +3894,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-87.32032%2C30.53&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D27)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4030,7 +4030,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.28625%2C29.47489&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D28)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4166,7 +4166,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-84.81521%2C29.67779&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D29)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4302,7 +4302,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-84.61261%2C30.57869&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D30)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4438,7 +4438,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.7958%2C29.72346&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D31)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4574,7 +4574,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.19082%2C26.95481&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D32)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4710,7 +4710,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-85.27201%2C29.85924&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D33)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4846,7 +4846,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.95112%2C30.49844&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D34)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -4982,7 +4982,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.82158%2C27.49285&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D35)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -5118,7 +5118,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.15211%2C26.53997&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D36)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -5254,7 +5254,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.52597%2C28.55599&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D37)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -5390,7 +5390,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.34235%2C27.34108&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D38)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -5526,7 +5526,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-85.81594%2C30.86201&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D40)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -5662,7 +5662,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.57479%2C27.70053&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D41)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -5798,7 +5798,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-85.20881%2C30.78925&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D42)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -5934,7 +5934,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-83.92176%2C30.3969&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D43)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -6070,7 +6070,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-83.17851%2C29.99007&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D44)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -6206,7 +6206,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.71228%2C28.76411&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D45)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -6342,7 +6342,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-84.2778%2C30.45931&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D47)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -6478,7 +6478,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.83123%2C29.27185&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D48)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -6614,7 +6614,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-84.86858%2C30.25985&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D49)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -6750,7 +6750,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-83.47042%2C30.44723&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D50)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -6886,7 +6886,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.0431%2C29.20281&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D52)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7022,7 +7022,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.3982%2C27.0836&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D53)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7158,7 +7158,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.0226%2C25.58612&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D54)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7294,7 +7294,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.76509%2C30.60596&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D55)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7430,7 +7430,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-86.59108%2C30.61433&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D56)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7566,7 +7566,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.88739%2C27.38559&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D57)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7702,7 +7702,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.13931%2C28.05903&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D59)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7838,7 +7838,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.69349%2C27.95369&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D63)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -7974,7 +7974,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.73204%2C29.5939&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D64)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -8110,7 +8110,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-87.01892%2C30.67535&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D67)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -8246,7 +8246,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.13197%2C28.69007&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D69)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -8382,7 +8382,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.40004%2C29.89049&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D65)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -8518,7 +8518,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-80.44354%2C27.37981&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D66)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -8654,7 +8654,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.06952%2C28.71333&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D70)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -8790,7 +8790,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.99275%2C30.18924&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D71)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -8926,7 +8926,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-83.63957%2C29.96715&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D72)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -9062,7 +9062,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-82.36692%2C30.05428&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D73)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -9198,7 +9198,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-81.16179%2C29.05777&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D74)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -9334,7 +9334,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-84.35911%2C30.09134&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D75)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -9470,7 +9470,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-86.1628%2C30.57125&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D76)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",
@@ -9606,7 +9606,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?geometry=-85.65581%2C30.6021&geometryType=esriGeometryPoint&inSR=4326&distance=400&units=esriSRUnit_Meter&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID%2COWN_NAME%2CPHY_ADDR1&returnGeometry=false&resultRecordCount=501&f=json",
+          "sampleQuery": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=(CO_NO%3D77)&outFields=*&resultRecordCount=1&f=json",
           "license": "public",
           "licenseUrl": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer",
           "status": "live",

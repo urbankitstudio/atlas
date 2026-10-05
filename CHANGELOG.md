@@ -1,5 +1,136 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.16 — 2026-10-04
+
+Data refresh. No API change. `totals` unchanged at **246 counties / 258
+endpoints**. Five New Jersey county records on the two NJOGIS statewide
+services now state what those services serve. All 67 Florida registrations
+on the FDOR statewide cadastral replace a `sampleQuery` the layer rejects
+with one scoped to the county. The site's downloadable directory now scopes its sample queries,
+which is not part of this package.
+
+### Data refresh — Bergen NJ lists the mailing-address columns its shared layer serves
+
+- **New Jersey:** Bergen County (FIPS 34003) sits on the NJ Office of GIS
+  statewide composite, `Parcels_Composite_NJ_WM` FeatureServer layer 0, scoped
+  `COUNTY='BERGEN'`. Essex County uses the same layer, and Essex's record
+  already listed the mailing address on the tax record. Bergen's did not, so
+  it understated what the layer returns. Measured live 2026-10-04, with
+  Essex as the control:
+
+  | `COUNTY=` scope, test | BERGEN | ESSEX |
+  |---|---|---|
+  | all rows | 281,646 | 178,089 |
+  | `ST_ADDRESS<>''` | 281,646 | 178,089 |
+  | `CITY_STATE<>''` | 281,646 | 178,089 |
+  | `ZIP_CODE<>''` | 281,612 | 178,088 |
+  | `OWNER_NAME<>''` | 0 | 0 |
+  | `PROP_LOC<>''` | 281,646 | 178,089 |
+  | `CALC_ACRE>0` | 244,163 | 152,381 |
+  | `YR_CONSTR>0` | 263,852 | 156,919 |
+  | `BLDG_DESC<>''` | 241,129 | 121,070 |
+
+  `OWNER_NAME IS NOT NULL` returns every row in both counties, because the
+  column holds empty strings. Test it with `<>''`.
+- **`searchFields`:** adds `ST_ADDRESS` ("Mailing Street Address",
+  searchable), `CITY_STATE` ("Mailing City and State") and `ZIP_CODE`
+  ("Mailing ZIP Code"), worded exactly as Essex words them. Adds `CALC_ACRE`
+  ("Calculated Acreage"). **Removes `OWNER_NAME`**, as Essex does: it is
+  blank on every row statewide, and the owner-field classifier takes the first
+  owner-looking column, so listing it pointed owner lookups at a blank
+  column. The column's absence of data stays on record through the existing
+  `ownerFieldNote` and the reviewed `capabilityOverrides.owner_name`
+  (`restricted`, Daniel's Law, quoted from the service description). Both are
+  unchanged apart from the row count in the note.
+- `sampleQuery` now returns the mailing columns. `corsEnabled` `null` →
+  `true` (`Access-Control-Allow-Origin: *`). `lastVerified` 2026-05-15 →
+  2026-10-04. `licenseUrl` and `contact.url` were `https://www.njogis.com/`,
+  which no longer resolves (NXDOMAIN). They now point to the layer's ArcGIS
+  item and to NJGIN, as Essex's do. `notes` rewritten to the measured facts.
+  The old notes claimed "20,553+ parcels", and the scope holds 281,646.
+- **What a consumer sees:** the site's derived capability for
+  `owner_mailing_address` on Bergen moves from `not_published` to
+  `available`, the same as Essex. Owner-name search stays unavailable.
+- **Essex** (FIPS 34013) now lists `YR_CONSTR` ("Year of Construction") and
+  `BLDG_DESC` ("Building Description") with Bergen's labels. Both are
+  populated for Essex: 156,919 and 121,070 of 178,089 rows. With that change
+  Bergen and Essex list the same composite columns. `lastVerified` is now
+  2026-10-04 and `notes` carry the two counts.
+- **Ocean (34029), Camden (34007) and Morris (34027)** stay on their own
+  service, `maps.nj.gov` `Framework/Cadastral/MapServer/0`. It publishes the
+  same 3,481,240 statewide rows as the composite, and its Essex counts match
+  the composite's exactly. Measured on that service 2026-10-04:
+
+  | `COUNTY=` scope, test | OCEAN | CAMDEN | MORRIS | ESSEX (control) |
+  |---|---|---|---|---|
+  | all rows | 299,346 | 191,292 | 177,533 | 178,089 |
+  | `ST_ADDRESS<>''` | 299,346 | 191,292 | 177,533 | 178,089 |
+  | `CITY_STATE<>''` | 299,346 | 191,292 | 177,531 | 178,089 |
+  | `ZIP_CODE<>''` | 299,327 | 191,292 | 177,514 | 178,088 |
+  | `PROP_LOC<>''` | 299,346 | 191,292 | 177,531 | 178,089 |
+  | `OWNER_NAME<>''` | 0 | 0 | 0 | 0 |
+  | `CALC_ACRE>0` | 260,309 | 169,212 | 166,312 | 152,381 |
+  | `YR_CONSTR>0` | 258,549 | 162,106 | 156,490 | 156,919 |
+  | `BLDG_DESC<>''` | 260,928 | 153,496 | 146,953 | 121,070 |
+
+  For each of the three:
+  - **`OWNER_NAME` is removed** from `searchFields`. It was listed as
+    searchable, and Ocean's notes called it "public, queryable".
+  - **Fields added:** `ST_ADDRESS`, `CITY_STATE` and `ZIP_CODE` with Essex's
+    labels. `CALC_ACRE`, `YR_CONSTR` and `BLDG_DESC` are listed with Bergen's
+    labels.
+  - **`PAMS_PIN` relabelled** "PAMS Parcel Identifier (MUN_BLOCK_LOT)". The old
+    label, "PAMS Property Identification Number", did not match the site's
+    parcel-id reader, so `apn` derived as `not_published`. It now derives as
+    `available`, and so does `owner_mailing_address`.
+  - **`capabilityOverrides.owner_name` stays `not_published`**, with its
+    `endpoint_schema` basis. This service states no reason for the blank
+    column. The Daniel's Law attribution comes from the composite service's
+    description, so `ownerFieldNote` and `notes` quote it as that service's
+    statement. They do not record it as a restriction this endpoint cites.
+  - **Other changes:** `notes` and `ownerFieldNote` are rewritten from the
+    measured counts. Camden's layer carries 36 municipality names. Its old
+    notes said 37 municipalities. Unverified population figures and clerk links
+    are dropped, including oceanrecorder.com, which no longer resolves.
+  - `corsEnabled` `null` → `true`, because the service reflects the request
+    origin. `sampleQuery` is now a `PROP_LOC` search that returns the mailing
+    columns. The old one searched the blank owner column and returned nothing.
+    `lastVerified` 2026-05-15 → 2026-10-04.
+- **Bergen and Essex** `capabilityOverrides.owner_name.basis.sourceUrl` and
+  `ownerFieldNote.source.url` move from `https://www.nj.gov/njgin/`, which
+  does not carry the Daniel's Law statement, to the composite's ArcGIS item,
+  `https://www.arcgis.com/home/item.html?id=533599bbfbaa4748bf39faf1375a8a9c`.
+  Its summary reads "The OWNER_NAME field is redacted per Daniel's Law for
+  public web access." Essex's `notes` and `ownerFieldNote` are dated
+  2026-10-04, matching its `lastVerified`. The counts are unchanged: 178,089
+  rows, 0 with an owner name, 3,481,240 statewide, all re-measured 2026-10-04.
+
+### Data fix — Florida FDOR sample queries use a capped scoped `where`
+
+- **Florida:** 57 county records use the Florida Department of Revenue
+  statewide cadastral (`Florida_Statewide_Cadastral` FeatureServer layer 0)
+  as their first endpoint. Their `sampleQuery` was a point+distance query.
+  On 2026-10-04 the layer rejects every distance-buffered query with HTTP 200
+  and error 400 "24204: The spatial reference identifier (SRID) is not
+  valid", whether the point is sent in wkid 4326 or 3857, so the sample
+  returned nothing. Each record's `sampleQuery` is now
+  `where=(CO_NO=<n>)&outFields=*&resultRecordCount=1`. That is the record's
+  own `scopeWhere`, composed the way the site's directory composes it. Fired
+  live 2026-10-04: all 57 answered HTTP 200 with one row carrying that
+  county's own `CO_NO`, median about 1 second, slowest under 10 seconds.
+  Without the cap the layer returns its 2,000-row maximum. No `scopeWhere`,
+  URL, field list or note changed.
+- The 10 Florida records that register FDOR as a **second** endpoint, after
+  their own county layer, get the same sample. Fired live 2026-10-04:
+  Duval, Manatee, Sarasota, Pinellas and Pasco answered one row with their
+  own `CO_NO` in about half a second. Broward answered after 55 seconds cold
+  and in 50 ms once warm. Miami-Dade, Hillsborough, Palm Beach and Lee did
+  not answer it: about 55 seconds each, then HTTP 200 with error 400 "Unable
+  to perform query", twice each. On those large counties the layer also
+  fails a cap of 101 or 501, except Hillsborough, which answers both. That
+  matches the slow-scan limit the Florida notes describe, because the layer
+  does not index `CO_NO`. The old point+distance sample failed on all ten.
+
 ## 0.6.15 — 2026-10-03
 
 SDK change, no data change. `totals` stay at **246 counties / 258
