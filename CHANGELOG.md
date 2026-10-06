@@ -1,5 +1,22 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.19 — 2026-10-06
+
+New county, no API change, no breaking change. `totals` move to **249
+counties / 261 endpoints** (243 with a verified endpoint).
+
+### New county — Polk OR (41053)
+
+Asked for through the site's free tools on 2026-10-04. The county's
+Hub-advertised REST path (`maps.co.polk.or.us/gis/`) has returned HTTP 500 on
+every request since at least 2026-10-05, but the same ArcGIS Server answers on
+its second web adaptor, `/arcserv2/`, and the record registers its
+`Klop_core/Acct_35` taxlot layer: 36,413 taxlots with the assessment account
+joined on, so owner name, owner mailing address, situs, Map Taxlot, ORTaxlot and
+account number are all searchable, and the layer answers cross-origin
+requests (`corsEnabled: true`), so browser clients query it directly. The
+`notes` record the outage and the adaptor it works around.
+
 ## 0.6.18 — 2026-10-06
 
 New county, no API change, no breaking change. `totals` move to **248

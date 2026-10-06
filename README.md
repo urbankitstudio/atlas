@@ -153,9 +153,9 @@ read `addedAt` and fall back to the oldest `lastVerified` only when it is absent
 
 ## Coverage today
 
-The atlas bundles **248 counties across all 50 US states and DC** (260 verified endpoints), covering the largest counties in each. Call `listStates()` to enumerate the full set.
+The atlas bundles **249 counties across all 50 US states and DC** (261 verified endpoints), covering the largest counties in each. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 242 of the 248 carry a verified endpoint. The other 6 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 243 of the 249 carry a verified endpoint. The other 6 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 Counties are added as their public REST endpoints are verified. Package versions bump when data refreshes — pin to a minor range (`^0.x`) to receive new counties without breaking changes.
 

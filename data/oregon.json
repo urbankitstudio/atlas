@@ -2,7 +2,7 @@
   "stateSlug": "oregon",
   "stateName": "Oregon",
   "stateAbbrev": "OR",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-06",
   "counties": [
     {
       "id": "or-multnomah",
@@ -22,18 +22,66 @@
           "supportsQuery": true,
           "corsEnabled": null,
           "searchFields": [
-            { "name": "MAPTAXLOT", "label": "Map-Taxlot", "searchable": true },
-            { "name": "PROPID", "label": "Property ID", "searchable": true },
-            { "name": "NAME", "label": "Owner Name", "searchable": true },
-            { "name": "NAME2", "label": "Owner Name 2", "searchable": false },
-            { "name": "ADDR1", "label": "Owner Address", "searchable": true },
-            { "name": "CITY", "label": "Owner City", "searchable": false },
-            { "name": "STATE", "label": "Owner State", "searchable": false },
-            { "name": "ZIP", "label": "Owner ZIP", "searchable": false },
-            { "name": "SITUSADDR", "label": "Site Address", "searchable": true },
-            { "name": "SITUSCITY", "label": "Site City", "searchable": false },
-            { "name": "SALE_DATE", "label": "Sale Date", "searchable": false },
-            { "name": "SALE_PRICE", "label": "Sale Price", "searchable": false }
+            {
+              "name": "MAPTAXLOT",
+              "label": "Map-Taxlot",
+              "searchable": true
+            },
+            {
+              "name": "PROPID",
+              "label": "Property ID",
+              "searchable": true
+            },
+            {
+              "name": "NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "NAME2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "ADDR1",
+              "label": "Owner Address",
+              "searchable": true
+            },
+            {
+              "name": "CITY",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "STATE",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "ZIP",
+              "label": "Owner ZIP",
+              "searchable": false
+            },
+            {
+              "name": "SITUSADDR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "SITUSCITY",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "SALE_DATE",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Sale Price",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://services5.arcgis.com/x7DNZL1YqNQVNykA/arcgis/rest/services/Multnomah_County_Taxlot_Parcels/FeatureServer/0/query?where=UPPER(NAME)+LIKE+UPPER('%25SMITH%25')&outFields=MAPTAXLOT,PROPID,NAME,ADDR1,CITY,SITUSADDR&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
@@ -68,15 +116,51 @@
           "supportsQuery": true,
           "corsEnabled": null,
           "searchFields": [
-            { "name": "RLID", "label": "RLID (Regional Land Information Database ID)", "searchable": true },
-            { "name": "MAPTAXLOT", "label": "Map-Taxlot Number", "searchable": true },
-            { "name": "OWNNAME", "label": "Owner Name", "searchable": true },
-            { "name": "ADDR1", "label": "Owner Address Line 1", "searchable": true },
-            { "name": "ADDR2", "label": "Owner Address Line 2", "searchable": true },
-            { "name": "ADDR3", "label": "Owner Address Line 3", "searchable": true },
-            { "name": "OWNERCITY", "label": "Owner City", "searchable": false },
-            { "name": "OWNERPRVST", "label": "Owner State", "searchable": false },
-            { "name": "OWNERZIP", "label": "Owner ZIP", "searchable": false }
+            {
+              "name": "RLID",
+              "label": "RLID (Regional Land Information Database ID)",
+              "searchable": true
+            },
+            {
+              "name": "MAPTAXLOT",
+              "label": "Map-Taxlot Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNNAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ADDR1",
+              "label": "Owner Address Line 1",
+              "searchable": true
+            },
+            {
+              "name": "ADDR2",
+              "label": "Owner Address Line 2",
+              "searchable": true
+            },
+            {
+              "name": "ADDR3",
+              "label": "Owner Address Line 3",
+              "searchable": true
+            },
+            {
+              "name": "OWNERCITY",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "OWNERPRVST",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "OWNERZIP",
+              "label": "Owner ZIP",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://lcgispubags.lanecountyor.gov/arcgis/rest/services/LaneCountyMaps/AddressParcel/MapServer/2/query?where=UPPER(OWNNAME)+LIKE+UPPER('%25SMITH%25')&outFields=RLID,MAPTAXLOT,OWNNAME,ADDR1&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
@@ -111,18 +195,66 @@
           "supportsQuery": true,
           "corsEnabled": null,
           "searchFields": [
-            { "name": "TAXLOT", "label": "Tax Lot Number", "searchable": true },
-            { "name": "TAXACCT", "label": "Tax Account Number", "searchable": true },
-            { "name": "OWNERNAME", "label": "Owner Name", "searchable": true },
-            { "name": "SITUS", "label": "Situs Address", "searchable": true },
-            { "name": "ACRES", "label": "Map Acreage", "searchable": false },
-            { "name": "RMVLND", "label": "Real Market Value (Land)", "searchable": false },
-            { "name": "RMVIMP", "label": "Real Market Value (Improvements)", "searchable": false },
-            { "name": "RMVTOTAL", "label": "Real Market Value (Total)", "searchable": false },
-            { "name": "ASSDVAL", "label": "Assessed Value", "searchable": false },
-            { "name": "TAXCODE", "label": "Tax Code Area", "searchable": false },
-            { "name": "ZONECODE", "label": "Zoning Code", "searchable": false },
-            { "name": "YEARBUILT", "label": "Year Built", "searchable": false }
+            {
+              "name": "TAXLOT",
+              "label": "Tax Lot Number",
+              "searchable": true
+            },
+            {
+              "name": "TAXACCT",
+              "label": "Tax Account Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "SITUS",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "ACRES",
+              "label": "Map Acreage",
+              "searchable": false
+            },
+            {
+              "name": "RMVLND",
+              "label": "Real Market Value (Land)",
+              "searchable": false
+            },
+            {
+              "name": "RMVIMP",
+              "label": "Real Market Value (Improvements)",
+              "searchable": false
+            },
+            {
+              "name": "RMVTOTAL",
+              "label": "Real Market Value (Total)",
+              "searchable": false
+            },
+            {
+              "name": "ASSDVAL",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TAXCODE",
+              "label": "Tax Code Area",
+              "searchable": false
+            },
+            {
+              "name": "ZONECODE",
+              "label": "Zoning Code",
+              "searchable": false
+            },
+            {
+              "name": "YEARBUILT",
+              "label": "Year Built",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://gis.co.marion.or.us/arcgis/rest/services/Public/Parcels/MapServer/0/query?where=UPPER(OWNERNAME)+LIKE+UPPER('%25SMITH%25')&outFields=TAXLOT,TAXACCT,OWNERNAME,SITUS,ACRES,RMVTOTAL&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
@@ -157,19 +289,71 @@
           "supportsQuery": true,
           "corsEnabled": null,
           "searchFields": [
-            { "name": "TLID", "label": "Tax Lot ID", "searchable": true },
-            { "name": "account_id", "label": "Account ID", "searchable": true },
-            { "name": "MAILING_NA", "label": "Mailing Name (Owner)", "searchable": true },
-            { "name": "M_ADDRESS", "label": "Mailing Address", "searchable": true },
-            { "name": "M_CITY", "label": "Mailing City", "searchable": false },
-            { "name": "M_STATE", "label": "Mailing State", "searchable": false },
-            { "name": "zip", "label": "Mailing ZIP", "searchable": false },
-            { "name": "SITUS_HOUS", "label": "Situs House Number", "searchable": false },
-            { "name": "SITUS_STRE", "label": "Situs Street Name", "searchable": true },
-            { "name": "SITUS_CITY", "label": "Situs City", "searchable": true },
-            { "name": "SITUS_ZIP", "label": "Situs ZIP", "searchable": false },
-            { "name": "RMV_PROPER", "label": "Real Market Value (Property)", "searchable": false },
-            { "name": "PROPERTY_C", "label": "Property Class", "searchable": false }
+            {
+              "name": "TLID",
+              "label": "Tax Lot ID",
+              "searchable": true
+            },
+            {
+              "name": "account_id",
+              "label": "Account ID",
+              "searchable": true
+            },
+            {
+              "name": "MAILING_NA",
+              "label": "Mailing Name (Owner)",
+              "searchable": true
+            },
+            {
+              "name": "M_ADDRESS",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "M_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "M_STATE",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "zip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "SITUS_HOUS",
+              "label": "Situs House Number",
+              "searchable": false
+            },
+            {
+              "name": "SITUS_STRE",
+              "label": "Situs Street Name",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_CITY",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_ZIP",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "RMV_PROPER",
+              "label": "Real Market Value (Property)",
+              "searchable": false
+            },
+            {
+              "name": "PROPERTY_C",
+              "label": "Property Class",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://services3.arcgis.com/tNPgIZWOB0Efvm0g/ArcGIS/rest/services/Tax_Lots/FeatureServer/0/query?where=UPPER(MAILING_NA)+LIKE+UPPER('%25SMITH%25')&outFields=TLID,MAILING_NA,M_ADDRESS,SITUS_HOUS,SITUS_STRE,SITUS_CITY&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
@@ -204,20 +388,76 @@
           "supportsQuery": true,
           "corsEnabled": true,
           "searchFields": [
-            { "name": "TLID", "label": "Tax Lot ID", "searchable": true },
-            { "name": "Map_No", "label": "Map Number", "searchable": false },
-            { "name": "Parcel_No", "label": "Tax Lot Number (within map)", "searchable": false },
-            { "name": "OWNER1", "label": "Owner Name 1", "searchable": true },
-            { "name": "OWNER2", "label": "Owner Name 2", "searchable": false },
-            { "name": "OWNER3", "label": "Owner Name 3", "searchable": false },
-            { "name": "SITUSSTR", "label": "Situs Street Address", "searchable": true },
-            { "name": "SITUSCITY", "label": "Situs City", "searchable": true },
-            { "name": "SITUSZIP", "label": "Situs ZIP", "searchable": false },
-            { "name": "ACRES", "label": "Acres", "searchable": false },
-            { "name": "PLAN_ZONE", "label": "Plan/Zoning Code", "searchable": false },
-            { "name": "AV", "label": "Assessed Value", "searchable": false },
-            { "name": "RMVLAND", "label": "Real Market Value (Land)", "searchable": false },
-            { "name": "RMVIMPR", "label": "Real Market Value (Improvements)", "searchable": false }
+            {
+              "name": "TLID",
+              "label": "Tax Lot ID",
+              "searchable": true
+            },
+            {
+              "name": "Map_No",
+              "label": "Map Number",
+              "searchable": false
+            },
+            {
+              "name": "Parcel_No",
+              "label": "Tax Lot Number (within map)",
+              "searchable": false
+            },
+            {
+              "name": "OWNER1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNER2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "OWNER3",
+              "label": "Owner Name 3",
+              "searchable": false
+            },
+            {
+              "name": "SITUSSTR",
+              "label": "Situs Street Address",
+              "searchable": true
+            },
+            {
+              "name": "SITUSCITY",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "SITUSZIP",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "PLAN_ZONE",
+              "label": "Plan/Zoning Code",
+              "searchable": false
+            },
+            {
+              "name": "AV",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "RMVLAND",
+              "label": "Real Market Value (Land)",
+              "searchable": false
+            },
+            {
+              "name": "RMVIMPR",
+              "label": "Real Market Value (Improvements)",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://services8.arcgis.com/Mg5lKoVeyQMwwiX3/ArcGIS/rest/services/Coos_County_Parcels/FeatureServer/1/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=TLID,OWNER1,SITUSSTR,SITUSCITY&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "unknown",
@@ -277,16 +517,56 @@
           "supportsQuery": true,
           "corsEnabled": true,
           "searchFields": [
-            { "name": "PARCEL_NUMBER", "label": "Parcel Number", "searchable": true },
-            { "name": "TLNO", "label": "Map and Taxlot Number", "searchable": true },
-            { "name": "SITUS", "label": "Situs Address", "searchable": true },
-            { "name": "SITUS_CITY", "label": "Situs City", "searchable": true },
-            { "name": "SITUS_ZIP", "label": "Situs ZIP", "searchable": false },
-            { "name": "TOTALVAL", "label": "Total Value", "searchable": false },
-            { "name": "ASSESSEDVAL", "label": "Assessed Value", "searchable": false },
-            { "name": "LANDCLASS", "label": "Land Class Code", "searchable": false },
-            { "name": "YEARBLT", "label": "Year Built", "searchable": false },
-            { "name": "SALE_PRICE", "label": "Last Sale Price", "searchable": false }
+            {
+              "name": "PARCEL_NUMBER",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "TLNO",
+              "label": "Map and Taxlot Number",
+              "searchable": true
+            },
+            {
+              "name": "SITUS",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_CITY",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_ZIP",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "TOTALVAL",
+              "label": "Total Value",
+              "searchable": false
+            },
+            {
+              "name": "ASSESSEDVAL",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "LANDCLASS",
+              "label": "Land Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YEARBLT",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://services3.arcgis.com/I2eWXOndpF9m8oKC/arcgis/rest/services/Taxlots_CMap/FeatureServer/0/query?where=UPPER(SITUS)%20LIKE%20%27%25MAIN%20ST%25%27&outFields=PARCEL_NUMBER,TLNO,SITUS,SITUS_CITY,TOTALVAL,LANDCLASS&returnGeometry=false&resultRecordCount=10&f=json",
           "license": "unknown",
@@ -321,17 +601,61 @@
           "supportsQuery": true,
           "corsEnabled": true,
           "searchFields": [
-            { "name": "OWNERSNAME", "label": "Owner Name", "searchable": true },
-            { "name": "MapTaxlot", "label": "Map and Taxlot ID", "searchable": true },
-            { "name": "Taxlot", "label": "Taxlot", "searchable": false },
-            { "name": "SITUSADD", "label": "Site Address", "searchable": true },
-            { "name": "CITY", "label": "Site City", "searchable": true },
-            { "name": "ADD1", "label": "Owner Mailing Address Line 1", "searchable": true },
-            { "name": "ADD2", "label": "Owner Mailing Address Line 2", "searchable": false },
-            { "name": "CITYSTATE", "label": "Owner Mailing City and State", "searchable": true },
-            { "name": "ZIP", "label": "Owner Mailing ZIP", "searchable": false },
-            { "name": "ZONING", "label": "Zoning", "searchable": false },
-            { "name": "TOTACRE", "label": "Total Acres", "searchable": false }
+            {
+              "name": "OWNERSNAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "MapTaxlot",
+              "label": "Map and Taxlot ID",
+              "searchable": true
+            },
+            {
+              "name": "Taxlot",
+              "label": "Taxlot",
+              "searchable": false
+            },
+            {
+              "name": "SITUSADD",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "CITY",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "ADD1",
+              "label": "Owner Mailing Address Line 1",
+              "searchable": true
+            },
+            {
+              "name": "ADD2",
+              "label": "Owner Mailing Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "CITYSTATE",
+              "label": "Owner Mailing City and State",
+              "searchable": true
+            },
+            {
+              "name": "ZIP",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ZONING",
+              "label": "Zoning",
+              "searchable": false
+            },
+            {
+              "name": "TOTACRE",
+              "label": "Total Acres",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://services5.arcgis.com/ZfBm5CKxbEBYLP3J/arcgis/rest/services/County_GIS_Portal_WFL1/FeatureServer/16/query?where=UPPER(OWNERSNAME)%20LIKE%20'SMITH%25'&outFields=MapTaxlot,OWNERSNAME,ADD1,CITYSTATE,SITUSADD,CITY&returnGeometry=false&resultRecordCount=10&f=json",
           "license": "unknown",
@@ -347,6 +671,116 @@
         "email": null
       },
       "notes": "Malheur County, Oregon (county seat Vale) publishes its tax lots as a layer of the County_GIS_Portal_WFL1 FeatureServer, the data source of the county's public Malheur County Tax Lot Map experience (linked from malheurco.org/gis). 20,570 features as of 2026-10-03. The owner is OWNERSNAME, the parcel id MapTaxlot (for example 15S47E28B04702), the site address SITUSADD with CITY, and the owner mailing address ADD1/ADD2/CITYSTATE/ZIP. SITUSADD is sometimes a bare zero and ADD1 is often null. MAINTENANCE QUIRK: the layer name and index are month-stamped (currently layer 16, 'TL Jun2026'; the siblings are 'NonTL Jun2026' at 17 and Zoning_2026 at 25) and the county republishes monthly, so the name or index can change. When the liveness probe flags this record, re-resolve it: list the FeatureServer's layers, pick the one whose name starts with 'TL ' and which carries an OWNERSNAME field, then update layerIndex, layerName and the url. Do not hard-code 16 forever. Named outFields are accepted. CORS answers Access-Control-Allow-Origin *. The layer states no license; the county GIS page links a Data Licensing Agreement for bulk data. The statewide ODF layer for Malheur has an owner line but query disabled, and Malheur is not in the OWRD layer, so there is no usable fallback. Verified live 2026-10-03: owner SMITH returned rows (first owner SMITH, JAMIE LEE, 15S47E28B04702, Ontario)."
+    },
+    {
+      "id": "or-polk",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Polk",
+      "countySlug": "polk-county",
+      "countyFips": "41053",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.co.polk.or.us/arcserv2/rest/services/Klop_core/Acct_35/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Taxlots",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TaxlotTemp_MapTaxlot",
+              "label": "Map Taxlot (county parcel id)",
+              "searchable": true
+            },
+            {
+              "name": "TaxlotTemp_ORTaxlot",
+              "label": "ORTaxlot (statewide taxlot key)",
+              "searchable": true
+            },
+            {
+              "name": "AcctTable_PrimAccNum",
+              "label": "Primary Account Number",
+              "searchable": true
+            },
+            {
+              "name": "AcctTable_OwnerLine1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "AcctTable_SiteAddNam",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "AcctTable_SiteAddCty",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "AcctTable_SiteZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "AcctTable_MailAdd1",
+              "label": "Owner Mailing Address 1",
+              "searchable": true
+            },
+            {
+              "name": "AcctTable_MailAdd2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "AcctTable_MailCity",
+              "label": "Owner Mailing City",
+              "searchable": true
+            },
+            {
+              "name": "AcctTable_MailState",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "AcctTable_MailZip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "AcctTable_PrpClsDsc",
+              "label": "Property Class",
+              "searchable": false
+            },
+            {
+              "name": "AcctTable_AstValue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TaxlotTemp_TaxlotAcre",
+              "label": "Acres",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.co.polk.or.us/arcserv2/rest/services/Klop_core/Acct_35/FeatureServer/0/query?where=UPPER(AcctTable_OwnerLine1)+LIKE+UPPER('%25SMITH%25')&outFields=TaxlotTemp_MapTaxlot,AcctTable_OwnerLine1,AcctTable_SiteAddNam,AcctTable_SiteAddCty,AcctTable_MailAdd1,AcctTable_MailCity&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.polkcountyor.gov/419/Geographic-Information-Systems-GIS",
+          "status": "live",
+          "lastVerified": "2026-10-06",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Polk County GIS (Management Services), 820 Church St Suite 102, Dallas, OR 97338, (503) 623-0713",
+        "url": "https://www.polkcountyor.gov/419/Geographic-Information-Systems-GIS",
+        "email": "gis@co.polk.or.us"
+      },
+      "notes": "Polk County, Oregon (Dallas, Monmouth, Independence, West Salem; FIPS 41053) was asked for through the free tools on 2026-10-04. The county's Hub-advertised public REST path, maps.co.polk.or.us/gis/ (the Assessor/Taxlots MapServer and the KLOP folder), has answered every request with HTTP 500 'Could not access any server machines' since at least 2026-10-05 (re-checked 2026-10-06, services root included); the same ArcGIS Server 11.5 answers on its second web adaptor, /arcserv2/, and this record uses its Klop_core/Acct_35 taxlot layer: 36,413 taxlots with the assessment account joined on. The sibling Klop_core/Taxlots layer has the same schema and no rows, and the county's ArcGIS Online 'Taxlots' hosted service is Lake County data despite its name; neither is used. The owner is AcctTable_OwnerLine1 (35,407 of the rows carry one; individuals read 'LAST FIRST MIDDLE' with no comma), the owner mailing address is MailAdd1/MailAdd2 plus MailCity/MailState/MailZip, the situs is SiteAddNam plus SiteAddCty and SiteZip (often blank on vacant land), and the parcel id is the Map Taxlot (TaxlotTemp_MapTaxlot, for example '7533CB 9100') alongside the statewide ORTaxlot key and the primary account number. The layer answers cross-origin requests (it reflects the request Origin in Access-Control-Allow-Origin; a probe without an Origin header sees no CORS header, which is not the browser case), so the browser tools query it directly. The roll is current: 1,717 instruments are dated 2026 (the layer exposes no editingInfo). Verified 2026-10-06 by a count, an owner sample query, a situs query on MAIN ST in Dallas, a point query at 161 SE Washington St (City of Dallas) and a paged read at offset 36,400. We wrote to the county GIS office (gis@co.polk.or.us) on 2026-10-06 about the dead /gis/ path and asked for notice if /arcserv2/ changes.",
+      "addedAt": "2026-10-06"
     }
   ]
 }

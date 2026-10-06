@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-06",
   "totals": {
     "states": 51,
-    "counties": 248,
-    "endpoints": 260,
-    "countiesWithEndpoint": 242,
+    "counties": 249,
+    "endpoints": 261,
+    "countiesWithEndpoint": 243,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -309,8 +309,8 @@
       "slug": "oregon",
       "name": "Oregon",
       "abbrev": "OR",
-      "countyCount": 7,
-      "endpointCount": 7,
+      "countyCount": 8,
+      "endpointCount": 8,
       "populated": true
     },
     {
