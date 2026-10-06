@@ -1,5 +1,22 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.18 — 2026-10-06
+
+New county, no API change, no breaking change. `totals` move to **248
+counties / 260 endpoints** (242 with a verified endpoint).
+
+### New county — Mendocino CA (06045)
+
+The County's own ArcGIS Online organisation (Mendocino County GIS) publishes a
+county-wide assessor parcel layer, `Parcels_Public_` FeatureServer layer 0:
+62,051 parcels, data last edited 2026-06-08, CORS open. APN (8-character text),
+the 10-character APNFULL and the situs address are searchable. The layer
+publishes no owner name and no owner mailing address, so the record carries an
+`ownerFieldNote` and `not_published` capability overrides for both, and an
+owner search returns nothing for this county. The City of Ukiah's organisation
+hosts two Ukiah-area clips of the same data; neither is county-wide, so neither
+is listed. `addedAt` is 2026-10-06.
+
 ## 0.6.17 — 2026-10-05
 
 New county, one new optional field, no breaking change. `totals` move to **247

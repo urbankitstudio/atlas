@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-05",
+  "lastUpdated": "2026-10-06",
   "totals": {
     "states": 51,
-    "counties": 247,
-    "endpoints": 259,
-    "countiesWithEndpoint": 241,
+    "counties": 248,
+    "endpoints": 260,
+    "countiesWithEndpoint": 242,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -45,8 +45,8 @@
       "slug": "california",
       "name": "California",
       "abbrev": "CA",
-      "countyCount": 12,
-      "endpointCount": 12,
+      "countyCount": 13,
+      "endpointCount": 13,
       "populated": true
     },
     {

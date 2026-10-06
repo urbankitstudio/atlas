@@ -2,7 +2,7 @@
   "stateSlug": "california",
   "stateName": "California",
   "stateAbbrev": "CA",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-06",
   "counties": [
     {
       "id": "ca-los-angeles",
@@ -624,6 +624,106 @@
         "email": null
       },
       "notes": "Tulare County, California (county seat Visalia) publishes its parcels from the county GIS ArcGIS Online organisation as Parcels_(Public_View) FeatureServer layer 0 (Current Parcels): 166,875 rows on 2026-10-03. THE LAYER IS APN-ONLY. Its field list has no owner name, no site address and no mailing address, so this county answers an APN or legal-description search and nothing else. APN is a nine-digit TEXT value (e.g. 009040002), so compare it as a string: APN LIKE '0090%' or APN='009040002' works, and a numeric APN=1051002 comparison returns no rows. APNFormatted carries the dashed form (009-040-002). The layer also carries LegalDescription, TaxRateArea, UseCode, UseCodeDescription, ClassCode, CONTRACT and PRESERVE flags, SECTION, TOWNSHIP, AcresAssessor and AcresGIS. CORS is open (Access-Control-Allow-Origin: *) and maxRecordCount is 1000, half the usual page. The ArcGIS item states no licence. A richer sibling, Public_Parcels FeatureServer layer 0, adds land, improvement and personal-property values and the owner's postal state and ZIP only, still with no owner name and no street address; the org's Public_Parcel_Search, Regional Parcels and n01_Parcels services carry no owner either. Do not confuse this with maps.tulare.ca.gov, the CITY of Tulare: its Public_Parcels__Tulare_County layer covers only the city's urban growth boundary with no owner or address fields, and its housing-site layers carry owners for a few hand-picked city parcels. The assessor's web pages answer HTTP 403 to automated requests. Verified live 2026-10-03: APN LIKE '0090%' returned rows (first APN 009040002, 009-040-002, POR OF NW/4 5-15-28)."
+    },
+    {
+      "id": "ca-mendocino",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Mendocino",
+      "countySlug": "mendocino-county",
+      "countyFips": "06045",
+      "ownerFieldNote": {
+        "body": "Mendocino County's public parcel layer publishes no owner name and no owner mailing address. Search by APN or by situs address here; ownership by APN has to be asked of the County Assessor.",
+        "source": {
+          "label": "Mendocino County Assessor services",
+          "url": "https://www.mendocinocounty.gov/government/assessor-county-clerk-recorder-elections/assessor-services-forms"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels_Public_ layer carries APN, book/page/block/parcel, situs address, city and ZIP, class code, acreage and general plan only; its field list has no owner-name column.",
+            "sourceUrl": "https://www.arcgis.com/home/item.html?id=210b9da409d641c9b441fb62775922b4"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels_Public_ layer carries APN, situs address, class code, acreage and general plan only; its field list has no owner mailing-address column.",
+            "sourceUrl": "https://www.arcgis.com/home/item.html?id=210b9da409d641c9b441fb62775922b4"
+          }
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/8y4r60VTvWj2wnDH/arcgis/rest/services/Parcels_Public_/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "APN",
+              "label": "APN (8 characters, stored as text)",
+              "searchable": true
+            },
+            {
+              "name": "APNFULL",
+              "label": "APN, full (10 characters)",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_ADD",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_CITY",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_ZIP",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "CLASS_CD",
+              "label": "Class Code",
+              "searchable": false
+            },
+            {
+              "name": "GEN_PLAN",
+              "label": "General Plan",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/8y4r60VTvWj2wnDH/arcgis/rest/services/Parcels_Public_/FeatureServer/0/query?where=APN%3D%2704608040%27&outFields=APN,APNFULL,SITUS_ADD,SITUS_CITY,SITUS_ZIP,ACRES&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=210b9da409d641c9b441fb62775922b4",
+          "status": "live",
+          "lastVerified": "2026-10-06",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Mendocino County Executive Office, Information Services Division, GIS Program",
+        "url": "https://gis.mendocinocounty.gov",
+        "email": "gis@mendocinocounty.gov"
+      },
+      "notes": "Mendocino County, California (county seat Ukiah) publishes its county-wide assessor parcel layer from the County's own ArcGIS Online organisation, Mendocino County GIS (org 8y4r60VTvWj2wnDH, owner account gis@mendocinocounty.gov, hub gis.mendocinocounty.gov), as Parcels_Public_ FeatureServer layer 0 (Parcels). The service name really ends in an underscore. 62,051 parcels on 2026-10-06, covering the whole county; the layer's data was last edited 2026-06-08. Fields: APN (8-character text, e.g. 04608040), APNFULL (10 characters, e.g. 0460804000), BOOK, PAGE, BLOCK, PARCEL, BOOKPAGE, SOURCE, SITUS_ADD, SITUS_CITY, SITUS_ZIP, CLASS_CD, ACRES and GEN_PLAN. APN and situs address are searchable; compare APN as a string (APN='04608040'). THE LAYER PUBLISHES NO OWNER NAME and no owner mailing address, so an owner search returns nothing here; ownership by APN has to be asked of the County Assessor. SITUS_ZIP is often empty. CORS is open (Access-Control-Allow-Origin: *), maxRecordCount is 2000, capabilities Query and Extract, native spatial reference NAD83 California zone 2 (feet, wkid 2226). Copyright: Mendocino County, Executive Office, Information Services Division, GIS Program. LICENCE (ArcGIS item terms): \"Mendocino County's GIS parcel file is not a survey product and cannot be used to determine legal boundaries. The County of Mendocino and the Executive Office make no representations or warranties regarding the accuracy or completeness of the data or its suitability or condition for a particular purpose. The user will not seek to hold the County or the Executive Office liable under any circumstances for any damages with respect to any claim by the user or any third party on account of or arising from the use of the data.\" The City of Ukiah's ArcGIS organisation (services3.arcgis.com/KYBJaItvh9UgViWU) also hosts two Ukiah-area clips of this data, an APN label layer and an Area of Interest assessor clip with an OWNER column (about 10,000 parcels); neither is county-wide, so neither is listed. Contact: gis@mendocinocounty.gov, (707) 234-6000. Verified live 2026-10-06: APN='04608040' returned 1 row (17601 INDIAN CREEK RD, PHILO, 1 acre) and UPPER(SITUS_ADD) LIKE '17601 INDIAN%' returned 2.",
+      "addedAt": "2026-10-06"
     }
   ]
 }
