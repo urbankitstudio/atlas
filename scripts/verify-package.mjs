@@ -42,15 +42,12 @@ const MIN_STATE_FILES = 10;
 /** Lifecycle scripts that may run during a publish. Anything outside this list
  *  is refused rather than trusted.
  *
- *  This is the mitigation for a gap the review found and this script does NOT
- *  otherwise close: `npm pack` and `npm publish` produce SEPARATE archives, and
- *  `prepublishOnly` runs only on publish. So the bytes verified here are not
- *  literally the bytes that ship, and a lifecycle script that rewrote files
- *  would slip past every check. Publishing the packed tarball directly would
- *  close it properly -- but npm's docs do not state whether provenance survives
- *  a pre-packed tarball publish, and provenance is the entire reason this
- *  package publishes from a public repo. Trading it away to fix a lower-tier
- *  risk would be a bad bargain, so the scripts are pinned instead. */
+ *  `npm pack` and `npm publish` produce SEPARATE archives, and a lifecycle
+ *  script run between them could rewrite files after this check. publish.yml
+ *  now runs `npm publish --ignore-scripts` (2026-10-07), so no package.json
+ *  script runs during the publish and the archive holds the files verified
+ *  here. This allow-list stays as the second line: it still refuses a package
+ *  that would run something unexpected on any publish made without the flag. */
 const ALLOWED_LIFECYCLE = new Map([
   ["prepublishOnly", "npm run typecheck && npm run test && npm run build"],
 ]);

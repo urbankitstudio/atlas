@@ -248,21 +248,24 @@ jobs:
       # means the Trusted Publisher entry on npmjs.com does not name THIS repo
       # and THIS filename exactly. See the header.
       #
-      # KNOWN GAP, stated rather than hidden: `npm publish` re-packs the working
-      # directory, so the archive that ships is not literally the one verified
-      # above, and `prepublishOnly` runs only on publish. Publishing the packed
-      # tarball would close that -- but npm's docs do not say whether provenance
-      # survives a pre-packed tarball publish, and provenance is the entire
-      # reason this package publishes from a public repo. So the lifecycle
-      # scripts are pinned to an allow-list in verify-package.mjs instead, which
-      # blocks the mechanism rather than the symptom.
+      # --ignore-scripts: `npm publish` re-packs the working directory, and
+      # without this flag it first ran prepublishOnly (typecheck, test, BUILD)
+      # again, so dist/ was rebuilt AFTER the verifier above approved it. The
+      # Gate step already built and tested this exact tree; with the flag npm
+      # runs no package.json script during publish (npm config docs,
+      # "ignore-scripts": "npm does not run scripts specified in package.json
+      # files"; only commands that name a script, like `npm run`, still run it),
+      # so the archive that ships holds the bytes the verifier read. Provenance
+      # is untouched: it comes from the OIDC identity, not from a script.
+      # (2026-10-07, found by a review of the CLI's copy of this pipeline.) The
+      # lifecycle allow-list in verify-package.mjs stays as a second line.
       - name: Publish
         id: publish
         if: ${{ steps.mode.outputs.dry != 'true' && steps.bump.outputs.release == 'true' }}
         run: |
           # Idempotent on purpose, so a re-run after a downstream failure is not
           # refused just because the version already landed.
-          if npm publish --access public; then
+          if npm publish --access public --ignore-scripts; then
             echo "published=true" >> "$GITHUB_OUTPUT"
           else
             VERSION=$(node -p "require('./package.json').version")
