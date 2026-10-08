@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-08-04",
+  "lastUpdated": "2026-10-08",
   "counties": [
     {
       "id": "va-fairfax",
@@ -83,6 +83,201 @@
         "email": null
       },
       "notes": "Prince William County (Northern Virginia, pop. ~490,000; county seat unincorporated, courts in Manassas) publishes an Open Data parcel MapServer at gisweb.pwcva.gov (note the host is gisweb.pwcva.gov, NOT pwcgov.org). Layer 0 exposes 49 fields and -- unlike neighboring Fairfax County -- includes owner name directly: CAMA_OWNER_CUR (current owner from the CAMA system) and CAMA_DEEDOWNER (deed owner). Parcel identifier is GPIN, a hyphenated geographic id (e.g. '7201-09-8851'). Site address is split across ST_NO / ST_NAME / ST_TYPE / CITY / ZIP. Verified 2026-06-20: 159,174 parcels; UPPER(CAMA_OWNER_CUR) LIKE '%SMITH%' returns real owners with Haymarket/Manassas-area addresses and ZIPs. IMPORTANT: this entry covers Prince William COUNTY only. The independent cities of Manassas (FIPS 51683) and Manassas Park (FIPS 51685) sit within the county's geographic bounds but are separate Census FIPS jurisdictions, governed and assessed independently. For authoritative assessment records use the PWC Real Estate Assessments office. LIVENESS 2026-08-04: answers a home-network probe in ~2.6s with 10 correct parcel rows, but exceeds even the raised 15s host budget from the Vercel probe region on 112 consecutive checks. That pattern reads as datacenter-IP throttling rather than a slow server, so raising the budget further would risk the 60s shard ceiling for no gain. Stays honestly degraded."
+    },
+    {
+      "id": "va-chesterfield",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Chesterfield",
+      "countySlug": "chesterfield-county",
+      "countyFips": "51041",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/TsynfzBSE6sXfoLq/ArcGIS/rest/services/Cadastral_ProdA/FeatureServer/3",
+          "serviceType": "FeatureServer",
+          "layerIndex": 3,
+          "layerName": "ParcelsEnriched",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Parcel ID (15-digit key)",
+              "searchable": true
+            },
+            {
+              "name": "TaxID",
+              "label": "Tax ID (same key as an integer)",
+              "searchable": false
+            },
+            {
+              "name": "GPIN",
+              "label": "GPIN (10-digit Virginia parcel number)",
+              "searchable": true
+            },
+            {
+              "name": "Address",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "OwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "SaleDate",
+              "label": "Last Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "SalePrice",
+              "label": "Last Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "AssessmentYear",
+              "label": "Assessment Year",
+              "searchable": false
+            },
+            {
+              "name": "TotalAssessment",
+              "label": "Total Assessment",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/TsynfzBSE6sXfoLq/ArcGIS/rest/services/Cadastral_ProdA/FeatureServer/3/query?where=UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=Name,OwnerName,Address,OwnerAddress,OwnerCity&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=cadb8e716a3348eda94352f863338c8f",
+          "status": "live",
+          "lastVerified": "2026-10-08",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Chesterfield County Information Systems Technology (GIS), (804) 748-1503",
+        "url": "https://www.chesterfield.gov/",
+        "email": "CCArcGIS@chesterfield.gov"
+      },
+      "notes": "Chesterfield County, Virginia (FIPS 51041) publishes its parcels on its own ArcGIS Online organisation as Cadastral_ProdA, FeatureServer layer 3 'ParcelsEnriched': 150,624 parcels, 150,470 of them with an owner, on 2026-10-08. The owner is OwnerName (for example SMITH KENDLE M JR & SUSAN K); the situs is Address (24321 PEAR ORCHARD RD); the owner mailing address is OwnerAddress plus OwnerCity/OwnerState/OwnerZip (the street line can be PO BOX style, written '40 PO BOX'); the parcel key is Name, a 15-digit text value (671662189900000), with TaxID the same key as an integer and GPIN the 10-digit Virginia number (6716621899). The layer answers any Origin with Access-Control-Allow-Origin: *, has maxRecordCount 2000 with pagination, and is edited daily (editingInfo dataLastEditDate 2026-10-08; AssessmentYear 2026 on every populated row). 161 rows have no AssessmentYear and 154 no owner, probably right-of-way slivers. TRAP: the county's older Hub item 'Parcels' (Cadastral/FeatureServer/3) is flagged deprecated, holds 146,864 features and has been frozen since 2024-07-30 (AssessmentYear 2024); do not use it. The service name 'ProdA' suggests the county may rotate to a ProdB: if this URL returns 404, re-resolve the current parcel layer from the county Hub. The statewide VGIN parcel layer (VA_Parcels) carries no owner field for any jurisdiction, so it is not a fallback. The licenseUrl is the ArcGIS Online item for this service (Cadastral_ProdA, public); its licenseInfo field is empty, so no terms are published for it. Verified 2026-10-08: owner SMITH returned rows (first SMITH KENDLE M JR & SUSAN K, 671662189900000, 24321 PEAR ORCHARD RD, Moseley); a situs query for 9901 LORI RD returned COUNTY OF CHESTERFIELD (TaxID 771662232700000); a point query at -77.5043,37.3773 returned COUNTY OF CHESTERFIELD, 6900 MIMMS DR.",
+      "addedAt": "2026-10-08"
+    },
+    {
+      "id": "va-newport-news",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Newport News city",
+      "countySlug": "newport-news-city",
+      "countyFips": "51700",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.nnva.gov/gis/rest/services/Operational/Parcel/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcel",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "OWNERNME1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNME2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "SITEADDRESS",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "PSTLADDRESS1",
+              "label": "Owner Mailing Address 1",
+              "searchable": true
+            },
+            {
+              "name": "PSTLADDRESS2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "PSTLCITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "PSTLSTATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "PSTLZIP5",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "LASTSALEDATE",
+              "label": "Last Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "LASTSALEPRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "ZONE",
+              "label": "Zoning District",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.nnva.gov/gis/rest/services/Operational/Parcel/MapServer/0/query?where=UPPER(OWNERNME1)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,SITEADDRESS,PSTLADDRESS1,PSTLCITY&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "public",
+          "licenseUrl": "https://hub.arcgis.com/datasets/3c6fea310b1d4abe908ade9c4bf02d2b",
+          "status": "live",
+          "lastVerified": "2026-10-08",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Newport News Planning (Maps and Data; GIS questions), (757) 926-8761",
+        "url": "https://www.nnva.gov/2253/Maps-and-Data",
+        "email": null
+      },
+      "notes": "The City of Newport News, Virginia (FIPS 51700) is an independent city that belongs to no county. Its Planning department's Operational/Parcel MapServer layer 0 holds 54,444 parcels, 54,359 of them with an owner, on 2026-10-08. The owner is OWNERNME1 (SMITH BRECK J) with OWNERNME2; the situs is SITEADDRESS (914 19TH ST); the owner mailing address is PSTLADDRESS1/PSTLADDRESS2 plus PSTLCITY, PSTLSTATE and PSTLZIP5; the parcel id is PARCELID, nine digits of text (313000441). CORS: the server echoes the request Origin in Access-Control-Allow-Origin and sends no CORS header at all when no Origin is sent, so a probe without an Origin header will wrongly read it as closed. maxRecordCount is 2000 with pagination. CURRENCY IS NOT PUBLISHED: the layer has no editingInfo, LASTUPDATE is null on the sampled rows, the city says only that it is 'updated as necessary', the Hub item was modified 2026-09-11 and last-sale dates include 2025; treat owners as possibly a few months behind. The licenseUrl is the city GeoHub item, whose licenseInfo says the data is public information with no warranties and not for legal, engineering or survey use. The statewide VGIN layer (54,438 rows for this FIPS) has no owner field and is not a fallback. No GIS email address was found; the city's Maps and Data page gives the Planning department's phone. Verified 2026-10-08: owner SMITH returned rows (first SMITH BRECK J, 313000441, 914 19TH ST); a situs query for 2400 WASHINGTON AVE returned CITY OF NEWPORT NEWS (315010302); a point query at -76.4730,37.0871 returned CITY OF NEWPORT NEWS, 725 TOWN CENTER DR.",
+      "addedAt": "2026-10-08"
     }
   ]
 }

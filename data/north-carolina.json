@@ -2,7 +2,7 @@
   "stateSlug": "north-carolina",
   "stateName": "North Carolina",
   "stateAbbrev": "NC",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-10-08",
   "counties": [
     {
       "id": "nc-wake",
@@ -531,6 +531,97 @@
         "email": null
       },
       "notes": "Buncombe County (Asheville, pop. 275,000) hosts its parcel layer on a county-direct ArcGIS service. The service name is property_bc_dis (dis = district); layer 1 of 3 is the parcel polygon layer (layer 0 is County Boundary, layer 2 is Street Centerline). The primary parcel identifier is pinnum, a 15-digit number. The owner field is named owner (lowercase). Building fields include HouseNumber, NumberSuffix, TaxYear, DeedBook, DeedPage, PlatBook, PlatPage, SubName, SubLot, SubBlock, SubSect, CondoUnit, and CondoBuilding. Data is refreshed daily at 6 a.m. on weekdays from CAMA sources. Verified 2026-05-15: SMITH returns Asheville-area addresses. Buncombe County's GIS portal (gis.buncombenc.gov/buncomap) is the primary web interface. For assessment detail, the SpatialEst Property Record Search at prc-buncombe.spatialest.com is the county-linked assessor lookup. Hurricane Helene (September 2024) caused significant disruptions in Asheville; some parcels in flood-affected areas may carry amended ownership or assessment data."
+    },
+    {
+      "id": "nc-montgomery",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Montgomery",
+      "countySlug": "montgomery-county",
+      "countyFips": "37123",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '123' = Montgomery)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyfips%3D'123'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-08",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Montgomery'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Montgomery County, North Carolina (Troy; FIPS 37123) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'Montgomery' (30,283 rows, the same count as cntyfips = '123'; every one has an owner, on 2026-10-08; the control county Forsyth, cntyfips '067', answers with 166,755 rows and 166,755 owners). Key fields: parno (parcel number, for example '7568 11 56 4434'), ownname/ownname2 (owner names), siteadd (site address, often the street only without a number, e.g. 'EMERALD SHORES RD'), mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. scity IS BLANK in the sampled Montgomery rows, so match addresses on siteadd and not on the city. revisedate and saledate are null for Montgomery and the layer publishes no editingInfo, so the vintage of this county's roll cannot be dated from the service. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-08: owner SMITH returned rows (for example 6574 11 65 0218, SMITH MICHAEL C, EMERALD SHORES RD); a MAIN ST site search returned 7568 11 56 4434, JUNIPER PROPERTIES LLC, 327 WEST MAIN ST; a point query at -79.8999,35.3633 returned 7538 05 18 6219, LYNTHACUM JESSE, 508 ELDORADO ST.",
+      "addedAt": "2026-10-08"
     }
   ]
 }

@@ -1,5 +1,32 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.20 — 2026-10-08
+
+New counties, no API change, no breaking change. `totals` move to **254
+counties / 265 endpoints** (247 with a verified endpoint).
+
+### New counties
+
+- **Chesterfield VA (51041)**, with a verified endpoint on the county's own
+  ArcGIS Online organisation (`Cadastral_ProdA`, layer 3 `ParcelsEnriched`,
+  150,624 parcels, edited daily, CORS `*`). The county's older Hub `Parcels`
+  layer is deprecated and frozen at 2024-07-30; the record does not use it.
+- **Newport News VA (51700)**, an independent city, with a verified endpoint on
+  the city's `Operational/Parcel` MapServer (54,444 parcels). The layer
+  publishes no edit date, which the `notes` say.
+- **Bradford PA (42015)**, with a verified endpoint on PASDA's
+  `BradfordCounty` MapServer layer 5 (34,935 parcels, county-supplied data).
+  The owner field is truncated at 25 characters, the address columns are the
+  owner's mailing address, and the layer carries no situs address; the `notes`
+  say so.
+- **Montgomery NC (37123)**, with a verified endpoint on the NC OneMap
+  statewide parcel layer, scoped by `scopeWhere` to
+  `cntyname = 'Montgomery'` (30,283 parcels).
+- **Dutchess NY (36027)**, registered with `hasPublicRest: false`: the county's
+  parcel layer carries geometry and ids only, the New York State tax parcel
+  service has no Dutchess rows, and owner data is sold by the county's Real
+  Property Tax Service Agency. The `notes` record the evidence and the contact.
+
 ## 0.6.19 — 2026-10-06
 
 New county, no API change, no breaking change. `totals` move to **249

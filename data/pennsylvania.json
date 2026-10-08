@@ -2,7 +2,7 @@
   "stateSlug": "pennsylvania",
   "stateName": "Pennsylvania",
   "stateAbbrev": "PA",
-  "lastUpdated": "2026-08-25",
+  "lastUpdated": "2026-10-08",
   "counties": [
     {
       "id": "pa-allegheny",
@@ -259,6 +259,96 @@
         "email": null
       },
       "notes": "Countywide parcel layer, 237,884 parcels with owner names on 237,576 rows, the highest owner coverage in this batch at 99.9 percent. Columns: PARCEL_NUM, OWNER1, OWNER2, CARE_OF, ADDRESS, MUNICIPALITY, plus land, building and total value. There is no mailing-address column, so owner mailing lookups are unavailable here even though owner names are not."
+    },
+    {
+      "id": "pa-bradford",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Bradford",
+      "countySlug": "bradford-county",
+      "countyFips": "42015",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/BradfordCounty/MapServer/5",
+          "serviceType": "MapServer",
+          "layerIndex": 5,
+          "layerName": "Bradford County - Parcels 202511",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ParcelJoin",
+              "label": "Parcel ID (16-digit)",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "STATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "ZIPCODE",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "MUNIC",
+              "label": "Municipality",
+              "searchable": false
+            },
+            {
+              "name": "LANDUSE",
+              "label": "Land Use Code",
+              "searchable": false
+            },
+            {
+              "name": "ACREAGE",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "SALEDATE",
+              "label": "Last Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "PRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/BradfordCounty/MapServer/5/query?where=UPPER(NAME)+LIKE+UPPER('%25SMITH%25')&outFields=ParcelJoin,NAME,ADDRESS,CITY,MUNIC&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.pasda.psu.edu/",
+          "status": "live",
+          "lastVerified": "2026-10-08",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Bradford County Community Planning & Mapping Services (GIS Coordinator), 29 VanKuren Drive Suite 1, Towanda, PA 18848, (570) 268-4103",
+        "url": "https://bradfordcountypa.org/department/community-planning-and-mapping-services",
+        "email": null
+      },
+      "notes": "Bradford County, Pennsylvania (Towanda; FIPS 42015). The county's parcels are published through PASDA (Pennsylvania Spatial Data Access, the state clearinghouse run by Penn State) as BradfordCounty MapServer layer 5, 'Bradford County - Parcels 202511': 34,935 parcels, 34,918 of them with an owner, on 2026-10-08. The data is county-supplied; the host is PASDA, not the county, and the county's own GIS page was not confirmed to link this layer. The layer name carries a vintage stamp (202511, November 2025) and PASDA republishes under new names, so the layer index or name may change: list the service's layers and pick the one whose name starts 'Bradford County - Parcels'. The owner is NAME, a varchar(25), so long owner names are TRUNCATED at the source and an exact-name search on a long LLC name will miss; a prefix LIKE works. ADDRESS, CITY, STATE and ZIPCODE are the OWNER MAILING address (a SMITH FARMS II LLC row mails to Piscataway, NJ), not the situs, and ZIPCODE is stored as a number so leading zeros are lost. THERE IS NO SITUS ON THIS LAYER: situs lives on a separate point layer, MapServer layer 0 'Bradford County - Addresses 202511' (39,510 points; FullAddr, COMMUNITY, ZIP), joined by PARCEL = ParcelJoin. That layer carries no owner and its PARCEL key is numeric where ParcelJoin is text, so it is not registered as a second endpoint; an address search therefore cannot be served from this record, and owner, parcel id and a point lookup are what it offers. The parcel id is ParcelJoin, 16 digits (5107300161000000). maxRecordCount is 1000 with pagination. CORS: the server echoes the request Origin. No license text is published on the service. Verified 2026-10-08: owner SMITH returned rows (first SMITHKORS JEFFREY W, 772 MOON ST, New Albany, 0212400143000000, Albany Township); a point query at -76.5,41.78 returned SULLIVAN ROBERT J, 5107300161000000, North Towanda Township, 74.2 acres. Unofficial third-party Bradford parcel items on ArcGIS Online (a Pitt Bradford item, a Michael Baker shapefile) are not used.",
+      "addedAt": "2026-10-08"
     }
   ]
 }

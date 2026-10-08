@@ -2,7 +2,7 @@
   "stateSlug": "new-york",
   "stateName": "New York",
   "stateAbbrev": "NY",
-  "lastUpdated": "2026-10-05",
+  "lastUpdated": "2026-10-08",
   "counties": [
     {
       "id": "ny-bronx",
@@ -1394,6 +1394,24 @@
       "notes": "75+ fields confirmed. Same NYS Tax Parcels Public statewide endpoint as New York County (Manhattan) and Suffolk County, filter by COUNTY_NAME='Westchester'. Westchester is the most affluent large county in the lower Hudson Valley (~1M residents), and a high-search-intent county for public notice tools. PRIMARY_OWNER is the assessed owner name. Municipalities within Westchester accessible via this layer include Yonkers, White Plains, New Rochelle, Mount Vernon, Scarsdale, Ardsley, Tarrytown, Port Chester, Mamaroneck, and 35+ other cities/towns/villages, all filtered by COUNTY_NAME='Westchester'. Data is NYS RPS annual roll export (ROLL_YR=2025 confirmed in live query). The Westchester County GIS portal at gis.westchestergov.com offers a browser-based property viewer but does NOT expose a separate county-run public parcel REST endpoint for owner-name search; the NYS statewide service is the only public REST option. For both Suffolk and Westchester, always pair COUNTY_NAME with the owner query (as shown in sampleQuery) to avoid cross-county false matches in this multi-county statewide layer.",
       "ownerFieldNote": null,
       "capabilityOverrides": null
+    },
+    {
+      "id": "ny-dutchess",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Dutchess",
+      "countySlug": "dutchess-county",
+      "countyFips": "36027",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Dutchess County Real Property Tax Service Agency, (845) 486-2140",
+        "url": "https://www.dutchessny.gov/County-Government/GIS-Data.htm",
+        "email": "taxmapping@dutchessny.gov"
+      },
+      "notes": "No public ArcGIS REST layer with owner names was found for Dutchess County, New York (county seat Poughkeepsie) as of 2026-10-08. The county's own ParcelAccess_Public MapServer layer 3 (gis.dutchessny.gov) holds 110,063 parcels (latest ChangeDate 2026-03-01) but only geometry and ids (Parcelgrid, Swis, Section, Subsection, Lot, Suffix, PrintKey, ParcelType): no owner, no situs, no mailing address, and the server sends no Access-Control-Allow-Origin header. The New York State statewide tax parcel service (gisservices.its.ny.gov NYS_Tax_Parcels_Public, 2025 roll published May 2026) has 0 Dutchess rows, while its control county Albany returns 112,804 rows with owners; its grouped county list names 38 counties and Dutchess is not among them. The county's GIS Data page says tax parcel data is ordered from the Real Property Tax Service Agency rather than published as open data (taxmapping@dutchessny.gov, 845-486-2140), and the Parcel Access viewer (gis.dutchessny.gov/parcelaccess) shows owner names in the application with no public REST query behind them. Decoys that are not owner data: the addressinfofinder OWNERSHIP field is a road centerline's jurisdiction, and the Zoning/ReferralIdentifier 'Owner' sublayers are annotation whose text is a section number. An unofficial Vassar student layer, 'Parcels Dutchess County approx', is not used. Commercial parcel vendors sell Dutchess owners; none is a free source.",
+      "addedAt": "2026-10-08"
     }
   ]
 }
