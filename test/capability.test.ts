@@ -47,6 +47,29 @@ describe("reviewed capability survives into the published bundle", () => {
     expect(isReviewedUnservable(county!, "owner_name")).toBe(false);
   });
 
+  it("Fresno: owner name and owner mailing address both survive as restricted, attributed to the county", () => {
+    // Fresno's server returns the owner columns; the county says it does not
+    // publish ownership online. A consumer of the bundle (the stdio MCP reads
+    // this through search-policy.ts) must see both fields refused.
+    const county = findCounty("california", "fresno-county");
+    expect(county, "Fresno missing from the bundled atlas").toBeTruthy();
+    for (const field of ["owner_name", "owner_mailing_address"] as const) {
+      const record = reviewedCapability(county!, field);
+      expect(record?.status, field).toBe("restricted");
+      expect(record?.basis.type, field).toBe("county_cited_statute");
+      expect(record?.basis.attributedTo, field).toBe("County of Fresno");
+      expect(record?.basis.citation, field).toContain("7928.205");
+      expect(record?.lawfulAlternativeUrl, field).toBeTruthy();
+      expect(isReviewedUnservable(county!, field), field).toBe(true);
+    }
+    // The parcel fields it does publish are not refused.
+    expect(isReviewedUnservable(county!, "apn")).toBe(false);
+    // And no owner or mailing column is documented on its layer.
+    const names = county!.endpoints.flatMap((e) => e.searchFields.map((f) => f.name));
+    expect(names).toContain("APN");
+    expect(names.filter((n) => /^(NAME[12]|ADDRESS[1-4])$/.test(n))).toEqual([]);
+  });
+
   it("San Diego: the reviewed not_published record survives into the bundle", () => {
     const county = findCounty("california", "san-diego-county");
     expect(county).toBeTruthy();

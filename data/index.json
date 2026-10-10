@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-08",
   "totals": {
     "states": 51,
-    "counties": 254,
-    "endpoints": 265,
-    "countiesWithEndpoint": 247,
+    "counties": 257,
+    "endpoints": 268,
+    "countiesWithEndpoint": 250,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -45,8 +45,8 @@
       "slug": "california",
       "name": "California",
       "abbrev": "CA",
-      "countyCount": 13,
-      "endpointCount": 13,
+      "countyCount": 15,
+      "endpointCount": 15,
       "populated": true
     },
     {
@@ -237,8 +237,8 @@
       "slug": "nevada",
       "name": "Nevada",
       "abbrev": "NV",
-      "countyCount": 2,
-      "endpointCount": 2,
+      "countyCount": 3,
+      "endpointCount": 3,
       "populated": true
     },
     {

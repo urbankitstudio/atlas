@@ -1,5 +1,33 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.21 — 2026-10-08
+
+Three demanded counties, no API change, no breaking change. `totals` move to
+**257 counties / 268 endpoints** (250 with a verified endpoint).
+
+### New counties
+
+- **Lyon NV (32019)**, with a verified endpoint on the county's own ArcGIS
+  Server (`Landbase/Land_Use_Parcel`, MapServer layer 10 `Land Use -- Parcel`,
+  35,343 parcels, owner on 99.5% of them, CORS echoes the caller's origin).
+  Owner (`PANAME`), situs (`PHY_ADDR`), mailing address (`PMADD1`/`PMADD2`/
+  `PMCTST`/`PZIP`) and the dashed `APN` are all on the layer. The owner column
+  has no index: a `%SMITH%` search takes 13 to 15 seconds and an anchored
+  `SMITH%` search about 4.5, which the `notes` record.
+- **Humboldt CA (06023)**, with a verified endpoint on the county's own ArcGIS
+  Server (`Parcels/Parcels`, MapServer layer 0, 72,721 parcels). The layer is
+  parcels only: it publishes the APN, situs address, zoning, general plan and
+  use code, but no owner or mailing columns, and the `notes` say so.
+- **Fresno CA (06019)**, parcels only, with a verified endpoint on the county's
+  own ArcGIS Server (`FC_PARCEL_SELECT`, MapServer layer 0, 442,045 rows). The
+  county states it cannot provide ownership information on the internet under
+  Cal. Gov. Code 6254.21 (now 7928.205), so the record carries an
+  `ownerFieldNote` and `capabilityOverrides` marking `owner_name` and `owner_mailing_address`
+  `restricted` (`county_cited_statute`, attributed to the County of Fresno), and
+  neither column is in `searchFields`. `reviewedCapability` and
+  `isReviewedUnservable` report both restricted. The APN, situs address, land
+  use and assessed values are searchable.
+
 ## 0.6.20 — 2026-10-08
 
 New counties, no API change, no breaking change. `totals` move to **254

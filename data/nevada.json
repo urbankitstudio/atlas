@@ -2,7 +2,7 @@
   "stateSlug": "nevada",
   "stateName": "Nevada",
   "stateAbbrev": "NV",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-10-08",
   "counties": [
     {
       "id": "nv-clark",
@@ -93,6 +93,51 @@
         "email": null
       },
       "notes": "71 fields confirmed including OBJECTID, APN, REGION, PIN, RECMAP, BOOK, PAGE, BLOCK, PARCEL, SUBNAME, TOWNSHIP, RANGE, SECTION_, FLOOR, MAPLINK, FLR, Shape, Shape.STArea(), STREETNUM, STREETDIR, STREET, CITY, SITUSZIP, FIRSTNAME, LASTNAME, MAILING1, MAILING2, MAILCITY, MAILSTATE, MAILZIP, LAND_USE, Zoning, WATER, SEWER, ACREAGE, TAXDIST, BEDROOMS, BATHS, YEARBLT, LANDASS, BUILDASS, TOTALASS, LANDAPR, BUILDAPR, TOTALAPR, DEPRECIATION, SALEDATE, SALEPRICE, OCCUPANCY, PROPCODE, TAXYEAR, STORIES, TOWNHOUSE, SQFEET, UNITS, AVCONSYEAR, BUILDINGTYPE, NBHD, SPECPROPCODE, QC, LAND_BASE, NBC, Fireplaces, HeatType, SecHeatType, Agency, AG_ABBR, FullAddress, ZoningWithDetail, Zoning_GIS, STRAP. Owner name available as FIRSTNAME + LASTNAME (split fields). 2026-10-03: LASTNAME is now declared before FIRSTNAME, because the site's owner-field classifier and the stdio MCP server both search the FIRST owner-matching field, so a surname search was running against first names (FIRSTNAME holds values like EDWARD M III; LASTNAME holds SMITH). The sampleQuery already searched LASTNAME and still returns rows. Live query confirmed: APN 134087 returns 'MIEKO E SPAHR' in RENO 89503. maxRecordCount=1000. Covers Reno, Sparks, and unincorporated Washoe County (pop. 480,000). Note: owner name is public per Nevada law (unlike Clark County which also has a public layer but no owner). Current version 11.4."
+    },
+    {
+      "id": "nv-lyon",
+      "state": "NV",
+      "stateName": "Nevada",
+      "stateSlug": "nevada",
+      "county": "Lyon",
+      "countySlug": "lyon-county",
+      "countyFips": "32019",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.lyon-county.org/server/rest/services/Landbase/Land_Use_Parcel/MapServer/10",
+          "serviceType": "MapServer",
+          "layerIndex": 10,
+          "layerName": "Land Use -- Parcel",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "APN", "label": "Parcel Number (APN)", "searchable": true },
+            { "name": "PANAME", "label": "Assessed Owner", "searchable": true },
+            { "name": "PHY_ADDR", "label": "Physical Address", "searchable": true },
+            { "name": "PMADD1", "label": "Mailing Address 1", "searchable": false },
+            { "name": "PMADD2", "label": "Mailing Address 2", "searchable": false },
+            { "name": "PMCTST", "label": "Mailing City/State", "searchable": false },
+            { "name": "PZIP", "label": "Mailing Zip Code", "searchable": false },
+            { "name": "PACRES", "label": "Total Acres", "searchable": false },
+            { "name": "PCLASS", "label": "Class", "searchable": false },
+            { "name": "YNETV", "label": "Net Assessed Value", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.lyon-county.org/server/rest/services/Landbase/Land_Use_Parcel/MapServer/10/query?where=UPPER(PANAME)+LIKE+UPPER('SMITH%25')&outFields=APN,PANAME,PHY_ADDR,PMADD1,PMCTST,PZIP&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "public",
+          "licenseUrl": "https://gis.lyon-county.org/",
+          "status": "live",
+          "lastVerified": "2026-10-08",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Lyon County NV GIS / Assessor's Office",
+        "url": "https://www.lyon-county.org/",
+        "email": null
+      },
+      "notes": "Lyon County, Nevada (FIPS 32019; Yerington, Fernley, Dayton, Silver Springs) publishes the Assessor's parcels on its own ArcGIS Server as Landbase/Land_Use_Parcel, MapServer layer 10 'Land Use -- Parcel': 35,343 parcels on 2026-10-08, maxRecordCount 2000, resultRecordCount accepted, answers any Origin with Access-Control-Allow-Origin set to the caller. 35,159 rows (99.5%) carry an owner and 33,164 a physical address. The owner is PANAME (alias 'Assessed Owner', 'LAST, FIRST' for individuals, for example DOE, JANE & JOHN); the situs is PHY_ADDR (123 EXAMPLE RD, blank on some vacant land); the owner mailing address is PMADD1 and PMADD2 plus PMCTST ('YERINGTON, NV') and PZIP; the parcel number is APN (003-034-01, dashed). The layer carries a great deal else (values, acreage, land-use and exemption codes, deed data, an owner email column PEMADR that we do not index). SLOW OWNER SEARCH: the layer has no index on PANAME. Measured 2026-10-08: UPPER(PANAME) LIKE '%SMITH%' (what the free Owner Lookup and Parcel Lookup tools send) took 13 to 15 s and returned 347 rows, an anchored UPPER(PANAME) LIKE 'SMITH%' took 4.5 s and returned 309, APN equality and a PHY_ADDR prefix about 1 s, and a count over PHY_ADDR about 9 s. The tools set no client timeout, so a wildcard owner search normally completes but slowly; the sampleQuery uses the anchored form. Use LAST-name-first prefix terms for speed. Do NOT use Landbase/Parcels/MapServer/1 (about 43 s per query), and do not use the statewide Nevada water layer: its service description forbids sharing under NRS 250. The service's Python urllib default User-Agent is refused with HTTP 403 (any other User-Agent, or none, is served), so a script probing it from Python must send its own. License: the item's licenseInfo reads 'Accessible by the public.' and its accessInformation is 'Lyon County, NV Assessor's office'; no formal terms page was found, so licenseUrl is the county GIS site root.",
+      "addedAt": "2026-10-08"
     }
   ]
 }
