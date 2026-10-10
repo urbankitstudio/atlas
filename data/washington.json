@@ -2,7 +2,7 @@
   "stateSlug": "washington",
   "stateName": "Washington",
   "stateAbbrev": "WA",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "wa-king",
@@ -224,6 +224,49 @@
         "email": null
       },
       "notes": "Island County, Washington (county seat Coupeville) serves its parcels from the Assessor's own ArcGIS Server, joined to the PACS assessor data and exported nightly per the service description. The owner field is called taxpayer, the parcel id ParcelNo (for example R03213-384-4950), the site address physical_addr with its city, state and ZIP parts, and the owner mailing address mailing_addr1 to mailing_addr3 with city, state and ZIP. ParcelNo and taxpayer values carry trailing spaces, so trim on display, and some parcels (vacant land) have a blank physical_addr. Named outFields are accepted. CORS reflects the request Origin and sends Access-Control-Allow-Credentials true, so it is not a wildcard. maxRecordCount is 60000. The layer's copyright text reads DO NOT USE AS LEGAL DOCUMENT and no license is stated. Two sibling services carry the same data and serve as fallbacks: SmartGov/Parcels MapServer and Auditor/BaseMap MapServer layer 0. The contact URL is the county map server root, which answered HTTP 200 on 2026-10-03; no separate Assessor contact page was retrieved. Verified live 2026-10-03: owner SMITH returned rows (first owner SMITH, COLIN, R13334-372-1430)."
+    },
+    {
+      "id": "wa-clark",
+      "state": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "county": "Clark",
+      "countySlug": "clark-county",
+      "countyFips": "53011",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.clark.wa.gov/arcgisfed2/rest/services/MapsOnline/MailingLabels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Owner Addresses",
+          "supportsQuery": true,
+          "corsEnabled": false,
+          "searchFields": [
+            { "name": "Prop_id", "label": "Parcel ID (Assessor Property ID)", "searchable": true },
+            { "name": "SitusAddrs", "label": "Situs Address", "searchable": true },
+            { "name": "SitusCityStateZip", "label": "Situs City, State and ZIP", "searchable": false },
+            { "name": "MailAddrs", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "MailCityStateCountryZip", "label": "Owner Mailing City, State, Country and ZIP", "searchable": false },
+            { "name": "MailName", "label": "Owner Name (taxpayer mailing name)", "searchable": true },
+            { "name": "MailCareOf", "label": "Owner Care-Of Line", "searchable": false },
+            { "name": "DateOfParcels", "label": "Parcel Publish Date", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.clark.wa.gov/arcgisfed2/rest/services/MapsOnline/MailingLabels/FeatureServer/0/query?where=UPPER(MailName)+LIKE+UPPER('%25SMITH%25')&outFields=Prop_id,MailName,SitusAddrs,MailAddrs,MailCityStateCountryZip&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://gis.clark.wa.gov/gishome/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Clark County GIS (MapsOnline); Clark County Assessor for the owner records",
+        "url": "https://gis.clark.wa.gov/gishome/",
+        "email": null
+      },
+      "notes": "Clark County, Washington (Vancouver; FIPS 53011). The county's own ArcGIS Server publishes the layer behind its MapsOnline mailing-label tool as MapsOnline/MailingLabels FeatureServer layer 0 ('Owner Addresses', one polygon per taxlot): 196,284 rows on 2026-10-10, every one with an owner name. The owner is MailName (the taxpayer mailing name) with MailCareOf (a care-of line, on 3,652 rows); the owner mailing address is MailAddrs (street line, padded with trailing spaces) plus MailCityStateCountryZip (city, state, country and ZIP in one string); the situs is SitusAddrs (street only) with SitusCityStateZip beside it (both blank on 17,980 rows); the parcel id is Prop_id, the Assessor's numeric property id (an integer, so search it with = rather than LIKE). The layer has no sale or value fields. Currency: DateOfParcels ('Parcel Publish Date') is 2026-10-09 on every row, so the layer is republished whole from the Assessor's parcels; it is the freshness field this record relies on. CORS: no Access-Control-Allow-Origin header is sent, with or without an Origin header, so a browser on another site cannot read it and corsEnabled is false; query it from a server, the metered API or the MCP. maxRecordCount is 5,000 with pagination. SIBLING NOT USED: MapsOnline/PropertyFinder MapServer layer 1 ('Taxlots', 196,283 rows, same Prop_id) also carries the owner, but it has no date field, gives the mailing address only as MailAddrs1-3 street lines with no city, state or ZIP (line 1 is sometimes a care-of name), runs city and ZIP into its single situs string, and its own description says it 'is still under development and may change without notice'. The Assessor's Recent Sales layer (LandRecords MapServer 6) had sales through 2026-09-29 and a publish date of 2026-10-02 on 2026-10-10. WASHINGTON LAW: RCW 42.56.070(8) bars agencies from releasing lists of individuals for commercial purposes, and some Washington counties (Pierce, Spokane) withhold owner names from their public layers for that reason; Clark publishes them on this public layer. No license or terms text is published on the service. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query (1,447 rows for %SMITH%), a situs LIKE query on MAIN ST (363 rows) and a point query at the county's internal point (one parcel, with an owner).",
+      "addedAt": "2026-10-10"
     }
   ]
 }

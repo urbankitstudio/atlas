@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-10",
   "totals": {
     "states": 51,
-    "counties": 277,
-    "endpoints": 288,
-    "countiesWithEndpoint": 270,
+    "counties": 280,
+    "endpoints": 291,
+    "countiesWithEndpoint": 273,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -277,8 +277,8 @@
       "slug": "north-carolina",
       "name": "North Carolina",
       "abbrev": "NC",
-      "countyCount": 8,
-      "endpointCount": 8,
+      "countyCount": 9,
+      "endpointCount": 9,
       "populated": true
     },
     {
@@ -317,8 +317,8 @@
       "slug": "pennsylvania",
       "name": "Pennsylvania",
       "abbrev": "PA",
-      "countyCount": 5,
-      "endpointCount": 5,
+      "countyCount": 6,
+      "endpointCount": 6,
       "populated": true
     },
     {
@@ -389,8 +389,8 @@
       "slug": "washington",
       "name": "Washington",
       "abbrev": "WA",
-      "countyCount": 5,
-      "endpointCount": 5,
+      "countyCount": 6,
+      "endpointCount": 6,
       "populated": true
     },
     {

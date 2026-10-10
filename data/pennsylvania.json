@@ -2,7 +2,7 @@
   "stateSlug": "pennsylvania",
   "stateName": "Pennsylvania",
   "stateAbbrev": "PA",
-  "lastUpdated": "2026-10-08",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "pa-allegheny",
@@ -349,6 +349,54 @@
       },
       "notes": "Bradford County, Pennsylvania (Towanda; FIPS 42015). The county's parcels are published through PASDA (Pennsylvania Spatial Data Access, the state clearinghouse run by Penn State) as BradfordCounty MapServer layer 5, 'Bradford County - Parcels 202511': 34,935 parcels, 34,918 of them with an owner, on 2026-10-08. The data is county-supplied; the host is PASDA, not the county, and the county's own GIS page was not confirmed to link this layer. The layer name carries a vintage stamp (202511, November 2025) and PASDA republishes under new names, so the layer index or name may change: list the service's layers and pick the one whose name starts 'Bradford County - Parcels'. The owner is NAME, a varchar(25), so long owner names are TRUNCATED at the source and an exact-name search on a long LLC name will miss; a prefix LIKE works. ADDRESS, CITY, STATE and ZIPCODE are the OWNER MAILING address (a SMITH FARMS II LLC row mails to Piscataway, NJ), not the situs, and ZIPCODE is stored as a number so leading zeros are lost. THERE IS NO SITUS ON THIS LAYER: situs lives on a separate point layer, MapServer layer 0 'Bradford County - Addresses 202511' (39,510 points; FullAddr, COMMUNITY, ZIP), joined by PARCEL = ParcelJoin. That layer carries no owner and its PARCEL key is numeric where ParcelJoin is text, so it is not registered as a second endpoint; an address search therefore cannot be served from this record, and owner, parcel id and a point lookup are what it offers. The parcel id is ParcelJoin, 16 digits (5107300161000000). maxRecordCount is 1000 with pagination. CORS: the server echoes the request Origin. No license text is published on the service. Verified 2026-10-08: owner SMITH returned rows (first SMITHKORS JEFFREY W, 772 MOON ST, New Albany, 0212400143000000, Albany Township); a point query at -76.5,41.78 returned SULLIVAN ROBERT J, 5107300161000000, North Towanda Township, 74.2 acres. Unofficial third-party Bradford parcel items on ArcGIS Online (a Pitt Bradford item, a Michael Baker shapefile) are not used.",
       "addedAt": "2026-10-08"
+    },
+    {
+      "id": "pa-chester",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Chester",
+      "countySlug": "chester-county",
+      "countyFips": "42029",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/ChesterCounty/MapServer/11",
+          "serviceType": "MapServer",
+          "layerIndex": 11,
+          "layerName": "Chester County Parcels 202610",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "UPI", "label": "Parcel ID (UPI, Uniform Parcel Identifier)", "searchable": true },
+            { "name": "OWN1", "label": "Owner Name", "searchable": true },
+            { "name": "OWN2", "label": "Owner Name 2", "searchable": false },
+            { "name": "LOC_ADDRES", "label": "Situs Address", "searchable": true },
+            { "name": "ADDR1", "label": "Owner Mailing Address (street line)", "searchable": true },
+            { "name": "ADDR2", "label": "Owner Mailing City and State", "searchable": false },
+            { "name": "ADDR3", "label": "Owner Mailing Address line 3", "searchable": false },
+            { "name": "ZIP1", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "PIN_MAP", "label": "Map PIN", "searchable": false },
+            { "name": "MUNI", "label": "Municipality Code", "searchable": false },
+            { "name": "LUC", "label": "Land Use Code", "searchable": false },
+            { "name": "TOT_ASSESS", "label": "Total Assessed Value", "searchable": false },
+            { "name": "ACRE_PLAN_", "label": "Acres (plan)", "searchable": false }
+          ],
+          "sampleQuery": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/ChesterCounty/MapServer/11/query?where=UPPER(OWN1)+LIKE+UPPER('%25SMITH%25')&outFields=UPI,OWN1,LOC_ADDRES,ADDR1,ADDR2,ZIP1&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.pasda.psu.edu/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Chester County Geographic Information Services (supplies the data); PASDA, Penn State (hosts the layer)",
+        "url": "https://chester-county-s-gis-hub-chesco.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Chester County, Pennsylvania (West Chester; FIPS 42029). The county's parcels are published through PASDA (Pennsylvania Spatial Data Access, the state clearinghouse run by Penn State) as ChesterCounty MapServer layer 11, 'Chester County Parcels 202610': 194,767 parcels on 2026-10-10, 193,293 of them with an owner (1,474 have a blank OWN1). The data is county-supplied; the host is PASDA, not the county. PASDA REPUBLISHES MONTHLY under a new vintage stamp: the layer name carries the month (202610) and the name, and possibly the index, rotates on each republish, as it does for Bradford in this file. If the liveness probe flags this record, list the service's layers and pick the one whose name starts 'Chester County Parcels'. USE THIS HOST ONLY: an older copy at maps.pasda.psu.edu/arcgis (ChesterCounty MapServer 11, vintage 202312) answers 'Service not started' and is dead. The owner is OWN1 with OWN2; the situs is LOC_ADDRES (house number, street and type in one string, also split as ST_NUM, DIR, ST_NAME and ST_TYPE; blank on 7,747 rows, about 4%); the owner mailing address is ADDR1 (the street line) with ADDR2 (city and state in one string) and ADDR3 (usually blank), plus ZIP1; the parcel id is UPI (the Uniform Parcel Identifier, the county's tax id), with the map PIN in PIN_MAP and PIN_COMMON. MUNI is a numeric municipality code. Currency: MODIFY_DAT and ASMT_DATE (text dates) both peak at 2026-09-17, so owners are about three weeks behind the assessment office at this vintage. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, also on the preflight. maxRecordCount is 1000 with pagination. No license or terms text is published on the service or layer. TLS: Python's Windows trust store has rejected this host's certificate chain; Node's fetch and curl accept it. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query (1,234 rows for %SMITH%), a situs LIKE query on MAIN ST (718 rows) and a point query at the county's internal point (one parcel, with an owner).",
+      "addedAt": "2026-10-10"
     }
   ]
 }

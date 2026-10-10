@@ -1,5 +1,33 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.24 — 2026-10-10
+
+New counties, no API change, no breaking change. `totals` move from 277
+counties / 288 endpoints to **280 counties / 291 endpoints** (273 with a
+verified endpoint). Each was chosen for population and for publishing owner,
+mailing address, situs and parcel id on a public layer.
+
+### New counties
+
+- **Chester PA (42029)**, with a verified endpoint on PASDA, Penn State's state
+  clearinghouse (`pasda/ChesterCounty` MapServer layer 11, "Chester County
+  Parcels 202610", 194,767 parcels, county-supplied). Owner, situs, owner
+  mailing address and UPI are searchable, and the layer answers cross-origin
+  requests. PASDA republishes monthly under a new vintage stamp, so the layer
+  name (and possibly its index) rotates; the `notes` say how to re-resolve it,
+  and that the older `maps.pasda.psu.edu/arcgis` copy is dead.
+- **Gaston NC (37071)**, with a verified endpoint on the county's own
+  `PublicGIS/Parcels` MapServer layer 11 (118,132 parcels). The layer carries
+  three owner vintages; the record lists only the current-owner `CURR_`
+  columns, not the January-1 (`JAN1_`) or prior-year (`PRVYR`) ones. No CORS
+  header, so it is server-side only.
+- **Clark WA (53011)**, with a verified endpoint on the county's own
+  `MapsOnline/MailingLabels` FeatureServer layer 0 ("Owner Addresses", 196,284
+  taxlots): owner, care-of, a complete owner mailing address, situs and the
+  Assessor's property id, plus a parcel publish date (2026-10-09). The sibling
+  `PropertyFinder` layer is not used because it has no date and no mailing
+  city, state or ZIP. No CORS header, so it is server-side only.
+
 ## 0.6.23 — 2026-10-10
 
 New counties, no API change, no breaking change. Builds on 0.6.22. `totals`

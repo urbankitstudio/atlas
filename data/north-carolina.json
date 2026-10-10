@@ -2,7 +2,7 @@
   "stateSlug": "north-carolina",
   "stateName": "North Carolina",
   "stateAbbrev": "NC",
-  "lastUpdated": "2026-10-08",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "nc-wake",
@@ -622,6 +622,57 @@
       },
       "notes": "Montgomery County, North Carolina (Troy; FIPS 37123) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'Montgomery' (30,283 rows, the same count as cntyfips = '123'; every one has an owner, on 2026-10-08; the control county Forsyth, cntyfips '067', answers with 166,755 rows and 166,755 owners). Key fields: parno (parcel number, for example '7568 11 56 4434'), ownname/ownname2 (owner names), siteadd (site address, often the street only without a number, e.g. 'EMERALD SHORES RD'), mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. scity IS BLANK in the sampled Montgomery rows, so match addresses on siteadd and not on the city. revisedate and saledate are null for Montgomery and the layer publishes no editingInfo, so the vintage of this county's roll cannot be dated from the service. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-08: owner SMITH returned rows (for example 6574 11 65 0218, SMITH MICHAEL C, EMERALD SHORES RD); a MAIN ST site search returned 7568 11 56 4434, JUNIPER PROPERTIES LLC, 327 WEST MAIN ST; a point query at -79.8999,35.3633 returned 7538 05 18 6219, LYNTHACUM JESSE, 508 ELDORADO ST.",
       "addedAt": "2026-10-08"
+    },
+    {
+      "id": "nc-gaston",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Gaston",
+      "countySlug": "gaston-county",
+      "countyFips": "37071",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.gastoncountync.gov/publicgis/rest/services/PublicGIS/Parcels/MapServer/11",
+          "serviceType": "MapServer",
+          "layerIndex": 11,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": false,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Identification Number (PIN)", "searchable": true },
+            { "name": "CURR_NAME1", "label": "Owner Name (current)", "searchable": true },
+            { "name": "CURR_NAME2", "label": "Owner Name 2 (current)", "searchable": false },
+            { "name": "WHOLE_ADDRESS", "label": "Situs Address", "searchable": true },
+            { "name": "POSTAL", "label": "Situs Postal City", "searchable": false },
+            { "name": "ZIP", "label": "Situs ZIP", "searchable": false },
+            { "name": "CURR_ADDR1", "label": "Owner Mailing Address (current)", "searchable": true },
+            { "name": "CURR_ADDR2", "label": "Owner Mailing Address line 2 (current)", "searchable": false },
+            { "name": "CURR_CITY", "label": "Owner Mailing City (current)", "searchable": true },
+            { "name": "CURR_STATE", "label": "Owner Mailing State (current)", "searchable": false },
+            { "name": "CURR_ZIPCODE", "label": "Owner Mailing ZIP (current)", "searchable": false },
+            { "name": "PID", "label": "CAMA Account Number (PID)", "searchable": false },
+            { "name": "LEGDESC_1", "label": "Legal Description", "searchable": true },
+            { "name": "DEEDAC", "label": "Deeded Acres", "searchable": false },
+            { "name": "FMV_TOTAL", "label": "Total Fair Market Value", "searchable": false },
+            { "name": "SALEDATE", "label": "Last Sale Date", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.gastoncountync.gov/publicgis/rest/services/PublicGIS/Parcels/MapServer/11/query?where=UPPER(CURR_NAME1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,CURR_NAME1,WHOLE_ADDRESS,CURR_ADDR1,CURR_CITY&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://gis.gastoncountync.gov/publicgis/rest/services/PublicGIS/Parcels/MapServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Gaston County Tax Office, Tax GIS Mapping Division (704-810-5827)",
+        "url": "https://gis.gastoncountync.gov/publicgis/rest/services/PublicGIS/Parcels/MapServer",
+        "email": null
+      },
+      "notes": "Gaston County, North Carolina (Gastonia; FIPS 37071). The county publishes its parcels with CAMA (appraisal) attributes on its own ArcGIS Server as PublicGIS/Parcels MapServer layer 11 ('Parcels'; the service has only this layer, and its id is 11, not 0): 118,132 parcels on 2026-10-10, 118,090 of them with a current owner. THREE OWNER VINTAGES ARE PUBLISHED SIDE BY SIDE: CURR_NAME1/CURR_NAME2 with CURR_ADDR1, CURR_ADDR2, CURR_CITY, CURR_STATE and CURR_ZIPCODE are the CURRENT owner and mailing address; JAN1_NAME1/JAN1_NAME2 are the owner of record on January 1 (the tax-listing date); PRVYRNAME1/PRVYRNAME2 are the prior year's owner. This record uses only the CURR_ columns. The JAN1_ and PRVYR_ columns are deliberately not listed, because the field classifier takes the first owner-like column it sees, and on 2026-10-10 CURR_NAME1 differed from JAN1_NAME1 on 28,965 rows (about 25%, which includes formatting differences as well as sales). The situs is WHOLE_ADDRESS (also PHYSSTRADD), with POSTAL (postal city), STATE and ZIP (a number); WHOLE_ADDRESS is blank on 16,130 rows (about 14%). CURR_ZIPCODE is five or nine digits with no hyphen. The parcel id is PIN, the NC map PIN (dddd-dd-dddd), with the CAMA account number in PID and AKPAR. The layer also carries the last sale date and amount, fair market values, deed book and page, plat book and page, legal description, building characteristics and a flood-area figure. Currency: last_edited_date and SALEDATE both peak at 2026-10-08, and parcel_year is 2027 on every row. CORS: no Access-Control-Allow-Origin header is sent, with or without an Origin header and on the preflight, so a browser on another site cannot read it and corsEnabled is false; query it from a server, the metered API or the MCP. maxRecordCount is 10,000 with pagination. The service description says only that it displays parcel boundaries with the DevNet CAMA table; no license or terms text is published on the service. A separate City of Gastonia parcel service (cogserver.gastonianc.gov) is city-run and is not used. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query on CURR_NAME1 (1,192 rows for %SMITH%), a situs LIKE query on MAIN ST (922 rows) and a point query at the county's internal point (one parcel, with an owner).",
+      "addedAt": "2026-10-10"
     }
   ]
 }
