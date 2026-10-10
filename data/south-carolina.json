@@ -2,7 +2,7 @@
   "stateSlug": "south-carolina",
   "stateName": "South Carolina",
   "stateAbbrev": "SC",
-  "lastUpdated": "2026-06-06",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "sc-greenville",
@@ -96,6 +96,77 @@
         "email": null
       },
       "notes": "Charleston County (pop. 430,000; includes Charleston, North Charleston, Mount Pleasant) has moved its parcel layer THREE times since June 2026, most recently on 2026-09-21, when the county withdrew the entire New_Parcel_Search service. Re-verify this URL before you rely on it. Parcels now live on GIS_VIEWER/External_GIS_Website/MapServer layer 7, whose upstream layer name is 'Parcels ***Assessor Maintained***'; the registry keeps the display name 'Parcels'. Field names are unqualified (PID, OWNER1, ...) rather than FEATURES.SDE.*-prefixed, and neither GPIN nor ACRES_CAL exists here. Layer 7 carries 27 fields, including several the registry does not map: ACREAGE, CLASS_CODE, DEED_BOOK_PAGE, PLAT_BOOK_PAGE, SALE_PRICE, RECORDED_DATE and DOC_DATE. The moves were 2026-06-06 (Parcel_Search/4 to New_Parcel_Search/61, after the old service began returning 404), 2026-09-17 (to New_Parcel_Search/4) and 2026-09-21 (to External_GIS_Website/7). If you monitor this endpoint, two things make the failure easy to miss: the first two moves changed only the layer index, so an index-only drift check looks sufficient and is not - this third move withdrew the service itself - and the dead URL still answers HTTP 200 while carrying the failure in an ArcGIS error BODY (code 500, 'Service ... not started'), with New_Parcel_Search gone from the GIS_VIEWER folder listing entirely. A check that reads only the status code calls that healthy. Re-verified live 2026-09-21: metadata, a where=1=1 query and the declared sampleQuery (UPPER(OWNER1) LIKE '%SMITH%', 10 rows) all return real features, and every one of the 11 mapped searchFields is present unchanged."
+    },
+    {
+      "id": "sc-georgetown",
+      "state": "SC",
+      "stateName": "South Carolina",
+      "stateSlug": "south-carolina",
+      "county": "Georgetown",
+      "countySlug": "georgetown-county",
+      "countyFips": "45043",
+      "ownerFieldNote": {
+        "body": "Georgetown County's public parcel layer carries the TMS parcel number, plat reference and zoning only: no owner name, no site address and no mailing address. Search by TMS here. The county publishes owner and address attributes in a separate table with no parcel shapes (PARCELATTRIBUTES, keyed by the same TMS), which these tools cannot join to a parcel; look up an owner there by TMS, or ask the Georgetown County Assessor.",
+        "source": {
+          "label": "Georgetown County GIS & Asset Management Division",
+          "url": "https://www.gtcountysc.gov/260/GIS-Asset-Management-Division"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels layer (GCGIS_OpenData FeatureServer layer 2) has no owner-name column; owner names sit in a separate non-spatial PARCELATTRIBUTES table (layer 7) that has no geometry, so a location or radius lookup cannot reach them.",
+            "sourceUrl": "https://gis1.georgetowncountysc.org/portal/rest/services/GCGIS_OpenData/FeatureServer/2"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels layer (GCGIS_OpenData FeatureServer layer 2) has no owner mailing-address column; mailing addresses sit only in the separate non-spatial PARCELATTRIBUTES table (layer 7).",
+            "sourceUrl": "https://gis1.georgetowncountysc.org/portal/rest/services/GCGIS_OpenData/FeatureServer/2"
+          }
+        },
+        "situs_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The county's public Parcels layer (GCGIS_OpenData FeatureServer layer 2) has no site-address column, so a parcel cannot be found by street address here; the street number and name sit only in the separate non-spatial PARCELATTRIBUTES table (layer 7).",
+            "sourceUrl": "https://gis1.georgetowncountysc.org/portal/rest/services/GCGIS_OpenData/FeatureServer/2"
+          }
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis1.georgetowncountysc.org/portal/rest/services/GCGIS_OpenData/FeatureServer/2",
+          "serviceType": "FeatureServer",
+          "layerIndex": 2,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "TMS", "label": "TMS (tax map parcel number)", "searchable": true },
+            { "name": "PLAT", "label": "Plat Reference", "searchable": true },
+            { "name": "Zone", "label": "Zoning District", "searchable": true }
+          ],
+          "sampleQuery": "https://gis1.georgetowncountysc.org/portal/rest/services/GCGIS_OpenData/FeatureServer/2/query?where=TMS%20LIKE%20'01-0101%25'&outFields=TMS,PLAT,Zone&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.gtcountysc.gov/260/GIS-Asset-Management-Division",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Georgetown County GIS & Asset Management Division, (843) 545-3071",
+        "url": "https://www.gtcountysc.gov/260/GIS-Asset-Management-Division",
+        "email": null
+      },
+      "notes": "Georgetown County, South Carolina (Georgetown, Pawleys Island, Murrells Inlet; FIPS 45043) was asked for through the free tools. PARCEL SHAPES ONLY. The county's own Portal-hosted ArcGIS Server (gis1.georgetowncountysc.org, ArcGIS 11.2) publishes GCGIS_OpenData FeatureServer layer 2 ('Parcels'): 47,943 parcels on 2026-10-10, 47,942 with a TMS. Its only attribute columns are TMS (the tax map parcel number, formatted like 00-0000-000-00-00), PLAT and Zone; there is no owner, situs or mailing column. The layer's native spatial reference is wkid 3361 (South Carolina State Plane, feet), so request outSR=4326 for latitude/longitude. OWNER DATA EXISTS IN A SEPARATE TABLE that this record does not register: layer 7 of the same service, 'PARCELATTRIBUTES', is a non-spatial table (no geometry) with ParcelID and GisLookUpKey (both equal to the layer 2 TMS), YearID, StreetNumber and StreetName (the situs), Owner1 and Owner2, the mailing address BillingAddress/BillingAddress2/City/State/ZipCode, sale date and price, land-use code, land area and legal description. On 2026-10-10 it held 57,469 rows for YearID 2026 (57,468 with an owner) and 58 for 2025, so filter YearID=2026. It answers attribute queries (owner LIKE '%SMITH%' returned 831 rows) but cannot answer a location or radius query, and the atlas schema and its lookup, enrichment and radius tools query one spatial layer per endpoint with no join, so registering the table would advertise owner data those tools cannot deliver. Getting an owner for a parcel here takes two queries: the TMS from layer 2, then ParcelID = that TMS AND YearID = 2026 on layer 7. CORS: both layer 2 and table 7 echo the request Origin in Access-Control-Allow-Origin. maxRecordCount is 2000 with pagination on both. Currency: layer 2's newest last_edited_date is 2026-06-24. The ArcGIS items on the Portal (558592e09870439d9f0477ed273b52e1 for the parcels, 2e895e71f27045c69b62d7bb8311146f for the table) returned HTTP 500 on 2026-10-10, so no license or terms text was read; the service publishes none. The county's GIS & Asset Management Division handles addressing (843-545-3071) and the Assessor's Office maintains the property database. Verified 2026-10-10: a count, resultRecordCount=1 and a TMS LIKE query on layer 2, plus a count, resultRecordCount=1 and an owner LIKE query on table 7.",
+      "addedAt": "2026-10-10"
     }
   ]
 }

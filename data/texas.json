@@ -2,7 +2,7 @@
   "stateSlug": "texas",
   "stateName": "Texas",
   "stateAbbrev": "TX",
-  "lastUpdated": "2026-06-06",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "tx-harris",
@@ -425,6 +425,59 @@
         "email": null
       },
       "notes": "Williamson County, Texas (Round Rock / Georgetown / Cedar Park, north Austin metro, pop. ~750K) serves a parcel layer updated daily from Williamson Central Appraisal District (WCAD) via Williamson County GIS (gis.wilco.org). Owner name is available as FullName (formatted) and PrimaryOwner, with NameFirst/NameMiddle/NameLast and CNVYNAME (conveyance name) components; mailing is MailingAddress; identifiers are PropertyNumber (R-number, e.g. R-01-1100-0012-0009) and PARCELID. Owner search uses UPPER(FullName) LIKE. Verified live 2026-05-30 (FullName = GOVELLAN, JUAN). Texas Tax Code §25.025 confidentiality provisions apply to protected persons."
+    },
+    {
+      "id": "tx-hill",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Hill",
+      "countySlug": "hill-county",
+      "countyFips": "48217",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/c1IEzrw0UDP7bzay/arcgis/rest/services/HillCADWebService/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "prop_id", "label": "Parcel ID (Hill CAD property id)", "searchable": true },
+            { "name": "geo_id", "label": "Geographic ID", "searchable": true },
+            { "name": "file_as_name", "label": "Owner Name", "searchable": true },
+            { "name": "situs_street", "label": "Situs Address (street name; house number is situs_num)", "searchable": true },
+            { "name": "situs_num", "label": "Situs House Number", "searchable": true },
+            { "name": "situs_street_prefx", "label": "Situs Street Prefix", "searchable": false },
+            { "name": "situs_street_sufix", "label": "Situs Street Suffix", "searchable": false },
+            { "name": "situs_city", "label": "Situs City", "searchable": true },
+            { "name": "situs_zip", "label": "Situs ZIP", "searchable": false },
+            { "name": "addr_line2", "label": "Owner Mailing Address (street line)", "searchable": true },
+            { "name": "addr_line1", "label": "Owner Mailing Address (care-of line)", "searchable": false },
+            { "name": "addr_line3", "label": "Owner Mailing Address line 3", "searchable": false },
+            { "name": "addr_city", "label": "Owner Mailing City", "searchable": true },
+            { "name": "addr_state", "label": "Owner Mailing State", "searchable": false },
+            { "name": "zip", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "legal_desc", "label": "Legal Description", "searchable": true },
+            { "name": "legal_acreage", "label": "Legal Acreage", "searchable": false },
+            { "name": "market", "label": "Market Value", "searchable": false }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/c1IEzrw0UDP7bzay/arcgis/rest/services/HillCADWebService/FeatureServer/0/query?where=UPPER(file_as_name)%20LIKE%20UPPER('%25SMITH%25')&outFields=prop_id,file_as_name,situs_num,situs_street,situs_city,addr_line2,addr_city&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://hillcad.org/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Hill County Appraisal District (Hill CAD)",
+        "url": "https://hillcad.org/",
+        "email": "hcad@hillcad.org"
+      },
+      "notes": "Hill County, Texas (county seat Hillsboro; FIPS 48217) was asked for through the free tools. The parcels are Hill County Appraisal District (Hill CAD) data, published as HillCADWebService FeatureServer layer 0 ('Parcels') on an ArcGIS Online organisation run by the district's GIS vendor rather than by the county or the district: 39,102 parcels on 2026-10-10, 38,923 of them with an owner. The owner is file_as_name; the owner mailing address is addr_line2 (the street line, on about 38,200 rows) with addr_line1 (a care-of or second name line, on about 5,200 rows, often starting with %) and addr_line3, plus addr_city, addr_state and zip; the parcel id is prop_id (an integer; prop_id_text holds the same value as text) with the CAD geographic id geo_id. SPLIT SITUS: the site address is spread over situs_num (the house number, on about 25,100 rows), situs_street_prefx, situs_street (about 38,500 rows) and situs_street_sufix, plus situs_city and situs_zip. Rural parcels often carry a road name such as a farm-to-market road in situs_street and no situs_num. Search an address on situs_street (LIKE on a street word), adding situs_num = the house number when there is one; a LIKE on a full '123 MAIN ST' string matches nothing because no column holds it. The registry lists situs_street as the site-address column, so an address lookup verifies the street name but cannot verify the house number against the geocoded address. Owner rows carry the appraisal district's tax year (owner_tax_yr 2027, the preliminary roll year, on every owner row). CONFIDENTIAL OWNERS: 213 rows read exactly 'CONFIDENTIAL' in file_as_name with a blank mailing address; Texas Tax Code §25.025 lets protected persons (peace officers, judges, family-violence victims and similar categories) have their information withheld from appraisal records, and that word is a placeholder, not an owner name. CORS answers Access-Control-Allow-Origin *. maxRecordCount is 2000 with pagination. Currency: the layer's dataLastEditDate is 2026-10-09. LICENSE AND DURABILITY: the item has no description, license or contact text, and the hosting account belongs to the district's vendor, so the URL can move or be renamed on a vendor republish; re-resolve from Hill CAD if the liveness probe flags it. The contact is Hill CAD itself. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query (329 rows for %SMITH%) and a situs_street LIKE query on MAIN (153 rows).",
+      "addedAt": "2026-10-10"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-10-08",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "va-fairfax",
@@ -278,6 +278,111 @@
       },
       "notes": "The City of Newport News, Virginia (FIPS 51700) is an independent city that belongs to no county. Its Planning department's Operational/Parcel MapServer layer 0 holds 54,444 parcels, 54,359 of them with an owner, on 2026-10-08. The owner is OWNERNME1 (SMITH BRECK J) with OWNERNME2; the situs is SITEADDRESS (914 19TH ST); the owner mailing address is PSTLADDRESS1/PSTLADDRESS2 plus PSTLCITY, PSTLSTATE and PSTLZIP5; the parcel id is PARCELID, nine digits of text (313000441). CORS: the server echoes the request Origin in Access-Control-Allow-Origin and sends no CORS header at all when no Origin is sent, so a probe without an Origin header will wrongly read it as closed. maxRecordCount is 2000 with pagination. CURRENCY IS NOT PUBLISHED: the layer has no editingInfo, LASTUPDATE is null on the sampled rows, the city says only that it is 'updated as necessary', the Hub item was modified 2026-09-11 and last-sale dates include 2025; treat owners as possibly a few months behind. The licenseUrl is the city GeoHub item, whose licenseInfo says the data is public information with no warranties and not for legal, engineering or survey use. The statewide VGIN layer (54,438 rows for this FIPS) has no owner field and is not a fallback. No GIS email address was found; the city's Maps and Data page gives the Planning department's phone. Verified 2026-10-08: owner SMITH returned rows (first SMITH BRECK J, 313000441, 914 19TH ST); a situs query for 2400 WASHINGTON AVE returned CITY OF NEWPORT NEWS (315010302); a point query at -76.4730,37.0871 returned CITY OF NEWPORT NEWS, 725 TOWN CENTER DR.",
       "addedAt": "2026-10-08"
+    },
+    {
+      "id": "va-james-city",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "James City County",
+      "countySlug": "james-city-county",
+      "countyFips": "51095",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://property.jamescitycountyva.gov/arcgis/rest/services/JCC/GIS_Data/FeatureServer/17",
+          "serviceType": "FeatureServer",
+          "layerIndex": 17,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel Identification Number (PIN)",
+              "searchable": true
+            },
+            {
+              "name": "Owner1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Owner2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "Full_Address",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "City",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "Zip_Code",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "MailAddr",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MailCity",
+              "label": "Owner Mailing City",
+              "searchable": true
+            },
+            {
+              "name": "MailStat",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "MailZip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PCDesc",
+              "label": "State Property Class",
+              "searchable": false
+            },
+            {
+              "name": "Zoning",
+              "label": "Zoning",
+              "searchable": false
+            },
+            {
+              "name": "CurTot",
+              "label": "Current Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "LegalAc",
+              "label": "Legal Acres",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://property.jamescitycountyva.gov/arcgis/rest/services/JCC/GIS_Data/FeatureServer/17/query?where=UPPER(Owner1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,Owner1,Full_Address,City,MailAddr,MailCity&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=a0dfa59d3c4a442c9ebe3719762a407d",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "James City County Mapping Office (GIS)",
+        "url": "https://jamescitycountyva.gov/395/GIS-Mapping",
+        "email": null
+      },
+      "notes": "James City County, Virginia (Williamsburg area; FIPS 51095) was asked for through the free tools. The county publishes its parcels on its own ArcGIS Server at property.jamescitycountyva.gov, JCC/GIS_Data FeatureServer layer 17 ('Parcels', one row per parcel): 36,478 parcels on 2026-10-10, 36,364 of them with an owner. The owner is Owner1 with Owner2; the situs is Full_Address (also split as ADDR_NUM plus Street_Name, and repeated from the assessment record as LocAddr/LocCity/LocZip) with City and Zip_Code; the owner mailing address is MailAddr plus MailCity, MailStat and MailZip (MailZip is nine digits without a hyphen); the parcel id is PIN, ten digits of text, alongside UID and the LRSN. The layer also carries the last three sales with grantors, three years of land, improvement and total assessed values, zoning, the state property class and legal acres. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, so a probe without an Origin header reads it as closed. maxRecordCount is 2000 with pagination. The service lists Update and Editing capabilities alongside Query; the atlas only ever reads. The county also mirrors this layer to an ArcGIS Online hosted service that answers 'Token Required' (499) to anonymous requests; it is not used. Currency: the ArcGIS Online item for this layer was modified 2026-10-08 and the rows carry current-year assessed values. TERMS: the item's license text says the data is believed to be correct but is not guaranteed by James City County, that the county is not responsible for its accuracy or currency, that discrepancies go to the county GIS department, and that 'disclaimers as to such should be placed on all final products derived from the provided data'. Anything built from this record should carry that disclaimer. Field definitions: property.jamescitycountyva.gov/AGOL/Documents/AGOL_Open_Data/Parcel_Fields.pdf. No GIS email address is published; the county's GIS / Mapping page is the contact. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query (341 rows for %SMITH%) and a situs LIKE query on MAIN ST (9 rows).",
+      "addedAt": "2026-10-10"
     }
   ]
 }

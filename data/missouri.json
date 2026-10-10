@@ -2,7 +2,7 @@
   "stateSlug": "missouri",
   "stateName": "Missouri",
   "stateAbbrev": "MO",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "mo-jackson",
@@ -137,6 +137,50 @@
         "email": null
       },
       "notes": "City of St. Louis, Missouri (FIPS 29510) is an independent city that belongs to no county, and it is NOT St. Louis County (29189, a separate record in this file on a different server). The Assessor's public parcels layer is ASSESSOR/Assessor_Public_Parcels/MapServer layer 11 (Parcels) on ArcGIS Server 11.2, listed on the city's data page. SERVER-SIDE ONLY: the server sends Access-Control-Allow-Origin only to its own origin (www.stlouis-mo.gov); for any other Origin a GET and its preflight return only Vary: Origin and Access-Control-Allow-Private-Network: true, so a browser on another site cannot read it and corsEnabled is false. Query it from a server, the metered API or the MCP, not from page script. The owner is OwnerName (max 40 characters, so long names are truncated at the source) with OwnerName2; the mailing address is OwnerAddr plus OwnerCity (max 13 characters, can read ST LOUIS MO) with OwnerState, OwnerZIP and OwnerCountry; the parcel id is ParcelId (11 digits, LowerParcelId also exists). SITEADDR carries runs of internal spaces (2233   PARK AV) and trailing padding, so a LIKE on a full street string misses; search on the house number plus a street word, or collapse whitespace on the client. Search with UPPER(OwnerName) LIKE 'SMITH%'; broad searches return exceededTransferLimit true at the 2000-row page. The layer has 194 fields and this record lists a subset. Layer 11 includes condominium master parcels, and the sub-accounts are layer 10 (not examined). No license or terms text is published on the data page. Verified live 2026-10-03: owner SMITH returned rows (first SMITH, DAVID E & SANDRA L TRS, parcel 22669130000, 2233 PARK AVE)."
+    },
+    {
+      "id": "mo-greene",
+      "state": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "county": "Greene",
+      "countySlug": "greene-county",
+      "countyFips": "29077",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.springfieldmo.gov/arcgis/rest/services/Maps/GisViewerGroups/MapServer/18",
+          "serviceType": "MapServer",
+          "layerIndex": 18,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Number (PIN)", "searchable": true },
+            { "name": "OWN1", "label": "Owner Name", "searchable": true },
+            { "name": "PropAdr", "label": "Situs Address", "searchable": true },
+            { "name": "L_CITYNAME", "label": "Situs City", "searchable": true },
+            { "name": "L_ZIP1", "label": "Situs ZIP", "searchable": false },
+            { "name": "Own_Addr", "label": "Owner Mailing Address (single line)", "searchable": true },
+            { "name": "LegalCombo", "label": "Legal Description", "searchable": true },
+            { "name": "ACRES", "label": "Legal Acreage", "searchable": false },
+            { "name": "GC_LINK", "label": "Greene County Assessor record link", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.springfieldmo.gov/arcgis/rest/services/Maps/GisViewerGroups/MapServer/18/query?where=UPPER(OWN1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,OWN1,PropAdr,L_CITYNAME,Own_Addr&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://maps.springfieldmo.gov/GISviewer/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Springfield, Missouri GIS (hosts the layer); Greene County Assessor for the owner records",
+        "url": "https://maps.springfieldmo.gov/GISviewer/",
+        "email": null
+      },
+      "notes": "Greene County, Missouri (Springfield; FIPS 29077) was asked for through the free tools. No county-run parcel service was found (gis.greenecountymo.gov, gisweb.greenecountymo.gov and a Greene County ArcGIS Online organisation all returned nothing), so this record uses the copy the CITY of Springfield publishes for its GIS viewer: Maps/GisViewerGroups MapServer layer 18 ('Parcels') on maps.springfieldmo.gov. It is county-wide, not city-only: 123,884 parcels on 2026-10-10, about 61,200 in Springfield, about 45,300 in unincorporated Greene County, and the rest in Republic, Battlefield, Willard, Strafford, Ash Grove, Fair Grove, Rogersville and Walnut Grove (L_CITYNAME). 123,840 rows carry an owner. The owner is OWN1 (one owner line; there is no second owner column); the situs is PropAdr with L_CITYNAME and L_ZIP1 (PropAdr can start with a space where the house number is blank, and L_ZIP1 is often a single space); the owner mailing address is Own_Addr, ONE string holding street, city, state and ZIP together, so it is not split into city or ZIP here; the parcel id is PIN, twelve digits of text. GC_LINK links each parcel to the Greene County Assessor's record, the county's own source for owner data. The layer also carries legal description lines, acreage, the city's land-use and zoning classes, and a 4326 centroid in X_COORD/Y_COORD. There are no sale or value fields. CORS: the server echoes the request Origin in Access-Control-Allow-Origin. maxRecordCount is 1000 with pagination; the count query takes several seconds. VINTAGE UNKNOWN: the MapServer publishes no editing info, no description and no license or terms text, and the rows carry no date, so how far owners lag the county assessor is not stated; ask City of Springfield GIS. DURABILITY: a city-hosted copy of county data with no published service commitment, which can change without notice. Verified 2026-10-10: a count, resultRecordCount=1 and an owner LIKE query (1,006 rows for %SMITH%).",
+      "addedAt": "2026-10-10"
     }
   ]
 }

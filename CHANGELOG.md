@@ -1,5 +1,43 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.23 — 2026-10-10
+
+New counties, no API change, no breaking change. Builds on 0.6.22. `totals`
+move from 273 counties / 284 endpoints to **277 counties / 288 endpoints**
+(270 with a verified endpoint). All four were asked for through the site's free
+tools.
+
+### New counties
+
+- **James City VA (51095)**, with a verified endpoint on the county's own
+  ArcGIS Server (`JCC/GIS_Data` FeatureServer layer 17, 36,478 parcels):
+  owner, situs, owner mailing address and PIN are searchable, and the layer
+  answers cross-origin requests. The county's licence text asks that a
+  disclaimer be placed on all products derived from the data; the `notes`
+  quote it. The county's ArcGIS Online copy of the layer requires a token and
+  is not used.
+- **Hill TX (48217)**, with a verified endpoint on Hill CAD's
+  `HillCADWebService` FeatureServer layer 0 (39,102 parcels), hosted on the
+  appraisal district's GIS vendor's ArcGIS Online organisation. The situs is
+  split over `situs_num` and `situs_street` (plus prefix and suffix); the
+  record lists `situs_street` as the site-address column, so search an address
+  by street name plus `situs_num`. 213 rows read `CONFIDENTIAL` as the owner
+  (Texas Tax Code §25.025 withholding); the hosted API and MCP serve those rows
+  with `withheld: "county-redacted"`, as described under 0.6.22. The
+  vendor-hosted URL can move; the `notes` say so.
+- **Greene MO (29077)**, with a verified endpoint on the City of Springfield's
+  `Maps/GisViewerGroups` MapServer layer 18 (123,884 parcels), which covers the
+  whole county, not only the city. The owner mailing address is one combined
+  string. The layer publishes no vintage and no terms.
+- **Georgetown SC (45043)**, parcel shapes only: the county's
+  `GCGIS_OpenData` FeatureServer layer 2 (47,943 parcels) carries the TMS,
+  plat and zoning and no owner, situs or mailing column, so the record carries
+  an `ownerFieldNote` and `not_published` overrides for those three fields.
+  The county publishes owners in a separate non-spatial table on the same
+  service (layer 7, `PARCELATTRIBUTES`, keyed by TMS); the atlas registers one
+  spatial layer per endpoint and does not join tables, so the `notes` describe
+  the table and the two-query join rather than registering it.
+
 ## 0.6.22 — 2026-10-10
 
 New counties, no API change, no breaking change. Builds on 0.6.21. `totals`
