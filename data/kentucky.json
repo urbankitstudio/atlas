@@ -2,7 +2,7 @@
   "stateSlug": "kentucky",
   "stateName": "Kentucky",
   "stateAbbrev": "KY",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-10-09",
   "counties": [
     {
       "id": "ky-fayette",
@@ -22,16 +22,56 @@
           "supportsQuery": true,
           "corsEnabled": null,
           "searchFields": [
-            { "name": "PAN", "label": "Parcel Account Number (Parcel ID)", "searchable": true },
-            { "name": "Owner1", "label": "Owner Name 1", "searchable": true },
-            { "name": "Owner2", "label": "Owner Name 2", "searchable": false },
-            { "name": "Owner3", "label": "Owner Name 3", "searchable": false },
-            { "name": "Mailing_Address", "label": "Mailing Address", "searchable": false },
-            { "name": "PARCEL_SUB", "label": "Parcel Sub-Identifier", "searchable": false },
-            { "name": "PARCEL_BLOCK", "label": "Block", "searchable": false },
-            { "name": "PARCEL_LOT", "label": "Lot", "searchable": false },
-            { "name": "PARCEL_TYPE", "label": "Parcel Type", "searchable": false },
-            { "name": "RecordDate", "label": "Record Date", "searchable": false }
+            {
+              "name": "PAN",
+              "label": "Parcel Account Number (Parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "Owner1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "Owner2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "Owner3",
+              "label": "Owner Name 3",
+              "searchable": false
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL_SUB",
+              "label": "Parcel Sub-Identifier",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL_BLOCK",
+              "label": "Block",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL_LOT",
+              "label": "Lot",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL_TYPE",
+              "label": "Parcel Type",
+              "searchable": false
+            },
+            {
+              "name": "RecordDate",
+              "label": "Record Date",
+              "searchable": false
+            }
           ],
           "sampleQuery": "https://services.arcgis.com/f4rR7WnIfGBdVYFd/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=UPPER(Owner1)+LIKE+UPPER('%25SMITH%25')&outFields=PAN,Owner1,Mailing_Address,PARCEL_TYPE&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
@@ -47,6 +87,1608 @@
         "email": null
       },
       "notes": "Fayette County (Lexington, pop. 322,000; consolidated city-county) Tax Parcels FeatureServer hosted on ArcGIS Online (LFUCG org). Fayette County is a merged urban county government, the Lexington-Fayette Urban County Government (LFUCG). Fields confirmed: PAN (numeric parcel account number), PARCEL_SUB, PARCEL_BLOCK, PARCEL_LOT, LRM_GEOM_DOC, RecordDate, LRM_GEOM_DOC_AREA/UNITS, PARCEL_TYPE, PARCEL_POLY_NAME, Owner1/2/3, Mailing_Address. Note: PARCEL_POLY_NAME may be null; PAN is the numeric parcel identifier. Mailing_Address is a single concatenated field. Verified 2026-05-15: Owner1 SMITH returns Lexington-area addresses (e.g., '3875 GEIST RD STE E469', '4951 E JOHN JOHN CT'). A separate Parcels FeatureServer exists at the same org but has no owner fields, Tax_Parcels is the correct service. Note: distinct from Jefferson County KY (Louisville, FIPS 21111) already in atlas."
+    },
+    {
+      "id": "ky-boone",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Boone",
+      "countySlug": "boone-county",
+      "countyFips": "21015",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/kleO5B3qko1eLO4Z/arcgis/rest/services/Tax_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIDN",
+              "label": "Parcel ID (PIDN)",
+              "searchable": true
+            },
+            {
+              "name": "PRCLOWNR1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PRCLOWNR2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "SITEADD1",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "CITYNAME",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "SITEZIP",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "MAILADD1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "MAILADD2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "MAILPOST",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "MAILSTATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "MAILZIP",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ASSESSVALU",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "GMDACRE",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "ASSESSTYPE",
+              "label": "Assessment Type",
+              "searchable": false
+            },
+            {
+              "name": "ZONINGTX",
+              "label": "Zoning District",
+              "searchable": false
+            },
+            {
+              "name": "SUBNAME",
+              "label": "Subdivision",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/kleO5B3qko1eLO4Z/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=UPPER(PRCLOWNR1)+LIKE+UPPER('%25SMITH%25')&outFields=PIDN,PRCLOWNR1,SITEADD1,CITYNAME,MAILADD1,MAILPOST&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Boone County Planning Commission, GIS Services Division",
+        "url": null,
+        "email": null
+      },
+      "notes": "Boone County, Kentucky (Florence, Burlington, Union; FIPS 21015). The county's tax parcel layer on its own ArcGIS Online organisation (Boone County Planning Commission, GIS Services Division), layer 0 'Tax Parcels': 55,275 parcels, maxRecordCount 2,000, pagination on, native State Plane feet (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The parcel id is PIDN (format 999.99-99-999.99). The owner is PRCLOWNR1 (PRCLOWNR2 is the second owner; 55,229 of the rows carry one), the situs is SITEADD1 with CITYNAME and SITEZIP, and the owner mailing address is MAILADD1/MAILADD2 plus MAILPOST, MAILSTATE and MAILZIP. ASSESSVALU is a single assessed value with no land/improvement split, GMDACRE is the GIS acreage, and up to three sales ride on SALEDATE1-3/SALEPRICE1-3 (SALEDATE is a mm/dd/yyyy string). 14 rows carry the owner CONFIDENTIAL and most of those also carry a CONFIDENTIAL mailing address; the service description says nothing about why. The planning commission publishes this layer; the Boone County PVA is a separate office. The layer was last edited 2026-10-08. Verified 2026-10-09 by a count, field list, owner and mailing fill counts and a count of the sample query's predicate (488 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-warren",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Warren",
+      "countySlug": "warren-county",
+      "countyFips": "21227",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://webgis.bgky.org/server/rest/services/WARCO/Parcel_Reference/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcel_Reference",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PVA_PARCEL",
+              "label": "Parcel ID (PVA parcel number)",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "SiteAddress",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "SitusCity",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "ZIP_CODE",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "mail_address",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "city",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "state",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "postal_code",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "class",
+              "label": "Property Class",
+              "searchable": false
+            },
+            {
+              "name": "LAND_USE",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "ZONING",
+              "label": "Zoning District",
+              "searchable": false
+            },
+            {
+              "name": "sale_price",
+              "label": "Sale Price",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://webgis.bgky.org/server/rest/services/WARCO/Parcel_Reference/FeatureServer/0/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=PVA_PARCEL,Name,SiteAddress,SitusCity,mail_address,city&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Warren County CCPC / Bowling Green-Warren County GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "Warren County, Kentucky (Bowling Green; FIPS 21227). Parcel_Reference, layer 0 of the WARCO FeatureServer on webgis.bgky.org (Warren County CCPC / Bowling Green-Warren County GIS): 60,931 parcels, maxRecordCount 2,000, pagination on, native State Plane feet (outSR=4326 works), CORS reflects the request Origin. The parcel id is PVA_PARCEL (property_id and map_no are alternates). The owner is Name (60,692 rows carry one; care_of is a second line), the situs is SiteAddress (60,756 rows) with SitusCity and ZIP_CODE, and the owner mailing address is mail_address with city, state and postal_code (the layer's plain 'city' and 'state' columns are the OWNER'S mailing city and state, not the situs: 2,249 rows read a state other than KY there, SitusState reads KY on every row). The layer also carries class, LAND_USE, ZONING, sale_price (set on 50,656 rows), year_purchase and deed_book_page. The sibling CCPC/CCPC_Parcels layer (60,929 rows) has no owner and is not used; the gis.bgky.org host no longer resolves. No terms are published on the service. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (621 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-daviess",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Daviess",
+      "countySlug": "daviess-county",
+      "countyFips": "21059",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.owensboro.org/arcgis/rest/services/Hosted/Parcel/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "parcel",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "prop_addre",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "mail_addre",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "city_st_zi",
+              "label": "Owner Mailing City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "acres",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "district",
+              "label": "District",
+              "searchable": false
+            },
+            {
+              "name": "deed_book_",
+              "label": "Deed Book/Page",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.owensboro.org/arcgis/rest/services/Hosted/Parcel/FeatureServer/0/query?where=UPPER(name)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,name,prop_addre,mail_addre,city_st_zi&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Owensboro / Owensboro-Daviess GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "Daviess County, Kentucky (Owensboro; FIPS 21059). The 'Hosted/Parcel' FeatureServer on gis.owensboro.org (City of Owensboro / Owensboro-Daviess GIS), layer 0: 48,023 parcels, maxRecordCount 2,000, pagination on, native State Plane feet (outSR=4326 works), CORS reflects the request Origin. The parcel id is parcel_id (map_no, gis_id and property_i are alternates). The owner is 'name' (care_of is a second line; every one of the 48,023 rows carries a name), the situs is prop_addre, and the owner mailing address is mail_addre plus city_st_zi, one combined city/state/ZIP string. The columns are lower-case and truncated to ten characters (prop_addre, mail_addre, city_st_zi). The layer carries no assessed value or sale price, only a deed book reference. The county's older web maps point at gis.daviesskypva.org, which no longer resolves, and the County/ and WebLayers/ folders on this host need a token. No terms are published on the service. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (374 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-mccracken",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "McCracken",
+      "countySlug": "mccracken-county",
+      "countyFips": "21145",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/xkOPDyh2DVxtFEGe/arcgis/rest/services/PVAParcels/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "PVAParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "LOCATION",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "ADDRESS2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "STATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "ZIPCODE",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "DESCRIPTIO",
+              "label": "Property Class Description",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/xkOPDyh2DVxtFEGe/arcgis/rest/services/PVAParcels/FeatureServer/1/query?where=UPPER(NAME)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,NAME,LOCATION,ADDRESS1,CITY&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Paducah / McCracken County MAP GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "McCracken County, Kentucky (Paducah; FIPS 21145). PVAParcels, layer 1 of a FeatureServer on the City of Paducah / McCracken County MAP GIS ArcGIS Online organisation: 35,381 parcels, maxRecordCount 2,000, pagination on, native State Plane feet (geometry queries answer), CORS open (Access-Control-Allow-Origin: *). The parcel id is PARCEL_ID (PIDN is the same value in another format). The owner is NAME, filled on every row; LOCATION is the situs; the owner mailing address is ADDRESS1/ADDRESS2 with CITY, STATE and ZIPCODE (those three are the OWNER'S mailing city, state and ZIP, not the situs: 2,263 rows read a state other than KY). The layer also carries ACRES, CLASS, DESCRIPTIO (the PVA class description), DEED and the tax, fire, school and magisterial district codes; it holds no assessed value or sale price. It was last edited 2026-10-09. The same organisation's CITY_PARCELS and AGOL_Parcels services carry a PVA_PIN and no owner and are not used. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (408 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-clark",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Clark",
+      "countySlug": "clark-county",
+      "countyFips": "21049",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisserver2.ccgisonline.com/server/rest/services/BASELAYERS/PARCELS/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "PARCELS",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "NAME1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PROPLOC_NUM",
+              "label": "House Number",
+              "searchable": false
+            },
+            {
+              "name": "PROPLOC_STREET",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDRESS",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "C_S_ZIP",
+              "label": "Owner Mailing City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACREAGE",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "DESC",
+              "label": "Property Description",
+              "searchable": false
+            },
+            {
+              "name": "ZONE",
+              "label": "Zoning District",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Sale Price",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisserver2.ccgisonline.com/server/rest/services/BASELAYERS/PARCELS/MapServer/0/query?where=UPPER(NAME1)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,NAME1,PROPLOC_NUM,PROPLOC_STREET,MAIL_ADDRESS&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Clark County GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "Clark County, Kentucky (Winchester; FIPS 21049). PARCELS, layer 0 of the BASELAYERS MapServer on gisserver2.ccgisonline.com (Clark County GIS): 18,205 parcels, maxRecordCount 2,000, pagination on, native State Plane feet (outSR=4326 works), CORS reflects the request Origin. The parcel id is PARCEL_ID (property_id and MAP are alternates). The owner is NAME1 (17,940 rows carry one), the situs is split into PROPLOC_NUM (house number) and PROPLOC_STREET, and the owner mailing address is MAIL_ADDRESS (17,929 rows) with C_S_ZIP, a combined city/state/ZIP string. The layer also carries ACREAGE, DESC, ZONE, SALE_PRICE, DATE_SALE (a mm/dd/yyyy string; the newest is 12/31/2025), the deed book and page and a taxyear column (newest 2027). The host named in the county's ArcGIS catalogue entry, gis.ccgisonline.com:6443, times out and gis.ccgisonline.com presents a certificate for another hostname; gisserver2 is the working host. The FEATURELAYERS and CITYLAYERS folders need a token. No terms are published on the service. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (175 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-shelby",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Shelby",
+      "countySlug": "shelby-county",
+      "countyFips": "21211",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/VqPd1Ybcc46AvijK/arcgis/rest/services/Parcels_Service/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Location",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Address1",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Zip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Descriptio",
+              "label": "Property Class Description",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/VqPd1Ybcc46AvijK/arcgis/rest/services/Parcels_Service/FeatureServer/0/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,Name,Location,Address1,City&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Shelby County PVA",
+        "url": null,
+        "email": null
+      },
+      "notes": "Shelby County, Kentucky (Shelbyville; FIPS 21211). Parcels_Service, layer 0 of a FeatureServer on the Shelby County PVA's ArcGIS Online organisation: 23,355 parcels, maxRecordCount 1,000, pagination on, native Web Mercator, CORS open (Access-Control-Allow-Origin: *). The service's copyright text names the Shelby County PVA. The parcel id is PARCEL_ID. The owner is Name (23,355 rows), Location is the situs, and the owner mailing address is Address1 with City, State and Zip (the OWNER'S mailing city, state and ZIP, not the situs: 733 rows read a state other than KY). The layer carries Descriptio (the property class description) and no acreage, value or sale columns. It was last edited 2026-10-02. The same organisation hosts dated snapshots (Parcels_Service121324 and others); this record uses the undated service. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (241 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-webster",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Webster",
+      "countySlug": "webster-county",
+      "countyFips": "21233",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_PVA_Webster_Parcels_WGS84WM/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Webster Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "LOCATION",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "ADDRESS1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "ADDRESS2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "STATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "ZIPCODE",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "DESCRIPTIO",
+              "label": "Property Class Description",
+              "searchable": false
+            },
+            {
+              "name": "YEAR",
+              "label": "Assessment Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_PVA_Webster_Parcels_WGS84WM/MapServer/1/query?where=UPPER(NAME)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,NAME,LOCATION,ADDRESS1,CITY&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Kentucky Geography Network (Commonwealth Office of Technology)",
+        "url": null,
+        "email": null
+      },
+      "notes": "Webster County, Kentucky (Dixon, Providence; FIPS 21233). 'Webster Parcels', layer 1 of Ky_PVA_Webster_Parcels_WGS84WM, a MapServer the Kentucky Geography Network (the state's Commonwealth Office of Technology) hosts on kygisserver.ky.gov; the service name marks it as PVA parcels: 13,255 parcels, maxRecordCount 1,000, pagination on, Web Mercator, CORS reflects the request Origin. The parcel id is PARCEL_ID (PIDN is the same value in another format). The owner is NAME (every row), LOCATION is the situs, and the owner mailing address is ADDRESS1/ADDRESS2 with CITY, STATE and ZIPCODE (the OWNER'S mailing city, state and ZIP, not the situs: 939 rows read a state other than KY). YEAR is the assessment year (newest 2026). The layer carries no value or sale price, only a deed reference. The state's ArcGIS Online copy of the Webster parcels (13,298 rows) has no owner fields and is not used. No terms are published on the service. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (127 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-franklin",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Franklin",
+      "countySlug": "franklin-county",
+      "countyFips": "21073",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/1Mn98EWnWi3Ezwj3/arcgis/rest/services/1319Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Export_Output",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Location",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Address1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "Address2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Zip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "LANDUSE",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "Descriptio",
+              "label": "Property Class Description",
+              "searchable": false
+            },
+            {
+              "name": "Year",
+              "label": "Assessment Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services2.arcgis.com/1Mn98EWnWi3Ezwj3/arcgis/rest/services/1319Parcels/FeatureServer/0/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,Name,Location,Address1,City&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Franklin County, Kentucky (publisher of the 1319Parcels service not named)",
+        "url": null,
+        "email": null
+      },
+      "notes": "Franklin County, Kentucky (Frankfort; FIPS 21073). 'Export_Output', layer 0 of the 1319Parcels FeatureServer on an ArcGIS Online organisation (1Mn98EWnWi3Ezwj3) whose publisher is not named: 22,628 parcels, maxRecordCount 1,000, pagination on, native State Plane feet (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). THIS IS A 2019 SNAPSHOT: the newest Year value is 2019 and the layer was last edited 2019-01-25, so owners, mailing addresses and acreage can be years out of date (see dataVintage). The parcel id is PARCEL_ID (MAPNUM is the map number). The owner is Name (every row), Location is the situs, and the owner mailing address is Address1/Address2 with City, State and Zip (the OWNER'S mailing city, state and ZIP, not the situs: 807 rows read a state other than KY). No terms are published. franklinky.maps.arcgis.com is the City of Franklin in Simpson County and is not this county. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (435 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      },
+      "dataVintage": {
+        "body": "Franklin County's public parcel layer is a 2019 snapshot: its newest Year value is 2019 and its last edit was in January 2019. Owner names, mailing addresses and acreage may be years out of date. Confirm current ownership with the Franklin County PVA before relying on a result.",
+        "source": {
+          "label": "Franklin County parcel layer",
+          "url": "https://services2.arcgis.com/1Mn98EWnWi3Ezwj3/arcgis/rest/services/1319Parcels/FeatureServer/0"
+        }
+      }
+    },
+    {
+      "id": "ky-simpson",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Simpson",
+      "countySlug": "simpson-county",
+      "countyFips": "21213",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/P3u2F80lQaN3sLkC/arcgis/rest/services/Public_Access_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels2026",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIDN",
+              "label": "Parcel ID (PIDN)",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Property_L",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Address__1",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "Address_Li",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Zip_Code",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Acres",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "Property_D",
+              "label": "Property Class Description",
+              "searchable": false
+            },
+            {
+              "name": "Year",
+              "label": "Assessment Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/P3u2F80lQaN3sLkC/arcgis/rest/services/Public_Access_Parcels/FeatureServer/0/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=PIDN,Name,Property_L,Address__1,City&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Simpson County PVA",
+        "url": null,
+        "email": null
+      },
+      "notes": "Simpson County, Kentucky (Franklin KY; FIPS 21213). Parcels2026, layer 0 of Public_Access_Parcels, a FeatureServer on the Simpson County PVA's ArcGIS Online organisation: 11,975 parcels, maxRecordCount 2,000, pagination on, Web Mercator (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The layer was last edited 2026-09-28. The parcel id is PIDN (blank on 395 rows; Map_Number and Account_Nu are alternates). The owner is Name (10,769 rows carry one), Property_L is the situs (10,749 rows), and the owner mailing address is Address__1 (10,764 rows) with City, State and Zip_Code (the OWNER'S mailing city, state and ZIP, not the situs: 900 rows read a state other than KY); Address_Li is a second line used on only 66 rows. LICENSE NOTE: the item's own terms read 'Data is not to be used for legal purposes. Property lines are not accurate and do not reflect true boundaries. This is a working layer used for general reference only.' The layer carries no value or sale price. A second Simpson layer (SCParcels_view on services8.arcgis.com) has obfuscated column names and is not used; the Parcel22_view URL in the county's catalogue entry answers 'Invalid URL'. Verified 2026-10-09 by a count, field list, owner and mailing fill counts and a count of the sample query's predicate (81 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-henry",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Henry",
+      "countySlug": "henry-county",
+      "countyFips": "21103",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/SRuaqVyoD8TEQJga/arcgis/rest/services/HenryCoParcels/FeatureServer/13",
+          "serviceType": "FeatureServer",
+          "layerIndex": 13,
+          "layerName": "PARCELS",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "Address2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Zip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "TAXABLE",
+              "label": "Taxable Value",
+              "searchable": false
+            },
+            {
+              "name": "FAIRCASH",
+              "label": "Fair Cash Value",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "CLASS",
+              "label": "Property Class",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/SRuaqVyoD8TEQJga/arcgis/rest/services/HenryCoParcels/FeatureServer/13/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,Name,Address1,City,FAIRCASH&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "KIPDA (Kentuckiana Regional Planning and Development Agency) GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "Henry County, Kentucky (New Castle; FIPS 21103). PARCELS, layer 13 of the HenryCoParcels FeatureServer on the KIPDA (Kentuckiana Regional Planning and Development Agency) ArcGIS Online organisation: 9,449 parcels, maxRecordCount 2,000, pagination on, a Kentucky State Plane coordinate system with wkid 103287 (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The layer was last edited 2026-10-02. The parcel id is PARCEL_ID (PIDN is an alternate). The owner is Name (every row) and the owner mailing address is Address1/Address2 with City, State and Zip (the OWNER'S mailing city, state and ZIP: 436 rows read a state other than KY). THE LAYER HAS NO SITUS COLUMN: no field carries the property's street address, so an address search cannot match here and the situs_address capability reads not published. It does carry TAXABLE, FAIRCASH, Land, Improvemen and LandFCV values, ACRES, CLASS and the tax, fire and magisterial districts. The layer's description is only 'Parcels in Henry County Kentucky'; no terms are published. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (150 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-montgomery",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Montgomery",
+      "countySlug": "montgomery-county",
+      "countyFips": "21173",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/aaZhjjkUqOHS7oRg/arcgis/rest/services/Montgomery_Parcels/FeatureServer/132",
+          "serviceType": "FeatureServer",
+          "layerIndex": 132,
+          "layerName": "MoCoStructureDateParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Location",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Address1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "Address2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Zip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "LANDUSE",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "Descriptio",
+              "label": "Property Class Description",
+              "searchable": false
+            },
+            {
+              "name": "YearConstr",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/aaZhjjkUqOHS7oRg/arcgis/rest/services/Montgomery_Parcels/FeatureServer/132/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,Name,Location,Address1,City&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Gateway Area Development District (110 Lake Park Drive, Morehead KY 40351, 606-780-0090)",
+        "url": null,
+        "email": null
+      },
+      "notes": "Montgomery County, Kentucky (Mount Sterling; FIPS 21173). MoCoStructureDateParcels, layer 132 of the Montgomery_Parcels FeatureServer on the Gateway Area Development District's ArcGIS Online organisation (110 Lake Park Drive, Morehead KY 40351, 606-780-0090); the service description reads 'Montgomery County PVA Parcels': 12,737 parcels, maxRecordCount 2,000, pagination on, State Plane feet with wkid 2246 (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The layer was last edited 2025-07-21. The parcel id is PARCEL_ID (ID and MUID are alternates). The owner is Name (every row), Location is the situs, and the owner mailing address is Address1/Address2 with City, State and Zip (the OWNER'S mailing city, state and ZIP, not the situs: 622 rows read a state other than KY). YearConstr is the year a structure was built. The layer index is unusually high (132) because it sits beside a copy named Montgomery_Parcels_view that exposes only FID; use layer 132. No terms are published. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (103 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-meade",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Meade",
+      "countySlug": "meade-county",
+      "countyFips": "21163",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/ufOeQWjwz5JyJXKQ/arcgis/rest/services/Meade_Co_KY_Addresses_Roads_Lot_Lines_WFL1/FeatureServer/5",
+          "serviceType": "FeatureServer",
+          "layerIndex": 5,
+          "layerName": "Parcel Owner",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Location",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Address1",
+              "label": "Owner Mailing Address 1",
+              "searchable": false
+            },
+            {
+              "name": "Address2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Zip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "LANDUSE",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "Descriptio",
+              "label": "Property Class Description",
+              "searchable": false
+            },
+            {
+              "name": "Year",
+              "label": "Assessment Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/ufOeQWjwz5JyJXKQ/arcgis/rest/services/Meade_Co_KY_Addresses_Roads_Lot_Lines_WFL1/FeatureServer/5/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_ID,Name,Location,Address1,City&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Meade County E911",
+        "url": null,
+        "email": null
+      },
+      "notes": "Meade County, Kentucky (Brandenburg; FIPS 21163). 'Parcel Owner', layer 5 of Meade_Co_KY_Addresses_Roads_Lot_Lines_WFL1, a FeatureServer on the Meade County E911 office's ArcGIS Online organisation: 16,147 parcels, maxRecordCount 2,000, pagination on, Web Mercator (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The layer was last edited 2026-09-07. THE _WFL1 SUFFIX IS PART OF THE SERVICE NAME: the same service without it, which the state's catalogue lists, answers 'Invalid URL'. The parcel id is Parcel_ID (PIDN is the same value in another format). The owner is Name (every row), Location is the situs, and the owner mailing address is Address1/Address2 with City, State and Zip (the OWNER'S mailing city, state and ZIP, not the situs: 1,113 rows read a state other than KY). The layer sits inside an addresses-and-roads service, so layer numbers there are not parcel layers. No terms are published. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (174 rows).",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "available",
+          "basis": {
+            "type": "statute",
+            "note": "Kentucky law lets judges (KRS 61.7991) and people in the Safe at Home program (KRS 14.304) have their home address withheld. This layer shows only what the county publishes, including any owner the county has withheld; some appear as CONFIDENTIAL. UrbanKit Studio follows federal law and the law of every state we cover. Judges and Safe at Home participants who send written notice have their parcel withheld from every UrbanKit surface. Safe at Home participants can send written notice to contact@urbankitstudio.com.",
+            "citation": "KRS 61.7991; KRS 14.304",
+            "sourceUrl": "https://apps.legislature.ky.gov/LAW/STATUTES/statute.aspx?id=56515"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-jefferson",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Jefferson",
+      "countySlug": "jefferson-county",
+      "countyFips": "21111",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataPVA/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Jefferson County KY Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "LRSN",
+              "label": "LRSN (land record serial number)",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL_TYPE",
+              "label": "Parcel Type",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataPVA/MapServer/1/query?where=1%3D1&outFields=PARCELID,LRSN,PARCEL_TYPE&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Louisville/Jefferson County Information Consortium (LOJIC)",
+        "url": null,
+        "email": null
+      },
+      "notes": "Jefferson County, Kentucky (Louisville; FIPS 21111; the county is consolidated with Louisville Metro). 'Jefferson County KY Parcels', layer 1 of LojicSolutions/OpenDataPVA on the Louisville/Jefferson County Information Consortium (LOJIC) server: 293,248 parcel polygons, maxRecordCount 2,000, pagination on, State Plane feet (outSR=4326 works), CORS reflects the request Origin. The layer carries only PARCELID (293,217 rows), LRSN, PARCEL_TYPE and the polygon; its PIN column is empty on every row, and there is no owner, situs, mailing, value or sale column. Owner names are not published on this layer, so owner_name is recorded as not published. WHY THIS LAYER AND NOT METRO'S: Louisville Metro's New_AllParcels FeatureServer (services1.arcgis.com/79kfd2K6fskCAkyg, 289,963 rows) adds an Address and a property class, but its last edit is 2017-01-10 and its backing item (titled 'Commercial Parcels') was last modified in 2017, so it is a nine-year-old snapshot; LOJIC's layer is the consortium's own open-data parcel layer. The LojicData folder on the same server needs a token. No terms are published on the service. Verified 2026-10-09 by a count, field list and fill counts.",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "LOJIC's open-data parcel layer for Jefferson County carries a parcel id, a land record serial number and a parcel type only; it has no owner-name column, and the other Jefferson parcel service we found (Louisville Metro's New_AllParcels) carries an address and property class but no owner either.",
+            "sourceUrl": "https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataPVA/MapServer/1"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-madison",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Madison",
+      "countySlug": "madison-county",
+      "countyFips": "21151",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://arcserver.madisoncountyky.us/arcgis/rest/services/County_Web_Maps/County_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "Parcel_ID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "Acres",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "District",
+              "label": "District",
+              "searchable": false
+            },
+            {
+              "name": "Zoning",
+              "label": "Zoning District",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://arcserver.madisoncountyky.us/arcgis/rest/services/County_Web_Maps/County_Parcels/MapServer/1/query?where=1%3D1&outFields=Parcel_ID,Acres,District,Zoning&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Madison County Fiscal Court GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "Madison County, Kentucky (Richmond, Berea; FIPS 21151). Parcels, layer 1 of County_Web_Maps/County_Parcels on arcserver.madisoncountyky.us (Madison County Fiscal Court GIS): 39,129 parcels, maxRecordCount 1,000, pagination on, State Plane feet (outSR=4326 works), CORS reflects the request Origin. The layer carries Parcel_ID (every row), Map, Block, Parcel, Acres, District, Zoning and Comment, and no owner, situs, mailing, value or sale column. Owner names are not published on this layer, so owner_name is recorded as not published. A Parcels_2024 MapServer on the same host also exists and is not used. No terms are published. Verified 2026-10-09 by a count, field list and fill counts.",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "Madison County's public parcel layer carries a parcel id, acreage, district and zoning only; it has no owner-name column, and no other parcel service we found for the county publishes one.",
+            "sourceUrl": "https://arcserver.madisoncountyky.us/arcgis/rest/services/County_Web_Maps/County_Parcels/MapServer/1"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-oldham",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Oldham",
+      "countySlug": "oldham-county",
+      "countyFips": "21185",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/4eBIYcSR3sVL9y0D/arcgis/rest/services/Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/4eBIYcSR3sVL9y0D/arcgis/rest/services/Parcels/FeatureServer/0/query?where=1%3D1&outFields=PARCELID,ACRES&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Oldham County GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "Oldham County, Kentucky (La Grange; FIPS 21185). Parcels, layer 0 of a FeatureServer on the Oldham County GIS ArcGIS Online organisation: 27,271 parcel polygons, maxRecordCount 1,000, pagination on, Web Mercator (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The layer was last edited 2026-08-28. It carries PARCELID (27,088 rows), ACRES, AREA, PERIMETER and voting and magisterial attributes (POLLING_ID, Voting_Loc, M_DIST), and no owner, situs, mailing, value or sale column. Owner names are not published on this layer, so owner_name is recorded as not published. No terms are published. Verified 2026-10-09 by a count, field list and fill counts.",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "Oldham County's public parcel layer carries a parcel id, acreage and voting-district attributes only; it has no owner-name column, and no other parcel service we found for the county publishes one.",
+            "sourceUrl": "https://services5.arcgis.com/4eBIYcSR3sVL9y0D/arcgis/rest/services/Parcels/FeatureServer/0"
+          }
+        }
+      }
+    },
+    {
+      "id": "ky-henderson",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Henderson",
+      "countySlug": "henderson-county",
+      "countyFips": "21101",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/Iwwqwcdc5CWG2jt9/arcgis/rest/services/Parcels_web/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels_web",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIDN",
+              "label": "Parcel ID (PIDN)",
+              "searchable": true
+            },
+            {
+              "name": "LOCATION",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "ZONE_",
+              "label": "Zoning District",
+              "searchable": false
+            },
+            {
+              "name": "GIS_ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "SUBDIV",
+              "label": "Subdivision",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.arcgis.com/Iwwqwcdc5CWG2jt9/arcgis/rest/services/Parcels_web/FeatureServer/0/query?where=1%3D1&outFields=PIDN,LOCATION,ZONE_,GIS_ACRES&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-09",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Henderson County GIS",
+        "url": null,
+        "email": null
+      },
+      "notes": "Henderson County, Kentucky (Henderson; FIPS 21101). Parcels_web, layer 0 of a FeatureServer on the Henderson County GIS ArcGIS Online organisation: 22,825 parcels, maxRecordCount 2,000, pagination on, State Plane feet (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The layer was last edited 2025-03-21. It carries PIDN (22,820 rows), LOCATION (the situs, 22,816 rows), ZONE_ and ZONE_DESCR (zoning), SUBDIV, LOT_NUM, TAX_DIST and GIS_ACRES. BUS_NAME is a business name on a zoning record (1,508 rows), NOT an owner, and the ASSESSMENT column is empty on every row. There is no owner, mailing, value or sale column, so owner_name is recorded as not published. The county's catalogue entry parcels220525/FeatureServer/2 answers 'Invalid URL' and is not used. No terms are published. Verified 2026-10-09 by a count, field list and fill counts.",
+      "addedAt": "2026-10-09",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "Henderson County's public parcel layer carries a parcel id, situs address, zoning and acreage only; its BUS_NAME column is a business name on a zoning record, not an owner, and the layer has no owner-name column.",
+            "sourceUrl": "https://services.arcgis.com/Iwwqwcdc5CWG2jt9/arcgis/rest/services/Parcels_web/FeatureServer/0"
+          }
+        }
+      }
     }
   ]
 }

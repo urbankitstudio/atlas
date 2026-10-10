@@ -1,5 +1,56 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.22 — 2026-10-10
+
+New counties, no API change, no breaking change. Builds on 0.6.21. `totals`
+move from 257 counties / 268 endpoints to **273 counties / 284 endpoints**
+(266 with a verified endpoint). Kentucky goes from one county to 17: 13 publish
+owner names (Fayette plus 12 new) and 4 are parcel shapes only.
+
+### New counties — Kentucky, with owner names (12)
+
+Boone (21015), Warren (21227), Daviess (21059), McCracken (21145), Clark
+(21049), Shelby (21211), Webster (21233), Franklin (21073), Simpson (21213),
+Henry (21103), Montgomery (21173) and Meade (21163). Each record carries the
+parcel id, the owner name, the owner mailing address, the situs address (Henry
+has none) and the county's other columns as documented `searchFields`, and a
+sample query on the owner column. Every layer answers cross-origin requests.
+
+- **Withheld-address note.** Kentucky law lets judges (KRS 61.7991) and people
+  in the Safe at Home program (KRS 14.304) have their home address withheld, so
+  a county may blank an owner or label it `CONFIDENTIAL`. Each of the 12 records
+  carries `capabilityOverrides.owner_name` and `owner_mailing_address` as
+  `available` with a `statute` basis whose `note` says so, cites both statutes
+  and names the address where a Safe at Home participant can send written
+  notice, and says that judges and participants who send written notice have
+  their parcel withheld from every UrbanKit surface. (The hosted API and MCP
+  now serve a row with a county redaction marker in its owner, mailing or situs
+  value as owner, mailing and situs null with `withheld: "county-redacted"`,
+  keeping only the request fields and the parcel id; the package ships only the
+  registry. A row withheld on written notice, `withheld: "notice-suppressed"`,
+  is not charged; on `radius_owners` / `POST /api/atlas/radius`, which bill per
+  row that carries an owner or mailing address, a county-redacted row is not
+  charged either.) Read it with `reviewedCapability(county, "owner_name")`. These
+  counties are `available`, not `restricted`.
+- **Franklin** publishes a 2019 snapshot (its newest `Year` is 2019); its
+  record carries a `dataVintage` advisory that says so.
+- **Simpson**'s layer states "Data is not to be used for legal purposes"; the
+  `notes` quote it. Its mailing street is `Address__1` (`Address_Li` is a
+  second line used on 66 rows).
+- **Meade**'s service name ends in `_WFL1`, and that suffix is required.
+- In the Shelby, Franklin, McCracken, Webster, Henry, Montgomery, Meade and
+  Simpson layers the plain `City`, `State` and `Zip` columns are the OWNER'S
+  mailing city, state and ZIP, not the situs; the labels say so.
+
+### New counties — Kentucky, parcel shapes only (4)
+
+Jefferson (21111, LOJIC's open-data layer), Madison (21151), Oldham (21185)
+and Henderson (21101). Their layers carry a parcel id and geometry (Henderson
+also a situs address) and no owner column, so each records `owner_name` as
+`not_published` on an `endpoint_schema` basis. Jefferson's record uses LOJIC's
+current layer rather than Louisville Metro's `New_AllParcels`, which has an
+address and a property class but was last edited in 2017.
+
 ## 0.6.21 — 2026-10-08
 
 Three demanded counties, no API change, no breaking change. `totals` move to

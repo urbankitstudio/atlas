@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-08",
+  "lastUpdated": "2026-10-09",
   "totals": {
     "states": 51,
-    "counties": 257,
-    "endpoints": 268,
-    "countiesWithEndpoint": 250,
+    "counties": 273,
+    "endpoints": 284,
+    "countiesWithEndpoint": 266,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -149,8 +149,8 @@
       "slug": "kentucky",
       "name": "Kentucky",
       "abbrev": "KY",
-      "countyCount": 1,
-      "endpointCount": 1,
+      "countyCount": 17,
+      "endpointCount": 17,
       "populated": true
     },
     {
