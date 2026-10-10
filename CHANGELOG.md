@@ -1,5 +1,25 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.25 — 2026-10-10
+
+New counties, no API change, no breaking change. `totals` move from 280
+counties / 291 endpoints to **286 counties / 297 endpoints** (279 with a
+verified endpoint). All six sit on the Arkansas GIS Office statewide parcel
+layer, one registration per county scoped by `countyfips`, and none of them
+publishes a mailing address (the layer has no mailing field).
+
+### New counties
+
+- **Clay AR (05021)**, requested by a visitor through the county-request form.
+  16,324 parcels, owner populated on every row, situs on 69%.
+- **Saline AR (05125)**, 80,143 parcels, situs on 96%.
+- **Garland AR (05051)**, 76,870 parcels, situs on 99%.
+- **Faulkner AR (05045)**, 66,634 parcels, situs on 88%.
+- **Sebastian AR (05131)**, 60,283 parcels, situs on 91%.
+- **Craighead AR (05031)**, 54,896 parcels, situs on 87%.
+
+Arkansas goes from 3 to 9 counties.
+
 ## 0.6.24 — 2026-10-10
 
 New counties, no API change, no breaking change. `totals` move from 277

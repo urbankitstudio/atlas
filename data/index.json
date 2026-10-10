@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-10",
   "totals": {
     "states": 51,
-    "counties": 280,
-    "endpoints": 291,
-    "countiesWithEndpoint": 273,
+    "counties": 286,
+    "endpoints": 297,
+    "countiesWithEndpoint": 279,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -37,8 +37,8 @@
       "slug": "arkansas",
       "name": "Arkansas",
       "abbrev": "AR",
-      "countyCount": 3,
-      "endpointCount": 3,
+      "countyCount": 9,
+      "endpointCount": 9,
       "populated": true
     },
     {

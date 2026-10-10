@@ -2,7 +2,7 @@
   "stateSlug": "arkansas",
   "stateName": "Arkansas",
   "stateAbbrev": "AR",
-  "lastUpdated": "2026-06-20",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "ar-pulaski",
@@ -273,6 +273,546 @@
         "email": null
       },
       "notes": "Washington County AR (Fayetteville metro; county seat Fayetteville; FIPS 05143; home to University of Arkansas) is served by the Arkansas statewide parcel layer. Filter countyfips='143' to scope to Washington County. Same schema and endpoint as Pulaski and Benton counties (AR statewide FeatureServer/6). Washington County AR must not be confused with Washington County in other states. Verified 2026-06-20: SMITH query returns Fayetteville-area addresses. 2026-10-03: the state changed countyfips from the 5-digit state+county FIPS to the 3-digit county code, so the old scope countyfips='05143' matched 0 rows and every attribute search here returned nothing without an error; countyfips='143' counts 114,791 rows, and the scope and sampleQuery now use it (SMITH returns SMITH, ANNE B, 601 N HIGHLAND AVE)."
+    },
+    {
+      "id": "ar-clay",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Clay",
+      "countySlug": "clay-county",
+      "countyFips": "05021",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (021 = Clay)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'021'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyfips = '021'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Clay County AR (northeast Arkansas on the Missouri line; county seats Piggott and Corning; FIPS 05021) is served by the Arkansas statewide parcel layer. Filter countyfips='021' to scope to Clay County. Same schema and endpoint as Pulaski, Benton and Washington counties (AR statewide FeatureServer/6). Verified 2026-10-10: countyfips='021' counts 16,324 rows with ownername populated on over 99.9% of them, and an owner-name SMITH search returns Clay County rows. The layer carries no mailing-address field, only situs components (adrnum, pstrnam, adrcity, adrzip5, adrlabel). The statewide layer is compiled from county assessor data and may lag 6-12 months from deed recording."
+    },
+    {
+      "id": "ar-saline",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Saline",
+      "countySlug": "saline-county",
+      "countyFips": "05125",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (125 = Saline)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'125'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyfips = '125'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Saline County AR (Little Rock metro southwest; county seat Benton; Bryant is the largest city; FIPS 05125) is served by the Arkansas statewide parcel layer. Filter countyfips='125' to scope to Saline County. Same schema and endpoint as Pulaski, Benton and Washington counties (AR statewide FeatureServer/6). Verified 2026-10-10: countyfips='125' counts 80,143 rows with ownername populated on over 99.9% of them, and an owner-name SMITH search returns Saline County rows. The layer carries no mailing-address field, only situs components (adrnum, pstrnam, adrcity, adrzip5, adrlabel). The statewide layer is compiled from county assessor data and may lag 6-12 months from deed recording."
+    },
+    {
+      "id": "ar-garland",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Garland",
+      "countySlug": "garland-county",
+      "countyFips": "05051",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (051 = Garland)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'051'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyfips = '051'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Garland County AR (Hot Springs; county seat Hot Springs; FIPS 05051) is served by the Arkansas statewide parcel layer. Filter countyfips='051' to scope to Garland County. Same schema and endpoint as Pulaski, Benton and Washington counties (AR statewide FeatureServer/6). Verified 2026-10-10: countyfips='051' counts 76,870 rows with ownername populated on over 99.9% of them, and an owner-name SMITH search returns Garland County rows. The layer carries no mailing-address field, only situs components (adrnum, pstrnam, adrcity, adrzip5, adrlabel). The statewide layer is compiled from county assessor data and may lag 6-12 months from deed recording."
+    },
+    {
+      "id": "ar-faulkner",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Faulkner",
+      "countySlug": "faulkner-county",
+      "countyFips": "05045",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (045 = Faulkner)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'045'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyfips = '045'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Faulkner County AR (Conway; county seat Conway; FIPS 05045) is served by the Arkansas statewide parcel layer. Filter countyfips='045' to scope to Faulkner County. Same schema and endpoint as Pulaski, Benton and Washington counties (AR statewide FeatureServer/6). Verified 2026-10-10: countyfips='045' counts 66,634 rows with ownername populated on over 99.9% of them, and an owner-name SMITH search returns Faulkner County rows. The layer carries no mailing-address field, only situs components (adrnum, pstrnam, adrcity, adrzip5, adrlabel). The statewide layer is compiled from county assessor data and may lag 6-12 months from deed recording."
+    },
+    {
+      "id": "ar-sebastian",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Sebastian",
+      "countySlug": "sebastian-county",
+      "countyFips": "05131",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (131 = Sebastian)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'131'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyfips = '131'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Sebastian County AR (Fort Smith; county seats Fort Smith and Greenwood; FIPS 05131) is served by the Arkansas statewide parcel layer. Filter countyfips='131' to scope to Sebastian County. Same schema and endpoint as Pulaski, Benton and Washington counties (AR statewide FeatureServer/6). Verified 2026-10-10: countyfips='131' counts 60,283 rows with ownername populated on over 99.9% of them, and an owner-name SMITH search returns Sebastian County rows. The layer carries no mailing-address field, only situs components (adrnum, pstrnam, adrcity, adrzip5, adrlabel). The statewide layer is compiled from county assessor data and may lag 6-12 months from deed recording."
+    },
+    {
+      "id": "ar-craighead",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Craighead",
+      "countySlug": "craighead-county",
+      "countyFips": "05031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (031 = Craighead)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'031'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyfips = '031'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Craighead County AR (Jonesboro; county seat Jonesboro; FIPS 05031) is served by the Arkansas statewide parcel layer. Filter countyfips='031' to scope to Craighead County. Same schema and endpoint as Pulaski, Benton and Washington counties (AR statewide FeatureServer/6). Verified 2026-10-10: countyfips='031' counts 54,896 rows with ownername populated on over 99.9% of them, and an owner-name SMITH search returns Craighead County rows. The layer carries no mailing-address field, only situs components (adrnum, pstrnam, adrcity, adrzip5, adrlabel). The statewide layer is compiled from county assessor data and may lag 6-12 months from deed recording."
     }
   ]
 }
