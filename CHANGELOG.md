@@ -1,5 +1,47 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.27 — 2026-10-10
+
+New counties and a New York outage fix, no API change, no breaking change. `totals` move from 294
+counties / 305 endpoints to **303 counties / 322 endpoints** (296 with a
+verified endpoint). Each new county sits on a statewide layer the atlas already
+carries, one registration per county scoped by that layer's county field:
+the NC OneMap parcel aggregation (`cntyname`, as Forsyth and Montgomery use),
+the Montana cadastral layer (`CountyName`, as Yellowstone uses) and the WVU
+parcel layer (`COUNTY`, the state's alphabetical code, as Kanawha uses).
+
+### New counties
+
+- **New Hanover NC (37129)**, 103,489 parcels, owner on 99.8%.
+- **Iredell NC (37097)**, 109,254 parcels. The site city is blank on every row.
+- **Union NC (37179)**, 117,539 parcels. The site city is blank on every row.
+- **Onslow NC (37133)**, 95,297 parcels.
+- **Johnston NC (37101)**, 125,583 parcels. 68 owner rows carry an asterisk
+  on a real name.
+- **Brunswick NC (37019)**, 151,753 parcels, situs on 85%. The site city is
+  blank on every row.
+- **Gallatin MT (30031)**, 53,618 parcels, TaxYear 2026, situs on 83.7%.
+- **Berkeley WV (54003, code `02`)**, 62,652 parcels, situs on 98.3%.
+- **Wood WV (54107, code `54`)**, 58,263 parcels. 263 mailing addresses are
+  masked with asterisks.
+
+NC rows carry no reliable per-county date (`revisedate` is null and the layer
+publishes no editing info). West Virginia's layer says it was updated for Tax
+Year 2023. North Carolina goes from 9 to 15 counties, Montana from 4 to 5 and
+West Virginia from 4 to 6.
+
+### New York outage fix
+
+The state parcel server (`gisservices.its.ny.gov`) has hung on every query
+since about 2026-10-09 16:00-18:00Z. Eight New York records gain the official
+NYSGIS mirror of the same layer on ArcGIS Online (`services6.arcgis.com`,
+FeatureServer/1, 2025 roll, last edited 2026-09-25, open CORS). Onondaga,
+Suffolk and Westchester list the mirror first and keep the state endpoint
+second; the five NYC boroughs list it third, behind MapPLUTO and the state
+endpoint. Counties do not change, so only the endpoint total moves (+8).
+The mirror carries no mailing address for the boroughs. A real owner name and
+street address in the Onondaga note was replaced with a generic description.
+
 ## 0.6.26 — 2026-10-10
 
 New counties, no API change, no breaking change. `totals` move from 286

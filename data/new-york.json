@@ -87,6 +87,73 @@
           "scopeWhere": "Borough='BX'"
         },
         {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=(COUNTY_NAME%3D'Bronx')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Bronx'"
+        },
+        {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
           "layerIndex": 1,
@@ -159,7 +226,7 @@
         "url": "https://nycplanning.github.io/db-pluto/",
         "email": null
       },
-      "notes": "the Bronx is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='BX' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+      "notes": "the Bronx is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='BX' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the official NYSGIS mirror is listed second, ahead of the state server, and the state server is last (endpoint order is MapPLUTO, then the mirror, then the state server; paid enrich and radius fail over in array order under a wall-clock budget, so a hung server listed earlier would burn the budget before the mirror was reached): the mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='Bronx' counts 89,229 rows, owner populated on 99.9%, situs on 99.9% and mailing on 0% (the mirror carries no mailing address for the five boroughs), and a scoped owner SMITH search returning 10 rows answered in 0.2 s. Keep every query on the mirror scoped by COUNTY_NAME or spatial."
     },
     {
       "id": "ny-erie",
@@ -353,6 +420,73 @@
           "scopeWhere": "Borough='BK'"
         },
         {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=COUNTY_NAME%3D'Kings'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Kings'"
+        },
+        {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
           "layerIndex": 1,
@@ -425,7 +559,7 @@
         "url": "https://nycplanning.github.io/db-pluto/",
         "email": null
       },
-      "notes": "Brooklyn is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='BK' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+      "notes": "Brooklyn is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='BK' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the official NYSGIS mirror is listed second, ahead of the state server, and the state server is last (endpoint order is MapPLUTO, then the mirror, then the state server; paid enrich and radius fail over in array order under a wall-clock budget, so a hung server listed earlier would burn the budget before the mirror was reached): the mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='Kings' counts 275,680 rows, owner populated on 100.0%, situs on 100.0% and mailing on 0% (the mirror carries no mailing address for the five boroughs), and a scoped owner SMITH search returning 10 rows answered in 0.9 s. Keep every query on the mirror scoped by COUNTY_NAME or spatial."
     },
     {
       "id": "ny-monroe",
@@ -614,6 +748,73 @@
           "scopeWhere": "Borough='MN'"
         },
         {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=(COUNTY_NAME%3D'NewYork')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='NewYork'"
+        },
+        {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
           "layerIndex": 1,
@@ -686,7 +887,7 @@
         "url": "https://nycplanning.github.io/db-pluto/",
         "email": null
       },
-      "notes": "New York County (FIPS 36061) is the formal name for the borough of Manhattan, but both endpoints below cover ALL FIVE NYC boroughs. Use either to query Brooklyn (Kings, 36047), Queens (36081), Bronx (36005), or Staten Island (Richmond, 36085). MAPPLUTO (96 fields) is the DCP-maintained primary source: BBL as the unique identifier, OwnerName, full zoning (ZoneDist1-4, overlays, FAR), building characteristics, political geography. Filter MAPPLUTO by Borough field with codes MN/BX/BK/QN/SI. The NYS Tax Parcels service (75+ fields) covers all 62 NY counties, filter by COUNTY_NAME='Kings'/'Queens'/'New York'/'Bronx'/'Richmond' for NYC boroughs, or any upstate county name for statewide reach."
+      "notes": "New York County (FIPS 36061) is the formal name for the borough of Manhattan, but all three endpoints below cover ALL FIVE NYC boroughs (MAPPLUTO, the NYSGIS mirror and the state server). Use any of them to query Brooklyn (Kings, 36047), Queens (36081), Bronx (36005), or Staten Island (Richmond, 36085). MAPPLUTO (96 fields) is the DCP-maintained primary source: BBL as the unique identifier, OwnerName, full zoning (ZoneDist1-4, overlays, FAR), building characteristics, political geography. Filter MAPPLUTO by Borough field with codes MN/BX/BK/QN/SI. The NYS Tax Parcels service (75+ fields) covers all 62 NY counties, filter by COUNTY_NAME='Kings'/'Queens'/'New York'/'Bronx'/'Richmond' for NYC boroughs, or any upstate county name for statewide reach. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the official NYSGIS mirror is listed second, ahead of the state server, and the state server is last (endpoint order is MapPLUTO, then the mirror, then the state server; paid enrich and radius fail over in array order under a wall-clock budget, so a hung server listed earlier would burn the budget before the mirror was reached): the mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='NewYork' counts 42,061 rows, owner populated on 99.9%, situs on 99.9% and mailing on 0% (the mirror carries no mailing address for the five boroughs), and a scoped owner SMITH search returning 10 rows answered in 1.0 s. Keep every query on the mirror scoped by COUNTY_NAME or spatial."
     },
     {
       "id": "ny-onondaga",
@@ -698,6 +899,73 @@
       "countyFips": "36067",
       "hasPublicRest": true,
       "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (e.g. Onondaga)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=COUNTY_NAME%3D'Onondaga'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Onondaga'"
+        },
         {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
@@ -771,7 +1039,7 @@
         "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
         "email": null
       },
-      "notes": "Onondaga County (Syracuse, FIPS 36067) is served by the NYS Tax Parcels Public statewide layer, filter with COUNTY_NAME='Onondaga'. 75+ fields including PRIMARY_OWNER, PARCEL_ADDR, SWIS_SBL_ID, PRINT_KEY, MAIL_ADDR, MAIL_CITY, TOTAL_AV, PROP_CLASS, YR_BLT. Owner query confirmed returning real residential parcels (Smith, Gregg S at 2647 Ellsworth Rd). This same statewide endpoint covers all 62 NY counties; see the NYC entry for borough-specific filtering. Note: Monroe County (Rochester, 36055) has its own dedicated hosted service with richer attributes, see ny-monroe entry. The NYS statewide service may not always return Monroe data; use the dedicated Monroe endpoint for that county.",
+      "notes": "Onondaga County (Syracuse, FIPS 36067) is served by the NYS Tax Parcels Public statewide layer, filter with COUNTY_NAME='Onondaga'. 75+ fields including PRIMARY_OWNER, PARCEL_ADDR, SWIS_SBL_ID, PRINT_KEY, MAIL_ADDR, MAIL_CITY, TOTAL_AV, PROP_CLASS, YR_BLT. A sample owner search returns residential parcels. This same statewide endpoint covers all 62 NY counties; see the NYC entry for borough-specific filtering. Note: Monroe County (Rochester, 36055) has its own dedicated hosted service with richer attributes, see ny-monroe entry. The NYS statewide service may not always return Monroe data; use the dedicated Monroe endpoint for that county. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the first endpoint is now the official NYSGIS mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='Onondaga' counts 181,909 rows, owner populated on 100.0%, situs on 100.0% and mailing on 97.0%, and a scoped owner SMITH search returning 10 rows answered in 1.1 s. Owner reads 'Unknown' on 10 rows, a placeholder rather than a name. The original state endpoint stays second for when it recovers; a where-only one-row query on it took 28.6 s on Onondaga before it stopped answering, so keep every query scoped by COUNTY_NAME or spatial.",
       "ownerFieldNote": null,
       "capabilityOverrides": null
     },
@@ -858,6 +1126,73 @@
           "scopeWhere": "Borough='QN'"
         },
         {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=(COUNTY_NAME%3D'Queens')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Queens'"
+        },
+        {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
           "layerIndex": 1,
@@ -930,7 +1265,7 @@
         "url": "https://nycplanning.github.io/db-pluto/",
         "email": null
       },
-      "notes": "Queens is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='QN' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+      "notes": "Queens is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='QN' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the official NYSGIS mirror is listed second, ahead of the state server, and the state server is last (endpoint order is MapPLUTO, then the mirror, then the state server; paid enrich and radius fail over in array order under a wall-clock budget, so a hung server listed earlier would burn the budget before the mirror was reached): the mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='Queens' counts 324,164 rows, owner populated on 100.0%, situs on 100.0% and mailing on 0% (the mirror carries no mailing address for the five boroughs), and a scoped owner SMITH search returning 10 rows answered in 1.5 s. Owner reads 'UNKNOWN' on 14 rows, 'NO OWNER' on 1 and 'UNAVAILABLE' on 1, placeholders rather than names. Keep every query on the mirror scoped by COUNTY_NAME or spatial."
     },
     {
       "id": "ny-richmond",
@@ -1015,6 +1350,73 @@
           "scopeWhere": "Borough='SI'"
         },
         {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (Kings/Queens/New York/Bronx/Richmond)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=(COUNTY_NAME%3D'Richmond')+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Richmond'"
+        },
+        {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
           "layerIndex": 1,
@@ -1087,7 +1489,7 @@
         "url": "https://nycplanning.github.io/db-pluto/",
         "email": null
       },
-      "notes": "Staten Island is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='SI' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already."
+      "notes": "Staten Island is served by the same citywide MAPPLUTO layer as the other four boroughs; the registry scopes this county to Borough='SI' so an owner search here does not return another borough's parcels. Address lookups are scoped by geography already. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the official NYSGIS mirror is listed second, ahead of the state server, and the state server is last (endpoint order is MapPLUTO, then the mirror, then the state server; paid enrich and radius fail over in array order under a wall-clock budget, so a hung server listed earlier would burn the budget before the mirror was reached): the mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='Richmond' counts 125,536 rows, owner populated on 100.0%, situs on 100.0% and mailing on 0% (the mirror carries no mailing address for the five boroughs), and a scoped owner SMITH search returning 10 rows answered in 3.6 s. Keep every query on the mirror scoped by COUNTY_NAME or spatial."
     },
     {
       "id": "ny-schenectady",
@@ -1186,6 +1588,103 @@
       "countyFips": "36103",
       "hasPublicRest": true,
       "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name, filter with 'Suffolk'",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ADD_OWNER",
+              "label": "Additional Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key (tax map reference)",
+              "searchable": true
+            },
+            {
+              "name": "MUNI_NAME",
+              "label": "Municipality Name",
+              "searchable": false
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ZIP",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "FULL_MARKET_VAL",
+              "label": "Full Market Value",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "ACRES",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "NBR_BEDROOMS",
+              "label": "Bedrooms",
+              "searchable": false
+            },
+            {
+              "name": "SCHOOL_NAME",
+              "label": "School District Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=COUNTY_NAME%3D'Suffolk'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID,MUNI_NAME,TOTAL_AV&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Suffolk'"
+        },
         {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
@@ -1289,7 +1788,7 @@
         "url": "https://www.its.ny.gov/gis",
         "email": null
       },
-      "notes": "75+ fields confirmed. This is the same NYS Tax Parcels Public statewide endpoint used for New York County (Manhattan), filter by COUNTY_NAME='Suffolk' for Suffolk County. Suffolk is the most populous county on Long Island (~1.5M residents). SWIS_SBL_ID is the canonical parcel identifier (26-character SWIS + SBL concatenation); PRINT_KEY is the human-readable tax map reference (e.g. '1.-1-1'). PRIMARY_OWNER is the assessed owner. Note the NYC-area MAPPLUTO endpoint does NOT cover Suffolk. That endpoint is for the five NYC boroughs only. This statewide layer has 75+ attributes including assessed values, market values, year built, building style, heat/fuel type, bedrooms, school district, sewer/water type. Data is the annual NYS Real Property System roll export updated each September/October. ROLL_YR=2025 confirmed in live query results. Municipalities within Suffolk include Babylon, Brookhaven, East Hampton, Huntington, Islip, Riverhead, Shelter Island, Smithtown, Southampton, Southold, all accessible via the same COUNTY_NAME='Suffolk' filter.",
+      "notes": "75+ fields confirmed. This is the same NYS Tax Parcels Public statewide endpoint used for New York County (Manhattan), filter by COUNTY_NAME='Suffolk' for Suffolk County. Suffolk is the most populous county on Long Island (~1.5M residents). SWIS_SBL_ID is the canonical parcel identifier (26-character SWIS + SBL concatenation); PRINT_KEY is the human-readable tax map reference (e.g. '1.-1-1'). PRIMARY_OWNER is the assessed owner. Note the NYC-area MAPPLUTO endpoint does NOT cover Suffolk. That endpoint is for the five NYC boroughs only. This statewide layer has 75+ attributes including assessed values, market values, year built, building style, heat/fuel type, bedrooms, school district, sewer/water type. Data is the annual NYS Real Property System roll export updated each September/October. ROLL_YR=2025 confirmed in live query results. Municipalities within Suffolk include Babylon, Brookhaven, East Hampton, Huntington, Islip, Riverhead, Shelter Island, Smithtown, Southampton, Southold, all accessible via the same COUNTY_NAME='Suffolk' filter. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the first endpoint is now the official NYSGIS mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='Suffolk' counts 586,600 rows, owner populated on 99.0%, situs on 99.1% and mailing on 96.7%, and a scoped owner SMITH search returning 10 rows answered in 2.7 s. Owner reads 'UNKNOWN OWNER' on 84 rows and 'UNKNOWN' on 27, placeholders rather than names. The original state endpoint stays second for when it recovers; a where-only one-row query on it took 28.6 s on Onondaga before it stopped answering, so keep every query scoped by COUNTY_NAME or spatial.",
       "ownerFieldNote": null,
       "capabilityOverrides": null
     },
@@ -1303,6 +1802,88 @@
       "countyFips": "36119",
       "hasPublicRest": true,
       "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name, filter with 'Westchester'",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ADD_OWNER",
+              "label": "Additional Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key (tax map reference)",
+              "searchable": true
+            },
+            {
+              "name": "MUNI_NAME",
+              "label": "Municipality Name",
+              "searchable": false
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "FULL_MARKET_VAL",
+              "label": "Full Market Value",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "SCHOOL_NAME",
+              "label": "School District Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=COUNTY_NAME%3D'Westchester'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID,MUNI_NAME,TOTAL_AV&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Westchester'"
+        },
         {
           "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
           "serviceType": "MapServer",
@@ -1391,7 +1972,7 @@
         "url": "https://www.its.ny.gov/gis",
         "email": null
       },
-      "notes": "75+ fields confirmed. Same NYS Tax Parcels Public statewide endpoint as New York County (Manhattan) and Suffolk County, filter by COUNTY_NAME='Westchester'. Westchester is the most affluent large county in the lower Hudson Valley (~1M residents), and a high-search-intent county for public notice tools. PRIMARY_OWNER is the assessed owner name. Municipalities within Westchester accessible via this layer include Yonkers, White Plains, New Rochelle, Mount Vernon, Scarsdale, Ardsley, Tarrytown, Port Chester, Mamaroneck, and 35+ other cities/towns/villages, all filtered by COUNTY_NAME='Westchester'. Data is NYS RPS annual roll export (ROLL_YR=2025 confirmed in live query). The Westchester County GIS portal at gis.westchestergov.com offers a browser-based property viewer but does NOT expose a separate county-run public parcel REST endpoint for owner-name search; the NYS statewide service is the only public REST option. For both Suffolk and Westchester, always pair COUNTY_NAME with the owner query (as shown in sampleQuery) to avoid cross-county false matches in this multi-county statewide layer.",
+      "notes": "75+ fields confirmed. Same NYS Tax Parcels Public statewide endpoint as New York County (Manhattan) and Suffolk County, filter by COUNTY_NAME='Westchester'. Westchester is the most affluent large county in the lower Hudson Valley (~1M residents), and a high-search-intent county for public notice tools. PRIMARY_OWNER is the assessed owner name. Municipalities within Westchester accessible via this layer include Yonkers, White Plains, New Rochelle, Mount Vernon, Scarsdale, Ardsley, Tarrytown, Port Chester, Mamaroneck, and 35+ other cities/towns/villages, all filtered by COUNTY_NAME='Westchester'. Data is NYS RPS annual roll export (ROLL_YR=2025 confirmed in live query). The Westchester County GIS portal at gis.westchestergov.com offers a browser-based property viewer but does NOT expose a separate county-run public parcel REST endpoint for owner-name search; the NYS statewide service is the only public REST option. For both Suffolk and Westchester, always pair COUNTY_NAME with the owner query (as shown in sampleQuery) to avoid cross-county false matches in this multi-county statewide layer. OUTAGE FIX 2026-10-10: the state server (gisservices.its.ny.gov) has hung on every query since about 2026-10-09 16:00-18:00Z, so the first endpoint is now the official NYSGIS mirror of the same layer on ArcGIS Online (services6.arcgis.com, FeatureServer/1, org NYSGIS_GPO): same field names, same COUNTY_NAME filter, 2025 roll, dataLastEditDate 2026-09-25, 1,000 rows per page, CORS open to any origin. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: COUNTY_NAME='Westchester' counts 258,145 rows, owner populated on 99.6%, situs on 99.6% and mailing on 98.6%, and a scoped owner SMITH search returning 10 rows answered in 2.7 s. 3 owner rows carry a redaction marker and the rest of the placeholders read 'UNKNOWN' (8 rows) and 'Unknown Owner' (5). The original state endpoint stays second for when it recovers; a where-only one-row query on it took 28.6 s on Onondaga before it stopped answering, so keep every query scoped by COUNTY_NAME or spatial.",
       "ownerFieldNote": null,
       "capabilityOverrides": null
     },

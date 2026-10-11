@@ -2,7 +2,7 @@
   "stateSlug": "west-virginia",
   "stateName": "West Virginia",
   "stateAbbrev": "WV",
-  "lastUpdated": "2026-08-04",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "wv-kanawha",
@@ -283,6 +283,148 @@
         "email": null
       },
       "notes": "Cabell County WV (Huntington; county seat Huntington; FIPS 54011) uses the statewide WV parcel layer (CountyID='06'). CRITICAL: CountyID is a zero-padded string, use CountyID='06' (with quotes and leading zero). Verified 2026-06-20: SMITH query returns Huntington-area addresses. Same endpoint and schema as all WV counties on the WVU WVGISTC server."
+    },
+    {
+      "id": "wv-berkeley",
+      "state": "WV",
+      "stateName": "West Virginia",
+      "stateSlug": "west-virginia",
+      "county": "Berkeley",
+      "countySlug": "berkeley-county",
+      "countyFips": "54003",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WVParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "CleanParcelID",
+              "label": "Parcel ID (20-digit compound)",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerName",
+              "label": "Full Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "FullPhysicalAddress",
+              "label": "Physical (Situs) Address",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "FullLegalDescription",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "CountyID",
+              "label": "County ID string ('02' = Berkeley)",
+              "searchable": false
+            },
+            {
+              "name": "GISPID",
+              "label": "GIS Parcel ID",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=COUNTY%3D'02'+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mapwv.gov/parcel/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = '02'"
+        }
+      ],
+      "contact": {
+        "department": "WV GIS Technical Center (WVGISTC) / West Virginia University",
+        "url": "https://www.mapwv.gov/",
+        "email": null
+      },
+      "notes": "Berkeley County WV (Martinsburg; FIPS 54003) uses the statewide WV parcel layer hosted by the WV GIS Technical Center (WVGISTC) at WVU (services.wvgis.wvu.edu), the same layer as Kanawha, Monongalia, Raleigh and Cabell. CRITICAL: the county code is the state's own alphabetical number, a zero-padded 2-digit string ('02' for Berkeley, NOT the FIPS digits '003' and NOT an integer); use WHERE COUNTY='02' (or CountyID='02') with quotes. COUNTY and CountyID agree on all 62,652 Berkeley rows. 2026-10-10: 62,652 rows. Owner is populated on 62,022 rows (99.0%), situs on 61,589 (98.3%) and mailing on 62,022 (99.0%). Situs contains MARTINSBURG on 8 rows and PARKERSBURG (a Wood County city) on none; most situs values are the street only, so the city is a weak check. No owner, situs or mailing value carries an asterisk or a placeholder token. The layer description says the service was 'updated for Tax Year 2023', so ownership can trail the county's own roll by years, and the layer publishes no per-row date. Key fields: CleanParcelID (20-digit: CountyID-District-Map-ParcelPrefix-ParcelSuffix-SpecialID), FullOwnerName, FullOwnerAddress, FullPhysicalAddress, FullLegalDescription, GISPID, CountyID, COUNTY, CALC_ACRE. The layer allows 2,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 618 rows and a MAIN ST situs search 32; the control county Kanawha (COUNTY '20') answers the same queries with 114,951 rows and 113,891 owners.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "wv-wood",
+      "state": "WV",
+      "stateName": "West Virginia",
+      "stateSlug": "west-virginia",
+      "county": "Wood",
+      "countySlug": "wood-county",
+      "countyFips": "54107",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "WVParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "CleanParcelID",
+              "label": "Parcel ID (20-digit compound)",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerName",
+              "label": "Full Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "FullPhysicalAddress",
+              "label": "Physical (Situs) Address",
+              "searchable": true
+            },
+            {
+              "name": "FullOwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "FullLegalDescription",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "CountyID",
+              "label": "County ID string ('54' = Wood)",
+              "searchable": false
+            },
+            {
+              "name": "GISPID",
+              "label": "GIS Parcel ID",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0/query?where=COUNTY%3D'54'+AND+UPPER(FullOwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=CleanParcelID,FullOwnerName,FullPhysicalAddress,FullOwnerAddress,CountyID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.mapwv.gov/parcel/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = '54'"
+        }
+      ],
+      "contact": {
+        "department": "WV GIS Technical Center (WVGISTC) / West Virginia University",
+        "url": "https://www.mapwv.gov/",
+        "email": null
+      },
+      "notes": "Wood County WV (Parkersburg; FIPS 54107) uses the statewide WV parcel layer hosted by the WV GIS Technical Center (WVGISTC) at WVU (services.wvgis.wvu.edu), the same layer as Kanawha, Monongalia, Raleigh and Cabell. CRITICAL: the county code is the state's own alphabetical number, a zero-padded 2-digit string ('54' for Wood, NOT the FIPS digits '107' and NOT an integer); use WHERE COUNTY='54' (or CountyID='54') with quotes. COUNTY and CountyID agree on all 58,263 Wood rows. 2026-10-10: 58,263 rows. Owner is populated on 58,261 rows (100.00%), situs on 58,159 (99.8%) and mailing on 58,002 (99.6%). Situs contains PARKERSBURG on 21 rows and MARTINSBURG (a Berkeley County city) on none; most situs values are the street only, so the city is a weak check. 263 mailing addresses are masked with asterisks standing in for the street and city (the ZIP survives), and 20 more read 'UNKNOWN,'; 6 owner rows carry a trailing asterisk on a real name. The layer description says the service was 'updated for Tax Year 2023', so ownership can trail the county's own roll by years, and the layer publishes no per-row date. Key fields: CleanParcelID (20-digit: CountyID-District-Map-ParcelPrefix-ParcelSuffix-SpecialID), FullOwnerName, FullOwnerAddress, FullPhysicalAddress, FullLegalDescription, GISPID, CountyID, COUNTY, CALC_ACRE. The layer allows 2,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 845 rows and a MAIN ST situs search 43; the control county Kanawha (COUNTY '20') answers the same queries with 114,951 rows and 113,891 owners.",
+      "addedAt": "2026-10-10"
     }
   ]
 }

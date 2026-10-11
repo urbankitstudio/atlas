@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-10",
   "totals": {
     "states": 51,
-    "counties": 294,
-    "endpoints": 305,
-    "countiesWithEndpoint": 287,
+    "counties": 303,
+    "endpoints": 322,
+    "countiesWithEndpoint": 296,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -221,8 +221,8 @@
       "slug": "montana",
       "name": "Montana",
       "abbrev": "MT",
-      "countyCount": 4,
-      "endpointCount": 4,
+      "countyCount": 5,
+      "endpointCount": 5,
       "populated": true
     },
     {
@@ -270,15 +270,15 @@
       "name": "New York",
       "abbrev": "NY",
       "countyCount": 12,
-      "endpointCount": 16,
+      "endpointCount": 24,
       "populated": true
     },
     {
       "slug": "north-carolina",
       "name": "North Carolina",
       "abbrev": "NC",
-      "countyCount": 9,
-      "endpointCount": 9,
+      "countyCount": 15,
+      "endpointCount": 15,
       "populated": true
     },
     {
@@ -397,8 +397,8 @@
       "slug": "west-virginia",
       "name": "West Virginia",
       "abbrev": "WV",
-      "countyCount": 4,
-      "endpointCount": 4,
+      "countyCount": 6,
+      "endpointCount": 6,
       "populated": true
     },
     {

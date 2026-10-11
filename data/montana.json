@@ -2,7 +2,7 @@
   "stateSlug": "montana",
   "stateName": "Montana",
   "stateAbbrev": "MT",
-  "lastUpdated": "2026-08-04",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "mt-yellowstone",
@@ -403,6 +403,107 @@
         "email": null
       },
       "notes": "Flathead County MT (Kalispell; county seat Kalispell; FIPS 30029; gateway to Glacier National Park) is served by the Montana statewide parcel layer (COUNTYCD=7). Filter CountyName='Flathead' to scope to this county. Same schema and endpoint as other Montana counties. Verified 2026-06-20: SMITH query returns Kalispell-area addresses."
+    },
+    {
+      "id": "mt-gallatin",
+      "state": "MT",
+      "stateName": "Montana",
+      "stateSlug": "montana",
+      "county": "Gallatin",
+      "countySlug": "gallatin-county",
+      "countyFips": "30031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Montana Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCELID",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OwnerAddress1",
+              "label": "Owner Address Line 1",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddress2",
+              "label": "Owner Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZipCode",
+              "label": "Owner ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "AddressLine1",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "CityStateZip",
+              "label": "Property City/State/ZIP",
+              "searchable": false
+            },
+            {
+              "name": "CountyName",
+              "label": "County Name (Gallatin)",
+              "searchable": false
+            },
+            {
+              "name": "COUNTYCD",
+              "label": "County Code (6 = Gallatin)",
+              "searchable": false
+            },
+            {
+              "name": "TotalValue",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TaxYear",
+              "label": "Tax Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1/query?where=CountyName%3D'Gallatin'+AND+UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OwnerName,AddressLine1,CityStateZip,CountyName&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservice.mt.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "CountyName = 'Gallatin'"
+        }
+      ],
+      "contact": {
+        "department": "Montana State Library / Montana Spatial Data Infrastructure (MSDI)",
+        "url": "https://msl.mt.gov/geoinfo/",
+        "email": null
+      },
+      "notes": "Gallatin County MT (Bozeman; county seat Bozeman; FIPS 30031; COUNTYCD 6) is served by the Montana statewide parcel layer hosted by the Montana State Library / MSDI Framework, the same layer as Yellowstone, Missoula, Cascade and Flathead. Filter CountyName='Gallatin' (TitleCase), not COUNTYCD, to scope to Gallatin County. 53,618 rows on 2026-10-10. Owner is populated on 52,960 rows (98.8%), property address (AddressLine1) on 44,881 (83.7%) and owner mailing address (OwnerAddress1) on 52,960 (98.8%); 20,648 rows carry BOZEMAN in CityStateZip. TaxYear is 2026 on 52,960 rows and null on the other 658. The layer description says the Montana Department of Revenue maintains Gallatin's rows (only Ravalli, Silver Bow, Missoula, Flathead and Yellowstone are county-maintained) and that they are copied from the Department's ORION tax appraisal database. Key fields: PARCELID, PropertyID, AssessmentCode, OwnerName, OwnerAddress1/2/3, OwnerCity, OwnerState, OwnerZipCode, AddressLine1, AddressLine2, CityStateZip, PropType, PropAccess, LevyDistrict, Township, Range, Section, LegalDescriptionShort, GISAcres, TotalBuildingValue, TotalLandValue, TotalValue, TaxYear. The layer allows 2,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 354 rows and a MAIN ST property-address search 431; the control county Yellowstone answers the same queries with 83,910 rows and 82,759 owners. COUNTYCD is 6 on every Gallatin row.",
+      "addedAt": "2026-10-10"
     }
   ]
 }

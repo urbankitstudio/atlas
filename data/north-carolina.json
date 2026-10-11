@@ -673,6 +673,552 @@
       },
       "notes": "Gaston County, North Carolina (Gastonia; FIPS 37071). The county publishes its parcels with CAMA (appraisal) attributes on its own ArcGIS Server as PublicGIS/Parcels MapServer layer 11 ('Parcels'; the service has only this layer, and its id is 11, not 0): 118,132 parcels on 2026-10-10, 118,090 of them with a current owner. THREE OWNER VINTAGES ARE PUBLISHED SIDE BY SIDE: CURR_NAME1/CURR_NAME2 with CURR_ADDR1, CURR_ADDR2, CURR_CITY, CURR_STATE and CURR_ZIPCODE are the CURRENT owner and mailing address; JAN1_NAME1/JAN1_NAME2 are the owner of record on January 1 (the tax-listing date); PRVYRNAME1/PRVYRNAME2 are the prior year's owner. This record uses only the CURR_ columns. The JAN1_ and PRVYR_ columns are deliberately not listed, because the field classifier takes the first owner-like column it sees, and on 2026-10-10 CURR_NAME1 differed from JAN1_NAME1 on 28,965 rows (about 25%, which includes formatting differences as well as sales). The situs is WHOLE_ADDRESS (also PHYSSTRADD), with POSTAL (postal city), STATE and ZIP (a number); WHOLE_ADDRESS is blank on 16,130 rows (about 14%). CURR_ZIPCODE is five or nine digits with no hyphen. The parcel id is PIN, the NC map PIN (dddd-dd-dddd), with the CAMA account number in PID and AKPAR. The layer also carries the last sale date and amount, fair market values, deed book and page, plat book and page, legal description, building characteristics and a flood-area figure. Currency: last_edited_date and SALEDATE both peak at 2026-10-08, and parcel_year is 2027 on every row. CORS: no Access-Control-Allow-Origin header is sent, with or without an Origin header and on the preflight, so a browser on another site cannot read it and corsEnabled is false; query it from a server, the metered API or the MCP. maxRecordCount is 10,000 with pagination. The service description says only that it displays parcel boundaries with the DevNet CAMA table; no license or terms text is published on the service. A separate City of Gastonia parcel service (cogserver.gastonianc.gov) is city-run and is not used. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query on CURR_NAME1 (1,192 rows for %SMITH%), a situs LIKE query on MAIN ST (922 rows) and a point query at the county's internal point (one parcel, with an owner).",
       "addedAt": "2026-10-10"
+    },
+    {
+      "id": "nc-new-hanover",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "New Hanover",
+      "countySlug": "new-hanover-county",
+      "countyFips": "37129",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '129' = New Hanover)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyname%3D'New+Hanover'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'New Hanover'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "New Hanover County, North Carolina (Wilmington; FIPS 37129) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'New Hanover' (103,489 rows on 2026-10-10, the same count as cntyfips = '129'). Owner is populated on 103,317 rows (99.8%), situs on 103,489 (100.0%) and mailing on 103,489 (100.0%). scity is populated on 100,967 rows. Owner reads 'UNKNOWN OWNER' on 1 row and 'RESTRICTED' on 1 row, both placeholders rather than names. Key fields: parno (parcel number), ownname/ownname2 (owner names), siteadd (site address), scity, mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. The layer publishes no editingInfo and revisedate is null on every New Hanover row, so the vintage of this county's roll cannot be dated from the service: there is no reliable per-county date. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 959 rows; the control county Forsyth (cntyfips '067') answers the same queries with 166,755 rows and 166,378 owners.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "nc-iredell",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Iredell",
+      "countySlug": "iredell-county",
+      "countyFips": "37097",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '097' = Iredell)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyname%3D'Iredell'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Iredell'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Iredell County, North Carolina (Statesville; FIPS 37097) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'Iredell' (109,254 rows on 2026-10-10, the same count as cntyfips = '097'). Owner is populated on 109,254 rows (100.0%), situs on 109,254 (100.0%) and mailing on 108,257 (99.1%). scity IS BLANK on every Iredell row, so match addresses on siteadd and not on the city. Owner reads 'UNKNOWN' on 9 rows, a placeholder rather than a name. Key fields: parno (parcel number), ownname/ownname2 (owner names), siteadd (site address), scity, mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. The layer publishes no editingInfo and revisedate is null on every Iredell row, so the vintage of this county's roll cannot be dated from the service: there is no reliable per-county date. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 926 rows; the control county Forsyth (cntyfips '067') answers the same queries with 166,755 rows and 166,378 owners.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "nc-union",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Union",
+      "countySlug": "union-county",
+      "countyFips": "37179",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '179' = Union)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyname%3D'Union'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Union'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Union County, North Carolina (Monroe; FIPS 37179) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'Union' (117,539 rows on 2026-10-10, the same count as cntyfips = '179'). Owner is populated on 116,327 rows (99.0%), situs on 115,928 (98.6%) and mailing on 116,327 (99.0%). scity IS BLANK on every Union row, so match addresses on siteadd and not on the city. Owner reads 'UNKNOWN' on 8 rows and 'UNKNOWN OWNER' on 1; the mailing address reads 'UNKNOWN' on 43 rows, 'ADDRESS UNKNOWN' on 12 and 'UNKNOWN ADDRESS' on 3. Key fields: parno (parcel number), ownname/ownname2 (owner names), siteadd (site address), scity, mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. The layer publishes no editingInfo and revisedate is null on every Union row, so the vintage of this county's roll cannot be dated from the service: there is no reliable per-county date. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 1,010 rows; the control county Forsyth (cntyfips '067') answers the same queries with 166,755 rows and 166,378 owners.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "nc-onslow",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Onslow",
+      "countySlug": "onslow-county",
+      "countyFips": "37133",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '133' = Onslow)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyname%3D'Onslow'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Onslow'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Onslow County, North Carolina (Jacksonville; FIPS 37133) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'Onslow' (95,297 rows on 2026-10-10, the same count as cntyfips = '133'). Owner is populated on 95,262 rows (99.96%), situs on 95,260 (99.96%) and mailing on 94,945 (99.6%). scity is populated on 95,254 rows. Owner reads 'UNKNOWN OWNER' on 3 rows, a placeholder rather than a name. Key fields: parno (parcel number), ownname/ownname2 (owner names), siteadd (site address), scity, mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. The layer publishes no editingInfo and revisedate is null on every Onslow row, so the vintage of this county's roll cannot be dated from the service: there is no reliable per-county date. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 1,041 rows; the control county Forsyth (cntyfips '067') answers the same queries with 166,755 rows and 166,378 owners.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "nc-johnston",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Johnston",
+      "countySlug": "johnston-county",
+      "countyFips": "37101",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '101' = Johnston)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyname%3D'Johnston'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Johnston'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Johnston County, North Carolina (Smithfield; FIPS 37101) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'Johnston' (125,583 rows on 2026-10-10, the same count as cntyfips = '101'). Owner is populated on 125,109 rows (99.6%), situs on 125,583 (100.0%) and mailing on 124,220 (98.9%). scity is populated on 124,186 rows. 68 owner rows carry an asterisk, always as a suffix or inside a real name (a trailing asterisk on a life-estate holder, for example), never as a bare placeholder; one more owner row reads 'UNKNOWN'. Key fields: parno (parcel number), ownname/ownname2 (owner names), siteadd (site address), scity, mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. The layer publishes no editingInfo and revisedate is null on every Johnston row, so the vintage of this county's roll cannot be dated from the service: there is no reliable per-county date. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 1,370 rows; the control county Forsyth (cntyfips '067') answers the same queries with 166,755 rows and 166,378 owners.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "nc-brunswick",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Brunswick",
+      "countySlug": "brunswick-county",
+      "countyFips": "37019",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels (polys)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parno",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "ownname",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "ownname2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "siteadd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "scity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "mailadd",
+              "label": "Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "mcity",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "mstate",
+              "label": "Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "mzip",
+              "label": "Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "cntyfips",
+              "label": "County FIPS (3-digit, '019' = Brunswick)",
+              "searchable": true
+            },
+            {
+              "name": "cntyname",
+              "label": "County Name",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1/query?where=cntyname%3D'Brunswick'+AND+UPPER(ownname)+LIKE+UPPER('%25SMITH%25')&outFields=parno,ownname,siteadd,scity,mailadd,cntyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nconemap.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "cntyname = 'Brunswick'"
+        }
+      ],
+      "contact": {
+        "department": "NC OneMap / NC Geographic Information Coordinating Council (GICC), statewide parcel layer",
+        "url": "https://www.nconemap.gov/pages/parcels",
+        "email": null
+      },
+      "notes": "Brunswick County, North Carolina (Bolivia; FIPS 37019) is served via the NC OneMap statewide parcel aggregation (NC1Map_Parcels), the same layer as the other North Carolina records, filtered by cntyname = 'Brunswick' (151,753 rows on 2026-10-10, the same count as cntyfips = '019'). Owner is populated on 151,753 rows (100.0%), situs on 128,964 (85.0%) and mailing on 143,093 (94.3%). scity IS BLANK on every Brunswick row, so match addresses on siteadd and not on the city; siteadd itself is empty on 22,789 rows (15%). Owner reads 'UNKNOWN' on 19 rows, a placeholder rather than a name. Key fields: parno (parcel number), ownname/ownname2 (owner names), siteadd (site address), scity, mailadd/mcity/mstate/mzip (mailing address), parval, landval, improvval, gisacres, saledate, cntyname, cntyfips. The layer publishes no editingInfo and revisedate is null on every Brunswick row, so the vintage of this county's roll cannot be dated from the service: there is no reliable per-county date. The layer allows 5,000 rows per page with pagination and answers cross-origin requests (the server echoes the request Origin). The service lives under /secure/rest and sets an AGS_ROLES cookie, as it does for the other North Carolina records. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: an owner SMITH search matches 1,791 rows; the control county Forsyth (cntyfips '067') answers the same queries with 166,755 rows and 166,378 owners.",
+      "addedAt": "2026-10-10"
     }
   ]
 }
