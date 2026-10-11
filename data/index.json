@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-10",
   "totals": {
     "states": 51,
-    "counties": 286,
-    "endpoints": 297,
-    "countiesWithEndpoint": 279,
+    "counties": 294,
+    "endpoints": 305,
+    "countiesWithEndpoint": 287,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -53,8 +53,8 @@
       "slug": "colorado",
       "name": "Colorado",
       "abbrev": "CO",
-      "countyCount": 3,
-      "endpointCount": 3,
+      "countyCount": 11,
+      "endpointCount": 11,
       "populated": true
     },
     {

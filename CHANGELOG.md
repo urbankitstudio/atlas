@@ -1,5 +1,30 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.26 — 2026-10-10
+
+New counties, no API change, no breaking change. `totals` move from 286
+counties / 297 endpoints to **294 counties / 305 endpoints** (287 with a
+verified endpoint). All eight sit on the Colorado OIT statewide parcel
+composite already used by El Paso and Jefferson, one registration per county
+scoped by `countyName`. The layer is a state roll-up: each county's rows carry
+the `dateReceived` the state loaded them (all 2026-03-27 to 2026-05-19), so
+ownership can trail the county's own roll.
+
+### New counties
+
+- **Arapahoe CO (08005)**, 231,438 parcels, situs on 93%, mailing on 98%.
+- **Adams CO (08001)**, 188,474 parcels, situs on 93%.
+- **Larimer CO (08069)**, 180,960 parcels, situs on 88%.
+- **Douglas CO (08035)**, 164,818 parcels, situs on 88%.
+- **Weld CO (08123)**, 163,491 parcels, situs on 81%.
+- **Boulder CO (08013)**, 144,551 parcels, situs on 99%.
+- **Mesa CO (08077)**, 78,984 parcels. 650 carry the placeholder owner
+  "Confidential Owner"; those rows are withheld, not served as a name.
+- **Park CO (08093)**, 43,241 parcels, situs on 85%.
+
+Pueblo (101,146 parcels) was checked and left out: the layer carries no situs
+address for it. Colorado goes from 3 to 11 counties.
+
 ## 0.6.25 — 2026-10-10
 
 New counties, no API change, no breaking change. `totals` move from 280

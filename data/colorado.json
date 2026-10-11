@@ -2,7 +2,7 @@
   "stateSlug": "colorado",
   "stateName": "Colorado",
   "stateAbbrev": "CO",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-10-10",
   "counties": [
     {
       "id": "co-denver",
@@ -300,6 +300,814 @@
         "email": null
       },
       "notes": "Jefferson County (Denver's west-side suburbs, Lakewood, Arvada, Wheat Ridge, Evergreen, Golden; pop. 582,000, county seat Golden) is a mixed urban-mountain county extending from the Denver metro edge into the foothills and lower Rockies. Like all Colorado counties, it uses the Colorado Governor's OIT statewide composite endpoint, query by countyName='Jefferson' or countyFips='059' (3-digit county portion; full 5-digit is '08059'). Owner query confirmed live: returns real Jefferson County results (e.g., 'SMITH STEVEN W' at '7347 W FREMONT DR LITTLETON'). The composite layer exposes parcel_id, owner/owner2 (owner name fields), ownerAdd/ownAddCty/ownAddStt/ownAddZip (owner mailing address), situsAdd/sitAddCty/sitAddZip (situs address), legalDesc, landSqft/landAcres, zoningCode/zoningDesc, landUseCde/landUseDsc, saleDate/salePrice, apprValTot/asedValTot, and dateReceived. The Jefferson County Assessor at jeffco.us/1304/Assessor administers biennial reassessments (Colorado assesses on a two-year cycle, not triennial). Open-data downloads available at jeffco.us/GIS."
+    },
+    {
+      "id": "co-arapahoe",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Arapahoe",
+      "countySlug": "arapahoe-county",
+      "countyFips": "08005",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Arapahoe')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '005')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Arapahoe'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Arapahoe'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Arapahoe County, Colorado (Denver's southeast suburbs (Aurora, Centennial, Littleton, Englewood); FIPS 08005) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Arapahoe' to scope to Arapahoe County; the stored countyFips value is '005' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Arapahoe' counts 231,438 rows, owner populated on 98%, situs address on 93% and owner mailing address on 98%, and an owner-name SMITH search matches 1,495 rows. This is a state roll-up, not the county's own layer: every Arapahoe row carries dateReceived 2026-04-23, the day the state loaded the county's data, so ownership can trail the Assessor's live roll.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-adams",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Adams",
+      "countySlug": "adams-county",
+      "countyFips": "08001",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Adams')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '001')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Adams'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Adams'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Adams County, Colorado (Denver's north and east suburbs (Thornton, Westminster, Commerce City, Brighton); FIPS 08001) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Adams' to scope to Adams County; the stored countyFips value is '001' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Adams' counts 188,474 rows, owner populated on 99%, situs address on 93% and owner mailing address on 99%, and an owner-name SMITH search matches 826 rows. This is a state roll-up, not the county's own layer: every Adams row carries dateReceived 2026-04-23, the day the state loaded the county's data, so ownership can trail the Assessor's live roll.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-douglas",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Douglas",
+      "countySlug": "douglas-county",
+      "countyFips": "08035",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Douglas')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '035')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Douglas'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Douglas'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Douglas County, Colorado (the Denver-Colorado Springs corridor (Highlands Ranch, Parker, Castle Rock, Lone Tree); FIPS 08035) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Douglas' to scope to Douglas County; the stored countyFips value is '035' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Douglas' counts 164,818 rows, owner populated on over 99.9%, situs address on 88% and owner mailing address on over 99.9%, and an owner-name SMITH search matches 1,152 rows. This is a state roll-up, not the county's own layer: every Douglas row carries dateReceived 2026-04-21, the day the state loaded the county's data, so ownership can trail the Assessor's live roll.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-larimer",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Larimer",
+      "countySlug": "larimer-county",
+      "countyFips": "08069",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Larimer')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '69')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Larimer'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Larimer'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Larimer County, Colorado (northern Colorado (Fort Collins, Loveland, Estes Park); FIPS 08069) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Larimer' to scope to Larimer County; the stored countyFips value is '69' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Larimer' counts 180,960 rows, owner populated on 99%, situs address on 88% and owner mailing address on 99%, and an owner-name SMITH search matches 1,063 rows. This is a state roll-up, not the county's own layer: every Larimer row carries dateReceived 2026-03-27, the day the state loaded the county's data, so ownership can trail the Assessor's live roll.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-boulder",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Boulder",
+      "countySlug": "boulder-county",
+      "countyFips": "08013",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Boulder')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '013')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Boulder'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Boulder'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Boulder County, Colorado (the Boulder Valley (Boulder, Longmont, Louisville, Lafayette); FIPS 08013) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Boulder' to scope to Boulder County; the stored countyFips value is '013' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Boulder' counts 144,551 rows, owner populated on 99%, situs address on 99% and owner mailing address on 99%, and an owner-name SMITH search matches 829 rows. This is a state roll-up, not the county's own layer: every Boulder row carries dateReceived 2026-04-23, the day the state loaded the county's data, so ownership can trail the Assessor's live roll.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-weld",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Weld",
+      "countySlug": "weld-county",
+      "countyFips": "08123",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Weld')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '123')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Weld'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Weld'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Weld County, Colorado (northern Colorado (Greeley, Evans, Windsor); FIPS 08123) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Weld' to scope to Weld County; the stored countyFips value is '123' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Weld' counts 163,491 rows, owner populated on 99%, situs address on 81% and owner mailing address on 99%, and an owner-name SMITH search matches 825 rows. This is a state roll-up, not the county's own layer: every Weld row carries dateReceived 2026-03-27, the day the state loaded the county's data, so ownership can trail the Assessor's live roll.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-mesa",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Mesa",
+      "countySlug": "mesa-county",
+      "countyFips": "08077",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Mesa')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '77')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Mesa'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Mesa'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Mesa County, Colorado (the Western Slope (Grand Junction, Fruita, Palisade); FIPS 08077) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Mesa' to scope to Mesa County; the stored countyFips value is '77' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Mesa' counts 78,984 rows, owner populated on 99%, situs address on 92% and owner mailing address on 98%, and an owner-name SMITH search matches 556 rows. This is a state roll-up, not the county's own layer: every Mesa row carries dateReceived 2026-03-27, the day the state loaded the county's data, so ownership can trail the Assessor's live roll. 650 parcels carry the owner 'Confidential Owner', a county placeholder rather than a name (445 carry it in owner2, some repeated), and 649 of those 650 still show a situs address. The atlas withholds any row whose owner, mailing or situs reads as a redaction marker, so those parcels return no owner or address.",
+      "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-park",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Park",
+      "countySlug": "park-county",
+      "countyFips": "08093",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Colorado_Public_Parcel_Composite",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "parcel_id",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "countyName",
+              "label": "County Name (filter: 'Park')",
+              "searchable": true
+            },
+            {
+              "name": "countyFips",
+              "label": "County FIPS Code (filter: '093')",
+              "searchable": true
+            },
+            {
+              "name": "situsAdd",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "sitAddCty",
+              "label": "Situs City",
+              "searchable": false
+            },
+            {
+              "name": "sitAddZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "owner",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "ownerAdd",
+              "label": "Owner Address",
+              "searchable": false
+            },
+            {
+              "name": "legalDesc",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "saleDate",
+              "label": "Sale Date",
+              "searchable": false
+            },
+            {
+              "name": "salePrice",
+              "label": "Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "apprValTot",
+              "label": "Total Appraised Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/FeatureServer/0/query?where=countyName+%3D+'Park'+AND+UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=parcel_id,owner,situsAdd,sitAddCty,countyFips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.colorado.gov/",
+          "status": "live",
+          "lastVerified": "2026-10-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyName = 'Park'"
+        }
+      ],
+      "contact": {
+        "department": "Colorado Governor's Office of Information Technology (OIT), Colorado Geographic Information Systems Program",
+        "url": "https://gis.colorado.gov/",
+        "email": null
+      },
+      "notes": "Park County, Colorado (the South Park basin (Fairplay, Bailey, Alma); FIPS 08093) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Park' to scope to Park County; the stored countyFips value is '093' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Park' counts 43,241 rows, owner populated on 99%, situs address on 85% and owner mailing address on 99%, and an owner-name SMITH search matches 289 rows. This is a state roll-up, not the county's own layer: every Park row carries dateReceived 2026-05-19, the day the state loaded the county's data, so ownership can trail the Assessor's live roll.",
+      "addedAt": "2026-10-10"
     }
   ]
 }
