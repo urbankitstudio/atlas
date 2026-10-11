@@ -1,5 +1,25 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.28 — 2026-10-10
+
+withholding: RESTRICTED markers and masked mailing. Data notes only, no API
+change, no breaking change, no change to `totals`. Four county notes now say
+how the service treats those values:
+
+- New Hanover NC: an owner that reads "RESTRICTED" is a county redaction
+  marker, so that row is withheld.
+- Fulton GA: 41 rows whose owner is the county's RESTRICTED marker are withheld.
+- Lake IL: 24 rows whose owner (taxpayer_name) is the county's RESTRICTED marker are
+  withheld.
+- Wood WV: 263 mailing values carry asterisks. 251 of them are fully masked
+  (some keep the ZIP, some carry none) and are served as no mailing address;
+  the other 12 are real addresses and are served.
+
+On the service side (not in this package), "NOT RESTRICTED" and "NOT
+CONFIDENTIAL" are not markers, and a mailing value counts as fully masked when
+it is only asterisks and separators, at least one asterisk, with at most a
+trailing ZIP or ZIP+4, or a run of three or more "#".
+
 ## 0.6.27 — 2026-10-10
 
 New counties and a New York outage fix, no API change, no breaking change. `totals` move from 294

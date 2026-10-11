@@ -82,7 +82,7 @@
         "url": "https://fultoncountyga.gov/maps",
         "email": null
       },
-      "notes": "372,900 polygon tax parcels covering Atlanta and the rest of Fulton County. Verified 2026-05-11: UPPER(Owner) LIKE '%SMITH%' returns real owners with full Atlanta-area site addresses (e.g., '6760 JULES TRC', '528 SOUTH MAIN ST'). Owner names use last-name-first concatenated format (e.g., 'SMITH FAITH L SMITH MARIO D' for joint ownership). Both site address AND owner mailing address are exposed. Layer 11 of the PropertyMapViewer composite, neighbor layers include 'Tax Parcel Address Labels' (id 9) for cartographic use."
+      "notes": "372,900 polygon tax parcels covering Atlanta and the rest of Fulton County. Verified 2026-05-11: UPPER(Owner) LIKE '%SMITH%' returns real owners with full Atlanta-area site addresses (e.g., '6760 JULES TRC', '528 SOUTH MAIN ST'). Owner names use last-name-first concatenated format (e.g., 'SMITH FAITH L SMITH MARIO D' for joint ownership). Both site address AND owner mailing address are exposed. Layer 11 of the PropertyMapViewer composite, neighbor layers include 'Tax Parcel Address Labels' (id 9) for cartographic use. On 41 rows the owner is the county's RESTRICTED marker rather than a name, and the atlas withholds those rows."
     },
     {
       "id": "ga-cobb",
