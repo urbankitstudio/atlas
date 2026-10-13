@@ -2,7 +2,7 @@
   "stateSlug": "kentucky",
   "stateName": "Kentucky",
   "stateAbbrev": "KY",
-  "lastUpdated": "2026-10-09",
+  "lastUpdated": "2026-10-12",
   "counties": [
     {
       "id": "ky-fayette",
@@ -1689,6 +1689,23 @@
           }
         }
       }
+    },
+    {
+      "id": "ky-casey",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Casey",
+      "countySlug": "casey-county",
+      "countyFips": "21045",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Casey County Property Valuation Administrator (PVA)",
+        "url": "https://www.qpublic.net/ky/casey/",
+        "email": null
+      },
+      "notes": "No public REST parcel layer was found for Casey County, Kentucky (county seat Liberty; FIPS 21045) as of 2026-10-12. The Casey County PVA (Property Valuation Administrator) publishes its parcel search and map through qPublic (qpublic.net/ky/casey), which has no REST interface. Searches of ArcGIS Online (feature and map services, for 'Casey County parcels', 'Casey_Parcels' and 'Casey PVA') and of the ArcGIS Hub API found no Kentucky Casey parcel item, while the same search shape finds Simpson County's 'Public Access Parcels', which is registered in this file, so the absence is meaningful. The Kentucky state server (kygisserver.ky.gov, WGS84WM_Services) carries one PVA parcel service, Webster County's, which is registered in this file, and nothing for Casey; the state viewer path kygeonet.ky.gov/pva/casey returns HTTP 404 where kygeonet.ky.gov/pva/webster returns 200. Kentucky has no statewide parcel layer yet: the Geographic Information Advisory Council minutes of 2026-04-15 report that 108 of 120 counties have supplied parcel data and 2.2 million parcels are appended in a dashboard that is still a work in progress, and that owner information will be stripped out, with only counties that opt in continuing to share ownership, so when a state layer publishes Casey may carry geometry without owners. This record answers a county request filed through the site's free tools. Parcel and owner records are available through the PVA's qPublic site, or by asking the Casey County PVA office for a shapefile or a hosted layer: (606) 787-7621. Re-check when the state layer publishes."
     }
   ]
 }

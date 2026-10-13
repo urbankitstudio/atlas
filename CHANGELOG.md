@@ -1,5 +1,33 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.29 — 2026-10-12
+
+New counties, no API change, no breaking change. Builds on 0.6.28. `totals`
+move from 303 counties / 322 endpoints to **306 counties / 324 endpoints**
+(298 with a verified endpoint). All three were asked for through the site's free
+tools. Jackson MS (28059), also asked for, is not in this release: the only
+public layer for it has no pagination support, and the service's own probes
+send a row cap, so it waits for a release that handles that.
+
+### New counties
+
+- **Racine WI (55101)**, with a verified endpoint on the county's own ArcGIS
+  Enterprise server (`DataPortal/Parcels_NAD83_2011_STATEPLANE` FeatureServer
+  layer 0, 84,684 parcels, updated nightly): owner, situs, owner mailing address
+  and parcel id are searchable, pagination works, and the layer answers
+  cross-origin requests.
+- **Westmoreland PA (42129)**, with a verified endpoint on the county's own
+  ArcGIS Enterprise server (`Upgrade/Parcels_AS400_VIEW_Upgrade` MapServer layer
+  2, 191,739 parcels). The owner column `NAME` is a fixed-width 30-character
+  string padded with trailing spaces, so an exact `=` never matches: search with
+  `LIKE 'SMITH%'`, and the server rejects `TRIM()`. The service lives in a folder
+  named `Upgrade`, so the URL may move; the `notes` say so.
+- **Casey KY (21045)**, no public endpoint: `hasPublicRest: false` and an empty
+  `endpoints` array. The Casey PVA publishes only through qPublic, the state
+  server carries no Casey parcel service, and Kentucky has no statewide parcel
+  layer yet. The `notes` record the evidence as of 2026-10-12 and the PVA office
+  to ask.
+
 ## 0.6.28 — 2026-10-10
 
 withholding: RESTRICTED markers and masked mailing. Data notes only, no API

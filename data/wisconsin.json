@@ -2,7 +2,7 @@
   "stateSlug": "wisconsin",
   "stateName": "Wisconsin",
   "stateAbbrev": "WI",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-10-12",
   "counties": [
     {
       "id": "wi-dane",
@@ -379,6 +379,52 @@
         "email": null
       },
       "notes": "Brown County (Green Bay metro, county seat Green Bay) hosts ParcelPolygons/MapServer with 2 layers; layer 1 (TaxParcel) is the polygon tax parcel layer with ownership fields. Fields include PARCELID, ParcelType, Municipality, MunicipalZoning, OWNERNME1, OWNERNME2, PSTLADRESS, SITEADRESS, PublicOwner, FirstName1/LastName1/FirstName2/LastName2/StreetName fields (individual name parts), RecentOwnershipChangeDate, Parcels2005/2010/2014/2017 (historical vintage flags), Surveys, ROD (Register of Deeds). Query confirmed live: UPPER(OWNERNME1) LIKE '%SMITH%' returns real results (e.g., 'SMITH SUSAN C REVOCABLE TRUST' at '2674 FOXFIRE DR'). Layer 0 (TaxParcel-smallScale) is the same polygon layer rendered at smaller scales. ParcelslDynamic/MapServer/6 (TaxParcels) is an alternate service containing the same ownership data. The county's BrownDog Online GIS map at gis.browncountywi.gov is the public viewer. PublicOwner field is present but may be null for many records, use OWNERNME1/OWNERNME2 for owner search."
+    },
+    {
+      "id": "wi-racine",
+      "state": "WI",
+      "stateName": "Wisconsin",
+      "stateSlug": "wisconsin",
+      "county": "Racine",
+      "countySlug": "racine-county",
+      "countyFips": "55101",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://arcgis.racinecounty.com/arcgis/rest/services/DataPortal/Parcels_NAD83_2011_STATEPLANE/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
+            { "name": "LOWPARCELID", "label": "Low Parcel ID", "searchable": true },
+            { "name": "PIN12", "label": "12-Digit PIN", "searchable": true },
+            { "name": "OWNERNME1", "label": "Owner Name", "searchable": true },
+            { "name": "OWNERNME2", "label": "Owner Name 2", "searchable": false },
+            { "name": "SITEADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "PSTLADDRESS", "label": "Owner Mailing Address", "searchable": false },
+            { "name": "PSTLCITY", "label": "Owner Mailing City", "searchable": false },
+            { "name": "PSTLSTATE", "label": "Owner Mailing State", "searchable": false },
+            { "name": "PSTLZIP5", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "PSTLZIP4", "label": "Owner Mailing ZIP+4", "searchable": false }
+          ],
+          "sampleQuery": "https://arcgis.racinecounty.com/arcgis/rest/services/DataPortal/Parcels_NAD83_2011_STATEPLANE/FeatureServer/0/query?where=UPPER(OWNERNME1)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,SITEADDRESS,PSTLADDRESS,PSTLCITY,PSTLSTATE,PSTLZIP5&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "public",
+          "licenseUrl": "https://www.racinecounty.gov",
+          "status": "live",
+          "lastVerified": "2026-10-12",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Racine County Real Property Listing (Register of Deeds)",
+        "url": "https://www.racinecounty.gov/departments/register-of-deeds/real-property-listing",
+        "email": null
+      },
+      "notes": "Racine County, Wisconsin (Racine; FIPS 55101). The county's own ArcGIS Enterprise server (arcgis.racinecounty.com), DataPortal/Parcels_NAD83_2011_STATEPLANE FeatureServer layer 0, named 'Racine County Tax Parcels_NAD_1983_2011_StatePlane_Wisconsin_South_FIPS_4803': 84,684 parcels, county-only, so no scope clause is needed. A MapServer of the same name sits beside it, and search results show a mirror on arcgis.racinecounty.gov that was not tested; the .com FeatureServer is the one verified. The parcel id is PARCELID (also LOWPARCELID and PIN12); the owner is OWNERNME1 with OWNERNME2 (82,755 of 84,684 rows populated, 97.7%; the roughly 1,900 rows with no owner are probably road, right-of-way and unassessed parcels, not verified); CNVYNAME is the conveyance (grantee) name and not the current owner; the situs is SITEADDRESS (82,763 populated); the owner mailing address is PSTLADDRESS with PSTLCITY, PSTLSTATE, PSTLZIP5 and PSTLZIP4 (82,760 populated). Also carried: CLASSCD, USECD, ZONING, CNTASSDVAL and FAIRMKTVAL. maxRecordCount is 1,000 with pagination (resultOffset works and exceededTransferLimit is set on a full page). CORS: the server echoes the request Origin in Access-Control-Allow-Origin. Capabilities are Query and Extract only. Currency: the newest LASTUPDATE is 2026-10-11 (read 2026-10-12), 54 rows were updated on or after 2026-09-01, and the service text says the layer updates nightly. A search for SMITH on OWNERNME1 matches 396 parcels. The county's Real Property Listing page (racinecounty.gov/departments/register-of-deeds/real-property-listing) returned HTTP 403 to a scripted fetch, so the license terms were not read; the Land Description office is listed at 262-636-3548 (730 Wisconsin Ave, Racine WI 53403). The statewide Wisconsin parcel layer was not needed and not tested.",
+      "addedAt": "2026-10-12"
     }
   ]
 }
