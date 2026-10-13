@@ -51,3 +51,70 @@ export type { DeepLinkCounty } from "./helpers.js";
 
 export { atlas, atlasIndex } from "./data.js";
 export type { Atlas } from "./data.js";
+
+// City datasets: code violations, building permits and zoning cases for the
+// cities UrbanKit has verified, with the exact query the site sends. Bundled
+// like the atlas; nothing fetches. County records' relatedZoningCitySlug and
+// relatedPropertyCitySlug resolve through getCityZoning / getCityProperty.
+export {
+  listCities,
+  findCity,
+  getCityProperty,
+  getCityZoning,
+  cityDatasets,
+  buildCityQuery,
+  citiesForCounty,
+  cityPath,
+  // The pure halves, for callers that bring their own index (the hosted MCP).
+  mergeCityIndexes,
+  findCityIn,
+  citiesForCountyIn,
+  cityDatasetDescriptors,
+  splitStreet,
+  splitAddressStreetName,
+  streetForDataset,
+  propertyQueryUrl,
+  casesQueryUrl,
+  casesLocationTemplate,
+  currentZoningTemplate,
+  CITY_RECORD_LIMIT,
+  CITY_STREET_MAX_LEN,
+  POINT_PLACEHOLDER,
+} from "./cities.js";
+export type {
+  CityFilter,
+  CityKind,
+  CitySummary,
+  CityDatasetDescriptor,
+  CityQueryTemplate,
+  CityProvider,
+  CityLookup,
+  SplitStreet,
+} from "./cities.js";
+export type {
+  CityPropertyRecord,
+  CityPropertyIndexEntry,
+  CityPropertyIndex,
+  PropertyDataset,
+  PropertyDatasets,
+  PropertyFieldMap,
+  PropertySource,
+  PropertySourceType,
+  PropertyStatusBuckets,
+  DatasetKind,
+  CityZoningRecord,
+  CityZoningIndexEntry,
+  CityZoningIndex,
+  CasesSource,
+  CaseFieldMap,
+  CurrentZoningSource,
+  CurrentZoningFieldMap,
+  GeocoderConfig,
+  GeocoderProvider,
+  ZoningByAddressSource,
+  ZoningSourceType,
+  ZoningStatusBuckets,
+  ZoningToolKind,
+  CitySource,
+} from "./city-types.js";
+export { cityPropertyIndex, cityZoningIndex } from "./cities-data.js";

@@ -1,0 +1,44 @@
+{
+  "slug": "fort-worth",
+  "city": "Fort Worth",
+  "state": "Texas",
+  "stateAbbrev": "TX",
+  "countyName": "Tarrant County",
+  "countySlug": "tarrant-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://testmapit.fortworthtexas.gov/ags/rest/services/Planning_Development/Upcoming_Board_Commission/MapServer/0",
+    "orderField": "ZC_DATE",
+    "fields": {
+      "caseNumber": "CASE_NMBR",
+      "address": "ADDRESS",
+      "status": "ACTION_",
+      "existingZoning": "ZONING_FRO",
+      "proposedZoning": "ZONING_TO",
+      "appliedDate": "ZC_DATE",
+      "statusDate": "DATE_APPRO",
+      "ownerName": "APPLT_NAME"
+    },
+    "statusBuckets": {
+      "approved": [
+        "Approved",
+        "Approved as amended"
+      ],
+      "closed": [
+        "Denied",
+        "Denied w/o prej",
+        "Withdrawn"
+      ]
+    }
+  },
+  "source": {
+    "name": "Fort Worth Development Services",
+    "url": "https://www.fortworthtexas.gov/departments/development-services",
+    "license": "Public record (City of Fort Worth)",
+    "portalLabel": "Fort Worth MapIt",
+    "currentRecordsNote": "Zoning cases come from the current-year Zoning Cases layer (layer 0 rotates each January; the service keeps per-year archives back to 2004 - re-point the config at the new year's layer each January). A case with no recorded action is still pending. The 'testmapit' hostname is, verifiably, ahead of the production-named mirror.",
+    "currentRecordsUrl": "https://mapit.fortworthtexas.gov/"
+  }
+}

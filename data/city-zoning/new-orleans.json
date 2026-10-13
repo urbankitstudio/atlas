@@ -1,0 +1,49 @@
+{
+  "slug": "new-orleans",
+  "city": "New Orleans",
+  "state": "Louisiana",
+  "stateAbbrev": "LA",
+  "countyName": "Orleans Parish",
+  "countySlug": "orleans-parish",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "socrata",
+    "url": "https://data.nola.gov/resource/xxb5-5azv.json",
+    "orderField": "filing_date",
+    "where": "case_type='Zoning Change'",
+    "fields": {
+      "caseNumber": "case_num",
+      "address": "address",
+      "caseType": "case_type",
+      "status": "current_status",
+      "appliedDate": "filing_date"
+    },
+    "statusBuckets": {
+      "active": [
+        "Application Submitted",
+        "Completeness Review",
+        "City Planning Commission Hearing",
+        "Sign Posted by Applicant",
+        "Mapping"
+      ],
+      "approved": [
+        "City Council Ordinance - Approved",
+        "Project Complete"
+      ],
+      "closed": [
+        "Applicant Withdrew Petition",
+        "Application Denied",
+        "Application Returned to Applicant"
+      ]
+    }
+  },
+  "source": {
+    "name": "New Orleans City Planning Commission",
+    "url": "https://nola.gov/city-planning/",
+    "license": "Public record (City of New Orleans)",
+    "portalLabel": "NOLA Open Data (Socrata)",
+    "currentRecordsNote": "Zoning-change cases come from the CPC Projects dataset, updated daily, scoped here to case_type Zoning Change (the same dataset also tracks NPP notifications, a different process). Existing and proposed zoning appear only inside each case's prose description, not as columns.",
+    "currentRecordsUrl": "https://data.nola.gov/dataset/CPC-Projects/xxb5-5azv"
+  }
+}

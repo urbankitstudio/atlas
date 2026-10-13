@@ -1,0 +1,33 @@
+{
+  "slug": "dallas",
+  "city": "Dallas",
+  "state": "Texas",
+  "stateAbbrev": "TX",
+  "countyName": "Dallas County",
+  "countySlug": "dallas-county",
+  "lastVerified": "2026-06-28",
+  "kind": "current-zoning",
+  "currentZoning": {
+    "type": "arcgis",
+    "url": "https://services5.arcgis.com/74bZbbuf05Ctvbzv/arcgis/rest/services/City_of_Dallas_Base_Zoning/FeatureServer/21",
+    "geocoder": {
+      "provider": "nominatim",
+      "context": "Dallas, TX"
+    },
+    "fields": {
+      "zoneDist": "ZONE_DIST",
+      "longZoneDist": "LONG_ZONE_DIST",
+      "pdNum": "PD_NUM",
+      "caseNumber": "CASE_NUMBER",
+      "effectiveDate": "EFFECTIVEDATE",
+      "districtUse": "DISTRICTUSE"
+    }
+  },
+  "source": {
+    "name": "City of Dallas GIS",
+    "url": "https://gis.dallascityhall.com/",
+    "datasetUrl": "https://services5.arcgis.com/74bZbbuf05Ctvbzv/arcgis/rest/services/City_of_Dallas_Base_Zoning/FeatureServer/21",
+    "license": "Public record (City of Dallas)",
+    "portalLabel": "City of Dallas GIS"
+  }
+}

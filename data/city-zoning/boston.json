@@ -1,0 +1,51 @@
+{
+  "slug": "boston",
+  "city": "Boston",
+  "state": "Massachusetts",
+  "stateAbbrev": "MA",
+  "countyName": "Suffolk County",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://gis.bostonplans.org/hosting/rest/services/Hosted/A80_project_points_display/FeatureServer/0",
+    "orderField": "last_filed_date",
+    "caseLabel": "Article 80 development review",
+    "fields": {
+      "caseName": "project_name",
+      "address": "project_street_name",
+      "addressParts": [
+        "project_street_number",
+        "project_street_name",
+        "project_street_suffix"
+      ],
+      "status": "project_status",
+      "appliedDate": "last_filed_date",
+      "statusDate": "last_board_approved_date",
+      "district": "neighborhood",
+      "link": "website_url"
+    },
+    "statusBuckets": {
+      "active": [
+        "Letter of Intent",
+        "Prefile (Default)",
+        "Under Review"
+      ],
+      "approved": [
+        "Board Approved",
+        "Permitted / Under Construction"
+      ],
+      "closed": [
+        "Construction Complete"
+      ]
+    }
+  },
+  "source": {
+    "name": "Boston Planning Department (BPDA)",
+    "url": "https://www.bostonplans.org/",
+    "license": "Public record (BPDA)",
+    "portalLabel": "BPDA Article 80 database",
+    "currentRecordsNote": "Boston does not run a rezoning-case docket the way Texas cities do; large and small projects go through Article 80 development review instead, and that is the docket shown here - filings back to 1998, updated as projects move. Existing and proposed zoning columns genuinely do not apply to this process.",
+    "currentRecordsUrl": "https://www.bostonplans.org/projects/development-projects"
+  }
+}

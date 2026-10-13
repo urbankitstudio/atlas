@@ -1,0 +1,63 @@
+{
+  "slug": "nyc",
+  "city": "New York City",
+  "state": "New York",
+  "stateAbbrev": "NY",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers all five New York City boroughs. Violations are HPD housing-maintenance cases; permits are DOB NOW building permits filed in the city's current permitting system.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Housing Violations",
+      "type": "socrata",
+      "url": "https://data.cityofnewyork.us/resource/wvxf-dwi5.json",
+      "orderField": "inspectiondate",
+      "coverage": "NYC HPD housing-maintenance code violations, refreshed regularly; current to 2026.",
+      "recordLabel": "Violation",
+      "openedLabel": "Inspected",
+      "closedLabel": "Updated",
+      "fields": {
+        "address": "streetname",
+        "addressParts": ["housenumber", "streetname"],
+        "recordNumber": "violationid",
+        "type": "class",
+        "description": "novdescription",
+        "status": "currentstatus",
+        "openedDate": "inspectiondate",
+        "closedDate": "currentstatusdate",
+        "zip": "zip"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json",
+      "orderField": "issued_date",
+      "where": "issued_date IS NOT NULL",
+      "coverage": "NYC DOB NOW building permits, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "street_name",
+        "addressParts": ["house_no", "street_name"],
+        "recordNumber": "job_filing_number",
+        "type": "work_type",
+        "description": "job_description",
+        "status": "permit_status",
+        "value": "estimated_job_costs",
+        "contractor": "applicant_business_name",
+        "openedDate": "issued_date",
+        "zip": "zip_code"
+      }
+    }
+  },
+  "source": {
+    "name": "NYC Open Data",
+    "url": "https://opendata.cityofnewyork.us/",
+    "license": "Public domain (City of New York)",
+    "portalLabel": "NYC Open Data portal",
+    "currentRecordsNote": "HPD violation and DOB NOW permit records are published by the City of New York and refreshed regularly.",
+    "currentRecordsUrl": "https://opendata.cityofnewyork.us/"
+  }
+}

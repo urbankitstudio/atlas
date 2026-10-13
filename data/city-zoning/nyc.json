@@ -1,0 +1,53 @@
+{
+  "slug": "nyc",
+  "city": "New York",
+  "state": "New York",
+  "stateAbbrev": "NY",
+  "countyName": "New York County",
+  "countySlug": "new-york-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "socrata",
+    "url": "https://data.cityofnewyork.us/resource/hgx4-8ukb.json",
+    "lookup": "parcel",
+    "resolver": {
+      "provider": "nyc-geosearch"
+    },
+    "crosswalk": {
+      "url": "https://data.cityofnewyork.us/resource/2iga-a6mk.json",
+      "parcelField": "bbl",
+      "projectField": "project_id"
+    },
+    "joinField": "project_id",
+    "orderField": "app_filed_date",
+    "where": "actions like '%ZM%'",
+    "caseLabel": "zoning applications (ULURP)",
+    "fields": {
+      "caseNumber": "project_id",
+      "caseName": "project_name",
+      "caseType": "actions",
+      "status": "public_status",
+      "appliedDate": "app_filed_date",
+      "district": "community_district"
+    },
+    "statusBuckets": {
+      "active": [
+        "Filed",
+        "In Public Review",
+        "Noticed"
+      ],
+      "closed": [
+        "Completed"
+      ]
+    }
+  },
+  "source": {
+    "name": "NYC Department of City Planning",
+    "url": "https://www.nyc.gov/site/planning/index.page",
+    "license": "Public record (City of New York)",
+    "portalLabel": "NYC Open Data (ZAP)",
+    "currentRecordsNote": "Cases come from the Zoning Application Portal datasets on NYC Open Data, scoped to applications whose ULURP actions include a Zoning Map Amendment (ZM). The docket is keyed by parcel (BBL) rather than address, so the tool resolves your address through NYC Planning's own GeoSearch service and joins the crosswalk. Existing and proposed zoning appear inside each project brief rather than as columns. A 'Completed' status means the review finished; it does not by itself say approved or denied.",
+    "currentRecordsUrl": "https://zap.planning.nyc.gov/"
+  }
+}

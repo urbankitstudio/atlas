@@ -21,6 +21,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { atlas } from "../src/data.js";
+import { listCities } from "../src/cities.js";
 
 const README = readFileSync(
   fileURLToPath(new URL("../README.md", import.meta.url)),
@@ -72,6 +73,18 @@ describe("README coverage numbers match the shipped data", () => {
     expect(outOf).toBe(atlas.totals.counties);
     // The two halves must also add up, or the paragraph contradicts itself.
     expect(withEndpoint + without).toBe(atlas.totals.counties);
+  });
+
+  it("states how many cities carry property and zoning datasets", () => {
+    const [property, zoning] = stated(
+      "the city coverage sentence",
+      /(\d+) cities with code-violation or building-permit datasets, (\d+) with zoning-case datasets/,
+    );
+    const propertyCities = new Set(
+      [...listCities({ kind: "violations" }), ...listCities({ kind: "permits" })].map((c) => c.slug),
+    );
+    expect(property).toBe(propertyCities.size);
+    expect(zoning).toBe(listCities({ kind: "zoning" }).length);
   });
 });
 

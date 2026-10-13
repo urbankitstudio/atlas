@@ -1,0 +1,324 @@
+/**
+ * The city export: every indexed city resolves, references resolve the way the
+ * hosted MCP tool resolves them, the URLs carry the site's injection guard and
+ * the split-address clause, and nothing in here touches the network.
+ */
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  buildCityQuery,
+  cityDatasets,
+  citiesForCounty,
+  cityPath,
+  cityPropertyIndex,
+  cityZoningIndex,
+  findCity,
+  findCityIn,
+  getCityProperty,
+  getCityZoning,
+  listCities,
+  mergeCityIndexes,
+  propertyQueryUrl,
+  splitAddressStreetName,
+  splitStreet,
+  streetForDataset,
+  type CitySummary,
+  type PropertyDataset,
+} from "../src/index.js";
+
+const fetchSpy = vi.fn(() => {
+  throw new Error("the package must never fetch");
+});
+
+beforeEach(() => {
+  vi.stubGlobal("fetch", fetchSpy);
+});
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+describe("every populated index slug resolves", () => {
+  it("property", () => {
+    const populated = cityPropertyIndex.cities.filter((c) => c.populated);
+    expect(populated.length).toBeGreaterThan(0);
+    for (const c of populated) {
+      const rec = getCityProperty(c.slug);
+      expect(rec, c.slug).toBeDefined();
+      expect(rec!.slug).toBe(c.slug);
+      // The index carries the file's dataset kinds, so a reader with only the
+      // index (the hosted MCP's city list) states them truthfully.
+      expect(c.datasets, `${c.slug} index datasets`).toEqual(Object.keys(rec!.datasets));
+    }
+  });
+
+  it("zoning", () => {
+    const populated = cityZoningIndex.cities.filter((c) => c.populated);
+    expect(populated.length).toBeGreaterThan(0);
+    for (const c of populated) {
+      const rec = getCityZoning(c.slug);
+      expect(rec, c.slug).toBeDefined();
+      expect(rec!.slug).toBe(c.slug);
+    }
+  });
+
+  it("unknown and prototype-shaped slugs resolve to nothing", () => {
+    expect(getCityProperty("not-a-city")).toBeUndefined();
+    expect(getCityZoning("constructor")).toBeUndefined();
+    expect(getCityProperty("__proto__")).toBeUndefined();
+    expect(cityDatasets("not-a-city")).toEqual([]);
+  });
+});
+
+describe("findCity", () => {
+  it("by slug, by name, by 'Name, ST' and by alias", () => {
+    expect(findCity("fort-worth").map((c) => c.slug)).toEqual(["fort-worth"]);
+    expect(findCity("Fort Worth").map((c) => c.slug)).toEqual(["fort-worth"]);
+    expect(findCity("Fort Worth, TX").map((c) => c.slug)).toEqual(["fort-worth"]);
+    expect(findCity("fort worth", "Texas").map((c) => c.slug)).toEqual(["fort-worth"]);
+    expect(findCity("NYC").map((c) => c.slug)).toEqual(["nyc"]);
+    expect(findCity("New York City").map((c) => c.slug)).toEqual(["nyc"]);
+    expect(findCity("DC").map((c) => c.slug)).toEqual(["washington-dc"]);
+    expect(findCity("Washington, D.C.").map((c) => c.slug)).toEqual(["washington-dc"]);
+    // The zoning registry's name for the same slug matches too.
+    expect(findCity("Washington").map((c) => c.slug)).toEqual(["washington-dc"]);
+    expect(findCity("New York").map((c) => c.slug)).toEqual(["nyc"]);
+  });
+
+  it("a wrong state empties the match and 'LA' is not an alias", () => {
+    expect(findCity("Fort Worth", "CA")).toEqual([]);
+    expect(findCity("LA")).toEqual([]);
+    expect(findCity("")).toEqual([]);
+    expect(findCity("../atlas/index")).toEqual([]);
+  });
+
+  it("the display name is the property registry's when both registries list the city", () => {
+    const [dc] = findCity("washington-dc");
+    expect(dc.city).toBe("Washington, DC");
+    expect(dc.names).toContain("Washington");
+    expect(dc.kinds).toEqual(["permits", "zoning"]);
+  });
+
+  it("ambiguity is a list, which the state narrows (pure fixture)", () => {
+    const two: CitySummary[] = mergeCityIndexes(
+      [
+        { slug: "columbus-oh", city: "Columbus", state: "Ohio", stateAbbrev: "OH", populated: true, provider: "x", datasets: ["permits"] },
+        { slug: "columbus-ga", city: "Columbus", state: "Georgia", stateAbbrev: "GA", populated: true, provider: "x", datasets: ["violations"] },
+        { slug: "nowhere", city: "Nowhere", state: "Ohio", stateAbbrev: "OH", populated: false, provider: "x" },
+      ],
+      [{ slug: "columbus-ga", city: "Columbus", state: "Georgia", stateAbbrev: "GA", populated: true, provider: "x" }],
+    );
+    expect(two.map((c) => c.slug)).toEqual(["columbus-ga", "columbus-oh"]);
+    expect(two[0].kinds).toEqual(["violations", "zoning"]);
+    expect(findCityIn(two, "Columbus").map((c) => c.slug)).toEqual(["columbus-ga", "columbus-oh"]);
+    expect(findCityIn(two, "Columbus", "GA").map((c) => c.slug)).toEqual(["columbus-ga"]);
+    expect(findCityIn(two, "Columbus, Ohio").map((c) => c.slug)).toEqual(["columbus-oh"]);
+    // A slug is an identity, never ambiguous.
+    expect(findCityIn(two, "columbus-oh").map((c) => c.slug)).toEqual(["columbus-oh"]);
+    expect(findCityIn(two, "Nowhere")).toEqual([]);
+  });
+});
+
+describe("listCities and citiesForCounty", () => {
+  it("filters by kind, state and county", () => {
+    const all = listCities();
+    expect(all.length).toBeGreaterThanOrEqual(20);
+    expect(all.map((c) => c.slug)).toEqual([...all.map((c) => c.slug)].sort());
+    const zoning = listCities({ kind: "zoning" });
+    expect(zoning.length).toBe(cityZoningIndex.cities.filter((c) => c.populated).length);
+    expect(zoning.every((c) => c.kinds.includes("zoning"))).toBe(true);
+    const permitsOnly = listCities({ kind: "permits" }).map((c) => c.slug);
+    expect(permitsOnly).toContain("phoenix");
+    expect(listCities({ kind: "violations" }).map((c) => c.slug)).not.toContain("phoenix");
+    expect(listCities({ state: "TX" }).map((c) => c.slug)).toEqual(["austin", "dallas", "fort-worth", "san-antonio"]);
+    expect(listCities({ state: "texas" }).length).toBe(4);
+    expect(listCities({ countySlug: "maricopa-county" }).map((c) => c.slug)).toEqual(["phoenix"]);
+  });
+
+  it("resolves an atlas county to its cities, and a returned list is a copy", () => {
+    expect(citiesForCounty("arizona", "maricopa-county").map((c) => c.slug)).toEqual(["phoenix"]);
+    expect(citiesForCounty("texas", "dallas-county").map((c) => c.slug)).toEqual(["dallas"]);
+    expect(citiesForCounty("california", "orange-county")).toEqual([]);
+    const [a] = listCities({ state: "AZ" });
+    a.kinds.push("zoning");
+    expect(listCities({ state: "AZ" })[0].kinds).not.toContain("zoning");
+  });
+
+  it("cityPath points at the site's pages", () => {
+    expect(cityPath("dallas", "permits")).toBe("/tools/property-report/dallas");
+    expect(cityPath("dallas", "violations")).toBe("/tools/property-report/dallas");
+    expect(cityPath("dallas", "zoning")).toBe("/tools/zoning-cases/dallas");
+  });
+});
+
+describe("dataset descriptors and queries", () => {
+  it("Dallas publishes violations, permits and a current-zoning map", () => {
+    const ds = cityDatasets("dallas");
+    expect(ds.map((d) => d.kind)).toEqual(["violations", "permits", "zoning"]);
+    expect(ds.every((d) => d.corsEnabled === true)).toBe(true);
+    expect(ds.every((d) => d.citySlug === "dallas")).toBe(true);
+    expect(cityDatasets("dallas", "permits").map((d) => d.kind)).toEqual(["permits"]);
+    const permits = ds[1];
+    expect(permits.provider).toBe("socrata");
+    expect(permits.lookup).toBe("address");
+    expect(permits.addressField).toBe("street_address");
+    expect(permits.freshness.lastVerified).toBe(getCityProperty("dallas")!.lastVerified);
+    // An address lookup has no template: a street has to be escaped for the
+    // provider's SQL, so it goes through buildCityQuery, never a paste-in.
+    expect(permits.queryTemplate).toBeNull();
+    expect(permits.queryNote).toContain("'%' matches any run of characters");
+    expect(permits.sampleQuery).toBe(buildCityQuery(permits, ""));
+    const zoning = ds[2];
+    expect(zoning.zoningMode).toBe("current-zoning");
+    expect(zoning.lookup).toBe("location");
+    expect(zoning.queryTemplate!.substitute).toBe("{LON},{LAT}");
+    expect(zoning.sampleQuery).toBeNull();
+    expect(buildCityQuery(zoning, "Commerce")).toBeNull();
+  });
+
+  it("doubles a quote in the street (O'Farrell), the site's injection guard", () => {
+    const [violations] = cityDatasets("san-francisco", "violations");
+    // San Francisco splits the address ([street_number, street_name, street_suffix], the
+    // name column holds "Ofarrell"), so the type comes off and the quote is still doubled.
+    const url = buildCityQuery(violations, "O'Farrell St")!;
+    expect(decodeURIComponent(url)).toContain("%O''Farrell%");
+    expect(decodeURIComponent(url)).not.toContain("%O'Farrell%");
+    expect(decodeURIComponent(url)).not.toContain("Farrell St");
+    const [cases] = cityDatasets("austin", "zoning");
+    expect(decodeURIComponent(buildCityQuery(cases, "O'Brien")!)).toContain("upper('%O''Brien%')");
+    // ...and the address docket carries no template either, for the same reason.
+    expect(cases.lookup).toBe("address");
+    expect(cases.queryTemplate).toBeNull();
+  });
+
+  it("a location docket has no street URL but a point template; a parcel docket browses only", () => {
+    const [denver] = cityDatasets("denver", "zoning");
+    expect(denver.lookup).toBe("location");
+    expect(buildCityQuery(denver, "Colfax")).toBeNull();
+    expect(buildCityQuery(denver, "")).toContain("/query?where=");
+    expect(denver.queryTemplate!.params.geometry).toBe("{LON},{LAT}");
+    expect(denver.queryTemplate!.params.spatialRel).toBe("esriSpatialRelIntersects");
+    // The params map has no prototype, so a parameter named __proto__ could only ever be an own key.
+    expect(Object.getPrototypeOf(denver.queryTemplate!.params)).toBeNull();
+    const [nyc] = cityDatasets("nyc", "zoning");
+    expect(nyc.lookup).toBe("parcel");
+    expect(nyc.queryTemplate).toBeNull();
+    expect(nyc.sampleQuery).toContain("hgx4-8ukb.json");
+    expect(nyc.queryNote).toContain("geosearch.planninglabs.nyc");
+    expect(buildCityQuery(nyc, "Broadway")).toBeNull();
+  });
+
+  it("the split-address clause engages only when streetNumber is mapped and the street has a number", () => {
+    const base = getCityProperty("dallas")!.datasets.violations!;
+    const split: PropertyDataset = {
+      ...base,
+      fields: { ...base.fields, streetNumber: "str_num" },
+    };
+    const url = decodeURIComponent(propertyQueryUrl(split, "1422 N Western Ave"));
+    expect(url).toContain("upper(str_nam) like upper('%Western%') AND str_num = '1422'");
+    // A numeric column drops the quotes.
+    const numeric = decodeURIComponent(propertyQueryUrl({ ...split, streetNumberType: "number" }, "1422 N Western Ave"));
+    expect(numeric).toContain("str_num = 1422");
+    // No number typed: the plain substring match, same as before.
+    expect(decodeURIComponent(propertyQueryUrl(split, "Western"))).toContain("upper(str_nam) like upper('%Western%')");
+    expect(decodeURIComponent(propertyQueryUrl(split, "Western"))).not.toContain("str_num");
+    // No streetNumber mapped: nothing changes for the city, number or not.
+    expect(decodeURIComponent(propertyQueryUrl(base, "1422 N Western Ave"))).toContain("upper(str_nam) like upper('%1422 N Western Ave%')");
+  });
+
+  it("buildCityQuery derives the street NAME for a split-address dataset with no streetNumber mapping", () => {
+    // Live probe 2026-10-13 on Dallas violations (x9pz-kdq9): rows are
+    // {str_num:"1500", str_nam:"MARILLA", str_suffix:"ST"}; 101 of 109 Marilla
+    // rows carry the type in str_suffix, so '%Marilla St%' on str_nam matched 6
+    // junk rows and '%Marilla%' all 109. The name is what the column holds.
+    const [violations] = cityDatasets("dallas", "violations");
+    expect(violations.addressParts).toEqual(["str_num", "str_prefix", "str_nam", "str_suffix"]);
+    const url = buildCityQuery(violations, "1500 Marilla St")!;
+    expect(url).toContain("upper(str_nam)%20like%20upper('%25Marilla%25')");
+    expect(decodeURIComponent(url)).not.toContain("Marilla St");
+    expect(buildCityQuery(violations, "1500 N Marilla St")).toBe(url);
+    expect(buildCityQuery(violations, "Marilla")).toBe(url);
+    expect(streetForDataset(violations, "1500 Marilla St")).toBe("Marilla");
+    // The raw site URL is still propertyQueryUrl: the page is unchanged.
+    expect(decodeURIComponent(propertyQueryUrl(getCityProperty("dallas")!.datasets.violations!, "1500 Marilla St"))).toContain("%1500 Marilla St%");
+    // Single-column datasets keep the whole line.
+    const [permits] = cityDatasets("dallas", "permits");
+    expect(decodeURIComponent(buildCityQuery(permits, "600 Commerce St")!)).toContain("%600 Commerce St%");
+    expect(streetForDataset(permits, "600 Commerce St")).toBe("600 Commerce St");
+    expect(violations.queryNote).toContain("matches the street name on str_nam and returns every row on that street");
+  });
+
+  it("splitAddressStreetName follows the columns around the name column", () => {
+    // [number, direction, name, type] (Dallas violations): all three come off.
+    const dallas = ["str_num", "str_prefix", "str_nam", "str_suffix"];
+    expect(splitAddressStreetName(dallas, "str_nam", undefined, "1500 N Marilla St")).toBe("Marilla");
+    expect(splitAddressStreetName(dallas, "str_nam", undefined, "1500 Marilla St.")).toBe("Marilla");
+    expect(splitAddressStreetName(dallas, "str_nam", undefined, "Marilla")).toBe("Marilla");
+    expect(splitAddressStreetName(dallas, "str_nam", undefined, "1500 Marilla")).toBe("Marilla");
+    // [number, direction, name] (Chicago permits, Indianapolis cases): the name column holds
+    // "WESTERN AVE", so the type stays; the direction comes off.
+    const chicago = ["street_number", "street_direction", "street_name"];
+    expect(splitAddressStreetName(chicago, "street_name", undefined, "1422 N Western Ave")).toBe("Western Ave");
+    // [number, name, type] (Boston, San Francisco): no direction column, so "West" stays in the name.
+    const boston = ["violation_stno", "violation_street", "violation_suffix"];
+    expect(splitAddressStreetName(boston, "violation_street", undefined, "400 West Boylston St")).toBe("West Boylston");
+    expect(splitAddressStreetName(boston, "violation_street", undefined, "1252-1270 Boylston Street")).toBe("Boylston");
+    // [number, name] (NYC): only the number comes off; "WEST BROADWAY" is how the column reads.
+    const nyc = ["house_no", "street_name"];
+    expect(splitAddressStreetName(nyc, "street_name", undefined, "180 West Broadway")).toBe("West Broadway");
+    // Never empties the street: a lone type or a lone number is sent as typed.
+    expect(splitAddressStreetName(dallas, "str_nam", undefined, "St")).toBe("St");
+    expect(splitAddressStreetName(dallas, "str_nam", undefined, "1500")).toBe("1500");
+    // No role information (no parts, name column not among them, or a mapped number column): unchanged.
+    expect(splitAddressStreetName(undefined, "street_address", undefined, "600 Commerce St")).toBe("600 Commerce St");
+    expect(splitAddressStreetName(["a", "b"], "c", undefined, "600 Commerce St")).toBe("600 Commerce St");
+    expect(splitAddressStreetName(dallas, "str_nam", "str_num", "1500 Marilla St")).toBe("1500 Marilla St");
+  });
+
+  it("splitStreet parses the shapes the plan names", () => {
+    expect(splitStreet("1422 N Western Ave")).toEqual({ number: "1422", name: "Western" });
+    expect(splitStreet("600 Commerce St")).toEqual({ number: "600", name: "Commerce" });
+    expect(splitStreet("1422A Western")).toEqual({ number: "1422", name: "Western" });
+    expect(splitStreet("1422-B Western Ave.")).toEqual({ number: "1422", name: "Western" });
+    expect(splitStreet("100 Main")).toEqual({ number: "100", name: "Main" });
+    expect(splitStreet("100 St")).toEqual({ number: "100", name: "St" });
+    expect(splitStreet("Main St")).toBeNull();
+    expect(splitStreet("1422")).toBeNull();
+  });
+});
+
+describe("hostile or careless input at the public API", () => {
+  it("a JavaScript caller's null, undefined or number is read as text, never a TypeError", () => {
+    const loose = findCity as unknown as (ref: unknown, state?: unknown) => CitySummary[];
+    expect(loose(undefined)).toEqual([]);
+    expect(loose(null)).toEqual([]);
+    expect(loose(42)).toEqual([]);
+    expect(loose("Dallas", null)[0].slug).toBe("dallas");
+    expect((cityDatasets as unknown as (slug: unknown) => unknown[])(undefined)).toEqual([]);
+    const [permits] = cityDatasets("dallas", "permits");
+    const build = buildCityQuery as unknown as (d: unknown, street: unknown) => string | null;
+    expect(decodeURIComponent(build(permits, 123)!)).toContain("%123%");
+    expect(build(permits, null)).toBe(buildCityQuery(permits, ""));
+  });
+
+  it("a street over the cap or with a lone surrogate is refused with a plain error, not a URIError", () => {
+    const [permits] = cityDatasets("dallas", "permits");
+    expect(() => buildCityQuery(permits, "9".repeat(121))).toThrow(RangeError);
+    expect(buildCityQuery(permits, "9".repeat(120))).toContain("9".repeat(120));
+    expect(() => buildCityQuery(permits, "\ud800")).toThrow(TypeError);
+    expect(() => buildCityQuery(permits, "\ud800")).not.toThrow(URIError);
+  });
+
+  it("a prototype key as a city reference matches nothing", () => {
+    for (const ref of ["constructor", "__proto__", "toString", "hasOwnProperty"]) {
+      expect(findCity(ref)).toEqual([]);
+    }
+  });
+});
+
+describe("nothing fetches", () => {
+  it("resolving, listing and building queries made no network call", () => {
+    listCities();
+    findCity("Dallas, TX");
+    for (const c of listCities()) for (const d of cityDatasets(c.slug)) buildCityQuery(d, "Main");
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+});

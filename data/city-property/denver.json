@@ -1,0 +1,38 @@
+{
+  "slug": "denver",
+  "city": "Denver",
+  "state": "Colorado",
+  "stateAbbrev": "CO",
+  "countyName": "Denver County",
+  "countySlug": "denver-county",
+  "lastVerified": "2026-07-26",
+  "scopeNote": "Covers the City and County of Denver. Surrounding Colorado municipalities keep their own permit records.",
+  "datasets": {
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_DEV_RESIDENTIALCONSTPERMIT_P/FeatureServer/316",
+      "orderField": "DATE_ISSUED",
+      "coverage": "Denver RESIDENTIAL construction permits, about 79,000 records. Commercial construction permits are published as a separate city dataset and are not searchable here.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "ADDRESS",
+        "recordNumber": "PERMIT_NUM",
+        "type": "CLASS",
+        "description": "CONTRACTOR_NAME",
+        "value": "VALUATION",
+        "openedDate": "DATE_ISSUED"
+      }
+    }
+  },
+  "source": {
+    "name": "Denver Open Data Catalog",
+    "url": "https://denvergov.org/opendata",
+    "license": "Public domain (City and County of Denver)",
+    "portalLabel": "Denver Open Data",
+    "currentRecordsNote": "Permits are published by Denver Community Planning and Development.",
+    "currentRecordsUrl": "https://denvergov.org/opendata"
+  }
+}

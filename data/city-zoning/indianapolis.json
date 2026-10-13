@@ -1,0 +1,50 @@
+{
+  "slug": "indianapolis",
+  "city": "Indianapolis",
+  "state": "Indiana",
+  "stateAbbrev": "IN",
+  "countyName": "Marion County",
+  "countySlug": "marion-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://gis.indy.gov/server/rest/services/OpenData/OpenData_PlanningZoning/MapServer/8",
+    "orderField": "DECISION_DATE",
+    "fields": {
+      "caseNumber": "CASENO",
+      "address": "STNAME",
+      "addressParts": [
+        "STNUM",
+        "STDIR",
+        "STNAME"
+      ],
+      "status": "STATUS",
+      "statusDate": "DECISION_DATE",
+      "ownerName": "PETITNER",
+      "district": "COUNCIL"
+    },
+    "statusBuckets": {
+      "active": [
+        "ACTIVE",
+        "In Process"
+      ],
+      "approved": [
+        "Approved"
+      ],
+      "closed": [
+        "Denied",
+        "Withdrawn",
+        "Dismissed"
+      ]
+    }
+  },
+  "source": {
+    "name": "Indianapolis Department of Metropolitan Development",
+    "url": "https://www.indy.gov/agency/department-of-metropolitan-development",
+    "license": "Public record (City of Indianapolis / Marion County)",
+    "portalLabel": "IndyGIS",
+    "currentRecordsNote": "Rezoning cases come from the consolidated city-county GIS rezoning layer; the street number, direction, and name live on each case, so address search runs directly. The layer carries zoning-code columns whose meaning is not documentation-confirmed, so this page deliberately shows none rather than risk labeling them wrong.",
+    "currentRecordsUrl": "https://data.indy.gov/"
+  }
+}

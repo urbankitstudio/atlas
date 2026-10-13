@@ -1,0 +1,45 @@
+{
+  "slug": "denver",
+  "city": "Denver",
+  "state": "Colorado",
+  "stateAbbrev": "CO",
+  "countyName": "Denver County",
+  "countySlug": "denver-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_ZONE_MAPAMENDMENTS_A/FeatureServer/356",
+    "lookup": "location",
+    "geocoder": {
+      "provider": "nominatim",
+      "context": "Denver, Colorado"
+    },
+    "orderField": "APP_DATE",
+    "fields": {
+      "caseNumber": "APP_NUM",
+      "status": "STATUS",
+      "existingZoning": "FROM_ZONE_DESC",
+      "proposedZoning": "ZONE_DISTRICT",
+      "appliedDate": "APP_DATE",
+      "statusDate": "PASSED_DATE",
+      "district": "COUNCIL_DIST"
+    },
+    "statusBuckets": {
+      "active": [
+        "Pending"
+      ],
+      "approved": [
+        "Passed"
+      ]
+    }
+  },
+  "source": {
+    "name": "Denver Community Planning and Development",
+    "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development",
+    "license": "Public record (City and County of Denver)",
+    "portalLabel": "Denver Open Data (GIS)",
+    "currentRecordsNote": "Zone map amendments (rezonings) come from Denver's official GIS Zone Map Amendments layer, filings back to 2004 with near-daily activity. The docket is published on parcel shapes rather than addresses, so the tool locates your address and asks the layer what intersects it.",
+    "currentRecordsUrl": "https://www.denvergov.org/opendata"
+  }
+}

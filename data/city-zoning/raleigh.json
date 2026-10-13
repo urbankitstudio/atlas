@@ -1,0 +1,45 @@
+{
+  "slug": "raleigh",
+  "city": "Raleigh",
+  "state": "North Carolina",
+  "stateAbbrev": "NC",
+  "countyName": "Wake County",
+  "countySlug": "wake-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Rezoning_Case_Boundaries_View/FeatureServer/0",
+    "orderField": "StatusDate",
+    "fields": {
+      "caseNumber": "ZONE_CASE",
+      "address": "Location",
+      "caseType": "CASE_TYPE",
+      "status": "STATUS",
+      "existingZoning": "PrevZoning",
+      "proposedZoning": "ZON_REQ",
+      "statusDate": "StatusDate",
+      "link": "EG_Link"
+    },
+    "statusBuckets": {
+      "active": [
+        "In Process"
+      ],
+      "approved": [
+        "Approved"
+      ],
+      "closed": [
+        "Denied",
+        "Withdrawn"
+      ]
+    }
+  },
+  "source": {
+    "name": "Raleigh Planning and Development",
+    "url": "https://raleighnc.gov/planning",
+    "license": "Public record (City of Raleigh)",
+    "portalLabel": "Raleigh Open Data (ArcGIS)",
+    "currentRecordsNote": "Rezoning requests come from Raleigh's case-boundaries layer with clean previous/requested zoning columns and live 2026 cases (the layer's cached time metadata claims 2022; the data disproves it). Multi-parcel cases list every address, semicolon-separated.",
+    "currentRecordsUrl": "https://data.raleighnc.gov/"
+  }
+}

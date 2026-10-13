@@ -1,0 +1,65 @@
+{
+  "slug": "columbus",
+  "city": "Columbus",
+  "state": "Ohio",
+  "stateAbbrev": "OH",
+  "countyName": "Franklin County",
+  "countySlug": "franklin-county",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers the City of Columbus. Other Franklin County municipalities keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/BuildingZoning/MapServer/23",
+      "orderField": "B1_FILE_DD",
+      "coverage": "City of Columbus code-enforcement cases, refreshed nightly; current to 2026.",
+      "recordLabel": "Case",
+      "openedLabel": "Filed",
+      "closedLabel": "Last inspection",
+      "fields": {
+        "address": "SITE_ADDRESS",
+        "recordNumber": "B1_ALT_ID",
+        "type": "B1_PER_CATEGORY",
+        "description": "B1_PER_TYPE",
+        "status": "B1_APPL_STATUS",
+        "openedDate": "B1_FILE_DD",
+        "closedDate": "INSP_LAST_DATE",
+        "link": "ACA_URL"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services1.arcgis.com/9yy6msODkIBzkUXU/arcgis/rest/services/Building_Permits/FeatureServer/0",
+      "orderField": "ISSUED_DT",
+      "coverage": "City of Columbus building permits, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "closedLabel": "Last status",
+      "fields": {
+        "address": "SITE_ADDRESS",
+        "recordNumber": "B1_ALT_ID",
+        "type": "B1_PER_TYPE",
+        "description": "GENERAL_TYPE",
+        "status": "PERMIT_STATUS",
+        "value": "G3_VALUE_TTL",
+        "contractor": "APPLICANT_BUS_NAME",
+        "openedDate": "ISSUED_DT",
+        "closedDate": "LAST_STATUS_DT",
+        "zip": "B1_SITUS_ZIP",
+        "link": "ACA_URL"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Columbus Open Data",
+    "url": "https://opendata.columbus.gov/",
+    "license": "Public record (City of Columbus)",
+    "portalLabel": "City of Columbus open data",
+    "currentRecordsNote": "For current permits and code cases, use the City of Columbus Citizen Access portal.",
+    "currentRecordsUrl": "https://ca.columbus.gov/"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "nashville",
+  "city": "Nashville",
+  "state": "Tennessee",
+  "stateAbbrev": "TN",
+  "countyName": "Davidson County",
+  "countySlug": "davidson-county",
+  "lastVerified": "2026-06-28",
+  "scopeNote": "Covers Metro Nashville and Davidson County. Other Middle Tennessee jurisdictions keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Property Standards",
+      "type": "arcgis",
+      "url": "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Property_Standards_Violations_2/FeatureServer/0",
+      "orderField": "Date_Received",
+      "coverage": "Metro Nashville property-standards (codes) cases, refreshed regularly; current to 2026.",
+      "recordLabel": "Case",
+      "openedLabel": "Reported",
+      "closedLabel": "Last activity",
+      "fields": {
+        "address": "Property_Address",
+        "recordNumber": "Request_Nbr",
+        "type": "Subtype_Description",
+        "description": "Reported_Problem",
+        "status": "Status",
+        "openedDate": "Date_Received",
+        "closedDate": "Last_Activity_Date",
+        "zip": "ZIP"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Building_Permits_Issued_2/FeatureServer/0",
+      "orderField": "Date_Issued",
+      "coverage": "Metro Nashville building permits, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "Address",
+        "recordNumber": "Permit__",
+        "type": "Permit_Type_Description",
+        "description": "Permit_Subtype_Description",
+        "value": "Const_Cost",
+        "contractor": "Contact",
+        "openedDate": "Date_Issued",
+        "zip": "ZIP"
+      }
+    }
+  },
+  "source": {
+    "name": "Metro Nashville Open Data",
+    "url": "https://data.nashville.gov/",
+    "license": "Public record (Metro Nashville)",
+    "portalLabel": "Nashville Open Data portal",
+    "currentRecordsNote": "Permit and property-standards records are published by Metro Nashville Government.",
+    "currentRecordsUrl": "https://data.nashville.gov/"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "atlanta",
+  "city": "Atlanta",
+  "state": "Georgia",
+  "stateAbbrev": "GA",
+  "countyName": "Fulton County",
+  "countySlug": "fulton-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://gis.atlantaga.gov/dpcd/rest/services/OpenDataService1/FeatureServer/23",
+    "lookup": "location",
+    "geocoder": {
+      "provider": "nominatim",
+      "context": "Atlanta, Georgia"
+    },
+    "orderField": "CREATED_DATE",
+    "fields": {
+      "caseNumber": "DOCKET_NO",
+      "status": "STATUSTYPE",
+      "existingZoning": "FROM_ZONE",
+      "proposedZoning": "TO_ZONE",
+      "appliedDate": "CREATED_DATE",
+      "statusDate": "FINAL_UPDA"
+    },
+    "statusBuckets": {
+      "active": [
+        "Filed",
+        "Pending",
+        "Correction"
+      ],
+      "approved": [
+        "Complete"
+      ],
+      "closed": [
+        "Denied"
+      ]
+    }
+  },
+  "source": {
+    "name": "Atlanta Department of City Planning",
+    "url": "https://www.atlantaga.gov/government/departments/city-planning",
+    "license": "Public record (City of Atlanta)",
+    "portalLabel": "Atlanta GIS (DPCD)",
+    "currentRecordsNote": "Rezoning dockets come from Atlanta's own GIS rezoning-cases layer with days-old activity. Published on parcel shapes, so the tool locates your address and asks what intersects it. The layer's STATUS column is internal workflow debris; the clean STATUSTYPE vocabulary is what renders here.",
+    "currentRecordsUrl": "https://gis.atlantaga.gov/"
+  }
+}

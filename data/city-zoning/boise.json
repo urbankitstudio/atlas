@@ -1,0 +1,41 @@
+{
+  "slug": "boise",
+  "city": "Boise",
+  "state": "Idaho",
+  "stateAbbrev": "ID",
+  "countyName": "Ada County",
+  "countySlug": "ada-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/Development_Tracker_Open_Data/FeatureServer/0",
+    "orderField": "RecordID",
+    "where": "RecordType='Annexation-Rezone'",
+    "fields": {
+      "caseNumber": "RecordID",
+      "address": "PropertyAddress",
+      "caseType": "RecordType",
+      "status": "Status",
+      "district": "HearingBody",
+      "link": "Website"
+    },
+    "statusBuckets": {
+      "active": [
+        "In Review",
+        "Awaiting Applications"
+      ],
+      "closed": [
+        "Returned to Applicant"
+      ]
+    }
+  },
+  "source": {
+    "name": "Boise Planning and Development Services",
+    "url": "https://www.cityofboise.org/departments/planning-and-development-services/",
+    "license": "Public record (City of Boise)",
+    "portalLabel": "Boise Development Tracker",
+    "currentRecordsNote": "Annexation and rezone cases come from Boise's unified Development Tracker, scoped here to the Annexation-Rezone record type (the tracker covers a dozen application types). No zoning columns are published; hearing bodies and the city's own case page are linked instead.",
+    "currentRecordsUrl": "https://www.cityofboise.org/programs/development-tracker/"
+  }
+}

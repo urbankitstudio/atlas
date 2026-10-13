@@ -1,0 +1,42 @@
+{
+  "slug": "charlotte",
+  "city": "Charlotte",
+  "state": "North Carolina",
+  "stateAbbrev": "NC",
+  "countyName": "Mecklenburg County",
+  "countySlug": "mecklenburg-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://gis.charlottenc.gov/arcgis/rest/services/PLN/Rezonings/MapServer/0",
+    "lookup": "location",
+    "geocoder": {
+      "provider": "nominatim",
+      "context": "Charlotte, North Carolina"
+    },
+    "orderField": "Received",
+    "fields": {
+      "caseNumber": "Petition",
+      "status": "Status",
+      "existingZoning": "ExistZone",
+      "proposedZoning": "ReqZone",
+      "appliedDate": "Received",
+      "statusDate": "Approved",
+      "link": "Hyperlink"
+    },
+    "statusBuckets": {
+      "active": [
+        "Pen"
+      ]
+    }
+  },
+  "source": {
+    "name": "Charlotte Planning, Design & Development",
+    "url": "https://www.charlottenc.gov/Growth-and-Development/Planning-and-Development",
+    "license": "Public record (City of Charlotte)",
+    "portalLabel": "Charlotte Open Mapping",
+    "currentRecordsNote": "Rezoning petitions come from Charlotte's own GIS rezonings layer; approved petitions get folded into the base zoning map, so this docket is mostly currently-active cases. Published on parcel shapes, so the tool locates your address and asks what intersects it.",
+    "currentRecordsUrl": "https://data.charlottenc.gov/"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "slug": "tampa",
+  "city": "Tampa",
+  "state": "Florida",
+  "stateAbbrev": "FL",
+  "countyName": "Hillsborough County",
+  "countySlug": "hillsborough-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://arcgis.tampagov.net/arcgis/rest/services/OpenData/Planning/MapServer/31",
+    "orderField": "CREATEDDATE",
+    "where": "RECORDALIAS='Rezoning'",
+    "fields": {
+      "caseNumber": "RECORDID",
+      "address": "ADDRESS",
+      "caseType": "RECORDALIAS",
+      "status": "APPSTATUS",
+      "appliedDate": "CREATEDDATE",
+      "statusDate": "LASTUPDATE",
+      "link": "URL"
+    },
+    "statusBuckets": {
+      "active": [
+        "In Process",
+        "Awaiting Client Reply",
+        "Open"
+      ]
+    }
+  },
+  "source": {
+    "name": "Tampa Development Coordination",
+    "url": "https://www.tampa.gov/development-and-growth-management",
+    "license": "Public record (City of Tampa)",
+    "portalLabel": "Tampa OpenData GIS",
+    "currentRecordsNote": "Rezoning cases come from Tampa's Development Coordination layer (Accela-backed), scoped here to the Rezoning record type; the same layer tracks variances, special uses, and other review types. The layer holds active cases and prunes on closure, so this is a live docket rather than an archive. No existing/proposed zoning columns are published.",
+    "currentRecordsUrl": "https://opendata.tampagov.net/"
+  }
+}

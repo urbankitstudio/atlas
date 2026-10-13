@@ -1,0 +1,37 @@
+{
+  "slug": "milwaukee",
+  "city": "Milwaukee",
+  "state": "Wisconsin",
+  "stateAbbrev": "WI",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers building permits issued within the City of Milwaukee. Surrounding municipalities keep their own records.",
+  "datasets": {
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "ckan",
+      "url": "https://data.milwaukee.gov",
+      "resourceId": "828e9630-d7cb-42e4-960e-964eae916397",
+      "orderField": "Date Issued",
+      "coverage": "Milwaukee building permits, 2015 to present.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "Address",
+        "recordNumber": "Record ID",
+        "type": "Permit Type",
+        "status": "Status",
+        "value": "Construction Total Cost",
+        "openedDate": "Date Issued"
+      }
+    }
+  },
+  "source": {
+    "name": "Milwaukee Open Data",
+    "url": "https://data.milwaukee.gov/",
+    "license": "Public domain (City of Milwaukee)",
+    "portalLabel": "Milwaukee Open Data",
+    "currentRecordsNote": "Permits are published by the City of Milwaukee Department of Neighborhood Services.",
+    "currentRecordsUrl": "https://data.milwaukee.gov/dataset/buildingpermits"
+  }
+}

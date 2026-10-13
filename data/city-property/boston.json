@@ -1,0 +1,62 @@
+{
+  "slug": "boston",
+  "city": "Boston",
+  "state": "Massachusetts",
+  "stateAbbrev": "MA",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers properties inside the City of Boston. Surrounding municipalities keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "ckan",
+      "url": "https://data.boston.gov",
+      "resourceId": "800a2663-1d6a-46e7-9356-bedb70f5332c",
+      "orderField": "status_dttm",
+      "where": "status_dttm IS NOT NULL",
+      "coverage": "Boston building and property violation cases, 2009 to present.",
+      "recordLabel": "Case",
+      "openedLabel": "Updated",
+      "fields": {
+        "address": "violation_street",
+        "addressParts": ["violation_stno", "violation_street", "violation_suffix"],
+        "recordNumber": "case_no",
+        "description": "description",
+        "status": "status",
+        "openedDate": "status_dttm",
+        "zip": "violation_zip"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "ckan",
+      "url": "https://data.boston.gov",
+      "resourceId": "6ddcd912-32a0-43df-9908-63574f8c7e77",
+      "orderField": "issued_date",
+      "coverage": "Boston approved building permits, 2006 to present; refreshed daily.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "closedLabel": "Expires",
+      "fields": {
+        "address": "address",
+        "recordNumber": "permitnumber",
+        "type": "permittypedescr",
+        "description": "description",
+        "status": "status",
+        "value": "declared_valuation",
+        "openedDate": "issued_date",
+        "closedDate": "expiration_date",
+        "zip": "zip"
+      }
+    }
+  },
+  "source": {
+    "name": "Analyze Boston",
+    "url": "https://data.boston.gov/",
+    "license": "Public domain (City of Boston)",
+    "portalLabel": "Analyze Boston",
+    "currentRecordsNote": "Both datasets are published by the City of Boston on Analyze Boston.",
+    "currentRecordsUrl": "https://data.boston.gov/"
+  }
+}

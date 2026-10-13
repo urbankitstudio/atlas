@@ -1,0 +1,37 @@
+{
+  "slug": "washington-dc",
+  "city": "Washington, DC",
+  "state": "District of Columbia",
+  "stateAbbrev": "DC",
+  "countySlug": "district-of-columbia",
+  "lastVerified": "2026-07-26",
+  "scopeNote": "Covers the District of Columbia. DC has no county layer; the District issues all building permits directly.",
+  "datasets": {
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/18",
+      "orderField": "ISSUE_DATE",
+      "coverage": "District of Columbia building permits issued in 2026, about 27,000 records. DC publishes one layer per calendar year back to 2009; earlier years are not searchable here.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "FULL_ADDRESS",
+        "recordNumber": "PERMIT_ID",
+        "type": "PERMIT_TYPE_NAME",
+        "description": "DESC_OF_WORK",
+        "status": "APPLICATION_STATUS_NAME",
+        "openedDate": "ISSUE_DATE"
+      }
+    }
+  },
+  "source": {
+    "name": "DC GIS (DCRA feeds)",
+    "url": "https://opendata.dc.gov/",
+    "license": "Public domain (District of Columbia)",
+    "portalLabel": "Open Data DC",
+    "currentRecordsNote": "Permits are published by the DC Department of Buildings via the DCRA feed service.",
+    "currentRecordsUrl": "https://opendata.dc.gov/search?q=building%20permits"
+  }
+}

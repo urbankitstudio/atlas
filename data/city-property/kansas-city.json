@@ -1,0 +1,64 @@
+{
+  "slug": "kansas-city",
+  "city": "Kansas City",
+  "state": "Missouri",
+  "stateAbbrev": "MO",
+  "countyName": "Jackson County",
+  "countySlug": "jackson-county",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers the City of Kansas City, Missouri, which spans Jackson, Clay, and Platte counties. Other metro jurisdictions keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "socrata",
+      "url": "https://data.kcmo.org/resource/vq3e-m9ge.json",
+      "orderField": "date_found",
+      "where": "date_found IS NOT NULL",
+      "coverage": "Kansas City neighborhood code-enforcement cases, refreshed regularly; current to 2026.",
+      "recordLabel": "Case",
+      "openedLabel": "Found",
+      "closedLabel": "Resolved",
+      "fields": {
+        "address": "street_address",
+        "recordNumber": "casenumber",
+        "type": "ordinance",
+        "description": "ord_text",
+        "status": "case_status",
+        "openedDate": "date_found",
+        "closedDate": "date_resolved",
+        "zip": "postalcode"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.kcmo.org/resource/ntw8-aacc.json",
+      "orderField": "issueddate",
+      "coverage": "Kansas City building and trade permits issued through mid-2025.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "originaladdress1",
+        "recordNumber": "permitnum",
+        "type": "permittypedesc",
+        "description": "description",
+        "status": "statuscurrent",
+        "value": "estprojectcost",
+        "contractor": "contractorcompanyname",
+        "openedDate": "issueddate",
+        "zip": "originalzip",
+        "link": "link"
+      }
+    }
+  },
+  "source": {
+    "name": "OpenDataKC",
+    "url": "https://data.kcmo.org/",
+    "license": "Public domain (City of Kansas City, Missouri)",
+    "portalLabel": "OpenDataKC portal",
+    "currentRecordsNote": "For current permits, use the City of Kansas City Compass self-service portal.",
+    "currentRecordsUrl": "https://compasskc.kcmo.org/"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "dallas",
+  "city": "Dallas",
+  "state": "Texas",
+  "stateAbbrev": "TX",
+  "countyName": "Dallas County",
+  "countySlug": "dallas-county",
+  "lastVerified": "2026-06-28",
+  "scopeNote": "Covers properties inside the City of Dallas city limits. Other Dallas County municipalities (Irving, Garland, Mesquite, Richardson, and the rest) keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "socrata",
+      "url": "https://www.dallasopendata.com/resource/x9pz-kdq9.json",
+      "orderField": "created",
+      "coverage": "City code-enforcement service requests reported 2013 to 2018.",
+      "recordLabel": "Service request",
+      "openedLabel": "Reported",
+      "closedLabel": "Updated",
+      "fields": {
+        "address": "str_nam",
+        "addressParts": ["str_num", "str_prefix", "str_nam", "str_suffix"],
+        "recordNumber": "service_request",
+        "type": "type",
+        "description": "nuisance",
+        "status": "status",
+        "openedDate": "created",
+        "closedDate": "updated",
+        "zip": "zone"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://www.dallasopendata.com/resource/e7gq-4sah.json",
+      "coverage": "City building permits issued through 2020.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "street_address",
+        "recordNumber": "permit_number",
+        "type": "permit_type",
+        "description": "work_description",
+        "contractor": "contractor",
+        "value": "value",
+        "openedDate": "issued_date",
+        "zip": "zip_code"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Dallas Open Data",
+    "url": "https://www.dallasopendata.com/",
+    "license": "Public domain (City of Dallas)",
+    "portalLabel": "City of Dallas Open Data portal",
+    "currentRecordsNote": "For current permits and open code cases, use the City of Dallas Development Services portal.",
+    "currentRecordsUrl": "https://dallascityhall.com/departments/sustainabledevelopment/Pages/default.aspx"
+  }
+}

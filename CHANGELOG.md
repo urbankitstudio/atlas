@@ -1,5 +1,49 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.31 — 2026-10-12
+
+City datasets. New export, no breaking change, `totals` unchanged. The package
+now bundles the two city registries urbankitstudio.com serves at
+`/data/city-property/` and `/data/city-zoning/`: 20 cities with verified
+code-violation or building-permit datasets and 17 with zoning-case dockets
+(`data/city-property/`, `data/city-zoning/`), and describes how to query each
+one the way the site does.
+
+- `listCities(filter?)`, `findCity(ref, state?)` (slug, name, "Name, ST", the
+  NYC and DC aliases; ambiguity is a list), `getCityProperty(slug)`,
+  `getCityZoning(slug)`, `cityDatasets(slug, kind?)`, `citiesForCounty(stateSlug,
+  countySlug)`, `cityPath(slug, kind)`.
+- `buildCityQuery(dataset, street)` returns the exact URL the site sends for a
+  dataset and a typed street (Socrata, ArcGIS, CKAN or CARTO), with the site's
+  quote-doubling guard; null when the lookup needs a geocoded point or a parcel
+  id first, in which case `dataset.queryTemplate` carries the request with a
+  `{LON},{LAT}` placeholder. Address lookups carry no template on purpose: a
+  street must be escaped for the provider's SQL, and only `buildCityQuery` does
+  that. LIKE wildcards (`%`, `_`) in a street stay active, as on the site; each
+  `queryNote` says so.
+- Each `CityDatasetDescriptor` carries the provider, endpoint, lookup mode,
+  address and date columns, the scope `where` that is part of the dataset's
+  definition, the field map, status buckets, coverage, a freshness block, the
+  point template where one applies, a newest-first `sampleQuery` and a `queryNote`.
+- County records' `relatedZoningCitySlug` and `relatedPropertyCitySlug` now
+  resolve inside the package through `getCityZoning` / `getCityProperty`.
+- Split addresses. A dataset whose table keeps the house number in its own
+  column (`addressParts`: Dallas violations, Boston, Chicago, NYC and San
+  Francisco, plus the Boston and Indianapolis dockets) is matched on the street
+  NAME: `buildCityQuery` takes the typed house number off, then a leading
+  directional when the table has a direction column, then one trailing street
+  type when it has a type column (`streetForDataset`, `splitAddressStreetName`;
+  the roles follow the column order of `addressParts`). A name column holds
+  "MARILLA" while "1500" and "ST" sit elsewhere, so the typed line as one
+  substring finds almost nothing (Dallas, 2026-10-13: 101 of 109 Marilla rows
+  carry the type in `str_suffix`). The page's own URL stays `propertyQueryUrl`
+  / `casesQueryUrl`; a `streetNumber` mapping, which no shipped city sets yet,
+  matches number and name on both columns instead.
+- Nothing fetches. For volume against a Socrata dataset, send your own
+  `X-App-Token`.
+- Boston's zoning record no longer names `suffolk-county`, which the atlas
+  does not carry (Massachusetts is statewide); its county name stays.
+
 ## 0.6.30 — 2026-10-12
 
 0.6.30: endpoint capability keys supportsPagination and maxRecordCount,

@@ -1,0 +1,45 @@
+{
+  "slug": "nashville",
+  "city": "Nashville",
+  "state": "Tennessee",
+  "stateAbbrev": "TN",
+  "countyName": "Davidson County",
+  "countySlug": "davidson-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Development_Tracker_Cases_view/FeatureServer/0",
+    "orderField": "DATE_ACCEPTED",
+    "where": "CASE_TYPE_DESC='MPC Rezoning'",
+    "fields": {
+      "caseNumber": "MPCNUM",
+      "caseName": "CAPTION",
+      "address": "LOCATION_DESC",
+      "caseType": "CASE_TYPE_DESC",
+      "status": "PSTAT",
+      "proposedZoning": "NewZoning",
+      "existingZoning": "ExistingZoning",
+      "appliedDate": "DATE_ACCEPTED",
+      "district": "CD"
+    },
+    "statusBuckets": {
+      "active": [
+        "New",
+        "Active",
+        "Pending"
+      ],
+      "closed": [
+        "Complete"
+      ]
+    }
+  },
+  "source": {
+    "name": "Metro Nashville Planning Department",
+    "url": "https://www.nashville.gov/departments/planning",
+    "license": "Public record (Metro Nashville)",
+    "portalLabel": "Nashville Development Tracker",
+    "currentRecordsNote": "Rezoning cases come from the Planning Department's Development Tracker layer, updated near-daily; MPC rezonings also require Metro Council passage after the commission hearing.",
+    "currentRecordsUrl": "https://experience.arcgis.com/experience/ba7f16fe1fa24d31a1f465d68d68b8d5"
+  }
+}

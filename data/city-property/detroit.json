@@ -1,0 +1,58 @@
+{
+  "slug": "detroit",
+  "city": "Detroit",
+  "state": "Michigan",
+  "stateAbbrev": "MI",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers the City of Detroit. Violations are blight-violation tickets; permits are Buildings, Safety Engineering and Environmental Department (BSEED) building permits.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Blight Violations",
+      "type": "arcgis",
+      "url": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/blight_tickets/FeatureServer/0",
+      "orderField": "ticket_issued_date",
+      "coverage": "City of Detroit blight-violation tickets, refreshed regularly; current to 2026.",
+      "recordLabel": "Ticket",
+      "openedLabel": "Ticketed",
+      "closedLabel": "Judgment",
+      "fields": {
+        "address": "address",
+        "recordNumber": "ticket_number",
+        "type": "ordinance_law",
+        "description": "ordinance_description",
+        "status": "disposition",
+        "openedDate": "ticket_issued_date",
+        "closedDate": "judgment_date",
+        "zip": "zip_code"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_building_permits/FeatureServer/0",
+      "orderField": "issued_date",
+      "coverage": "City of Detroit BSEED building permits, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "address",
+        "recordNumber": "record_id",
+        "type": "permit_type",
+        "description": "work_description",
+        "value": "amt_estimated_contractor_cost",
+        "openedDate": "issued_date",
+        "zip": "zip_code"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Detroit Open Data Portal",
+    "url": "https://data.detroitmi.gov/",
+    "license": "Public domain (City of Detroit)",
+    "portalLabel": "City of Detroit Open Data Portal",
+    "currentRecordsNote": "Blight-ticket and BSEED permit records are published by the City of Detroit and refreshed regularly.",
+    "currentRecordsUrl": "https://data.detroitmi.gov/"
+  }
+}

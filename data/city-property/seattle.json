@@ -1,0 +1,63 @@
+{
+  "slug": "seattle",
+  "city": "Seattle",
+  "state": "Washington",
+  "stateAbbrev": "WA",
+  "countyName": "King County",
+  "countySlug": "king-county",
+  "lastVerified": "2026-06-28",
+  "scopeNote": "Covers properties inside the City of Seattle. Other King County cities (Bellevue, Redmond, Renton, Kent, and the rest) keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Cases",
+      "type": "socrata",
+      "url": "https://data.seattle.gov/resource/ez4a-iug7.json",
+      "orderField": "opendate",
+      "coverage": "Seattle code complaints, violations, and citations, refreshed regularly; current to 2026.",
+      "recordLabel": "Case",
+      "openedLabel": "Opened",
+      "closedLabel": "Last inspection",
+      "fields": {
+        "address": "originaladdress1",
+        "recordNumber": "recordnum",
+        "type": "recordtype",
+        "description": "description",
+        "status": "statuscurrent",
+        "openedDate": "opendate",
+        "closedDate": "lastinspdate",
+        "zip": "originalzip"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.seattle.gov/resource/76t5-zqzr.json",
+      "orderField": "issueddate",
+      "where": "issueddate IS NOT NULL",
+      "coverage": "Seattle building permits, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "originaladdress1",
+        "recordNumber": "permitnum",
+        "type": "permittypedesc",
+        "description": "description",
+        "status": "statuscurrent",
+        "value": "estprojectcost",
+        "contractor": "contractorcompanyname",
+        "openedDate": "issueddate",
+        "zip": "originalzip"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Seattle Open Data",
+    "url": "https://data.seattle.gov/",
+    "license": "Public domain (City of Seattle)",
+    "portalLabel": "City of Seattle open data portal",
+    "currentRecordsNote": "Permit and code-case records are published by the City of Seattle and refreshed regularly.",
+    "currentRecordsUrl": "https://data.seattle.gov/"
+  }
+}

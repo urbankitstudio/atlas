@@ -1,0 +1,32 @@
+{
+  "slug": "los-angeles",
+  "city": "Los Angeles",
+  "state": "California",
+  "stateAbbrev": "CA",
+  "countyName": "Los Angeles County",
+  "countySlug": "los-angeles-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://services1.arcgis.com/tzwalEyxl2rpamKs/arcgis/rest/services/New_PCTS_Case_Filings/FeatureServer/0",
+    "orderField": "USER_ReportDate",
+    "caseLabel": "new planning-case filings",
+    "fields": {
+      "caseNumber": "USER_CaseNumber",
+      "caseName": "USER_ProjectDescription",
+      "address": "USER_Address",
+      "caseType": "USER_RequestType",
+      "appliedDate": "USER_AppDate",
+      "district": "USER_CouncilDist"
+    }
+  },
+  "source": {
+    "name": "Los Angeles City Planning",
+    "url": "https://planning.lacity.gov/",
+    "license": "Public record (City of Los Angeles)",
+    "portalLabel": "LA City Planning GIS (PCTS)",
+    "currentRecordsNote": "Cases come from LA City Planning's rolling PCTS new-filings report, refreshed roughly every two weeks. It is a FILINGS feed: every entitlement type the department accepts, with no decision or status tracking and no zoning columns - the layer's own 'Status' field is geocoder metadata, not case status, and is deliberately not shown.",
+    "currentRecordsUrl": "https://planning.lacity.gov/development-services/case-search"
+  }
+}

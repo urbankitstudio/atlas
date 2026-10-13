@@ -1,0 +1,266 @@
+{
+  "lastUpdated": "2026-10-12",
+  "cities": [
+    {
+      "slug": "dallas",
+      "city": "Dallas",
+      "state": "Texas",
+      "stateAbbrev": "TX",
+      "countyName": "Dallas County",
+      "countySlug": "dallas-county",
+      "populated": true,
+      "provider": "City of Dallas Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "chicago",
+      "city": "Chicago",
+      "state": "Illinois",
+      "stateAbbrev": "IL",
+      "countyName": "Cook County",
+      "countySlug": "cook-county",
+      "populated": true,
+      "provider": "Chicago Data Portal (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "nashville",
+      "city": "Nashville",
+      "state": "Tennessee",
+      "stateAbbrev": "TN",
+      "countyName": "Davidson County",
+      "countySlug": "davidson-county",
+      "populated": true,
+      "provider": "Metro Nashville Open Data (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "austin",
+      "city": "Austin",
+      "state": "Texas",
+      "stateAbbrev": "TX",
+      "countyName": "Travis County",
+      "countySlug": "travis-county",
+      "populated": true,
+      "provider": "City of Austin Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "seattle",
+      "city": "Seattle",
+      "state": "Washington",
+      "stateAbbrev": "WA",
+      "countyName": "King County",
+      "countySlug": "king-county",
+      "populated": true,
+      "provider": "City of Seattle Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "nyc",
+      "city": "New York City",
+      "state": "New York",
+      "stateAbbrev": "NY",
+      "populated": true,
+      "provider": "NYC Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "san-francisco",
+      "city": "San Francisco",
+      "state": "California",
+      "stateAbbrev": "CA",
+      "populated": true,
+      "provider": "DataSF (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "detroit",
+      "city": "Detroit",
+      "state": "Michigan",
+      "stateAbbrev": "MI",
+      "populated": true,
+      "provider": "City of Detroit Open Data (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "las-vegas",
+      "city": "Las Vegas",
+      "state": "Nevada",
+      "stateAbbrev": "NV",
+      "countyName": "Clark County",
+      "countySlug": "clark-county",
+      "populated": true,
+      "provider": "City of Las Vegas Open Data (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "kansas-city",
+      "city": "Kansas City",
+      "state": "Missouri",
+      "stateAbbrev": "MO",
+      "countyName": "Jackson County",
+      "countySlug": "jackson-county",
+      "populated": true,
+      "provider": "OpenDataKC (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "columbus",
+      "city": "Columbus",
+      "state": "Ohio",
+      "stateAbbrev": "OH",
+      "countyName": "Franklin County",
+      "countySlug": "franklin-county",
+      "populated": true,
+      "provider": "City of Columbus (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "boston",
+      "city": "Boston",
+      "state": "Massachusetts",
+      "stateAbbrev": "MA",
+      "populated": true,
+      "provider": "Analyze Boston (CKAN)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "san-antonio",
+      "city": "San Antonio",
+      "state": "Texas",
+      "stateAbbrev": "TX",
+      "populated": true,
+      "provider": "City of San Antonio Open Data (CKAN + ArcGIS 311)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "milwaukee",
+      "city": "Milwaukee",
+      "state": "Wisconsin",
+      "stateAbbrev": "WI",
+      "populated": true,
+      "provider": "Milwaukee Open Data (CKAN)",
+      "datasets": [
+        "permits"
+      ]
+    },
+    {
+      "slug": "charlotte",
+      "city": "Charlotte",
+      "state": "North Carolina",
+      "stateAbbrev": "NC",
+      "countyName": "Mecklenburg County",
+      "countySlug": "mecklenburg-county",
+      "populated": true,
+      "provider": "City of Charlotte GIS (ArcGIS)",
+      "datasets": [
+        "violations"
+      ]
+    },
+    {
+      "slug": "denver",
+      "city": "Denver",
+      "state": "Colorado",
+      "stateAbbrev": "CO",
+      "countyName": "Denver County",
+      "countySlug": "denver-county",
+      "populated": true,
+      "provider": "Denver Open Data (ArcGIS)",
+      "datasets": [
+        "permits"
+      ]
+    },
+    {
+      "slug": "washington-dc",
+      "city": "Washington, DC",
+      "state": "District of Columbia",
+      "stateAbbrev": "DC",
+      "countySlug": "district-of-columbia",
+      "populated": true,
+      "provider": "Open Data DC (ArcGIS)",
+      "datasets": [
+        "permits"
+      ]
+    },
+    {
+      "slug": "philadelphia",
+      "city": "Philadelphia",
+      "state": "Pennsylvania",
+      "stateAbbrev": "PA",
+      "countyName": "Philadelphia County",
+      "countySlug": "philadelphia-county",
+      "populated": true,
+      "provider": "OpenDataPhilly / City of Philadelphia L&I (CARTO)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "atlanta",
+      "city": "Atlanta",
+      "state": "Georgia",
+      "stateAbbrev": "GA",
+      "countyName": "Fulton County",
+      "countySlug": "fulton-county",
+      "populated": true,
+      "provider": "City of Atlanta GIS (ArcGIS)",
+      "datasets": [
+        "permits"
+      ]
+    },
+    {
+      "slug": "phoenix",
+      "city": "Phoenix",
+      "state": "Arizona",
+      "stateAbbrev": "AZ",
+      "countyName": "Maricopa County",
+      "countySlug": "maricopa-county",
+      "populated": true,
+      "provider": "City of Phoenix GIS (ArcGIS)",
+      "datasets": [
+        "permits"
+      ]
+    }
+  ]
+}

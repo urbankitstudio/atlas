@@ -1,0 +1,42 @@
+{
+  "slug": "washington-dc",
+  "city": "Washington",
+  "state": "District of Columbia",
+  "stateAbbrev": "DC",
+  "countyName": "District of Columbia",
+  "countySlug": "district-of-columbia",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCOZ/Zone_Mapservice/MapServer/53",
+    "orderField": "dateFiled",
+    "where": "Case_Type='ZC'",
+    "fields": {
+      "caseNumber": "Case_ID",
+      "caseName": "Case_Name",
+      "address": "Premise_Address",
+      "caseType": "Case_Type",
+      "status": "Action_Taken",
+      "appliedDate": "dateFiled",
+      "statusDate": "Decision_Date",
+      "link": "URL"
+    },
+    "statusBuckets": {
+      "active": [
+        "Pending"
+      ],
+      "approved": [
+        "Approved"
+      ]
+    }
+  },
+  "source": {
+    "name": "DC Office of Zoning",
+    "url": "https://dcoz.dc.gov/",
+    "license": "Public record (District of Columbia)",
+    "portalLabel": "DC GIS (DCOZ)",
+    "currentRecordsNote": "Zoning Commission cases come from the DC Office of Zoning case table, scoped to the ZC track (the BZA track is variances and exceptions, a different process). The ZC docket mixes map amendments with PUDs and time extensions; the district publishes no finer public sub-filter. Existing zoning appears only inside each case's prose description.",
+    "currentRecordsUrl": "https://app.dcoz.dc.gov/"
+  }
+}

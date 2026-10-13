@@ -1,0 +1,56 @@
+{
+  "slug": "san-antonio",
+  "city": "San Antonio",
+  "state": "Texas",
+  "stateAbbrev": "TX",
+  "lastVerified": "2026-08-24",
+  "scopeNote": "Covers building permits and 311 code-enforcement service requests within the City of San Antonio. Bexar County and surrounding municipalities keep their own records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Cases (311)",
+      "type": "arcgis",
+      "url": "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest/services/311_All_Service_Calls/FeatureServer/0",
+      "orderField": "OpenedDateTime",
+      "where": "ReasonName='Code Enforcement'",
+      "coverage": "San Antonio 311 service requests routed to Code Enforcement Services (overgrown yard, junk vehicle, dangerous premise, zoning, graffiti and similar), live feed current to 2026. These are complaint-driven service requests, not formal citations; the city publishes no standalone violations dataset.",
+      "recordLabel": "Service request",
+      "openedLabel": "Opened",
+      "closedLabel": "Closed",
+      "fields": {
+        "address": "ObjectDescription",
+        "type": "TypeName",
+        "status": "CaseStatus",
+        "openedDate": "OpenedDateTime",
+        "closedDate": "ClosedDateTime"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "ckan",
+      "url": "https://data.sanantonio.gov",
+      "resourceId": "c21106f9-3ef5-4f3a-8604-f992b4db7512",
+      "orderField": "DATE ISSUED",
+      "coverage": "San Antonio permits issued January 2025 to present.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "ADDRESS",
+        "recordNumber": "PERMIT #",
+        "type": "PERMIT TYPE",
+        "description": "WORK TYPE",
+        "value": "DECLARED VALUATION",
+        "openedDate": "DATE ISSUED"
+      }
+    }
+  },
+  "source": {
+    "name": "City of San Antonio Open Data",
+    "url": "https://data.sanantonio.gov/",
+    "license": "Public domain (City of San Antonio)",
+    "portalLabel": "San Antonio Open Data",
+    "currentRecordsNote": "Permits are published by the Development Services Department; 311 code cases come from the city's 311 All Service Calls layer on the COSAGIS open-data hub.",
+    "currentRecordsUrl": "https://data.sanantonio.gov/dataset/building-permits"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "durham",
+  "city": "Durham",
+  "state": "North Carolina",
+  "stateAbbrev": "NC",
+  "countyName": "Durham County",
+  "countySlug": "durham-county",
+  "lastVerified": "2026-08-24",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://webgis2.durhamnc.gov/server/rest/services/ProjectServices/Planning_ZoningCaseComments/MapServer/0",
+    "lookup": "location",
+    "geocoder": {
+      "provider": "nominatim",
+      "context": "Durham, North Carolina"
+    },
+    "orderField": "CASENO",
+    "where": "CaseType='Rezoning'",
+    "fields": {
+      "caseNumber": "CASENO",
+      "caseName": "ProjectName",
+      "caseType": "CaseType",
+      "status": "CaseStatus",
+      "existingZoning": "CURNTZONING",
+      "proposedZoning": "ProposedUDO",
+      "statusDate": "PhasePCDate",
+      "link": "ProjectDocumentsURL"
+    }
+  },
+  "source": {
+    "name": "Durham City-County Planning",
+    "url": "https://www.durhamnc.gov/338/City-County-Planning",
+    "license": "Public record (City of Durham)",
+    "portalLabel": "Durham WebGIS",
+    "currentRecordsNote": "Rezoning cases come from Durham's zoning-change layer, scoped to CaseType Rezoning (the layer also tracks annexations), with the current and proposed UDO zoning as clean columns and hearings scheduled this month at verification. Published on parcel shapes, so the tool locates your address and asks what intersects it.",
+    "currentRecordsUrl": "https://webgis2.durhamnc.gov/"
+  }
+}

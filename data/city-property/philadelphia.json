@@ -1,0 +1,62 @@
+{
+  "slug": "philadelphia",
+  "city": "Philadelphia",
+  "state": "Pennsylvania",
+  "stateAbbrev": "PA",
+  "countyName": "Philadelphia County",
+  "countySlug": "philadelphia-county",
+  "lastVerified": "2026-07-26",
+  "scopeNote": "Philadelphia is a consolidated city-county, so these Licenses & Inspections records cover the whole county.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "carto",
+      "url": "https://phl.carto.com",
+      "resourceId": "violations",
+      "orderField": "violationdate",
+      "coverage": "Philadelphia Licenses & Inspections code violations, about 2 million records, refreshed daily.",
+      "recordLabel": "Violation",
+      "openedLabel": "Cited",
+      "closedLabel": "Resolved",
+      "fields": {
+        "address": "address",
+        "recordNumber": "casenumber",
+        "type": "violationcodetitle",
+        "description": "casetype",
+        "status": "violationstatus",
+        "openedDate": "violationdate",
+        "closedDate": "violationresolutiondate"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "carto",
+      "url": "https://phl.carto.com",
+      "resourceId": "permits",
+      "orderField": "permitissuedate",
+      "coverage": "Philadelphia Licenses & Inspections building permits, about 928,000 records, refreshed daily.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "closedLabel": "Completed",
+      "fields": {
+        "address": "address",
+        "recordNumber": "permitnumber",
+        "type": "permittype",
+        "description": "permitdescription",
+        "status": "status",
+        "openedDate": "permitissuedate",
+        "closedDate": "permitcompleteddate"
+      }
+    }
+  },
+  "source": {
+    "name": "OpenDataPhilly / City of Philadelphia L&I",
+    "url": "https://opendataphilly.org/",
+    "license": "City of Philadelphia License",
+    "portalLabel": "OpenDataPhilly",
+    "currentRecordsNote": "Violations and permits are published by Philadelphia Licenses & Inspections and served from the city's CARTO SQL API.",
+    "currentRecordsUrl": "https://opendataphilly.org/datasets/licenses-and-inspections-violations/"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "phoenix",
+  "city": "Phoenix",
+  "state": "Arizona",
+  "stateAbbrev": "AZ",
+  "countyName": "Maricopa County",
+  "countySlug": "maricopa-county",
+  "lastVerified": "2026-07-26",
+  "scopeNote": "Covers permits issued by the City of Phoenix. Addresses in unincorporated Maricopa County, or in neighboring cities such as Scottsdale, Mesa, and Glendale, file with their own jurisdiction.",
+  "datasets": {
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://maps.phoenix.gov/pub/rest/services/Public/Planning_Permit/MapServer/1",
+      "orderField": "PER_ENT_DATE",
+      "coverage": "City of Phoenix permits, about 70,000 records entered since January 2015. Planning and Development publishes building, fire, sign, and solar permits together, and each record shows whether it is open, done, expired, or void.",
+      "recordLabel": "Permit",
+      "openedLabel": "Entered",
+      "closedLabel": "Completed",
+      "fields": {
+        "address": "STREET_FULL_NAME",
+        "recordNumber": "PER_NUM",
+        "type": "PER_TYPE_DESC",
+        "description": "SCOPE_DESC",
+        "status": "PERMIT_STAT",
+        "contractor": "PROFESS_NAME",
+        "openedDate": "PER_ENT_DATE",
+        "closedDate": "PER_COMPL_DATE"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Phoenix GIS",
+    "url": "https://maps.phoenix.gov/",
+    "license": "Public record (City of Phoenix)",
+    "portalLabel": "Phoenix Open Data",
+    "currentRecordsNote": "Permits are published by Phoenix Planning and Development on the city's public map server.",
+    "currentRecordsUrl": "https://www.phoenix.gov/pdd"
+  }
+}

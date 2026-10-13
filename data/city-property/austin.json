@@ -1,0 +1,61 @@
+{
+  "slug": "austin",
+  "city": "Austin",
+  "state": "Texas",
+  "stateAbbrev": "TX",
+  "countyName": "Travis County",
+  "countySlug": "travis-county",
+  "lastVerified": "2026-06-28",
+  "scopeNote": "Covers properties inside the City of Austin. Other Travis County jurisdictions keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Cases",
+      "type": "socrata",
+      "url": "https://data.austintexas.gov/resource/6wtj-zbtb.json",
+      "orderField": "opened_date",
+      "coverage": "City of Austin code-enforcement cases, complaint-driven, refreshed regularly; current to 2026.",
+      "recordLabel": "Case",
+      "openedLabel": "Opened",
+      "closedLabel": "Closed",
+      "fields": {
+        "address": "address",
+        "recordNumber": "case_id",
+        "description": "description",
+        "status": "status",
+        "openedDate": "opened_date",
+        "closedDate": "closed_date",
+        "zip": "zip_code"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+      "orderField": "issue_date",
+      "coverage": "City of Austin issued permits, building and trade, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "original_address1",
+        "recordNumber": "permit_number",
+        "type": "permit_type_desc",
+        "description": "description",
+        "status": "status_current",
+        "value": "total_job_valuation",
+        "contractor": "contractor_company_name",
+        "openedDate": "issue_date",
+        "zip": "original_zip"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Austin Open Data",
+    "url": "https://data.austintexas.gov/",
+    "license": "Public domain (City of Austin)",
+    "portalLabel": "City of Austin open data portal",
+    "currentRecordsNote": "Permit and code-case records are published by the City of Austin and refreshed regularly.",
+    "currentRecordsUrl": "https://data.austintexas.gov/"
+  }
+}

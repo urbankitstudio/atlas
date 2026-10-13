@@ -7,9 +7,11 @@ mirror (`urbankitstudio/atlas`), where the sync copies this file to the repo roo
 - `@urbankitstudio/atlas` on npm: the County Parcel REST API Atlas as JSON (`data/`) plus a typed SDK
   (`src/`). AI agents install it. It is one of three agent surfaces, with the stdio MCP server
   `@urbankitstudio/mcp-atlas` and the hosted MCP (`api/mcp.ts` in the monorepo).
-- `data/` is generated from the monorepo's `public/data/atlas/` by `scripts/sync-atlas-package.mjs`
+- `data/` is generated from the monorepo's `public/data/atlas/` (flat), `public/data/city-property/`
+  and `public/data/city-zoning/` (same-named subdirectories) by `scripts/sync-atlas-package.mjs`
   (monorepo root: `npm run sync-atlas-package`; `npm run check-atlas-package` reports a stale copy).
-  Never hand-edit `data/`.
+  Never hand-edit `data/`. `src/cities.ts` carries a verbatim copy of the monorepo's
+  `src/lib/city-query-core.ts` between its CORE-COPY markers; edit the monorepo file and re-copy.
 
 ## Edit here, never in the mirror
 - Authored here, published from the public repo: npm attaches provenance only to an OIDC publish from

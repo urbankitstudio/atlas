@@ -1,0 +1,60 @@
+{
+  "slug": "san-francisco",
+  "city": "San Francisco",
+  "state": "California",
+  "stateAbbrev": "CA",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers the City and County of San Francisco. Violations are Department of Building Inspection notices of violation; permits are DBI building permits.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Notices of Violation",
+      "type": "socrata",
+      "url": "https://data.sfgov.org/resource/nbtm-fbw5.json",
+      "orderField": "date_filed",
+      "coverage": "San Francisco DBI notices of violation, refreshed regularly; current to 2026.",
+      "recordLabel": "Complaint",
+      "openedLabel": "Filed",
+      "fields": {
+        "address": "street_name",
+        "addressParts": ["street_number", "street_name", "street_suffix"],
+        "recordNumber": "complaint_number",
+        "type": "nov_category_description",
+        "description": "nov_item_description",
+        "status": "status",
+        "openedDate": "date_filed",
+        "zip": "zipcode"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.sfgov.org/resource/i98e-djp9.json",
+      "orderField": "issued_date",
+      "where": "issued_date IS NOT NULL",
+      "coverage": "San Francisco building permits, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "street_name",
+        "addressParts": ["street_number", "street_name", "street_suffix"],
+        "recordNumber": "permit_number",
+        "type": "permit_type_definition",
+        "description": "description",
+        "status": "status",
+        "value": "estimated_cost",
+        "openedDate": "issued_date",
+        "zip": "zipcode"
+      }
+    }
+  },
+  "source": {
+    "name": "DataSF",
+    "url": "https://datasf.org/opendata/",
+    "license": "Public domain (City and County of San Francisco)",
+    "portalLabel": "DataSF open data portal",
+    "currentRecordsNote": "DBI permit and violation records are published by the City and County of San Francisco and refreshed regularly.",
+    "currentRecordsUrl": "https://datasf.org/opendata/"
+  }
+}

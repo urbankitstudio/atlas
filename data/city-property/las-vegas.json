@@ -1,0 +1,57 @@
+{
+  "slug": "las-vegas",
+  "city": "Las Vegas",
+  "state": "Nevada",
+  "stateAbbrev": "NV",
+  "countyName": "Clark County",
+  "countySlug": "clark-county",
+  "lastVerified": "2026-07-24",
+  "scopeNote": "Covers the City of Las Vegas. Other Clark County jurisdictions (Henderson, North Las Vegas, and unincorporated areas) keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/Code_Enforcement_Open_Data/FeatureServer/0",
+      "orderField": "Event_Date",
+      "where": "DESCRIPT <> 'None'",
+      "coverage": "City of Las Vegas code-enforcement cases reported through early 2024.",
+      "recordLabel": "Case",
+      "openedLabel": "Reported",
+      "fields": {
+        "address": "ADDRESS",
+        "description": "DESCRIPT",
+        "status": "STAT",
+        "openedDate": "Event_Date"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/OpenData_Building_Permits_/FeatureServer/0",
+      "orderField": "ISSDTTM",
+      "coverage": "City of Las Vegas building permits, refreshed regularly; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "ADDR1",
+        "recordNumber": "APNO",
+        "type": "APTYPE",
+        "status": "BLDGAPPLSTATUS",
+        "value": "DECLVLTN",
+        "contractor": "APPLICANT",
+        "openedDate": "ISSDTTM",
+        "zip": "ZIP"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Las Vegas Open Data",
+    "url": "https://opendata-lasvegas.hub.arcgis.com/",
+    "license": "Public record (City of Las Vegas)",
+    "portalLabel": "City of Las Vegas Open Data hub",
+    "currentRecordsNote": "For current code cases and permits, use the City of Las Vegas online services.",
+    "currentRecordsUrl": "https://www.lasvegasnevada.gov/"
+  }
+}

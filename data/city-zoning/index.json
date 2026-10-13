@@ -1,0 +1,174 @@
+{
+  "lastUpdated": "2026-10-12",
+  "cities": [
+    {
+      "slug": "austin",
+      "city": "Austin",
+      "state": "Texas",
+      "stateAbbrev": "TX",
+      "countyName": "Travis County",
+      "countySlug": "travis-county",
+      "populated": true,
+      "provider": "City of Austin Open Data (Socrata)"
+    },
+    {
+      "slug": "dallas",
+      "city": "Dallas",
+      "state": "Texas",
+      "stateAbbrev": "TX",
+      "countyName": "Dallas County",
+      "countySlug": "dallas-county",
+      "populated": true,
+      "provider": "City of Dallas GIS (base zoning layer)"
+    },
+    {
+      "slug": "nashville",
+      "city": "Nashville",
+      "state": "Tennessee",
+      "stateAbbrev": "TN",
+      "countyName": "Davidson County",
+      "countySlug": "davidson-county",
+      "populated": true,
+      "provider": "Metro Nashville Planning (ArcGIS Development Tracker)"
+    },
+    {
+      "slug": "denver",
+      "city": "Denver",
+      "state": "Colorado",
+      "stateAbbrev": "CO",
+      "countyName": "Denver County",
+      "countySlug": "denver-county",
+      "populated": true,
+      "provider": "Denver GIS Zone Map Amendments (location lookup)"
+    },
+    {
+      "slug": "charlotte",
+      "city": "Charlotte",
+      "state": "North Carolina",
+      "stateAbbrev": "NC",
+      "countyName": "Mecklenburg County",
+      "countySlug": "mecklenburg-county",
+      "populated": true,
+      "provider": "Charlotte Planning Rezonings (location lookup)"
+    },
+    {
+      "slug": "boston",
+      "city": "Boston",
+      "state": "Massachusetts",
+      "stateAbbrev": "MA",
+      "countyName": "Suffolk County",
+      "populated": true,
+      "provider": "BPDA Article 80 database (ArcGIS)"
+    },
+    {
+      "slug": "atlanta",
+      "city": "Atlanta",
+      "state": "Georgia",
+      "stateAbbrev": "GA",
+      "countyName": "Fulton County",
+      "countySlug": "fulton-county",
+      "populated": true,
+      "provider": "Atlanta GIS rezoning cases (location lookup)"
+    },
+    {
+      "slug": "new-orleans",
+      "city": "New Orleans",
+      "state": "Louisiana",
+      "stateAbbrev": "LA",
+      "countyName": "Orleans Parish",
+      "countySlug": "orleans-parish",
+      "populated": true,
+      "provider": "NOLA Open Data CPC Projects (Socrata)"
+    },
+    {
+      "slug": "tampa",
+      "city": "Tampa",
+      "state": "Florida",
+      "stateAbbrev": "FL",
+      "countyName": "Hillsborough County",
+      "countySlug": "hillsborough-county",
+      "populated": true,
+      "provider": "Tampa Development Coordination (ArcGIS)"
+    },
+    {
+      "slug": "indianapolis",
+      "city": "Indianapolis",
+      "state": "Indiana",
+      "stateAbbrev": "IN",
+      "countyName": "Marion County",
+      "countySlug": "marion-county",
+      "populated": true,
+      "provider": "IndyGIS rezoning layer (ArcGIS)"
+    },
+    {
+      "slug": "durham",
+      "city": "Durham",
+      "state": "North Carolina",
+      "stateAbbrev": "NC",
+      "countyName": "Durham County",
+      "countySlug": "durham-county",
+      "populated": true,
+      "provider": "Durham WebGIS zoning cases (location lookup)"
+    },
+    {
+      "slug": "washington-dc",
+      "city": "Washington",
+      "state": "District of Columbia",
+      "stateAbbrev": "DC",
+      "countyName": "District of Columbia",
+      "countySlug": "district-of-columbia",
+      "populated": true,
+      "provider": "DC Office of Zoning case table (ArcGIS)"
+    },
+    {
+      "slug": "nyc",
+      "city": "New York",
+      "state": "New York",
+      "stateAbbrev": "NY",
+      "countyName": "New York County",
+      "countySlug": "new-york-county",
+      "populated": true,
+      "provider": "NYC Open Data ZAP (parcel lookup via GeoSearch)"
+    },
+    {
+      "slug": "los-angeles",
+      "city": "Los Angeles",
+      "state": "California",
+      "stateAbbrev": "CA",
+      "countyName": "Los Angeles County",
+      "countySlug": "los-angeles-county",
+      "populated": true,
+      "provider": "LA City Planning PCTS filings (ArcGIS)"
+    },
+    {
+      "slug": "fort-worth",
+      "city": "Fort Worth",
+      "state": "Texas",
+      "stateAbbrev": "TX",
+      "countyName": "Tarrant County",
+      "countySlug": "tarrant-county",
+      "populated": true,
+      "provider": "Fort Worth MapIt zoning cases (ArcGIS)"
+    },
+    {
+      "slug": "raleigh",
+      "city": "Raleigh",
+      "state": "North Carolina",
+      "stateAbbrev": "NC",
+      "countyName": "Wake County",
+      "countySlug": "wake-county",
+      "populated": true,
+      "provider": "Raleigh rezoning requests (ArcGIS)"
+    },
+    {
+      "slug": "boise",
+      "city": "Boise",
+      "state": "Idaho",
+      "stateAbbrev": "ID",
+      "countyName": "Ada County",
+      "countySlug": "ada-county",
+      "populated": true,
+      "provider": "Boise Development Tracker (ArcGIS)"
+    }
+  ]
+}

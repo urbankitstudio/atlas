@@ -1,0 +1,40 @@
+{
+  "slug": "charlotte",
+  "city": "Charlotte",
+  "state": "North Carolina",
+  "stateAbbrev": "NC",
+  "countyName": "Mecklenburg County",
+  "countySlug": "mecklenburg-county",
+  "lastVerified": "2026-07-26",
+  "scopeNote": "Covers code-enforcement cases inside the City of Charlotte. Other Mecklenburg County towns keep their own records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://gis.charlottenc.gov/arcgis/rest/services/HNS/CodeEnforcementCasesAll/MapServer/0",
+      "orderField": "DateCreated",
+      "coverage": "Charlotte code-enforcement cases from the city's Housing and Neighborhood Services layer, over 430,000 records, refreshed daily.",
+      "recordLabel": "Case",
+      "openedLabel": "Opened",
+      "closedLabel": "Closed",
+      "fields": {
+        "address": "FullAddress",
+        "recordNumber": "CaseNumber",
+        "type": "CaseType",
+        "description": "DetailedDescription",
+        "status": "CaseStatus",
+        "openedDate": "DateCreated",
+        "closedDate": "DateClosed"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Charlotte GIS",
+    "url": "https://gis.charlottenc.gov/",
+    "license": "Public record (City of Charlotte)",
+    "portalLabel": "Charlotte Open Data",
+    "currentRecordsNote": "Cases are published by Charlotte Housing and Neighborhood Services (Code Enforcement).",
+    "currentRecordsUrl": "https://data.charlottenc.gov/"
+  }
+}

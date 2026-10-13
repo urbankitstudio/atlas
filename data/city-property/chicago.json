@@ -1,0 +1,61 @@
+{
+  "slug": "chicago",
+  "city": "Chicago",
+  "state": "Illinois",
+  "stateAbbrev": "IL",
+  "countyName": "Cook County",
+  "countySlug": "cook-county",
+  "lastVerified": "2026-06-28",
+  "scopeNote": "Covers properties inside the City of Chicago. Suburban Cook County municipalities keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Building Violations",
+      "type": "socrata",
+      "url": "https://data.cityofchicago.org/resource/awqx-tuwv.json",
+      "orderField": "violation_date",
+      "where": "violation_date >= '2000-01-01' AND violation_date < '2027-01-01'",
+      "coverage": "City building-code violation cases and their administrative-hearing outcomes, current to 2026.",
+      "recordLabel": "Docket",
+      "openedLabel": "Violation",
+      "closedLabel": "Hearing",
+      "fields": {
+        "address": "address",
+        "recordNumber": "docket_number",
+        "type": "issuing_department",
+        "description": "violation_description",
+        "status": "case_disposition",
+        "openedDate": "violation_date",
+        "closedDate": "hearing_date",
+        "zip": "ward"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.cityofchicago.org/resource/ydr8-5enu.json",
+      "orderField": "issue_date",
+      "coverage": "City building permits, refreshed daily; current to 2026.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "street_name",
+        "addressParts": ["street_number", "street_direction", "street_name"],
+        "recordNumber": "permit_",
+        "type": "permit_type",
+        "description": "work_description",
+        "value": "reported_cost",
+        "openedDate": "issue_date"
+      }
+    }
+  },
+  "source": {
+    "name": "Chicago Data Portal",
+    "url": "https://data.cityofchicago.org/",
+    "license": "Public domain (City of Chicago)",
+    "portalLabel": "Chicago Data Portal",
+    "currentRecordsNote": "Both datasets are refreshed daily by the City of Chicago.",
+    "currentRecordsUrl": "https://data.cityofchicago.org/"
+  }
+}

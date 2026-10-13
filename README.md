@@ -95,6 +95,13 @@ For single-address owner lookups in the browser, the free [Owner Lookup](https:/
 | `offersPagination(endpoint)` | `false` when the layer refuses `resultRecordCount` and `resultOffset` (`supportsPagination: false`); send one request without them, see below |
 | `slugify(s)`, `countySlugFromName(s)` | string helpers matching the atlas slug convention |
 | `statePath(slug)`, `countyPath(state, county)` | URL paths under `/parcel-atlas` |
+| `listCities(filter?)` | `CitySummary[]` — every covered city, narrowed by `state`, `kind` (`violations`, `permits`, `zoning`) or `countySlug` |
+| `findCity(ref, state?)` | `CitySummary[]` — by slug, name, `"Name, ST"` or alias; 0, 1 or many (an ambiguous name is a list) |
+| `getCityProperty(slug)`, `getCityZoning(slug)` | `CityPropertyRecord \| undefined`, `CityZoningRecord \| undefined` — the registry records; county records' `relatedPropertyCitySlug` / `relatedZoningCitySlug` resolve here |
+| `cityDatasets(slug, kind?)` | `CityDatasetDescriptor[]` — provider, endpoint, lookup mode, columns, scope `where`, field map, status buckets, freshness, query template, sample query and a query note |
+| `buildCityQuery(dataset, street)` | the URL urbankitstudio.com sends for that dataset and street (on a table that splits the address into columns, the street name is derived first; see below); `null` when the lookup needs a point or a parcel id first |
+| `citiesForCounty(stateSlug, countySlug)` | `CitySummary[]` — the covered cities inside one atlas county |
+| `cityPath(slug, kind)` | URL path of the city's page under `/tools/property-report` or `/tools/zoning-cases` |
 
 The full typed root is also exported as `atlas`:
 
@@ -106,6 +113,52 @@ atlas.lastUpdated;      // ISO date
 atlas.totals;           // { states, counties, endpoints }
 atlas.byStateSlug;      // Map<stateSlug, StateFile>
 ```
+
+## City datasets: code violations, building permits, zoning cases
+
+The package also bundles the two city registries behind
+[urbankitstudio.com/tools/property-report](https://urbankitstudio.com/tools/property-report) and
+[urbankitstudio.com/tools/zoning-cases](https://urbankitstudio.com/tools/zoning-cases): for each
+covered city, the public open-data endpoint (Socrata, ArcGIS, CKAN or CARTO) that serves its code
+violations, building permits or zoning cases, the column an address search runs against, the date
+column, any filter that is part of the dataset's definition, and the field map the site renders
+from. `buildCityQuery` returns the exact URL the site sends, so what you fetch is what a visitor
+to the page fetches.
+
+```ts
+import { findCity, cityDatasets, buildCityQuery } from "@urbankitstudio/atlas";
+
+const [dallas] = findCity("Dallas, TX");          // [] when not covered, many when ambiguous
+for (const ds of cityDatasets(dallas.slug, "permits")) {
+  const url = buildCityQuery(ds, "Commerce");      // the street line only; a name alone matches the most
+  if (url) {
+    const rows = await (await fetch(url)).json();  // you run the query; this package never fetches
+    console.log(ds.provider, ds.freshness.lastVerified, rows.length);
+  } else {
+    console.log(ds.queryTemplate);                 // a point or parcel lookup: {LON},{LAT} placeholder
+  }
+}
+```
+
+Three lookup modes appear in `dataset.lookup`. `address` is a case-insensitive substring match
+on `dataset.addressField` (the common case); the street is escaped for the provider's SQL by
+`buildCityQuery`, which is why an address lookup carries no paste-in template, and the LIKE
+wildcards `%` and `_` stay active as they do on the site. When `dataset.addressParts` lists more
+columns than `addressField` (Dallas violations store `str_num`, `str_prefix`, `str_nam`,
+`str_suffix`), the name column holds the street name alone, so `buildCityQuery` matches the
+derived name: the typed house number comes off, then a leading directional when the table has a
+direction column, then one trailing street type when it has a type column; `streetForDataset`
+returns that name, and every row on the street comes back for you to filter by house number. `location` means the docket is published on parcel
+shapes with no address column (Denver, Charlotte): geocode the address yourself and put the
+WGS84 point into `queryTemplate` where `{LON},{LAT}` stands. `parcel` (New York) is keyed by
+parcel id; `queryNote` spells out the two joins. `scopeWhere`, when present, is part of the
+dataset's definition and belongs in every query. `freshness.lastVerified` is the date the
+registry entry was last checked by hand and `latestRecordDate`, when present, the newest record
+seen then. Socrata throttles anonymous callers, so send your own `X-App-Token` header for volume.
+
+Owner names: the property field maps name no owner or taxpayer column, and the zoning field maps
+carry column names only (never values). Owner lookups are the atlas's county layers, not these
+datasets.
 
 ## `status` is a publish-time claim, not a live signal
 
@@ -186,7 +239,9 @@ The atlas bundles **306 counties across all 50 US states and DC** (324 verified 
 
 Every state has at least one county on record, and 298 of the 306 carry a verified endpoint. The other 8 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
-Counties are added as their public REST endpoints are verified. Package versions bump when data refreshes — pin to a minor range (`^0.x`) to receive new counties without breaking changes.
+The city registries cover 20 cities with code-violation or building-permit datasets, 17 with zoning-case datasets. Call `listCities()` for the current set.
+
+Counties and cities are added as their public endpoints are verified. Package versions bump when data refreshes — pin to a minor range (`^0.x`) to receive new counties and cities without breaking changes.
 
 The live, browseable atlas lives at [urbankitstudio.com/parcel-atlas](https://urbankitstudio.com/parcel-atlas).
 

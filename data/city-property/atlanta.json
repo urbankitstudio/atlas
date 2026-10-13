@@ -1,0 +1,42 @@
+{
+  "slug": "atlanta",
+  "city": "Atlanta",
+  "state": "Georgia",
+  "stateAbbrev": "GA",
+  "countyName": "Fulton County",
+  "countySlug": "fulton-county",
+  "lastVerified": "2026-07-26",
+  "scopeNote": "Covers permits issued by the City of Atlanta. Addresses in unincorporated Fulton or DeKalb County file with the county instead.",
+  "datasets": {
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services5.arcgis.com/5RxyIIJ9boPdptdo/arcgis/rest/services/building_permit_featureLayer/FeatureServer/0",
+      "orderField": "OrigOpened",
+      "coverage": "City of Atlanta building permits, about 34,000 records, updated daily. Covers residential and commercial work from first application through certificate of occupancy.",
+      "recordLabel": "Permit",
+      "openedLabel": "Opened",
+      "closedLabel": "Status updated",
+      "fields": {
+        "address": "Address",
+        "recordNumber": "RecordID",
+        "type": "TypeCombo",
+        "description": "Name",
+        "status": "Status_1",
+        "value": "JOB_VALUE",
+        "openedDate": "OrigOpened",
+        "closedDate": "StatusDate",
+        "link": "ACA_Link"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Atlanta GIS",
+    "url": "https://gis.atlantaga.gov/",
+    "license": "Public record (City of Atlanta)",
+    "portalLabel": "Atlanta GIS",
+    "currentRecordsNote": "Permits are published by the Atlanta Office of Buildings and feed the city's Building Permit Tracker.",
+    "currentRecordsUrl": "https://gis.atlantaga.gov/"
+  }
+}
