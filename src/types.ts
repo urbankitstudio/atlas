@@ -97,6 +97,28 @@ export interface EndpointRecord {
    * and every surface re-offers the search on its own. Nothing else changes.
    */
   attributeSearch?: "unsupported";
+  /**
+   * Declares that this layer REFUSES pagination: any `resultRecordCount` or
+   * `resultOffset` in a query (in any letter case) gets HTTP 200 with
+   * `{"error":{"code":400,"message":"Pagination is not supported."}}`. Only the
+   * literal `false` is allowed; absent (true of every other registration) means
+   * the layer pages. Named after Esri's own
+   * `advancedQueryCapabilities.supportsPagination`.
+   *
+   * On a flagged layer send ONE request with neither parameter. It returns at
+   * most `maxRecordCount` rows and sets `exceededTransferLimit` when more
+   * matched, so narrow the `where` clause or the geometry instead of paging.
+   * The layer's `sampleQuery` already has that shape.
+   *
+   * Read it through `offersPagination`, exported by this package, rather than
+   * comparing the value yourself.
+   */
+  supportsPagination?: false;
+  /** The most rows the layer returns to one query, as its metadata declares.
+   *  Present on every layer flagged `supportsPagination: false`. A declared
+   *  value: the server's real cap can change, and `exceededTransferLimit` on
+   *  the response is the authority on whether a result was cut. */
+  maxRecordCount?: number;
   sampleQuery: string | null;
   license: LicenseType;
   licenseUrl: string | null;

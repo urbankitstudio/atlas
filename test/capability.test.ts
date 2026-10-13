@@ -10,9 +10,10 @@
  */
 import { describe, it, expect } from "vitest";
 import { findCounty } from "../src/findCounty.js";
-import { reviewedCapability, isReviewedUnservable } from "../src/capability.js";
+import { reviewedCapability, isReviewedUnservable, offersPagination } from "../src/capability.js";
+import * as pkgEntry from "../src/index.js";
 import { atlas } from "../src/data.js";
-import type { CountyRecord } from "../src/types.js";
+import type { CountyRecord, EndpointRecord } from "../src/types.js";
 
 describe("reviewed capability survives into the published bundle", () => {
   it("carries San Bernardino's owner-name restriction, attributed and cited", () => {
@@ -112,5 +113,42 @@ describe("every reviewed record in the bundle is well formed", () => {
     // Guards the guard: if the sync ever ships zero reviewed records, the loop
     // above passes vacuously and this line is what notices.
     expect(reviewedCount, "no reviewed capability records in the bundle at all").toBeGreaterThan(0);
+  });
+});
+
+describe("offersPagination", () => {
+  const flagged = { supportsPagination: false } as const;
+
+  it("is exported from the package entry point", () => {
+    expect(pkgEntry.offersPagination).toBe(offersPagination);
+  });
+
+  it("is false only on an explicit supportsPagination: false", () => {
+    expect(offersPagination(flagged)).toBe(false);
+    expect(offersPagination({})).toBe(true);
+    expect(offersPagination({ supportsPagination: undefined })).toBe(true);
+    // Only the LITERAL false refuses pagination. A `true`, the string "false"
+    // or a 0 are not the flag, and a reader written as Boolean(x ?? true)
+    // would read 0 as refusing; the validator rejects all three anyway.
+    for (const notTheFlag of [true, "false", 0]) {
+      expect(offersPagination({ supportsPagination: notTheFlag as never }), String(notTheFlag)).toBe(true);
+    }
+    // No endpoint, no claim that a query may page it (same as offersAttributeSearch).
+    expect(offersPagination(null)).toBe(false);
+    expect(offersPagination(undefined)).toBe(false);
+  });
+
+  it("every bundled endpoint that refuses pagination says how many rows it returns, and its sample does not page", () => {
+    const endpoints: EndpointRecord[] = [...atlas.byStateSlug.values()]
+      .flatMap((s) => s.counties)
+      .flatMap((c) => c.endpoints);
+    expect(endpoints.length, "the bundled atlas did not load").toBeGreaterThan(100);
+    // Only the literal false is ever written; `true` would be a second spelling of "absent".
+    expect(endpoints.filter((e) => "supportsPagination" in e && e.supportsPagination !== false)).toEqual([]);
+    for (const e of endpoints.filter((x) => !offersPagination(x))) {
+      expect(Number.isInteger(e.maxRecordCount) && e.maxRecordCount! > 0, e.url).toBe(true);
+      expect(e.sampleQuery, e.url).toBeTruthy();
+      expect(e.sampleQuery!, e.url).not.toMatch(/[?&](resultRecordCount|resultOffset)=/i);
+    }
   });
 });

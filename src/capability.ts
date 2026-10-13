@@ -18,6 +18,25 @@ export function offersAttributeSearch(
 }
 
 /**
+ * May a query to this layer carry `resultRecordCount` or `resultOffset`? False
+ * on a layer flagged `supportsPagination: false`, which answers either
+ * parameter (in any letter case) with HTTP 200 and the error body
+ * `{"error":{"code":400,"message":"Pagination is not supported."}}`. On such a
+ * layer send one request with neither parameter: it returns at most the
+ * endpoint's `maxRecordCount` rows and sets `exceededTransferLimit` when more
+ * matched, so narrow the `where` clause or the geometry instead of paging.
+ *
+ * The package's one reader of that flag, held equal to the site's reader
+ * (offersPagination in the monorepo's src/lib/capability-core.ts) on every
+ * bundled endpoint by the monorepo's atlas-package-capability-parity test.
+ */
+export function offersPagination(
+  endpoint: Pick<EndpointRecord, "supportsPagination"> | null | undefined,
+): boolean {
+  return !!endpoint && endpoint.supportsPagination !== false;
+}
+
+/**
  * Does ANY of this county's layers take a `where` clause? Miami-Dade answers
  * true through its own layer although its statewide FDOR layer is flagged.
  */

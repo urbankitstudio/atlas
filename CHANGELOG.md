@@ -1,5 +1,32 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.30 — 2026-10-12
+
+0.6.30: endpoint capability keys supportsPagination and maxRecordCount,
+offersPagination() reader; no data change. Builds on 0.6.29. `totals` do not move, and no
+bundled endpoint carries either key yet. No breaking change.
+
+Some ArcGIS layers refuse pagination: any `resultRecordCount` or
+`resultOffset`, in any letter case, gets HTTP 200 with
+`{"error":{"code":400,"message":"Pagination is not supported."}}` instead of
+rows. The atlas will register such layers (Mississippi's statewide parcel
+layers are next), so the record can now say so before any of them ship.
+
+### Added
+
+- `EndpointRecord.supportsPagination?: false`. Only the literal `false` is
+  written; absent means the layer pages. The name is Esri's own
+  (`advancedQueryCapabilities.supportsPagination`).
+- `EndpointRecord.maxRecordCount?: number`, the layer's declared per-query row
+  cap, present on every flagged endpoint.
+- `offersPagination(endpoint)`: `false` on a flagged layer. Check it before
+  adding either parameter; when it is `false`, send one request without them
+  and narrow the query when `exceededTransferLimit` comes back.
+
+The registry's validator enforces, on every flagged endpoint: a positive
+integer `maxRecordCount`, a `sampleQuery` with neither parameter, and the same
+two values on every registration of the same layer URL.
+
 ## 0.6.29 — 2026-10-12
 
 New counties, no API change, no breaking change. Builds on 0.6.28. `totals`

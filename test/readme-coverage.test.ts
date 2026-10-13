@@ -75,6 +75,25 @@ describe("README coverage numbers match the shipped data", () => {
   });
 });
 
+describe("README documents every capability-flag reader the package exports", () => {
+  it("lists each offers* reader in the API table", async () => {
+    const pkg = await import("../src/index.js");
+    const readers = Object.keys(pkg).filter((k) => /^(county)?[Oo]ffers[A-Z]/.test(k));
+    // Not vacuous: the three readers that exist today must be found.
+    expect(readers.sort()).toEqual(
+      expect.arrayContaining(["countyOffersAttributeSearch", "offersAttributeSearch", "offersPagination"]),
+    );
+    const undocumented = readers.filter((name) => !new RegExp(`^\\| \`${name}\\(`, "m").test(README));
+    expect(undocumented).toEqual([]);
+  });
+
+  it("names both pagination keys and the error body a flagged layer returns", () => {
+    for (const text of ["`supportsPagination: false`", "`maxRecordCount`", "Pagination is not supported."]) {
+      expect(README, text).toContain(text);
+    }
+  });
+});
+
 describe("hasPublicRest is exact, which is what makes the README safe to say so", () => {
   // atlas.states carries per-state index SUMMARIES; the county records live in
   // the state files behind byStateSlug.

@@ -25,6 +25,7 @@ export {
   isReviewedUnservable,
   offersAttributeSearch,
   countyOffersAttributeSearch,
+  offersPagination,
 } from "./capability.js";
 
 // The bundled `status` field is a publish-time claim; this is where to ask what

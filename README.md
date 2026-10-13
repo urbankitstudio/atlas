@@ -92,6 +92,7 @@ For single-address owner lookups in the browser, the free [Owner Lookup](https:/
 | `canonicalLayerUrl(url)` | one key per layer: host + path, scheme, default port, query, fragment, a trailing `/query` and case folded away |
 | `offersAttributeSearch(endpoint)` | `false` when the layer refuses a `where` clause (`attributeSearch: "unsupported"`); query it by geometry instead |
 | `countyOffersAttributeSearch(county)` | `true` when any of the county's layers takes a `where` clause |
+| `offersPagination(endpoint)` | `false` when the layer refuses `resultRecordCount` and `resultOffset` (`supportsPagination: false`); send one request without them, see below |
 | `slugify(s)`, `countySlugFromName(s)` | string helpers matching the atlas slug convention |
 | `statePath(slug)`, `countyPath(state, county)` | URL paths under `/parcel-atlas` |
 
@@ -141,6 +142,34 @@ Two cases to handle rather than ignore:
 Treat both as *unknown*. Neither should render as "up".
 
 Omit `?fips=` to get every tracked county in one call.
+
+## Some layers refuse pagination
+
+An endpoint may carry `supportsPagination: false` and a `maxRecordCount`. That
+layer answers any `resultRecordCount` or `resultOffset`, in any letter case,
+with HTTP 200 and an error body instead of rows:
+
+```json
+{"error":{"code":400,"message":"Pagination is not supported."}}
+```
+
+Check `offersPagination(endpoint)` before adding either parameter. When it is
+`false`, send one request without them. The layer returns at most
+`maxRecordCount` rows and sets `exceededTransferLimit` when more matched, so
+narrow the `where` clause or the geometry instead of paging. The endpoint's
+`sampleQuery` already has that shape. `maxRecordCount` is what the layer
+declared when it was registered; the response's `exceededTransferLimit` is the
+authority on whether a result was cut.
+
+```ts
+import { findCountyByFips, offersPagination } from "@urbankitstudio/atlas";
+
+const endpoint = findCountyByFips("17089")!.endpoints[0];
+const params = new URLSearchParams({ where: "1=1", outFields: "*", f: "json" });
+if (offersPagination(endpoint)) params.set("resultRecordCount", "100");
+```
+
+An absent `supportsPagination` means the layer pages; `true` is never written.
 
 ## `addedAt` is the one date that never moves
 
