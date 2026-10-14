@@ -1,5 +1,54 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.32 — 2026-10-14
+
+New counties — Berks PA (42011), Bedford PA (42009), Salem city VA (51775),
+Nueces TX (48355), Hidalgo TX (48215), Brazos TX (48041), Ector TX (48135) and
+Webb TX (48479, a researched stub with no public REST). No API change, no
+breaking change. `totals` move from 306 counties / 324 endpoints (298 with a
+verified endpoint) to **314 counties / 331 endpoints** (305). Callers asked for
+all eight.
+
+### New counties
+
+- **Berks PA (42011)**, with a verified endpoint on PASDA, the Penn State
+  clearinghouse that hosts the county's data (`BerksCounty` MapServer layer 6,
+  156,838 parcels): owner, situs, owner mailing address and the 14-digit parcel
+  id are searchable, and the layer answers cross-origin requests. The layer is a
+  January 2026 snapshot, and PASDA republishes under a new vintage stamp, so the
+  layer name or index may move; the `notes` say how to find it again.
+- **Bedford PA (42009)**, with a verified endpoint on PASDA (`BedfordCounty`
+  MapServer layer 0, 34,225 parcels). The layer is the July 2023 vintage and
+  situs is filled on only about 26 percent of rows, so an address search misses
+  most parcels; owner, parcel id and a point lookup are the dependable paths. The
+  `notes` record both.
+- **Salem city VA (51775)**, an independent city, with a verified endpoint on the
+  city's own ArcGIS Online (`TaxParcels` FeatureServer layer 5, 10,765 parcels,
+  edited the day before verification). The mailing street is `owner_address2`;
+  `owner_address1` is a care-of line on about 8 percent of rows.
+- **Nueces TX (48355)**, with a verified endpoint on the ArcGIS Online
+  organisation of the appraisal district's GIS vendor (`NuecesCADWebService`
+  FeatureServer layer 0, 157,404 parcels, edited on the day of verification).
+  The site address is split across `situs_num` and `situs_street`, so an address
+  search runs on the street word; the `notes` say so.
+- **Hidalgo TX (48215)**, with a verified endpoint on the regional 911 district's
+  server (`RGV911_Web_Apps_MIL1` MapServer layer 7, 334,098 parcels). Situs is
+  one full string; the mailing column is the street line only, with no mailing
+  city, state or ZIP.
+- **Brazos TX (48041)**, with a verified endpoint on the City of Bryan's server
+  (`BRAZOS_COUNTY_CERTIFIED_PARCELS` MapServer layer 0, the 2025 certified roll,
+  75,652 parcels, whole county). Empty source fields were written as the text
+  `NULL`, and most `SitusAddr` values end in ` NULL`; the data is shipped as
+  published and the `notes` say how to query around it.
+- **Ector TX (48135)**, with a verified endpoint on the appraisal-software
+  vendor's server (`EctorCounty_Basemap` MapServer layer 0, 77,042 parcels).
+  The layer publishes NO situs column: owner, a one-line mailing address and the
+  PIN are searchable, and an address lookup has to go through a geocoded point.
+- **Webb TX (48479)**, no public endpoint: `hasPublicRest: false` and an empty
+  `endpoints` array. Webb CAD's map host answers with a login page, and the only
+  public Webb layers on ArcGIS Online are partial. The `notes` record the
+  evidence as of 2026-10-14.
+
 ## 0.6.31 — 2026-10-12
 
 City datasets. New export, no breaking change, `totals` unchanged. The package

@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-10-10",
+  "lastUpdated": "2026-10-14",
   "counties": [
     {
       "id": "va-fairfax",
@@ -383,6 +383,54 @@
       },
       "notes": "James City County, Virginia (Williamsburg area; FIPS 51095) was asked for through the free tools. The county publishes its parcels on its own ArcGIS Server at property.jamescitycountyva.gov, JCC/GIS_Data FeatureServer layer 17 ('Parcels', one row per parcel): 36,478 parcels on 2026-10-10, 36,364 of them with an owner. The owner is Owner1 with Owner2; the situs is Full_Address (also split as ADDR_NUM plus Street_Name, and repeated from the assessment record as LocAddr/LocCity/LocZip) with City and Zip_Code; the owner mailing address is MailAddr plus MailCity, MailStat and MailZip (MailZip is nine digits without a hyphen); the parcel id is PIN, ten digits of text, alongside UID and the LRSN. The layer also carries the last three sales with grantors, three years of land, improvement and total assessed values, zoning, the state property class and legal acres. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, so a probe without an Origin header reads it as closed. maxRecordCount is 2000 with pagination. The service lists Update and Editing capabilities alongside Query; the atlas only ever reads. The county also mirrors this layer to an ArcGIS Online hosted service that answers 'Token Required' (499) to anonymous requests; it is not used. Currency: the ArcGIS Online item for this layer was modified 2026-10-08 and the rows carry current-year assessed values. TERMS: the item's license text says the data is believed to be correct but is not guaranteed by James City County, that the county is not responsible for its accuracy or currency, that discrepancies go to the county GIS department, and that 'disclaimers as to such should be placed on all final products derived from the provided data'. Anything built from this record should carry that disclaimer. Field definitions: property.jamescitycountyva.gov/AGOL/Documents/AGOL_Open_Data/Parcel_Fields.pdf. No GIS email address is published; the county's GIS / Mapping page is the contact. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query (341 rows for %SMITH%) and a situs LIKE query on MAIN ST (9 rows).",
       "addedAt": "2026-10-10"
+    },
+    {
+      "id": "va-salem",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Salem city",
+      "countySlug": "salem-city",
+      "countyFips": "51775",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services7.arcgis.com/RL8aZgZHmJOdyNXk/arcgis/rest/services/TaxParcels/FeatureServer/5",
+          "serviceType": "FeatureServer",
+          "layerIndex": 5,
+          "layerName": "TaxParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "owner", "label": "Owner Name", "searchable": true },
+            { "name": "GPIN", "label": "Parcel ID (GPIN)", "searchable": true },
+            { "name": "tax_map_number", "label": "Tax Map Number", "searchable": true },
+            { "name": "FullAddress", "label": "Situs Address", "searchable": true },
+            { "name": "owner_address2", "label": "Owner Mailing Address (street line)", "searchable": true },
+            { "name": "owner_address1", "label": "Owner Mailing Address line 1 (care-of)", "searchable": false },
+            { "name": "owner_city_state", "label": "Owner Mailing City and State", "searchable": false },
+            { "name": "owner_zip", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "zoning", "label": "Zoning", "searchable": false },
+            { "name": "property_use", "label": "Property Use", "searchable": false },
+            { "name": "total_assessment", "label": "Total Assessed Value", "searchable": false },
+            { "name": "sale_price", "label": "Last Sale Price", "searchable": false },
+            { "name": "date_of_transfer", "label": "Last Transfer Date", "searchable": false }
+          ],
+          "sampleQuery": "https://services7.arcgis.com/RL8aZgZHmJOdyNXk/arcgis/rest/services/TaxParcels/FeatureServer/5/query?where=UPPER(owner)+LIKE+UPPER('%25SMITH%25')&outFields=GPIN,tax_map_number,owner,FullAddress,owner_address2,owner_city_state&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-10-14",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "City of Salem, Virginia GIS (published on ArcGIS Online as SalemVA_GIS)",
+        "url": "https://www.salemva.gov/",
+        "email": null
+      },
+      "notes": "Salem, Virginia (an independent city, county-equivalent FIPS 51775). The city publishes its tax parcels itself on ArcGIS Online (organisation SalemVA_GIS) as TaxParcels FeatureServer layer 5 (the service has a single layer, id 5, described 'City of Salem, Virginia tax parcel layer'): 10,765 parcels on 2026-10-14, 10,681 of them with an owner. The owner is owner (varchar 1000); the previous owner is prev_owner. The situs is FullAddress (10,681 rows; also split into street_number, street_name and street_suffix, with zip_code). The parcel id is GPIN (a 14-character string such as 0633-03-384633, on all 10,765 rows), with tax_map_number as the city's tax map id (10,681 rows). MAILING ADDRESS: owner_address2 is the street line (10,680 rows; it equals the situs on 6,533 rows, the owner-occupied parcels; 809 are PO boxes), owner_city_state and owner_zip complete it, and owner_address1 is a care-of line populated on only 803 rows (791 start with C/O), so it is not the primary street line. Currency: Last_Rundate peaks at 2026-10-13, the day before verification, and date_of_transfer reaches 2025-06 on sampled rows; the service's dataLastEditDate is also 2026-10-13. CORS: Access-Control-Allow-Origin is '*' (ArcGIS Online hosted service). maxRecordCount is 2000 with pagination; the layer wkid is 102747 (Virginia South State Plane, US feet) so a lon/lat point query takes inSR=4326 and works. No license text is published on the layer. Verified 2026-10-14: owner LIKE %SMITH% returned 103 rows (10 with resultRecordCount=10), situs LIKE %MAIN ST% 353 rows, and a point query at the Census internal point -80.05524,37.28533 returned one parcel on S Market St with zip 24153. The city's other ArcGIS Online items (an exempt-parcels map and a dashboard) and a WFS copy of the same parcels are not registered.",
+      "addedAt": "2026-10-14"
     }
   ]
 }

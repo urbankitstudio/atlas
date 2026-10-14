@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-12",
+  "lastUpdated": "2026-10-14",
   "totals": {
     "states": 51,
-    "counties": 306,
-    "endpoints": 324,
-    "countiesWithEndpoint": 298,
+    "counties": 314,
+    "endpoints": 331,
+    "countiesWithEndpoint": 305,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -317,8 +317,8 @@
       "slug": "pennsylvania",
       "name": "Pennsylvania",
       "abbrev": "PA",
-      "countyCount": 7,
-      "endpointCount": 7,
+      "countyCount": 9,
+      "endpointCount": 9,
       "populated": true
     },
     {
@@ -357,8 +357,8 @@
       "slug": "texas",
       "name": "Texas",
       "abbrev": "TX",
-      "countyCount": 11,
-      "endpointCount": 11,
+      "countyCount": 16,
+      "endpointCount": 15,
       "populated": true
     },
     {
@@ -381,8 +381,8 @@
       "slug": "virginia",
       "name": "Virginia",
       "abbrev": "VA",
-      "countyCount": 5,
-      "endpointCount": 5,
+      "countyCount": 6,
+      "endpointCount": 6,
       "populated": true
     },
     {

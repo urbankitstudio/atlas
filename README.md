@@ -235,9 +235,9 @@ read `addedAt` and fall back to the oldest `lastVerified` only when it is absent
 
 ## Coverage today
 
-The atlas bundles **306 counties across all 50 US states and DC** (324 verified endpoints), covering the largest counties in each. Call `listStates()` to enumerate the full set.
+The atlas bundles **314 counties across all 50 US states and DC** (331 verified endpoints), covering the largest counties in each. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 298 of the 306 carry a verified endpoint. The other 8 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 305 of the 314 carry a verified endpoint. The other 9 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 The city registries cover 20 cities with code-violation or building-permit datasets, 17 with zoning-case datasets. Call `listCities()` for the current set.
 
