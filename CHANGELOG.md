@@ -1,5 +1,49 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.34 — 2026-10-14
+
+Mississippi statewide: 80 new counties and a second endpoint for Hinds from the
+MARIS/MDEQ 2024 cadastral layers. These are the first records to declare
+`supportsPagination: false` with `maxRecordCount` 2000 and a county
+`scopeWhere`. Data release, no API change. `totals` move from 314 counties and
+331 endpoints to 394 and 412 (385 with a verified endpoint). Mississippi is the
+first state with every county on record, 82 of 82.
+
+### New counties
+
+- **80 Mississippi counties**, each on one of the two MARIS/MDEQ 2024 statewide
+  cadastral MapServer layers on gis.mississippi.edu (East: 44 counties,
+  1,127,050 parcels; West: 38 counties, 878,999 parcels), scoped per county with
+  `scopeWhere: "STCNTYFIPS = '28xxx'"`. Both layers refuse pagination
+  (`supportsPagination: false`, `maxRecordCount: 2000`; read `offersPagination()`
+  before adding either parameter), answer at most 2,000 rows per request with
+  `exceededTransferLimit` on a cut, and scan the whole layer on any predicate but
+  an FID lookup (1.3 s to more than 20 s, more on the first call after hours idle). Each
+  `sampleQuery` is a FIPS-scoped FID equality with no pagination parameter; a
+  FID read answers in under a second where a PARNO equality scans the layer.
+- Mailing columns (MAILADD1, MCITY1, MSTATE1, MZIP1) are listed only where
+  MAILADD1 is at least 80% populated and a sample read on release day was
+  street-like on at least 90% of rows: twelve counties (Clarke, Covington,
+  Forrest, Harrison, Jackson, Jones, Lowndes, Oktibbeha, Tishomingo and Wilkinson
+  on a 25-row sample; Adams and Union on a 50-row resample from a second FID
+  window after the first sample landed at 22 of 25). The other 68 carry a
+  reviewed `owner_mailing_address: not_published` record that says why.
+- `license: "unknown"` with the MARIS cadastral data disclaimer as `licenseUrl`.
+  The data is public, free and keyless, and no explicit license is stated. The
+  `notes` credit the county tax assessors and MARIS/MDEQ; `dataVintage` names
+  the 2024 release (TAXYEAR reads 2024 on every row).
+
+### Changed
+
+- **Hinds MS** keeps its own-host primary (it paginates) and gains the
+  statewide West layer as a second endpoint; both read PARNO. **DeSoto MS**
+  keeps its single own-host endpoint: its primary reads PIN and the statewide
+  layer PARNO, and a county whose endpoints disagree on the parcel-id column
+  could hold no protected-parcel notice entry. Both primaries' `corsEnabled`
+  resolves from `null` to `true`, measured with an Origin header. Hinds gains a
+  reviewed `owner_mailing_address: not_published` record: the mailing columns
+  are empty on both of its layers.
+
 ## 0.6.33 — 2026-10-14
 
 City data. No API change, no breaking change, `totals` unchanged. The city

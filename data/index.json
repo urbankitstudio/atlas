@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-14",
   "totals": {
     "states": 51,
-    "counties": 314,
-    "endpoints": 331,
-    "countiesWithEndpoint": 305,
+    "counties": 394,
+    "endpoints": 412,
+    "countiesWithEndpoint": 385,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -205,8 +205,8 @@
       "slug": "mississippi",
       "name": "Mississippi",
       "abbrev": "MS",
-      "countyCount": 2,
-      "endpointCount": 2,
+      "countyCount": 82,
+      "endpointCount": 83,
       "populated": true
     },
     {
