@@ -19,8 +19,10 @@ export interface PropertyFieldMap {
   addressParts?: string[];
   /**
    * Column holding the street NUMBER on its own. When set, a typed "number
-   * name" street is matched as `address LIKE %name% AND streetNumber = number`;
-   * unset, the search is the plain substring match.
+   * name" street is matched as `address LIKE %name% AND streetNumber = number`,
+   * and a name typed without a number is matched on the name alone, with the
+   * same leading-direction and trailing-type trimming; unset, the search is the
+   * plain substring match.
    */
   streetNumber?: string;
   recordNumber?: string;
@@ -59,6 +61,12 @@ export interface PropertyDataset {
   where?: string;
   /** How the streetNumber column is typed at the source. Default "text". */
   streetNumberType?: "text" | "number";
+  /**
+   * Set only on a table measured to store a run of spaces after the house number
+   * (Orlando): the longest run to try, 1 to 8. The address search then ORs the typed
+   * text with 1..N spaces in that gap; unset, it matches the typed spacing exactly.
+   */
+  houseNumberSpaceRuns?: number;
   /** The newest value of the date column seen at the last verification (YYYY-MM-DD). */
   latestRecordDate?: string;
   /** One sober line stating the time span the dataset actually covers. */
@@ -165,6 +173,8 @@ export interface CasesSource {
    * resolve the address to a parcel id, join through a crosswalk dataset.
    */
   lookup?: "address" | "location" | "parcel";
+  /** As on PropertyDataset: the longest run of spaces after the house number to try, set only where measured. */
+  houseNumberSpaceRuns?: number;
   geocoder?: GeocoderConfig;
   resolver?: { provider: "nyc-geosearch" };
   crosswalk?: { url: string; parcelField: string; projectField: string };

@@ -217,11 +217,17 @@ describe("dataset descriptors and queries", () => {
     // A numeric column drops the quotes.
     const numeric = decodeURIComponent(propertyQueryUrl({ ...split, streetNumberType: "number" }, "1422 N Western Ave"));
     expect(numeric).toContain("str_num = 1422");
-    // No number typed: the plain substring match, same as before.
+    // No number typed: the name alone, matched on the name column. A direction and a street type
+    // typed with it come off, as in the number + name clause (the column holds the bare name).
     expect(decodeURIComponent(propertyQueryUrl(split, "Western"))).toContain("upper(str_nam) like upper('%Western%')");
     expect(decodeURIComponent(propertyQueryUrl(split, "Western"))).not.toContain("str_num");
-    // No streetNumber mapped: nothing changes for the city, number or not.
-    expect(decodeURIComponent(propertyQueryUrl(base, "1422 N Western Ave"))).toContain("upper(str_nam) like upper('%1422 N Western Ave%')");
+    expect(decodeURIComponent(propertyQueryUrl(split, "N Western Ave"))).toContain("upper(str_nam) like upper('%Western%')");
+    expect(decodeURIComponent(propertyQueryUrl(split, "N Western Ave"))).not.toContain("str_num");
+    // No streetNumber mapped: the whole typed line is the match, so a number-less "N Western Ave"
+    // is not trimmed, and only a dataset that sets houseNumberSpaceRuns (Orlando's) ORs the spaced variants.
+    expect(decodeURIComponent(propertyQueryUrl(base, "1422 N Western Ave"))).toContain("$where=upper(str_nam) like upper('%1422 N Western Ave%')");
+    expect(decodeURIComponent(propertyQueryUrl(base, "1422 N Western Ave"))).not.toContain("%1422  N Western Ave");
+    expect(decodeURIComponent(propertyQueryUrl(base, "N Western Ave"))).toContain("upper(str_nam) like upper('%N Western Ave%')");
   });
 
   it("buildCityQuery derives the street NAME for a split-address dataset with no streetNumber mapping", () => {
@@ -238,11 +244,58 @@ describe("dataset descriptors and queries", () => {
     expect(buildCityQuery(violations, "Marilla")).toBe(url);
     expect(streetForDataset(violations, "1500 Marilla St")).toBe("Marilla");
     // The raw site URL is still propertyQueryUrl: the page is unchanged.
-    expect(decodeURIComponent(propertyQueryUrl(getCityProperty("dallas")!.datasets.violations!, "1500 Marilla St"))).toContain("%1500 Marilla St%");
+    expect(decodeURIComponent(propertyQueryUrl(getCityProperty("dallas")!.datasets.violations!, "1500 Marilla St"))).toContain("$where=upper(str_nam) like upper('%1500 Marilla St%')");
     // Single-column datasets keep the whole line.
     const [permits] = cityDatasets("dallas", "permits");
-    expect(decodeURIComponent(buildCityQuery(permits, "600 Commerce St")!)).toContain("%600 Commerce St%");
+    expect(decodeURIComponent(buildCityQuery(permits, "600 Commerce St")!)).toContain("$where=upper(street_address) like upper('%600 Commerce St%')");
+    expect(decodeURIComponent(buildCityQuery(permits, "600 Commerce St")!)).not.toContain("%600  Commerce St");
     expect(streetForDataset(permits, "600 Commerce St")).toBe("600 Commerce St");
+    expect(permits.queryNote).not.toContain("The space after a leading house number");
+    // Orlando opts in: the typed text is ORed with 1 to 4 spaces after the house number, and the note says so.
+    const [orlando] = cityDatasets("orlando", "permits");
+    const orlandoUrl = decodeURIComponent(buildCityQuery(orlando, "4274 Tatum St")!);
+    expect(orlandoUrl).toContain("$where=(upper(permit_address) like upper('%4274 Tatum St%') OR upper(permit_address) like upper('%4274  Tatum St%')");
+    expect(orlandoUrl).toContain("like upper('%4274    Tatum St%'))");
+    expect(orlando.queryNote).toContain("The space after a leading house number also matches a run of up to 4 spaces, or the spacing as typed, and nothing else");
+    // 'N St' on Dallas violations is the street N, not '%St%'; 'N % St' is not '%%%'.
+    expect(streetForDataset(violations, "N St")).toBe("N St");
+    expect(streetForDataset(violations, "N Q St")).toBe("N Q St");
+    expect(streetForDataset(violations, "N % St")).toBe("N % St");
+    expect(decodeURIComponent(buildCityQuery(violations, "N St")!)).toContain("like upper('%N St%')");
+    // A street NAME that is a type or direction word keeps its strip: '100 Court St' is the street Court,
+    // and a rejected strip drops the house number (the name column never holds one).
+    expect(streetForDataset(violations, "100 Court St")).toBe("Court");
+    expect(streetForDataset(violations, "Court St")).toBe("Court");
+    expect(streetForDataset(violations, "Plaza Dr")).toBe("Plaza");
+    expect(streetForDataset(violations, "100 N St")).toBe("N St");
+    expect(decodeURIComponent(buildCityQuery(violations, "100 N St")!)).toContain("like upper('%N St%')");
+    expect(decodeURIComponent(buildCityQuery(violations, "100 Court St")!)).toContain("like upper('%Court%')");
+    // A house number plus one unsafe token goes as typed, not as the bare token ('%%%' for a typed %).
+    for (const typed of ["100 %", "100 _", "100 E", "100 -", "100 St"]) {
+      expect(streetForDataset(violations, typed), typed).toBe(typed);
+    }
+    expect(streetForDataset(violations, "100 N St")).toBe("N St");
+    // A spelled-out direction with its type is the street South or North; an abbreviated one is not.
+    expect(streetForDataset(violations, "2600 South Blvd")).toBe("South");
+    expect(streetForDataset(violations, "100 North Ave")).toBe("North");
+    expect(streetForDataset(violations, "South St")).toBe("South");
+    expect(streetForDataset(violations, "NE St")).toBe("NE St");
+    expect(streetForDataset(violations, "2600 South Blvd.")).toBe("South");
+    expect(streetForDataset(violations, "North Court St")).toBe("Court");
+    expect(streetForDataset(violations, "100 North Court St")).toBe("Court");
+    // No type column (Chicago permits): the type stays with the direction.
+    const [chicago] = cityDatasets("chicago", "permits");
+    expect(streetForDataset(chicago, "100 North St")).toBe("North St");
+    // The page-side name trim on a split-street table (Los Angeles): a period on the type, and a type after the directional.
+    const la = getCityProperty("los-angeles")!.datasets.violations!;
+    expect(decodeURIComponent(propertyQueryUrl(la, "South Blvd."))).toContain("like upper('%South%')");
+    expect(decodeURIComponent(propertyQueryUrl(la, "North Court St"))).toContain("like upper('%Court%')");
+    const [boston] = cityDatasets("boston", "violations");
+    expect(streetForDataset(boston, "100 E")).toBe("100 E");
+    expect(streetForDataset(boston, "100 Court St")).toBe("Court");
+    expect(decodeURIComponent(buildCityQuery(boston, "100 Court St")!)).toContain("ILIKE '%Court%'");
+    const [sf] = cityDatasets("san-francisco", "violations");
+    expect(streetForDataset(sf, "100 South Blvd")).toBe("South");
     expect(violations.queryNote).toContain("matches the street name on str_nam and returns every row on that street");
   });
 

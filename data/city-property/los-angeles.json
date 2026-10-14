@@ -16,7 +16,7 @@
       "orderField": "adddttm",
       "streetNumberType": "text",
       "latestRecordDate": "2026-10-09",
-      "coverage": "Open LADBS code-enforcement cases only, about 29,000, opened 1995 to present. Closed cases are published in a separate dataset (rken-a55j) that this tool does not search. The street is split across columns: with a house number, '139 W 88th St' is matched as 139 on stno and '88th' on stname (one leading direction and one common street type are dropped). Without a house number the text is matched as typed against stname, which holds the bare name, so '88th' finds cases and '88th St' finds none.",
+      "coverage": "Open LADBS code-enforcement cases only, about 29,000, opened 1995 to present. Closed cases are published in a separate dataset (rken-a55j) that this tool does not search. The street is split across columns: with a house number, '139 W 88th St' is matched as 139 on stno and '88th' on stname (one leading direction and one common street type are dropped). Without a house number the name alone gets the same trimming, so '88th St' is matched as '88th' on stname.",
       "recordLabel": "Case",
       "openedLabel": "Opened",
       "fields": {

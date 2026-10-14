@@ -143,12 +143,22 @@ for (const ds of cityDatasets(dallas.slug, "permits")) {
 Three lookup modes appear in `dataset.lookup`. `address` is a case-insensitive substring match
 on `dataset.addressField` (the common case); the street is escaped for the provider's SQL by
 `buildCityQuery`, which is why an address lookup carries no paste-in template, and the LIKE
-wildcards `%` and `_` stay active as they do on the site. When `dataset.addressParts` lists more
+wildcards `%` and `_` stay active as they do on the site. A dataset that sets `houseNumberSpaceRuns`
+(only Orlando's, whose tables store two or three spaces after the house number: `4274  TATUM ST`)
+also matches the space after a leading house number as a run of one to four spaces, or the spacing
+as typed, and nothing else, so `4274 Tatum St` finds them but not `4274 OLD TATUM ST`; every other
+dataset matches the spacing as typed. When `dataset.addressParts` lists more
 columns than `addressField` (Dallas violations store `str_num`, `str_prefix`, `str_nam`,
 `str_suffix`), the name column holds the street name alone, so `buildCityQuery` matches the
 derived name: the typed house number comes off, then a leading directional when the table has a
-direction column, then one trailing street type when it has a type column; `streetForDataset`
-returns that name, and every row on the street comes back for you to filter by house number. `location` means the docket is published on parcel
+direction column, then one trailing street type when it has a type column (a strip that would leave
+a lone letter, no letter or digit, or only a direction or type word a leading directional exposed,
+as `N St` would become `St`, is not applied past the house number: `100 N St` sends `N St`, `100 %` and `100 E` are sent as typed,
+while `100 Court St` sends `Court`, and `2600 South Blvd` sends `South` where the table has a type column); `streetForDataset`
+returns that name, and every row on the street comes back for you to filter by house number. A dataset
+that keeps the house number in its own column (`streetNumberField`: Los Angeles violations, Fort Worth
+permits, Scottsdale violations) matches the number on that column and the name on `addressField`; a street
+typed without a number gets the same trimming, so `Funtier Ct` is matched as `Funtier` and `South St` as `South`. `location` means the docket is published on parcel
 shapes with no address column (Denver, Charlotte): geocode the address yourself and put the
 WGS84 point into `queryTemplate` where `{LON},{LAT}` stands. `parcel` (New York) is keyed by
 parcel id; `queryNote` spells out the two joins. `scopeWhere`, when present, is part of the
@@ -235,9 +245,9 @@ read `addedAt` and fall back to the oldest `lastVerified` only when it is absent
 
 ## Coverage today
 
-The atlas bundles **394 counties across all 50 US states and DC** (412 verified endpoints), covering the largest counties in each state, and every county in Mississippi. Call `listStates()` to enumerate the full set.
+The atlas bundles **395 counties across all 50 US states and DC** (413 verified endpoints), covering the largest counties in each state, and every county in Mississippi. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 385 of the 394 carry a verified endpoint. The other 9 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 386 of the 395 carry a verified endpoint. The other 9 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 The city registries cover 30 cities with code-violation or building-permit datasets, 19 with zoning-case datasets. Call `listCities()` for the current set.
 

@@ -3,9 +3,9 @@
   "lastUpdated": "2026-10-14",
   "totals": {
     "states": 51,
-    "counties": 394,
-    "endpoints": 412,
-    "countiesWithEndpoint": 385,
+    "counties": 395,
+    "endpoints": 413,
+    "countiesWithEndpoint": 386,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -349,8 +349,8 @@
       "slug": "tennessee",
       "name": "Tennessee",
       "abbrev": "TN",
-      "countyCount": 4,
-      "endpointCount": 4,
+      "countyCount": 5,
+      "endpointCount": 5,
       "populated": true
     },
     {

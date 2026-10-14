@@ -34,7 +34,7 @@
       "orderField": "File_Date",
       "streetNumberType": "number",
       "latestRecordDate": "2026-10-13",
-      "coverage": "Fort Worth development permits, about 1.6 million records filed 2001 to present. Trade permits (electrical, mechanical, plumbing, backflow) are included alongside building permits. The street is split across columns: with a house number, '8653 Funtier Ct' is matched as 8653 on Addr_No and 'Funtier' on Street_Name (one leading direction and one common street type are dropped). Without a house number the text is matched as typed against Street_Name, which holds the bare name, so 'Funtier' finds permits and 'Funtier Ct' finds none.",
+      "coverage": "Fort Worth development permits, about 1.6 million records filed 2001 to present. Trade permits (electrical, mechanical, plumbing, backflow) are included alongside building permits. The street is split across columns: with a house number, '8653 Funtier Ct' is matched as 8653 on Addr_No and 'Funtier' on Street_Name (one leading direction and one common street type are dropped). Without a house number the name alone gets the same trimming, so 'Funtier Ct' is matched as 'Funtier' on Street_Name.",
       "recordLabel": "Permit",
       "openedLabel": "Filed",
       "fields": {

@@ -44,6 +44,71 @@ export function esc(s: string): string {
 }
 
 /**
+ * The ceiling on a dataset's houseNumberSpaceRuns (the registry validator
+ * enforces the same number): eight alternatives is already a long OR group.
+ */
+export const HOUSE_GAP_LIMIT = 8;
+
+/**
+ * The most URL-encoded bytes one ORed LIKE group may take (about 3,000). A
+ * 120-character non-ASCII street encodes to nine bytes a character, which times
+ * the alternatives would push a query URL toward the limits of the upstream
+ * servers and proxies; past this the group falls back to the single literal.
+ * The registry-fixed rest of the clause (the scope filter, the status list) is
+ * not counted: it is a few hundred bytes on every dataset.
+ */
+export const LIKE_GROUP_BUDGET = 3000;
+
+/** A leading house number (digits, then a glued unit or a range: "1422A", "1252-1270") and the whitespace after it. */
+const HOUSE_AND_GAP = /^(\s*(?:\d[A-Za-z0-9]*|\d+-[A-Za-z0-9]+))\s+(?=\S)/;
+
+/**
+ * The LIKE pattern bodies (between the outer %...%) that match a typed street.
+ * By default one: the typed text, quotes escaped as in esc(). A dataset opts in
+ * with houseNumberSpaceRuns (maxRun here) only when its table was MEASURED to
+ * store a run of spaces after the house number: Orlando code cases carry two
+ * ("4274  TATUM ST  ORLANDO FL", 99,433 of 146,669), permits two or three
+ * (55,657 of 1,105,323), zoning cases two or three (221 of 407), so a typed
+ * '4274 Tatum St' as one literal found nothing. Every other dataset keeps the
+ * single literal, because the OR group is a heavier query for no gain
+ * (measured 1.6 to 1.9x on Chicago violations and Orlando permits).
+ *
+ * When maxRun >= 1 and the street starts with a house number, the bodies are the
+ * typed text with 1 to maxRun spaces in that one gap, plus the typed text itself
+ * when it is not among them (a five-space or tab address still finds its own
+ * query), and the caller ORs them: spaces only, so '4274 Tatum St' does not
+ * match '4274 OLD TATUM ST' and '12 Main' does not match '12 Old Main'. A
+ * wildcard in the gap ('4274 %Tatum') measured as exactly that false positive.
+ * The number is still not anchored on its left, as before: '12 Main' also
+ * matches '3312 MAIN'. An ordinal street first ("88th St") is no house number,
+ * and so is anything with nothing after the gap ("1 "). The pattern is linear in
+ * the input (no nested quantifier).
+ */
+export function likeAlternatives(s: string, maxRun = 0): string[] {
+  const typed = esc(s);
+  const runs = Math.min(Math.floor(maxRun), HOUSE_GAP_LIMIT);
+  if (!(runs >= 1)) return [typed];
+  const m = HOUSE_AND_GAP.exec(s);
+  if (!m || ORDINAL_STREET.test(m[1].trim())) return [typed];
+  const house = esc(m[1]);
+  const rest = esc(s.slice(m[0].length));
+  const out = Array.from({ length: runs }, (_, i) => `${house}${" ".repeat(i + 1)}${rest}`);
+  return out.includes(typed) ? out : [...out, typed];
+}
+
+/**
+ * One LIKE clause per alternative, ORed and parenthesised when there are several,
+ * so the AND clauses around it keep their scope. A group whose encoded length
+ * passes LIKE_GROUP_BUDGET falls back to the single typed literal.
+ */
+function likeAny(street: string, one: (body: string) => string, maxRun: number | undefined): string {
+  const parts = likeAlternatives(street, maxRun).map(one);
+  if (parts.length < 2) return parts[0];
+  const group = `(${parts.join(" OR ")})`;
+  return encodeURIComponent(group).length > LIKE_GROUP_BUDGET ? one(esc(street)) : group;
+}
+
+/**
  * CKAN / CARTO SQL identifier quote: wrap in double-quotes and double any
  * embedded double-quote. Column and resource names come from the registry, not
  * from input; quoting lets columns with spaces or symbols ("PERMIT #") be
@@ -62,6 +127,9 @@ const DIRECTIONALS = new Set([
   "NORTH", "SOUTH", "EAST", "WEST", "NORTHEAST", "NORTHWEST", "SOUTHEAST", "SOUTHWEST",
 ]);
 
+/** The spelled-out directions: a street NAMED South ('South Blvd', 'North Ave') as opposed to the abbreviation in 'N St'. */
+const FULL_DIRECTIONS = new Set(["NORTH", "SOUTH", "EAST", "WEST"]);
+
 const STREET_SUFFIXES = new Set([
   "ST", "STREET", "AVE", "AV", "AVENUE", "BLVD", "BOULEVARD", "RD", "ROAD", "DR", "DRIVE",
   "LN", "LANE", "CT", "COURT", "PL", "PLACE", "WAY", "PKWY", "PARKWAY", "HWY", "HIGHWAY",
@@ -69,6 +137,12 @@ const STREET_SUFFIXES = new Set([
   "ALY", "ALLEY", "RW", "ROW", "LOOP", "RUN", "PATH", "WALK", "CV", "COVE",
   "EXPY", "EXPRESSWAY", "FWY", "FREEWAY",
 ]);
+
+/**
+ * An ordinal street name ("88th", "3rd"). It is digits plus letters, so it reads
+ * as a house number with a glued unit ("1422A"); typed first, it is the street.
+ */
+const ORDINAL_STREET = /^\d+(?:ST|ND|RD|TH)$/i;
 
 export interface SplitStreet {
   /** Digits only. */
@@ -81,25 +155,84 @@ export interface SplitStreet {
  * "1422 N Western Ave" -> { number: "1422", name: "Western" }. Null when the
  * typed street carries no leading house number, which makes the caller fall
  * back to the plain substring match. A unit glued to the number ("1422A",
- * "1422-B") is dropped; the name keeps at least one token.
+ * "1422-B") is dropped; the name keeps at least one token. A first token that
+ * is an ordinal street name ("88th St", "3rd Ave") is no house number.
  */
 export function splitStreet(street: string): SplitStreet | null {
-  const m = /^\s*(\d+)(?:-?[A-Za-z0-9]+)?\s+(.+)$/.exec(street);
-  if (!m) return null;
-  let tokens = m[2].trim().split(/\s+/).filter(Boolean);
+  // The number and a glued unit are matched alone; the whitespace after them is
+  // skipped by hand. One regex ending in \s+(.+)$ is quadratic on '1' + spaces + '\n'.
+  const m = /^\s*(\d+)(?!\d)(?:-[A-Za-z0-9]+|[A-Za-z0-9]+)?/.exec(street);
+  if (!m || !/\s/.test(street.charAt(m[0].length)) || ORDINAL_STREET.test(street.trim().split(/\s+/)[0])) return null;
+  let at = m[0].length;
+  while (at < street.length && /\s/.test(street.charAt(at))) at++;
+  const rest = street.slice(at);
+  if (!rest || /[\n\r\u2028\u2029]/.test(rest)) return null;
+  const name = bareName(rest.trim().split(/\s+/).filter(Boolean));
+  if (!name) return null;
+  return { number: m[1], name };
+}
+
+/** One leading directional and one trailing street type off a token list; the name keeps at least one token. */
+function bareName(tokens: string[]): string {
   if (tokens.length > 1 && DIRECTIONALS.has(tokens[0].toUpperCase())) tokens = tokens.slice(1);
   if (tokens.length > 1 && STREET_SUFFIXES.has(tokens[tokens.length - 1].replace(/\.$/, "").toUpperCase())) {
     tokens = tokens.slice(0, -1);
   }
-  const name = tokens.join(" ").trim();
-  if (!name) return null;
-  return { number: m[1], name };
+  return tokens.join(" ").trim();
 }
 
 /** Whether a property dataset searches by split address for this street. */
 function splitFor(ds: PropertyDataset, street: string): SplitStreet | null {
   if (!ds.fields.streetNumber) return null;
   return splitStreet(street);
+}
+
+/**
+ * The text a property dataset matches when the typed street carries no split
+ * (no house number, or no streetNumber column). On a split-street table the
+ * address column holds the bare name ("FUNTIER" with "CT" in its own column), so
+ * a name typed without a number gets the same tolerance as the number + name
+ * path: one leading directional and one trailing street type come off. Other
+ * datasets, a street with nothing to strip, and a trim that would leave a lone
+ * letter, no letter or digit at all (a typed '%' or '_'), or a direction or
+ * street type word that only a leading directional exposed ('N St' would
+ * become 'St', 'NE St' too), are matched as typed. A name that IS a type word
+ * keeps its trim when a real type follows it: 'Court St' is the street Court.
+ * A spelled-out direction with a type ('South St', 'North Ave') is the street
+ * South or North: the direction stays and the type goes. A typed '%' or '_'
+ * stays a live LIKE wildcard, as it always has.
+ */
+function plainNeedle(ds: PropertyDataset, street: string): string {
+  if (!ds.fields.streetNumber) return street;
+  const tokens = street.trim().split(/\s+/).filter(Boolean);
+  const name = bareName(tokens);
+  if (!name || name.split(" ").length >= tokens.length) return street;
+  // A trim that leaves nothing searchable is no trim: "N St" and "E St" are the
+  // streets N and E (not '%St%'), "N E St" is not '%E%', "N % St" is not '%%%'.
+  if (typeWordExposed(tokens, name) && FULL_DIRECTIONS.has(tokens[0].toUpperCase()) && STREET_SUFFIXES.has(name.replace(/\.$/, "").toUpperCase())) {
+    return tokens[0];
+  }
+  if (name.length < 2 || typeWordExposed(tokens, name) || !/[\p{L}\p{N}]/u.test(name)) return street;
+  return name;
+}
+
+function isDirectionOrType(name: string): boolean {
+  const u = name.replace(/\.$/, "").toUpperCase();
+  return DIRECTIONALS.has(u) || STREET_SUFFIXES.has(u);
+}
+
+/**
+ * Whether a trimmed name is a direction or street type word that only the
+ * leading-directional strip exposed: "N St" leaves 'St', "North Ave" leaves
+ * 'Ave', where the typed word sat in the type position. A type word with a real
+ * type after it is a street name ("Court St" is the street Court, "N Court St"
+ * too), so a trailing type that came off clears it.
+ */
+function typeWordExposed(tokens: string[], name: string): boolean {
+  if (tokens.length < 2 || !DIRECTIONALS.has(tokens[0].toUpperCase())) return false;
+  const rest = tokens.slice(1);
+  const typeCameOff = rest.length > 1 && STREET_SUFFIXES.has(rest[rest.length - 1].replace(/\.$/, "").toUpperCase());
+  return !typeCameOff && isDirectionOrType(name);
 }
 
 /**
@@ -121,7 +254,16 @@ function splitFor(ds: PropertyDataset, street: string): SplitStreet | null {
  * unit or range stays with it: "1422A", "1252-1270"), then one leading
  * directional (N S E W NE NW SE SW, or the full words), then one trailing
  * street type (optional period). The name keeps at least one token, so a lone
- * number or a lone type is sent as typed. Unchanged when the parts give no
+ * number or a lone type is sent as typed. A strip that leaves a lone letter, no
+ * letter or digit, or a lone direction or type word with no real type after it
+ * ('N St' would become 'St', '100 St' too) is not applied. When a real strip
+ * came off, the typed tokens go without the house number (the name column owns
+ * none): '100 N St' sends 'N St'. When only the number did, the street goes as
+ * typed: '100 %' and '100 E' stay as they are, never '%' or 'E'. A type word with
+ * a real type after it is a name: '100 Court St' sends 'Court'. A spelled-out
+ * direction with a type on a table with a type column ('2600 South Blvd',
+ * '100 North Ave') is the street South or North and sends 'South' or 'North'.
+ * Unchanged when the parts give no
  * role: no parts, the name column not among them, or a mapped number column
  * (then the split clause in propertyQueryUrl owns the number).
  */
@@ -137,12 +279,35 @@ export function splitAddressStreetName(
   const before = at;
   const after = parts.length - 1 - at;
   let tokens = street.trim().split(/\s+/).filter(Boolean);
-  if (before >= 1 && tokens.length > 1 && /^\d+(?:-?[A-Za-z0-9]+)?$/.test(tokens[0])) tokens = tokens.slice(1);
-  if (before >= 2 && tokens.length > 1 && DIRECTIONALS.has(tokens[0].toUpperCase())) tokens = tokens.slice(1);
+  const typedTokens = tokens.length;
+  let dirOff = false;
+  let typeOff = false;
+  if (before >= 1 && tokens.length > 1 && /^\d+(?!\d)(?:-[A-Za-z0-9]+|[A-Za-z0-9]+)?$/.test(tokens[0]) && !ORDINAL_STREET.test(tokens[0])) {
+    tokens = tokens.slice(1);
+  }
+  const afterNumber = tokens;
+  if (before >= 2 && tokens.length > 1 && DIRECTIONALS.has(tokens[0].toUpperCase())) {
+    tokens = tokens.slice(1);
+    dirOff = true;
+  }
   if (after >= 1 && tokens.length > 1 && STREET_SUFFIXES.has(tokens[tokens.length - 1].replace(/\.$/, "").toUpperCase())) {
     tokens = tokens.slice(0, -1);
+    typeOff = true;
   }
   const name = tokens.join(" ");
+  // South Blvd and North Ave are the streets South and North: the spelled-out
+  // direction comes back and the type goes. 'N St' and 'NE St' stay rejected below.
+  if (dirOff && !typeOff && after >= 1 && FULL_DIRECTIONS.has(afterNumber[0].toUpperCase()) && STREET_SUFFIXES.has(name.replace(/\.$/, "").toUpperCase())) {
+    return afterNumber[0];
+  }
+  // Same guard as plainNeedle: a strip that leaves a lone letter, no letter or
+  // digit, or a lone type/direction word nothing real follows is no strip
+  // ("N St" is the street N, not '%St%'; "N % St" is not '%%%'). Past a real
+  // strip the house number stays off (the name column never holds one); when
+  // only the number came off there is nothing safer than the typed line.
+  if (tokens.length < typedTokens && (name.length < 2 || (!typeOff && isDirectionOrType(name)) || !/[\p{L}\p{N}]/u.test(name))) {
+    return afterNumber.length < typedTokens && afterNumber.join(" ") !== name ? afterNumber.join(" ") : street;
+  }
   return name || street;
 }
 
@@ -176,6 +341,7 @@ function numberLiteral(ds: PropertyDataset, n: string): string {
 export function propertyQueryUrl(ds: PropertyDataset, street: string): string {
   const address = street;
   const split = address ? splitFor(ds, address) : null;
+  const needle = address ? plainNeedle(ds, address) : "";
 
   if (ds.type === "socrata") {
     const parts: string[] = [];
@@ -185,7 +351,7 @@ export function propertyQueryUrl(ds: PropertyDataset, street: string): string {
         `upper(${ds.fields.address}) like upper('%${esc(split.name)}%') AND ${ds.fields.streetNumber} = ${numberLiteral(ds, split.number)}`,
       );
     } else if (address) {
-      clauses.push(`upper(${ds.fields.address}) like upper('%${esc(address)}%')`);
+      clauses.push(likeAny(needle, (b) => `upper(${ds.fields.address}) like upper('%${b}%')`, ds.houseNumberSpaceRuns));
     }
     if (ds.where) clauses.push(`(${ds.where})`);
     if (clauses.length) parts.push(`$where=${encodeURIComponent(clauses.join(" AND "))}`);
@@ -203,7 +369,7 @@ export function propertyQueryUrl(ds: PropertyDataset, street: string): string {
         `${sqlId(ds.fields.address)} ILIKE '%${esc(split.name)}%' AND ${sqlId(ds.fields.streetNumber!)} = ${numberLiteral(ds, split.number)}`,
       );
     } else if (address) {
-      clauses.push(`${sqlId(ds.fields.address)} ILIKE '%${esc(address)}%'`);
+      clauses.push(likeAny(needle, (b) => `${sqlId(ds.fields.address)} ILIKE '%${b}%'`, ds.houseNumberSpaceRuns));
     }
     if (ds.where) clauses.push(`(${ds.where})`);
     const whereSql = clauses.length ? clauses.join(" AND ") : "1=1";
@@ -223,7 +389,7 @@ export function propertyQueryUrl(ds: PropertyDataset, street: string): string {
         `${sqlId(ds.fields.address)} ILIKE '%${esc(split.name)}%' AND ${sqlId(ds.fields.streetNumber!)} = ${numberLiteral(ds, split.number)}`,
       );
     } else if (address) {
-      clauses.push(`${sqlId(ds.fields.address)} ILIKE '%${esc(address)}%'`);
+      clauses.push(likeAny(needle, (b) => `${sqlId(ds.fields.address)} ILIKE '%${b}%'`, ds.houseNumberSpaceRuns));
     }
     if (ds.where) clauses.push(`(${ds.where})`);
     const whereSql = clauses.length ? clauses.join(" AND ") : "1=1";
@@ -240,7 +406,7 @@ export function propertyQueryUrl(ds: PropertyDataset, street: string): string {
       `UPPER(${ds.fields.address}) LIKE UPPER('%${esc(split.name)}%') AND ${ds.fields.streetNumber} = ${numberLiteral(ds, split.number)}`,
     );
   } else if (address) {
-    arcClauses.push(`UPPER(${ds.fields.address}) LIKE UPPER('%${esc(address)}%')`);
+    arcClauses.push(likeAny(needle, (b) => `UPPER(${ds.fields.address}) LIKE UPPER('%${b}%')`, ds.houseNumberSpaceRuns));
   }
   if (ds.where) arcClauses.push(`(${ds.where})`);
   const where = arcClauses.length ? arcClauses.join(" AND ") : "1=1";
@@ -289,7 +455,7 @@ export function casesQueryUrl(src: CasesSource, street: string, statuses: string
   if (lookup !== "address" && street) return null;
   if (src.type === "socrata") {
     const clauses: string[] = [];
-    if (street) clauses.push(`upper(${src.fields.address}) like upper('%${esc(street)}%')`);
+    if (street) clauses.push(likeAny(street, (b) => `upper(${src.fields.address}) like upper('%${b}%')`, src.houseNumberSpaceRuns));
     const st = statusClause(src, statuses, false);
     if (st) clauses.push(st);
     if (src.where) clauses.push(`(${src.where})`);
@@ -300,7 +466,7 @@ export function casesQueryUrl(src: CasesSource, street: string, statuses: string
     return `${src.url}?${parts.join("&")}`;
   }
   const clauses: string[] = [];
-  if (street) clauses.push(`UPPER(${src.fields.address}) LIKE UPPER('%${esc(street)}%')`);
+  if (street) clauses.push(likeAny(street, (b) => `UPPER(${src.fields.address}) LIKE UPPER('%${b}%')`, src.houseNumberSpaceRuns));
   const st = statusClause(src, statuses, true);
   if (st) clauses.push(st);
   if (src.where) clauses.push(`(${src.where})`);
@@ -592,12 +758,24 @@ const SOCRATA_NOTE =
 const WILDCARD_NOTE =
   "LIKE wildcards in the street stay active, as on the site: '%' matches any run of characters and '_' exactly one.";
 
+/**
+ * Said only in the note of a dataset that sets houseNumberSpaceRuns (Orlando's
+ * code cases, permits and zoning applications, which store a run of spaces after
+ * the house number; see likeAlternatives). Every other dataset matches the typed
+ * spacing exactly, as it always has, and says nothing.
+ */
+function spacesNote(runs: number | undefined): string {
+  const n = Math.min(Math.floor(runs ?? 0), HOUSE_GAP_LIMIT);
+  if (!(n >= 1)) return "";
+  return ` The space after a leading house number also matches a run of up to ${n} spaces, or the spacing as typed, and nothing else, as in Orlando's '4274  TATUM ST' ('4274 Tatum St' does not find '4274 OLD TATUM ST'). As before, the number is not anchored on its left: '12 Main' also finds '3312 MAIN'.`;
+}
+
 function propertyNote(ds: PropertyDataset): string {
   const parts: string[] = [];
   const numberColumn = unmappedNumberColumn(ds.fields.addressParts, ds.fields.address, ds.fields.streetNumber);
   if (ds.fields.streetNumber) {
     parts.push(
-      `The street is split: type 'number name' ('1422 N Western Ave') and the number is matched on ${ds.fields.streetNumber} while the name is matched on ${ds.fields.address}; a street name alone falls back to a substring match on ${ds.fields.address}.`,
+      `The street is split: type 'number name' ('1422 N Western Ave') and the number is matched on ${ds.fields.streetNumber} while the name is matched on ${ds.fields.address}; a street name alone is matched on ${ds.fields.address} too, with the same trimming (a leading direction and a trailing street type come off: 'N Western Ave' matches 'Western').${spacesNote(ds.houseNumberSpaceRuns)}`,
     );
   } else if (numberColumn) {
     parts.push(
@@ -605,7 +783,7 @@ function propertyNote(ds: PropertyDataset): string {
     );
   } else {
     parts.push(
-      `Case-insensitive substring match on ${ds.fields.address}: a street name alone ('Commerce') returns the most, and a number plus name matches only rows whose ${ds.fields.address} contains that exact text.`,
+      `Case-insensitive substring match on ${ds.fields.address}: a street name alone ('Commerce') returns the most, and a number plus name matches only rows whose ${ds.fields.address} contains that exact text.${spacesNote(ds.houseNumberSpaceRuns)}`,
     );
   }
   parts.push(WILDCARD_NOTE);
@@ -631,7 +809,7 @@ function casesNote(src: CasesSource): string {
     parts.push(
       numberColumn
         ? `Case-insensitive substring match on ${src.fields.address}, which holds the street name (the house number is in ${numberColumn}): the query matches the street name on ${src.fields.address} and returns every row on that street; filter by house number in the results.`
-        : `Case-insensitive substring match on ${src.fields.address}: a street name alone returns the most.`,
+        : `Case-insensitive substring match on ${src.fields.address}: a street name alone returns the most.${spacesNote(src.houseNumberSpaceRuns)}`,
     );
     parts.push(`Filter by status with ${src.fields.status ?? "the status column"} in (...) using the status_buckets values.`);
     parts.push(WILDCARD_NOTE);

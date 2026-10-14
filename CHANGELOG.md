@@ -1,5 +1,77 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.35 — 2026-10-14
+
+City search normalization and one new county. No breaking change; one additive
+optional field on the dataset record types (`houseNumberSpaceRuns`, below).
+`totals` move to 395 counties and 413 endpoints (386 with a verified endpoint).
+
+### New county
+
+- **Montgomery TN (47125)**, parcel id and situs address only: the county's
+  public parcel layer carries no owner or mailing fields, so owner lookups
+  return nothing there.
+
+### City search
+
+`buildCityQuery` (and the hosted
+`get_city_datasets` `query_url`) now build a more tolerant street match, read
+live on 2026-10-14 against the five datasets that missed.
+
+- **Double-spaced addresses (Orlando only).** A dataset opts in with the new
+  optional registry field `houseNumberSpaceRuns` (the longest run of spaces to
+  try, 1 to 8), set only where a table was measured to store such a run:
+  Orlando code cases, permits and zoning cases, at 4. For those, when a typed
+  street starts with a house number the query ORs the typed text with one to
+  four spaces after the number (`4274 Tatum St` also tries `4274  Tatum St`
+  through four spaces), and with the typed text itself when that has a longer
+  run or a tab, in parentheses so the dataset scope still applies. Every other
+  dataset keeps the one typed literal, exactly as before: the OR group measured
+  1.6 to 1.9x slower on Chicago violations and Orlando permits, which is not
+  worth paying where the table has no such run. A group whose encoded length
+  would pass about 3,000 bytes falls back to the single literal. Spaces only: a word cannot
+  come between the number and the street, so `4274 Tatum St` does not find
+  `4274 OLD TATUM ST` and `12 Main` does not find `12 Old Main`. The bound
+  is the longest run measured upstream on 2026-10-14, with one step of
+  headroom: three in Orlando permits and zoning cases, two in code cases. Orlando
+  stores a run there on 99,433 of 146,669 code-case addresses, 55,657 of
+  1,105,323 permit addresses and 221 of 407 zoning-case addresses, so a typed
+  full address returned nothing and agents were told to search the street name
+  alone. As before, the house number is not anchored on its left: `12 Main` also
+  finds `3312 MAIN`. (140,344 code-case addresses carry a double space
+  somewhere, mostly before the city name; 99,433 have the run right after the
+  number.)
+- **Split-street datasets, street typed without a house number.** Los Angeles
+  violations (`stno`/`stname`), Fort Worth permits (`Addr_No`/`Street_Name`) and
+  Scottsdale violations (`StreetNumber`/`StreetName`) keep the bare name in the
+  address column, so `Funtier Ct` matched as typed found nothing while `Funtier`
+  found 87 permits. The name-only path now takes one leading direction and one
+  trailing street type off, as the number-plus-name path already did. A trim that
+  would leave a lone letter, only a direction or street type, or no letter or
+  digit (`N St`, `E St`, `N E St`, a typed `%`) is not applied: the street is
+  matched as typed. The derived street name an agent query sends on a Dallas-style
+  table (`streetForDataset`) follows the same rule: `N St`, `N Q St` and
+  `N % St` are sent as typed, not as `St`, `Q` or `%`, and `100 N St` sends `N St`
+  (the name column never holds a house number). A street whose name is itself a
+  type or direction word keeps its strip when a real type follows it: `100 Court St`
+  sends `Court`, `Plaza Dr` sends `Plaza`. A spelled-out direction with its type
+  (`2600 South Blvd`, `100 North Ave`, `South St`) is the street South or North
+  and sends `South` or `North`. That holds on tables with no number column and a
+  type column (Dallas violations, Boston, San Francisco) for every input, and on
+  tables with a number column (Los Angeles, Fort Worth, Scottsdale) only for a
+  street typed without a house number; a table with no type column (Chicago
+  permits) keeps `100 North St` as `North St`. `N St` and `NE St` stay as typed. A house number
+  plus one unsafe token (`100 %`, `100 _`, `100 E`, `100 St`) is sent as typed,
+  never as the bare token.
+- **Linear parsing.** The house-number parsers no longer backtrack on a long run
+  of digits or of spaces followed by a newline.
+- **Ordinal street names.** A first token like `88th` or `3rd` is no longer read
+  as a house number with a glued unit, so `88th St` typed without a number is a
+  street name on the split datasets and `3rd Ave` is not cut to `Ave` on Dallas
+  violations.
+- Dataset `coverage` and `queryNote` text for these datasets states the new
+  behaviour; the "search by street name alone" workaround is gone.
+
 ## 0.6.34 — 2026-10-14
 
 Mississippi statewide: 80 new counties and a second endpoint for Hinds from the

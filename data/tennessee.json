@@ -2,7 +2,7 @@
   "stateSlug": "tennessee",
   "stateName": "Tennessee",
   "stateAbbrev": "TN",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-14",
   "counties": [
     {
       "id": "tn-davidson",
@@ -235,6 +235,61 @@
         "email": null
       },
       "notes": "Sullivan County, Tennessee (county seat Blountville; Kingsport and Bristol) has no county-run public REST parcel layer with owner names. Its parcels are carried on the City of Johnson City's regional ParcelPublishing/TaxParcels MapServer layer 0 (Tax Parcels), which also holds Washington, Carter, Unicoi and neighbouring counties. Filter with COUNTYNAME='Sullivan County' (78,958 of the layer's 183,538 rows on 2026-10-03); the plain value 'Sullivan' matches nothing. About 313 Sullivan parcels (GISLINK starting 082) carry a NULL or different COUNTYNAME and fall outside this scope, roughly 0.4 percent; COUNTY_ID=82 catches them but admits 314 rows from outside the county, so the name scope stays. The owner is OWNER (with OWNER2); the parcel ID is GISLINK (e.g. 082029B A 01600) with ID as the display form (029B A 016.00), and PARID is NULL for Sullivan rows. ADDRESS stores the street name first and the house number last (BRENTWOOD DR 377), so search on a street word: a number-first LIKE ('%377 BRENTWOOD DR%') returns nothing, and only 647 of 78,737 Sullivan addresses start with a digit, so the free tools' address auto-lookup will miss most Sullivan addresses until they retry number-last. The owner mailing address is MAILADDR with MAILCITY, STATE and ZIP. CARDURL links each parcel to the state's TPAD property card. CORS reflects the request Origin (Access-Control-Allow-Origin echoed back, credentials true); a request without an Origin gets no CORS header. maxRecordCount is 2000. LICENCE: RESTRICTED. The ArcGIS item's licence text reads: \"Read access only for all city staff. Delivered products are not to be resold by the purchaser for any reason and may not be reproduced without the written permission of the staff of the Johnson City GIS Division.\" The item and the REST endpoint are public, but the terms restrict resale and reproduction, so the atlas records only the query URL, stores no copy of the layer beyond the short-lived server cache every live query passes through, and serves this county by live query only; Leo reviewed and accepted that exposure on 2026-10-03. The data was last refreshed in October 2025. Sullivan County's own SULLIVAN service on ArcGIS Online has no owner field, and Tennessee publishes no statewide parcel REST layer. Verified live 2026-10-03: owner SMITH returned rows (first SMITH BETTY TRUSTEE, GISLINK 082029B A 01600, BRENTWOOD DR 377, mailing 377 BRENTWOOD DRIVE KINGSPORT)."
+    },
+    {
+      "id": "tn-montgomery",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Montgomery",
+      "countySlug": "montgomery-county",
+      "countyFips": "47125",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.montgomerytn.gov/gisserver/rest/services/PublicParcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "PublicParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "ParcelNo",
+              "label": "Parcel Number (e.g. 066E A 00600 000)",
+              "searchable": true
+            },
+            {
+              "name": "GISLINK",
+              "label": "GIS Link (Parcel ID, e.g. 063066E A 00600)",
+              "searchable": true
+            },
+            {
+              "name": "PropertyAddress",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "PropertyCity",
+              "label": "Situs City",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.montgomerytn.gov/gisserver/rest/services/PublicParcels/MapServer/0/query?where=UPPER(PropertyAddress)+LIKE+'%25MAIN%25'&outFields=ParcelNo,GISLINK,PropertyAddress,PropertyCity&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "http://montgomerytn.gov/assessor/public-parcels",
+          "status": "live",
+          "lastVerified": "2026-10-14",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Montgomery County Assessor of Property",
+        "url": "http://montgomerytn.gov/assessor/gis",
+        "email": null
+      },
+      "notes": "Montgomery County, Tennessee (Clarksville; FIPS 47125). The county's public parcel layer, the one the Assessor of Property's Public Parcels page advertises, is PublicParcels MapServer layer 0 on the county GIS server (gis.montgomerytn.gov, ArcGIS Server): 99,863 rows on 2026-10-14. THIS LAYER PUBLISHES PARCEL IDS AND SITUS ADDRESSES BUT NO OWNER OR MAILING FIELDS, so owner lookups return nothing here; look a parcel up by parcel number, by street address or by point. The parcel id is ParcelNo (e.g. 066E A 00600 000) with GISLINK as the shorter link id (063066E A 00600); the situs is PropertyAddress with PropertyCity. The rows are one per building card, not one per parcel: a parcel with several buildings repeats its parcel id and situs on each row (one sampled parcel returned six), so counts of rows overstate counts of parcels. The layer also carries subdivision, lot and block, deed book and page, property type, taxing district, acreage, assessed and appraised values, building attributes and the last sale. The layer's name is PublicParcels, the wkid is 102736 (Tennessee State Plane, US feet; latestWkid 2274), and outSR=4326 returns longitude and latitude. maxRecordCount is 2000 with pagination. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, so a probe without an Origin header reads it as closed. No license or terms are published on the layer or on the assessor's pages. Verified 2026-10-14: a count of 99,863, a situs LIKE query on MAIN (120 rows) and an outSR=4326 query.",
+      "addedAt": "2026-10-14"
     }
   ]
 }
