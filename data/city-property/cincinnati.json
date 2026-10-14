@@ -1,0 +1,67 @@
+{
+  "slug": "cincinnati",
+  "city": "Cincinnati",
+  "state": "Ohio",
+  "stateAbbrev": "OH",
+  "countyName": "Hamilton County",
+  "countySlug": "hamilton-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers properties inside the City of Cincinnati. The code-enforcement table is shared across Hamilton County agencies, so it is filtered to the City of Cincinnati's own departments; Forest Park, Blue Ash, Norwood, Sycamore Township and county agencies are left out.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "socrata",
+      "url": "https://data.cincinnati-oh.gov/resource/cncm-znd6.json",
+      "orderField": "entered_date",
+      "where": "display_agency like 'Cincinnati%'",
+      "latestRecordDate": "2026-10-11",
+      "coverage": "Code-enforcement complaints handled by City of Cincinnati departments, about 721,000 entered 2000 to present: Public Services 38%, Trade and Development 21%, Health 21%, Buildings and Inspections 19%, Planning about 1% (shares counted 2026-10-14).",
+      "recordLabel": "Complaint",
+      "openedLabel": "Entered",
+      "closedLabel": "Updated",
+      "fields": {
+        "address": "full_address",
+        "recordNumber": "number_key",
+        "type": "comp_type_desc",
+        "description": "data_status_display",
+        "status": "status_class",
+        "openedDate": "entered_date",
+        "closedDate": "last_updated",
+        "link": "url"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.cincinnati-oh.gov/resource/uhjb-xac9.json",
+      "orderField": "applieddate",
+      "where": "applieddate IS NOT NULL",
+      "latestRecordDate": "2026-10-09",
+      "coverage": "City of Cincinnati building permits, about 181,000 applied for January 2010 to present.",
+      "recordLabel": "Permit",
+      "openedLabel": "Applied",
+      "closedLabel": "Issued",
+      "fields": {
+        "address": "originaladdress1",
+        "recordNumber": "permitnum",
+        "type": "permittypemapped",
+        "description": "description",
+        "status": "statuscurrentmapped",
+        "value": "estprojectcostdec",
+        "openedDate": "applieddate",
+        "closedDate": "issueddate",
+        "zip": "originalzip",
+        "link": "link"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Cincinnati Open Data",
+    "url": "https://data.cincinnati-oh.gov/",
+    "license": "Public domain (City of Cincinnati)",
+    "portalLabel": "Cincinnati Open Data (Socrata)",
+    "currentRecordsNote": "Code-enforcement complaints and building permits are both published on the City of Cincinnati's open-data portal. The complaint table also carries other Hamilton County agencies' cases; only the city's own departments are searched here."
+  }
+}

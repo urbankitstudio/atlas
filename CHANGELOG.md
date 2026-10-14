@@ -1,5 +1,69 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.33 — 2026-10-14
+
+City data. No API change, no breaking change, `totals` unchanged. The city
+registries grow from 20 to **30 cities** with code-violation or building-permit
+datasets and from 17 to **19** with zoning-case dockets. Every endpoint, address
+column, date column and scope filter was re-read live on 2026-10-14, and each
+new dataset carries `latestRecordDate`, the newest record seen that day.
+
+### New code-violation and building-permit cities
+
+- **Los Angeles CA**: LADBS open code-enforcement cases (`u82d-eh7z`; closed
+  cases sit in a separate dataset that is not searched) and building permits
+  issued since 2020 (`pi9x-tg5x`). The violations table splits the street, so
+  a typed "number name" is matched on `stno` and `stname`.
+- **Fort Worth TX**: code violations and development permits (ArcGIS tables).
+  The permits table's one-line address column is empty upstream, so permits
+  match the street name on `Street_Name` and the house number on `Addr_No`.
+  Trade permits are included.
+- **Mesa AZ**: code-compliance cases and issued building permits (Socrata).
+- **Minneapolis MN**: code violations and permits (ArcGIS).
+- **Wichita KS**: MABCD code cases and permits (the city's own ArcGIS server).
+  The permits layer is scoped to `Jurisdiction='Wichita'`. The county name is
+  Sedgwick County, which the atlas does not carry, so no `countySlug`.
+- **Cleveland OH**: Building and Housing violation notices and building permits
+  (ArcGIS), each with its Accela Citizen Access link.
+- **New Orleans LA**: code-enforcement cases and permits (Socrata, CC0).
+- **Orlando FL**: code-enforcement cases scoped to the housing, lot, zoning,
+  abatement and commercial case types, and permit applications (Socrata).
+- **Cincinnati OH**: code-enforcement complaints scoped to
+  `display_agency like 'Cincinnati%'` (the table is Hamilton County-wide) and
+  building permits (Socrata).
+- **Scottsdale AZ**: closed code complaints since 2021-09 (split street, matched
+  on `StreetNumber` and `StreetName`) and building permits (the city's own
+  ArcGIS server).
+
+### New zoning-case cities
+
+- **Orlando FL**: Planning Applications scoped to the Zoning application type.
+  Existing and proposed zoning live in the comments prose, not in columns.
+- **Scottsdale AZ**: the ZN (rezoning) series of the planning-case table.
+  Thin: about 6 rezonings since 2025-04.
+
+### County links
+
+`relatedPropertyCitySlug` now names a city for Los Angeles CA, Tarrant TX,
+Hennepin MN, Cuyahoga OH, Hamilton OH, Orleans LA and Orange FL counties;
+`relatedZoningCitySlug` for Los Angeles CA, Tarrant TX, Orleans LA, Orange FL
+and Maricopa AZ (Scottsdale; Maricopa's property link stays Phoenix).
+
+### Disclosures
+
+- The hosted MCP `get_city_datasets` now returns `zoning_source` whenever the
+  zoning registry carries a `currentRecordsNote`, not only when its source URL
+  differs from the property source, so Orlando's and Scottsdale's zoning notes
+  reach agents on the default call. Additive: no field renamed.
+- Dataset `coverage` now states the measured search limits: Orlando's
+  double-spaced addresses (search by street name alone), the split-street
+  datasets (LA violations, Fort Worth permits, Scottsdale violations: a street
+  typed without a house number is matched as typed, so a suffix finds nothing),
+  Wichita's null-jurisdiction permits, Cincinnati's departments with their
+  shares, and Scottsdale's sparse Zoning column.
+- Types: `CitySource` (the zoning record's `source`) gains the optional
+  `currentRecordsNote` its data already carried. Additive.
+
 ## 0.6.32 — 2026-10-14
 
 New counties — Berks PA (42011), Bedford PA (42009), Salem city VA (51775),

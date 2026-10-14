@@ -1,0 +1,61 @@
+{
+  "slug": "fort-worth",
+  "city": "Fort Worth",
+  "state": "Texas",
+  "stateAbbrev": "TX",
+  "countyName": "Tarrant County",
+  "countySlug": "tarrant-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers code cases and permits handled by the City of Fort Worth. Other Tarrant County cities (Arlington, Grapevine, Keller and the rest) and unincorporated county areas keep their own records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://services5.arcgis.com/3ddLCBXe1bRt7mzj/arcgis/rest/services/CFW_Open_Data_Code_Violations_Table_view/FeatureServer/0",
+      "orderField": "Case_Created_Date",
+      "latestRecordDate": "2026-10-12",
+      "coverage": "Fort Worth Code Compliance violations, about 84,000 rows from 2007 to present, one row per violation, so a case with several violations appears more than once.",
+      "recordLabel": "Case",
+      "openedLabel": "Opened",
+      "fields": {
+        "address": "Violation_Address",
+        "recordNumber": "Case_ID",
+        "type": "Complaint_Type_Description",
+        "status": "Case_Current_Status",
+        "openedDate": "Case_Created_Date"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services5.arcgis.com/3ddLCBXe1bRt7mzj/arcgis/rest/services/CFW_Open_Data_Development_Permits_View/FeatureServer/0",
+      "orderField": "File_Date",
+      "streetNumberType": "number",
+      "latestRecordDate": "2026-10-13",
+      "coverage": "Fort Worth development permits, about 1.6 million records filed 2001 to present. Trade permits (electrical, mechanical, plumbing, backflow) are included alongside building permits. The street is split across columns: with a house number, '8653 Funtier Ct' is matched as 8653 on Addr_No and 'Funtier' on Street_Name (one leading direction and one common street type are dropped). Without a house number the text is matched as typed against Street_Name, which holds the bare name, so 'Funtier' finds permits and 'Funtier Ct' finds none.",
+      "recordLabel": "Permit",
+      "openedLabel": "Filed",
+      "fields": {
+        "address": "Street_Name",
+        "addressParts": ["Addr_No", "Direction", "Street_Name", "Street_Suffix", "Street_Suffix_Dir"],
+        "streetNumber": "Addr_No",
+        "recordNumber": "Permit_No",
+        "type": "Permit_Type",
+        "description": "B1_WORK_DESC",
+        "status": "Current_Status",
+        "value": "JobValue",
+        "openedDate": "File_Date",
+        "zip": "Zip_Code"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Fort Worth Open Data",
+    "url": "https://data.fortworthtexas.gov/",
+    "license": "Public record (City of Fort Worth)",
+    "portalLabel": "Fort Worth Open Data (ArcGIS)",
+    "currentRecordsNote": "Code Compliance violations and Development Services permits are published as ArcGIS tables. The permits table's one-line address column is empty, so the search matches the street name and house number columns."
+  }
+}

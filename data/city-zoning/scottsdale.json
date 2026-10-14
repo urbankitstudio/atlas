@@ -1,0 +1,35 @@
+{
+  "slug": "scottsdale",
+  "city": "Scottsdale",
+  "state": "Arizona",
+  "stateAbbrev": "AZ",
+  "countyName": "Maricopa County",
+  "countySlug": "maricopa-county",
+  "lastVerified": "2026-10-14",
+  "kind": "cases",
+  "cases": {
+    "type": "arcgis",
+    "url": "https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/14",
+    "orderField": "SubmittalDate",
+    "where": "CaseNumber LIKE '%-ZN-%'",
+    "latestRecordDate": "2026-06-03",
+    "fields": {
+      "caseNumber": "CaseNumber",
+      "address": "Location",
+      "status": "Status",
+      "appliedDate": "SubmittalDate"
+    },
+    "statusBuckets": {
+      "active": ["ACTIVE", "CONTINUED"],
+      "approved": ["APPROVED"],
+      "closed": ["DENIED", "WITHDRAWN", "EXPIRED", "REPEAL"]
+    }
+  },
+  "source": {
+    "name": "City of Scottsdale Planning",
+    "url": "https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer",
+    "license": "Public record (City of Scottsdale)",
+    "portalLabel": "Scottsdale Open Data (ArcGIS Server)",
+    "currentRecordsNote": "Rezoning cases are the ZN series of the city's planning case table (about 1,230 back to the 1950s). New filings are thin: about 6 rezonings since 2025-04, the newest submitted 2026-06-03. The requested change appears in each case's request text; the table's Zoning column is filled on only 141 of the 1,230 ZN cases (counted 2026-10-14), so no zoning column is shown. Some locations are a street or an intersection rather than a house number."
+  }
+}

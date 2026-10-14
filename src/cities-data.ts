@@ -31,6 +31,16 @@ import propertyWashingtonDc from "../data/city-property/washington-dc.json" with
 import propertyPhiladelphia from "../data/city-property/philadelphia.json" with { type: "json" };
 import propertyAtlanta from "../data/city-property/atlanta.json" with { type: "json" };
 import propertyPhoenix from "../data/city-property/phoenix.json" with { type: "json" };
+import propertyLosAngeles from "../data/city-property/los-angeles.json" with { type: "json" };
+import propertyFortWorth from "../data/city-property/fort-worth.json" with { type: "json" };
+import propertyMesa from "../data/city-property/mesa.json" with { type: "json" };
+import propertyMinneapolis from "../data/city-property/minneapolis.json" with { type: "json" };
+import propertyWichita from "../data/city-property/wichita.json" with { type: "json" };
+import propertyCleveland from "../data/city-property/cleveland.json" with { type: "json" };
+import propertyNewOrleans from "../data/city-property/new-orleans.json" with { type: "json" };
+import propertyOrlando from "../data/city-property/orlando.json" with { type: "json" };
+import propertyCincinnati from "../data/city-property/cincinnati.json" with { type: "json" };
+import propertyScottsdale from "../data/city-property/scottsdale.json" with { type: "json" };
 
 import zoningIndexJson from "../data/city-zoning/index.json" with { type: "json" };
 import zoningAustin from "../data/city-zoning/austin.json" with { type: "json" };
@@ -50,6 +60,8 @@ import zoningLosAngeles from "../data/city-zoning/los-angeles.json" with { type:
 import zoningFortWorth from "../data/city-zoning/fort-worth.json" with { type: "json" };
 import zoningRaleigh from "../data/city-zoning/raleigh.json" with { type: "json" };
 import zoningBoise from "../data/city-zoning/boise.json" with { type: "json" };
+import zoningOrlando from "../data/city-zoning/orlando.json" with { type: "json" };
+import zoningScottsdale from "../data/city-zoning/scottsdale.json" with { type: "json" };
 
 export const cityPropertyIndex: CityPropertyIndex = propertyIndexJson as CityPropertyIndex;
 export const cityZoningIndex: CityZoningIndex = zoningIndexJson as CityZoningIndex;
@@ -75,6 +87,16 @@ export const PROPERTY_CITIES: Record<string, CityPropertyRecord> = {
   philadelphia: propertyPhiladelphia as CityPropertyRecord,
   atlanta: propertyAtlanta as CityPropertyRecord,
   phoenix: propertyPhoenix as CityPropertyRecord,
+  "los-angeles": propertyLosAngeles as CityPropertyRecord,
+  "fort-worth": propertyFortWorth as CityPropertyRecord,
+  mesa: propertyMesa as CityPropertyRecord,
+  minneapolis: propertyMinneapolis as CityPropertyRecord,
+  wichita: propertyWichita as CityPropertyRecord,
+  cleveland: propertyCleveland as CityPropertyRecord,
+  "new-orleans": propertyNewOrleans as CityPropertyRecord,
+  orlando: propertyOrlando as CityPropertyRecord,
+  cincinnati: propertyCincinnati as CityPropertyRecord,
+  scottsdale: propertyScottsdale as CityPropertyRecord,
 };
 
 export const ZONING_CITIES: Record<string, CityZoningRecord> = {
@@ -95,4 +117,6 @@ export const ZONING_CITIES: Record<string, CityZoningRecord> = {
   "fort-worth": zoningFortWorth as CityZoningRecord,
   raleigh: zoningRaleigh as CityZoningRecord,
   boise: zoningBoise as CityZoningRecord,
+  orlando: zoningOrlando as CityZoningRecord,
+  scottsdale: zoningScottsdale as CityZoningRecord,
 };

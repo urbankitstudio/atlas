@@ -1,0 +1,37 @@
+{
+  "slug": "orlando",
+  "city": "Orlando",
+  "state": "Florida",
+  "stateAbbrev": "FL",
+  "countyName": "Orange County",
+  "countySlug": "orange-county",
+  "lastVerified": "2026-10-14",
+  "kind": "cases",
+  "cases": {
+    "type": "socrata",
+    "url": "https://data.cityoforlando.net/resource/bhxy-4rji.json",
+    "orderField": "application_date",
+    "where": "application_description='Zoning' AND application_date IS NOT NULL",
+    "latestRecordDate": "2026-09-18",
+    "fields": {
+      "caseNumber": "application_number",
+      "address": "address",
+      "caseType": "application_description",
+      "status": "application_status",
+      "appliedDate": "application_date",
+      "statusDate": "last_action_date"
+    },
+    "statusBuckets": {
+      "active": ["Open", "Hold", "Hardhold"],
+      "closed": ["Closed"]
+    }
+  },
+  "source": {
+    "name": "City of Orlando Planning",
+    "url": "https://data.cityoforlando.net/",
+    "license": "Public record (City of Orlando)",
+    "portalLabel": "Orlando Open Data (Socrata)",
+    "currentRecordsNote": "Zoning cases come from the city's Planning Applications dataset, scoped to the Zoning application type (about 450 cases since 2002; the same table also holds annexations, variances and master plans). Existing and proposed zoning appear only inside each case's comments, not as columns, and the status is Open or Closed without saying approved or denied. About half the case addresses carry two spaces after the house number, so a street name alone finds more than a full address.",
+    "datasetUrl": "https://data.cityoforlando.net/d/bhxy-4rji"
+  }
+}

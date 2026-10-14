@@ -130,11 +130,11 @@ describe("listCities and citiesForCounty", () => {
     expect(listCities({ kind: "violations" }).map((c) => c.slug)).not.toContain("phoenix");
     expect(listCities({ state: "TX" }).map((c) => c.slug)).toEqual(["austin", "dallas", "fort-worth", "san-antonio"]);
     expect(listCities({ state: "texas" }).length).toBe(4);
-    expect(listCities({ countySlug: "maricopa-county" }).map((c) => c.slug)).toEqual(["phoenix"]);
+    expect(listCities({ countySlug: "maricopa-county" }).map((c) => c.slug)).toEqual(["mesa", "phoenix", "scottsdale"]);
   });
 
   it("resolves an atlas county to its cities, and a returned list is a copy", () => {
-    expect(citiesForCounty("arizona", "maricopa-county").map((c) => c.slug)).toEqual(["phoenix"]);
+    expect(citiesForCounty("arizona", "maricopa-county").map((c) => c.slug)).toEqual(["mesa", "phoenix", "scottsdale"]);
     expect(citiesForCounty("texas", "dallas-county").map((c) => c.slug)).toEqual(["dallas"]);
     expect(citiesForCounty("california", "orange-county")).toEqual([]);
     const [a] = listCities({ state: "AZ" });

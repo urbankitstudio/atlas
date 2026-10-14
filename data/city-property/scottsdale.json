@@ -1,0 +1,62 @@
+{
+  "slug": "scottsdale",
+  "city": "Scottsdale",
+  "state": "Arizona",
+  "stateAbbrev": "AZ",
+  "countyName": "Maricopa County",
+  "countySlug": "maricopa-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers properties inside the City of Scottsdale. Neighboring Maricopa County cities such as Phoenix, Mesa and Tempe, and unincorporated county areas, keep their own records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/10",
+      "orderField": "DateComplaintReceived",
+      "streetNumberType": "number",
+      "latestRecordDate": "2026-10-09",
+      "coverage": "Scottsdale code complaints received since 2021-09, about 18,900 rows. Closed complaints only: open complaints are not published, and every row's status begins with CLOSED. No result means no closed complaint on file, not that the property has no open violation. The street is split across columns: with a house number, '4201 N Hayden Rd' is matched as 4201 on StreetNumber and 'Hayden' on StreetName (one leading direction and one common street type are dropped). Without a house number the text is matched as typed against StreetName, which holds the bare name, so 'Hayden' finds complaints and 'Hayden Rd' finds none.",
+      "recordLabel": "Complaint",
+      "openedLabel": "Received",
+      "closedLabel": "Closed",
+      "fields": {
+        "address": "StreetName",
+        "addressParts": ["StreetNumber", "StreetDirection", "StreetName", "StreetType"],
+        "streetNumber": "StreetNumber",
+        "recordNumber": "ComplaintID",
+        "type": "ViolationCategory",
+        "status": "ComplaintStatus",
+        "openedDate": "DateComplaintReceived",
+        "closedDate": "DateComplaintClosed",
+        "zip": "ZipCode"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/12",
+      "orderField": "IssueDate",
+      "latestRecordDate": "2026-10-09",
+      "coverage": "Scottsdale building permits, about 288,000 issued 1998 to present.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "Address",
+        "recordNumber": "PermitNumber",
+        "type": "PermitType",
+        "status": "PermitStatus",
+        "value": "Valuation",
+        "openedDate": "IssueDate"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Scottsdale GIS",
+    "url": "https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer",
+    "license": "Public record (City of Scottsdale)",
+    "portalLabel": "Scottsdale Open Data (ArcGIS Server)",
+    "currentRecordsNote": "Code complaints and building permits are tables on the City of Scottsdale's own map server. The code-complaint table starts in September 2021 and lists closed complaints only."
+  }
+}

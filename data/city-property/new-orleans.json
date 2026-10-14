@@ -1,0 +1,62 @@
+{
+  "slug": "new-orleans",
+  "city": "New Orleans",
+  "state": "Louisiana",
+  "stateAbbrev": "LA",
+  "countyName": "Orleans Parish",
+  "countySlug": "orleans-parish",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers the City of New Orleans, which shares its boundary with Orleans Parish. Neighboring parishes such as Jefferson and St. Bernard keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "socrata",
+      "url": "https://data.nola.gov/resource/u6yx-v2tw.json",
+      "orderField": "casefiled",
+      "latestRecordDate": "2026-10-13",
+      "coverage": "New Orleans code-enforcement cases, about 183,000 filed July 2008 to present, refreshed daily.",
+      "recordLabel": "Case",
+      "openedLabel": "Filed",
+      "fields": {
+        "address": "location",
+        "recordNumber": "caseno",
+        "type": "stage",
+        "description": "keystatus",
+        "status": "o_c",
+        "openedDate": "casefiled",
+        "zip": "zipcode"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.nola.gov/resource/rcm3-fn58.json",
+      "orderField": "filingdate",
+      "where": "filingdate IS NOT NULL",
+      "latestRecordDate": "2026-10-09",
+      "coverage": "New Orleans permits of every type, about 348,000 filed 2002 to present, refreshed daily.",
+      "recordLabel": "Permit",
+      "openedLabel": "Filed",
+      "closedLabel": "Issued",
+      "fields": {
+        "address": "address",
+        "recordNumber": "numstring",
+        "type": "type",
+        "description": "description",
+        "status": "currentstatus",
+        "value": "constrval",
+        "openedDate": "filingdate",
+        "closedDate": "issuedate"
+      }
+    }
+  },
+  "source": {
+    "name": "City of New Orleans Open Data",
+    "url": "https://data.nola.gov/",
+    "license": "CC0 1.0 public domain dedication (City of New Orleans)",
+    "portalLabel": "NOLA Open Data (Socrata)",
+    "currentRecordsNote": "Code-enforcement cases and permits are both published on NOLA Open Data. The violations address is the case's location column, which keeps address ranges (\"3642-3644 Laurel St\") and is filled on more rows than the geocoded address."
+  }
+}

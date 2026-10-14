@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-12",
+  "lastUpdated": "2026-10-14",
   "cities": [
     {
       "slug": "dallas",
@@ -259,6 +259,145 @@
       "populated": true,
       "provider": "City of Phoenix GIS (ArcGIS)",
       "datasets": [
+        "permits"
+      ]
+    },
+    {
+      "slug": "los-angeles",
+      "city": "Los Angeles",
+      "state": "California",
+      "stateAbbrev": "CA",
+      "countyName": "Los Angeles County",
+      "countySlug": "los-angeles-county",
+      "populated": true,
+      "provider": "Los Angeles Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "fort-worth",
+      "city": "Fort Worth",
+      "state": "Texas",
+      "stateAbbrev": "TX",
+      "countyName": "Tarrant County",
+      "countySlug": "tarrant-county",
+      "populated": true,
+      "provider": "Fort Worth Open Data (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "mesa",
+      "city": "Mesa",
+      "state": "Arizona",
+      "stateAbbrev": "AZ",
+      "countyName": "Maricopa County",
+      "countySlug": "maricopa-county",
+      "populated": true,
+      "provider": "City of Mesa Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "minneapolis",
+      "city": "Minneapolis",
+      "state": "Minnesota",
+      "stateAbbrev": "MN",
+      "countyName": "Hennepin County",
+      "countySlug": "hennepin-county",
+      "populated": true,
+      "provider": "City of Minneapolis Open Data (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "wichita",
+      "city": "Wichita",
+      "state": "Kansas",
+      "stateAbbrev": "KS",
+      "countyName": "Sedgwick County",
+      "populated": true,
+      "provider": "City of Wichita GIS (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "cleveland",
+      "city": "Cleveland",
+      "state": "Ohio",
+      "stateAbbrev": "OH",
+      "countyName": "Cuyahoga County",
+      "countySlug": "cuyahoga-county",
+      "populated": true,
+      "provider": "City of Cleveland Open Data (ArcGIS)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "new-orleans",
+      "city": "New Orleans",
+      "state": "Louisiana",
+      "stateAbbrev": "LA",
+      "countyName": "Orleans Parish",
+      "countySlug": "orleans-parish",
+      "populated": true,
+      "provider": "NOLA Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "orlando",
+      "city": "Orlando",
+      "state": "Florida",
+      "stateAbbrev": "FL",
+      "countyName": "Orange County",
+      "countySlug": "orange-county",
+      "populated": true,
+      "provider": "City of Orlando Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "cincinnati",
+      "city": "Cincinnati",
+      "state": "Ohio",
+      "stateAbbrev": "OH",
+      "countyName": "Hamilton County",
+      "countySlug": "hamilton-county",
+      "populated": true,
+      "provider": "City of Cincinnati Open Data (Socrata)",
+      "datasets": [
+        "violations",
+        "permits"
+      ]
+    },
+    {
+      "slug": "scottsdale",
+      "city": "Scottsdale",
+      "state": "Arizona",
+      "stateAbbrev": "AZ",
+      "countyName": "Maricopa County",
+      "countySlug": "maricopa-county",
+      "populated": true,
+      "provider": "City of Scottsdale GIS (ArcGIS)",
+      "datasets": [
+        "violations",
         "permits"
       ]
     }

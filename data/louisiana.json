@@ -102,6 +102,8 @@
       "stateSlug": "louisiana",
       "county": "Orleans Parish",
       "countySlug": "orleans-parish",
+      "relatedZoningCitySlug": "new-orleans",
+      "relatedPropertyCitySlug": "new-orleans",
       "countyFips": "22071",
       "hasPublicRest": true,
       "endpoints": [

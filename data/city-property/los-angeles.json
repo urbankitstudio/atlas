@@ -1,0 +1,62 @@
+{
+  "slug": "los-angeles",
+  "city": "Los Angeles",
+  "state": "California",
+  "stateAbbrev": "CA",
+  "countyName": "Los Angeles County",
+  "countySlug": "los-angeles-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers properties inside the City of Los Angeles, as recorded by its Department of Building and Safety. The other cities of Los Angeles County (Long Beach, Glendale, Pasadena, Santa Monica and the rest) and unincorporated county areas keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "socrata",
+      "url": "https://data.lacity.org/resource/u82d-eh7z.json",
+      "orderField": "adddttm",
+      "streetNumberType": "text",
+      "latestRecordDate": "2026-10-09",
+      "coverage": "Open LADBS code-enforcement cases only, about 29,000, opened 1995 to present. Closed cases are published in a separate dataset (rken-a55j) that this tool does not search. The street is split across columns: with a house number, '139 W 88th St' is matched as 139 on stno and '88th' on stname (one leading direction and one common street type are dropped). Without a house number the text is matched as typed against stname, which holds the bare name, so '88th' finds cases and '88th St' finds none.",
+      "recordLabel": "Case",
+      "openedLabel": "Opened",
+      "fields": {
+        "address": "stname",
+        "addressParts": ["stno", "predir", "stname", "suffix"],
+        "streetNumber": "stno",
+        "recordNumber": "apno",
+        "type": "aptype",
+        "status": "stat",
+        "openedDate": "adddttm",
+        "zip": "zip"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.lacity.org/resource/pi9x-tg5x.json",
+      "orderField": "issue_date",
+      "latestRecordDate": "2026-10-10",
+      "coverage": "LADBS building permits issued since January 2020, about 418,000 records, refreshed daily.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "primary_address",
+        "recordNumber": "permit_nbr",
+        "type": "permit_type",
+        "description": "work_desc",
+        "status": "status_desc",
+        "value": "valuation",
+        "openedDate": "issue_date",
+        "zip": "zip_code"
+      }
+    }
+  },
+  "source": {
+    "name": "Los Angeles Department of Building and Safety",
+    "url": "https://data.lacity.org/",
+    "license": "Public record (City of Los Angeles)",
+    "portalLabel": "Los Angeles Open Data (Socrata)",
+    "currentRecordsNote": "Both datasets are published by LADBS on the city's open-data portal. The violations dataset lists open cases only; closed cases are in a separate dataset."
+  }
+}

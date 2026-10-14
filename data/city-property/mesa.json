@@ -1,0 +1,64 @@
+{
+  "slug": "mesa",
+  "city": "Mesa",
+  "state": "Arizona",
+  "stateAbbrev": "AZ",
+  "countyName": "Maricopa County",
+  "countySlug": "maricopa-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers code cases and permits handled by the City of Mesa. Neighboring Maricopa County cities such as Phoenix, Scottsdale, Tempe and Gilbert, and unincorporated county areas, keep their own records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "socrata",
+      "url": "https://citydata.mesaaz.gov/resource/hgf6-yenu.json",
+      "orderField": "opened_date",
+      "latestRecordDate": "2026-10-06",
+      "coverage": "Mesa Code Compliance cases, about 82,000 opened June 2017 to present, including building and sign issues.",
+      "recordLabel": "Case",
+      "openedLabel": "Opened",
+      "closedLabel": "Closed",
+      "fields": {
+        "address": "case_address",
+        "recordNumber": "record_id",
+        "type": "permit_type",
+        "description": "description",
+        "status": "status",
+        "openedDate": "opened_date",
+        "closedDate": "closed_date",
+        "zip": "case_zip"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://citydata.mesaaz.gov/resource/dzpk-hxfb.json",
+      "orderField": "issued_date",
+      "where": "issued_date IS NOT NULL",
+      "latestRecordDate": "2026-10-12",
+      "coverage": "Mesa building permits that have been issued, about 148,000 from 1987 to present. Applications not yet issued carry no issue date and are left out.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "closedLabel": "Finaled",
+      "fields": {
+        "address": "property_address",
+        "recordNumber": "permit_number",
+        "type": "type_of_work",
+        "description": "description_of_work",
+        "status": "status",
+        "value": "total_valuation",
+        "openedDate": "issued_date",
+        "closedDate": "finaled_date"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Mesa Open Data",
+    "url": "https://data.mesaaz.gov/",
+    "license": "Public record (City of Mesa; see the portal's terms of use)",
+    "portalLabel": "Mesa Open Data (Socrata)",
+    "currentRecordsNote": "Code Compliance cases and building permits are both published by the City of Mesa on its open-data portal."
+  }
+}

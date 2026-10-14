@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-12",
+  "lastUpdated": "2026-10-14",
   "cities": [
     {
       "slug": "austin",
@@ -169,6 +169,26 @@
       "countySlug": "ada-county",
       "populated": true,
       "provider": "Boise Development Tracker (ArcGIS)"
+    },
+    {
+      "slug": "orlando",
+      "city": "Orlando",
+      "state": "Florida",
+      "stateAbbrev": "FL",
+      "countyName": "Orange County",
+      "countySlug": "orange-county",
+      "populated": true,
+      "provider": "Orlando Planning Applications (Socrata)"
+    },
+    {
+      "slug": "scottsdale",
+      "city": "Scottsdale",
+      "state": "Arizona",
+      "stateAbbrev": "AZ",
+      "countyName": "Maricopa County",
+      "countySlug": "maricopa-county",
+      "populated": true,
+      "provider": "Scottsdale planning cases (ArcGIS)"
     }
   ]
 }

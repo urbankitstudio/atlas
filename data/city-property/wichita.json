@@ -1,0 +1,60 @@
+{
+  "slug": "wichita",
+  "city": "Wichita",
+  "state": "Kansas",
+  "stateAbbrev": "KS",
+  "countyName": "Sedgwick County",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers Wichita records from the Metropolitan Area Building and Construction Department (MABCD), which serves both Wichita and Sedgwick County. Permits are limited to the City of Wichita jurisdiction; about 1 percent of code cases sit in unincorporated Sedgwick County or a neighboring city.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://gismaps.wichita.gov/ageweb/rest/services/MISC/MABCD/FeatureServer/0",
+      "orderField": "ProcessedDate",
+      "latestRecordDate": "2026-10-12",
+      "coverage": "MABCD code-enforcement cases, about 79,000 processed January 2018 to present.",
+      "recordLabel": "Case",
+      "openedLabel": "Processed",
+      "fields": {
+        "address": "Address",
+        "recordNumber": "CaseNumber",
+        "type": "CaseType",
+        "description": "CASEDESC",
+        "status": "CaseStatus",
+        "openedDate": "ProcessedDate",
+        "zip": "ZipCode"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://gismaps.wichita.gov/ageweb/rest/services/MISC/MABCD/FeatureServer/1",
+      "orderField": "ApplicationDate",
+      "where": "Jurisdiction='Wichita'",
+      "latestRecordDate": "2026-10-12",
+      "coverage": "MABCD permits in the City of Wichita jurisdiction, about 233,000 applied for January 2018 to present. The scope is Jurisdiction 'Wichita', which also leaves out the 11,015 permits with no jurisdiction recorded, 6,555 of which name Wichita as their city (counted 2026-10-14).",
+      "recordLabel": "Permit",
+      "openedLabel": "Applied",
+      "fields": {
+        "address": "InwardAddress",
+        "recordNumber": "PermitNumber",
+        "type": "WorkType",
+        "description": "PermitDesc",
+        "status": "PermitStatus",
+        "value": "DeclaredValuation",
+        "openedDate": "ApplicationDate",
+        "zip": "PostalCode"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Wichita GIS",
+    "url": "https://gismaps.wichita.gov/",
+    "license": "Public record (City of Wichita)",
+    "portalLabel": "Wichita GIS (ArcGIS Server)",
+    "currentRecordsNote": "Both layers come from the MABCD service on the City of Wichita's own map server. The permits layer also covers Sedgwick County jurisdictions, so it is filtered to Jurisdiction 'Wichita'."
+  }
+}

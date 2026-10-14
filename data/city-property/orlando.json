@@ -1,0 +1,63 @@
+{
+  "slug": "orlando",
+  "city": "Orlando",
+  "state": "Florida",
+  "stateAbbrev": "FL",
+  "countyName": "Orange County",
+  "countySlug": "orange-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers properties inside the City of Orlando. Unincorporated Orange County and the county's other cities (Winter Park, Apopka, Ocoee and the rest) keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "socrata",
+      "url": "https://data.cityoforlando.net/resource/k6e8-nw6w.json",
+      "orderField": "casedt",
+      "where": "case_type in ('Housing','Lot','Zoning','Abatement','Commercial')",
+      "latestRecordDate": "2026-09-23",
+      "coverage": "Orlando code-enforcement cases of the housing, lot, zoning, abatement and commercial types, about 147,000 opened 1994 to present. Business-tax, ticket, sign and other case types in the same table are left out. Lags the calendar: on 2026-10-14 the newest case in the table was opened 2026-09-23. Search by street name alone: 140,344 of the 146,669 case addresses carry two spaces after the house number ('4274  TATUM ST'), so a typed '4274 Tatum St' finds nothing while 'Tatum' finds the case.",
+      "recordLabel": "Case",
+      "openedLabel": "Opened",
+      "closedLabel": "Resolved",
+      "fields": {
+        "address": "derived_address",
+        "recordNumber": "apno",
+        "type": "case_type",
+        "status": "caseinfostatus",
+        "openedDate": "casedt",
+        "closedDate": "resdt"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "socrata",
+      "url": "https://data.cityoforlando.net/resource/ryhf-m453.json",
+      "orderField": "processed_date",
+      "where": "processed_date IS NOT NULL",
+      "latestRecordDate": "2026-09-23",
+      "coverage": "Orlando permit applications of every type (building, electrical, plumbing, mechanical, engineering, fire and more), about 1.1 million on record. Lags the calendar: on 2026-10-14 the newest application in the table was processed 2026-09-23. About 5% of permit addresses (56,393 of 1,105,323) carry two spaces after the house number and are found only by street name, so if a full address finds nothing, search the street name alone.",
+      "recordLabel": "Permit",
+      "openedLabel": "Processed",
+      "closedLabel": "Finaled",
+      "fields": {
+        "address": "permit_address",
+        "recordNumber": "permit_number",
+        "type": "application_type",
+        "description": "worktype",
+        "status": "application_status",
+        "value": "estimated_cost",
+        "openedDate": "processed_date",
+        "closedDate": "final_date"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Orlando Open Data",
+    "url": "https://data.cityoforlando.net/",
+    "license": "Public record (City of Orlando)",
+    "portalLabel": "Orlando Open Data (Socrata)",
+    "currentRecordsNote": "Code-enforcement cases and permit applications are both published on the City of Orlando's open-data portal. On 2026-10-14 the newest record in both tables was dated 2026-09-23, although the portal reported a same-day refresh. Most code-case addresses carry two spaces after the house number (\"4274  TATUM ST\"), so search code cases by street name alone (\"Tatum\")."
+  }
+}

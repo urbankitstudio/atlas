@@ -203,6 +203,8 @@
       "stateSlug": "florida",
       "county": "Orange",
       "countySlug": "orange-county",
+      "relatedZoningCitySlug": "orlando",
+      "relatedPropertyCitySlug": "orlando",
       "countyFips": "12095",
       "hasPublicRest": true,
       "endpoints": [

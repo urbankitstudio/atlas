@@ -95,6 +95,7 @@
       "stateSlug": "minnesota",
       "county": "Hennepin",
       "countySlug": "hennepin-county",
+      "relatedPropertyCitySlug": "minneapolis",
       "countyFips": "27053",
       "hasPublicRest": true,
       "endpoints": [

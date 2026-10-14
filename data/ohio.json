@@ -138,6 +138,7 @@
       "stateSlug": "ohio",
       "county": "Cuyahoga",
       "countySlug": "cuyahoga-county",
+      "relatedPropertyCitySlug": "cleveland",
       "countyFips": "39035",
       "hasPublicRest": true,
       "endpoints": [
@@ -188,6 +189,7 @@
       "stateSlug": "ohio",
       "county": "Hamilton",
       "countySlug": "hamilton-county",
+      "relatedPropertyCitySlug": "cincinnati",
       "countyFips": "39061",
       "hasPublicRest": true,
       "endpoints": [

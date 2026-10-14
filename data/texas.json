@@ -97,6 +97,8 @@
       "stateSlug": "texas",
       "county": "Tarrant",
       "countySlug": "tarrant-county",
+      "relatedZoningCitySlug": "fort-worth",
+      "relatedPropertyCitySlug": "fort-worth",
       "countyFips": "48439",
       "hasPublicRest": true,
       "endpoints": [

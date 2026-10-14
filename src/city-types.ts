@@ -218,6 +218,7 @@ export interface CitySource {
   datasetUrl?: string;
   license?: string;
   portalLabel?: string;
+  currentRecordsNote?: string;
 }
 
 export interface CityZoningRecord {

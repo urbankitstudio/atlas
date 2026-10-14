@@ -1,0 +1,62 @@
+{
+  "slug": "minneapolis",
+  "city": "Minneapolis",
+  "state": "Minnesota",
+  "stateAbbrev": "MN",
+  "countyName": "Hennepin County",
+  "countySlug": "hennepin-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers properties inside the City of Minneapolis. Other Hennepin County cities (Bloomington, Edina, Saint Louis Park and the rest) keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CaseViolations/FeatureServer/0",
+      "orderField": "Processed_Date",
+      "latestRecordDate": "2026-10-12",
+      "coverage": "Minneapolis code-enforcement violations, about 383,000 rows from 2016 to present, one row per violation, so a case with several violations appears more than once.",
+      "recordLabel": "Case",
+      "openedLabel": "Processed",
+      "closedLabel": "Resolved",
+      "fields": {
+        "address": "Display",
+        "recordNumber": "Violation_Case_Number",
+        "type": "Case_Group_Desc",
+        "description": "Violation_Code_Description",
+        "status": "Status_Violation_Case",
+        "openedDate": "Processed_Date",
+        "closedDate": "Resolved_Date"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CCS_Permits/FeatureServer/0",
+      "orderField": "issueDate",
+      "latestRecordDate": "2026-10-12",
+      "coverage": "Minneapolis building, mechanical, plumbing and wrecking permits, about 409,000 issued December 2016 to present.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "closedLabel": "Completed",
+      "fields": {
+        "address": "Display",
+        "recordNumber": "permitNumber",
+        "type": "permitType",
+        "description": "workType",
+        "status": "status",
+        "value": "permit_Value",
+        "openedDate": "issueDate",
+        "closedDate": "completeDate"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Minneapolis Open Data",
+    "url": "https://opendata.minneapolismn.gov/",
+    "license": "Public record (City of Minneapolis)",
+    "portalLabel": "Minneapolis Open Data (ArcGIS)",
+    "currentRecordsNote": "Violations and permits are published by the City of Minneapolis as ArcGIS layers."
+  }
+}

@@ -11,6 +11,8 @@
       "stateSlug": "california",
       "county": "Los Angeles",
       "countySlug": "los-angeles-county",
+      "relatedZoningCitySlug": "los-angeles",
+      "relatedPropertyCitySlug": "los-angeles",
       "countyFips": "06037",
       "hasPublicRest": true,
       "endpoints": [

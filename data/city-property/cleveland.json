@@ -1,0 +1,59 @@
+{
+  "slug": "cleveland",
+  "city": "Cleveland",
+  "state": "Ohio",
+  "stateAbbrev": "OH",
+  "countyName": "Cuyahoga County",
+  "countySlug": "cuyahoga-county",
+  "lastVerified": "2026-10-14",
+  "scopeNote": "Covers properties inside the City of Cleveland, as recorded by its Department of Building and Housing. Other Cuyahoga County cities (Lakewood, Parma, Cleveland Heights and the rest) keep their own permit and code-enforcement records.",
+  "datasets": {
+    "violations": {
+      "kind": "violations",
+      "tabLabel": "Code Violations",
+      "type": "arcgis",
+      "url": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Complaint_Violation_Notices/FeatureServer/0",
+      "orderField": "FILE_DATE",
+      "latestRecordDate": "2026-10-09",
+      "coverage": "Cleveland Building and Housing violation notices, about 61,000 filed December 2005 to present.",
+      "recordLabel": "Violation notice",
+      "openedLabel": "Filed",
+      "fields": {
+        "address": "ADDRESS",
+        "recordNumber": "V_PERMIT_ID",
+        "type": "TYPE_OF_VIOLATION",
+        "status": "RECORD_STATUS",
+        "openedDate": "FILE_DATE",
+        "link": "ACCELA_CITIZEN_ACCESS_URL"
+      }
+    },
+    "permits": {
+      "kind": "permits",
+      "tabLabel": "Building Permits",
+      "type": "arcgis",
+      "url": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Building_Permits/FeatureServer/0",
+      "orderField": "ISSUE_DATE",
+      "latestRecordDate": "2026-10-10",
+      "coverage": "Cleveland building permits, about 202,000 issued January 2015 to present. The status shown is the permit's current workflow task.",
+      "recordLabel": "Permit",
+      "openedLabel": "Issued",
+      "fields": {
+        "address": "PRIMARY_ADDRESS",
+        "recordNumber": "PERMIT_ID",
+        "type": "PERMIT_TYPE",
+        "description": "WORK_DESCRIPTION",
+        "status": "CURRENT_TASK_STATUS",
+        "value": "JOB_VALUE",
+        "openedDate": "ISSUE_DATE",
+        "link": "ACCELA_CITIZEN_ACCESS_URL"
+      }
+    }
+  },
+  "source": {
+    "name": "City of Cleveland Open Data",
+    "url": "https://data.clevelandohio.gov/",
+    "license": "Public record (City of Cleveland)",
+    "portalLabel": "Cleveland Open Data (ArcGIS)",
+    "currentRecordsNote": "Violation notices and building permits are published by the City of Cleveland on ArcGIS; each record links to its page on the city's Accela Citizen Access portal."
+  }
+}

@@ -11,6 +11,7 @@
       "stateSlug": "arizona",
       "county": "Maricopa",
       "countySlug": "maricopa-county",
+      "relatedZoningCitySlug": "scottsdale",
       "relatedPropertyCitySlug": "phoenix",
       "countyFips": "04013",
       "hasPublicRest": true,
