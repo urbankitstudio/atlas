@@ -181,10 +181,67 @@ function bareName(tokens: string[]): string {
   return tokens.join(" ").trim();
 }
 
-/** Whether a property dataset searches by split address for this street. */
+/** The column roles of a streetNumber dataset that lists no addressParts: number, direction, name, type. */
+const NUMBERED_PARTS = ["number", "direction", "name", "type"] as const;
+
+const DIRECTION_LETTERS = new Set(["N", "S", "E", "W"]);
+const PLAIN_STREET_TYPES = new Set(["ST", "STREET", "AVE", "AVENUE"]);
+
+/**
+ * The lone letter or digit of a lettered street typed with a house number:
+ * '1700 E Q St' is the street Q, '100 N A St' is A, '100 E St' is E. The type
+ * word is what says the single character is a street and not a stray token
+ * ('100 E', '100 Q' have no type and are no split). One optional leading
+ * directional may sit before the character; anything else is not this shape.
+ * With no explicit directional, a character that is itself a direction letter
+ * (N S E W) counts only before St, Street, Ave or Avenue: '100 N Court' and
+ * '100 E Blvd' are a direction plus a street, which splitFor reads. Null otherwise, including when no
+ * house number leads the typed line.
+ */
+function letteredStreet(street: string): string | null {
+  if (!splitStreet(street)) return null;
+  const rest = street.trim().split(/\s+/).slice(1);
+  if (rest.length < 2 || rest.length > 3) return null;
+  if (!STREET_SUFFIXES.has(rest[rest.length - 1].replace(/\.$/, "").toUpperCase())) return null;
+  if (rest.length === 3 && !DIRECTIONALS.has(rest[0].toUpperCase())) return null;
+  const one = rest[rest.length - 2];
+  if (!/^[\p{L}\p{N}]$/u.test(one)) return null;
+  // Two tokens and the character is itself a direction letter: 'N Court' and 'E Blvd' read as a
+  // direction plus a street (splitFor takes the type word), so only the plainest types make it a lettered street.
+  if (rest.length === 2 && DIRECTION_LETTERS.has(one.toUpperCase()) && !PLAIN_STREET_TYPES.has(rest[1].replace(/\.$/, "").toUpperCase())) return null;
+  return one;
+}
+
+/**
+ * Whether a property dataset searches by split address for this street. The
+ * number comes from splitStreet; the NAME is what the agent path derives for the
+ * same typed line (splitAddressStreetName with the number column unmapped), so
+ * '2600 South Blvd' is the street South, '100 NE St' is 'NE St', and a number plus
+ * one unsafe token ('100 %', '100 E', '100 St') is no split at all: the typed
+ * line goes as a plain match, as the agent sends it, never a '%%%' or '%E%'
+ * beside the number. A lettered street ('1700 E Q St', see letteredStreet) is the
+ * one exception to the agent's name: the page has the number bound, so the lone
+ * letter is a safe name beside it, where the agent (which may have no number
+ * column) refuses it. The other: a direction plus one type word that is not St or
+ * Ave ('100 N Court', '100 E Blvd') searches the type word, since the direction
+ * has its own column.
+ */
 function splitFor(ds: PropertyDataset, street: string): SplitStreet | null {
   if (!ds.fields.streetNumber) return null;
-  return splitStreet(street);
+  const s = splitStreet(street);
+  if (!s) return null;
+  const letter = letteredStreet(street);
+  if (letter) return { number: s.number, name: letter };
+  const name = splitAddressStreetName(ds.fields.addressParts ?? NUMBERED_PARTS, ds.fields.addressParts ? ds.fields.address : "name", undefined, street);
+  if (name === street) return null;
+  // The agent leaves 'N Court' / 'E Blvd' whole; these tables keep the direction in its own column and the
+  // bare name ('COURT') in the name column, so the street is the type word. 'NE St' stays (a plain type).
+  const words = name.split(" ");
+  if (words.length === 2 && DIRECTIONALS.has(words[0].toUpperCase())) {
+    const type = words[1].replace(/\.$/, "");
+    if (STREET_SUFFIXES.has(type.toUpperCase()) && !PLAIN_STREET_TYPES.has(type.toUpperCase())) return { number: s.number, name: type };
+  }
+  return { number: s.number, name };
 }
 
 /**
@@ -204,6 +261,9 @@ function splitFor(ds: PropertyDataset, street: string): SplitStreet | null {
  */
 function plainNeedle(ds: PropertyDataset, street: string): string {
   if (!ds.fields.streetNumber) return street;
+  // A typed house number whose split splitFor refused ('100 %', '100 E', '100 St'):
+  // the typed line, as the agent sends it, not a trim that leaves '100' or '%'.
+  if (splitStreet(street)) return street;
   const tokens = street.trim().split(/\s+/).filter(Boolean);
   const name = bareName(tokens);
   if (!name || name.split(" ").length >= tokens.length) return street;
@@ -336,7 +396,7 @@ function numberLiteral(ds: PropertyDataset, n: string): string {
  * preserving extraction of PropertyReportTabs.fetchDataset: the four provider
  * branches below are its four branches, and PropertyReportTabs.test.tsx pins
  * the URLs. The split-address clause only engages when the dataset maps a
- * streetNumber column AND the street parses to number + name.
+ * streetNumber column AND the street parses to number + a name worth matching.
  */
 export function propertyQueryUrl(ds: PropertyDataset, street: string): string {
   const address = street;

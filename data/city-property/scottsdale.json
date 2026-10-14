@@ -16,7 +16,7 @@
       "orderField": "DateComplaintReceived",
       "streetNumberType": "number",
       "latestRecordDate": "2026-10-09",
-      "coverage": "Scottsdale code complaints received since 2021-09, about 18,900 rows. Closed complaints only: open complaints are not published, and every row's status begins with CLOSED. No result means no closed complaint on file, not that the property has no open violation. The street is split across columns: with a house number, '4201 N Hayden Rd' is matched as 4201 on StreetNumber and 'Hayden' on StreetName (one leading direction and one common street type are dropped). Without a house number the name alone gets the same trimming, so 'Hayden Rd' is matched as 'Hayden' on StreetName.",
+      "coverage": "Scottsdale code complaints received since 2021-09, about 18,900 rows. Closed complaints only: open complaints are not published, and every row's status begins with CLOSED. No result means no closed complaint on file, not that the property has no open violation. The street is split across columns: with a house number, '4201 N Hayden Rd' is matched as 4201 on StreetNumber and 'Hayden' on StreetName (one leading direction and one common street type are dropped; a street named South or North keeps its name, so '2600 South Blvd' is matched as 'South'; a lettered street keeps its letter, so '1700 E Q St' is matched as 1700 on StreetNumber and 'Q' on StreetName; a house number plus one stray word with no street type, such as '100 E' or '100 %', is searched as typed against StreetName and finds no rows). Without a house number the name alone gets the same trimming, so 'Hayden Rd' is matched as 'Hayden' on StreetName.",
       "recordLabel": "Complaint",
       "openedLabel": "Received",
       "closedLabel": "Closed",

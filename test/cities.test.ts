@@ -299,6 +299,71 @@ describe("dataset descriptors and queries", () => {
     expect(violations.queryNote).toContain("matches the street name on str_nam and returns every row on that street");
   });
 
+  it("a split-street table with a house number typed gets the agent's street rules, and the page and agent send the same needle", () => {
+    const sets = [
+      [getCityProperty("los-angeles")!.datasets.violations!, /like upper\('%(.*?)%'\)/, "stno = '100'"],
+      [getCityProperty("fort-worth")!.datasets.permits!, /LIKE UPPER\('%(.*?)%'\)/, "Addr_No = 100"],
+      [getCityProperty("scottsdale")!.datasets.violations!, /LIKE UPPER\('%(.*?)%'\)/, "StreetNumber = 100"],
+    ] as const;
+    const agentParts = ["str_num", "str_prefix", "str_nam", "str_suffix"];
+    const needle = (ds: PropertyDataset, re: RegExp, typed: string) => re.exec(decodeURIComponent(propertyQueryUrl(ds, typed)))![1];
+    for (const [ds, re, numberClause] of sets) {
+      for (const [typed, expected] of [
+        ["100 South Blvd", "South"],
+        ["100 North Ave", "North"],
+        ["100 South St", "South"],
+        ["100 NE St", "NE St"],
+        ["100 N Court St", "Court"],
+        ["100 North Court St", "Court"],
+      ] as const) {
+        expect(needle(ds, re, typed), `${ds.fields.address} ${typed}`).toBe(expected);
+        expect(decodeURIComponent(propertyQueryUrl(ds, typed)), typed).toContain(numberClause);
+      }
+      // A number plus one unsafe token: the typed line goes as a plain match, with no number clause.
+      for (const typed of ["100 %", "100 _", "100 E", "100 N", "100 St", "100 Ave"]) {
+        expect(needle(ds, re, typed), `${ds.fields.address} ${typed}`).toBe(typed);
+        expect(decodeURIComponent(propertyQueryUrl(ds, typed)), typed).not.toContain(numberClause);
+      }
+      // A lettered street (number, optional direction, ONE letter or digit, a type word): the page keeps the number
+      // clause and searches the lone letter; the agent refuses a lone letter. One of two intended page-vs-agent differences.
+      for (const [typed, expected, clause] of [
+        ["1700 E Q St", "Q", numberClause.replace("100", "1700")],
+        ["100 Q St", "Q", numberClause],
+        ["100 N A St", "A", numberClause],
+        ["100 E St", "E", numberClause],
+        ["100 N St", "N", numberClause],
+        ["100 N E St", "E", numberClause],
+      ] as const) {
+        expect(needle(ds, re, typed), `${ds.fields.address} ${typed}`).toBe(expected);
+        expect(decodeURIComponent(propertyQueryUrl(ds, typed)), typed).toContain(clause);
+        expect(splitAddressStreetName(agentParts, "str_nam", undefined, typed), typed).not.toBe(expected);
+      }
+      const lettered = new Set<string>();
+      // The direction letters N and E count as a lettered street only before St and Ave.
+      for (const l of ["N", "E"]) for (const t of ["St", "Ave"]) lettered.add(`100 ${l} ${t}`);
+      // Before any other type word they are a direction plus a street: the page searches the type word, the agent leaves both.
+      for (const [typed, expected] of [
+        ["100 N Court", "Court"],
+        ["100 E Blvd.", "Blvd"],
+        ["100 North Court", "North"],
+      ] as const) {
+        expect(needle(ds, re, typed), `${ds.fields.address} ${typed}`).toBe(expected);
+        expect(decodeURIComponent(propertyQueryUrl(ds, typed)), typed).toContain(numberClause);
+      }
+      for (const d of ["N", "E"]) for (const t of ["Blvd.", "Court"]) lettered.add(`100 ${d} ${t}`);
+      const exceptions = new Set<string>();
+      const vocab = ["N", "North", "South", "St", "Ave", "Blvd.", "Court", "%", "E"];
+      for (const a of vocab) {
+        for (const b of vocab) {
+          for (const typed of [`100 ${a}`, `100 ${a} ${b}`]) {
+            if (needle(ds, re, typed) !== splitAddressStreetName(agentParts, "str_nam", undefined, typed)) exceptions.add(typed);
+          }
+        }
+      }
+      expect([...exceptions].sort(), ds.fields.address).toEqual([...lettered].sort());
+    }
+  });
+
   it("splitAddressStreetName follows the columns around the name column", () => {
     // [number, direction, name, type] (Dallas violations): all three come off.
     const dallas = ["str_num", "str_prefix", "str_nam", "str_suffix"];

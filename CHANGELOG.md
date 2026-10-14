@@ -1,5 +1,26 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.36 — 2026-10-14
+
+City search only. No breaking change, `totals` unchanged.
+
+### Street typed with a house number (Los Angeles violations, Fort Worth permits, Scottsdale violations)
+
+These tables keep the house number and the street name in separate columns. A typed address now
+follows the same street rules as Dallas-style tables, with the number kept as its own clause:
+
+- A spelled-out direction with its type is the street: `2600 South Blvd` and `100 North Ave` search
+  `South` and `North` (they searched `Blvd` and `Ave`).
+- A lettered street keeps its letter: `1700 E Q St`, `100 Q St` and `100 N A St` search `Q`, `Q` and
+  `A`. A lone direction letter is a lettered street only in the two-token form before `St` or `Ave`
+  (`100 E St` searches `E`); with a direction before it (`100 N E Blvd`) the letter is the street.
+- An abbreviated direction (`N`, `E`, `NE`) plus any other street type is a direction and a street:
+  `100 N Court` and `100 E Blvd` search `Court` and `Blvd`. A spelled-out direction is the street name
+  (`100 North Court` searches `North`).
+- A number plus one stray token with no street type (`100 %`, `100 E`, `100 St`) is searched as typed,
+  never as a bare `%` or `E`. The name columns hold the bare street name, so that search finds no
+  rows rather than unrelated rows at that number.
+
 ## 0.6.35 — 2026-10-14
 
 City search normalization and one new county. No breaking change; one additive
