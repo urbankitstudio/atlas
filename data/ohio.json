@@ -2,7 +2,7 @@
   "stateSlug": "ohio",
   "stateName": "Ohio",
   "stateAbbrev": "OH",
-  "lastUpdated": "2026-09-26",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "oh-montgomery",
@@ -12,38 +12,14 @@
       "county": "Montgomery",
       "countySlug": "montgomery-county",
       "countyFips": "39113",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/ArcGIS/rest/services/Montgomery_County_Parcels/FeatureServer/0",
-          "serviceType": "FeatureServer",
-          "layerIndex": 0,
-          "layerName": "Montgomery_Parcels",
-          "supportsQuery": true,
-          "corsEnabled": null,
-          "searchFields": [
-            { "name": "PRINT_KEY", "label": "Parcel Print Key", "searchable": true },
-            { "name": "OWNER1", "label": "Owner Name (Primary)", "searchable": true },
-            { "name": "OWNER2", "label": "Owner Name 2", "searchable": true },
-            { "name": "OWNER", "label": "Owner (combined)", "searchable": true },
-            { "name": "PROP_ADDR", "label": "Property Address", "searchable": true },
-            { "name": "LOC_STREET", "label": "Location Street", "searchable": true },
-            { "name": "LOC_NUMBER", "label": "Location Number", "searchable": true }
-          ],
-          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/ArcGIS/rest/services/Montgomery_County_Parcels/FeatureServer/0/query?where=UPPER(OWNER1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PRINT_KEY,OWNER1,PROP_ADDR&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://opendata-mcgov-gis.hub.arcgis.com/",
-          "status": "live",
-          "lastVerified": "2026-05-15",
-          "verifiedBy": "automated"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Montgomery County Auditor GIS",
-        "url": "https://opendata-mcgov-gis.hub.arcgis.com/",
+        "url": "https://www.mcohio.org/629/GIS",
         "email": null
       },
-      "notes": "Montgomery County OH (Dayton metro, county seat Dayton) provides parcels via ArcGIS Online FeatureServer (services6.arcgis.com). Spatial extent confirmed to cover Ohio coordinates. Key fields: PRINT_KEY (parcel key), OWNER1, OWNER2, OWNER, PROP_ADDR, LOC_NUMBER, LOC_STREET, MUNI, SBL, GISAcres, SWIS, EASTING, NORTHING, CHANGE_DAT, SECNO, ACCOUNT_NU. Query confirmed live: UPPER(OWNER1) LIKE '%SMITH%' returns real Ohio parcels (e.g., 'Smith, Gregory R' at '148 HICKORY RIDGE DR'). Montgomery County OH (FIPS 39113) must not be confused with Montgomery County MD (24031), Montgomery County PA (42091), or Montgomery County AL (01101). Open Data Hub at opendata-mcgov-gis.hub.arcgis.com. Auditor parcel viewer at gis.mcohio.org/VPCore/VP.html?config=aud."
+      "notes": "No public REST parcel layer that the atlas can register was found for Montgomery County, Ohio (county seat Dayton; FIPS 39113) as of 2026-10-17. The county Auditor does publish parcels with owners on gis.mcohio.org: VantagePoints/AUDGIS_B1 MapServer layer 7 ('Parcels') holds 273,351 parcels inside the county (extent about 84.49 to 84.05 W, 39.58 to 39.92 N) joined to the Auditor's CAMA table, with an owner name on 246,832 rows, a situs address on 246,790 and owner mailing state OH on 231,847, and the server echoes a browser Origin back. Every column on that layer carries a qualified join name (SDE.mc_parcel_polygon.TAXPINNO, SDE.WEB_CAMA.OWNER_NAME1, SDE.WEB_CAMA.PARLOC) and the server refuses unqualified names in outFields, while the registry accepts field names made of letters, digits and underscores only, so the layer is not registered until that rule allows a dotted name. The CAMA table alone is layer 15 and has no geometry, and an unjoined copy of the parcel polygons (TestData/mc_parcel_polygon) carries the parcel number and site address but no owner. The Auditor's GIS disclaimer (mcohio.org/630/Disclaimer) disclaims warranty and liability and does not restrict use. Until 2026-10-17 this record pointed at services6.arcgis.com Montgomery_County_Parcels, which is Montgomery County, New York: 25,336 parcels around 42.77 to 43.05 N, 74.08 to 74.76 W, with mailing state NY on 24,247 rows."
     },
     {
       "id": "oh-stark",
@@ -240,24 +216,29 @@
       "hasPublicRest": true,
       "endpoints": [
         {
-          "url": "https://maps.summitcounty.org/arcgis/rest/services/Maps/ParcelQuery/MapServer/0",
-          "serviceType": "MapServer",
+          "url": "https://scgis.summitoh.net/hosted/rest/services/parcels_web_GEODATA_Tax_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
           "layerIndex": 0,
-          "layerName": "ParcelQuery",
+          "layerName": "parcels_web.GEODATA.Tax_Parcels",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
-            { "name": "TXTACCOUNT", "label": "Account Number", "searchable": true },
-            { "name": "OwnershipTable_OWNER", "label": "Owner Name", "searchable": true },
-            { "name": "OwnershipTable_SITUS", "label": "Situs Address", "searchable": true },
-            { "name": "OwnershipTable_ADDRESS1", "label": "Owner Mailing Address", "searchable": false },
-            { "name": "OwnershipTable_CITY", "label": "Owner City", "searchable": false }
+            { "name": "parcelid", "label": "Parcel ID", "searchable": true },
+            { "name": "ownernme1", "label": "Owner Name", "searchable": true },
+            { "name": "ownernme2", "label": "Owner Name 2", "searchable": false },
+            { "name": "siteaddress", "label": "Site Address", "searchable": true },
+            { "name": "pstladdress", "label": "Owner Mailing Address", "searchable": false },
+            { "name": "pstlcity", "label": "Owner Mailing City", "searchable": false },
+            { "name": "pstlstate", "label": "Owner Mailing State", "searchable": false },
+            { "name": "pstlzip5", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "cntmarval", "label": "Current Market Value", "searchable": false }
           ],
-          "sampleQuery": "https://maps.summitcounty.org/arcgis/rest/services/Maps/ParcelQuery/MapServer/0/query?where=UPPER(OwnershipTable_OWNER)%20LIKE%20UPPER('%25SMITH%25')&outFields=TXTACCOUNT,OwnershipTable_OWNER,OwnershipTable_SITUS&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
+          "maxRecordCount": 3000,
+          "sampleQuery": "https://scgis.summitoh.net/hosted/rest/services/parcels_web_GEODATA_Tax_Parcels/FeatureServer/0/query?where=parcelid+%3D+%276859434%27&outFields=parcelid,ownernme1,ownernme2,siteaddress,pstladdress,pstlcity,pstlstate,pstlzip5,cntmarval&returnGeometry=false&f=json",
+          "license": "unknown",
           "licenseUrl": "https://data-summitgis.opendata.arcgis.com/",
           "status": "live",
-          "lastVerified": "2026-05-30",
+          "lastVerified": "2026-10-17",
           "verifiedBy": "manual"
         }
       ],
@@ -266,7 +247,7 @@
         "url": "https://data-summitgis.opendata.arcgis.com/",
         "email": null
       },
-      "notes": "Summit County, Ohio (Akron metro, county seat Akron, pop. ~540K) serves parcels via a ParcelQuery MapServer joining the county's OwnershipTable. In Ohio the county Fiscal Officer / Auditor is the statutory parcel-data custodian. Owner name is OwnershipTable_OWNER; owner mailing is OwnershipTable_ADDRESS1/ADDRESS2/CITY/STATE/ZIP; the site address is OwnershipTable_SITUS (with INCAREOF); identifiers are TXTACCOUNT, OwnershipTable_ACCOUNT, OwnershipTable_SERIAL and the integer Parcels_GISID. Field names carry the OwnershipTable_ join prefix; use them as-is in WHERE clauses. Owner search uses UPPER(OwnershipTable_OWNER) LIKE. Verified live 2026-05-30 (OwnershipTable_OWNER = STOUT PAUL DOUGLAS)."
+      "notes": "The County of Summit (Akron) publishes its tax parcels on its own ArcGIS server (scgis.summitoh.net); the county's 'Summit County Tax Parcels' item (fa9d55ede94a46f0944d371a9d8f96b4, County of Summit GIS) says the parcels are updated every 24 to 48 hours. Layer 0 of parcels_web_GEODATA_Tax_Parcels holds 265,902 parcels inside the county (extent about 81.69 to 81.39 W, 40.91 to 41.35 N). The owner name is ownernme1 (blank on 400 rows, including all 299 rows that have no parcelid), with a second owner in ownernme2 on 3,650 rows; the site address is siteaddress (blank on 315); the owner mailing address is pstladdress, pstlcity, pstlstate and pstlzip5 (pstladdress blank on 818, mailing state OH on 250,025 rows); cntmarval is the current market value (null or zero on 4,375). The use and class description columns (usedscrp, classdscrp) were empty on every row of a 5,000-row read and are not listed. parcelid is a text column, so quote it (parcelid = '6859434'). The server echoes a browser Origin back, pages results and returns up to 3,000 rows per request. License: unknown. No licence or terms text is published on the layer, the service or either item that describes it. Until 2026-10-17 this record pointed at maps.summitcounty.org ParcelQuery, which is Summit County, Utah: 44,038 parcels around 40.55 to 41.25 N, 110.0 to 111.65 W, with owner state UT on 32,019 rows."
     },
     {
       "id": "oh-lucas",
@@ -353,6 +334,55 @@
         "email": null
       },
       "notes": "Mahoning County (county seat Youngstown) publishes its parcels as layer 2 'PROPERTY BOUNDARIES' of the PUBLIC_WEBSITE_CADASTRAL MapServer on its own ArcGIS Server. The layer carries PARCEL_ID, owner names OWNNAME1 to OWNNAME3, the site address (MVP_ADDRESS combined, LOC* components), the owner mailing address (MAIL_ADDRESS combined, MAIL* components), a separate tax-bill mailing block (TAX*), land use, market values and the last sale. SERVER QUIRK: any query that names specific outFields fails with HTTP 400 'Failed to execute query.', and only outFields=* succeeds, so a client must request every field and pick columns out of the response. Measured across seven request variants on 2026-09-25 and confirmed again on 2026-09-26. CORS reflects the request's Origin. Re-verified 2026-09-26: the layer holds 160,722 parcels and an owner-name query returned live rows. The county's GIS page describes its maps as informational only and not suitable for legal, engineering or surveying use; no open-data license is stated."
+    },
+    {
+      "id": "oh-union",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Union",
+      "countySlug": "union-county",
+      "countyFips": "39159",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://www7.co.union.oh.us/unioncountyohio/rest/services/ParcelAllSaleinfoBuildingInfo/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "ParcelNo", "label": "Parcel Number", "searchable": true },
+            { "name": "DeedOwner", "label": "Owner Name", "searchable": true },
+            { "name": "Address", "label": "Site Address", "searchable": true },
+            { "name": "city", "label": "Site City", "searchable": false },
+            { "name": "ZipCode", "label": "Site City, State and ZIP", "searchable": false },
+            { "name": "MailAddress1", "label": "Owner Mailing Address", "searchable": false },
+            { "name": "MailAddress2", "label": "Owner Mailing Address Line 2", "searchable": false },
+            { "name": "Mailaddress3", "label": "Owner Mailing Address Line 3", "searchable": false },
+            { "name": "appraisedTotalValue", "label": "Appraised Value", "searchable": false },
+            { "name": "Acreage", "label": "Acres", "searchable": false },
+            { "name": "classDescription", "label": "Land Use", "searchable": false },
+            { "name": "saleDate", "label": "Sale Date", "searchable": false },
+            { "name": "salePrice", "label": "Sale Price", "searchable": false }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://www7.co.union.oh.us/unioncountyohio/rest/services/ParcelAllSaleinfoBuildingInfo/MapServer/1/query?where=ParcelNo+%3D+%272900080920000%27&outFields=ParcelNo,DeedOwner,Address,city,ZipCode,MailAddress1,MailAddress2,Mailaddress3,appraisedTotalValue,Acreage,classDescription,saleDate,salePrice&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://unioncountyohio.gov/gis-data",
+          "status": "live",
+          "lastVerified": "2026-10-17",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Union County Auditor (GIS / M.A.P.S.)",
+        "url": "https://unioncountyohio.gov/GIS-Mapping",
+        "email": "auditor@unioncountyohio.gov"
+      },
+      "notes": "Union County, Ohio (FIPS 39159). Served by the county's own ArcGIS Server (www7.co.union.oh.us): ParcelAllSaleinfoBuildingInfo MapServer layer 1, \"Parcels\", whose rows carry the auditor's parcel, sale and building columns on the parcel polygons. Informational only and not a legal record: verify with the Union County Auditor. The service is live: read on 2026-10-17, its latest saleDate was 2026-09-21. No field dates the roll itself, so lastVerified is our probe date, not a data date. The layer has 40,059 rows. 850 of them have no owner (DeedOwner is null), and 848 of those also have no site address and no appraised value: they are shapes without an auditor record, and 90 of them have no ParcelNo at all. A ParcelNo can repeat: 1,045 parcel numbers appear on more than one row (2,327 extra rows). 538 of the extra rows are ownerless shapes (342 of them under one number); the other 1,789 are owned rows, at most 25 under one number, and in 26 of the 30 largest such groups the rows differ by building (yearBuilt or LivingArea) or unit. So a parcel-number lookup can return several rows for one parcel. Share of the layer's rows filled, read 2026-10-17: DeedOwner 97.9%, Address 97.2%, city 97.1%, ZipCode 97.7%, MailAddress1 97.4%, classDescription 97.9%, appraisedTotalValue above zero 94.9%, Acreage above zero 58.2%, saleDate 88.6%, salePrice above zero 72.7%. ZipCode holds the site city, state and ZIP as one string (\"CITY OH ZIP\"), not a bare ZIP, so match a ZIP with LIKE. Mailing address: MailAddress1 is the street line (25 of 25 and 25 of 25 values street-like, a house number or a PO Box, in two samples on 2026-10-17). MailAddress2 is \"CITY ST ZIP\" on most rows; on the 114 rows that fill Mailaddress3 it is a second street line, and the city, state and ZIP are in Mailaddress3. The layer pages with resultOffset and resultRecordCount and returns up to 2,000 rows per request; the parcel-number sample answered in 3.5 s. CORS: the server echoes the request Origin, so browser tools call it directly. License: unknown. No license text is published on this service, its layer or its portal item. The county's sister parcel items (ArcGIS Online item 846fd2f9957d4c15a5c56875d0a11d38 and portal item 39e4e8e7d52f4780b924a6b084eef7d2) carry the Union County GIS disclaimer: \"information contained within the Union County GIS web program was prepared to assist in the appraisal of real property for tax purposes. Map features and related data may not reflect most recent changes. Union County assumes no legal responsibility or liability for the information contained within the Union County GIS web program.\" It places no limit on use. The county's GIS data page (the licenseUrl) offers the parcels as a free shapefile download (Property_Parcels.zip) with no fee, license or disclaimer text.",
+      "addedAt": "2026-10-17"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-14",
+  "lastUpdated": "2026-10-17",
   "totals": {
     "states": 51,
-    "counties": 395,
-    "endpoints": 413,
-    "countiesWithEndpoint": 386,
+    "counties": 479,
+    "endpoints": 494,
+    "countiesWithEndpoint": 467,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -214,7 +214,7 @@
       "name": "Missouri",
       "abbrev": "MO",
       "countyCount": 4,
-      "endpointCount": 4,
+      "endpointCount": 3,
       "populated": true
     },
     {
@@ -277,8 +277,8 @@
       "slug": "north-carolina",
       "name": "North Carolina",
       "abbrev": "NC",
-      "countyCount": 15,
-      "endpointCount": 15,
+      "countyCount": 98,
+      "endpointCount": 98,
       "populated": true
     },
     {
@@ -293,7 +293,7 @@
       "slug": "ohio",
       "name": "Ohio",
       "abbrev": "OH",
-      "countyCount": 8,
+      "countyCount": 9,
       "endpointCount": 8,
       "populated": true
     },
@@ -350,7 +350,7 @@
       "name": "Tennessee",
       "abbrev": "TN",
       "countyCount": 5,
-      "endpointCount": 5,
+      "endpointCount": 4,
       "populated": true
     },
     {

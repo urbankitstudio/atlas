@@ -2,7 +2,7 @@
   "stateSlug": "kentucky",
   "stateName": "Kentucky",
   "stateAbbrev": "KY",
-  "lastUpdated": "2026-10-12",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "ky-fayette",
@@ -15,69 +15,25 @@
       "hasPublicRest": true,
       "endpoints": [
         {
-          "url": "https://services.arcgis.com/f4rR7WnIfGBdVYFd/arcgis/rest/services/Tax_Parcels/FeatureServer/0",
+          "url": "https://services1.arcgis.com/Mg7DLdfYcSWIaDnu/arcgis/rest/services/Parcel/FeatureServer/0",
           "serviceType": "FeatureServer",
           "layerIndex": 0,
-          "layerName": "Tax_Parcels",
+          "layerName": "Parcel",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
-            {
-              "name": "PAN",
-              "label": "Parcel Account Number (Parcel ID)",
-              "searchable": true
-            },
-            {
-              "name": "Owner1",
-              "label": "Owner Name 1",
-              "searchable": true
-            },
-            {
-              "name": "Owner2",
-              "label": "Owner Name 2",
-              "searchable": false
-            },
-            {
-              "name": "Owner3",
-              "label": "Owner Name 3",
-              "searchable": false
-            },
-            {
-              "name": "Mailing_Address",
-              "label": "Mailing Address",
-              "searchable": false
-            },
-            {
-              "name": "PARCEL_SUB",
-              "label": "Parcel Sub-Identifier",
-              "searchable": false
-            },
-            {
-              "name": "PARCEL_BLOCK",
-              "label": "Block",
-              "searchable": false
-            },
-            {
-              "name": "PARCEL_LOT",
-              "label": "Lot",
-              "searchable": false
-            },
-            {
-              "name": "PARCEL_TYPE",
-              "label": "Parcel Type",
-              "searchable": false
-            },
-            {
-              "name": "RecordDate",
-              "label": "Record Date",
-              "searchable": false
-            }
+            { "name": "PVANUM", "label": "PVA Parcel Number", "searchable": true },
+            { "name": "ADDRESS", "label": "Site Address", "searchable": true },
+            { "name": "UNIT", "label": "Unit", "searchable": false },
+            { "name": "CLASS", "label": "Property Class Code", "searchable": false },
+            { "name": "PVA_ACRE", "label": "PVA Acres", "searchable": false }
           ],
-          "sampleQuery": "https://services.arcgis.com/f4rR7WnIfGBdVYFd/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=UPPER(Owner1)+LIKE+UPPER('%25SMITH%25')&outFields=PAN,Owner1,Mailing_Address,PARCEL_TYPE&returnGeometry=false&f=json&resultRecordCount=10",
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services1.arcgis.com/Mg7DLdfYcSWIaDnu/arcgis/rest/services/Parcel/FeatureServer/0/query?where=PVANUM+%3D+%2720636950%27&outFields=PVANUM,ADDRESS,UNIT,CLASS,PVA_ACRE&returnGeometry=false&f=json",
           "license": "public",
-          "licenseUrl": "https://data-lfucg.hub.arcgis.com/",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=e4a525d8772741468205e82fc173db22",
           "status": "live",
-          "lastVerified": "2026-05-15",
+          "lastVerified": "2026-10-17",
           "verifiedBy": "manual"
         }
       ],
@@ -86,7 +42,17 @@
         "url": "https://data-lfucg.hub.arcgis.com/",
         "email": null
       },
-      "notes": "Fayette County (Lexington, pop. 322,000; consolidated city-county) Tax Parcels FeatureServer hosted on ArcGIS Online (LFUCG org). Fayette County is a merged urban county government, the Lexington-Fayette Urban County Government (LFUCG). Fields confirmed: PAN (numeric parcel account number), PARCEL_SUB, PARCEL_BLOCK, PARCEL_LOT, LRM_GEOM_DOC, RecordDate, LRM_GEOM_DOC_AREA/UNITS, PARCEL_TYPE, PARCEL_POLY_NAME, Owner1/2/3, Mailing_Address. Note: PARCEL_POLY_NAME may be null; PAN is the numeric parcel identifier. Mailing_Address is a single concatenated field. Verified 2026-05-15: Owner1 SMITH returns Lexington-area addresses (e.g., '3875 GEIST RD STE E469', '4951 E JOHN JOHN CT'). A separate Parcels FeatureServer exists at the same org but has no owner fields, Tax_Parcels is the correct service. Note: distinct from Jefferson County KY (Louisville, FIPS 21111) already in atlas."
+      "notes": "Lexington-Fayette Urban County Government (LFUCG) publishes Fayette County's parcels on its own ArcGIS Online organization: the Parcel FeatureServer (item e4a525d8772741468205e82fc173db22, credited to LFUCG GIS, LFUCG Addressing, LFUCG Planning and the Fayette County Property Valuation Administrator) holds 114,433 parcels inside the county (extent about 84.66 to 84.28 W, 37.84 to 38.21 N). It publishes no owner name and no owner mailing address. PVANUM is the PVA parcel number, 8 characters on 114,280 rows and blank on 14; ADDRESS is the full site address (blank on 17), with its parts in NUM1, NUM2, DIR, NAME and TYPE; UNIT is filled on 6,795 rows; CLASS is a one-letter property class (R on 101,590 rows, C on 6,156, blank on 301); PVA_ACRE is the PVA acreage. The server answers any origin (Access-Control-Allow-Origin: *), pages results and returns up to 2,000 rows per request. The item's licence field is LFUCG's Terms of Use: the data is provided \"as is\" and used at the user's sole risk (section V.B), and section VI.B reads: \"To the fullest extent permitted by law, You shall indemnify and save harmless the LFUCG, from any claim, loss, damage, injury or liability of any kind, nature and description (including, without limitation, incidental and consequential damages, court costs, attorney’s fees and costs of investigation), that arise directly or indirectly, in whole or in part, from Your use of the Data, including without limitation Your use of the Data in a Derivative Work. In addition to Your obligation to indemnify the LFUCG, You specifically acknowledge and agree that You have an immediate and independent obligation to defend the LFUCG from any claim which actually or potentially falls within this indemnification provision, even if the allegations are or may be groundless, false or fraudulent, which obligation arises at the time such claim is tendered to You by LFUCG and continues at all times thereafter.\" LFUCG's open data hub is data-lfucg.hub.arcgis.com. Until 2026-10-17 this record pointed at services.arcgis.com/f4rR7WnIfGBdVYFd Tax_Parcels, which belongs to the Fairbanks North Star Borough, Alaska: 63,924 parcels around 64.24 to 65.44 N, 143.85 to 148.73 W.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "LFUCG's public parcel layer for Fayette County carries the PVA parcel number, site address, unit, property class and acreage only; it has no owner-name column.",
+            "sourceUrl": "https://services1.arcgis.com/Mg7DLdfYcSWIaDnu/arcgis/rest/services/Parcel/FeatureServer/0"
+          }
+        }
+      }
     },
     {
       "id": "ky-boone",

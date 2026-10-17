@@ -245,9 +245,9 @@ read `addedAt` and fall back to the oldest `lastVerified` only when it is absent
 
 ## Coverage today
 
-The atlas bundles **395 counties across all 50 US states and DC** (413 verified endpoints), covering the largest counties in each state, and every county in Mississippi. Call `listStates()` to enumerate the full set.
+The atlas bundles **479 counties across all 50 US states and DC** (494 verified endpoints), covering the largest counties in each state, every county in Mississippi and 98 of North Carolina's 100. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 386 of the 395 carry a verified endpoint. The other 9 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 467 of the 479 carry a verified endpoint. The other 12 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 The city registries cover 30 cities with code-violation or building-permit datasets, 19 with zoning-case datasets. Call `listCities()` for the current set.
 
@@ -260,6 +260,20 @@ The live, browseable atlas lives at [urbankitstudio.com/parcel-atlas](https://ur
 [Socket](https://socket.dev/npm/package/@urbankitstudio/atlas)'s supply-chain scanner flags this package for `urlStrings`: code and data containing many literal URLs. That flag is doing its job correctly, and the answer is not to hide the URLs — **they are the product.** Every one is a public, government-run ArcGIS REST endpoint for county parcel data, plus the two `urbankitstudio.com` URLs this SDK references for live status (`LIVE_STATUS_URL`, above) and parcel-lookup deep links. The package does not call any of them itself; it hands them to you as data (`sideEffects: false`, zero runtime dependencies).
 
 Socket also flags `unpopularPackage` — a download-count signal, not a code issue, that install growth resolves on its own.
+
+## Attribution
+
+The parcel layers the atlas points to belong to their publishers. These publishers require or request credit when their data is reused, and each record listed here ends its `notes` with the same `Credit:` line.
+
+| Records | Publisher's terms | Credit |
+|---|---|---|
+| `co-el-paso`, `co-jefferson`, `co-arapahoe`, `co-adams`, `co-douglas`, `co-larimer`, `co-boulder`, `co-weld`, `co-mesa`, `co-park` (the State of Colorado's `Colorado_Public_Parcels` service) | The service's copyright text names this statement as sufficient | State of Colorado Public parcels were accessed on 2026-10-17 from https://gis.colorado.gov/public/rest/services/Address_and_Parcel |
+| `md-montgomery` | Reuse allowed, attribution requested | Montgomery County Planning Department (M-NCPPC) |
+| `md-prince-georges` | Reuse allowed, attribution requested | Prince George's County Planning Department (M-NCPPC) |
+| `nc-wake` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Wake County (Wake County GIS, Wake County Revenue) |
+| `ca-sonoma` | [CC BY-SA 3.0 US](https://creativecommons.org/licenses/by-sa/3.0/us/legalcode) | County of Sonoma |
+| `ca-sacramento` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) in the county's catalog (the item itself says public domain) | Sacramento County GIS |
+| `dc-district-of-columbia` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | District of Columbia |
 
 ## License
 

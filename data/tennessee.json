@@ -2,7 +2,7 @@
   "stateSlug": "tennessee",
   "stateName": "Tennessee",
   "stateAbbrev": "TN",
-  "lastUpdated": "2026-10-14",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "tn-davidson",
@@ -68,44 +68,14 @@
       "county": "Shelby",
       "countySlug": "shelby-county",
       "countyFips": "47157",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://scgis.shelbycountytn.gov/serverhigh/rest/services/Parcel/CurrentParcels/MapServer/0",
-          "serviceType": "MapServer",
-          "layerIndex": 0,
-          "layerName": "Current Parcels",
-          "supportsQuery": true,
-          "corsEnabled": null,
-          "searchFields": [
-            { "name": "PARCELID", "label": "Parcel ID", "searchable": true },
-            { "name": "PARID", "label": "Parcel Account ID", "searchable": true },
-            { "name": "OWNER", "label": "Owner Name", "searchable": true },
-            { "name": "OWN_ADDR1", "label": "Owner Address 1", "searchable": false },
-            { "name": "OWN_ADDR2", "label": "Owner Address 2", "searchable": false },
-            { "name": "OWN_ADDR3", "label": "Owner Address 3", "searchable": false },
-            { "name": "OWN_CITY", "label": "Owner City", "searchable": false },
-            { "name": "OWN_STATE", "label": "Owner State", "searchable": false },
-            { "name": "OWN_ZIP", "label": "Owner ZIP", "searchable": false },
-            { "name": "PAR_ADDR1", "label": "Parcel Site Address", "searchable": true },
-            { "name": "MUNI", "label": "Municipality", "searchable": false },
-            { "name": "LUC", "label": "Land Use Code", "searchable": false },
-            { "name": "ZONING", "label": "Zoning", "searchable": false }
-          ],
-          "sampleQuery": "https://scgis.shelbycountytn.gov/serverhigh/rest/services/Parcel/CurrentParcels/MapServer/0/query?where=UPPER(OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,OWNER,OWN_ADDR1,PAR_ADDR1,MUNI&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://www.shelbycountytn.gov/467/REGIS-Regional-GIS",
-          "status": "live",
-          "lastVerified": "2026-06-06",
-          "verifiedBy": "manual"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Shelby County ReGIS (Regional Geographic Information Systems)",
         "url": "https://www.shelbycountytn.gov/467/REGIS-Regional-GIS",
         "email": null
       },
-      "notes": "Shelby County (Memphis and suburbs, pop. 934,000) hosts parcel data through ReGIS (Regional Geographic Information Systems), a multi-jurisdictional GIS consortium established by the Shelby County Commission in 2004. The CurrentParcels MapServer at scgis.shelbycountytn.gov exposes 47 confirmed fields. Parcel identifiers: PARCELID (primary display key) and PARID (the CAMA account ID used by the Shelby County Assessor of Property). Owner field is OWNER; OWNER_EXT holds overflow text. Mailing address is split across OWN_ADRNO, ADRPREDIR, ADRSTR, ADRSUF, ADRPOSTDIR for the street component, plus OWN_CITY, OWN_STATE, OWN_ZIP/ZIP4; also available concatenated as OWN_ADDR1/2/3. The MUNI field identifies the municipality -- Memphis, Bartlett, Collierville, Germantown, Lakeland, Millington, or blank for unincorporated Shelby County. That distinction carries real workflow consequences: Memphis's Division of Planning handles incorporated parcels, while the Shelby County Land Use Control Board handles unincorporated ones. Verified 2026-05-15: SMITH returns results from Germantown, Arlington, and unincorporated areas. Last countywide reappraisal was 2025; next scheduled 2029. LEGACY TLS (first documented 2026-06-06, confirmed 2026-06-27): scgis.shelbycountytn.gov requires legacy TLS renegotiation (UNSAFE_LEGACY_RENEGOTIATION). Modern runtimes (Node.js 18+, undici fetch, Python 3.10+ ssl, standard curl) reject the handshake; curl --legacy-server-connect or OpenSSL OP_LEGACY_SERVER_CONNECT succeeds. The endpoint itself is live (353,448 parcels). RESOLVED (2026-07-21): the canonical liveness prober (api/cron/liveness.ts) and the server-side parcel fetch (api/_lib/atlas-resilient-fetch.ts) both use a narrow legacy-TLS path scoped to this hostname alone, so the endpoint probes and fetches correctly; global TLS behavior is unchanged."
+      "notes": "Shelby County (Memphis and suburbs; FIPS 47157) parcels are published by ReGIS (Regional Geographic Information Systems), the multi-jurisdictional GIS consortium the Shelby County Commission established in 2004. The atlas lists no endpoint for Shelby: the endpoint was withheld from the atlas on 2026-10-17 pending ReGIS's written consent. The parcel service's item information (https://scgis.shelbycountytn.gov/serverhigh/rest/services/Parcel/CurrentParcels/MapServer/info/iteminfo) says: \"This data is owned by Shelby County Government and is for the sole use of ReGIS its participants and their authorized agents. This data may NOT be displayed publicly, sold or transferred to any other entity without the written consent of ReGIS.\" The same server also fails a standard TLS handshake: on 2026-10-17 a default client was refused with \"unsafe legacy renegotiation disabled\", because the server still requires unsafe legacy TLS renegotiation. Contact ReGIS (below) about access."
     },
     {
       "id": "tn-hamilton",

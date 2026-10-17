@@ -1,5 +1,124 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.37 — 2026-10-17
+
+This release adds 83 North Carolina counties, all from the NC OneMap parcel
+compilation. Hoke and Swain are left out. The statewide layer carries no owner
+or address values for Hoke and no parcel numbers for Swain. The release also
+adds Union County OH, from the county auditor's service. Martin NC and Union OH
+were the demand triggers. This is a data release with no API change.
+
+`totals` move from 395 counties and 413 endpoints to 479 counties and 494
+endpoints, and 467 counties have a verified endpoint. Four records that pointed
+at another state's layer are corrected, and two of them now have no endpoint.
+Shelby TN's endpoint is withheld (see below). North Carolina now carries 98 of
+its 100 counties, and Ohio carries 9.
+
+### New counties
+
+- **83 North Carolina counties**, all on NC OneMap's statewide parcel layer
+  (`NC1Map_Parcels` MapServer layer 1 on services.nconemap.gov, 5,938,900 rows
+  across the 100 counties), in the same shape as the ten counties already
+  registered on it (Forsyth, Guilford, Cumberland, Montgomery, New Hanover,
+  Iredell, Union, Onslow, Johnston, Brunswick): the same URL, scoped per county
+  with `scopeWhere: "cntyname = '<County>'"`, and no `supportsPagination` or
+  `maxRecordCount` key (the layer pages, 5,000 rows per request). Each
+  `sampleQuery` is a county-scoped `parno` equality (2.0 to 2.8 s on release
+  day). Chowan's rows appear doubled: all eight parcel numbers checked match two
+  rows each, so its sample returns two.
+- Columns are listed from coverage measured on release day, counting a value of
+  only spaces as blank: `siteadd` (searchable), `scity`, `szip`, `parval`,
+  `gisacres` and `parusedesc` where at least 50% filled. Seven counties have no
+  site address in the statewide layer (Avery, Bladen, Cabarrus, Franklin,
+  Orange, Perquimans, Richmond) and carry a reviewed
+  `situs_address: not_published` record; search them by owner or parcel number.
+- Mailing columns (`mailadd`, `mcity`, `mstate`, `mzip`) are listed where
+  `mailadd` is at least 80% filled and a 25-row sample was street-like on at
+  least 90% of rows (four counties at 22 of 25 passed a 50-row resample from a
+  later objectid window): 73 counties. The other ten carry a reviewed
+  `owner_mailing_address: not_published` record that says why.
+- `license: "public"` with the NC OneMap home page as `licenseUrl`, as on the ten
+  counties already registered; the `notes` cite NC OneMap's terms page (a free
+  and unrestricted use policy, no warranty), credit the county tax assessor's
+  office and NC OneMap (NC CGIA), give each county's measured fill rates, and say
+  that no field dates a county's roll: `transfdate` is the state's transform
+  date, and Hyde's (2025-03-25) and Clay's (2025-04-17) are 18 months old or
+  more.
+- **Union County, Ohio**, from the county's own ArcGIS Server
+  (`ParcelAllSaleinfoBuildingInfo` MapServer layer 1, 40,059 rows; sales through
+  2026-09-21). Searchable by `ParcelNo`, `DeedOwner` and `Address`; it also lists
+  the site city, `ZipCode` (which holds "CITY OH ZIP", so it is labelled as the
+  site city, state and ZIP), the three mailing lines (the third is spelled
+  `Mailaddress3` on the layer), appraised value, acres, land use, and sale date
+  and price. The layer pages and declares `maxRecordCount: 2000`. 850 rows have
+  no owner (90 of them no parcel number either), and 1,045 parcel numbers
+  repeat across rows, so a parcel-number lookup can return several rows.
+  `license: "unknown"`: the county publishes no license text; its GIS data page
+  (the `licenseUrl`) offers the parcels as a free shapefile.
+
+### Corrected records (another state's layer)
+
+An extent sweep found four records whose layer belongs to a same-named county in
+another state. Each layer was live and returned real owner rows, so liveness
+checks stayed green.
+
+- **Jackson County, Missouri** (`mo-jackson`) pointed at Jackson County,
+  Michigan (`gis.mijackson.org`). The county's own current layer
+  (`jcgis.jacksongov.org`, `ParcelsAscendRelate` FeatureServer layer 1, 311,163
+  parcels) carries parcel ids only, so the record now has no endpoint
+  (`hasPublicRest: false`), as Dutchess NY does.
+- **Montgomery County, Ohio** (`oh-montgomery`) pointed at Montgomery County, New
+  York. The Auditor's own layer (`gis.mcohio.org`, `AUDGIS_B1` MapServer layer 7)
+  carries owners, but only under qualified join names such as
+  `SDE.WEB_CAMA.OWNER_NAME1`, which the registry's field-name rule does not
+  accept, so the record has no endpoint until it does.
+- **Summit County, Ohio** (`oh-summit`) pointed at Summit County, Utah. It now
+  uses the county's own `parcels_web_GEODATA_Tax_Parcels` FeatureServer layer 0
+  on `scgis.summitoh.net` (265,902 parcels): owner `ownernme1`, site address
+  `siteaddress`, mailing `pstladdress`, `pstlcity`, `pstlstate` and `pstlzip5`,
+  and the current market value. It declares `maxRecordCount: 3000`;
+  `license: "unknown"`, because neither the layer nor its items publish licence
+  text.
+- **Fayette County, Kentucky** (`ky-fayette`) pointed at the Fairbanks North Star
+  Borough, Alaska. It now uses LFUCG's own `Parcel` FeatureServer layer 0
+  (114,433 parcels: `PVANUM`, site `ADDRESS`, unit, property class, acres). That
+  layer publishes no owner name, so `owner_name` carries a reviewed
+  `not_published` record on an `endpoint_schema` basis, as Jefferson, Madison,
+  Oldham and Henderson do.
+  LFUCG's Terms of Use apply to the layer; the notes quote their indemnity
+  clause (section VI.B) in full.
+
+### Withheld: Shelby County, Tennessee
+
+`tn-shelby` now has no endpoint (`hasPublicRest: false`). The ReGIS parcel
+service's item information says "This data may NOT be displayed publicly, sold
+or transferred to any other entity without the written consent of ReGIS", so the
+endpoint is withheld from the atlas pending that consent. The server also
+requires unsafe legacy TLS renegotiation, which standard clients refuse. The
+record keeps its ReGIS contact.
+
+### Credit lines
+
+The registry has no attribution field yet, so each credit is a sentence at the
+end of the record's `notes`, starting `Credit:`. The README's new Attribution
+section lists the same credits.
+
+- The ten Colorado counties on the State's `Colorado_Public_Parcels` service (El
+  Paso, Jefferson, Arapahoe, Adams, Douglas, Larimer, Boulder, Weld, Mesa, Park)
+  carry the attribution statement the service's copyright text names as
+  sufficient: "State of Colorado Public parcels were accessed on 2026-10-17 from
+  https://gis.colorado.gov/public/rest/services/Address_and_Parcel".
+- Montgomery MD and Prince George's MD credit their county's Planning Department
+  (M-NCPPC), which asks for attribution.
+- Wake NC (CC BY 4.0), Sonoma CA (CC BY-SA 3.0 US, "County of Sonoma"),
+  Sacramento CA and the District of Columbia (CC BY 4.0) credit the publisher
+  their licence names.
+- Union OH's notes quote the county's GIS disclaimer (prepared for tax
+  appraisal, no liability, no limit on use).
+- Montgomery MD's notes explain its 4.6-degree extent: 24 of 351,954 points share
+  one placeholder coordinate in West Virginia. The layer is the county's own, so
+  it takes no county scope.
+
 ## 0.6.36 — 2026-10-14
 
 City search only. No breaking change, `totals` unchanged.
