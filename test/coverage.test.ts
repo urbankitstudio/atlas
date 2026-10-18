@@ -125,6 +125,15 @@ describe("the ref: one county, one request body, whatever the surface knows", ()
     expect(differ).toEqual([]);
   });
 
+  it("slugs Prince George's, with any of its apostrophes, to the atlas's own slug", () => {
+    const pg = all.find((c) => c.id === "md-prince-georges");
+    expect(pg?.countySlug).toBe("prince-georges-county");
+    for (const county of ["Prince George's", "Prince George\u2019s", "Prince George\u02bcs"]) {
+      expect(requestHint({ state: "maryland", county })?.body.county_slug, county).toBe(pg?.countySlug);
+      expect(requestHint({ state: "MD", county })?.body.county_slug, county).toBe(pg?.countySlug);
+    }
+  });
+
   it("keeps every bundled county slug as it is", () => {
     const differ = all.filter((c) => requestHint({ state: c.stateSlug, county: c.countySlug })?.body.county_slug !== c.countySlug).map((c) => c.id);
     expect(differ).toEqual([]);

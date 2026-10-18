@@ -17,6 +17,15 @@ import {
 } from "../src/index.js";
 
 describe("@urbankitstudio/atlas smoke", () => {
+  it("countySlugFromName gives the stored countySlug for every bundled county name", () => {
+    const counties = [...atlas.byStateSlug.values()].flatMap((s) => s.counties);
+    const differ = counties
+      .filter((c) => countySlugFromName(c.county) !== c.countySlug)
+      .map((c) => `${c.id}: ${countySlugFromName(c.county)}, stored ${c.countySlug}`);
+    expect(counties.length).toBe(atlas.totals.counties);
+    expect(differ).toEqual([]);
+  });
+
   it("findCounty('illinois', 'kane-county') returns Kane with a PIN search field", () => {
     const kane = findCounty("illinois", "kane-county");
     expect(kane).toBeDefined();
@@ -90,6 +99,12 @@ describe("@urbankitstudio/atlas smoke", () => {
     expect(countySlugFromName("Orleans Parish")).toBe("orleans-parish");
     expect(countySlugFromName("District of Columbia")).toBe("district-of-columbia");
     expect(countySlugFromName("Anchorage Municipality")).toBe("anchorage-municipality");
+    for (const name of ["Prince George's", "Prince George\u2019s", "Prince George\u02bcs"]) {
+      expect(countySlugFromName(name), name).toBe("prince-georges-county");
+    }
+    expect(countySlugFromName("Queen Anne's")).toBe("queen-annes-county");
+    expect(countySlugFromName("St. Mary's")).toBe("st-marys-county");
+    expect(findCounty("maryland", countySlugFromName("Prince George's"))?.countyFips).toBe("24033");
     expect(findCounty("district-of-columbia", "district-of-columbia")?.countyFips).toBe("11001");
     expect(statePath("illinois")).toBe("/parcel-atlas/illinois");
     expect(countyPath("illinois", "kane-county")).toBe(

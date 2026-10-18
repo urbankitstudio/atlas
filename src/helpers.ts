@@ -18,8 +18,13 @@ export function slugify(s: string): string {
 const COUNTY_UNIT_SUFFIX =
   /\b(?:County|Parish|Borough|Municipality|Census Area|City|Statewide|Planning Region|District of Columbia)$/i;
 
+// An apostrophe is dropped, not hyphenated: "Prince George's" is stored as
+// "prince-georges-county". It is written straight ('), as a right single
+// quote (U+2019) or as a modifier letter apostrophe (U+02BC).
+const APOSTROPHES = /['\u2019\u02bc]/g;
+
 export function countySlugFromName(county: string): string {
-  const name = county.trim();
+  const name = county.replace(APOSTROPHES, "").trim();
   return slugify(COUNTY_UNIT_SUFFIX.test(name) ? name : `${name} County`);
 }
 

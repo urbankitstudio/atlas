@@ -59,6 +59,34 @@ export type {
   CountyRequestHint,
 } from "./coverage.js";
 
+// A county in the atlas that is paused (its terms or a law forbid a use): the
+// surface flags, the presets, the reasons and the answer the hosted MCP, the
+// REST API and the `uks` CLI give. Which counties are paused is live data from
+// the hosted API (/api/atlas/status), not bundled here, so a pause or un-pause
+// needs no release.
+export {
+  ACCESS_FLAGS,
+  ACCESS_PRESETS,
+  ACCESS_REASONS,
+  ATLAS_COUNTY_PAGE_BASE,
+  PRESET_FLAGS,
+  accessBlocks,
+  flagsFor,
+  pausedAnswer,
+  pausedFlags,
+  presetOf,
+} from "./access.js";
+export type {
+  AccessFlag,
+  AccessFlags,
+  AccessPreset,
+  AccessReason,
+  AccessRecordLike,
+  AccessPageRef,
+  CountyAccessEntry,
+  CountyPausedAnswer,
+} from "./access.js";
+
 export { findCounty } from "./findCounty.js";
 export { findCountyByFips } from "./findCountyByFips.js";
 export { findState } from "./findState.js";

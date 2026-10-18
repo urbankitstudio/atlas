@@ -1,5 +1,64 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.39 — 2026-10-18
+
+The paused-county answer. No breaking change, no data change, `totals` unchanged.
+
+A county can be in the atlas, with a working endpoint, and still be paused for some uses: its own terms
+forbid commercial use, a state law lets the county require a contract, or the county asked. The hosted
+API now answers for such a county with a `coverage` block whose `status` is `"paused"`, and this release
+exports that shape and the function that builds it:
+
+- `ACCESS_FLAGS`: the seven surfaces a county can be paused on, each on its own: `paid_lookup` (REST lookup by a
+  paying caller, PAYG or a paid plan), `paid_enrich` (MCP `enrich_address`), `paid_bulk` (REST bulk rows),
+  `paid_lists` (REST radius, MCP `radius_owners`), `free_site_lookup` (the site's free lookup tools, and REST
+  lookup by an anonymous or free-tier caller), `free_site_lists` (the site's free whole-layer download) and
+  `free_discovery` (the county record beyond its identity in county metadata and the MCP discovery tools).
+- `ACCESS_PRESETS` and `PRESET_FLAGS`: `"paid-off"` (the four paid surfaces), `"paid-lists-off"` (`paid_bulk` and
+  `paid_lists`; single-parcel lookups still work) and `"all-off"` (all seven; the hosted API and MCP answers
+  serve only the record's identity: no endpoint URLs, notes or other fields). `flagsFor(preset)`, `pausedFlags(flags)` and `presetOf(flags)` (`"custom"` for
+  any other set) convert.
+- `free_discovery` governs the hosted API and MCP answers only. The endpoint URLs in this package's bundled data
+  are governed by the data release: a county whose endpoints must not be published becomes a no-endpoint record
+  there (0.6.37 removed `tn-shelby`'s endpoint).
+- `ACCESS_REASONS`: `licence-terms`, `state-law`, `county-request`, `data-quality`, `upstream-broken`, `other`.
+- `accessBlocks(entry, flag)`: whether that surface is paused for the county (no entry: never).
+- `pausedAnswer(entry, record, page)` and the `CountyPausedAnswer` type: `indexed: true`, `status: "paused"`,
+  `preset`, `paused` (the paused surfaces), `reason`, `why`, `citation_url`, `since`, `county_office`,
+  `free_alternatives` (the free county page, null when the free lookup or discovery is paused) and `request: null`.
+  **`CountyPausedAnswer.why` is `string | null`, as is `citation_url`**, although the operator's
+  `CountyAccessEntry.why` is a `string`: a consumer that shows `why` must handle null (the hosted site shows a
+  generic sentence).
+  When `free_discovery` is paused, a `county_office` department or url, the `why` or the `citation_url` that names
+  one of the record's endpoint hosts or an ArcGIS REST path (a `rest/services` path segment, so not
+  `forest/services`, a `sharing/rest` path, an `arcgis.com/home/item` page, or a Map, Feature, Image, GP,
+  VectorTile or Scene server) is null; pass the record with its `endpoints` (`AccessRecordLike.endpoints`). The
+  value is read with its percent-escapes decoded, in several forms: plain; folded (NFKC, lower case, the
+  characters a reader does not see dropped: format characters such as a soft hyphen or a zero-width space, and
+  the other default-ignorables such as a combining grapheme joiner or a variation selector; fullwidth and
+  ideographic stops as dots); and each again with its control characters deleted, as the URL parser deletes a
+  tab or newline. A url a withheld answer links (the `citation_url`, the office url) is also read as the URL
+  parser makes it, the link a browser follows. Two passes over the forms decide it, and either one nulls. The
+  first parses each dotted name as a host (in the URL parser's ASCII form, without a port or a trailing dot): it
+  names the service when it equals an endpoint host (both without a leading `www.`) or is a name under one
+  (`fiscalhub.gis.` beside `gis.`). The second looks for an endpoint host without its `www.` with no ASCII
+  letter or digit on either side, so any punctuation, symbol, space, `-` or `_` beside it still names it. An
+  endpoint host is matched as an ASCII key, so every endpoint host in the atlas is plain ASCII (no `xn--` label,
+  no `%`); an IDN host would need the matcher extended first. A parent host (the
+  county's own domain beside its `gis.` server) or a sibling of a plain host (an `assessor.` beside `gis.`)
+  stays; it fails closed on a name under a `www.` endpoint's domain (`maps.` beside `www.`) and on a longer name
+  that begins with the host. Otherwise the office contact stays: a hub or open-data portal, or a department
+  named after its GIS organisation, is how a paused county's office is reached. A value over 2,048 characters,
+  before or after folding, is null.
+
+Which counties are paused is live data, not bundled: read `GET https://urbankitstudio.com/api/atlas/status`
+(its `paused` list) or `?fips=` for one county. A pause or un-pause therefore needs no release of this package.
+
+Fixed: `countySlugFromName` drops an apostrophe (straight `'`, `’` U+2019 or `ʼ` U+02BC) before slugging, so
+`"Prince George's"` gives `prince-georges-county`, the slug the atlas stores, not `prince-george-s-county`, which
+`findCounty` does not find. `requestHint` slugs a county name by the same rule. Every bundled county name now gives
+its stored slug (494 of 494; it was 493). Found through mcp-atlas.
+
 ## 0.6.38 — 2026-10-17
 
 This release gives one answer for a county the atlas cannot serve. Every record

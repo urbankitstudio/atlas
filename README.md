@@ -104,6 +104,8 @@ For single-address owner lookups in the browser, the free [Owner Lookup](https:/
 | `buildCityQuery(dataset, street)` | the URL urbankitstudio.com sends for that dataset and street (on a table that splits the address into columns, the street name is derived first; see below); `null` when the lookup needs a point or a parcel id first |
 | `citiesForCounty(stateSlug, countySlug)` | `CitySummary[]` — the covered cities inside one atlas county |
 | `cityPath(slug, kind)` | URL path of the city's page under `/tools/property-report` or `/tools/zoning-cases` |
+| `pausedAnswer(entry, record, page?)` | `CountyPausedAnswer` — the `coverage` block (`status: "paused"`) the hosted API returns for a county paused by its terms or a law; which counties are paused is live data at `GET https://urbankitstudio.com/api/atlas/status` (`paused`) |
+| `accessBlocks(entry, flag)`, `flagsFor(preset)`, `pausedFlags(flags)`, `presetOf(flags)` | the seven surface flags (`ACCESS_FLAGS`: `paid_lookup`, `paid_enrich`, `paid_bulk`, `paid_lists`, `free_site_lookup`, `free_site_lists`, `free_discovery`) and the presets `paid-off`, `paid-lists-off`, `all-off` (`PRESET_FLAGS`); `accessBlocks` says whether one surface is paused for a county |
 
 The full typed root is also exported as `atlas`:
 
