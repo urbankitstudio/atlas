@@ -2,7 +2,7 @@
   "stateSlug": "georgia",
   "stateName": "Georgia",
   "stateAbbrev": "GA",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "ga-fulton",
@@ -414,6 +414,29 @@
         "email": null
       },
       "notes": "Dougherty County, Georgia (county seat Albany) publishes its parcels as the 'Dougherty County Land Parcels Dataset' FeatureServer, maintained by Albany GIS, covering both the CITY and COUNTY jurisdictions (the Jurisdiction column says which). 38,007 parcels as of 2026-10-03. The owner is in Name, the parcel id in ParcelNum, the site address in Address (with SiteCity and SiteZip) and the owner mailing address in MailAddress1/MailCity/MailState/MailZip; MailAddress1 was empty on the first rows sampled. String fields are space padded to their full width, so trim them and search with UPPER(Name) LIKE 'SMITH%', never equality. The layer's spatial reference is wkid 102667 (latestWkid 2240), so send outSR=4326 if you need longitude and latitude. CORS answers Access-Control-Allow-Origin *. No open-data license is stated; the item carries only a disclaimer that Albany GIS makes every effort at accuracy and that all data is subject to change. A third-party count of 39,443 parcels is slightly higher than the layer's, so the public view may be a subset. Verified live 2026-10-03: owner SMITH returned rows (first owner SMITH SHIRLEY PEARL, 0000S/00003/03A, 2803 ELTON ST, Albany)."
+    },
+    {
+      "id": "ga-forsyth",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Forsyth",
+      "countySlug": "forsyth-county",
+      "countyFips": "13117",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Forsyth County Board of Assessors",
+        "url": "https://www.forsythco.com/government/departments/board-of-assessors/",
+        "email": null
+      },
+      "notes": "Forsyth County, Georgia (FIPS 13117). The county's public parcel layer (geo.forsythco.com, Public/Tax_Parcel layer 0, 105,607 parcels) carries a parcel id, site address and postal address, but no owner name field. For owner records, contact the Forsyth County Board of Assessors.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Forsyth County's public parcel layer has parcel ids and site and postal addresses but no owner names, so we don't index it. Check with the county Board of Assessors, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-10"
+      }
     }
   ]
 }

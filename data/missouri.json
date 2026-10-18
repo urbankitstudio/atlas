@@ -19,7 +19,12 @@
         "url": "https://jcgis.jacksongov.org/parcelviewer/",
         "email": null
       },
-      "notes": "No public ArcGIS REST layer with owner names was found for Jackson County, Missouri (Kansas City metro; FIPS 29095) as of 2026-10-17. The county's own current parcel layer, ParcelViewer/ParcelsAscendRelate FeatureServer layer 1 on jcgis.jacksongov.org, holds 311,163 parcels inside the county (extent about 94.61 to 94.11 W, 38.83 to 39.24 N) but carries ids only: parcel_id, the dashed parcel number in Name, PropertyID, and TCA and School code columns. It has no owner, situs or mailing column. The same service's Ascend_GisInfo table (layer 2) adds situs address, land use and values but no owner name, and it has no geometry. Owner names appear only on the county's PastYearParcels layers for 2017 to 2019, which are not current and are not used. The county's Parcel Viewer (jcgis.jacksongov.org/parcelviewer) shows parcels in the browser. Until 2026-10-17 this record pointed at gis.mijackson.org RealEstateParcels, which is Jackson County, Michigan: 78,038 parcels around 42.07 to 42.42 N, 84.13 to 84.72 W, with property state MI on 74,650 rows."
+      "notes": "No public ArcGIS REST layer with owner names was found for Jackson County, Missouri (Kansas City metro; FIPS 29095) as of 2026-10-17. The county's own current parcel layer, ParcelViewer/ParcelsAscendRelate FeatureServer layer 1 on jcgis.jacksongov.org, holds 311,163 parcels inside the county (extent about 94.61 to 94.11 W, 38.83 to 39.24 N) but carries ids only: parcel_id, the dashed parcel number in Name, PropertyID, and TCA and School code columns. It has no owner, situs or mailing column. The same service's Ascend_GisInfo table (layer 2) adds situs address, land use and values but no owner name, and it has no geometry. Owner names appear only on the county's PastYearParcels layers for 2017 to 2019, which are not current and are not used. The county's Parcel Viewer (jcgis.jacksongov.org/parcelviewer) shows parcels in the browser. Until 2026-10-17 this record pointed at gis.mijackson.org RealEstateParcels, which is Jackson County, Michigan: 78,038 parcels around 42.07 to 42.42 N, 84.13 to 84.72 W, with property state MI on 74,650 rows.",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Jackson County's current public parcel layer has parcel ids but no owner names, and only its layers for 2017 to 2019 carry owners, so we don't index it. Search the county's Parcel Viewer, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-17"
+      }
     },
     {
       "id": "mo-st-louis",

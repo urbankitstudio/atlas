@@ -47,6 +47,8 @@ if (kane) {
 }
 ```
 
+`findState`, `findCounty` and `listCountiesByState` look a state up by its slug, and a two-letter abbreviation is also accepted, so `findCounty("IL", "kane-county")` finds Kane too. The 50 states and DC read as their slug, by the same rule as the hosted MCP server and the REST API, and any other input is read as a slug unchanged, so `"pr"` finds nothing.
+
 ### 3. Look up a county by FIPS code
 
 ```ts
@@ -245,9 +247,9 @@ read `addedAt` and fall back to the oldest `lastVerified` only when it is absent
 
 ## Coverage today
 
-The atlas bundles **479 counties across all 50 US states and DC** (494 verified endpoints), covering the largest counties in each state, every county in Mississippi and 98 of North Carolina's 100. Call `listStates()` to enumerate the full set.
+The atlas bundles **494 counties across all 50 US states and DC** (494 verified endpoints), covering the largest counties in each state, every county in Mississippi and 98 of North Carolina's 100. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 467 of the 479 carry a verified endpoint. The other 12 have `hasPublicRest: false` and an empty `endpoints` array, with `notes` recording the reason and who to contact. Those reasons vary: a subscription-only regional GIS partner, a statewide server that requires an auth token, a state with no county-level parcel authority, a county viewer with no public query API, a county that does not publish owner names online. They ship rather than being omitted, so `findCounty()` still resolves them. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 467 of the 494 carry a verified endpoint. The other 27 have `hasPublicRest: false` and an empty `endpoints` array, with a `coverage` block that gives the reason code and one sentence to show as is, `notes` with the detail, and a `contact` for the county office. The reasons vary. A county sells its owner data, runs no public query service, puts one behind a login or under terms that bar us from serving it, publishes a layer without owner names or with them blank, or runs a service that is down, stale or technically unusable. They ship rather than being omitted, so `findCounty()` still resolves them, and `coverageAnswer()` turns any of them into the answer the hosted MCP server and the REST API give. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 The city registries cover 30 cities with code-violation or building-permit datasets, 19 with zoning-case datasets. Call `listCities()` for the current set.
 

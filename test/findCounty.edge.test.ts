@@ -5,14 +5,15 @@
  * "-county" suffix, or passing a state abbreviation instead of the slug).
  *
  * Note on input contract: the SDK takes state SLUGS ("illinois", "new-york"),
- * not state abbreviations. Callers occasionally try findCounty("IL", "kane")
- * and the SDK correctly returns undefined for those — the test below pins
- * that behaviour so a future refactor can't silently start accepting
- * either form (which would break consumers depending on the strict contract).
+ * and since 0.6.38 also a two-letter abbreviation of one of the 50 states or
+ * DC ("IL", "ny"), by the hosted MCP's rule (stateSlugFromAbbrev in
+ * src/coverage.ts). Anything else is read as a slug unchanged, so "pr", "XX"
+ * and "Illinois" still find nothing, and the county slug stays strict:
+ * findCounty("IL", "kane") is undefined.
  */
 
 import { describe, it, expect } from "vitest";
-import { findCounty, findState, countySlugFromName } from "../src/index.js";
+import { findCounty, findState, listCountiesByState, countySlugFromName } from "../src/index.js";
 
 describe("findCounty edge cases", () => {
   it("returns Kane county when called with the canonical slug", () => {
@@ -73,9 +74,21 @@ describe("findState edge cases", () => {
     expect(findState("")).toBeUndefined();
   });
 
-  it("returns undefined when the slug is the state abbreviation", () => {
-    // The SDK uses slugs, not abbrevs — pinned for consumer contract.
-    expect(findState("IL")).toBeUndefined();
-    expect(findState("il")).toBeUndefined();
+  it("reads a state abbreviation, in either case, as its slug", () => {
+    expect(findState("IL")).toBe(findState("illinois"));
+    expect(findState("il")).toBe(findState("illinois"));
+    expect(findState("dc")).toBe(findState("district-of-columbia"));
+    expect(findCounty("TN", "knox-county")).toBe(findCounty("tennessee", "knox-county"));
+    expect(findCounty("TN", "knox-county")).toBeDefined();
+    expect(listCountiesByState("oh")).toBe(listCountiesByState("ohio"));
+    expect(listCountiesByState("oh").length).toBeGreaterThan(0);
+  });
+
+  it("passes any other two-letter input through as a slug, so a territory or a non-state finds nothing", () => {
+    for (const other of ["pr", "PR", "gu", "vi", "as", "mp", "xx", "zz"]) {
+      expect(findState(other), other).toBeUndefined();
+      expect(listCountiesByState(other), other).toEqual([]);
+    }
+    expect(findCounty("IL", "kane")).toBeUndefined();
   });
 });

@@ -2,7 +2,7 @@
   "stateSlug": "washington",
   "stateName": "Washington",
   "stateAbbrev": "WA",
-  "lastUpdated": "2026-10-10",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "wa-king",
@@ -267,6 +267,41 @@
       },
       "notes": "Clark County, Washington (Vancouver; FIPS 53011). The county's own ArcGIS Server publishes the layer behind its MapsOnline mailing-label tool as MapsOnline/MailingLabels FeatureServer layer 0 ('Owner Addresses', one polygon per taxlot): 196,284 rows on 2026-10-10, every one with an owner name. The owner is MailName (the taxpayer mailing name) with MailCareOf (a care-of line, on 3,652 rows); the owner mailing address is MailAddrs (street line, padded with trailing spaces) plus MailCityStateCountryZip (city, state, country and ZIP in one string); the situs is SitusAddrs (street only) with SitusCityStateZip beside it (both blank on 17,980 rows); the parcel id is Prop_id, the Assessor's numeric property id (an integer, so search it with = rather than LIKE). The layer has no sale or value fields. Currency: DateOfParcels ('Parcel Publish Date') is 2026-10-09 on every row, so the layer is republished whole from the Assessor's parcels; it is the freshness field this record relies on. CORS: no Access-Control-Allow-Origin header is sent, with or without an Origin header, so a browser on another site cannot read it and corsEnabled is false; query it from a server, the metered API or the MCP. maxRecordCount is 5,000 with pagination. SIBLING NOT USED: MapsOnline/PropertyFinder MapServer layer 1 ('Taxlots', 196,283 rows, same Prop_id) also carries the owner, but it has no date field, gives the mailing address only as MailAddrs1-3 street lines with no city, state or ZIP (line 1 is sometimes a care-of name), runs city and ZIP into its single situs string, and its own description says it 'is still under development and may change without notice'. The Assessor's Recent Sales layer (LandRecords MapServer 6) had sales through 2026-09-29 and a publish date of 2026-10-02 on 2026-10-10. WASHINGTON LAW: RCW 42.56.070(8) bars agencies from releasing lists of individuals for commercial purposes, and some Washington counties (Pierce, Spokane) withhold owner names from their public layers for that reason; Clark publishes them on this public layer. No license or terms text is published on the service. Verified 2026-10-10: a count, resultRecordCount=1, an owner LIKE query (1,447 rows for %SMITH%), a situs LIKE query on MAIN ST (363 rows) and a point query at the county's internal point (one parcel, with an owner).",
       "addedAt": "2026-10-10"
+    },
+    {
+      "id": "wa-pierce",
+      "state": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "county": "Pierce",
+      "countySlug": "pierce-county",
+      "countyFips": "53053",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Pierce County Assessor-Treasurer",
+        "url": "https://www.piercecountywa.gov/91/Assessor---Treasurer",
+        "email": null
+      },
+      "notes": "Pierce County, Washington (FIPS 53053). The county's public parcel data has no taxpayer name field. The county's layer metadata says taxpayer names are removed from public requests and cites RCW 42.17.260(9); that is the county's reading, recorded here as its claim. Without an owner name the data cannot answer an owner lookup, so this atlas does not index Pierce County. Parcel and sales records are available through the Assessor-Treasurer's parcel search.",
+      "addedAt": "2026-10-17",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "county_cited_statute",
+            "note": "Pierce County's public parcel data has no taxpayer name field. The county's layer metadata says taxpayer names are removed from public requests and cites RCW 42.17.260(9). This records the county's own claim; the statute itself was not reviewed here.",
+            "citation": "RCW 42.17.260(9)",
+            "attributedTo": "Pierce County"
+          },
+          "lawfulAlternativeUrl": "https://www.piercecountywa.gov/91/Assessor---Treasurer"
+        }
+      },
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Pierce County leaves taxpayer names out of its public parcel data, citing a state records law, so we don't index it. Search the Assessor-Treasurer's parcel search, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-10"
+      }
     }
   ]
 }

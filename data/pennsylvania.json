@@ -2,7 +2,7 @@
   "stateSlug": "pennsylvania",
   "stateName": "Pennsylvania",
   "stateAbbrev": "PA",
-  "lastUpdated": "2026-10-14",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "pa-allegheny",
@@ -535,6 +535,57 @@
       },
       "notes": "Bedford County, Pennsylvania (Bedford; FIPS 42009). The county's parcels are published through PASDA (Pennsylvania Spatial Data Access, the state clearinghouse run by Penn State) as BedfordCounty MapServer layer 0, 'BedfordCountyParcels202307': 34,225 parcels on 2026-10-14, 34,104 of them with an owner (OWNER_NAME). The host is PASDA, not the county. THE VINTAGE IS OLD: the layer name carries 202307 (July 2023), more than three years before verification, and the layer has no edit-date or usable sale-date field (SALE_YEAR is a two-digit number), so owners can lag the assessment office by years. PASDA republishes under a new name, so the layer name or index may change: list the service's layers and pick the one whose name starts 'BedfordCountyParcels'. The parcel id is Name, the tax map number in the form E.09-D.04-111 (CONTROL_NO is a separate numeric control number). The owner is OWNER_NAME with OWNER_NA_1; the owner mailing address is OWNER_ADDR (with OWNER_AD_1, OWNER_AD_2, OWNER_CITY, OWNER_STAT and OWNER_ZIP, a number, so leading zeros are lost). SITUS IS SPARSE: SITUS_DESC holds a street address on only 8,885 of 34,225 rows (about 26 percent; some rows carry a road-name description such as 'OFF OF <road>' instead) and SITUS_DE_1 a free-text qualifier on 4,057, so an address search will miss most parcels; owner, parcel id and a point lookup are the dependable paths. municipali is the municipality name (blank on 1,202 rows). CORS: the server echoes the request Origin in Access-Control-Allow-Origin. maxRecordCount is 1000 with pagination; the layer wkid is 4269 (NAD83), so a lon/lat point query takes inSR=4326. No license text is published on the service. A second public copy, 'Parcels - PA - Bedford County' on a GDIT ArcGIS Online service (33,828 rows, layer description 'May2018Parcels'), is older still and is not used. Verified 2026-10-14: owner LIKE %SMITH% returned 454 rows (10 with resultRecordCount=10), situs LIKE %MAIN% 122 rows, and a point query at -78.5039,40.0186 (Bedford) returned one parcel in BEDFORD BORO.",
       "addedAt": "2026-10-14"
+    },
+    {
+      "id": "pa-lancaster",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Lancaster",
+      "countySlug": "lancaster-county",
+      "countyFips": "42071",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Lancaster County GIS Division",
+        "url": "https://lancastercountypa.gov/143/GIS-Division",
+        "email": null
+      },
+      "notes": "Lancaster County, Pennsylvania (FIPS 42071) sells its parcel data with owner names. The county GIS Division offers it through the LanCo View PLUS and Data Hub Premium subscription, and the Property Assessment Office sells assessment data files. The free copy the county publishes through PASDA is parcel data without owner names. The subscription license is for personal use, and the county does not allow its data to be reproduced or passed on without the commissioners' written permission, so this atlas does not index Lancaster County. Parcel and owner records are available through the county's own tools and products.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Lancaster County sells parcel data with owner names through its LanCo View PLUS subscription, and its free public copy has no owner names, so we don't index it. Search the county's own tools, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-17",
+        "countyProduct": {
+          "name": "LanCo View PLUS + Data Hub Premium",
+          "url": "https://lancastercountypa.gov/2697/LanCo-View-PLUS"
+        }
+      }
+    },
+    {
+      "id": "pa-columbia",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Columbia",
+      "countySlug": "columbia-county",
+      "countyFips": "42037",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Columbia County GIS Department",
+        "url": "http://gis.columbiapa.org/",
+        "email": "gis@columbiapa.org"
+      },
+      "notes": "Columbia County, Pennsylvania (county seat Bloomsburg; FIPS 42037). The county's parcel layer on PASDA, Columbia County Tax Parcels 202402 (34,249 parcels, last edited 2024-02-14), carries a parcel number (PIN) and geometry only, with no owner name, site address, mailing address, land use or value. The same query against Bradford County's PASDA layer returns owner names, so the gap lies in Columbia's data. The county's own map host, gismaps.columbiapa.org, has an expired TLS certificate, the county GIS page posts a notice that online mapping is down for that reason, and its REST paths return HTTP 403. Re-check once the county map server is back.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Columbia County's public parcel layer has parcel numbers only, with no owner names or addresses, and the county's own map server is down behind an expired certificate, so we don't index it. Check the county GIS office, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-17",
+        "recheck": "2026-10-24"
+      }
     }
   ]
 }

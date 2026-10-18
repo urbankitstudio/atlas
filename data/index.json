@@ -3,7 +3,7 @@
   "lastUpdated": "2026-10-17",
   "totals": {
     "states": 51,
-    "counties": 479,
+    "counties": 494,
     "endpoints": 494,
     "countiesWithEndpoint": 467,
     "countiesUnprobeable": 1
@@ -53,7 +53,7 @@
       "slug": "colorado",
       "name": "Colorado",
       "abbrev": "CO",
-      "countyCount": 11,
+      "countyCount": 12,
       "endpointCount": 11,
       "populated": true
     },
@@ -93,7 +93,7 @@
       "slug": "georgia",
       "name": "Georgia",
       "abbrev": "GA",
-      "countyCount": 6,
+      "countyCount": 7,
       "endpointCount": 6,
       "populated": true
     },
@@ -149,7 +149,7 @@
       "slug": "kentucky",
       "name": "Kentucky",
       "abbrev": "KY",
-      "countyCount": 18,
+      "countyCount": 24,
       "endpointCount": 17,
       "populated": true
     },
@@ -317,7 +317,7 @@
       "slug": "pennsylvania",
       "name": "Pennsylvania",
       "abbrev": "PA",
-      "countyCount": 9,
+      "countyCount": 11,
       "endpointCount": 9,
       "populated": true
     },
@@ -349,7 +349,7 @@
       "slug": "tennessee",
       "name": "Tennessee",
       "abbrev": "TN",
-      "countyCount": 5,
+      "countyCount": 8,
       "endpointCount": 4,
       "populated": true
     },
@@ -381,7 +381,7 @@
       "slug": "virginia",
       "name": "Virginia",
       "abbrev": "VA",
-      "countyCount": 6,
+      "countyCount": 7,
       "endpointCount": 6,
       "populated": true
     },
@@ -389,7 +389,7 @@
       "slug": "washington",
       "name": "Washington",
       "abbrev": "WA",
-      "countyCount": 6,
+      "countyCount": 7,
       "endpointCount": 6,
       "populated": true
     },

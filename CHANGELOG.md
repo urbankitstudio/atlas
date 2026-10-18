@@ -1,5 +1,100 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.38 — 2026-10-17
+
+This release gives one answer for a county the atlas cannot serve. Every record
+with `hasPublicRest: false` now carries a `coverage` block with a reason code,
+one sentence and the date we last checked. `coverageAnswer()` turns that record,
+or the lack of one, into the answer the hosted MCP server, the REST API and the
+`uks` CLI give, with a ready-to-send request for the county. Fifteen counties
+are newly recorded with their reason, and 27 records now say why they are not
+served. The SDK lookups also accept a two-letter state abbreviation. Every
+change is additive. No existing field, export or return value changes.
+
+`totals` move from 479 counties and 494 endpoints to 494 counties and 494
+endpoints. 467 counties have a verified endpoint, as before.
+
+### The coverage answer
+
+- `CountyRecord.coverage?: CountyCoverage | null` holds `reason`, one of
+  `COVERAGE_REASONS` (`owner-data-sold`, `no-public-service`, `login-required`,
+  `licence-restricted`, `attributes-missing`, `owner-blank`, `service-down`,
+  `data-stale`, `technical`), plus `summary`, one sentence of at most 280 characters written
+  to be shown as is, and `checked`, the YYYY-MM-DD of the last check. Two keys
+  are optional. `recheck` is the YYYY-MM-DD of the next planned check (Columbia
+  PA carries one). `countyProduct` names the county's own paid channel, and only
+  with `owner-data-sold`, never a reseller.
+- `licence-restricted` (additive) means the county publishes a parcel
+  service, but its terms do not allow us to serve it. Shelby TN carries it.
+- `countyHasEndpoint(record)` is the one "is this county served" rule:
+  `hasPublicRest` is true and at least one endpoint is registered.
+- `coverageAnswer(record, ref)` returns null for a served county. Otherwise it
+  returns a `CoverageAnswer` with `indexed: false` and a `status`.
+  `"not-in-atlas"` means the atlas has no record, and says nothing more, since a
+  misspelled name lands there too. `"no-public-data"` means the atlas records
+  the county and it publishes nothing we can serve. The block also carries
+  `reason`, `why`, `checked`, `recheck`, `county_office` (from the record's
+  `contact`), `county_product`, `request`, and `message`, which is the whole
+  answer as text.
+- `coverageAnswerText(block)` renders that text, one point per line, and it is
+  what every text surface prints verbatim. `NOT_IN_ATLAS_WHY` and
+  `NO_PUBLIC_DATA_WHY` are its two fallback sentences.
+- `requestHint(ref, status?)` builds the `request` block: a body for
+  `POST https://urbankitstudio.com/api/atlas/request` (`COUNTY_REQUEST_URL`) and
+  the hosted `request_county` tool, with `COUNTY_REQUEST_MESSAGE` or
+  `COUNTY_RECHECK_REQUEST_MESSAGE`. `ref` is
+  `{ state, county?, fips? }`. The state can be an abbreviation, a name, a slug
+  or a two-digit FIPS code, and any spelling of one county gives the same body.
+  It returns null when the ref names no county the endpoint accepts (no valid
+  FIPS code, and a state or county with nothing to slug).
+- All of these are pure, with no fetch, no clock and no randomness, so one
+  record and ref give the same answer on every surface. The hosted MCP server,
+  the REST API and the `uks` CLI 0.1.4 run copies of this same module.
+- Types exported: `CoverageReason`, `CoverageStatus`, `CountyCoverage`,
+  `CountyProduct`, `CoverageAnswer`, `CoverageTextInput`, `CoverageRecordLike`,
+  `EndpointPresenceLike`, `CountyRequestRef`, `CountyRequestHint`.
+- On the hosted REST API, a plan-key lookup that lands on a county we do not
+  serve no longer draws from the key's quota: the draw is given back, and the
+  answer says "not billed" only when the credit landed.
+
+### Newly recorded counties (15, no endpoint)
+
+- `owner-data-sold`: Lancaster PA (42071), and Kenton (21117), Campbell (21037)
+  and Pendleton (21191) KY, whose parcels LINK-GIS publishes and sells.
+- `attributes-missing`: Columbia PA (42037), Trimble (21223) and Hardin (21093)
+  KY, Pueblo CO (08101), Pierce WA (53053), Loudoun VA (51107) and Forsyth GA
+  (13117).
+- `no-public-service`: Knox (47093) and Rutherford (47149) TN, which
+  Tennessee's statewide parcel data leaves out.
+- `data-stale`: Williamson TN (47187), which the statewide data also leaves
+  out, and whose only public parcel layer is a copy from 2003.
+- `technical`: Scott KY (21209).
+
+### Coverage blocks on existing no-endpoint records (12)
+
+Winnebago IL, Casey KY, Iron MI, Hillsborough and Rockingham NH, Dutchess NY,
+Garfield OK, Providence RI, Webb TX, Jackson MO, Montgomery OH and Shelby TN.
+The two New Hampshire records are also corrected. NH GRANIT's statewide parcel
+mosaic is public, with no login, but it has no owner field, so both are
+`attributes-missing`. Shelby TN is `licence-restricted`, because ReGIS
+publishes a parcel service whose terms bar public display without its
+written consent.
+
+- tn-shelby: notes no longer link the county's ArcGIS service. They cite the
+  county's ReGIS page (https://www.shelbycountytn.gov/467/REGIS-Regional-GIS)
+  and keep ReGIS's quoted terms, and no field of the record names the service's
+  host or path.
+
+### State abbreviations in the SDK lookups (additive)
+
+`findState`, `findCounty` and `listCountiesByState` still look a state up by
+its slug, and a two-letter abbreviation is also accepted, in either case:
+`findCounty("IL", "kane-county")` finds Kane. The 50 states and DC read as
+their slug by the rule the hosted MCP server and the REST API use
+(`stateSlugFromAbbrev` in the coverage module). `"pr"`, `"gu"` and any other
+input are read as a slug unchanged, so they find nothing, as before. Slugs stay
+exact: `findState("Illinois")` is still undefined.
+
 ## 0.6.37 — 2026-10-17
 
 This release adds 83 North Carolina counties, all from the NC OneMap parcel

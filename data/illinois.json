@@ -2,7 +2,7 @@
   "stateSlug": "illinois",
   "stateName": "Illinois",
   "stateAbbrev": "IL",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "il-kane",
@@ -291,7 +291,12 @@
         "url": "https://wingis.org/",
         "email": null
       },
-      "notes": "Winnebago County IL GIS is operated by WinGIS (wingis.org), a regional GIS services company on a subscription model. Their ArcGIS REST server at maps.wingis.org/public/rest/services/PropertySearch/MapServer is indexed as containing Parcel & Lot Lines, Parcel Owner, PIN Labels, and Parcel Dimensions layers, but all REST queries return HTTP 499 (Token Required) as of 2026-05-15. The word 'public' in the URL path is a directory naming convention, not an access grant. The public-facing search at wingis.org/maps/propertysearch is browser-only and not queryable. No alternative county-hosted ArcGIS REST endpoint was found. The Supervisor of Assessments at assessor.wincoil.gov has a property lookup UI but no public REST API."
+      "notes": "Winnebago County IL GIS is operated by WinGIS (wingis.org), a regional GIS services company on a subscription model. Their ArcGIS REST server at maps.wingis.org/public/rest/services/PropertySearch/MapServer is indexed as containing Parcel & Lot Lines, Parcel Owner, PIN Labels, and Parcel Dimensions layers, but all REST queries return HTTP 499 (Token Required) as of 2026-05-15. The word 'public' in the URL path is a directory naming convention, not an access grant. The public-facing search at wingis.org/maps/propertysearch is browser-only and not queryable. No alternative county-hosted ArcGIS REST endpoint was found. The Supervisor of Assessments at assessor.wincoil.gov has a property lookup UI but no public REST API.",
+      "coverage": {
+        "reason": "login-required",
+        "summary": "WinGIS, a subscription GIS service, runs Winnebago County's parcel layers, and every query needs a login token, so we don't index it. Search the WinGIS property search, or request it and we'll tell you if that changes.",
+        "checked": "2026-05-15"
+      }
     },
     {
       "id": "il-st-clair",

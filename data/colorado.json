@@ -2,7 +2,7 @@
   "stateSlug": "colorado",
   "stateName": "Colorado",
   "stateAbbrev": "CO",
-  "lastUpdated": "2026-10-10",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "co-denver",
@@ -1108,6 +1108,29 @@
       },
       "notes": "Park County, Colorado (the South Park basin (Fairplay, Bailey, Alma); FIPS 08093) is served by the Colorado OIT statewide parcel composite, Colorado_Public_Parcels FeatureServer/0. Filter countyName='Park' to scope to Park County; the stored countyFips value is '093' (the layer keeps a county-only code, not the 5-digit FIPS). Same schema and endpoint as El Paso and Jefferson counties. Verified 2026-10-10 with an Origin: https://urbankitstudio.com header: countyName='Park' counts 43,241 rows, owner populated on 99%, situs address on 85% and owner mailing address on 99%, and an owner-name SMITH search matches 289 rows. This is a state roll-up, not the county's own layer: every Park row carries dateReceived 2026-05-19, the day the state loaded the county's data, so ownership can trail the Assessor's live roll. Credit: State of Colorado Public parcels were accessed on 2026-10-17 from https://gis.colorado.gov/public/rest/services/Address_and_Parcel (the attribution statement the State's service copyright text names as sufficient).",
       "addedAt": "2026-10-10"
+    },
+    {
+      "id": "co-pueblo",
+      "state": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "county": "Pueblo",
+      "countySlug": "pueblo-county",
+      "countyFips": "08101",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Pueblo County Assessor",
+        "url": "https://county.pueblo.org/assessors-department",
+        "email": null
+      },
+      "notes": "Pueblo County, Colorado (FIPS 08101). Colorado's statewide property tax parcel layer (gis.colorado.gov, PropertyTaxParels MapServer layer 0), which this atlas uses for other Colorado counties, holds 101,146 Pueblo County parcels. Owner and mailing fields are filled, but the site address field is empty, so this atlas serves the other Colorado counties from that layer and leaves Pueblo out. Parcel and owner records are available from the Pueblo County Assessor.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Colorado's statewide parcel layer, which we use for other Colorado counties, carries Pueblo County's parcels without site addresses, so we don't index it. Search the Pueblo County Assessor's records, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-10"
+      }
     }
   ]
 }

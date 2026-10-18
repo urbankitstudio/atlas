@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-10-14",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "va-fairfax",
@@ -431,6 +431,29 @@
       },
       "notes": "Salem, Virginia (an independent city, county-equivalent FIPS 51775). The city publishes its tax parcels itself on ArcGIS Online (organisation SalemVA_GIS) as TaxParcels FeatureServer layer 5 (the service has a single layer, id 5, described 'City of Salem, Virginia tax parcel layer'): 10,765 parcels on 2026-10-14, 10,681 of them with an owner. The owner is owner (varchar 1000); the previous owner is prev_owner. The situs is FullAddress (10,681 rows; also split into street_number, street_name and street_suffix, with zip_code). The parcel id is GPIN (a 14-character string such as 0633-03-384633, on all 10,765 rows), with tax_map_number as the city's tax map id (10,681 rows). MAILING ADDRESS: owner_address2 is the street line (10,680 rows; it equals the situs on 6,533 rows, the owner-occupied parcels; 809 are PO boxes), owner_city_state and owner_zip complete it, and owner_address1 is a care-of line populated on only 803 rows (791 start with C/O), so it is not the primary street line. Currency: Last_Rundate peaks at 2026-10-13, the day before verification, and date_of_transfer reaches 2025-06 on sampled rows; the service's dataLastEditDate is also 2026-10-13. CORS: Access-Control-Allow-Origin is '*' (ArcGIS Online hosted service). maxRecordCount is 2000 with pagination; the layer wkid is 102747 (Virginia South State Plane, US feet) so a lon/lat point query takes inSR=4326 and works. No license text is published on the layer. Verified 2026-10-14: owner LIKE %SMITH% returned 103 rows (10 with resultRecordCount=10), situs LIKE %MAIN ST% 353 rows, and a point query at the Census internal point -80.05524,37.28533 returned one parcel on S Market St with zip 24153. The city's other ArcGIS Online items (an exempt-parcels map and a dashboard) and a WFS copy of the same parcels are not registered.",
       "addedAt": "2026-10-14"
+    },
+    {
+      "id": "va-loudoun",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Loudoun",
+      "countySlug": "loudoun-county",
+      "countyFips": "51107",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Loudoun County Office of Mapping and Geographic Information",
+        "url": "https://www.loudoun.gov/mapping",
+        "email": null
+      },
+      "notes": "Loudoun County, Virginia (FIPS 51107). The county's public parcel layer (logis.loudoun.gov, LMIS_ParcelsPlatfile, 132,868 parcels) carries parcel keys and street and subdivision fields only, with no owner name or mailing address. For parcel and owner records, contact the county's Office of Mapping and Geographic Information.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Loudoun County's public parcel layer has parcel keys and street and subdivision fields but no owner names or mailing addresses, so we don't index it. Check with the county mapping office, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-10"
+      }
     }
   ]
 }

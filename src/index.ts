@@ -32,6 +32,33 @@ export {
 // is true now. Exported as a value so consumers do not hardcode the URL.
 export { LIVE_STATUS_URL } from "./types.js";
 
+// Why a county is not served, and how to ask for it: the same answer the
+// hosted MCP, the REST API and the `uks` CLI give.
+export {
+  COVERAGE_REASONS,
+  COUNTY_REQUEST_URL,
+  COUNTY_REQUEST_MESSAGE,
+  COUNTY_RECHECK_REQUEST_MESSAGE,
+  NOT_IN_ATLAS_WHY,
+  NO_PUBLIC_DATA_WHY,
+  countyHasEndpoint,
+  coverageAnswer,
+  coverageAnswerText,
+  requestHint,
+} from "./coverage.js";
+export type {
+  CoverageReason,
+  CoverageStatus,
+  CountyCoverage,
+  CountyProduct,
+  CoverageAnswer,
+  CoverageTextInput,
+  CoverageRecordLike,
+  EndpointPresenceLike,
+  CountyRequestRef,
+  CountyRequestHint,
+} from "./coverage.js";
+
 export { findCounty } from "./findCounty.js";
 export { findCountyByFips } from "./findCountyByFips.js";
 export { findState } from "./findState.js";

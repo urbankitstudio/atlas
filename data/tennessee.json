@@ -75,7 +75,12 @@
         "url": "https://www.shelbycountytn.gov/467/REGIS-Regional-GIS",
         "email": null
       },
-      "notes": "Shelby County (Memphis and suburbs; FIPS 47157) parcels are published by ReGIS (Regional Geographic Information Systems), the multi-jurisdictional GIS consortium the Shelby County Commission established in 2004. The atlas lists no endpoint for Shelby: the endpoint was withheld from the atlas on 2026-10-17 pending ReGIS's written consent. The parcel service's item information (https://scgis.shelbycountytn.gov/serverhigh/rest/services/Parcel/CurrentParcels/MapServer/info/iteminfo) says: \"This data is owned by Shelby County Government and is for the sole use of ReGIS its participants and their authorized agents. This data may NOT be displayed publicly, sold or transferred to any other entity without the written consent of ReGIS.\" The same server also fails a standard TLS handshake: on 2026-10-17 a default client was refused with \"unsafe legacy renegotiation disabled\", because the server still requires unsafe legacy TLS renegotiation. Contact ReGIS (below) about access."
+      "notes": "Shelby County (Memphis and suburbs; FIPS 47157) parcels are published by ReGIS (Regional Geographic Information Systems), the multi-jurisdictional GIS consortium the Shelby County Commission established in 2004 (https://www.shelbycountytn.gov/467/REGIS-Regional-GIS). The atlas lists no endpoint for Shelby: the endpoint was withheld from the atlas on 2026-10-17 pending ReGIS's written consent. The item information published with ReGIS's parcel service says: \"This data is owned by Shelby County Government and is for the sole use of ReGIS its participants and their authorized agents. This data may NOT be displayed publicly, sold or transferred to any other entity without the written consent of ReGIS.\" ReGIS's parcel server also fails a standard TLS handshake: on 2026-10-17 a default client was refused with \"unsafe legacy renegotiation disabled\", because the server still requires unsafe legacy TLS renegotiation. Contact ReGIS (below) about access.",
+      "coverage": {
+        "reason": "licence-restricted",
+        "summary": "ReGIS publishes Shelby County's parcels under terms that bar public display without its written consent, and we don't have that consent yet, so we don't index it. Contact ReGIS, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-17"
+      }
     },
     {
       "id": "tn-hamilton",
@@ -260,6 +265,75 @@
       },
       "notes": "Montgomery County, Tennessee (Clarksville; FIPS 47125). The county's public parcel layer, the one the Assessor of Property's Public Parcels page advertises, is PublicParcels MapServer layer 0 on the county GIS server (gis.montgomerytn.gov, ArcGIS Server): 99,863 rows on 2026-10-14. THIS LAYER PUBLISHES PARCEL IDS AND SITUS ADDRESSES BUT NO OWNER OR MAILING FIELDS, so owner lookups return nothing here; look a parcel up by parcel number, by street address or by point. The parcel id is ParcelNo (e.g. 066E A 00600 000) with GISLINK as the shorter link id (063066E A 00600); the situs is PropertyAddress with PropertyCity. The rows are one per building card, not one per parcel: a parcel with several buildings repeats its parcel id and situs on each row (one sampled parcel returned six), so counts of rows overstate counts of parcels. The layer also carries subdivision, lot and block, deed book and page, property type, taxing district, acreage, assessed and appraised values, building attributes and the last sale. The layer's name is PublicParcels, the wkid is 102736 (Tennessee State Plane, US feet; latestWkid 2274), and outSR=4326 returns longitude and latitude. maxRecordCount is 2000 with pagination. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, so a probe without an Origin header reads it as closed. No license or terms are published on the layer or on the assessor's pages. Verified 2026-10-14: a count of 99,863, a situs LIKE query on MAIN (120 rows) and an outSR=4326 query.",
       "addedAt": "2026-10-14"
+    },
+    {
+      "id": "tn-knox",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Knox",
+      "countySlug": "knox-county",
+      "countyFips": "47093",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Knox County Property Assessor",
+        "url": "https://property.knoxcounty.org/",
+        "email": null
+      },
+      "notes": "Knox County, Tennessee (FIPS 47093). Tennessee's statewide parcel data excludes Knox County, as it does Rutherford and Williamson counties, and a search on 2026-10-10 found no public parcel query service from the county. Parcel and owner records are available through the Knox County Property Assessor.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Tennessee's statewide parcel data leaves out Knox County, and we haven't found a public parcel service from the county itself, so we don't index it. Search the Knox County Property Assessor's site, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-10"
+      }
+    },
+    {
+      "id": "tn-williamson",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Williamson",
+      "countySlug": "williamson-county",
+      "countyFips": "47187",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Williamson County Property Assessor",
+        "url": "https://www.williamsoncounty-tn.gov/64/Property-Assessor",
+        "email": null
+      },
+      "notes": "Williamson County, Tennessee (FIPS 47187). Tennessee's statewide parcel data excludes Williamson County, as it does Knox and Rutherford counties. The county's only public parcel layer is Historical_Parcels02162003, a historical copy from 2003, which this atlas does not use. Parcel and owner records are available through the Williamson County Property Assessor.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "data-stale",
+        "summary": "Tennessee's statewide parcel data leaves out Williamson County, and the county's only public parcel layer is a historical copy from 2003, so we don't index it. Search the county Property Assessor's site, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-10"
+      }
+    },
+    {
+      "id": "tn-rutherford",
+      "state": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "county": "Rutherford",
+      "countySlug": "rutherford-county",
+      "countyFips": "47149",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Rutherford County Property Assessor",
+        "url": "https://secured.rutherfordcountytn.gov/OFS/WP/Home",
+        "email": null
+      },
+      "notes": "Rutherford County, Tennessee (FIPS 47149). Tennessee's statewide parcel data excludes Rutherford County, as it does Knox and Williamson counties, and a search on 2026-10-10 found no public parcel query service from the county. Parcel and owner records are available through the Rutherford County Property Assessor.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Tennessee's statewide parcel data leaves out Rutherford County, and we haven't found a public parcel service from the county itself, so we don't index it. Search the Rutherford County Property Assessor's site, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-10"
+      }
     }
   ]
 }

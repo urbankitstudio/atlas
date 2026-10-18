@@ -1671,7 +1671,158 @@
         "url": "https://www.qpublic.net/ky/casey/",
         "email": null
       },
-      "notes": "No public REST parcel layer was found for Casey County, Kentucky (county seat Liberty; FIPS 21045) as of 2026-10-12. The Casey County PVA (Property Valuation Administrator) publishes its parcel search and map through qPublic (qpublic.net/ky/casey), which has no REST interface. Searches of ArcGIS Online (feature and map services, for 'Casey County parcels', 'Casey_Parcels' and 'Casey PVA') and of the ArcGIS Hub API found no Kentucky Casey parcel item, while the same search shape finds Simpson County's 'Public Access Parcels', which is registered in this file, so the absence is meaningful. The Kentucky state server (kygisserver.ky.gov, WGS84WM_Services) carries one PVA parcel service, Webster County's, which is registered in this file, and nothing for Casey; the state viewer path kygeonet.ky.gov/pva/casey returns HTTP 404 where kygeonet.ky.gov/pva/webster returns 200. Kentucky has no statewide parcel layer yet: the Geographic Information Advisory Council minutes of 2026-04-15 report that 108 of 120 counties have supplied parcel data and 2.2 million parcels are appended in a dashboard that is still a work in progress, and that owner information will be stripped out, with only counties that opt in continuing to share ownership, so when a state layer publishes Casey may carry geometry without owners. This record answers a county request filed through the site's free tools. Parcel and owner records are available through the PVA's qPublic site, or by asking the Casey County PVA office for a shapefile or a hosted layer: (606) 787-7621. Re-check when the state layer publishes."
+      "notes": "No public REST parcel layer was found for Casey County, Kentucky (county seat Liberty; FIPS 21045) as of 2026-10-12. The Casey County PVA (Property Valuation Administrator) publishes its parcel search and map through qPublic (qpublic.net/ky/casey), which has no REST interface. Searches of ArcGIS Online (feature and map services, for 'Casey County parcels', 'Casey_Parcels' and 'Casey PVA') and of the ArcGIS Hub API found no Kentucky Casey parcel item, while the same search shape finds Simpson County's 'Public Access Parcels', which is registered in this file, so the absence is meaningful. The Kentucky state server (kygisserver.ky.gov, WGS84WM_Services) carries one PVA parcel service, Webster County's, which is registered in this file, and nothing for Casey; the state viewer path kygeonet.ky.gov/pva/casey returns HTTP 404 where kygeonet.ky.gov/pva/webster returns 200. Kentucky has no statewide parcel layer yet: the Geographic Information Advisory Council minutes of 2026-04-15 report that 108 of 120 counties have supplied parcel data and 2.2 million parcels are appended in a dashboard that is still a work in progress, and that owner information will be stripped out, with only counties that opt in continuing to share ownership, so when a state layer publishes Casey may carry geometry without owners. This record answers a county request filed through the site's free tools. Parcel and owner records are available through the PVA's qPublic site, or by asking the Casey County PVA office for a shapefile or a hosted layer: (606) 787-7621. Re-check when the state layer publishes.",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Casey County's property valuation office publishes parcels only through qPublic, which has no query service, and Kentucky has no statewide parcel layer yet, so we don't index it. Search the PVA's qPublic site, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-12"
+      }
+    },
+    {
+      "id": "ky-kenton",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Kenton",
+      "countySlug": "kenton-county",
+      "countyFips": "21117",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "LINK-GIS (Planning and Development Services of Kenton County)",
+        "url": "https://linkgis.org/",
+        "email": "gis02@pdskc.org"
+      },
+      "notes": "Kenton County, Kentucky (FIPS 21117). LINK-GIS, the GIS service administered by Planning and Development Services of Kenton County, publishes Kenton, Campbell and Pendleton County parcels on its own map server. LINK-GIS sells GIS data through a county-wide order form and has not agreed to these parcel layers being served here, so this atlas does not index Kenton County. The order form lists parcel data for Campbell and Pendleton only, so this record names no Kenton parcel product. For parcel and owner records, contact LINK-GIS.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "LINK-GIS publishes Kenton County's parcels and sells its GIS data, and it has not agreed to let us serve the parcel layers, so we don't index it. Contact LINK-GIS, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-17"
+      }
+    },
+    {
+      "id": "ky-campbell",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Campbell",
+      "countySlug": "campbell-county",
+      "countyFips": "21037",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "LINK-GIS (Planning and Development Services of Kenton County)",
+        "url": "https://linkgis.org/",
+        "email": "gis02@pdskc.org"
+      },
+      "notes": "Campbell County, Kentucky (FIPS 21037). LINK-GIS, the GIS service administered by Planning and Development Services of Kenton County, publishes Campbell, Kenton and Pendleton County parcels on its own map server. Its County-Wide Digital Data order page lists Campbell County parcels for sale, price on request. LINK-GIS has not agreed to these parcel layers being served here, so this atlas does not index Campbell County. For parcel and owner records, order the data from LINK-GIS.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "LINK-GIS publishes Campbell County's parcels and sells them as a county-wide data product, and it has not agreed to let us serve them, so we don't index it. Order the data from LINK-GIS, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-17",
+        "countyProduct": {
+          "name": "LINK-GIS County-Wide Digital Data",
+          "url": "https://linkgis.org/order/county-wide-digital-data/"
+        }
+      }
+    },
+    {
+      "id": "ky-pendleton",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Pendleton",
+      "countySlug": "pendleton-county",
+      "countyFips": "21191",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "LINK-GIS (Planning and Development Services of Kenton County)",
+        "url": "https://linkgis.org/",
+        "email": "gis02@pdskc.org"
+      },
+      "notes": "Pendleton County, Kentucky (FIPS 21191). LINK-GIS, the GIS service administered by Planning and Development Services of Kenton County, publishes Pendleton, Kenton and Campbell County parcels on its own map server. Its County-Wide Digital Data order page lists Pendleton County parcels for sale, price on request, with an added $50 processing fee for Pendleton requests. LINK-GIS has not agreed to these parcel layers being served here, so this atlas does not index Pendleton County. For parcel and owner records, order the data from LINK-GIS.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "LINK-GIS publishes Pendleton County's parcels and sells them as a county-wide data product, and it has not agreed to let us serve them, so we don't index it. Order the data from LINK-GIS, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-17",
+        "countyProduct": {
+          "name": "LINK-GIS County-Wide Digital Data",
+          "url": "https://linkgis.org/order/county-wide-digital-data/"
+        }
+      }
+    },
+    {
+      "id": "ky-scott",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Scott",
+      "countySlug": "scott-county",
+      "countyFips": "21209",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Georgetown-Scott County Planning Commission GIS",
+        "url": "https://www.gscplanning.com/gis",
+        "email": null
+      },
+      "notes": "Scott County, Kentucky (FIPS 21209). The Georgetown-Scott County Planning Commission publishes a parcel layer (gis.gscplanning.com, Parcels MapServer layer 0, 25,847 parcels) joined to the county PVA's ownership table. The server does not support paging, so a query that asks for a page of results is rejected, and filtered attribute queries returned HTTP 503 or timed out on 2026-10-09. Lookups need filtered queries, so this atlas does not index Scott County. Re-check if the planning commission upgrades the service. Parcel and owner records are available from the planning commission's GIS maps and the Scott County PVA.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "technical",
+        "summary": "Scott County's parcel layer, run by the Georgetown-Scott County Planning Commission, rejects paged queries and its filtered queries fail, so we don't index it. Use the planning commission's GIS maps, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-09"
+      }
+    },
+    {
+      "id": "ky-trimble",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Trimble",
+      "countySlug": "trimble-county",
+      "countyFips": "21223",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Trimble County Property Valuation Administrator (PVA)",
+        "url": "https://trimblecountyky.gov/property-valuation/",
+        "email": null
+      },
+      "notes": "Trimble County, Kentucky (FIPS 21223). The only public parcel layer found, TrimbleParcel_edit on ArcGIS Online (6,418 parcels, last edited 2025-09-25), is an editing layer for a zoning update. It carries parcel geometry, acreage and zoning class, with no parcel id, owner name or address. Kentucky has no statewide parcel layer yet. Parcel and owner records are available from the Trimble County Property Valuation Administrator.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Trimble County's only public parcel layer has parcel shapes and zoning classes but no parcel numbers or owner names, so we don't index it. Ask the Trimble County PVA, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-09"
+      }
+    },
+    {
+      "id": "ky-hardin",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Hardin",
+      "countySlug": "hardin-county",
+      "countyFips": "21093",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Hardin County Property Valuation Administrator (PVA)",
+        "url": "https://qpublic.net/ky/hardin/",
+        "email": null
+      },
+      "notes": "Hardin County, Kentucky (FIPS 21093). The only public parcel layer found is the City of Elizabethtown's (gis.elizabethtownky.org, PropertyBoundaries_Parcels MapServer layer 0, 12,464 parcels). It covers the city alone and has parcel ids, addresses and zoning but no owner name. The Kentucky state server has no Hardin PVA parcel service. The Hardin County PVA publishes its records through qPublic, which has no query service. Kentucky has no statewide parcel layer yet.",
+      "addedAt": "2026-10-17",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Hardin County's only public parcel layer covers the City of Elizabethtown alone and has no owner names, so we don't index it. Search the Hardin County PVA's records, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-09"
+      }
     }
   ]
 }

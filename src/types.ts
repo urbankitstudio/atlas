@@ -2,6 +2,8 @@
 // Mirrors the source-of-truth shape under public/data/atlas/*.json in the
 // urbankitstudio repo.
 
+import type { CountyCoverage } from "./coverage.js";
+
 export type ServiceType = "FeatureServer" | "MapServer";
 export type LicenseType = "public" | "open-data" | "restricted" | "unknown";
 
@@ -231,6 +233,12 @@ export interface CountyRecord {
   dataVintage?: CountyAdvisory | null;
   /** Reviewed, per-field capability assertions. See {@link CapabilityOverrides}. */
   capabilityOverrides?: CapabilityOverrides | null;
+  /**
+   * Why we cannot index this county, as a reason code and one sentence. Set on
+   * every record with `hasPublicRest: false` from 0.6.38; read it through
+   * `coverageAnswer()`.
+   */
+  coverage?: CountyCoverage | null;
   relatedZoningCitySlug?: string | null;
   relatedPropertyCitySlug?: string | null;
 }

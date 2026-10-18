@@ -2,7 +2,7 @@
   "stateSlug": "michigan",
   "stateName": "Michigan",
   "stateAbbrev": "MI",
-  "lastUpdated": "2026-09-26",
+  "lastUpdated": "2026-10-17",
   "counties": [
     {
       "id": "mi-kent",
@@ -392,7 +392,12 @@
         "url": "https://ironmi.com/equalization",
         "email": null
       },
-      "notes": "No public ArcGIS REST parcel layer was found for Iron County, Michigan (county seat Crystal Falls) as of 2026-09-25, re-checked 2026-10-05 (the state ArcGIS server at gisagocss.state.mi.us lists no parcel layer in its OpenData, geographic_framework or boundaries folders; its only parcel-shaped layer is DNR state-owned land). The county's GIS map viewer, linked from its equalization page, runs on Colligo GIS, a proprietary web platform with no documented public query API. Michigan has no statewide public parcel REST layer to fall back on. Parcel and tax records can be searched by name, address or parcel number through the county's BS&A Online portal, which returns no geometry and offers no field-level API. Two same-name ArcGIS parcel applications belong to other states and do not cover this county: Iron County, Utah's 'County Parcel Locator' and Iron County, Missouri's assessment map hosted by the Southeast Missouri Regional Planning Commission."
+      "notes": "No public ArcGIS REST parcel layer was found for Iron County, Michigan (county seat Crystal Falls) as of 2026-09-25, re-checked 2026-10-05 (the state ArcGIS server at gisagocss.state.mi.us lists no parcel layer in its OpenData, geographic_framework or boundaries folders; its only parcel-shaped layer is DNR state-owned land). The county's GIS map viewer, linked from its equalization page, runs on Colligo GIS, a proprietary web platform with no documented public query API. Michigan has no statewide public parcel REST layer to fall back on. Parcel and tax records can be searched by name, address or parcel number through the county's BS&A Online portal, which returns no geometry and offers no field-level API. Two same-name ArcGIS parcel applications belong to other states and do not cover this county: Iron County, Utah's 'County Parcel Locator' and Iron County, Missouri's assessment map hosted by the Southeast Missouri Regional Planning Commission.",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Iron County's parcel map runs on a proprietary viewer with no public query service, and Michigan has no statewide parcel layer to use instead, so we don't index it. Search the county's BS&A Online portal, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-05"
+      }
     }
   ]
 }
