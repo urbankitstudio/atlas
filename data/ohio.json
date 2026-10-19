@@ -2,7 +2,7 @@
   "stateSlug": "ohio",
   "stateName": "Ohio",
   "stateAbbrev": "OH",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-18",
   "counties": [
     {
       "id": "oh-montgomery",
@@ -387,6 +387,238 @@
         "email": "auditor@unioncountyohio.gov"
       },
       "notes": "Union County, Ohio (FIPS 39159). Served by the county's own ArcGIS Server (www7.co.union.oh.us): ParcelAllSaleinfoBuildingInfo MapServer layer 1, \"Parcels\", whose rows carry the auditor's parcel, sale and building columns on the parcel polygons. Informational only and not a legal record: verify with the Union County Auditor. The service is live: read on 2026-10-17, its latest saleDate was 2026-09-21. No field dates the roll itself, so lastVerified is our probe date, not a data date. The layer has 40,059 rows. 850 of them have no owner (DeedOwner is null), and 848 of those also have no site address and no appraised value: they are shapes without an auditor record, and 90 of them have no ParcelNo at all. A ParcelNo can repeat: 1,045 parcel numbers appear on more than one row (2,327 extra rows). 538 of the extra rows are ownerless shapes (342 of them under one number); the other 1,789 are owned rows, at most 25 under one number, and in 26 of the 30 largest such groups the rows differ by building (yearBuilt or LivingArea) or unit. So a parcel-number lookup can return several rows for one parcel. Share of the layer's rows filled, read 2026-10-17: DeedOwner 97.9%, Address 97.2%, city 97.1%, ZipCode 97.7%, MailAddress1 97.4%, classDescription 97.9%, appraisedTotalValue above zero 94.9%, Acreage above zero 58.2%, saleDate 88.6%, salePrice above zero 72.7%. ZipCode holds the site city, state and ZIP as one string (\"CITY OH ZIP\"), not a bare ZIP, so match a ZIP with LIKE. Mailing address: MailAddress1 is the street line (25 of 25 and 25 of 25 values street-like, a house number or a PO Box, in two samples on 2026-10-17). MailAddress2 is \"CITY ST ZIP\" on most rows; on the 114 rows that fill Mailaddress3 it is a second street line, and the city, state and ZIP are in Mailaddress3. The layer pages with resultOffset and resultRecordCount and returns up to 2,000 rows per request; the parcel-number sample answered in 3.5 s. CORS: the server echoes the request Origin, so browser tools call it directly. License: unknown. No license text is published on this service, its layer or its portal item. The county's sister parcel items (ArcGIS Online item 846fd2f9957d4c15a5c56875d0a11d38 and portal item 39e4e8e7d52f4780b924a6b084eef7d2) carry the Union County GIS disclaimer: \"information contained within the Union County GIS web program was prepared to assist in the appraisal of real property for tax purposes. Map features and related data may not reflect most recent changes. Union County assumes no legal responsibility or liability for the information contained within the Union County GIS web program.\" It places no limit on use. The county's GIS data page (the licenseUrl) offers the parcels as a free shapefile download (Property_Parcels.zip) with no fee, license or disclaimer text.",
+      "addedAt": "2026-10-17"
+    },
+    {
+      "id": "oh-licking",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Licking",
+      "countySlug": "licking-county",
+      "countyFips": "39089",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.lickingcounty.gov/server/rest/services/Auditor/Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "Parcel",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "OwnerName",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "SiteAddress",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "SitePostalCity",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "SitePostalZip",
+              "label": "Site ZIP",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Municipality",
+              "label": "Municipality",
+              "searchable": false
+            },
+            {
+              "name": "Township",
+              "label": "Township",
+              "searchable": false
+            },
+            {
+              "name": "TaxAcres",
+              "label": "Tax Acres",
+              "searchable": false
+            },
+            {
+              "name": "Landuse",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "Class",
+              "label": "Property Class",
+              "searchable": false
+            },
+            {
+              "name": "MarketTotalValue",
+              "label": "Market Total Value",
+              "searchable": false
+            },
+            {
+              "name": "NetTotalValue",
+              "label": "Net Total Value",
+              "searchable": false
+            },
+            {
+              "name": "YearBuilt",
+              "label": "Year Built",
+              "searchable": false
+            },
+            {
+              "name": "T1Date",
+              "label": "Latest Transfer Date",
+              "searchable": false
+            },
+            {
+              "name": "T1SaleAmount",
+              "label": "Latest Transfer Amount",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://gis.lickingcounty.gov/server/rest/services/Auditor/Parcels/MapServer/0/query?where=Parcel+%3D+'040-116898-00.000'&outFields=Parcel,OwnerName,SiteAddress,SitePostalCity,SitePostalZip,OwnerAddress,OwnerCity,OwnerState,OwnerZip,TaxAcres,Landuse,Class,MarketTotalValue,NetTotalValue,YearBuilt,T1Date,T1SaleAmount&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://lickingcounty.gov/gis_downloads/",
+          "status": "live",
+          "lastVerified": "2026-10-17",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Licking County Auditor (GIS)",
+        "url": "https://lickingcounty.gov/gis_downloads/",
+        "email": null
+      },
+      "notes": "Licking County, Ohio (FIPS 39089; county seat Newark). Served by the county's own ArcGIS Server (gis.lickingcounty.gov): Auditor/Parcels MapServer layer 0, \"Parcels\", 83,782 rows with the auditor's owner, address, value, transfer and land-use columns on the parcel polygons. Informational only and not a legal record: verify with the Licking County Auditor. The service is live: read on 2026-10-17, its latest T1Date (the most recent transfer) was 2026-10-15. Verified 2026-10-17: the layer extent is 82.78 to 82.18 W and 39.91 to 40.28 N, and 232 parcels intersect a 0.006-degree box at Newark (a point on a street returns none, because parcels do not cover the right of way). Share of rows filled, read 2026-10-17: Parcel 98.6%, OwnerName 98.6%, SiteAddress 98.6%, SitePostalCity 98.5%, SitePostalZip 98.5%, OwnerAddress 98.3% (99.7% of those start with a house number or a PO Box), OwnerCity 98.3%, OwnerState 98.3%, OwnerZip 98.3%, Municipality 54.6%, Township 57.5%, TaxAcres above zero 93.9%, Landuse 98.6%, Class 98.6%, MarketTotalValue above zero 97.6%, NetTotalValue above zero 95.2%, YearBuilt 74.3%, T1Date 88.2%, T1SaleAmount above zero 52.8%. 1,189 rows are shapes with no auditor record (no parcel number, owner or address). Every parcel number is unique. SitePostalCity holds NEWARK on 30,556 rows, PATASKALA on 10,804, JOHNSTOWN on 6,224 and GRANVILLE on 5,965, and OwnerState holds OH on 79,421 rows and CA on 655. The layer also carries OwnerCareOf and OwnerAttention, the two earlier transfers (T2, T3) and the full valuation columns; the atlas lists the fields above. The layer pages and declares maxRecordCount 2000; the parcel-number sample answered in 0.1 s. CORS: on 2026-10-17 the server echoed the request Origin on the layer and on /query (urbankitstudio.com, www.urbankitstudio.com and an unrelated origin all got their own value back); an earlier probe the same day by another reader found no Access-Control-Allow-Origin header. The county's old host apps.lickingcounty.gov does not answer. License: unknown. The county publishes no license text on the service. Its GIS downloads page (the licenseUrl) carries a disclaimer: \"The maps and associated data, being made available to you, are for reference purposes only and are not intended to represent an official land survey or description of any property identified\", and \"Suitability of this data for your use is not guaranteed and the user assumes all risk for such use.\" It states no limit on redistribution, commercial use or fees.",
+      "addedAt": "2026-10-17"
+    },
+    {
+      "id": "oh-madison",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Madison",
+      "countySlug": "madison-county",
+      "countyFips": "39097",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services8.arcgis.com/HCOT30BFUWvevW8A/arcgis/rest/services/Parcels_Engineer/FeatureServer/13",
+          "serviceType": "FeatureServer",
+          "layerIndex": 13,
+          "layerName": "Parcels_Parcels_join",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TAXPIN",
+              "label": "Parcel Number (Tax PIN)",
+              "searchable": true
+            },
+            {
+              "name": "NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Number",
+              "label": "House Number",
+              "searchable": true
+            },
+            {
+              "name": "Street",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "City",
+              "label": "Site City",
+              "searchable": false
+            },
+            {
+              "name": "ZipCode",
+              "label": "Site ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Cont",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Co_1",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Co_4",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Co_5",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ACREAGE",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "XFER_DATE",
+              "label": "Transfer Date",
+              "searchable": false
+            },
+            {
+              "name": "District",
+              "label": "Tax District",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services8.arcgis.com/HCOT30BFUWvevW8A/arcgis/rest/services/Parcels_Engineer/FeatureServer/13/query?where=TAXPIN+%3D+'24-01065.000'&outFields=TAXPIN,NAME,Number,Street,City,ZipCode,Owner_Cont,Owner_Co_1,Owner_Co_4,Owner_Co_5,ACREAGE,XFER_DATE,District&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://madison-county-gis-data-download-madcoengineer.hub.arcgis.com",
+          "status": "live",
+          "lastVerified": "2026-10-17",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Madison County Engineer (GIS)",
+        "url": "https://www.madison.oh.gov/departments/county_officials/engineer/index.php",
+        "email": "engineer@madison.oh.gov"
+      },
+      "notes": "Madison County, Ohio (FIPS 39097; county seat London). Served by the County Engineer's ArcGIS Online feature service (services8.arcgis.com, item \"Parcels Engineer\", described as \"Madison County Engineer Parcel data joined with Madison County Auditor Parcel data\"): Parcels_Engineer FeatureServer layer 13, \"Parcels_Parcels_join\", 25,931 rows, last edited 2026-10-15, published on the county's GIS Data Download hub. Informational only and not a legal record: verify with the Madison County Auditor. Verified 2026-10-17: the layer extent is 83.66 to 83.20 W and 39.69 to 40.11 N, and a point at London intersects one parcel. Share of rows filled, read 2026-10-17: TAXPIN 100.0%, NAME 98.4%, Number 76.3%, Street 98.6%, City 59.6%, ZipCode 59.6%, Owner_Cont 98.6% (96.9% of those start with a house number or a PO Box), Owner_Co_1 97.5%, Owner_Co_4 97.5%, Owner_Co_5 97.5%, ACREAGE 55.4%, XFER_DATE 73.4%. Parcel number: the auditor's number is TAXPIN (for example 24-01065.000). PARCEL_NO is the Engineer's own sequence number, with 5,349 distinct values over 25,931 rows, and is not listed. TAXPIN has 23,091 distinct values: 287 rows carry the placeholders 99-99999.999 (215 rows) and 88-88888.888 (72 rows), none with an owner, 9 rows are blank, and 1,600 other numbers appear on more than one row (2,546 extra rows, at most 54 rows under one number), so a parcel-number lookup can return several rows. NAME is the owner name (423 rows have none). The owner mailing address is the Owner_Cont, Owner_Co_1, Owner_Co_4 and Owner_Co_5 columns: Owner_Cont is the street line, Owner_Co_1 the city, Owner_Co_4 the state and Owner_Co_5 the ZIP; Owner_Co_4 holds a state other than OH on 920 rows, and Owner_Co_2 holds the country. The layer's Taxpayer_* columns are a different address (the tax-bill address: 6,255 rows hold TX and 1,320 hold CA) and are not listed. Site address: Number is the house number (blank on 23.7% of rows) and Street the bare street name with no street type (PPAddress, StreetSuff, PreDirecti and PostDirect are empty on every row, and 88 rows hold NOT ON FILE), so a site address reads \"123 MAIN\" and a search on a house number and street name does not use the street type. Deeded_Nam and Listed_Nam are empty on every row. City, State and ZipCode are the site postal city, state and ZIP and are blank on 40.4% of rows. XFER_DATE has 7 values before 1900 and 3 after 2026-10-17; the latest transfer date up to that day is 2026-10-07. The layer pages and declares maxRecordCount 2000; the parcel-number sample answered in 0.1 s. CORS: the server answers with Access-Control-Allow-Origin *. License: unknown. The service and its item carry no license text. The county Engineer's page says only that it \"is consistently undergoing change and is not warranted for content or accuracy\". Two other items in the same ArcGIS Online organization (the 2025 and 2026 Comprehensive Plan layers) carry this notice: \"Madison County, Ohio Data are property of offices or departments affiliated with Madison County, Ohio local government, collectively called \\\"Madison County.\\\" These data have been derived from public records that are constantly undergoing change and are not warranted for content or accuracy ... Reproduction in any form is prohibited without the expressed consent of Madison County.\" The parcel item does not carry it, and the county's GIS Data Download hub (the licenseUrl) states no terms of its own.",
       "addedAt": "2026-10-17"
     }
   ]

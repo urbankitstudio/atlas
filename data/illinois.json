@@ -2,7 +2,7 @@
   "stateSlug": "illinois",
   "stateName": "Illinois",
   "stateAbbrev": "IL",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-18",
   "counties": [
     {
       "id": "il-kane",
@@ -337,6 +337,48 @@
         "email": null
       },
       "notes": "St. Clair County is Illinois's 8th most populous (Metro East / Greater St. Louis area, county seat Belleville). The SCC_parcel_map_data MapServer is a 31-layer cadastral service; layer 29 (Parcels, 147k+ features) is the polygon parcel layer with 50+ fields including parcel_number, parcelid, owner, address, address2, cityst, zipcode, siteadr1, siteadr2, sitenum/sitepref/sitename/sitetype/sitesuff/siteunit, sitecity/sitest/sitezip, legal1-4, subdiv, twp/twpname, tcacode, class, landuse. Owner-name search via UPPER() LIKE on owner works. Other layers in the service are annotation layers (layers 0-28) and Roads (layer 30). The county GIS data pricing page notes bulk shapefile/geodatabase downloads are paid; the live REST query API is free."
+    },
+    {
+      "id": "il-rock-island",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Rock Island",
+      "countySlug": "rock-island-county",
+      "countyFips": "17161",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services9.arcgis.com/6FnscPPlUa9DXXOk/arcgis/rest/services/Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "parcel_layer",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "parcel_number", "label": "Parcel Number (PIN)", "searchable": true },
+            { "name": "owner1_name", "label": "Owner Name", "searchable": true },
+            { "name": "taxbill_name", "label": "Tax Bill Name", "searchable": true },
+            { "name": "site_address", "label": "Site Address", "searchable": true },
+            { "name": "Site_City", "label": "Site City", "searchable": true },
+            { "name": "owner1_address1", "label": "Owner Mailing Address", "searchable": true }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services9.arcgis.com/6FnscPPlUa9DXXOk/arcgis/rest/services/Parcels/FeatureServer/0/query?where=UPPER(site_address)%20LIKE%20'%251504%203RD%20AVE%25'&outFields=parcel_number,site_address,owner1_name,taxbill_name&resultRecordCount=3&returnGeometry=false&f=json",
+          "license": "public",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=9cae8a64ab0e4cea99758f741ca43b3c",
+          "status": "live",
+          "lastVerified": "2026-10-18",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Rock Island County GIS Department (Josh Boudi, 309-558-3772)",
+        "url": "https://www.rockislandcountyil.gov/",
+        "email": "jboudi@rockislandcountyil.gov"
+      },
+      "notes": "Rock Island County, Illinois (FIPS 17161; county seat Rock Island). Served by the county GIS department's ArcGIS Online feature service (services9.arcgis.com, item 9cae8a64ab0e4cea99758f741ca43b3c, \"Parcels\", owner thirty34jb, the county GIS account): Parcels FeatureServer layer 0, \"parcel_layer\", 65,948 rows, last edited 2026-10-01, tax year 2025 (taxbill_year). The county's own host, gis.rockislandcountyil.gov (Hosted/Parcels/FeatureServer/0), now answers \"Token Required\", so this record points at the ArcGIS Online copy. Informational only and not a legal record: verify with the Rock Island County Assessor. Verified 2026-10-18: a bounded query counts 65,948 rows, and an address query for 1504 3RD AVE returns two county-owned parcels. Share of rows filled, read 2026-10-18: parcel_number 99.7% (65,763 rows), owner1_name 99.7% (every row with a parcel number), taxbill_name 99.7%, site_address 88.9% (58,640 rows, with Site_City and Site_Zip). The owner mailing address is owner1_address1, owner1_address2, Owner_City, Owner_State and Owner_Zip; the tax-bill address is a separate set (taxbill_addr1, taxbill_addr2, taxbill_csz). The layer also carries the assessed values (EMV, EAV, farm and non-farm land and building), the last sale (date_last_sale, gross_sale_price, net_sale_price), class, township, legal description, Zoning, YRBuilt, TOTSQFT and each parcel's longitude and latitude; the atlas lists the fields above. The native spatial reference is Illinois State Plane West, feet (WKID 3436), so a point query passes inSR=4326. The layer pages and declares maxRecordCount 2000. CORS: the server answers with Access-Control-Allow-Origin *. License: the ArcGIS Online item's license text (the licenseUrl) reads \"For use by the general public\". The county's Data Release Policy (https://rockislandcountyil.gov/DocumentCenter/View/1159/Data-Release-PDF) governs requested file releases: the data is provided as is with no warranty and with a source credit of Rock Island County GIS, and it states no resale ban and no fee; the county's site says data requests go to GIS for costs. Credit Rock Island County GIS.",
+      "addedAt": "2026-10-18"
     }
   ]
 }

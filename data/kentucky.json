@@ -2,7 +2,7 @@
   "stateSlug": "kentucky",
   "stateName": "Kentucky",
   "stateAbbrev": "KY",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-18",
   "counties": [
     {
       "id": "ky-fayette",
@@ -1184,92 +1184,20 @@
       "county": "Montgomery",
       "countySlug": "montgomery-county",
       "countyFips": "21173",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://services3.arcgis.com/aaZhjjkUqOHS7oRg/arcgis/rest/services/Montgomery_Parcels/FeatureServer/132",
-          "serviceType": "FeatureServer",
-          "layerIndex": 132,
-          "layerName": "MoCoStructureDateParcels",
-          "supportsQuery": true,
-          "corsEnabled": true,
-          "searchFields": [
-            {
-              "name": "PARCEL_ID",
-              "label": "Parcel ID",
-              "searchable": true
-            },
-            {
-              "name": "Name",
-              "label": "Owner Name",
-              "searchable": true
-            },
-            {
-              "name": "Location",
-              "label": "Situs Address",
-              "searchable": true
-            },
-            {
-              "name": "Address1",
-              "label": "Owner Mailing Address 1",
-              "searchable": false
-            },
-            {
-              "name": "Address2",
-              "label": "Owner Mailing Address 2",
-              "searchable": false
-            },
-            {
-              "name": "City",
-              "label": "Owner Mailing City",
-              "searchable": false
-            },
-            {
-              "name": "State",
-              "label": "Owner Mailing State",
-              "searchable": false
-            },
-            {
-              "name": "Zip",
-              "label": "Owner Mailing ZIP",
-              "searchable": false
-            },
-            {
-              "name": "ACRES",
-              "label": "Acres",
-              "searchable": false
-            },
-            {
-              "name": "LANDUSE",
-              "label": "Land Use",
-              "searchable": false
-            },
-            {
-              "name": "Descriptio",
-              "label": "Property Class Description",
-              "searchable": false
-            },
-            {
-              "name": "YearConstr",
-              "label": "Year Built",
-              "searchable": false
-            }
-          ],
-          "sampleQuery": "https://services3.arcgis.com/aaZhjjkUqOHS7oRg/arcgis/rest/services/Montgomery_Parcels/FeatureServer/132/query?where=UPPER(Name)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID,Name,Location,Address1,City&returnGeometry=false&resultRecordCount=10&f=json",
-          "license": "unknown",
-          "licenseUrl": null,
-          "status": "live",
-          "lastVerified": "2026-10-09",
-          "verifiedBy": "manual"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
-        "department": "Gateway Area Development District (110 Lake Park Drive, Morehead KY 40351, 606-780-0090)",
-        "url": null,
+        "department": "Montgomery County Property Valuation Administrator (859-498-8710); GIS hosted by the Gateway Area Development District (110 Lake Park Drive, Morehead KY 40351, 606-780-0090)",
+        "url": "https://montgomerycounty.ky.gov/",
         "email": null
       },
-      "notes": "Montgomery County, Kentucky (Mount Sterling; FIPS 21173). MoCoStructureDateParcels, layer 132 of the Montgomery_Parcels FeatureServer on the Gateway Area Development District's ArcGIS Online organisation (110 Lake Park Drive, Morehead KY 40351, 606-780-0090); the service description reads 'Montgomery County PVA Parcels': 12,737 parcels, maxRecordCount 2,000, pagination on, State Plane feet with wkid 2246 (outSR=4326 works), CORS open (Access-Control-Allow-Origin: *). The layer was last edited 2025-07-21. The parcel id is PARCEL_ID (ID and MUID are alternates). The owner is Name (every row), Location is the situs, and the owner mailing address is Address1/Address2 with City, State and Zip (the OWNER'S mailing city, state and ZIP, not the situs: 622 rows read a state other than KY). YearConstr is the year a structure was built. The layer index is unusually high (132) because it sits beside a copy named Montgomery_Parcels_view that exposes only FID; use layer 132. No terms are published. Verified 2026-10-09 by a count, field list, owner fill count and a count of the sample query's predicate (103 rows).",
+      "notes": "RETIRED 2026-10-18, with the reason: around 2026-10-15 the Gateway Area Development District, which hosts Montgomery County's GIS on its ArcGIS Online organisation (services3.arcgis.com/aaZhjjkUqOHS7oRg), made the Montgomery_Parcels FeatureServer private. The registered layer 132 (MoCoStructureDateParcels, service description 'Montgomery County PVA Parcels') and a bounded query against it both answer ArcGIS error 499 'Token Required' (checked 2026-10-18). The organisation's remaining public layers carry no owner names, and no other public copy with owner names was found. Owner records remain with the county PVA. Re-register from the same organisation if the layer is made public again. The county's KRS 61.874 pause on paid lookups is unchanged by this. Prior record (Montgomery County, Kentucky; Mount Sterling; FIPS 21173; verified 2026-10-09): 12,737 parcels, maxRecordCount 2,000, pagination on, State Plane feet with wkid 2246, CORS open; the parcel id was PARCEL_ID (ID and MUID alternates), the owner Name (every row), Location the situs, the owner mailing address Address1/Address2 with City, State and Zip (622 rows outside KY), YearConstr the year a structure was built; the sibling Montgomery_Parcels_view exposed only FID. No terms were published.",
       "addedAt": "2026-10-09",
+      "coverage": {
+        "reason": "login-required",
+        "summary": "Around 2026-10-15 Montgomery County's GIS host (Gateway Area Development District) made its parcel layer private, so it needs a login and we don't index it. Its public layers carry no owner names. Ask the county PVA's office, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-18"
+      },
       "capabilityOverrides": {
         "owner_name": {
           "status": "available",

@@ -16,9 +16,11 @@ import {
   countyHasEndpoint,
   coverageAnswer,
   coverageAnswerText,
+  coverageOverridesPause,
   requestHint,
   stateSlugFromAbbrev,
   type CountyRequestRef,
+  type CoverageReason,
 } from "../src/coverage.js";
 import { atlas } from "../src/data.js";
 import { findCountyByFips } from "../src/findCountyByFips.js";
@@ -39,6 +41,61 @@ describe("countyHasEndpoint", () => {
   it("agrees with the bundled data's hasPublicRest on every county", () => {
     const disagree = all.filter((c) => countyHasEndpoint(c) !== c.hasPublicRest).map((c) => c.id);
     expect(disagree).toEqual([]);
+  });
+});
+
+// A retired county's own reason outranks a pause of the access switch, except
+// licence-restricted, where the pause is the point (Leo, 2026-10-18).
+describe("coverageOverridesPause", () => {
+  const retired = (reason: CoverageReason) => ({ hasPublicRest: false, endpoints: [], coverage: { reason, summary: "s", checked: "2026-10-18" } });
+
+  it("is true for a record with no endpoint whose reason is anything but licence-restricted", () => {
+    const others = COVERAGE_REASONS.filter((r) => r !== "licence-restricted");
+    expect(others.length).toBeGreaterThan(0);
+    for (const reason of others) expect(coverageOverridesPause(retired(reason)), reason).toBe(true);
+  });
+
+  it("is false for licence-restricted, for a record with an endpoint whatever its reason, and for no record or no coverage block", () => {
+    expect(coverageOverridesPause(retired("licence-restricted"))).toBe(false);
+    expect(coverageOverridesPause({ hasPublicRest: true, endpoints: [{}], coverage: { reason: "login-required", summary: "s", checked: "2026-10-18" } })).toBe(false);
+    expect(coverageOverridesPause({ hasPublicRest: false, endpoints: [] })).toBe(false);
+    expect(coverageOverridesPause(null)).toBe(false);
+    expect(coverageOverridesPause(undefined)).toBe(false);
+  });
+
+  // A contradictory record (validate-atlas rejects the shape, so this is defensive): were it to
+  // override, the hosted API would drop even an all-off pause and discovery would serve the
+  // endpoints the record lists. It keeps the pause; the same record with `endpoints: []` is the control.
+  it("is false for a contradictory record: hasPublicRest false beside a non-empty endpoints array, whatever its reason", () => {
+    const others = COVERAGE_REASONS.filter((r) => r !== "licence-restricted");
+    for (const reason of others) {
+      expect(coverageOverridesPause({ ...retired(reason), endpoints: [{ url: "https://gis.example.gov/FeatureServer/0" }] }), reason).toBe(false);
+      expect(coverageOverridesPause({ ...retired(reason), endpoints: [{}] }), reason).toBe(false);
+      expect(coverageOverridesPause(retired(reason)), `${reason} (control)`).toBe(true);
+    }
+  });
+
+  it("on the bundled data: Montgomery KY (21173) overrides, Shelby TN (47157) does not, and no served county does", () => {
+    const byFips = (fips: string) => all.find((c) => c.countyFips === fips);
+    expect(byFips("21173")?.coverage?.reason).toBe("login-required");
+    expect(coverageOverridesPause(byFips("21173"))).toBe(true);
+    expect(byFips("47157")?.coverage?.reason).toBe("licence-restricted");
+    expect(coverageOverridesPause(byFips("47157"))).toBe(false);
+    expect(all.filter((c) => countyHasEndpoint(c) && coverageOverridesPause(c)).map((c) => c.id)).toEqual([]);
+  });
+
+  it("on the bundled data: every retired record carries `endpoints: []`, and every one with a reason other than licence-restricted still overrides", () => {
+    const retiredRecords = all.filter((c) => c.hasPublicRest === false);
+    expect(retiredRecords.length).toBeGreaterThanOrEqual(20);
+    for (const c of retiredRecords) expect(c.endpoints, c.id).toEqual([]);
+    const overriding = retiredRecords.filter((c) => !!c.coverage?.reason && c.coverage.reason !== "licence-restricted");
+    expect(overriding.length).toBeGreaterThanOrEqual(20);
+    for (const c of overriding) expect(coverageOverridesPause(c), c.id).toBe(true);
+    for (const c of retiredRecords.filter((x) => !overriding.includes(x))) expect(coverageOverridesPause(c), c.id).toBe(false);
+  });
+
+  it("is exported from the package entry", () => {
+    expect(pkgEntry.coverageOverridesPause).toBe(coverageOverridesPause);
   });
 });
 

@@ -13,6 +13,7 @@ import {
   ATLAS_COUNTY_PAGE_BASE,
   PRESET_FLAGS,
   accessBlocks,
+  countyDownMessage,
   discoverySafeContact,
   discoverySafeUrl,
   flagsFor,
@@ -21,6 +22,23 @@ import {
   presetOf,
   type AccessFlags,
 } from "../src/access.js";
+
+describe("countyDownMessage", () => {
+  it("names the county's end, says nothing about money, and is exported from the package entry", () => {
+    const text = countyDownMessage("Fulton County");
+    expect(text).toBe(
+      "Fulton County's GIS server is down on the county's end, so its parcel data can't be reached right now. Try again later, or use the county office's own site.",
+    );
+    expect(text).not.toMatch(/charge|bill|refund|quota/i);
+    expect(pkgEntry.countyDownMessage).toBe(countyDownMessage);
+  });
+
+  it("without a county name it says 'The county's'", () => {
+    expect(countyDownMessage(null)).toMatch(/^The county's GIS server is down on the county's end, /);
+    expect(countyDownMessage(undefined)).toBe(countyDownMessage(null));
+    expect(countyDownMessage("")).toBe(countyDownMessage(null));
+  });
+});
 
 const entry = {
   county_fips: "53011",

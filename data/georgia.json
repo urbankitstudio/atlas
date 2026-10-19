@@ -2,7 +2,7 @@
   "stateSlug": "georgia",
   "stateName": "Georgia",
   "stateAbbrev": "GA",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-18",
   "counties": [
     {
       "id": "ga-fulton",
@@ -16,12 +16,12 @@
       "hasPublicRest": true,
       "endpoints": [
         {
-          "url": "https://gismaps.fultoncountyga.gov/arcgispub2/rest/services/PropertyMapViewer/PropertyMapViewer/MapServer/11",
-          "serviceType": "MapServer",
-          "layerIndex": 11,
-          "layerName": "Tax Parcel",
+          "url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/arcgis/rest/services/Tax_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcels",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
             {
               "name": "ParcelID",
@@ -69,11 +69,11 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://gismaps.fultoncountyga.gov/arcgispub2/rest/services/PropertyMapViewer/PropertyMapViewer/MapServer/11/query?where=UPPER(Owner)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=ParcelID,Owner,Address&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=UPPER(Owner)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=ParcelID,Owner,Address&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
-          "licenseUrl": "https://gisdata.fultoncountyga.gov/",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=e581a072dca9442e884d3682bff03484",
           "status": "live",
-          "lastVerified": "2026-05-11",
+          "lastVerified": "2026-10-18",
           "verifiedBy": "manual"
         }
       ],
@@ -82,7 +82,7 @@
         "url": "https://fultoncountyga.gov/maps",
         "email": null
       },
-      "notes": "372,900 polygon tax parcels covering Atlanta and the rest of Fulton County. Verified 2026-05-11: UPPER(Owner) LIKE '%SMITH%' returns real owners with full Atlanta-area site addresses (e.g., '6760 JULES TRC', '528 SOUTH MAIN ST'). Owner names use last-name-first concatenated format (e.g., 'SMITH FAITH L SMITH MARIO D' for joint ownership). Both site address AND owner mailing address are exposed. Layer 11 of the PropertyMapViewer composite, neighbor layers include 'Tax Parcel Address Labels' (id 9) for cartographic use. On 41 rows the owner is the county's RESTRICTED marker rather than a name, and the atlas withholds those rows."
+      "notes": "REPOINTED 2026-10-18 to Fulton County GIS's own ArcGIS Online copy of the tax parcels (item e581a072dca9442e884d3682bff03484, owner Fulton_County_GIS, public, last edited 2026-09-22): Tax_Parcels/FeatureServer/0 on services1.arcgis.com, 373,306 polygon tax parcels covering Atlanta and the rest of Fulton County, TaxYear 2026, the same schema as the former PropertyMapViewer layer 11, maxRecordCount 1,000, pagination on, CORS open (Access-Control-Allow-Origin: *). Use the unsuffixed Tax_Parcels service, not the Tax_Parcels_2025 or Tax_Parcels_2024 snapshots beside it. It replaces the county's on-premises server gismaps.fultoncountyga.gov, which stopped accepting connections on ports 443 and 80 on 2026-10-18 (autoheal #1082). Verified 2026-10-18: UPPER(Owner) LIKE '%SMITH%' returns real owners with full Atlanta-area site addresses (e.g., '6760 JULES TRC', '528 SOUTH MAIN ST'). Owner names use last-name-first concatenated format (e.g., 'SMITH FAITH L SMITH MARIO D' for joint ownership). Both site address AND owner mailing address are exposed. On 42 rows the owner is the county's RESTRICTED marker rather than a name, and the atlas withholds those rows."
     },
     {
       "id": "ga-cobb",

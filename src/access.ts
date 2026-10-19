@@ -349,4 +349,19 @@ export function pausedAnswer(
   };
 }
 
+/**
+ * The one sentence every surface gives for a county whose own GIS server is
+ * down: the liveness probe observed `down`, the operator paused it with reason
+ * `upstream-broken`, or a county query failed on the county's side
+ * (`county-unavailable`). It names the county's end, not ours, and says nothing
+ * about money: whether a call was charged is that call's fact, so each surface
+ * appends its own conditional charge clause (the enrichment-billing.ts rule).
+ * `countyName` is the name as that surface shows it ("Fulton", "Kane County");
+ * unknown, the sentence says "The county's".
+ */
+export function countyDownMessage(countyName: string | null | undefined): string {
+  const whose = countyName ? `${countyName}'s` : "The county's";
+  return `${whose} GIS server is down on the county's end, so its parcel data can't be reached right now. Try again later, or use the county office's own site.`;
+}
+
 // CORE-COPY-END

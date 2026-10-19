@@ -44,6 +44,7 @@ export {
   countyHasEndpoint,
   coverageAnswer,
   coverageAnswerText,
+  coverageOverridesPause,
   requestHint,
 } from "./coverage.js";
 export type {
@@ -63,7 +64,8 @@ export type {
 // surface flags, the presets, the reasons and the answer the hosted MCP, the
 // REST API and the `uks` CLI give. Which counties are paused is live data from
 // the hosted API (/api/atlas/status), not bundled here, so a pause or un-pause
-// needs no release.
+// needs no release. countyDownMessage is the one sentence for a county whose
+// own server is down (observed health, or a county-side query failure).
 export {
   ACCESS_FLAGS,
   ACCESS_PRESETS,
@@ -71,6 +73,7 @@ export {
   ATLAS_COUNTY_PAGE_BASE,
   PRESET_FLAGS,
   accessBlocks,
+  countyDownMessage,
   flagsFor,
   pausedAnswer,
   pausedFlags,

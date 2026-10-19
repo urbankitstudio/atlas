@@ -2,7 +2,7 @@
   "stateSlug": "north-carolina",
   "stateName": "North Carolina",
   "stateAbbrev": "NC",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-18",
   "counties": [
     {
       "id": "nc-wake",
@@ -5209,6 +5209,208 @@
         "email": null
       },
       "notes": "Yancey County, North Carolina (FIPS 37199). Served by NC OneMap's statewide parcel layer (NC1Map_Parcels MapServer layer 1, \"Parcels (polys)\", on services.nconemap.gov), which the NC Center for Geographic Information and Analysis (NC CGIA) compiles through the NC Integrated Cadastral Data Exchange by transforming each county's assessor data; credit the Yancey County tax assessor's office and NC OneMap (NC CGIA). The layer carries all 100 counties (5,938,900 rows), so every attribute search here is scoped with cntyname = 'Yancey' (17,378 rows read 2026-10-17; cntyfips = '199' selects the same rows). Informational only and not a legal record: verify with the Yancey County tax office, whose roll is the authoritative source. The layer pages with resultOffset and resultRecordCount and returns up to 5,000 rows per request; the county-scoped parcel-number lookups we ran on 2026-10-17 answered in 2.0 to 2.8 s. Share of the county's rows filled, read 2026-10-17: parno 99.9%, ownname 99.5%, siteadd 99.5%, gisacres above zero 99.7%; not listed because under 50%: scity 0.0%, szip 0.0%, parval above zero 0.0%, parusedesc 0.0%. Mailing address columns mapped: mailadd is filled on 100.0% of rows. We read 25 values on 2026-10-17; 22 were street-like (a house number or a PO Box), under the 90% the atlas requires. A second sample of 50 rows from a later objectid window came back 46 of 50, so the columns are mapped; mcity, mstate and mzip are mapped with them. No field in the layer dates the county's roll; the state transformed this county's data in May 2026 (transfdate), so lastVerified is our probe date, not a data date. CORS: the server echoes the request Origin, so browser tools call it directly. License: NC OneMap's terms (https://www.nconemap.gov/pages/terms) state a free and unrestricted use policy, need no written release and carry no warranty; cite NC OneMap and NC CGIA.",
+      "addedAt": "2026-10-17"
+    },
+    {
+      "id": "nc-hoke",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Hoke",
+      "countySlug": "hoke-county",
+      "countyFips": "37093",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.hokecounty.org/server/rest/services/OperationalLayers/MapServer/6",
+          "serviceType": "MapServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TWN_PIN",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_NA_1",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "PHY_ADDRES",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "MAILING_AD",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "MAILING__1",
+              "label": "Owner Mailing Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "CITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "STATE_OR_C",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "ZIP_CODE",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "CAL_ACRES",
+              "label": "Acres (calculated)",
+              "searchable": false
+            },
+            {
+              "name": "COST_TOTAL",
+              "label": "Cost Total Value",
+              "searchable": false
+            },
+            {
+              "name": "DEED_DATE2",
+              "label": "Deed Date",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 1000,
+          "sampleQuery": "https://maps.hokecounty.org/server/rest/services/OperationalLayers/MapServer/6/query?where=TWN_PIN+%3D+'494660201528'&outFields=TWN_PIN,OWNER_NAME,PHY_ADDRES,MAILING_AD,MAILING__1,CITY,STATE_OR_C,ZIP_CODE,CAL_ACRES,COST_TOTAL,DEED_DATE2&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://hokecounty.net/239/GIS",
+          "status": "live",
+          "lastVerified": "2026-10-17",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Hoke County GIS (ConnectGIS)",
+        "url": "https://hokecounty.net/239/GIS",
+        "email": null
+      },
+      "notes": "Hoke County, North Carolina (FIPS 37093; county seat Raeford). Served by the county's own ArcGIS Server (maps.hokecounty.org): OperationalLayers MapServer layer 6, \"Parcels\", 29,570 rows. The NC OneMap statewide layer the other 83 NC counties use has no owner or address values for Hoke, so this record points at the county's layer. Informational only and not a legal record: verify with the county. Verified 2026-10-17: the layer extent is 79.46 to 79.03 W and 34.82 to 35.12 N, and a point at Raeford intersects one parcel. Share of rows filled, read 2026-10-17 (a value of only spaces counted as blank): TWN_PIN 100.0%, OWNER_NAME 99.7%, OWNER_NA_1 49.3%, PHY_ADDRES 99.3%, STREET_NUM 77.1%, MAILING_AD 99.3% (97.2% of those start with a house number or a PO Box), MAILING__1 4.2%, CITY 99.4%, STATE_OR_C 99.4%, ZIP_CODE 99.6%, CAL_ACRES 100.0%, COST_TOTAL above zero 99.7%, DEED_DATE2 99.6%. 95 rows have no owner. One TWN_PIN appears on two rows. The layer has no site-city or site-ZIP column: CITY, STATE_OR_C and ZIP_CODE are the owner's mailing city, state and ZIP (the layer's STATE_OR_C holds NC on 27,499 rows, OH on 270 and NY on 199, and CITY holds RAEFORD on 18,741). PHY_ADDRES is the site street line: STREET_NUM and STREET_NAM joined by a space (3,958 of 3,959 rows with a house number match, over the first 5,990 filled rows), and the street name alone on the 22.4% of filled rows that have no house number. It holds no city. COST_TOTAL is published without a definition; the atlas lists it as published. The latest deed date (DEED_DATE) is 2026-04-23; no field dates the roll itself, so lastVerified is our probe date, not a data date. The layer pages with resultOffset and resultRecordCount and returns up to 1,000 rows per request; the parcel-number sample answered in 0.1 s. CORS: the server echoes the request Origin (Vary: Origin), so browser tools call it directly. License: unknown. The county publishes no license text for this layer. The county's GIS page (the licenseUrl) carries a liability notice: \"Hoke County, Withers & Ravenel, ConnectGIS and other mapping companies assume no legal responsibility for the information contained in this system\", and says the system \"has been prepared for the inventory of real property found within this jurisdiction and is compiled from recorded deeds, plats, and other public records and data\". It places no limit on use.",
+      "addedAt": "2026-10-17"
+    },
+    {
+      "id": "nc-swain",
+      "state": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "county": "Swain",
+      "countySlug": "swain-county",
+      "countyFips": "37173",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/bAaHaqP9BvQhS7eE/arcgis/rest/services/Swain_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcel_Polygons_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PARCEL_ID",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "Name__1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Name__2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "ParcelPropertyAddress",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "Address_Line_1",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "Address_Line_2",
+              "label": "Owner Mailing Address Line 2",
+              "searchable": false
+            },
+            {
+              "name": "City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Zip_Code",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Acreage",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "Land_Value_Parcel",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Building_Value_Parcel",
+              "label": "Building Value",
+              "searchable": false
+            },
+            {
+              "name": "Total_Assessed_Value",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Deed_Date",
+              "label": "Deed Date",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services3.arcgis.com/bAaHaqP9BvQhS7eE/arcgis/rest/services/Swain_County_Parcels/FeatureServer/0/query?where=PARCEL_ID+%3D+'666204649084'&outFields=PARCEL_ID,Name__1,Name__2,ParcelPropertyAddress,Address_Line_1,Address_Line_2,City,State,Zip_Code,Acreage,Land_Value_Parcel,Building_Value_Parcel,Total_Assessed_Value,Deed_Date&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.swaincountync.gov/mapping-and-gis/",
+          "status": "live",
+          "lastVerified": "2026-10-17",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Swain County GIS / Mapping",
+        "url": "https://www.swaincountync.gov/mapping-and-gis/",
+        "email": "Mapping@swaincountync.gov"
+      },
+      "notes": "Swain County, North Carolina (FIPS 37173; county seat Bryson City). Served by the county GIS office's ArcGIS Online feature service (services3.arcgis.com, item owner swaincountygis): Swain_County_Parcels FeatureServer layer 0, \"Parcel_Polygons_Public\", 13,554 rows, last edited 2026-09-29. The NC OneMap statewide layer the other 83 NC counties use has no parcel numbers for Swain, so this record points at the county's layer. Informational only and not a legal record: the county item says parcel boundaries are approximate and are not survey-grade. Verified 2026-10-17: the layer extent is 83.97 to 83.14 W and 35.27 to 35.70 N, and a point at Bryson City intersects one parcel. Share of rows filled, read 2026-10-17: PARCEL_ID 99.7%, Name__1 99.5%, Name__2 42.9%, ParcelPropertyAddress 97.9%, Address_Line_1 97.6% (99.2% of those start with a house number or a PO Box), Address_Line_2 2.5%, City 98.2%, State 98.2%, Zip_Code 98.2%, Acreage above zero 99.0%, Land_Value_Parcel above zero 99.3%, Building_Value_Parcel above zero 55.6%, Total_Assessed_Value above zero 99.3%, Deed_Date 90.9%. The layer documents no field meanings. Name__1 (alias \"Name #1\") is read as the owner name and Name__2 as a second owner name; the layer has no site-city or site-ZIP column, and City, State and Zip_Code are the owner's mailing city, state and ZIP (State holds NC on 8,488 rows, FL on 2,384 and GA on 748). 46 rows have no PARCEL_ID and 69 have no Name__1. 599 parcel numbers appear on more than one row (798 extra rows, at most 45 rows under one number), so a parcel-number lookup can return several rows. Deed_Date is text of the form \"m/d/yyyy 12:00:00 AM\". The layer pages and declares maxRecordCount 2000; the parcel-number sample answered in 0.1 s. CORS: the server answers with Access-Control-Allow-Origin *. License: unknown. The county item's license text is a disclaimer only: \"The data is provided by Swain County for informational and general mapping purposes. While efforts are made to maintain accurate and current information, Swain County makes no warranties regarding the accuracy, completeness, or suitability of the data for any particular purpose.\" It places no limit on use. The county's Mapping page (the licenseUrl) lists fees for printed maps made on request (a parcel map with ownership information attached is $100) and states no terms for the online layer.",
       "addedAt": "2026-10-17"
     }
   ]

@@ -1,5 +1,125 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.40 — 2026-10-18
+
+Five counties join, three county records move and one sentence is added. No breaking change. `totals` move
+from 494 counties / 494 endpoints / 467 with an endpoint to 499 / 497 / 470. North Carolina now carries all
+100 of its counties (Hoke and Swain were the two the 0.6.37 release left out), Ohio eleven and Illinois ten.
+
+### New counties
+
+- **Rock Island County, IL** (`il-rock-island`, 17161), from the county GIS department's ArcGIS Online
+  feature service (services9.arcgis.com, item 9cae8a64ab0e4cea99758f741ca43b3c, "Parcels", owner
+  thirty34jb, the county GIS account): `Parcels` FeatureServer layer 0, `parcel_layer`, 65,948 rows, last
+  edited 2026-10-01, tax year 2025. The county's own host, gis.rockislandcountyil.gov
+  (`Hosted/Parcels/FeatureServer/0`), now answers "Token Required", so the record points at the ArcGIS
+  Online copy. Searchable by `parcel_number`, `owner1_name`, `taxbill_name`, `site_address`, `Site_City`
+  and `owner1_address1`; the layer also carries the owner and tax-bill mailing addresses, the assessed
+  values (EMV, EAV, farm and non-farm land and building), the last sale, class, township, legal
+  description, zoning, year built and square footage. 65,763 rows carry a parcel number and every one of
+  them an owner name; 58,640 carry a site address. The native spatial reference is Illinois State Plane
+  West, feet (WKID 3436), so a point query passes `inSR=4326`; the layer pages, declares
+  `maxRecordCount: 2000` and answers with CORS open. `license: "public"`: the item's license text reads
+  "For use by the general public", and the county's Data Release Policy is as-is and no-warranty with a
+  source credit of Rock Island County GIS, no resale ban and no fee stated. Credit Rock Island County GIS.
+  Verified 2026-10-18.
+- **Hoke County, NC** (`nc-hoke`), from the county's ArcGIS Server
+  (`maps.hokecounty.org`, `OperationalLayers` MapServer layer 6, "Parcels",
+  29,570 rows). The NC OneMap statewide layer has no owner or address values for
+  Hoke. Searchable by `TWN_PIN`, `OWNER_NAME` and `PHY_ADDRES`; it also lists the
+  second owner name, the owner's mailing lines (`MAILING_AD`, `MAILING__1`) with
+  `CITY`, `STATE_OR_C` and `ZIP_CODE`, calculated acres, `COST_TOTAL` (the layer
+  gives no definition) and the deed date. The layer has no site-city or site-ZIP
+  column: `CITY`, `STATE_OR_C` and `ZIP_CODE` are the owner's mailing city, state
+  and ZIP. It pages and declares `maxRecordCount: 1000`. 95 rows have no owner,
+  and one parcel number repeats. `license: "unknown"`: the county publishes no
+  license text, only a liability notice on its GIS page.
+- **Swain County, NC** (`nc-swain`), from the county GIS office's ArcGIS Online
+  feature service (`Swain_County_Parcels` FeatureServer layer 0,
+  `Parcel_Polygons_Public`, 13,554 rows, last edited 2026-09-29). The NC OneMap
+  statewide layer has no parcel numbers for Swain. Searchable by `PARCEL_ID`,
+  `Name__1` (the owner name, which the layer does not define) and
+  `ParcelPropertyAddress`; it also lists the second name, the owner's mailing
+  lines and city, state and ZIP (the layer has no site city), acres, land,
+  building and total assessed value, and the deed date. 599 parcel numbers repeat
+  across rows (798 extra rows, at most 45 under one number) and 46 rows have none.
+  `license: "unknown"`: the county item's license text is a warranty disclaimer
+  that places no limit on use.
+- **Licking County, OH** (`oh-licking`), from the county's own ArcGIS Server
+  (`gis.lickingcounty.gov`, `Auditor/Parcels` MapServer layer 0, 83,782 rows; the
+  latest transfer is dated 2026-10-15). Searchable by `Parcel`, `OwnerName` and
+  `SiteAddress`; it also lists the site city and ZIP, the four owner mailing
+  columns, municipality, township, tax acres, land use, property class, market
+  and net total value, year built, and the latest transfer date and amount. 1,189
+  rows are shapes with no auditor record, and every parcel number is unique. The
+  layer pages and declares `maxRecordCount: 2000`. `corsEnabled: true`: on
+  2026-10-17 the server echoed the request origin on the layer and on `/query`,
+  though an earlier probe the same day found no CORS header. `license: "unknown"`:
+  the county's GIS downloads page carries a reference-only, no-warranty
+  disclaimer and states no limit on redistribution.
+- **Madison County, OH** (`oh-madison`), from the County Engineer's ArcGIS Online
+  feature service (`Parcels_Engineer` FeatureServer layer 13,
+  `Parcels_Parcels_join`, 25,931 rows, last edited 2026-10-15), which joins the
+  Engineer's parcels to the Auditor's. Searchable by `TAXPIN` (the auditor's
+  parcel number; `PARCEL_NO` is the Engineer's own sequence number and repeats on
+  up to 223 rows, so it is not listed), `NAME` (the owner), and the site address,
+  which the layer splits into `Number` and `Street` (the bare street name, with no
+  street type). It also lists the site city and ZIP (blank on 40.4% of rows), the
+  owner's mailing street, city, state and ZIP (`Owner_Cont`, `Owner_Co_1`,
+  `Owner_Co_4`, `Owner_Co_5`; the layer's `Taxpayer_*` columns are a different,
+  tax-bill address and are not listed), acres, the transfer date and the tax
+  district. 287 rows carry the placeholder parcel numbers 99-99999.999 and
+  88-88888.888 and no owner, and 1,600 other parcel numbers repeat across rows, so
+  a parcel-number lookup can return several rows. `license: "unknown"`: the
+  parcel item and the county's GIS Data Download hub state no terms, while two
+  other items in the same ArcGIS Online organization (the Comprehensive Plan
+  layers) carry a notice ending "Reproduction in any form is prohibited without
+  the expressed consent of Madison County"; the record's notes quote both.
+
+The four records probed on 2026-10-17 carry in their `notes` the share of rows filled for every column the
+atlas lists, read that day, and the extent and county-seat checks (each layer's extent falls inside its
+county, and a point or box at the county seat intersects parcels). `lastVerified` is the probe date, not a
+data date: none of those four layers dates its roll. Each answered one bounded query again on 2026-10-18.
+
+### Records moved
+
+- **Fulton County GA (13121) repointed.** The county's on-premises server (gismaps.fultoncountyga.gov,
+  PropertyMapViewer layer 11) stopped accepting connections on 2026-10-18. The record now points at Fulton County
+  GIS's own ArcGIS Online copy of the tax parcels, `Tax_Parcels/FeatureServer/0` on services1.arcgis.com (item
+  e581a072dca9442e884d3682bff03484, owner Fulton_County_GIS, public, last edited 2026-09-22): 373,306 parcels,
+  TaxYear 2026, the same nine fields with the same labels, maxRecordCount 1,000, pagination on, CORS open. The
+  42 rows whose owner reads RESTRICTED stay withheld. Use the unsuffixed `Tax_Parcels` service, not the
+  `Tax_Parcels_2025` and `Tax_Parcels_2024` snapshots beside it.
+- **Greenville County SC (45045) retired, with the reason.** `hasPublicRest: false`, `endpoints: []`,
+  `coverage.reason: "owner-data-sold"`, checked 2026-10-18: the county removed every public map service from
+  gcgis.org (the services root lists none; the registered layer answers "Service not found") and sells its tax
+  parcels with ownership as countywide vector data on a USB drive, $500 in shapefile format, under a data order
+  form and release agreement; `coverage.countyProduct` carries that page. Owner lookups are on the county's
+  Real Property Search, and no statewide South Carolina layer carries owner names. The record had been
+  `unreachable` since 2026-08-29.
+- **Montgomery County KY (21173) retired, with the reason.** `coverage.reason: "login-required"`, checked
+  2026-10-18: around 2026-10-15 the county's GIS host, the Gateway Area Development District, made the
+  `Montgomery_Parcels` FeatureServer private, and the layer now answers "Token Required". The organisation's
+  public layers carry no owner names. `contact.url` is the county's site. The county's KRS 61.874 pause on paid
+  surfaces is live data from the hosted API and is unchanged.
+- **`countyDownMessage(countyName)`**: the one sentence every surface gives when a county's own GIS server is
+  down (the liveness probe observed `down`, the operator paused the county with reason `upstream-broken`, or a
+  query failed on the county's side): "Fulton County's GIS server is down on the county's end, so its parcel data
+  can't be reached right now. Try again later, or use the county office's own site." Without a name it reads
+  "The county's GIS server…". It says nothing about money: whether a call was charged is that call's fact, so each
+  surface appends its own charge clause. Exported from the package entry. On the hosted REST API, a lookup on
+  a county whose own server the liveness probe currently reads as down is served with this sentence and is
+  not charged on any tier (Leo, call 11, 2026-10-18); a reading older than six hours, or none, charges as
+  before.
+- **`coverageOverridesPause(record)`**: true for a record with no endpoint whose `coverage.reason` is
+  anything but `licence-restricted`. The hosted API's lookup, county and MCP discovery tools answer such a
+  county with its `coverage` block even while the county access switch pauses it: the pause exists for a
+  county we could serve, and this one has nothing to serve, so the record's own reason is the honest answer
+  (Montgomery KY). A licence-restricted retired county (Shelby TN) keeps the paused answer, and a county
+  whose endpoint returns is paused again with no edit to the switch. A contradictory record
+  (`hasPublicRest: false` beside a non-empty `endpoints` array, a shape `validate-atlas` rejects) keeps the
+  pause too, so an override never serves endpoints the record itself lists. Exported from the package entry.
+
 ## 0.6.39 — 2026-10-18
 
 The paused-county answer. No breaking change, no data change, `totals` unchanged.

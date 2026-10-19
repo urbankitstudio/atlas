@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-18",
   "totals": {
     "states": 51,
-    "counties": 494,
-    "endpoints": 494,
-    "countiesWithEndpoint": 467,
+    "counties": 499,
+    "endpoints": 497,
+    "countiesWithEndpoint": 470,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -117,8 +117,8 @@
       "slug": "illinois",
       "name": "Illinois",
       "abbrev": "IL",
-      "countyCount": 9,
-      "endpointCount": 8,
+      "countyCount": 10,
+      "endpointCount": 9,
       "populated": true
     },
     {
@@ -150,7 +150,7 @@
       "name": "Kentucky",
       "abbrev": "KY",
       "countyCount": 24,
-      "endpointCount": 17,
+      "endpointCount": 16,
       "populated": true
     },
     {
@@ -277,8 +277,8 @@
       "slug": "north-carolina",
       "name": "North Carolina",
       "abbrev": "NC",
-      "countyCount": 98,
-      "endpointCount": 98,
+      "countyCount": 100,
+      "endpointCount": 100,
       "populated": true
     },
     {
@@ -293,8 +293,8 @@
       "slug": "ohio",
       "name": "Ohio",
       "abbrev": "OH",
-      "countyCount": 9,
-      "endpointCount": 8,
+      "countyCount": 11,
+      "endpointCount": 10,
       "populated": true
     },
     {
@@ -334,7 +334,7 @@
       "name": "South Carolina",
       "abbrev": "SC",
       "countyCount": 3,
-      "endpointCount": 3,
+      "endpointCount": 2,
       "populated": true
     },
     {

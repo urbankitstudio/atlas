@@ -2,7 +2,7 @@
   "stateSlug": "south-carolina",
   "stateName": "South Carolina",
   "stateAbbrev": "SC",
-  "lastUpdated": "2026-10-10",
+  "lastUpdated": "2026-10-18",
   "counties": [
     {
       "id": "sc-greenville",
@@ -12,45 +12,23 @@
       "county": "Greenville",
       "countySlug": "greenville-county",
       "countyFips": "45045",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://www.gcgis.org/arcgis/rest/services/GreenvilleJS/Map_Layers_JS/MapServer/52",
-          "serviceType": "MapServer",
-          "layerIndex": 52,
-          "layerName": "Tax Parcel",
-          "supportsQuery": true,
-          "corsEnabled": null,
-          "searchFields": [
-            { "name": "PIN", "label": "Parcel Identification Number", "searchable": true },
-            { "name": "OWNAM1", "label": "Owner Name 1", "searchable": true },
-            { "name": "OWNAM2", "label": "Owner Name 2", "searchable": false },
-            { "name": "STREET", "label": "Street Address", "searchable": true },
-            { "name": "CITY", "label": "City", "searchable": false },
-            { "name": "STATE", "label": "State", "searchable": false },
-            { "name": "ZIP5", "label": "ZIP Code", "searchable": false },
-            { "name": "NAMECO", "label": "County Name", "searchable": false },
-            { "name": "POWNNM", "label": "Previous Owner Name", "searchable": false },
-            { "name": "DEEDDATE", "label": "Deed Date", "searchable": false },
-            { "name": "DIST", "label": "Tax District", "searchable": false },
-            { "name": "LANDUSE", "label": "Land Use Code", "searchable": false },
-            { "name": "DESCR", "label": "Description", "searchable": false },
-            { "name": "SUBDIV", "label": "Subdivision", "searchable": false }
-          ],
-          "sampleQuery": "https://www.gcgis.org/arcgis/rest/services/GreenvilleJS/Map_Layers_JS/MapServer/52/query?where=UPPER(OWNAM1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,OWNAM1,STREET,CITY,STATE,ZIP5&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://www.gcgis.org/",
-          "status": "unreachable",
-          "lastVerified": "2026-08-29",
-          "verifiedBy": "manual"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Greenville County GIS Division",
         "url": "https://www.gcgis.org/",
         "email": "gis@greenvillecounty.org"
       },
-      "notes": "RECHECKED 2026-10-03, STILL UNREACHABLE, now for a structural reason. The GreenvilleJS folder has been deleted, not just stopped: the registered layer now answers Service GreenvilleJS/Map_Layers_JS/MapServer not found (it said not started on 08-29) and the folder itself returns Folder not found. The services root (www.gcgis.org/arcgis/rest/services) lists only a GVL_COMPOSITE_LOC geocoder and a Utilities folder of geoprocessing, geometry and print tools; GCGIA/Greenville_Base is gone too. The county rebuilt its viewer (www.gcgis.org/apps/greenvillenj/) on a private, undocumented ASP.NET web API (apps/GreenvilleNJ_webapi/asp/webAPI) that accepts POST only and is not an ArcGIS REST service the atlas can register. Candidates checked and rejected: the Greenville-Pickens transportation study's TaxParcel02172021_gdb FeatureServer (countywide with the county schema and owner search, but a February 2021 snapshot, too stale for mailed notices); the GreenvilleCountyBaseData FeatureServer by mwassonfigis (current schema but only about 33,000 of about 228,000 parcels, a partial extract); the City of Greenville Parcels with Ownership layer on citygis.greenvillesc.gov (city jurisdiction only); and a utility.arcgis.com proxy of the county's GCGIA feature service (Item does not exist or is inaccessible). No South Carolina statewide owner-bearing parcel layer was found. Status stays unreachable; recheck the services root periodically for a new parcel service and re-register from it. Earlier history: MARKED UNREACHABLE 2026-08-29 after 25 days down (297 consecutive liveness failures since 2026-08-04). The registered service answers verbatim \"Service GreenvilleJS/Map_Layers_JS/MapServer not started\"; the county's own iMAP service (imap/iMAP/MapServer) is also not started; the GreenvilleJS and imap folders list no services; the one visible service (GCGIA/Greenville_Base, 61 layers) has no parcel layer; ArcGIS Hub lists no county-owned parcel feature service. The county has taken its map services down and nothing replaces them yet. Liveness keeps probing; flip back to live when it recovers. Owner search remains available at the county's non-GIS Real Property Search. Prior notes: Greenville County (pop. 530,000; seat: Greenville) Tax Parcel layer is within the Map_Layers_JS composite MapServer at layer index 52. 20 fields confirmed: PIN, OWNAM1/2, STREET, CITY, STATE, ZIP5, NAMECO, POWNNM, DEEDDATE, CUBOOK, CUPAGE, PLTBK1, PPAGE1, DIST, MKTAREA, JURIS, LANDUSE, DESCR, SUBDIV. Verified 2026-05-15: SMITH returns Greenville SC addresses (e.g., '124 MCDANIEL GREENE', '218 BUTLER AVE'). The same MapServer contains 95+ other layers (zoning, census, drainage, etc.). Layer 52 is specifically Tax Parcel. The GCGIS GreenvilleJS MapServer is the public-facing viewer service."
+      "notes": "RETIRED 2026-10-18, with the reason: Greenville County has removed every public map service from www.gcgis.org (checked 2026-10-18: the services root lists only a Utilities folder and no services, and the registered Tax Parcel layer, GreenvilleJS/Map_Layers_JS/MapServer/52, answers 'Service not found'), and it sells its parcel data instead. The county's GIS Division sells 'Tax Parcels & Ownership Information' as countywide vector data on a USB flash drive, $500 in shapefile format, under a data order form and release agreement (www.gcgis.org/AccessDistribution.html). The rebuilt county viewer (www.gcgis.org/apps/greenvillenj/) runs on a private ASP.NET web API that is not an ArcGIS REST service. No South Carolina statewide parcel layer carries owner names. Owner lookups are on the county's Real Property Search. Re-register if the county publishes a public parcel service again. History: down since 2026-08-04 (297 consecutive liveness failures), marked unreachable 2026-08-29, rechecked 2026-10-03 when the GreenvilleJS folder had been deleted. Candidates checked and rejected on 2026-10-03: the Greenville-Pickens transportation study's TaxParcel02172021_gdb FeatureServer (countywide with the county schema and owner search, but a February 2021 snapshot); the GreenvilleCountyBaseData FeatureServer by mwassonfigis (about 33,000 of about 228,000 parcels); the City of Greenville Parcels with Ownership layer on citygis.greenvillesc.gov (city jurisdiction only); a utility.arcgis.com proxy of the county's GCGIA feature service (inaccessible). Prior record (Greenville County, pop. 530,000, seat Greenville; verified 2026-05-15): Tax Parcel at layer index 52 of the Map_Layers_JS composite MapServer with PIN, OWNAM1/2, STREET, CITY, STATE, ZIP5, NAMECO, POWNNM, DEEDDATE, CUBOOK, CUPAGE, PLTBK1, PPAGE1, DIST, MKTAREA, JURIS, LANDUSE, DESCR and SUBDIV; SMITH returned Greenville SC addresses (e.g., '124 MCDANIEL GREENE', '218 BUTLER AVE').",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Greenville County removed every public map service from gcgis.org and sells its parcel data on USB under a release agreement, so we don't index it. Look owners up on the county's Real Property Search, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-18",
+        "countyProduct": {
+          "name": "Greenville County GIS data (tax parcels with ownership, countywide vector data on USB)",
+          "url": "https://www.gcgis.org/AccessDistribution.html"
+        }
+      }
     },
     {
       "id": "sc-charleston",
