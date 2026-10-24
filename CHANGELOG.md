@@ -1,5 +1,27 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.41 — 2026-10-24
+
+New Jersey: owner names and owner mailing addresses are withheld for all six counties. Data change only, no
+code or API change, and no county joins or leaves (`totals` do not move).
+
+- **All six NJ counties** (Bergen 34003, Camden 34007, Essex 34013, Monmouth 34025, Morris 34027, Ocean 34029)
+  now carry `capabilityOverrides.owner_name` and `capabilityOverrides.owner_mailing_address` as `restricted`,
+  citing Daniel's Law (N.J.S.A. 56:8-166.1, P.L. 2020, c.125, as amended), which restricts disclosure of
+  the home addresses of judicial officers, law enforcement officers, child protective investigators and
+  prosecutors, and their household family members. A parcel layer does not identify which parcels belong to
+  those persons, so the package leaves both roles out. `ownerFieldNote` is added on Monmouth and extended on
+  the other five.
+- The mailing columns (`ST_ADDRESS`, `CITY_STATE`, `ZIP_CODE`) are dropped from `searchFields` and
+  `sampleQuery` on Bergen, Camden, Essex, Morris and Ocean. On Monmouth the owner columns (`Owner_Name`,
+  `Owner_Street`, `Owner_Csz`) are dropped, and `sampleQuery` now searches `Location` instead of
+  `Owner_Name`. Anything that reads these records to build an owner or mailing query for an NJ county now
+  finds no such field and a `restricted` status.
+- Monmouth's earlier note described Daniel's Law as covering domestic-violence victims and cited
+  P.L. 2021, c.371. Both are corrected: the statute covers the groups above and is cited as above.
+- Consumers of this package (the stdio MCP server `@urbankitstudio/mcp-atlas` among them) pick the change up
+  on a dependency bump to 0.6.41.
+
 ## 0.6.40 — 2026-10-18
 
 Five counties join, three county records move and one sentence is added. No breaking change. `totals` move
