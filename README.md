@@ -266,19 +266,33 @@ a row with `withheld: "county-redacted"`. Ector (`conf_flg`, `"1"`) carries a fo
 guess: the column was 0 on every row when measured, so the marker names a value the
 county has not yet published (the record's `notes` say so).
 
-In a `where` clause, a one-character value needs `NOT LIKE '%<value>%'` (an
-equality test keeps Harris's `"YNNNNNNNNN"` rows) and a longer value `<> '<value>'`.
-Harris's 470,972 unflagged blank cells are spaces (`"          "`), not NULL, and
-`NOT LIKE '%Y%'` keeps them; a real NULL cell fails either clause, so that row drops
-out (fail-closed, like a row that lacks the column).
+In a `where` clause, cast the column to text first: a one-character value needs
+`CAST(<field> AS VARCHAR(255)) NOT LIKE '%<value>%'` (an equality test keeps
+Harris's `"YNNNNNNNNN"` rows), and that includes Collin's `"T"`; a longer value
+needs `CAST(<field> AS VARCHAR(255)) <> '<value>'`. The cast is required:
+Ector's `conf_flg` is an integer, and `conf_flg NOT LIKE '%1%'` answers there
+with an ArcGIS error (code 400, inside an HTTP 200 response, so a client that
+checks only the HTTP status misses it), while the cast form runs on Harris,
+Collin and Ector alike. Do not wrap the column in `TRIM()`: `TRIM(<field>)`
+answers with the same ArcGIS error on all three layers. The SQL route compares
+the untrimmed text, which `NOT LIKE '%<value>%'` does not mind; only a row
+filter in your own code trims. `UPPER(CAST(<field> AS VARCHAR(255)))` also runs
+on all three if you want the comparison case-blind. Measured 2026-10-25: Harris
+has 470,972 blank cells that hold spaces, and the clause keeps them; it also has
+5,235 NULL cells, and Collin has 15,003. A NULL cell fails the clause and the
+row drops out; a missing column makes the query fail. The hosted API serves a
+NULL cell as unflagged, so the SQL route and the hosted API differ on those rows
+(Harris 5,235 and Collin 15,003, measured 2026-10-25). Each flagged record's
+`sampleQuery` requests the column and carries the clause.
 
 ```ts
 import { findCountyByFips } from "@urbankitstudio/atlas";
 
 const endpoint = findCountyByFips("48201")!.endpoints[0];
 const flag = endpoint.confidentialFlag; // { field: "confidential_flag", values: ["Y"] }
+const cell = flag ? `CAST(${flag.field} AS VARCHAR(255))` : null;
 const notFlagged = flag
-  ? flag.values.map((v) => (v.length === 1 ? `${flag.field} NOT LIKE '%${v}%'` : `${flag.field} <> '${v}'`)).join(" AND ")
+  ? flag.values.map((v) => (v.length === 1 ? `${cell} NOT LIKE '%${v}%'` : `${cell} <> '${v}'`)).join(" AND ")
   : null;
 const where = notFlagged ? `(${where0}) AND ${notFlagged}` : where0;
 ```

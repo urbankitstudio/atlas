@@ -48,14 +48,20 @@ export interface SearchField {
  * "T"); Ector's (`conf_flg` "1") is the recorded guess, since no flagged row
  * had been observed when it was measured. A row whose flag is set must not be
  * shown or passed on. Either add one clause per value to every query against
- * the layer: for a ONE-character value `AND <field> NOT LIKE '%<value>%'` (HCAD
- * packs one flag per ownership slot into a ten-character string, so
- * "YNNNNNNNNN" is slot 1 confidential and an equality test would keep it), for
- * a longer value `AND <field> <> '<value>'`. Harris's 470,972 unflagged blank
- * cells are spaces ("          "), not NULL, and `NOT LIKE '%Y%'` keeps them; a
- * real NULL cell fails either clause, so that row drops out: fail-closed, like
- * treating a row that lacks the column as flagged (the hosted reader serves a
- * null cell as "no flag recorded"). Or drop the row yourself when the cell, trimmed
+ * the layer: for a ONE-character value
+ * `AND CAST(<field> AS VARCHAR(255)) NOT LIKE '%<value>%'` (HCAD packs one flag
+ * per ownership slot into a ten-character string, so "YNNNNNNNNN" is slot 1
+ * confidential and an equality test would keep it; Collin's "T" takes this
+ * form too), for a longer value `AND CAST(<field> AS VARCHAR(255)) <> '<value>'`.
+ * The CAST is required: Ector's `conf_flg` is an integer and an un-cast LIKE
+ * answers there with an ArcGIS error (code 400, inside an HTTP 200 response).
+ * Never TRIM the column in SQL: `TRIM(<field>)` answers with the same error on
+ * all three layers, so the SQL route compares the untrimmed text
+ * (`UPPER(CAST(<field> AS VARCHAR(255)))` does run). Harris's 470,972 blank
+ * cells hold spaces and the clause keeps them; Harris also has 5,235 NULL cells
+ * and Collin 15,003 (2026-10-25). A NULL cell fails the clause and the row drops
+ * out; a missing column makes the query fail. That is fail-closed, unlike the
+ * hosted reader, which serves a null cell as "no flag recorded". Or drop the row yourself when the cell, trimmed
  * and upper-cased, equals a listed value or, for a one-character value,
  * contains it. Request the column whenever you request the owner, and treat a
  * row that lacks it as flagged. The hosted API and MCP withhold such a row with

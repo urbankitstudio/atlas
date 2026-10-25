@@ -1,5 +1,62 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.44 — 2026-10-25
+
+The three confidential-flagged Texas records' `sampleQuery` URLs exclude flagged owners, and the advised
+`where` clause casts the flag column to text. No type changes; `totals` are unchanged.
+
+### The flagged records' sample queries no longer return flagged owners
+
+In 0.6.43 the `sampleQuery` of `tx-harris`, `tx-collin` and `tx-ector` searched owner names
+(`UPPER(owner) LIKE UPPER('%SMITH%')`) without the flag column in `outFields` and without an exclusion, so
+running a record's own sample could return an owner the county marks confidential under Texas Tax Code
+§25.025. Each now requests the flag column and ANDs the exclusion:
+
+- **Harris** (`tx-harris`): `... AND CAST(confidential_flag AS VARCHAR(255)) NOT LIKE '%Y%'`, outFields gain
+  `confidential_flag`.
+- **Collin** (`tx-collin`): `... AND CAST(GIS_DBO_AD_Entity_confidential_ AS VARCHAR(255)) NOT LIKE '%T%'`,
+  outFields gain `GIS_DBO_AD_Entity_confidential_`.
+- **Ector** (`tx-ector`): `... AND CAST(conf_flg AS VARCHAR(255)) NOT LIKE '%1%'`, outFields gain `conf_flg`.
+
+Measured live 2026-10-25, whole layer (`1=1`, `returnCountOnly`): Harris 1,551,736 rows, 4,830 flagged and
+5,235 with a NULL flag cell, 1,541,671 kept by the clause; Collin 452,384 rows, 1,598 flagged and 15,003
+NULL, 435,783 kept; Ector 77,042 rows, none flagged and none NULL, 77,042 kept. Both sums are exact, so the
+clause drops every flagged row and every NULL cell. Each new sample answers HTTP 200 with 10 rows, the flag
+column present and no flagged row.
+
+`validate-atlas` now fails a record whose endpoint carries `confidentialFlag` and whose `sampleQuery` lacks
+the flag column in `outFields` or the CAST exclusion for each value in its `where`, or whose `where` puts an
+OR before the exclusion at the top level (an OR glued to a number or a bracket, as in `1=1OR 1=0`, counts:
+the server reads it as an OR, and that shape returned all 4,830 flagged Harris rows on 2026-10-25).
+
+### The advised `where` clause casts the column
+
+The 0.6.43 README, type comments and changelog advised `<field> NOT LIKE '%<value>%'`. On Ector, whose
+`conf_flg` is an integer, that answers with an ArcGIS error (code 400, inside an HTTP 200 response, so a
+client that checks only the HTTP status misses it). `CAST(<field> AS VARCHAR(255)) NOT LIKE '%<value>%'` runs
+on all three layers with the same counts. A NULL cell still fails it and the row drops out, and a missing
+column makes the query fail, so the SQL route stays fail-closed. The 0.6.43 entry below also gave Collin `<> 'T'`, which contradicted its own one-character
+rule; Collin's `"T"` takes `NOT LIKE '%T%'` like any one-character value. A longer value still uses
+`CAST(<field> AS VARCHAR(255)) <> '<value>'`.
+
+The SQL route compares the untrimmed text: `TRIM(<field>)` answers with the same ArcGIS error on all three
+layers, so the "trimmed and upper-cased" comparison belongs in a row filter in code.
+`UPPER(CAST(<field> AS VARCHAR(255)))` runs on all three. Each layer reported its column type on
+2026-10-25: Harris `confidential_flag` is a string of length 10, Collin `GIS_DBO_AD_Entity_confidential_` a
+string of length 1, Ector `conf_flg` a small integer. Harris's 470,972 blank cells hold spaces (they match
+`LIKE ' %'`) and the clause keeps them. Separately, Harris has 5,235 NULL cells and Collin 15,003, which
+0.6.43 did not record; the clause drops them.
+
+### The site's owner-search examples for these counties carry the exclusion
+
+On the Texas state page, the Harris owner-search examples (the hand-written FAQ and the state notes) now
+request `confidential_flag` and carry the clause. The generated state FAQ does the same for any state whose
+example county is flagged.
+
+### The tarball carries this changelog
+
+`CHANGELOG.md` joins the package's published `files`; the 0.6.43 tarball had none.
+
 ## 0.6.43 — 2026-10-24
 
 One optional endpoint key and three Texas records that carry it (two measured, one a forward guess). No breaking change; `totals` are unchanged.
@@ -20,10 +77,11 @@ like a row the county redacted itself, and never serve the flag column.
   ten-character string with one Y/N per ownership slot. Measured 2026-10-24 over 1,551,736 rows:
   `'Y         '` 1,658 and `'YNNNNNNNNN'` 3,172 (4,830 flagged, every Y in slot 1), `'NNNNNNNNNN'` 1,066,977,
   `'N         '` 3,721, blank 470,972 (the county's "no flag recorded", not confidential). In a `where` clause:
-  `AND confidential_flag NOT LIKE '%Y%'`.
+  `AND confidential_flag NOT LIKE '%Y%'` (superseded in 0.6.44 by the CAST form).
 - **Collin County, TX** (`tx-collin`): `{ "field": "GIS_DBO_AD_Entity_confidential_", "values": ["T"] }`. The
   layer's alias for the column is "Confidential Flag (t/f)". Measured 2026-10-24: `'T'` on 1,598 of 437,381
-  rows, `'F'` on the rest. In a `where` clause: `AND GIS_DBO_AD_Entity_confidential_ <> 'T'`.
+  rows, `'F'` on the rest. In a `where` clause: `AND GIS_DBO_AD_Entity_confidential_ <> 'T'` (corrected in 0.6.44:
+  `AND CAST(GIS_DBO_AD_Entity_confidential_ AS VARCHAR(255)) NOT LIKE '%T%'`).
 - **Ector County, TX** (`tx-ector`): `{ "field": "conf_flg", "values": ["1"] }`, a forward GUESS, not a
   measurement: its `conf_flg` column (a small integer) was 0 on all 77,042 rows (2026-10-24), so no value
   that means "confidential" has been observed; the marker reads a future non-zero cell as flagged. The
