@@ -4,6 +4,7 @@ export type {
   EndpointStatus,
   VerifiedBy,
   SearchField,
+  ConfidentialFlag,
   EndpointRecord,
   ContactInfo,
   CountyRecord,

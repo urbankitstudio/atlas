@@ -250,6 +250,42 @@ about the registering county before reading such a layer, so a pause on that cou
 holds the service's other layers too. Absent is the other value; `false` is never
 written.
 
+## Some layers flag an owner's record confidential
+
+An endpoint may carry `confidentialFlag: { field, values }` (type `ConfidentialFlag`).
+Texas Tax Code §25.025 lets peace officers, judges, family-violence victims and
+others have their home address kept confidential in appraisal records, and Harris
+(`confidential_flag`, `"Y"`) and Collin (`GIS_DBO_AD_Entity_confidential_`, `"T"`)
+publish those accounts with the owner and a flag column beside it. A row whose
+flag is set must not be shown or passed on. Request the column whenever you
+request the owner, and drop a row whose cell, trimmed and upper-cased, equals a
+listed value or, for a one-character value, contains it (Harris packs one flag per
+ownership slot into a ten-character string: `"YNNNNNNNNN"` is slot 1 confidential).
+Treat a row that lacks the column as flagged. The hosted API and MCP withhold such
+a row with `withheld: "county-redacted"`. Ector (`conf_flg`, `"1"`) carries a forward
+guess: the column was 0 on every row when measured, so the marker names a value the
+county has not yet published (the record's `notes` say so).
+
+In a `where` clause, a one-character value needs `NOT LIKE '%<value>%'` (an
+equality test keeps Harris's `"YNNNNNNNNN"` rows) and a longer value `<> '<value>'`.
+Harris's 470,972 unflagged blank cells are spaces (`"          "`), not NULL, and
+`NOT LIKE '%Y%'` keeps them; a real NULL cell fails either clause, so that row drops
+out (fail-closed, like a row that lacks the column).
+
+```ts
+import { findCountyByFips } from "@urbankitstudio/atlas";
+
+const endpoint = findCountyByFips("48201")!.endpoints[0];
+const flag = endpoint.confidentialFlag; // { field: "confidential_flag", values: ["Y"] }
+const notFlagged = flag
+  ? flag.values.map((v) => (v.length === 1 ? `${flag.field} NOT LIKE '%${v}%'` : `${flag.field} <> '${v}'`)).join(" AND ")
+  : null;
+const where = notFlagged ? `(${where0}) AND ${notFlagged}` : where0;
+```
+
+An absent `confidentialFlag` means the layer publishes no such column, not that no
+owner there is protected.
+
 ## `addedAt` is the one date that never moves
 
 A county may carry `addedAt` (YYYY-MM-DD): the date it entered the atlas. It is

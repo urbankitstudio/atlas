@@ -39,6 +39,33 @@ export interface SearchField {
   searchable: boolean;
 }
 
+/**
+ * The county's own "this owner's record is confidential" column on a layer, and
+ * the values that say so. Texas Tax Code §25.025 lets peace officers, judges,
+ * family-violence victims and others have their home address kept confidential
+ * in appraisal records; Harris (HCAD) and Collin publish the owner anyway with a
+ * flag column beside it (`confidential_flag` "Y", `GIS_DBO_AD_Entity_confidential_`
+ * "T"); Ector's (`conf_flg` "1") is the recorded guess, since no flagged row
+ * had been observed when it was measured. A row whose flag is set must not be
+ * shown or passed on. Either add one clause per value to every query against
+ * the layer: for a ONE-character value `AND <field> NOT LIKE '%<value>%'` (HCAD
+ * packs one flag per ownership slot into a ten-character string, so
+ * "YNNNNNNNNN" is slot 1 confidential and an equality test would keep it), for
+ * a longer value `AND <field> <> '<value>'`. Harris's 470,972 unflagged blank
+ * cells are spaces ("          "), not NULL, and `NOT LIKE '%Y%'` keeps them; a
+ * real NULL cell fails either clause, so that row drops out: fail-closed, like
+ * treating a row that lacks the column as flagged (the hosted reader serves a
+ * null cell as "no flag recorded"). Or drop the row yourself when the cell, trimmed
+ * and upper-cased, equals a listed value or, for a one-character value,
+ * contains it. Request the column whenever you request the owner, and treat a
+ * row that lacks it as flagged. The hosted API and MCP withhold such a row with
+ * `withheld: "county-redacted"`.
+ */
+export interface ConfidentialFlag {
+  field: string;
+  values: string[];
+}
+
 export interface EndpointRecord {
   url: string;
   serviceType: ServiceType;
@@ -130,6 +157,11 @@ export interface EndpointRecord {
    *  value: the server's real cap can change, and `exceededTransferLimit` on
    *  the response is the authority on whether a result was cut. */
   maxRecordCount?: number;
+  /** The layer's own confidential-owner flag column (see {@link ConfidentialFlag}).
+   *  Present on tx-harris, tx-collin and tx-ector (Ector's marker is the
+   *  recorded guess: no flagged row observed yet). Absent means the layer publishes no
+   *  such column, not that no owner there is protected. */
+  confidentialFlag?: ConfidentialFlag;
   sampleQuery: string | null;
   license: LicenseType;
   licenseUrl: string | null;

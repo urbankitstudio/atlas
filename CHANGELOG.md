@@ -1,5 +1,38 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.43 — 2026-10-24
+
+One optional endpoint key and three Texas records that carry it (two measured, one a forward guess). No breaking change; `totals` are unchanged.
+
+### `confidentialFlag` on an endpoint record
+
+`EndpointRecord.confidentialFlag?: { field: string; values: string[] }` (type `ConfidentialFlag`, exported)
+names the county's own confidential-owner column on a layer and the values that mean "confidential". Texas
+Tax Code §25.025 lets peace officers, judges, family-violence victims and others have their home address
+kept confidential in appraisal records; Harris and Collin publish those accounts with the owner and mark them
+in a flag column beside it. A row whose flag is set must not be shown or passed on: request the column
+whenever you request the owner, drop a row whose cell, trimmed and upper-cased, equals a listed value or
+(for a one-character value) contains it, and treat a row that lacks the column as flagged. The hosted REST
+API, the hosted MCP and the site's free tools withhold such a row as `withheld: "county-redacted"`, exactly
+like a row the county redacted itself, and never serve the flag column.
+
+- **Harris County, TX** (`tx-harris`): `{ "field": "confidential_flag", "values": ["Y"] }`. The column is a
+  ten-character string with one Y/N per ownership slot. Measured 2026-10-24 over 1,551,736 rows:
+  `'Y         '` 1,658 and `'YNNNNNNNNN'` 3,172 (4,830 flagged, every Y in slot 1), `'NNNNNNNNNN'` 1,066,977,
+  `'N         '` 3,721, blank 470,972 (the county's "no flag recorded", not confidential). In a `where` clause:
+  `AND confidential_flag NOT LIKE '%Y%'`.
+- **Collin County, TX** (`tx-collin`): `{ "field": "GIS_DBO_AD_Entity_confidential_", "values": ["T"] }`. The
+  layer's alias for the column is "Confidential Flag (t/f)". Measured 2026-10-24: `'T'` on 1,598 of 437,381
+  rows, `'F'` on the rest. In a `where` clause: `AND GIS_DBO_AD_Entity_confidential_ <> 'T'`.
+- **Ector County, TX** (`tx-ector`): `{ "field": "conf_flg", "values": ["1"] }`, a forward GUESS, not a
+  measurement: its `conf_flg` column (a small integer) was 0 on all 77,042 rows (2026-10-24), so no value
+  that means "confidential" has been observed; the marker reads a future non-zero cell as flagged. The
+  record's `notes` say so.
+
+`validate-atlas` requires the field to read as a confidentiality flag (`conf`), not as an owner, mailing,
+situs or id column, and the values to be in their trimmed upper-case form; every registration of one layer
+URL must carry the same marker.
+
 ## 0.6.42 — 2026-10-24
 
 One county joins, one county is recorded as unreachable, two county records are retired, the county office's
