@@ -88,6 +88,8 @@
       "city": "San Francisco",
       "state": "California",
       "stateAbbrev": "CA",
+      "countyName": "San Francisco County",
+      "countySlug": "san-francisco-county",
       "populated": true,
       "provider": "DataSF (Socrata)",
       "datasets": [

@@ -45,7 +45,8 @@
           "licenseUrl": "https://vcgi.vermont.gov/data-and-programs/parcel-program",
           "status": "live",
           "lastVerified": "2026-05-15",
-          "verifiedBy": "manual"
+          "verifiedBy": "manual",
+          "sharedService": true
         }
       ],
       "contact": {

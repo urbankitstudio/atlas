@@ -86,7 +86,7 @@ describe("pausedAnswer", () => {
       why: entry.why,
       citation_url: entry.citation_url,
       since: "2026-10-17",
-      county_office: { department: "Assessor", url: null },
+      county_office: { department: "Assessor", url: null, email: null },
       free_alternatives: { county_page: `${ATLAS_COUNTY_PAGE_BASE}/washington/clark-county` },
       request: null,
     });
@@ -104,12 +104,28 @@ describe("pausedAnswer", () => {
       contact: { department: "County GIS, Parcels MapServer", url: "https://gis.example.gov/portal" },
       endpoints: [{ url: "https://gis.example.gov/arcgis/rest/services/Parcels/MapServer/0" }],
     };
-    expect(pausedAnswer({ ...entry, flags: flagsFor("all-off") }, record).county_office).toEqual({ department: null, url: null });
-    expect(pausedAnswer({ ...entry, flags: only("free_discovery") }, record).county_office).toEqual({ department: null, url: null });
+    expect(pausedAnswer({ ...entry, flags: flagsFor("all-off") }, record).county_office).toEqual({ department: null, url: null, email: null });
+    expect(pausedAnswer({ ...entry, flags: only("free_discovery") }, record).county_office).toEqual({ department: null, url: null, email: null });
     // A neutral office page stays; and with the endpoints served the office is shown as is.
     const neutral = { ...record, contact: { department: "Assessor", url: "https://www.example.gov/assessor" } };
-    expect(pausedAnswer({ ...entry, flags: flagsFor("all-off") }, neutral).county_office).toEqual(neutral.contact);
-    expect(pausedAnswer({ ...entry, flags: flagsFor("paid-off") }, record).county_office).toEqual(record.contact);
+    expect(pausedAnswer({ ...entry, flags: flagsFor("all-off") }, neutral).county_office).toEqual({ ...neutral.contact, email: null });
+    expect(pausedAnswer({ ...entry, flags: flagsFor("paid-off") }, record).county_office).toEqual({ ...record.contact, email: null });
+  });
+
+  it("the county office carries the record's email: shown under every preset, all-off included; under free_discovery an email at the endpoint host is null, as any other value naming the service", () => {
+    const endpoints = [{ url: "https://gis.example.gov/arcgis/rest/services/Parcels/MapServer/0" }];
+    const county = { endpoints, contact: { department: "GeoData Center", url: "https://www.example.gov/geodata", email: "geodata@example.gov" } };
+    for (const preset of ["paid-off", "paid-lists-off", "all-off"] as const) {
+      expect(pausedAnswer({ ...entry, flags: flagsFor(preset) }, county).county_office, preset).toEqual(county.contact);
+    }
+    // A retired record (no endpoint) has no host to name: everything is shown, all-off included.
+    expect(pausedAnswer({ ...entry, flags: flagsFor("all-off") }, { ...county, endpoints: [] }).county_office).toEqual(county.contact);
+    // At the endpoint host, withheld: null. CONTROL: paid-off serves it, and the other fields stay.
+    const onService = { ...county, contact: { ...county.contact, email: "parcels@gis.example.gov" } };
+    expect(pausedAnswer({ ...entry, flags: flagsFor("all-off") }, onService).county_office).toEqual({ ...county.contact, email: null });
+    expect(pausedAnswer({ ...entry, flags: flagsFor("paid-off") }, onService).county_office).toEqual(onService.contact);
+    // No email on the record: null, never a missing key.
+    expect(pausedAnswer(entry, { contact: { department: "Assessor", url: null, email: null } }).county_office).toEqual({ department: "Assessor", url: null, email: null });
   });
 
   it("with the endpoint URLs withheld, a citation naming the service is null; otherwise it is shown as is", () => {
@@ -268,7 +284,7 @@ describe("discoverySafeUrl: a url as the URL parser reads it", () => {
     const withheld = { ...entry, flags: flagsFor("all-off"), citation_url: "https://169090600/terms" };
     const out = pausedAnswer(withheld, { ...IP, contact: { department: "GIS", url: "https://169090600/" } });
     expect(out.citation_url).toBeNull();
-    expect(out.county_office).toEqual({ department: "GIS", url: null });
+    expect(out.county_office).toEqual({ department: "GIS", url: null, email: null });
   });
 });
 

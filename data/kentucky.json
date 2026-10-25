@@ -2,7 +2,7 @@
   "stateSlug": "kentucky",
   "stateName": "Kentucky",
   "stateAbbrev": "KY",
-  "lastUpdated": "2026-10-18",
+  "lastUpdated": "2026-10-20",
   "counties": [
     {
       "id": "ky-fayette",
@@ -1750,6 +1750,29 @@
         "reason": "attributes-missing",
         "summary": "Hardin County's only public parcel layer covers the City of Elizabethtown alone and has no owner names, so we don't index it. Search the Hardin County PVA's records, or request it and we'll tell you if that changes.",
         "checked": "2026-10-09"
+      }
+    },
+    {
+      "id": "ky-laurel",
+      "state": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "county": "Laurel",
+      "countySlug": "laurel-county",
+      "countyFips": "21125",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Laurel County Property Valuation Administrator (PVA)",
+        "url": "https://laurelpva.com/",
+        "email": null
+      },
+      "notes": "No public REST parcel layer was found for Laurel County, Kentucky (county seat London; FIPS 21125) as of 2026-10-20. The Laurel County PVA (Property Valuation Administrator) publishes its parcel search and map through its qPublic site, laurelpva.com (qpublic.net/ky/laurel redirects there), which has no REST interface; on 2026-10-20 laurelpva.com and the qPublic search page answered automated requests with a browser challenge (HTTP 403). Searches of ArcGIS Online (feature and map services for 'Laurel parcels', 73 results, none in Kentucky; 'Laurel County' Kentucky, 9 items, none a parcel layer) and of the ArcGIS Hub API found no Laurel County, Kentucky parcel service, while the same search shapes find Simpson County's 'Public Access Parcels', which is registered in this file, so the absence is meaningful. The Kentucky state server (kygisserver.ky.gov, WGS84WM_Services, 170 services) and the KyGovMaps ArcGIS Online organisation (442 services) each carry one PVA parcel service, Webster County's, and nothing for Laurel; the state viewer path kygeonet.ky.gov/pva/laurel returns HTTP 404 where kygeonet.ky.gov/pva/webster returns 200. The LINK-GIS server covers Northern Kentucky only. The one Laurel parcel layer found on ArcGIS Online, a consultant's 1,422-parcel site-selection extract around London last edited 2024-06-30, has no owner names, does not cover the county and is not used. Kentucky has no statewide parcel layer yet: the Transportation Cabinet's County PVA Availability layer lists Laurel as having made its parcel data available to the state 'Without Ownership', and the Geographic Information Advisory Council minutes of 2026-04-15 report that 108 of 120 counties have supplied parcel data to a dashboard that is still a work in progress and that owner information will be stripped out, so when a state layer publishes Laurel may carry geometry without owners. This record answers a search for the county on 2026-10-19. Parcel and owner records are available through the PVA's site, or by asking the Laurel County PVA office: (606) 864-2889. Re-check when the state layer publishes.",
+      "addedAt": "2026-10-20",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Laurel County's valuation office (PVA) offers only its own search website, not a data service we can connect to, so we can't look up Laurel parcels. Search them at laurelpva.com or call the PVA at (606) 864-2889. Request the county and we'll tell you if that changes.",
+        "checked": "2026-10-20"
       }
     }
   ]

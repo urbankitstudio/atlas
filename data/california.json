@@ -2,7 +2,7 @@
   "stateSlug": "california",
   "stateName": "California",
   "stateAbbrev": "CA",
-  "lastUpdated": "2026-10-08",
+  "lastUpdated": "2026-10-20",
   "counties": [
     {
       "id": "ca-los-angeles",
@@ -847,6 +847,79 @@
         }
       },
       "addedAt": "2026-10-08"
+    },
+    {
+      "id": "ca-san-francisco",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "San Francisco",
+      "countySlug": "san-francisco-county",
+      "relatedPropertyCitySlug": "san-francisco",
+      "countyFips": "06075",
+      "ownerFieldNote": {
+        "body": "San Francisco's public parcel layer publishes no owner name and no owner mailing address. The Assessor-Recorder says it is not allowed under state law to post ownership information online, and offers it for purchase or for free inspection at its office. Search by block and lot or by street here.",
+        "source": {
+          "label": "San Francisco Assessor-Recorder, property assessment data",
+          "url": "https://www.sf.gov/resource--secured-property-tax-data"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "county_policy",
+            "note": "The public parcel layer (SFGIS's daily ArcGIS Online copy of DataSF 'Parcels - Active and Retired') has no owner column, and DataSF's Assessor secured roll dataset carries none either. The Assessor-Recorder's property assessment data page says: \"Due to State Law, our office is not allowed to post ownership information online. However, this information is available for purchase or access for free at our main office.\" The page names no statute section.",
+            "attributedTo": "City and County of San Francisco, Office of the Assessor-Recorder",
+            "sourceUrl": "https://www.sf.gov/resource--secured-property-tax-data"
+          },
+          "lawfulAlternativeUrl": "https://www.sf.gov/resource--secured-property-tax-data"
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The public parcel layer carries block and lot, the situs house-number range and street, zoning, district and recording dates only; its field list has no owner mailing-address column.",
+            "sourceUrl": "https://www.arcgis.com/home/item.html?id=f81b5f0adb8c4d6a95282bec1ce10378"
+          }
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Active_Parcels_from_DataSF_pulled_daily_/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Active Parcels (from DataSF, pulled daily)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "blklot", "label": "Assessor Parcel Number (block and lot, text)", "searchable": true },
+            { "name": "mapblklot", "label": "Map Block-Lot (lowest parcel number of a condominium set)", "searchable": true },
+            { "name": "from_address_num", "label": "House Number (low end of range)", "searchable": true },
+            { "name": "to_address_num", "label": "House Number (high end of range)", "searchable": false },
+            { "name": "street_name", "label": "Street Name", "searchable": true },
+            { "name": "street_type", "label": "Street Type", "searchable": false },
+            { "name": "zoning_code", "label": "Zoning Code", "searchable": false },
+            { "name": "zoning_district", "label": "Zoning District", "searchable": false },
+            { "name": "analysis_neighborhood", "label": "Neighborhood", "searchable": true }
+          ],
+          "sampleQuery": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Active_Parcels_from_DataSF_pulled_daily_/FeatureServer/0/query?where=street_name+LIKE+%27%25GOODLETT%25%27&outFields=blklot,mapblklot,from_address_num,to_address_num,street_name,street_type,zoning_code,zoning_district&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "open-data",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=f81b5f0adb8c4d6a95282bec1ce10378",
+          "status": "live",
+          "lastVerified": "2026-10-20",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "DataSF, City and County of San Francisco (open data program; the layer is published by SFGIS)",
+        "url": "https://www.sf.gov/departments--city-administrator--datasf",
+        "email": "support@datasf.org"
+      },
+      "notes": "San Francisco is a consolidated city and county (FIPS 06075). Its parcels are served from the City's ArcGIS Online organisation (org Zs2aNLFN00jrS4gG, item f81b5f0adb8c4d6a95282bec1ce10378, owner account vll_sfgis) as 'Active Parcels (from DataSF, pulled daily)', FeatureServer layer 0: SFGIS's daily copy of the DataSF dataset 'Parcels - Active and Retired' (data.sf.gov/d/acdm-wktn), filtered to active parcels. 227,695 rows on 2026-10-20, every one active (min of the active flag is 1); 211,970 are flagged as on the current Assessor secured roll and 211,695 carry both a house number and a street name. maxRecordCount 2000, resultRecordCount and resultOffset accepted, capabilities Query only, native spatial reference Web Mercator (wkid 102100), so add outSR=4326 for longitude and latitude. CORS is open (Access-Control-Allow-Origin: *). THE LAYER PUBLISHES NO OWNER NAME and no owner mailing address; the Assessor-Recorder says it does not post ownership online and offers it for purchase or free inspection at its office. The parcel number is blklot, a TEXT value of block plus lot (0787001 is block 0787, lot 001); blocks and lots can carry letter suffixes (0499002B, 0306T002A), so compare it as a string. mapblklot is the lowest parcel number of a condominium set that shares one footprint. The situs is split: from_address_num and to_address_num give the house-number range (small integers), street_name and street_type the street (DR CARLTON B GOODLETT, PL); there is no single address column, so the address lookup composes from_address_num and street_name as the situs (House Number plus Street Name), and a parcel whose range spans several house numbers (1640 to 1656 MISSION ST) matches an address only at its low end. Other attributes: zoning_code and zoning_district (current Planning zoning), analysis_neighborhood, supervisor and police districts, planning district, centroid_latitude and centroid_longitude, and Public Works recording and mapping dates. Currency: the item says it was pushed to ArcGIS Online on October 20, 2026 by SFGIS; the layer was last edited 2026-10-20 12:32 UTC; the newest data_as_of is 2026-10-17 and the newest recorded-parcel addition 2026-08-04. Licence: the item's licence is the Open Data Commons Public Domain Dedication and License (PDDL), the same licence DataSF puts on the source dataset, and the DataSF terms of use make PDDL the default for its data. Credit: City and County of San Francisco (DataSF, SFGIS). FALLBACK: if SFGIS stops the daily push, SF Planning's PlanningData MapServer layer 23 'Parcels' on sfplanninggis.org (226,413 rows on 2026-10-20, no owner, no zoning columns, CORS reflects the request Origin) carries the same parcels. Verified live 2026-10-20: a count (227,695), a paged query (resultOffset 2000), a point query at City Hall (37.77927, -122.41924) that returned parcel 0787001, 1 DR CARLTON B GOODLETT PL, zoning P (PUBLIC), Tenderloin, and street_name LIKE '%GOODLETT%' with 2 rows, each answered with Access-Control-Allow-Origin: *.",
+      "credit": "City and County of San Francisco (DataSF, SFGIS)",
+      "addedAt": "2026-10-20"
     }
   ]
 }

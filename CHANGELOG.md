@@ -1,5 +1,134 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.42 — 2026-10-24
+
+One county joins, one county is recorded as unreachable, two county records are retired, the county office's
+email is on both answer types, the county record gains a `credit` field that every surface shows, the endpoint
+record gains a `sharedService` marker on four statewide services, and the San Francisco city datasets move
+host. No type is removed or renamed (`credit`, `county_office.email` and `sharedService` are additions), but
+two records lose their endpoint: `wa-thurston` and `sc-charleston` now carry `hasPublicRest: false` and an empty
+`endpoints` array (`coverage.reason: "licence-restricted"`), so a consumer that read either county's
+`endpoints[0]` finds none and a `coverage` answer instead. `totals` move from 499 counties / 497 endpoints / 470
+with an endpoint (0.6.41 moved none) to 501 / 496 / 469: San Francisco and Laurel join (two counties, one
+endpoint), Thurston and Charleston lose theirs (two endpoints, two counties with one).
+
+### New: San Francisco, California
+
+`ca-san-francisco` (06075), from SFGIS's daily ArcGIS Online copy of the DataSF dataset "Parcels - Active and
+Retired" (org Zs2aNLFN00jrS4gG, item f81b5f0adb8c4d6a95282bec1ce10378): `Active_Parcels_from_DataSF_pulled_daily_`
+FeatureServer layer 0, 227,695 active parcels on 2026-10-20, refreshed daily, CORS open, pages
+(maxRecordCount 2000, resultOffset accepted). THE LAYER PUBLISHES NO OWNER NAME AND NO OWNER MAILING ADDRESS:
+the Assessor-Recorder says state law bars it from posting ownership online, so the record carries
+`capabilityOverrides.owner_name: not_published` and an `ownerFieldNote`. The parcel number is `blklot` (block
+plus lot, text, letter suffixes possible); the situs is split into `from_address_num`/`to_address_num` and
+`street_name`/`street_type`, so an address lookup composes House Number plus Street Name, and a parcel whose
+range spans several house numbers matches only at its low end. Licence PDDL (the ArcGIS item's and DataSF's).
+`credit: "City and County of San Francisco (DataSF, SFGIS)"`. The `notes` name the fallback, SF Planning's
+PlanningData MapServer layer 23. `relatedPropertyCitySlug: "san-francisco"` links the record to the city's
+permit and violation datasets, whose registry entry now carries `countySlug: "san-francisco-county"`.
+
+### Recorded as unreachable: Laurel County, Kentucky
+
+`ky-laurel` (21125) ships with `hasPublicRest: false` and `coverage.reason: "no-public-service"`. The PVA
+publishes parcels only through its qPublic website (laurelpva.com), which has no query service and answers
+automated requests with a browser challenge; the state holds Laurel's parcels "Without Ownership" and has no
+statewide layer yet. The record answers a search for the county on 2026-10-19 with the PVA's site and phone
+number, so `findCounty()` resolves it and `coverageAnswer()` says why there is nothing to query.
+
+### Retired: Thurston County, Washington
+
+`wa-thurston` now has no endpoint (`hasPublicRest: false`, `coverage.reason: "licence-restricted"`). The
+county's reply of 2026-10-19 set out its data terms as non-negotiable: term 8 bars making the data available to
+third parties naming Thurston County as the source, and term 10 bars commercial owner mailing lists
+(https://www.thurstoncountywa.gov/map-viewer-disclaimer/disclaimer-data). The endpoint is withheld from the
+atlas; the record keeps its GeoData Center contact and now carries the county's email,
+GeoData@thurstoncountywa.gov, which is where to ask the county to allow it. Owner names were never on the
+county's public layer, so the mailing-only set (Pima AZ, Riverside CA) is what remains. The hosted
+county-access floor moves 53067 to `all-off` the same day, so the hosted API and MCP answer `paused` for it on
+every surface.
+
+### Retired: Charleston County, South Carolina
+
+`sc-charleston` (45019) now has no endpoint either (`hasPublicRest: false`, `coverage.reason:
+"licence-restricted"`). Charleston County GIS told us on 2026-10-21 that it "does not authorize this use of our
+data", so the endpoint is withheld from the atlas; the record keeps its GIS contact and carries the county's
+email, WebMasterGIS@charlestoncounty.org, which is where to ask the county to allow it. The hosted county-access
+floor moves 45019 to `all-off`, so the hosted API and MCP answer `paused` for it on every surface.
+
+### The county office's email
+
+- `CountyPausedAnswer.county_office` and `CoverageAnswer.county_office` are now
+  `{ department, url, email }`, each `string | null`. The email is the record's `contact.email`
+  (`AccessRecordLike.contact.email?`, `CoverageRecordLike.contact.email?`); a record without one gives
+  `email: null`, the key always present. It is how a person asks the county for the data the answer
+  cannot give.
+- `coverageAnswerText()` prints the email on the County office line after the url, so every text surface
+  (the hosted MCP, the `uks` CLI 0.1.8) shows it.
+- Under `free_discovery`, `pausedAnswer()` reads the email by the rule the department and url already
+  follow: an address at one of the record's endpoint hosts is null, a plain address stays, and a retired
+  record (no endpoint) has no host to name, so its email is shown under every preset, `all-off` included.
+
+### `credit` on the county record, shown wherever the data is
+
+- `CountyRecord.credit?: string`: the statement the publisher's terms require or request wherever its data
+  is shown, verbatim and never shortened. Four classes carry one. The ten Colorado counties on the State's
+  `Colorado_Public_Parcels` service (El Paso, Jefferson, Arapahoe, Adams, Douglas, Larimer, Boulder, Weld,
+  Mesa, Park) carry "State of Colorado Public parcels were accessed on 2026-10-17 from
+  https://gis.colorado.gov/public/rest/services/Address_and_Parcel". `ca-san-francisco` carries "City and
+  County of San Francisco (DataSF, SFGIS)". `mo-greene`, whose layer is the City of Springfield's, carries
+  the City's "Use of Data" disclaimer in full (https://www.springfieldmo.gov/disclaimer, now the endpoint's
+  `licenseUrl`), because the City requires any person, company or agency using data from its open data
+  systems to include it wherever the data is distributed. The same text stays in `notes` after `Credit:`.
+  `pa-berks` carries "Information is based on geospatial data from the County of Berks." (added 2026-10-24):
+  clause 4 of the County's data agreement requires that sentence on every product derived from its data, so
+  it goes with every Berks row, file and label sheet, the free single-parcel lookup included.
+- Where it shows: with everything served from the record's layer. The hosted REST API carries it as
+  `county.credit` on `/api/atlas/lookup` and `/api/atlas/county`, as `credit` on every `/api/atlas/bulk` row
+  the county's layer answered, and as `county.credit` on a covered `/api/atlas/radius` answer. The hosted MCP
+  carries it inside `county` on `get_county_endpoint` and `find_county_by_fips` (the whole record), as
+  `atlas_match.credit` on `find_parcel_by_address`, per county on `list_counties_in_state`, as `credit` on an
+  `enrich_address` answer, and as `county.credit` on `radius_owners`. The site prints "Data credit: ..."
+  beside the rows on Parcel Lookup (a pasted credited layer included, and in its PDF), Find My Parcel Number,
+  Owner Lookup, the radius notice tool (and a `Data credit` column in its label CSV) and bulk enrichment (and
+  a `Data credit` column in its CSV); the ArcGIS to GeoJSON converter writes it as a top-level `credit` member
+  of the FeatureCollection; the county page shows it under its own heading. A withheld record carries none,
+  since it shows no data; the paid rows still served for a county whose record is withheld from discovery
+  carry it unless it names the county's service (Colorado's does, so it is null there). A consumer of this
+  package reads `credit` and shows it as is.
+- The validator's cap on `credit` is 600 characters (`CREDIT_MAX` in `scripts/atlas-rules.mjs`), bounding a
+  paragraph rather than a sentence, because Springfield's statement is 452 characters and a required statement
+  is never truncated.
+- A `credit` holds only WinAnsi characters (printable ASCII, U+00A0..U+00FF and the 27 Windows-1252 additions
+  such as curly quotes and dashes; `creditCharacterProblem` in `scripts/atlas-rules.mjs`), the set a PDF's
+  standard Helvetica can print, so the statement prints verbatim in every PDF export.
+
+### `sharedService` on the endpoint record
+
+`EndpointRecord.sharedService?: true` (added 2026-10-24): one county registers a layer of the service, but the
+record's own notes say the service covers other counties or the whole state, so its other layers may be any
+county's. Four endpoints carry it: Chittenden VT (VCGI's statewide `FS_VCGI_VTPARCELS_WM_NOCACHE_v2`, "covers
+all 14 Vermont counties"), Kauai HI (the State's `ParcelsZoning` MapServer, where Honolulu, Maui and Hawaii
+County parcels are separate layers), Denver CO (`ODC_PROP_PARCELS_A`, a statewide composite) and Anchorage AK
+(`AK_Parcels`, the statewide layer). The site's `findServiceCounty`, which places an unregistered layer of a
+one-county service as that county's, places a layer of a marked service as no county's, and the registry
+validator requires the marker whenever a record's prose says so. The site's free tools still ask the county
+access switch about every county registered on a marked service before reading one of its layers (a pause on
+Chittenden holds VCGI's other layers): the data is at least that county's, though the layer gets no county and
+no credit. Absent is the other value; `false` is never written. The other 178 single-registration services were
+surveyed (their service metadata and layer lists fetched) and none other covers another county.
+
+### San Francisco city datasets: data.sf.gov
+
+The two DataSF Socrata datasets in `city-property/san-francisco.json` (building permits `i98e-djp9`, notices
+of violation `nbtm-fbw5`) now point at `data.sf.gov`. The old host, `data.sfgov.org`, answers 301 with
+`Access-Control-Allow-Origin: https://data.sfgov.org`, which a browser refuses, so the site's fetches failed;
+the new host answers 200 with `Access-Control-Allow-Origin: *` (verified 2026-10-20 with `$limit=1` and an
+Origin header on both ids). The registry validators now reject `data.sfgov.org` anywhere in a registry file.
+
+### Package metadata
+
+Metadata only. The package author and the license holder now name UrbanKit Studio LLC.
+
 ## 0.6.41 — 2026-10-24
 
 New Jersey: owner names and owner mailing addresses are withheld for all six counties. Data change only, no

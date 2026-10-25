@@ -2,7 +2,7 @@
   "stateSlug": "washington",
   "stateName": "Washington",
   "stateAbbrev": "WA",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-20",
   "counties": [
     {
       "id": "wa-king",
@@ -140,44 +140,19 @@
       "county": "Thurston",
       "countySlug": "thurston-county",
       "countyFips": "53067",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://map.co.thurston.wa.us/arcgis/rest/services/Thurston/Thurston_Parcels/FeatureServer/0",
-          "serviceType": "FeatureServer",
-          "layerIndex": 0,
-          "layerName": "Parcels",
-          "supportsQuery": true,
-          "corsEnabled": null,
-          "searchFields": [
-            { "name": "PARCEL_NO", "label": "Parcel Number", "searchable": true },
-            { "name": "ADDRESS1", "label": "Mailing Address Line 1", "searchable": true },
-            { "name": "ADDRESS2", "label": "Mailing Address Line 2", "searchable": true },
-            { "name": "SITUS_STRE", "label": "Situs Street Address", "searchable": true },
-            { "name": "SITUS_CITY", "label": "Situs City", "searchable": true },
-            { "name": "SITUS_ZIP", "label": "Situs ZIP", "searchable": false },
-            { "name": "TOTAL_ACRES", "label": "Total Acres", "searchable": false },
-            { "name": "BLDG_VALUE", "label": "Building Value", "searchable": false },
-            { "name": "LAND_VALUE", "label": "Land Value", "searchable": false },
-            { "name": "TOTAL_VALUE", "label": "Total Assessed Value", "searchable": false },
-            { "name": "ANNUAL_TAX", "label": "Annual Tax", "searchable": false },
-            { "name": "YEAR_BUILT", "label": "Year Built", "searchable": false },
-            { "name": "USE_CODE", "label": "Use Code", "searchable": false }
-          ],
-          "sampleQuery": "https://map.co.thurston.wa.us/arcgis/rest/services/Thurston/Thurston_Parcels/FeatureServer/0/query?where=PARCEL_NO+LIKE+'%2521820%25'&outFields=PARCEL_NO,ADDRESS1,SITUS_STRE,SITUS_CITY,TOTAL_VALUE,ANNUAL_TAX&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://gisdata-thurston.opendata.arcgis.com/",
-          "status": "live",
-          "lastVerified": "2026-05-15",
-          "verifiedBy": "manual"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Thurston County GeoData Center / Assessor's Department",
         "url": "https://gisdata-thurston.opendata.arcgis.com/",
-        "email": null
+        "email": "GeoData@thurstoncountywa.gov"
       },
-      "notes": "45 fields confirmed including PARCEL_NO, ADDRESS1, ADDRESS2, CITY, STATE, ZIP, COUNTRY, SITUS_STRE, SITUS_CITY, SITUS_ZIP, SD_NAME, LEGAL_DESC, TOTAL_ACRES, BLDG_VALUE, LAND_VALUE, TOTAL_VALUE, ANNUAL_TAX, STATUS_IND, PROP_SUBTY, O_NEIGHBOR, PROP_TYPE, INSPCT_CYC, REGION, MULT_PARCL, SALE_DATE, SALE_PRICE, SALE_VRFY, USE_CODE, SIGMA_YEAR, TAXABLE, EXEMPT_TY, LOCAL_IND, TCA, CURR_USE, INCORP, YEAR_BUILT, EFF_YR_BUI, RES_QUAL, RES_COND, REC_VOLPAG, SECTTIE, PARENT, MapSource, GlobalID. Live query confirmed: PARCEL_NO LIKE '%21820%' returns Thurston County parcels with mailing address and value data. NOTE: Owner name is NOT on this public layer per WA State law; ADDRESS1/2 is the mailing address (generally owner's address). Data from ASCEND and SIGMA databases. Item ID: 4ca0091703b345f8a72f68a4d173d9be. maxRecordCount=1000."
+      "notes": "Thurston County (Olympia, Lacey, Tumwater; FIPS 53067) parcel data is published by the Thurston County GeoData Center. The atlas lists no endpoint for Thurston: the endpoint was retired on 2026-10-20 after the county's reply of 2026-10-19 set out its data terms as non-negotiable. Term 8 bars making the data available to third parties naming Thurston County as the source, and term 10 bars commercial owner mailing lists. The terms are published at https://www.thurstoncountywa.gov/map-viewer-disclaimer/disclaimer-data. Owner names were never on the county's public layer; the mailing address was. If you would like this service, contact the county at GeoData@thurstoncountywa.gov and ask it to allow it.",
+      "coverage": {
+        "reason": "licence-restricted",
+        "summary": "Thurston County's data terms don't allow sites like ours to show its parcel data, so we don't index it. If you'd like this to change, ask the county at GeoData@thurstoncountywa.gov.",
+        "checked": "2026-10-20"
+      }
     },
     {
       "id": "wa-island",

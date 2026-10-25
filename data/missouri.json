@@ -2,7 +2,7 @@
   "stateSlug": "missouri",
   "stateName": "Missouri",
   "stateAbbrev": "MO",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-20",
   "counties": [
     {
       "id": "mo-jackson",
@@ -57,7 +57,7 @@
           ],
           "sampleQuery": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Parcels/MapServer/0/query?where=UPPER(OWNER_NAME)%20LIKE%20UPPER('%25SMITH%25')&outFields=LOCATOR,OWNER_NAME,PROP_ADD&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
-          "licenseUrl": "https://data-stlcogis.opendata.arcgis.com/",
+          "licenseUrl": "https://gis.stlouiscountymo.gov/datasets/fd4893ca99244279adb2ffa206e09ec7_0",
           "status": "live",
           "lastVerified": "2026-05-15",
           "verifiedBy": "automated"
@@ -143,7 +143,7 @@
           ],
           "sampleQuery": "https://maps.springfieldmo.gov/arcgis/rest/services/Maps/GisViewerGroups/MapServer/18/query?where=UPPER(OWN1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PIN,OWN1,PropAdr,L_CITYNAME,Own_Addr&returnGeometry=false&resultRecordCount=10&f=json",
           "license": "unknown",
-          "licenseUrl": "https://maps.springfieldmo.gov/GISviewer/",
+          "licenseUrl": "https://www.springfieldmo.gov/disclaimer",
           "status": "live",
           "lastVerified": "2026-10-10",
           "verifiedBy": "manual"
@@ -154,7 +154,8 @@
         "url": "https://maps.springfieldmo.gov/GISviewer/",
         "email": null
       },
-      "notes": "Greene County, Missouri (Springfield; FIPS 29077) was asked for through the free tools. No county-run parcel service was found (gis.greenecountymo.gov, gisweb.greenecountymo.gov and a Greene County ArcGIS Online organisation all returned nothing), so this record uses the copy the CITY of Springfield publishes for its GIS viewer: Maps/GisViewerGroups MapServer layer 18 ('Parcels') on maps.springfieldmo.gov. It is county-wide, not city-only: 123,884 parcels on 2026-10-10, about 61,200 in Springfield, about 45,300 in unincorporated Greene County, and the rest in Republic, Battlefield, Willard, Strafford, Ash Grove, Fair Grove, Rogersville and Walnut Grove (L_CITYNAME). 123,840 rows carry an owner. The owner is OWN1 (one owner line; there is no second owner column); the situs is PropAdr with L_CITYNAME and L_ZIP1 (PropAdr can start with a space where the house number is blank, and L_ZIP1 is often a single space); the owner mailing address is Own_Addr, ONE string holding street, city, state and ZIP together, so it is not split into city or ZIP here; the parcel id is PIN, twelve digits of text. GC_LINK links each parcel to the Greene County Assessor's record, the county's own source for owner data. The layer also carries legal description lines, acreage, the city's land-use and zoning classes, and a 4326 centroid in X_COORD/Y_COORD. There are no sale or value fields. CORS: the server echoes the request Origin in Access-Control-Allow-Origin. maxRecordCount is 1000 with pagination; the count query takes several seconds. VINTAGE UNKNOWN: the MapServer publishes no editing info, no description and no license or terms text, and the rows carry no date, so how far owners lag the county assessor is not stated; ask City of Springfield GIS. DURABILITY: a city-hosted copy of county data with no published service commitment, which can change without notice. Verified 2026-10-10: a count, resultRecordCount=1 and an owner LIKE query (1,006 rows for %SMITH%).",
+      "notes": "Greene County, Missouri (Springfield; FIPS 29077) was asked for through the free tools. No county-run parcel service was found (gis.greenecountymo.gov, gisweb.greenecountymo.gov and a Greene County ArcGIS Online organisation all returned nothing), so this record uses the copy the CITY of Springfield publishes for its GIS viewer: Maps/GisViewerGroups MapServer layer 18 ('Parcels') on maps.springfieldmo.gov. It is county-wide, not city-only: 123,884 parcels on 2026-10-10, about 61,200 in Springfield, about 45,300 in unincorporated Greene County, and the rest in Republic, Battlefield, Willard, Strafford, Ash Grove, Fair Grove, Rogersville and Walnut Grove (L_CITYNAME). 123,840 rows carry an owner. The owner is OWN1 (one owner line; there is no second owner column); the situs is PropAdr with L_CITYNAME and L_ZIP1 (PropAdr can start with a space where the house number is blank, and L_ZIP1 is often a single space); the owner mailing address is Own_Addr, ONE string holding street, city, state and ZIP together, so it is not split into city or ZIP here; the parcel id is PIN, twelve digits of text. GC_LINK links each parcel to the Greene County Assessor's record, the county's own source for owner data. The layer also carries legal description lines, acreage, the city's land-use and zoning classes, and a 4326 centroid in X_COORD/Y_COORD. There are no sale or value fields. CORS: the server echoes the request Origin in Access-Control-Allow-Origin. maxRecordCount is 1000 with pagination; the count query takes several seconds. VINTAGE UNKNOWN: the MapServer publishes no editing info, no description and no license or terms text, and the rows carry no date, so how far owners lag the county assessor is not stated; ask City of Springfield GIS. DURABILITY: a city-hosted copy of county data with no published service commitment, which can change without notice. Verified 2026-10-10: a count, resultRecordCount=1 and an owner LIKE query (1,006 rows for %SMITH%). TERMS: the MapServer itself publishes none, but the City of Springfield's website disclaimer (https://www.springfieldmo.gov/disclaimer), under Use of Data, requires any person, company or agency using data obtained from the City's open data systems to include its disclaimer on the website, software application or other means of distributing the data, so this record's credit is that statement, verbatim and never shortened. PAID USE PAUSED: the Greene County Assessor's disclaimer says the information is \"solely for personal use and cannot be sold\", so paid lookups are paused (county-access floor, 2026-10-21) while we ask for written permission. Credit: This site provides data that has been modified for use from its original source, www.springfieldmo.gov, the official website of the City of Springfield, Missouri. The City of Springfield makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk.",
+      "credit": "This site provides data that has been modified for use from its original source, www.springfieldmo.gov, the official website of the City of Springfield, Missouri. The City of Springfield makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk.",
       "addedAt": "2026-10-10"
     }
   ]

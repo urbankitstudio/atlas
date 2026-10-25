@@ -2,7 +2,7 @@
   "stateSlug": "south-carolina",
   "stateName": "South Carolina",
   "stateAbbrev": "SC",
-  "lastUpdated": "2026-10-18",
+  "lastUpdated": "2026-10-21",
   "counties": [
     {
       "id": "sc-greenville",
@@ -38,42 +38,19 @@
       "county": "Charleston",
       "countySlug": "charleston-county",
       "countyFips": "45019",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/External_GIS_Website/MapServer/7",
-          "serviceType": "MapServer",
-          "layerIndex": 7,
-          "layerName": "Parcels",
-          "supportsQuery": true,
-          "corsEnabled": null,
-          "searchFields": [
-            { "name": "PID", "label": "Parcel ID", "searchable": true },
-            { "name": "OWNER1", "label": "Owner Name 1", "searchable": true },
-            { "name": "OWNER2", "label": "Owner Name 2", "searchable": false },
-            { "name": "MAIL_ST_NAME", "label": "Mailing Street Name", "searchable": false },
-            { "name": "MAIL_ST_NO", "label": "Mailing Street Number", "searchable": false },
-            { "name": "MAIL_CITY", "label": "Mailing City", "searchable": false },
-            { "name": "MAIL_STATE", "label": "Mailing State", "searchable": false },
-            { "name": "MAIL_ZIP", "label": "Mailing ZIP", "searchable": false },
-            { "name": "TAX_DISTRICT", "label": "Tax District", "searchable": false },
-            { "name": "LEGAL_DESCR", "label": "Legal Description", "searchable": false },
-            { "name": "SUBDIVISION", "label": "Subdivision", "searchable": false }
-          ],
-          "sampleQuery": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/External_GIS_Website/MapServer/7/query?where=UPPER(OWNER1)+LIKE+UPPER(%27%25SMITH%25%27)&outFields=PID,OWNER1,OWNER2,MAIL_ST_NAME&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://charleston-county-gis-chascogis.hub.arcgis.com/",
-          "status": "live",
-          "lastVerified": "2026-09-21",
-          "verifiedBy": "manual"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Charleston County GIS (BCS / Charleston County GIS)",
         "url": "https://charleston-county-gis-chascogis.hub.arcgis.com/",
-        "email": null
+        "email": "WebMasterGIS@charlestoncounty.org"
       },
-      "notes": "Charleston County (pop. 430,000; includes Charleston, North Charleston, Mount Pleasant) has moved its parcel layer THREE times since June 2026, most recently on 2026-09-21, when the county withdrew the entire New_Parcel_Search service. Re-verify this URL before you rely on it. Parcels now live on GIS_VIEWER/External_GIS_Website/MapServer layer 7, whose upstream layer name is 'Parcels ***Assessor Maintained***'; the registry keeps the display name 'Parcels'. Field names are unqualified (PID, OWNER1, ...) rather than FEATURES.SDE.*-prefixed, and neither GPIN nor ACRES_CAL exists here. Layer 7 carries 27 fields, including several the registry does not map: ACREAGE, CLASS_CODE, DEED_BOOK_PAGE, PLAT_BOOK_PAGE, SALE_PRICE, RECORDED_DATE and DOC_DATE. The moves were 2026-06-06 (Parcel_Search/4 to New_Parcel_Search/61, after the old service began returning 404), 2026-09-17 (to New_Parcel_Search/4) and 2026-09-21 (to External_GIS_Website/7). If you monitor this endpoint, two things make the failure easy to miss: the first two moves changed only the layer index, so an index-only drift check looks sufficient and is not - this third move withdrew the service itself - and the dead URL still answers HTTP 200 while carrying the failure in an ArcGIS error BODY (code 500, 'Service ... not started'), with New_Parcel_Search gone from the GIS_VIEWER folder listing entirely. A check that reads only the status code calls that healthy. Re-verified live 2026-09-21: metadata, a where=1=1 query and the declared sampleQuery (UPPER(OWNER1) LIKE '%SMITH%', 10 rows) all return real features, and every one of the 11 mapped searchFields is present unchanged."
+      "notes": "Charleston County (pop. 430,000; includes Charleston, North Charleston, Mount Pleasant; FIPS 45019) parcel data is published by Charleston County GIS. The atlas lists no endpoint for Charleston: the endpoint was retired on 2026-10-21 after the county told us it \"does not authorize this use of our data\". The county's data terms are at https://charleston-county-gis-chascogis.hub.arcgis.com/api/feed/dcat-us/1.1.json. If you would like this service, contact the county at WebMasterGIS@charlestoncounty.org and ask it to allow it.",
+      "coverage": {
+        "reason": "licence-restricted",
+        "summary": "Charleston County GIS told us it does not authorize sites like ours to use its parcel data, so we don't index it. If you'd like this to change, ask the county at WebMasterGIS@charlestoncounty.org.",
+        "checked": "2026-10-21"
+      }
     },
     {
       "id": "sc-georgetown",

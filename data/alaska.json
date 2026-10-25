@@ -37,7 +37,8 @@
           "licenseUrl": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/AK_Parcels/FeatureServer",
           "status": "live",
           "lastVerified": "2026-05-15",
-          "verifiedBy": "manual"
+          "verifiedBy": "manual",
+          "sharedService": true
         }
       ],
       "contact": {

@@ -238,6 +238,18 @@ if (offersPagination(endpoint)) params.set("resultRecordCount", "100");
 
 An absent `supportsPagination` means the layer pages; `true` is never written.
 
+## Some services are not one county's
+
+An endpoint may carry `sharedService: true`: one county registers a layer of the
+service, but the service covers other counties or the whole state (Vermont's
+VCGI service under Chittenden, Hawaii's `ParcelsZoning` under Kauai, Denver's and
+Anchorage's statewide composites). A consumer that treats an unregistered layer of
+a service as the registering county's must not for a marked one: its other layers
+may be any county's. UrbanKit's own free tools still ask the county access switch
+about the registering county before reading such a layer, so a pause on that county
+holds the service's other layers too. Absent is the other value; `false` is never
+written.
+
 ## `addedAt` is the one date that never moves
 
 A county may carry `addedAt` (YYYY-MM-DD): the date it entered the atlas. It is
@@ -249,9 +261,9 @@ read `addedAt` and fall back to the oldest `lastVerified` only when it is absent
 
 ## Coverage today
 
-The atlas bundles **499 counties across all 50 US states and DC** (497 verified endpoints), covering the largest counties in each state, every county in Mississippi and all 100 of North Carolina's. Call `listStates()` to enumerate the full set.
+The atlas bundles **501 counties across all 50 US states and DC** (496 verified endpoints), covering the largest counties in each state, every county in Mississippi and all 100 of North Carolina's. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 470 of the 499 carry a verified endpoint. The other 29 have `hasPublicRest: false` and an empty `endpoints` array, with a `coverage` block that gives the reason code and one sentence to show as is, `notes` with the detail, and a `contact` for the county office. The reasons vary. A county sells its owner data, runs no public query service, puts one behind a login or under terms that bar us from serving it, publishes a layer without owner names or with them blank, or runs a service that is down, stale or technically unusable. They ship rather than being omitted, so `findCounty()` still resolves them, and `coverageAnswer()` turns any of them into the answer the hosted MCP server and the REST API give. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 469 of the 501 carry a verified endpoint. The other 32 have `hasPublicRest: false` and an empty `endpoints` array, with a `coverage` block that gives the reason code and one sentence to show as is, `notes` with the detail, and a `contact` for the county office (its `department`, `url` and, where the county publishes one, `email`). The reasons vary. A county sells its owner data, runs no public query service, puts one behind a login or under terms that bar us from serving it, publishes a layer without owner names or with them blank, or runs a service that is down, stale or technically unusable. They ship rather than being omitted, so `findCounty()` still resolves them, and `coverageAnswer()` turns any of them into the answer the hosted MCP server and the REST API give. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 The city registries cover 30 cities with code-violation or building-permit datasets, 19 with zoning-case datasets. Call `listCities()` for the current set.
 
@@ -267,11 +279,14 @@ Socket also flags `unpopularPackage` — a download-count signal, not a code iss
 
 ## Attribution
 
-The parcel layers the atlas points to belong to their publishers. These publishers require or request credit when their data is reused, and each record listed here ends its `notes` with the same `Credit:` line.
+The parcel layers the atlas points to belong to their publishers. These publishers require or request credit when their data is reused, and each record listed here ends its `notes` with the same `Credit:` line. Where the publisher names the exact statement to show, the record also carries it verbatim and in full in `credit` (0.6.42: the ten Colorado counties, San Francisco, Greene MO, whose statement is the City of Springfield's required disclaimer, and Berks PA, whose statement the County's data agreement requires on every derived product), so a page prints it beside the county's results and on the county's page as is. A required statement is never shortened; the validator allows `credit` up to 600 characters for that reason.
 
 | Records | Publisher's terms | Credit |
 |---|---|---|
 | `co-el-paso`, `co-jefferson`, `co-arapahoe`, `co-adams`, `co-douglas`, `co-larimer`, `co-boulder`, `co-weld`, `co-mesa`, `co-park` (the State of Colorado's `Colorado_Public_Parcels` service) | The service's copyright text names this statement as sufficient | State of Colorado Public parcels were accessed on 2026-10-17 from https://gis.colorado.gov/public/rest/services/Address_and_Parcel |
+| `ca-san-francisco` | [PDDL](http://opendatacommons.org/licenses/pddl/1.0/) on the ArcGIS item and the DataSF source dataset; attribution not required, given as the other CA records do | City and County of San Francisco (DataSF, SFGIS) |
+| `mo-greene` | The City of Springfield's [disclaimer](https://www.springfieldmo.gov/disclaimer), "Use of Data": anyone using data from the City's open data systems must include this disclaimer wherever the data is distributed | This site provides data that has been modified for use from its original source, www.springfieldmo.gov, the official website of the City of Springfield, Missouri. The City of Springfield makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk. |
+| `pa-berks` | The County of Berks' data agreement, clause 4: this sentence on every product derived from the County's data | Information is based on geospatial data from the County of Berks. |
 | `md-montgomery` | Reuse allowed, attribution requested | Montgomery County Planning Department (M-NCPPC) |
 | `md-prince-georges` | Reuse allowed, attribution requested | Prince George's County Planning Department (M-NCPPC) |
 | `nc-wake` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Wake County (Wake County GIS, Wake County Revenue) |
@@ -281,7 +296,7 @@ The parcel layers the atlas points to belong to their publishers. These publishe
 
 ## License
 
-MIT — see [LICENSE](./LICENSE). © 2026 UrbanKit Studio.
+MIT — see [LICENSE](./LICENSE). © 2026 UrbanKit Studio LLC.
 
 This package's atlas dataset (the open **discovery layer** — county → REST endpoint
 mappings and field metadata) is provided under MIT. Live, always-fresh and enriched

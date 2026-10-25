@@ -267,7 +267,7 @@ export function countyHasEndpoint(record: EndpointPresenceLike | null | undefine
 
 /** What coverageAnswer reads from a county record. */
 export interface CoverageRecordLike extends EndpointPresenceLike {
-  contact?: { department?: string | null; url?: string | null } | null;
+  contact?: { department?: string | null; url?: string | null; email?: string | null } | null;
   coverage?: CountyCoverage | null;
 }
 
@@ -312,8 +312,8 @@ export interface CoverageAnswer {
   checked: string | null;
   /** YYYY-MM-DD of the next planned check; null when the record sets no date. */
   recheck: string | null;
-  /** The county office that holds the records, from the record's contact. */
-  county_office: { department: string | null; url: string | null } | null;
+  /** The county office that holds the records, from the record's contact: its department, url and email. */
+  county_office: { department: string | null; url: string | null; email: string | null } | null;
   /** The county's own paid product, only when the county sells the data. */
   county_product: CountyProduct | null;
   /** The ready-to-send request; null only when the ref names no county the request endpoint accepts. */
@@ -347,7 +347,7 @@ export function coverageAnswerText(block: CoverageTextInput): string {
   if (block.checked) lines.push(`Checked: ${block.checked}`);
   if (block.recheck) lines.push(`Next check: ${block.recheck}`);
   const office = block.county_office
-    ? [block.county_office.department, block.county_office.url].filter((s) => !!s).join(", ")
+    ? [block.county_office.department, block.county_office.url, block.county_office.email].filter((s) => !!s).join(", ")
     : "";
   if (office) lines.push(`County office: ${office}`);
   if (block.county_product) lines.push(`County product: ${block.county_product.name}, ${block.county_product.url}`);
@@ -411,7 +411,7 @@ export function coverageAnswer(record: CoverageRecordLike | null | undefined, re
       checked: coverage ? coverage.checked : null,
       recheck: coverage && coverage.recheck ? coverage.recheck : null,
       county_office: record.contact
-        ? { department: record.contact.department ?? null, url: record.contact.url ?? null }
+        ? { department: record.contact.department ?? null, url: record.contact.url ?? null, email: record.contact.email ?? null }
         : null,
       county_product: product,
       request: requestHint(ref, "no-public-data"),

@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-18",
+  "lastUpdated": "2026-10-21",
   "totals": {
     "states": 51,
-    "counties": 499,
-    "endpoints": 497,
-    "countiesWithEndpoint": 470,
+    "counties": 501,
+    "endpoints": 496,
+    "countiesWithEndpoint": 469,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -45,8 +45,8 @@
       "slug": "california",
       "name": "California",
       "abbrev": "CA",
-      "countyCount": 15,
-      "endpointCount": 15,
+      "countyCount": 16,
+      "endpointCount": 16,
       "populated": true
     },
     {
@@ -149,7 +149,7 @@
       "slug": "kentucky",
       "name": "Kentucky",
       "abbrev": "KY",
-      "countyCount": 24,
+      "countyCount": 25,
       "endpointCount": 16,
       "populated": true
     },
@@ -334,7 +334,7 @@
       "name": "South Carolina",
       "abbrev": "SC",
       "countyCount": 3,
-      "endpointCount": 2,
+      "endpointCount": 1,
       "populated": true
     },
     {
@@ -390,7 +390,7 @@
       "name": "Washington",
       "abbrev": "WA",
       "countyCount": 7,
-      "endpointCount": 6,
+      "endpointCount": 5,
       "populated": true
     },
     {

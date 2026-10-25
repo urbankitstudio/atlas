@@ -54,6 +54,15 @@ export interface EndpointRecord {
    *  address, which is why the paid enrichment path is unaffected. */
   scopeWhere?: string;
   /**
+   * Declares that the SERVICE this layer sits on is not this county's alone: a
+   * statewide service one county registers (Vermont's VCGI by Chittenden,
+   * Hawaii's ParcelsZoning by Kauai, Denver's and Anchorage's statewide
+   * composites), whose other layers may be any county's. A consumer that maps
+   * an unregistered layer of a service to the county registering it must not
+   * for a marked one. Only `true` is written; absent is the other value.
+   */
+  sharedService?: true;
+  /**
    * Declares that this layer CANNOT serve an ATTRIBUTE search - a `where`-clause
    * query on a column, which is what "search by owner name / APN / address text"
    * means everywhere on the site. Absent (the default, and true of every
@@ -221,6 +230,15 @@ export interface CountyRecord {
   contact: ContactInfo | null;
   hasPublicRest: boolean;
   notes: string | null;
+  /**
+   * The statement the publisher's terms require or request wherever its data is
+   * shown, verbatim and never shortened: a credit line (0.6.42: the ten Colorado
+   * counties on the State's service, San Francisco CA) or a required disclaimer
+   * (Greene MO, the City of Springfield's "Use of Data" clause). Show it beside
+   * the county's results and on the county's page as is; the record's `notes`
+   * carry the same text after "Credit:". Absent when the terms name none.
+   */
+  credit?: string;
   /**
    * The date (YYYY-MM-DD) this county entered the atlas. Optional: records
    * added before 2026-10-05 carry no date. Unlike `lastVerified` on each

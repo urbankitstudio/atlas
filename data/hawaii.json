@@ -31,7 +31,8 @@
           "licenseUrl": "https://geoportal.hawaii.gov/",
           "status": "live",
           "lastVerified": "2026-06-20",
-          "verifiedBy": "manual"
+          "verifiedBy": "manual",
+          "sharedService": true
         }
       ],
       "contact": {
