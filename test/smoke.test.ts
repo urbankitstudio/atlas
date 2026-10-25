@@ -75,8 +75,8 @@ describe("@urbankitstudio/atlas smoke", () => {
     // file only runs at prepublishOnly. A root-suite guard
     // (src/lib/__tests__/atlas-package-parity.test.ts) now asserts these literals
     // match the bundled index, so the drift is caught at every gate.
-    expect(atlas.totals.counties).toBe(501);
-    expect(atlas.totals.endpoints).toBe(496);
+    expect(atlas.totals.counties).toBe(503);
+    expect(atlas.totals.endpoints).toBe(498);
     expect(atlasIndex.version).toBeDefined();
   });
 

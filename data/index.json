@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-21",
+  "lastUpdated": "2026-10-25",
   "totals": {
     "states": 51,
-    "counties": 501,
-    "endpoints": 496,
-    "countiesWithEndpoint": 469,
+    "counties": 503,
+    "endpoints": 498,
+    "countiesWithEndpoint": 471,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -293,8 +293,8 @@
       "slug": "ohio",
       "name": "Ohio",
       "abbrev": "OH",
-      "countyCount": 11,
-      "endpointCount": 10,
+      "countyCount": 12,
+      "endpointCount": 11,
       "populated": true
     },
     {
@@ -381,8 +381,8 @@
       "slug": "virginia",
       "name": "Virginia",
       "abbrev": "VA",
-      "countyCount": 7,
-      "endpointCount": 6,
+      "countyCount": 8,
+      "endpointCount": 7,
       "populated": true
     },
     {

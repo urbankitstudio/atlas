@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-25",
   "counties": [
     {
       "id": "va-fairfax",
@@ -454,6 +454,97 @@
         "summary": "Loudoun County's public parcel layer has parcel keys and street and subdivision fields but no owner names or mailing addresses, so we don't index it. Check with the county mapping office, or request it and we'll tell you if that changes.",
         "checked": "2026-10-10"
       }
+    },
+    {
+      "id": "va-stafford",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Stafford",
+      "countySlug": "stafford-county",
+      "countyFips": "51179",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://portal-gis.stafford.va.us/arcgis/rest/services/WebApp/WebApp_Parcels/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "Owner1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ID_NSP",
+              "label": "Parcel ID (no spaces)",
+              "searchable": true
+            },
+            {
+              "name": "FULLADD",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Own_Street",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Own_City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Own_State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Own_Zip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PRCLID",
+              "label": "Parcel ID (space-padded)",
+              "searchable": false
+            },
+            {
+              "name": "Acres",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "TotVal1",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "Sale1D",
+              "label": "Last Sale Date",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 1000,
+          "sampleQuery": "https://portal-gis.stafford.va.us/arcgis/rest/services/WebApp/WebApp_Parcels/MapServer/0/query?where=UPPER(Owner1)+LIKE+UPPER('%25SMITH%25')&outFields=PARCEL_ID_NSP,Owner1,FULLADD,Own_Street,Own_City&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://staffordcountyva.gov/government/gis_(maps)/index.php",
+          "status": "live",
+          "lastVerified": "2026-10-25",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Stafford County GIS Office, (540) 658-4033",
+        "url": "https://staffordcountyva.gov/government/gis_(maps)/index.php",
+        "email": "gis@staffordcountyva.gov"
+      },
+      "notes": "Stafford County, Virginia (FIPS 51179; county seat Stafford) publishes the parcel layer its public County Map Viewer searches on the County GIS Office's own ArcGIS Server: WebApp/WebApp_Parcels MapServer layer 0, \"Parcels\" (ArcGIS 10.91, Map,Query,Data), 61,280 rows on 2026-10-25, 61,096 of them with an owner. The owner is Owner1; the owner mailing address is Own_Street, Own_City, Own_State and Own_Zip; the situs is FULLADD; the parcel number is PARCEL_ID_NSP, the id without spaces (for example 29D826), which is what the viewer's own parcel search uses. PRCLID is the same id space-padded and is listed only as a reference. TotVal1 is the populated assessed total; TotVal2 and TotVal3 are empty. The layer answers any Origin with an Access-Control-Allow-Origin header that reflects it, has maxRecordCount 1000 with pagination, and uses a Virginia North feet coordinate system, so a point query must set inSR=4326 (a point near the courthouse returned one parcel). No placeholder for a withheld owner appears in the layer. Currency: the newest Sale1D is 08/27/2026 (text, MM/DD/YYYY), but the geometry stamps stop at 2024-10-17 and Assmnt1D is empty on every row, so treat sale and assessment columns as the county's and verify with the Stafford County Commissioner of the Revenue. The sampleQuery returns 10 rows and the layer reports more (exceededTransferLimit). TRAP: the county's open-data Hub also lists a Parcels FeatureServer (services1.arcgis.com/qKiA6JuCrE2l72iL), current and open to any origin, but it has no owner or mailing columns; it is only an owner-less fallback. The same MapServer is also served on the viewer's front host, gismapping.stafford.va.us, if portal-gis moves. The statewide VGIN layer has no owner or address columns. No licence, copyright text or use condition is published on the layer, the service, the viewer's web map or the county GIS page; the page carries only a no-warranty, not-a-legal-description disclaimer, and the county's GIS FAQ says its GIS information is available to the public, so the licence is recorded as unknown, as for Chesterfield and Salem. Informational only and not a legal description.",
+      "addedAt": "2026-10-25"
     }
   ]
 }

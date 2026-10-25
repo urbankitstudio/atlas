@@ -2,7 +2,7 @@
   "stateSlug": "ohio",
   "stateName": "Ohio",
   "stateAbbrev": "OH",
-  "lastUpdated": "2026-10-18",
+  "lastUpdated": "2026-10-25",
   "counties": [
     {
       "id": "oh-montgomery",
@@ -620,6 +620,102 @@
       },
       "notes": "Madison County, Ohio (FIPS 39097; county seat London). Served by the County Engineer's ArcGIS Online feature service (services8.arcgis.com, item \"Parcels Engineer\", described as \"Madison County Engineer Parcel data joined with Madison County Auditor Parcel data\"): Parcels_Engineer FeatureServer layer 13, \"Parcels_Parcels_join\", 25,931 rows, last edited 2026-10-15, published on the county's GIS Data Download hub. Informational only and not a legal record: verify with the Madison County Auditor. Verified 2026-10-17: the layer extent is 83.66 to 83.20 W and 39.69 to 40.11 N, and a point at London intersects one parcel. Share of rows filled, read 2026-10-17: TAXPIN 100.0%, NAME 98.4%, Number 76.3%, Street 98.6%, City 59.6%, ZipCode 59.6%, Owner_Cont 98.6% (96.9% of those start with a house number or a PO Box), Owner_Co_1 97.5%, Owner_Co_4 97.5%, Owner_Co_5 97.5%, ACREAGE 55.4%, XFER_DATE 73.4%. Parcel number: the auditor's number is TAXPIN (for example 24-01065.000). PARCEL_NO is the Engineer's own sequence number, with 5,349 distinct values over 25,931 rows, and is not listed. TAXPIN has 23,091 distinct values: 287 rows carry the placeholders 99-99999.999 (215 rows) and 88-88888.888 (72 rows), none with an owner, 9 rows are blank, and 1,600 other numbers appear on more than one row (2,546 extra rows, at most 54 rows under one number), so a parcel-number lookup can return several rows. NAME is the owner name (423 rows have none). The owner mailing address is the Owner_Cont, Owner_Co_1, Owner_Co_4 and Owner_Co_5 columns: Owner_Cont is the street line, Owner_Co_1 the city, Owner_Co_4 the state and Owner_Co_5 the ZIP; Owner_Co_4 holds a state other than OH on 920 rows, and Owner_Co_2 holds the country. The layer's Taxpayer_* columns are a different address (the tax-bill address: 6,255 rows hold TX and 1,320 hold CA) and are not listed. Site address: Number is the house number (blank on 23.7% of rows) and Street the bare street name with no street type (PPAddress, StreetSuff, PreDirecti and PostDirect are empty on every row, and 88 rows hold NOT ON FILE), so a site address reads \"123 MAIN\" and a search on a house number and street name does not use the street type. Deeded_Nam and Listed_Nam are empty on every row. City, State and ZipCode are the site postal city, state and ZIP and are blank on 40.4% of rows. XFER_DATE has 7 values before 1900 and 3 after 2026-10-17; the latest transfer date up to that day is 2026-10-07. The layer pages and declares maxRecordCount 2000; the parcel-number sample answered in 0.1 s. CORS: the server answers with Access-Control-Allow-Origin *. License: unknown. The service and its item carry no license text. The county Engineer's page says only that it \"is consistently undergoing change and is not warranted for content or accuracy\". Two other items in the same ArcGIS Online organization (the 2025 and 2026 Comprehensive Plan layers) carry this notice: \"Madison County, Ohio Data are property of offices or departments affiliated with Madison County, Ohio local government, collectively called \\\"Madison County.\\\" These data have been derived from public records that are constantly undergoing change and are not warranted for content or accuracy ... Reproduction in any form is prohibited without the expressed consent of Madison County.\" The parcel item does not carry it, and the county's GIS Data Download hub (the licenseUrl) states no terms of its own.",
       "addedAt": "2026-10-17"
+    },
+    {
+      "id": "oh-carroll",
+      "state": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "county": "Carroll",
+      "countySlug": "carroll-county",
+      "countyFips": "39019",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services8.arcgis.com/dZSJY7MSQPhysZUz/arcgis/rest/services/Carroll_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Carroll_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "Listed_Name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Parcel_Number",
+              "label": "Parcel Number",
+              "searchable": true
+            },
+            {
+              "name": "PIN",
+              "label": "Parcel PIN (12 digits)",
+              "searchable": true
+            },
+            {
+              "name": "Location_Address",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Location_City_State_Zip",
+              "label": "Site City, State, ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Contact_Address",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Contact_City",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Contact_State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Contact_ZipCode",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Acres",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "Date_Conveyed",
+              "label": "Date Conveyed",
+              "searchable": false
+            },
+            {
+              "name": "District_Name",
+              "label": "Tax District",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services8.arcgis.com/dZSJY7MSQPhysZUz/arcgis/rest/services/Carroll_Parcels/FeatureServer/0/query?where=UPPER(Listed_Name)+LIKE+UPPER('%25SMITH%25')&outFields=Parcel_Number,Listed_Name,Location_Address,Owner_Contact_Address,Owner_Contact_City&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://carroll-county-ohio-open-data-CarrollCountyOH.hub.arcgis.com",
+          "status": "live",
+          "lastVerified": "2026-10-25",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Carroll County Auditor, GIS",
+        "url": "https://carroll-county-ohio-open-data-CarrollCountyOH.hub.arcgis.com",
+        "email": null
+      },
+      "notes": "Carroll County, Ohio (FIPS 39019; county seat Carrollton). Served by the County Auditor's own ArcGIS Online organisation: the item Carroll_Parcels (owner account CCAuditorGIS, the same account that publishes the \"Carroll County Ohio Open Data Hub\" with the footer \"Carroll County GIS, Open Data Department\" and the county's ParcelViewerMAP web map), FeatureServer layer 0, 28,680 rows, last edited 2026-10-24, Tax_Year 2025 on every populated row. The owner is Listed_Name (28,267 rows have one); the owner mailing address is Owner_Contact_Address, Owner_Contact_City, Owner_Contact_State and Owner_Contact_ZipCode; the situs is Location_Address; the parcel number is Parcel_Number (for example 10-0000355.000), PIN being the same number as 12 digits. Taxpayer_Contact_* is a separate bill-to address and is not listed. 413 rows have no owner, parcel number or situs; they are probably right-of-way or unassessed slivers. Location_City_State_Zip is filled on only 6,158 rows, so a site city is not reliable. The layer answers any Origin with Access-Control-Allow-Origin: *, has maxRecordCount 2000 with pagination, supports Query and Extract only, and uses Web Mercator, so a point query must set inSR=4326 (a point at Carrollton returned one parcel, 10 S LISBON ST). Date_Conveyed is text (M/D/YYYY h:mm:ss AM), not a date. No withheld-owner placeholder appears in Listed_Name. No licence or use condition is published on the layer or its item; the county's ParcelViewerMAP item says only that the data is maintained and published by Carroll County for its own purposes, with no warranty as to accuracy or suitability for any other purpose. The Hub's terms link is an unedited template link. Owner names can appear as initials only: the county auditor replaces some owners' names with initials at their request, so an initials-only owner is a deliberate redaction by the county, not a data error. Informational only and not a legal record: verify with the Carroll County Auditor.",
+      "addedAt": "2026-10-25"
     }
   ]
 }

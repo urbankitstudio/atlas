@@ -1,5 +1,22 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.45 — 2026-10-25
+
+Two counties join, each with a searchable owner-name field: Stafford County, Virginia (`va-stafford`, FIPS
+51179) and Carroll County, Ohio (`oh-carroll`, FIPS 39019). `totals` move to 503 counties, 498 endpoints and
+471 counties with an endpoint. No type changes.
+
+- **Stafford VA**: the County GIS Office's own ArcGIS Server, `WebApp/WebApp_Parcels` MapServer layer 0, 61,280
+  parcels, 61,096 with an owner (`Owner1`), owner mailing address in `Own_Street`, `Own_City`, `Own_State` and
+  `Own_Zip`, parcel number `PARCEL_ID_NSP`. The coordinate system is Virginia North feet, so a point query
+  sets `inSR=4326`. The county's open-data copy has no owner columns and is not registered. The licence is
+  `unknown`: no term is published on the layer, the service or the county pages.
+- **Carroll OH**: the County Auditor's own ArcGIS Online organisation (account `CCAuditorGIS`),
+  `Carroll_Parcels` FeatureServer layer 0, 28,680 parcels, 28,267 with an owner (`Listed_Name`), owner mailing
+  address in `Owner_Contact_*`, parcel number `Parcel_Number`. Last edited 2026-10-24. The licence is
+  `unknown`: the layer carries no terms, and the county's parcel viewer item says only that the data is
+  maintained for the county's own purposes, with no warranty.
+
 ## 0.6.44 — 2026-10-25
 
 The three confidential-flagged Texas records' `sampleQuery` URLs exclude flagged owners, and the advised
