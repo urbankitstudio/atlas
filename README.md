@@ -252,19 +252,30 @@ written.
 
 ## Some layers flag an owner's record confidential
 
-An endpoint may carry `confidentialFlag: { field, values }` (type `ConfidentialFlag`).
-Texas Tax Code §25.025 lets peace officers, judges, family-violence victims and
-others have their home address kept confidential in appraisal records, and Harris
-(`confidential_flag`, `"Y"`) and Collin (`GIS_DBO_AD_Entity_confidential_`, `"T"`)
-publish those accounts with the owner and a flag column beside it. A row whose
-flag is set must not be shown or passed on. Request the column whenever you
-request the owner, and drop a row whose cell, trimmed and upper-cased, equals a
-listed value or, for a one-character value, contains it (Harris packs one flag per
-ownership slot into a ten-character string: `"YNNNNNNNNN"` is slot 1 confidential).
-Treat a row that lacks the column as flagged. The hosted API and MCP withhold such
-a row with `withheld: "county-redacted"`. Ector (`conf_flg`, `"1"`) carries a forward
-guess: the column was 0 on every row when measured, so the marker names a value the
+An endpoint may carry `confidentialFlag: { field, values, safeValues }` (type
+`ConfidentialFlag`). Texas Tax Code §25.025 lets peace officers, judges,
+family-violence victims and others have their home address kept confidential in
+appraisal records, and Harris (`confidential_flag`, `"Y"`) and Collin
+(`GIS_DBO_AD_Entity_confidential_`, `"T"`) publish those accounts with the owner
+and a flag column beside it. A row whose flag is set must not be shown or passed
+on. Request the column whenever you request the owner, and keep a row only if its
+raw cell equals one of `safeValues` AND the cell, trimmed and upper-cased, contains
+no listed value (Harris packs one flag per ownership slot into a ten-character
+string: `"YNNNNNNNNN"` is slot 1 confidential). A NULL cell, or a row that lacks
+the column, is flagged. The hosted API and MCP withhold a flagged row with
+`withheld: "county-redacted"`. Ector (`conf_flg`, `"1"`) carries a forward guess:
+the column was 0 on every row when measured, so the marker names a value the
 county has not yet published (the record's `notes` say so).
+
+`safeValues` lists the exact raw cells each layer holds for an unflagged owner,
+measured 2026-10-26 with `returnDistinctValues` (complete lists): Harris
+`["          ", "N         ", "NNN       ", "NNNNNNNNNN"]`, every entry ten
+characters with its padding (ten spaces; `N` and nine spaces; `NNN` and seven
+spaces; ten `N`s); Collin `["F"]`; Ector `[0]`, a number, because `conf_flg` is
+an integer column. It is there because a contains test written in SQL cannot
+match the rule above on every county backend (non-ASCII upper-casing, an embedded
+NUL that stops `LIKE`, the 255-character cast, mixed encodings): a cell that is
+not exactly a listed safe value drops out, whatever the backend does with text.
 
 In a `where` clause, cast the column to text first: a one-character value needs
 `CAST(<field> AS VARCHAR(255)) NOT LIKE '%<value>%'` (an equality test keeps
@@ -282,20 +293,40 @@ has 470,972 blank cells that hold spaces, and the clause keeps them; it also has
 5,235 NULL cells, and Collin has 15,003. A NULL cell fails the clause and the
 row drops out; a missing column makes the query fail. The hosted API serves a
 NULL cell as unflagged, so the SQL route and the hosted API differ on those rows
-(Harris 5,235 and Collin 15,003, measured 2026-10-25). Each flagged record's
-`sampleQuery` requests the column and carries the clause.
+(Harris 5,235 and Collin 15,003, measured 2026-10-25).
+
+Then AND `<field> IN (<safeValues>)`, with the column neither cast nor
+upper-cased: strings single-quoted with `'` doubled, integers bare, joined by
+`, ` in the listed order. Harris:
+`confidential_flag IN ('          ', 'N         ', 'NNN       ', 'NNNNNNNNNN')`;
+Collin: `GIS_DBO_AD_Entity_confidential_ IN ('F')`; Ector: `conf_flg IN (0)`.
+Measured live 2026-10-26, the IN clause alone keeps exactly the rows the cast
+clause keeps (Harris 1,541,671; Collin 435,783; Ector 77,042), and so do the two
+ANDed together. Each flagged record's `sampleQuery` requests the column and
+carries both clauses.
 
 ```ts
 import { findCountyByFips } from "@urbankitstudio/atlas";
 
 const endpoint = findCountyByFips("48201")!.endpoints[0];
-const flag = endpoint.confidentialFlag; // { field: "confidential_flag", values: ["Y"] }
+const flag = endpoint.confidentialFlag; // { field: "confidential_flag", values: ["Y"], safeValues: [...] }
 const cell = flag ? `CAST(${flag.field} AS VARCHAR(255))` : null;
+const literal = (v: string | number) => (typeof v === "number" ? String(v) : `'${v.replace(/'/g, "''")}'`);
+// A flag without safeValues cannot keep flagged rows out, so its query returns no rows.
 const notFlagged = flag
-  ? flag.values.map((v) => (v.length === 1 ? `${cell} NOT LIKE '%${v}%'` : `${cell} <> '${v}'`)).join(" AND ")
+  ? flag.safeValues?.length
+    ? [
+        ...flag.values.map((v) => (v.length === 1 ? `${cell} NOT LIKE '%${v}%'` : `${cell} <> '${v}'`)),
+        `${flag.field} IN (${flag.safeValues.map(literal).join(", ")})`,
+      ].join(" AND ")
+    : "1=0"
   : null;
 const where = notFlagged ? `(${where0}) AND ${notFlagged}` : where0;
 ```
+
+From 0.6.46 every flagged record carries a non-empty `safeValues`; the registry's
+validator refuses a marker without one, or with a safe value that is itself
+flagged.
 
 An absent `confidentialFlag` means the layer publishes no such column, not that no
 owner there is protected.

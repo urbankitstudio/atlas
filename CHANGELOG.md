@@ -1,5 +1,56 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.46 — 2026-10-26
+
+Every confidential-flagged record now lists the exact raw cells its layer holds for an UNFLAGGED owner, and
+the advised `where` keeps only those. `ConfidentialFlag` gains `safeValues?: Array<string | number>`
+(optional in the type so older data still type-checks; present on all three flagged records). `totals` are
+unchanged.
+
+### Why: a contains test in SQL cannot be trusted on every backend
+
+The 0.6.44 clause `CAST(<field> AS VARCHAR(255)) NOT LIKE '%<value>%'` is a contains test written in SQL,
+and an adversarial review showed it cannot match the JavaScript rule (trim, upper-case, contains) on every
+county backend: non-ASCII upper-casing, an embedded NUL that stops `LIKE`, the 255-character cast and mixed
+encodings can each let a flagged cell read as clean. The fix is fail-closed: AND `<field> IN (<safeValues>)`,
+so a row survives only when its raw cell is exactly a value measured as safe, whatever the backend does with
+text. The rule for consumers: keep a row only if its raw cell equals a listed safe value AND the cell,
+trimmed and upper-cased, contains no marker value; a NULL or missing cell is flagged.
+
+### The measured safe values
+
+Measured live 2026-10-26 with `returnDistinctValues` (complete lists, `exceededTransferLimit` false):
+
+- **Harris** (`tx-harris`, `confidential_flag`, a string): `["          ", "N         ", "NNN       ",
+  "NNNNNNNNNN"]`, every entry ten characters (ten spaces; `N` and nine spaces; `NNN` and seven spaces; ten
+  `N`s).
+- **Collin** (`tx-collin`, `GIS_DBO_AD_Entity_confidential_`, a string): `["F"]`.
+- **Ector** (`tx-ector`, `conf_flg`, a small integer): `[0]`, a JSON number.
+
+`<field> IN (<safeValues>)` keeps exactly the rows the 0.6.44 clause keeps (Harris 1,541,671; Collin 435,783;
+Ector 77,042), and the two ANDed together keep the same counts.
+
+### The flagged records' sample queries carry both clauses
+
+Each `sampleQuery` appends ` AND <field> IN (...)` inside its `where`, after the CAST clause. Strings are
+single-quoted with `'` doubled, integers bare, joined by `, ` in the listed order; the column is not cast and
+not upper-cased:
+
+- **Harris**: `... AND confidential_flag IN ('          ', 'N         ', 'NNN       ', 'NNNNNNNNNN')`
+- **Collin**: `... AND GIS_DBO_AD_Entity_confidential_ IN ('F')`
+- **Ector**: `... AND conf_flg IN (0)`
+
+Each record's `notes` gives the same clause. The published directory CSV/JSON probe, the site's owner-search
+examples and the `llms-full.txt` line for these counties carry it too.
+
+`validate-atlas` now fails a `confidentialFlag` without a non-empty `safeValues`; a safe value that is neither a
+printable-ASCII string without a backslash (`/^[\x20-\x5b\x5d-\x7e]*$/`, padding and the empty string
+allowed; a backend that reads `\` as an escape would end the literal early) nor a safe integer; a
+repeated safe value; a safe value that is itself flagged (trimmed and upper-cased, it contains a marker
+value, so listing it would let a flagged row through); a `sampleQuery` whose `where` does not end with both
+clauses; and two registrations of one layer whose `safeValues` differ. The hosted reader
+(`isConfidentialFlagged`) does not read `safeValues` yet.
+
 ## 0.6.45 — 2026-10-25
 
 Two counties join, each with a searchable owner-name field: Stafford County, Virginia (`va-stafford`, FIPS

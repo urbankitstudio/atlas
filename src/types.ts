@@ -40,15 +40,19 @@ export interface SearchField {
 }
 
 /**
- * The county's own "this owner's record is confidential" column on a layer, and
- * the values that say so. Texas Tax Code §25.025 lets peace officers, judges,
- * family-violence victims and others have their home address kept confidential
- * in appraisal records; Harris (HCAD) and Collin publish the owner anyway with a
- * flag column beside it (`confidential_flag` "Y", `GIS_DBO_AD_Entity_confidential_`
- * "T"); Ector's (`conf_flg` "1") is the recorded guess, since no flagged row
- * had been observed when it was measured. A row whose flag is set must not be
- * shown or passed on. Either add one clause per value to every query against
- * the layer: for a ONE-character value
+ * The county's own "this owner's record is confidential" column on a layer, the
+ * values that say so, and the raw cells measured as safe. Texas Tax Code §25.025
+ * lets peace officers, judges, family-violence victims and others have their
+ * home address kept confidential in appraisal records; Harris (HCAD) and Collin
+ * publish the owner anyway with a flag column beside it (`confidential_flag`
+ * "Y", `GIS_DBO_AD_Entity_confidential_` "T"); Ector's (`conf_flg` "1") is the
+ * recorded guess, since no flagged row had been observed when it was measured.
+ * A row whose flag is set must not be shown or passed on.
+ *
+ * The rule: keep a row only if its raw cell equals one of `safeValues` AND the
+ * cell, trimmed and upper-cased, contains no listed value; a NULL or missing
+ * cell is flagged. In SQL that is two clauses ANDed to every query against the
+ * layer. First, one per value: for a ONE-character value
  * `AND CAST(<field> AS VARCHAR(255)) NOT LIKE '%<value>%'` (HCAD packs one flag
  * per ownership slot into a ten-character string, so "YNNNNNNNNN" is slot 1
  * confidential and an equality test would keep it; Collin's "T" takes this
@@ -57,19 +61,35 @@ export interface SearchField {
  * answers there with an ArcGIS error (code 400, inside an HTTP 200 response).
  * Never TRIM the column in SQL: `TRIM(<field>)` answers with the same error on
  * all three layers, so the SQL route compares the untrimmed text
- * (`UPPER(CAST(<field> AS VARCHAR(255)))` does run). Harris's 470,972 blank
- * cells hold spaces and the clause keeps them; Harris also has 5,235 NULL cells
- * and Collin 15,003 (2026-10-25). A NULL cell fails the clause and the row drops
- * out; a missing column makes the query fail. That is fail-closed, unlike the
- * hosted reader, which serves a null cell as "no flag recorded". Or drop the row yourself when the cell, trimmed
- * and upper-cased, equals a listed value or, for a one-character value,
- * contains it. Request the column whenever you request the owner, and treat a
- * row that lacks it as flagged. The hosted API and MCP withhold such a row with
- * `withheld: "county-redacted"`.
+ * (`UPPER(CAST(<field> AS VARCHAR(255)))` does run). Then
+ * `AND <field> IN (<safeValues>)`: a contains test written in SQL cannot match
+ * the rule on every county backend (non-ASCII upper-casing, an embedded NUL
+ * that stops LIKE, the 255-character cast, mixed encodings), so a cell that is
+ * not exactly a known-safe value drops out whatever the backend does with
+ * text. Each record's `sampleQuery` carries both clauses. Harris's 470,972
+ * blank cells hold spaces and both clauses keep them; Harris also has 5,235
+ * NULL cells and Collin 15,003 (2026-10-25). A NULL cell fails both clauses
+ * and the row drops out; a missing column makes the query fail. That is
+ * fail-closed, unlike the hosted reader, which serves a null cell as "no flag
+ * recorded" and does not read `safeValues` yet. Or apply the rule to each row
+ * yourself. Request the column whenever you request the owner. The hosted API
+ * and MCP withhold a flagged row with `withheld: "county-redacted"`.
  */
 export interface ConfidentialFlag {
   field: string;
   values: string[];
+  /**
+   * The exact raw cells the layer holds for an UNFLAGGED owner, strings with
+   * their padding and integers for an integer column (measured 2026-10-26 with
+   * returnDistinctValues: Harris `["          ", "N         ", "NNN       ",
+   * "NNNNNNNNNN"]`, each ten characters; Collin `["F"]`; Ector `[0]`). In SQL,
+   * `<field> IN ('          ', 'N         ', ...)`: strings single-quoted with
+   * `'` doubled, integers bare, in the listed order, the column neither cast
+   * nor upper-cased. validate-atlas requires it on every record that carries a
+   * confidentialFlag (since 0.6.46); it is optional in the type so data older
+   * than that still type-checks.
+   */
+  safeValues?: Array<string | number>;
 }
 
 export interface EndpointRecord {
@@ -165,7 +185,8 @@ export interface EndpointRecord {
   maxRecordCount?: number;
   /** The layer's own confidential-owner flag column (see {@link ConfidentialFlag}).
    *  Present on tx-harris, tx-collin and tx-ector (Ector's marker is the
-   *  recorded guess: no flagged row observed yet). Absent means the layer publishes no
+   *  recorded guess: no flagged row observed yet), each with its measured
+   *  `safeValues`. Absent means the layer publishes no
    *  such column, not that no owner there is protected. */
   confidentialFlag?: ConfidentialFlag;
   sampleQuery: string | null;
