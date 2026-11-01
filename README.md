@@ -291,9 +291,14 @@ filter in your own code trims. `UPPER(CAST(<field> AS VARCHAR(255)))` also runs
 on all three if you want the comparison case-blind. Measured 2026-10-25: Harris
 has 470,972 blank cells that hold spaces, and the clause keeps them; it also has
 5,235 NULL cells, and Collin has 15,003. A NULL cell fails the clause and the
-row drops out; a missing column makes the query fail. The hosted API serves a
-NULL cell as unflagged, so the SQL route and the hosted API differ on those rows
-(Harris 5,235 and Collin 15,003, measured 2026-10-25).
+row drops out; a missing column makes the query fail. Since 0.6.47 the hosted API,
+the hosted MCP and the site's free tools keep the same rows, plus unpadded or
+whitespace-wrapped forms of a safe cell, none of which can carry a marker: they
+ignore trailing spaces (U+0020) on both sides of a string safe value, match an
+integer safe value against text that trims (JavaScript `trim`) to its decimal
+form, withhold a cell that holds a listed value anywhere in it, whatever that
+value's length, and withhold every row of a layer whose flag lists no safe
+values. So they withhold those NULL rows too.
 
 Then AND `<field> IN (<safeValues>)`, with the column neither cast nor
 upper-cased: strings single-quoted with `'` doubled, integers bare, joined by

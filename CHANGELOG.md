@@ -1,5 +1,22 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.47 — 2026-10-26
+
+No data change. The hosted API, the hosted MCP and the site's free tools now read `safeValues`: they keep
+a flagged layer's row only when its flag cell is one of the listed safe values and, trimmed and
+upper-cased, holds no marker value anywhere in it, whatever the marker's length. Every other row is
+withheld as `county-redacted`, a NULL cell included, and so is every row of a layer whose flag lists no
+safe values. That is the rule this package's README has advised since 0.6.46, up to padding: trailing
+U+0020 spaces are ignored on both sides of a string safe value, and an integer safe value also matches
+text that trims (JavaScript `trim`) to its decimal form, so the hosted reader also keeps unpadded or
+whitespace-wrapped forms of a safe cell. None of those forms can carry a marker: the marker test reads the
+cell itself, and validate-atlas refuses a safe value that holds one. On the 2026-10-25 measurements that
+newly withholds Harris's 5,235 and Collin's 15,003 NULL-flag rows; Ector is unchanged. A withheld row is
+never billed: PAYG never meters it, and a plan unit reserved before the row was found withheld is refunded.
+When that refund cannot be confirmed, the unit still counts against the quota and the response says so
+(`plan_quota.refund` on `enrich_address`, `refunded: false` on a bulk row, radius's `charged`). A pay-as-you-go replay of an MCP `enrich_address` operation already paid returns the stored result as it would be served today, withheld when its county now withholds it, keeping the original `billed`, `operation_id` and charge and charging nothing new. When the stored result's county cannot be established, that replay is withheld as `county-unresolved`, with owner, mailing address, site address, parcel id and its county fields null where the stored result has them (a field it lacks stays absent). When the fresh lookup is itself withheld as `county-redacted`, that is the reason returned instead, and the same fields stay withheld. The README and the `ConfidentialFlag` comment no longer say the hosted reader serves a NULL
+cell as unflagged.
+
 ## 0.6.46 — 2026-10-26
 
 Every confidential-flagged record now lists the exact raw cells its layer holds for an UNFLAGGED owner, and

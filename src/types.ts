@@ -70,10 +70,16 @@ export interface SearchField {
  * blank cells hold spaces and both clauses keep them; Harris also has 5,235
  * NULL cells and Collin 15,003 (2026-10-25). A NULL cell fails both clauses
  * and the row drops out; a missing column makes the query fail. That is
- * fail-closed, unlike the hosted reader, which serves a null cell as "no flag
- * recorded" and does not read `safeValues` yet. Or apply the rule to each row
- * yourself. Request the column whenever you request the owner. The hosted API
- * and MCP withhold a flagged row with `withheld: "county-redacted"`.
+ * fail-closed. Since 0.6.47 the hosted reader (the hosted API, the hosted MCP
+ * and the site's free tools) keeps the same rows, plus unpadded or
+ * whitespace-wrapped forms of a safe cell, none of which can carry a marker: it
+ * ignores trailing spaces (U+0020) on both sides of a string safe value,
+ * matches an integer safe value against text that trims (JavaScript `trim`) to
+ * its decimal form, withholds a cell that holds a listed value anywhere in it,
+ * whatever that value's length, and withholds every row of a layer whose flag
+ * lists no safe values. Or apply the rule to each row yourself. Request the
+ * column whenever you request the owner. The hosted API and MCP withhold a
+ * flagged row with `withheld: "county-redacted"`.
  */
 export interface ConfidentialFlag {
   field: string;
