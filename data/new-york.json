@@ -2,7 +2,7 @@
   "stateSlug": "new-york",
   "stateName": "New York",
   "stateAbbrev": "NY",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-11-02",
   "counties": [
     {
       "id": "ny-bronx",
@@ -105,6 +105,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -112,11 +117,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -172,6 +172,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -179,11 +184,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -438,6 +438,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -445,11 +450,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -505,6 +505,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -512,11 +517,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -766,6 +766,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -773,11 +778,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -833,6 +833,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -840,11 +845,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -918,6 +918,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -925,11 +930,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -985,6 +985,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -992,11 +997,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -1144,6 +1144,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -1151,11 +1156,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -1211,6 +1211,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -1218,11 +1223,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -1368,6 +1368,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -1375,11 +1380,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -1435,6 +1435,11 @@
               "searchable": true
             },
             {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
               "name": "PARCEL_ADDR",
               "label": "Parcel Address",
               "searchable": true
@@ -1442,11 +1447,6 @@
             {
               "name": "PRINT_KEY",
               "label": "Print Key",
-              "searchable": true
-            },
-            {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
@@ -1612,13 +1612,13 @@
               "searchable": true
             },
             {
-              "name": "PARCEL_ADDR",
-              "label": "Parcel Address",
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
               "searchable": true
             },
             {
@@ -1709,13 +1709,13 @@
               "searchable": true
             },
             {
-              "name": "PARCEL_ADDR",
-              "label": "Parcel Address",
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
               "searchable": true
             },
             {
@@ -1826,13 +1826,13 @@
               "searchable": true
             },
             {
-              "name": "PARCEL_ADDR",
-              "label": "Parcel Address",
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
               "searchable": true
             },
             {
@@ -1908,13 +1908,13 @@
               "searchable": true
             },
             {
-              "name": "PARCEL_ADDR",
-              "label": "Parcel Address",
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
               "searchable": true
             },
             {
-              "name": "SWIS_SBL_ID",
-              "label": "SWIS-SBL Parcel Identifier",
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
               "searchable": true
             },
             {
@@ -1998,6 +1998,160 @@
         "summary": "Dutchess County's public parcel layer has parcel ids but no owner names or addresses, and New York's statewide parcel service has no Dutchess rows, so we don't index it. Search the county's Parcel Access viewer, or request it and we'll tell you if that changes.",
         "checked": "2026-10-08"
       }
+    },
+    {
+      "id": "ny-cayuga",
+      "state": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "county": "Cayuga",
+      "countySlug": "cayuga-county",
+      "countyFips": "36011",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (e.g. Cayuga)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1/query?where=COUNTY_NAME%3D'Cayuga'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+          "status": "live",
+          "lastVerified": "2026-11-02",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Cayuga'"
+        },
+        {
+          "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1",
+          "serviceType": "MapServer",
+          "layerIndex": 1,
+          "layerName": "NYS_Tax_Parcels_Public",
+          "supportsQuery": true,
+          "corsEnabled": null,
+          "searchFields": [
+            {
+              "name": "COUNTY_NAME",
+              "label": "County Name (e.g. Cayuga)",
+              "searchable": true
+            },
+            {
+              "name": "PRIMARY_OWNER",
+              "label": "Primary Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "SWIS_SBL_ID",
+              "label": "SWIS-SBL Parcel Identifier",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_ADDR",
+              "label": "Parcel Address",
+              "searchable": true
+            },
+            {
+              "name": "PRINT_KEY",
+              "label": "Print Key",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_ADDR",
+              "label": "Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "MAIL_CITY",
+              "label": "Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "TOTAL_AV",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "YR_BLT",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D'Cayuga'+AND+UPPER(PRIMARY_OWNER)+LIKE+UPPER('%25SMITH%25')&outFields=COUNTY_NAME,PRIMARY_OWNER,PARCEL_ADDR,SWIS_SBL_ID&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+          "status": "live",
+          "lastVerified": "2026-11-02",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY_NAME='Cayuga'"
+        }
+      ],
+      "contact": {
+        "department": "NYS Office of Information Technology Services GIS (statewide layer)",
+        "url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer",
+        "email": "nysgis@its.ny.gov"
+      },
+      "notes": "Cayuga County, New York (county seat Auburn; FIPS 36011) is served by the NYS Tax Parcels Public statewide layer, filter with COUNTY_NAME='Cayuga'. It is the layer Onondaga and the other statewide-served counties use: the first endpoint is the official NYSGIS mirror on ArcGIS Online (services6.arcgis.com, FeatureServer/1), the second the state server (gisservices.its.ny.gov, MapServer/1). The layer description names Cayuga among the counties that 'specifically authorized Geospatial Services to share their GIS tax parcel data with the public'; 2025 roll, published May 2026, dataLastEditDate 2026-10-19 on the mirror. Verified 2026-11-02 by metadata and returnCountOnly only: COUNTY_NAME='Cayuga' counts 39,127 rows on both endpoints, PRIMARY_OWNER and PARCEL_ADDR are populated on all 39,127 and MAIL_ADDR on 36,936 (the control, COUNTY_NAME='Onondaga', counts 181,909, the figure in the Onondaga record). A scoped owner search for SMITH counts 341 rows on both endpoints, which is the sample query. maxRecordCount is 1,000 on the mirror and 50,000 on the state server, CORS is open on the mirror, and the state server's count query took 5.8 s, so keep every query scoped by COUNTY_NAME or spatial. Owner reads 'Unknown' on 1 row, a placeholder rather than a name. The county's own service (ccgis.cayugacounty.us TaxMapOnline/PARCEL) answers 'Token Required', so it is not used. The statewide layer carries 75 fields on the state server and 74 on the mirror, none of them an exemption column. The county's own GIS page (cayugacounty.gov) answered HTTP 403, so its terms were not read.",
+      "ownerFieldNote": null,
+      "capabilityOverrides": null
     }
   ]
 }

@@ -243,12 +243,20 @@ export type CapabilityStatus = "available" | "not_published" | "restricted" | "u
  * officials, and San Diego County publishes owner names on its public layer.
  * One statute, different county behaviour, so the attribution is not a
  * formality.
+ *
+ * `permission_pending` is a claim we make about ourselves: the county publishes
+ * this field; we have asked it for permission to use it and withhold the field
+ * until it answers. It says nothing about the law or the county's policy. It
+ * always comes with status `restricted`, on a field the layer documents, and
+ * the `note` says when we asked. Expect it to flip to `available` (no basis)
+ * when the county says yes.
  */
 export type CapabilityBasisType =
   | "endpoint_schema"
   | "county_cited_statute"
   | "statute"
-  | "county_policy";
+  | "county_policy"
+  | "permission_pending";
 
 export interface CapabilityBasis {
   type: CapabilityBasisType;

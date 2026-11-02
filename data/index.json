@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-02",
   "totals": {
     "states": 51,
-    "counties": 509,
-    "endpoints": 502,
-    "countiesWithEndpoint": 475,
+    "counties": 515,
+    "endpoints": 509,
+    "countiesWithEndpoint": 481,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -45,8 +45,8 @@
       "slug": "california",
       "name": "California",
       "abbrev": "CA",
-      "countyCount": 17,
-      "endpointCount": 17,
+      "countyCount": 18,
+      "endpointCount": 18,
       "populated": true
     },
     {
@@ -117,16 +117,16 @@
       "slug": "illinois",
       "name": "Illinois",
       "abbrev": "IL",
-      "countyCount": 11,
-      "endpointCount": 10,
+      "countyCount": 12,
+      "endpointCount": 11,
       "populated": true
     },
     {
       "slug": "indiana",
       "name": "Indiana",
       "abbrev": "IN",
-      "countyCount": 3,
-      "endpointCount": 3,
+      "countyCount": 4,
+      "endpointCount": 4,
       "populated": true
     },
     {
@@ -269,8 +269,8 @@
       "slug": "new-york",
       "name": "New York",
       "abbrev": "NY",
-      "countyCount": 12,
-      "endpointCount": 24,
+      "countyCount": 13,
+      "endpointCount": 26,
       "populated": true
     },
     {
@@ -317,8 +317,8 @@
       "slug": "pennsylvania",
       "name": "Pennsylvania",
       "abbrev": "PA",
-      "countyCount": 11,
-      "endpointCount": 9,
+      "countyCount": 12,
+      "endpointCount": 10,
       "populated": true
     },
     {
@@ -333,8 +333,8 @@
       "slug": "south-carolina",
       "name": "South Carolina",
       "abbrev": "SC",
-      "countyCount": 3,
-      "endpointCount": 1,
+      "countyCount": 4,
+      "endpointCount": 2,
       "populated": true
     },
     {

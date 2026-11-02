@@ -1,5 +1,64 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.7.0 — 2026-11-01
+
+Three counties join with their owner data withheld while we ask each county for permission, three more join
+with their owner data served, and `CapabilityBasisType` gains a member. `totals` move to 515 counties, 509 endpoints
+and 481 counties with an endpoint.
+
+**Minor, not patch**, because an exported union widened: `CapabilityBasisType` adds `"permission_pending"`, so
+code that switches exhaustively over the basis type has a new case to handle. 0.6.0 is the precedent (a
+widened public type shipped as a minor). The README's `^0.x` advice means `^0.6.x` ranges stay on 0.6.48;
+move to `^0.7.0` to receive these counties.
+
+- **`permission_pending`** (new `CapabilityBasisType`): a claim we make about ourselves. The county publishes
+  this field; we have asked it for permission to use it and withhold the field until it answers. It says
+  nothing about the law or the county's policy. It always comes with `status: "restricted"`, on a field the
+  layer documents, with no `attributedTo` (the claim is ours) and a `sourceUrl`; the `note` says when we
+  asked. When the county says yes, the override is removed and the field reads `available`.
+- **Nevada County CA** (`ca-nevada`, FIPS 06057): the county's `web_public/parcel_mail_situs_external`
+  MapServer layer 0, 68,134 rows (64,349 APNs) with APN, site address, use code, zoning, general plan and
+  assessed values, under CC BY 4.0 (`credit` carries the attribution). The service hides owner names, so
+  `owner_name` is `not_published` (`endpoint_schema`). It publishes the owner mailing address, and
+  `owner_mailing_address` is `restricted` (`permission_pending`): we asked the county on 1 November 2026
+  whether we may show mailing addresses without names.
+- **York County SC** (`sc-york`, FIPS 45091): the county's hosted `Parcels` FeatureServer layer 0, 134,504
+  parcels with tax map number, property address, land use, acreage, appraised value and last sale. The layer
+  publishes owner names and mailing addresses; `owner_name` and `owner_mailing_address` are both `restricted`
+  (`permission_pending`, citation S.C. Code 30-2-50): we asked the county on 1 November 2026 for written
+  permission to use them. `Owner1` and `MailAddr1` are documented but not searchable while withheld, and the
+  sample query searches the situs. `credit` names the source and carries the item's disclaimer.
+- **Massac County IL** (`il-massac`, FIPS 17127): the Supervisor of Assessments' hosted `ReachParcels` layer 0,
+  10,827 parcels, 10,628 with an owner (`Owner`) and 10,626 with a mailing address (`MailingAddress`). Licence
+  `unknown`. The layer also carries owner exemption columns (`SeniorFreeze`, `ElderyHomeowner`, `DisabledPerson`,
+  `ReturningVet`, `DisabledVet*`, `ExemptAmt1`): none is listed in `searchFields`, and the free tools drop them.
+- **Boone County IN** (`in-boone`, FIPS 18011): the county's own `Boone_County_Parcel` layer 1, 45,933 parcels
+  with parcel number, state parcel ID, site address, subdivision and acreage. The layer publishes owner names
+  (`name`) and mailing lines (`add1` to `add3`); `owner_name` and `owner_mailing_address` are both `restricted`
+  (`permission_pending`, citation Boone County Code 34.24(F) and Ind. Code 5-14-3-3(e)): the county code lets
+  only those the County Council authorizes deliver or sell information from the county's GIS data, and we
+  asked the county on 2 November 2026 for permission. `name` and `add1` are documented but not searchable
+  while withheld, and the sample query searches the site address. Licence `unknown`.
+- **Adams County PA** (`pa-adams`, FIPS 42001): the county's `Parcel_Owners` MapServer layer 0, 46,935 parcels,
+  46,677 with an owner (`SHORT_NAME`). The layer has no mailing address, so `owner_mailing_address` is
+  `not_published` (`endpoint_schema`). Licence `unknown`.
+- **Cayuga County NY** (`ny-cayuga`, FIPS 36011): the NYS ITS statewide tax parcel layer filtered with
+  `COUNTY_NAME='Cayuga'`, on the NYSGIS mirror and the state server, 39,127 parcels, 36,936 with a mailing
+  address. Same shape as Onondaga.
+- **New York statewide-layer records** (Bronx, Kings, New York, Queens, Richmond, Onondaga, Suffolk, Westchester
+  and Cayuga): `SWIS_SBL_ID` now comes before `PARCEL_ADDR` in each record's `searchFields`. The classifier's
+  parcel id role used to land on `PARCEL_ADDR`, a street address, so paid rows for these counties now return the
+  SBL as `parcel_id`, not the street address. Only the column order changed; no column was added or removed.
+- **`buildParcelLookupDeepLink`** no longer hints a column the record marks `searchable: false` as the owner
+  `fieldHint`, so a link for York County SC (whose owner columns are withheld) carries no hint.
+
+Switching owner data on, when a county says yes: for Nevada, delete `capabilityOverrides.owner_mailing_address`
+and the withholding sentences of `ownerFieldNote` and `notes`; for York, delete both `capabilityOverrides`
+entries and the `ownerFieldNote`, drop the withholding sentence from `notes`, and set `Owner1` and `MailAddr1`
+searchable again; for Boone, the same with `name` and `add1`, and `notes` says which sentences to drop. Switching them on will come in a later 0.7.x release, which moves the package version with
+the data. For Nevada it also changes billing on the hosted API: its mailing-only rows, free while withheld,
+become billable.
+
 ## 0.6.48 — 2026-11-01
 
 Three counties join, one more is served, three are recorded as not served, and six existing records change.

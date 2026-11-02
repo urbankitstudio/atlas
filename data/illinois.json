@@ -2,7 +2,7 @@
   "stateSlug": "illinois",
   "stateName": "Illinois",
   "stateAbbrev": "IL",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-02",
   "counties": [
     {
       "id": "il-kane",
@@ -440,6 +440,49 @@
       },
       "notes": "Bureau County, Illinois (FIPS 17011; county seat Princeton). Served by the ArcGIS Online feature service the Bureau County Supervisor of Assessments account publishes (item 0d193150393f40e18290468136f2e3f3, \"BureauParcels_polygons\", public; service summary \"Bureau parcels October 2025 with updated fields from Bureau County\"): layer 29, \"BureauParcels_polygonsUpdated2\", last edited 2026-10-26. The county's parcel viewer (the Sidwell Portico experience the Supervisor of Assessments page links) reads this layer. Informational only and not a legal record or a survey: verify with the Bureau County Supervisor of Assessments. Verified 2026-11-01: 27,933 rows; PIN filled on 27,929; owner name (PrimaryNam) and owner mailing address (PrimaryAdd, street then city, state and ZIP joined by a tilde) on 27,675 (99.1%); site address (Address_91, street, city and ZIP) on 23,844, of which about 14,700 begin with a house number and the rest carry only the city and ZIP. No withheld-owner placeholder (0 rows match CONFIDENTIAL, WITHHELD or REDACTED). A point query in downtown Princeton near the courthouse (41.3664, -89.4648) returns one parcel, 16-16-377-009, with a Princeton 61356 site address. The layer also carries the legal description, acreage, land, farmland and building assessed values, taxable value, tax code and district, zoning, the last sale price, document number and Date_Sold (newest 2026-10-15; 1,545 sales dated 2026). The native spatial reference is Web Mercator (WKID 102100), so a point query passes inSR=4326. The layer pages and declares maxRecordCount 2000. CORS: the server answers with Access-Control-Allow-Origin *. License: the item, service and layer carry no licence, copyright or access text; the viewer's disclaimer says the data is provided as is with no warranty of accuracy, timeliness or completeness and does not represent a survey. An older copy (Parcel_BureauIL FeatureServer 0, March 2026) and the legacy viewer's layers on another host are not used. Credit Bureau County Supervisor of Assessments.",
       "addedAt": "2026-11-01"
+    },
+    {
+      "id": "il-massac",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Massac",
+      "countySlug": "massac-county",
+      "countyFips": "17127",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services7.arcgis.com/BDZP61z0a0OeR13M/arcgis/rest/services/ReachParcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "ReachParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "ParcelNumber", "label": "Parcel Number", "searchable": true },
+            { "name": "PIN", "label": "PIN", "searchable": true },
+            { "name": "Owner", "label": "Owner Name", "searchable": true },
+            { "name": "MailingAddress", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "SiteAddress", "label": "Site Address", "searchable": true },
+            { "name": "SubdivisionName", "label": "Subdivision", "searchable": true },
+            { "name": "Zoning", "label": "Zoning", "searchable": true },
+            { "name": "Acreage", "label": "Acreage", "searchable": false }
+          ],
+          "sampleQuery": "https://services7.arcgis.com/BDZP61z0a0OeR13M/arcgis/rest/services/ReachParcels/FeatureServer/0/query?where=UPPER(Owner)+LIKE+UPPER('%25SMITH%25')&outFields=ParcelNumber,Owner,SiteAddress,MailingAddress&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://experience.arcgis.com/experience/9d36fcf27f8148b2a33750dee96db3cd",
+          "status": "live",
+          "lastVerified": "2026-11-02",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Massac County Supervisor of Assessments (public GIS map: Massac County REACH)",
+        "url": "https://massac-il.bhamaps.com/",
+        "email": null
+      },
+      "notes": "Massac County, Illinois (county seat Metropolis; FIPS 17127). Served by ReachParcels FeatureServer layer 0 on ArcGIS Online (services7.arcgis.com), the parcel layer behind the county's official Supervisor of Assessments map, the 'Massac County REACH' ArcGIS Experience at massac-il.bhamaps.com, built by Bruce Harris & Associates. Read 2026-11-02 by metadata and returnCountOnly only: 10,827 parcels; Owner populated on 10,628, MailingAddress on 10,626, SiteAddress on 10,575, ParcelNumber and PIN on 10,631. MailingAddress holds a full line: 9,947 of its values contain 'IL ' (a state abbreviation beside the ZIP). maxRecordCount 2000, pagination supported, capabilities Query and Extract (no editing), CORS open (Access-Control-Allow-Origin *). The viewer keys parcels on ParcelNumber, so it comes first. The sample query is an owner search verified 2026-11-02 at 128 rows with returnCountOnly. EXEMPTION COLUMNS, SHOWN NOWHERE: the layer also carries ExemptAmt1, HomeImprovement, OwnerOccupied, ElderyHomeowner, SeniorFreeze, DisabledPerson, ReturningVet and DisabledVet0to30Pct, DisabledVet30to49Pct, DisabledVet50to69Pct and DisabledVet70to100Pct. Nine of them (all but HomeImprovement and OwnerOccupied) say whether an owner is elderly, disabled or a veteran, or hold an exemption amount, so none is listed in searchFields. WHO REQUESTS THEM: the paid paths (REST lookup, bulk and radius, and the hosted MCP's enrich_address and radius_owners) and Owner Lookup ask only for the role columns, so they never request one. Parcel Lookup and the GeoJSON converter read the layer's field list and leave the nine out of their request. Find My Parcel Number asks the county for every column (outFields=*) because it never reads the field list, so the nine do reach the browser there. WHO SHOWS THEM: no surface shows or exports one. Every free tool that handles a raw row drops ExemptAmt1, ElderyHomeowner, SeniorFreeze, DisabledPerson, ReturningVet and the four DisabledVet columns by name before display (sensitive-fields.ts and age-fields.ts; massac-exemption-columns.test.tsx holds them to the layer's live field list and pins which pages request which columns). HomeImprovement and OwnerOccupied are not status columns, are not listed, and are shown by the free tools that show every column. NOT USED: the older copy on ags.bhamaps.com, whose *.bhamaps.com certificate expired 2026-05-19. TERMS: the viewer's disclaimer says the cadastral maps are for 'reference purposes only' and are not a 'legal description', and the service item carries no licence, so the licence is recorded as unknown. The county's separate tax-inquiry site (propertytaxonline.org) says it is 'not intended for the commercial use of for-profit enterprise'; that covers that site, not this layer. NOT CONFIRMED: no feature row was read, so the value format of ParcelNumber and PIN is unseen, and the layer metadata has no aliases or description, so the column meanings rest on the viewer and the names.",
+      "addedAt": "2026-11-02"
     }
   ]
 }

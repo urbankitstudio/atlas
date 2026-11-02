@@ -2,7 +2,7 @@
   "stateSlug": "indiana",
   "stateName": "Indiana",
   "stateAbbrev": "IN",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-11-02",
   "counties": [
     {
       "id": "in-hamilton",
@@ -127,6 +127,79 @@
         "email": null
       },
       "notes": "25 fields confirmed: OBJECTID, PARCEL_TAG, PARCEL_I, PARCEL_C, LOTNUM, SUBDIVISION_TAG, SUBDIVNUM, STNUMBER, PRE_DIR, STREET_NAME, SUFFIX, SUF_DIR, FULL_STNAME, CITY, COUNTY, STATE, TOWNSHIP, ZIPCODE, ESTSQFT, BLOCK, MODDATE, STATUS. NOTE: Owner name and mailing address are NOT exposed on this public REST endpoint. This is a geometry + address layer used for the public basemap. Owner data is in the IndyGIS Assessor Property Cards application at maps.indy.gov/AssessorPropertyCards/ (browser-based, no public REST). Marion County is a consolidated city-county (Indianapolis); same parcel layer is also at xmaps.indy.gov/arcgis/rest/services/Accela/AGIS_INDIANAPOLIS/MapServer/15 under the name 'Parcels'. Address query returns real Indianapolis streets and city names."
+    },
+    {
+      "id": "in-boone",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Boone",
+      "countySlug": "boone-county",
+      "countyFips": "18011",
+      "ownerFieldNote": {
+        "body": "Boone County publishes owner names and mailing addresses on its public parcel layer. Boone County Code 34.24(F), adopted under Indiana Code 5-14-3-3(e), lets only those the County Council authorizes deliver or sell information from the county's GIS data, so we asked Boone County on 2 November 2026 for permission to show them, and Boone County lookups carry neither until the county answers. Parcel number, state parcel ID, site address, subdivision and acreage are available. For ownership, the County Auditor's office answers written requests for the county's GIS data.",
+        "source": {
+          "label": "Boone County Auditor",
+          "url": "https://boonecounty.in.gov/offices/auditor/"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "restricted",
+          "basis": {
+            "type": "permission_pending",
+            "note": "We asked Boone County on 2 November 2026 for permission to show owner names, because Boone County Code 34.24(F), adopted under Ind. Code 5-14-3-3(e), lets only those the County Council authorizes deliver or sell information from the county's GIS data, and withhold them until it answers.",
+            "citation": "Boone County Code 34.24(F); Ind. Code 5-14-3-3(e)",
+            "sourceUrl": "https://codelibrary.amlegal.com/codes/boonecountyin"
+          },
+          "lawfulAlternativeUrl": "https://boonecounty.in.gov/offices/auditor/"
+        },
+        "owner_mailing_address": {
+          "status": "restricted",
+          "basis": {
+            "type": "permission_pending",
+            "note": "We asked Boone County on 2 November 2026 for permission to show owner mailing addresses, because Boone County Code 34.24(F), adopted under Ind. Code 5-14-3-3(e), lets only those the County Council authorizes deliver or sell information from the county's GIS data, and withhold them until it answers.",
+            "citation": "Boone County Code 34.24(F); Ind. Code 5-14-3-3(e)",
+            "sourceUrl": "https://codelibrary.amlegal.com/codes/boonecountyin"
+          },
+          "lawfulAlternativeUrl": "https://boonecounty.in.gov/offices/auditor/"
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/KJPL6pyHyEhFAxWN/arcgis/rest/services/Boone_County_Parcel/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "PARCELS",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "oldpin", "label": "Parcel Number", "searchable": true },
+            { "name": "stpin", "label": "State Parcel ID", "searchable": true },
+            { "name": "name", "label": "Owner Name", "searchable": false },
+            { "name": "add1", "label": "Owner Mailing Address Line 1", "searchable": false },
+            { "name": "add2", "label": "Owner Mailing Address Line 2", "searchable": false },
+            { "name": "add3", "label": "Owner Mailing City State ZIP", "searchable": false },
+            { "name": "site", "label": "Site Address", "searchable": true },
+            { "name": "subdiv", "label": "Subdivision", "searchable": false },
+            { "name": "acreage", "label": "Acreage", "searchable": false }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/KJPL6pyHyEhFAxWN/arcgis/rest/services/Boone_County_Parcel/FeatureServer/1/query?where=UPPER(site)+LIKE+UPPER('%25MAIN+ST%25')&outFields=oldpin,stpin,site,acreage&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-11-02",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Boone County Assessor (the county's GIS site is linked from the Assessor's page)",
+        "url": "https://boonecounty.in.gov/offices/assessor/",
+        "email": "jlasley@co.boone.in.us"
+      },
+      "notes": "Boone County, Indiana (county seat Lebanon; FIPS 18011). Served by PARCELS, layer 1 of the county's own Boone_County_Parcel FeatureServer (ArcGIS Online organisation BooneIN, service item 0e7e47171bdc47d5996813ed48943b5d), the parcel layer of the county's public 'Boone County GIS' map and of its Notification Tool, both linked from the Assessor's page. Read 2026-11-02 by metadata and returnCountOnly only: 45,933 parcels; name and add1 are non-empty on 44,345, site on 44,355, oldpin and stpin on 44,494. maxRecordCount 2000, pagination supported, capabilities Query only, CORS open. The sample query is a name search verified 2026-11-02 at 574 rows with returnCountOnly. COLUMN MEANINGS, from metadata only: the layer fields carry no aliases and no description. The county's public viewer web map (item 95e64c76742648669f99eb7aa42b6738, 'Web Site Main Layer') and its Notification Tool web map label them in the popup: oldpin 'Parcel', stpin 'State ID', site 'Location', name 'Name', add1 'Address1', add2 'Address2', add3 'Address3', acreage 'Acreage', avalue 'Assessment', subdiv 'Subdivision', and the viewer builds its property record card link from oldpin. The popup hides newpin, stateid and pvalue. So the parcel number is oldpin and the state id is stpin; newpin (9 characters) and stateid (10) are not used. NOT CONFIRMED: no county label says 'owner' or 'mailing'. That name is the owner and add1 to add3 the owner's mailing address is inferred from the layer sitting behind a county Notification Tool and from count-only tests: 5,324 names contain 'LLC' and 42,299 add3 values contain ' IN '. The paid and free tools serve add1 alone as the mailing address, which is the street line without the city, state and ZIP that add3 holds. Also not confirmed: the value formats of oldpin and stpin, whether site carries the city, and whether add2 is a suite or a care-of line. IndianaMap's statewide Parcel_Boundaries_of_Indiana_Current layer covers Boone but carries no owner fields, so it is not used. TERMS: the county site shows only 'Boone County Government. All Rights Reserved.', the GIS site gis.boonein.com has no disclaimer or terms page, and the service items carry no licence, so the licence is recorded as unknown. ORDINANCE FOUND 2026-11-02: Boone County Code Section 34.24(F) (Electronic Maps/GIS Data Fees, Ord. 98-12), adopted under Indiana Code 5-14-3-3(e), says only those persons the county's fiscal body (the County Council) authorizes may reproduce, store, grant access to, deliver or sell information from the county's electronic maps or GIS data, and that the information may not be used for advertising, selling or solicitation; Section 34.23(H) (Ord. 97-16) says the same of copies from any county office, and a violation of either is an infraction fined up to $2,500. American Legal Publishing answered HTTP 403 to our fetch on 2026-11-02, so the code was read from a full text copy Leo downloaded. Owner name and mailing address are therefore restricted on a permission_pending basis: we asked the County Auditor, whose office maintains the County GIS System (Section 34.24(B)), on 2 November 2026, copying the Assessor, and the record serves neither until the county answers. TO SWITCH OWNER DATA ON when the county authorizes it: delete both capabilityOverrides entries and the ownerFieldNote, and set name and add1 searchable again.",
+      "addedAt": "2026-11-02"
     }
   ]
 }

@@ -75,8 +75,8 @@ describe("@urbankitstudio/atlas smoke", () => {
     // file only runs at prepublishOnly. A root-suite guard
     // (src/lib/__tests__/atlas-package-parity.test.ts) now asserts these literals
     // match the bundled index, so the drift is caught at every gate.
-    expect(atlas.totals.counties).toBe(509);
-    expect(atlas.totals.endpoints).toBe(502);
+    expect(atlas.totals.counties).toBe(515);
+    expect(atlas.totals.endpoints).toBe(509);
     expect(atlasIndex.version).toBeDefined();
   });
 
@@ -141,6 +141,35 @@ describe("@urbankitstudio/atlas smoke", () => {
         expect(url.searchParams.get("fieldHint")).toBe(hint);
       }
     }
+  });
+
+  // York SC withholds its owner columns (permission_pending), so Owner1 and Owner2 are searchable:false. A link must
+  // never pre-select one, whatever the owner rule matches by name.
+  it("buildParcelLookupDeepLink: York's withheld owner columns are never the fieldHint", () => {
+    const york = findCounty("south-carolina", "york-county")!;
+    expect(york.countyFips).toBe("45091");
+    const ep = york.endpoints[0];
+    expect(offersAttributeSearch(ep)).toBe(true);
+    const owners = ep.searchFields.filter((f) => /owner|taxpayer/i.test(f.name));
+    expect(owners.map((f) => f.name)).toEqual(["Owner1", "Owner2"]);
+    expect(owners.every((f) => f.searchable === false)).toBe(true);
+    for (const link of [buildParcelLookupDeepLink(ep), buildParcelLookupDeepLink(ep, undefined, york)]) {
+      const url = new URL(link);
+      expect(url.searchParams.get("endpoint")).toBe(ep.url);
+      expect(url.searchParams.has("fieldHint")).toBe(false);
+    }
+  });
+
+  it("buildParcelLookupDeepLink: the hint skips a searchable:false owner column for the next searchable one", () => {
+    const base = findCounty("texas", "harris-county")!.endpoints[0];
+    const ep = {
+      ...base,
+      searchFields: [
+        { name: "OWNER_HIDDEN", label: "Owner", searchable: false },
+        { name: "TAXPAYER_NAME", label: "Taxpayer", searchable: true },
+      ],
+    } as typeof base;
+    expect(new URL(buildParcelLookupDeepLink(ep)).searchParams.get("fieldHint")).toBe("TAXPAYER_NAME");
   });
 
   it("buildParcelLookupDeepLink: a flagged FDOR layer goes to the county route given a county", () => {

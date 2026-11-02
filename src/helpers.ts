@@ -80,7 +80,8 @@ export interface DeepLinkCounty {
  * except that `fieldHint` (the owner column to pre-select) is omitted on a
  * layer that refuses typed search (`attributeSearch: "unsupported"`): there is
  * no text search to pre-select a field for, and the generic route recognises
- * a registry-flagged layer and offers none.
+ * a registry-flagged layer and offers none. A column the record marks
+ * `searchable: false` (a withheld owner column, York's Owner1) is never the hint.
  *
  * With `county` (pass the CountyRecord itself), a flagged or SHARED layer
  * (`scopeWhere` set) links to the county route `<base>/<state>/<county>`, but
@@ -106,7 +107,7 @@ export function buildParcelLookupDeepLink(
   const params = new URLSearchParams();
   params.set("endpoint", endpoint.url);
   const ownerField = searchable
-    ? endpoint.searchFields.find((f) => /owner|taxpayer/i.test(f.name))
+    ? endpoint.searchFields.find((f) => f.searchable !== false && /owner|taxpayer/i.test(f.name))
     : undefined;
   if (ownerField) params.set("fieldHint", ownerField.name);
   return `${base}?${params.toString()}`;

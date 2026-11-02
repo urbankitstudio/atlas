@@ -79,6 +79,24 @@ describe("reviewed capability survives into the published bundle", () => {
     expect(record?.basis?.type).toBe("endpoint_schema");
     expect(isReviewedUnservable(county!, "owner_name")).toBe(true);
   });
+
+  it("York, Nevada and Boone: the permission_pending records are exactly the expected set, and York's survives into the bundle", () => {
+    const counties: CountyRecord[] = [...atlas.byStateSlug.values()].flatMap((s) => s.counties);
+    const pending: string[] = [];
+    for (const county of counties) {
+      for (const [field, entry] of Object.entries(county.capabilityOverrides ?? {})) {
+        if (entry.basis.type === "permission_pending") pending.push(`${county.id}:${field}`);
+      }
+    }
+    expect(pending.sort()).toEqual(["ca-nevada:owner_mailing_address", "in-boone:owner_mailing_address", "in-boone:owner_name", "sc-york:owner_mailing_address", "sc-york:owner_name"]);
+    const york = findCounty("south-carolina", "york-county");
+    expect(york, "York missing from the bundled atlas").toBeTruthy();
+    expect(york!.id).toBe("sc-york");
+    const record = reviewedCapability(york!, "owner_name");
+    expect(record?.status).toBe("restricted");
+    expect(record?.basis?.type).toBe("permission_pending");
+    expect(isReviewedUnservable(york!, "owner_name")).toBe(true);
+  });
 });
 
 describe("every reviewed record in the bundle is well formed", () => {
@@ -96,11 +114,18 @@ describe("every reviewed record in the bundle is well formed", () => {
         reviewedCount++;
         expect(entry.basis, `${county.countySlug}/${field} has no basis`).toBeTruthy();
         expect(entry.basis.note.length, `${county.countySlug}/${field} note too short`).toBeGreaterThan(20);
-        if (entry.status === "restricted") {
+        if (entry.status === "restricted" && entry.basis.type !== "permission_pending") {
           expect(
             Boolean(entry.basis.citation) || Boolean(entry.basis.attributedTo),
             `${county.countySlug}/${field} claims restricted with neither citation nor attribution`,
           ).toBe(true);
+        }
+        if (entry.basis.type === "permission_pending") {
+          // Not a legal claim but ours: we asked the county and withhold the field until it answers.
+          // The source registry's rule: always restricted, a sourceUrl, and no attributedTo.
+          expect(entry.status, `${county.countySlug}/${field} permission_pending must be restricted`).toBe("restricted");
+          expect(entry.basis.sourceUrl, `${county.countySlug}/${field} permission_pending has no sourceUrl`).toBeTruthy();
+          expect(entry.basis.attributedTo, `${county.countySlug}/${field} permission_pending names an attribution`).toBeUndefined();
         }
         if (entry.basis.type === "county_cited_statute") {
           expect(
