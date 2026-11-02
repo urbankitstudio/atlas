@@ -80,7 +80,7 @@ describe("reviewed capability survives into the published bundle", () => {
     expect(isReviewedUnservable(county!, "owner_name")).toBe(true);
   });
 
-  it("York, Nevada and Boone: the permission_pending records are exactly the expected set, and York's survives into the bundle", () => {
+  it("York, Nevada, Boone and Hamilton: the permission_pending records are exactly the expected set, and York's survives into the bundle", () => {
     const counties: CountyRecord[] = [...atlas.byStateSlug.values()].flatMap((s) => s.counties);
     const pending: string[] = [];
     for (const county of counties) {
@@ -88,7 +88,7 @@ describe("reviewed capability survives into the published bundle", () => {
         if (entry.basis.type === "permission_pending") pending.push(`${county.id}:${field}`);
       }
     }
-    expect(pending.sort()).toEqual(["ca-nevada:owner_mailing_address", "in-boone:owner_mailing_address", "in-boone:owner_name", "sc-york:owner_mailing_address", "sc-york:owner_name"]);
+    expect(pending.sort()).toEqual(["ca-nevada:owner_mailing_address", "in-boone:owner_mailing_address", "in-boone:owner_name", "in-hamilton:owner_mailing_address", "in-hamilton:owner_name", "sc-york:owner_mailing_address", "sc-york:owner_name"]);
     const york = findCounty("south-carolina", "york-county");
     expect(york, "York missing from the bundled atlas").toBeTruthy();
     expect(york!.id).toBe("sc-york");

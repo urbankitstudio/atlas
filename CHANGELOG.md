@@ -1,5 +1,24 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.7.1 — 2026-11-02
+
+Hamilton County IN's owner data is withheld while we ask the county for permission. `totals` are unchanged.
+
+**Patch**: no exported type changed. A caller that reads `owner_name` or `owner_mailing_address` for
+`in-hamilton` now gets `restricted` with a `permission_pending` basis.
+
+- **Hamilton County IN** (`in-hamilton`, FIPS 18057): `owner_name` and `owner_mailing_address` are `restricted`
+  (`permission_pending`, citation Hamilton County Ordinance 11-26-07-B, Section 5, and Ind. Code 5-14-3-3(e)).
+  The county's GeoHub terms quote the ordinance: only those the County authorizes may deliver or sell county
+  information for commercial purposes. We asked the county GIS Office on 2 November 2026. `DEEDEDOWNR`,
+  `OWNNAME`, `OWNADDRESS` and `OWNCITY` stay documented but are not searchable while withheld, and the sample
+  query searches the site address (`LOCADDRESS`). `OWNADDRESS` and `OWNCITY` are relabelled "Owner Mailing
+  Address" and "Owner Mailing City" (the layer also carries `OWNSTATE`, `OWNZIP` and `OWNCOUNTRY`), so the
+  mailing address now reads as documented; 0.7.0 reported it `not_published`.
+
+To switch Hamilton back on when the county authorizes it, delete both `capabilityOverrides` entries and the
+`ownerFieldNote`, set the four columns searchable again, and drop the ORDINANCE FOUND paragraph from `notes`.
+
 ## 0.7.0 — 2026-11-01
 
 Three counties join with their owner data withheld while we ask each county for permission, three more join

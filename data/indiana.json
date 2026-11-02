@@ -12,6 +12,35 @@
       "county": "Hamilton",
       "countySlug": "hamilton-county",
       "countyFips": "18057",
+      "ownerFieldNote": {
+        "body": "Hamilton County publishes owner names and mailing addresses on its public parcel layer. Hamilton County Ordinance 11-26-07-B, Section 5, adopted under Indiana Code 5-14-3-3(e), lets only those the County authorizes deliver or sell county information for commercial purposes, so we asked Hamilton County on 2 November 2026 for permission to show them, and Hamilton County lookups carry neither until the county answers. Parcel number, property address, property city and property class are available. For ownership records, the county takes requests through the Data Request Form on its County Records page.",
+        "source": {
+          "label": "Hamilton County Records",
+          "url": "https://www.hamiltoncounty.in.gov/922/County-Records"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "restricted",
+          "basis": {
+            "type": "permission_pending",
+            "note": "We asked Hamilton County on 2 November 2026 for permission to show owner names, because Hamilton County Ordinance 11-26-07-B, Section 5, adopted under Ind. Code 5-14-3-3(e), lets only those the County authorizes deliver or sell county information for commercial purposes, and withhold them until it answers.",
+            "citation": "Hamilton County Ordinance 11-26-07-B, Section 5; Ind. Code 5-14-3-3(e)",
+            "sourceUrl": "https://geohub.hamiltoncounty.in.gov/pages/terms-of-service"
+          },
+          "lawfulAlternativeUrl": "https://www.hamiltoncounty.in.gov/922/County-Records"
+        },
+        "owner_mailing_address": {
+          "status": "restricted",
+          "basis": {
+            "type": "permission_pending",
+            "note": "We asked Hamilton County on 2 November 2026 for permission to show owner mailing addresses, because Hamilton County Ordinance 11-26-07-B, Section 5, adopted under Ind. Code 5-14-3-3(e), lets only those the County authorizes deliver or sell county information for commercial purposes, and withhold them until it answers.",
+            "citation": "Hamilton County Ordinance 11-26-07-B, Section 5; Ind. Code 5-14-3-3(e)",
+            "sourceUrl": "https://geohub.hamiltoncounty.in.gov/pages/terms-of-service"
+          },
+          "lawfulAlternativeUrl": "https://www.hamiltoncounty.in.gov/922/County-Records"
+        }
+      },
       "hasPublicRest": true,
       "endpoints": [
         {
@@ -23,15 +52,15 @@
           "corsEnabled": null,
           "searchFields": [
             { "name": "FMTPRCLNO", "label": "Formatted Parcel Number", "searchable": true },
-            { "name": "DEEDEDOWNR", "label": "Deeded Owner Name", "searchable": true },
-            { "name": "OWNNAME", "label": "Owner Name", "searchable": true },
-            { "name": "OWNADDRESS", "label": "Owner Address", "searchable": true },
-            { "name": "OWNCITY", "label": "Owner City", "searchable": true },
+            { "name": "DEEDEDOWNR", "label": "Deeded Owner Name", "searchable": false },
+            { "name": "OWNNAME", "label": "Owner Name", "searchable": false },
+            { "name": "OWNADDRESS", "label": "Owner Mailing Address", "searchable": false },
+            { "name": "OWNCITY", "label": "Owner Mailing City", "searchable": false },
             { "name": "LOCADDRESS", "label": "Property Address", "searchable": true },
             { "name": "LOCCITY", "label": "Property City", "searchable": true },
             { "name": "PROPCLASS", "label": "Property Class", "searchable": false }
           ],
-          "sampleQuery": "https://gis1.hamiltoncounty.in.gov/arcgis/rest/services/HamCoParcelsPublic/FeatureServer/0/query?where=UPPER(DEEDEDOWNR)%20LIKE%20UPPER('%25SMITH%25')&outFields=FMTPRCLNO,DEEDEDOWNR,LOCADDRESS,LOCCITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://gis1.hamiltoncounty.in.gov/arcgis/rest/services/HamCoParcelsPublic/FeatureServer/0/query?where=UPPER(LOCADDRESS)%20LIKE%20UPPER('%25MAIN%20ST%25')&outFields=FMTPRCLNO,LOCADDRESS,LOCCITY,PROPCLASS&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://geohub.hamiltoncounty.in.gov/",
           "status": "live",
@@ -44,7 +73,7 @@
         "url": "https://www.hamiltoncounty.in.gov/442/GIS-and-Maps",
         "email": null
       },
-      "notes": "Hamilton County IN (Indianapolis north suburbs, Noblesville, Carmel, Fishers, Westfield) is one of the fastest-growing counties in Indiana. HamCoParcelsPublic/FeatureServer/0 exposes 25+ fields including FMTPRCLNO (formatted parcel number, e.g., '10-11-04-00-00-019.000'), DEEDEDOWNR (full deeded owner), OWNNAME, OWNADDRESS, OWNCITY, OWNSTATE, OWNZIP, OWNCOUNTRY, LOCADDRESS, LOCHSENUMR, LOCSTRDIR, LOCSTRNAME, LOCSTRSUF, LOCCITY, LOCZIP, LEGALDESC, SECTIONNO, TOWNSHIP, RANGE, SUBDIVCODE, SUBDIVNAME, DEEDACRES, PROPCLASS, PROPUSE. Query confirmed live: UPPER(DEEDEDOWNR) LIKE '%SMITH%' returns real results (e.g., 'Smith, Terrance & Alyssa Smith h&w' in Noblesville). Hamilton County IN (FIPS 18057) must not be confused with Hamilton County OH (39061, Cincinnati) or Hamilton County TN (47065, Chattanooga). GeoHub portal at geohub.hamiltoncounty.in.gov. EXPORTDATE field tracks data currency."
+      "notes": "Hamilton County IN (Indianapolis north suburbs, Noblesville, Carmel, Fishers, Westfield) is one of the fastest-growing counties in Indiana. HamCoParcelsPublic/FeatureServer/0 exposes 25+ fields including FMTPRCLNO (formatted parcel number, e.g., '10-11-04-00-00-019.000'), DEEDEDOWNR (full deeded owner), OWNNAME, OWNADDRESS, OWNCITY, OWNSTATE, OWNZIP, OWNCOUNTRY, LOCADDRESS, LOCHSENUMR, LOCSTRDIR, LOCSTRNAME, LOCSTRSUF, LOCCITY, LOCZIP, LEGALDESC, SECTIONNO, TOWNSHIP, RANGE, SUBDIVCODE, SUBDIVNAME, DEEDACRES, PROPCLASS, PROPUSE. Query confirmed live: UPPER(LOCADDRESS) LIKE '%MAIN ST%' returned a count of 719 on 2026-11-02. ORDINANCE FOUND 2026-11-02: the county's GeoHub Terms of Service quote Hamilton County Ordinance 11-26-07-B, Section 5, adopted under Indiana Code 5-14-3-3(e), that no person other than those authorized by the County may reproduce, store, grant access, deliver or sell any information obtained from any department or office of the County for commercial purposes, and the same text is the licence on the county's Parcels_Current GeoHub item. No copy of the full ordinance is online (the Commissioners' archive starts in 2009), so how authorization is granted is not known. Owner name and mailing address are therefore restricted on a permission_pending basis: we asked the county GIS Office (gis@hamiltoncounty.in.gov, listed on the GeoHub) on 2 November 2026, and the record serves neither until the county answers. TO SWITCH OWNER DATA ON when the county authorizes it: delete both capabilityOverrides entries and the ownerFieldNote, set DEEDEDOWNR, OWNNAME, OWNADDRESS and OWNCITY searchable again, and drop this paragraph. Hamilton County IN (FIPS 18057) must not be confused with Hamilton County OH (39061, Cincinnati) or Hamilton County TN (47065, Chattanooga). GeoHub portal at geohub.hamiltoncounty.in.gov. EXPORTDATE field tracks data currency."
     },
     {
       "id": "in-allen",
