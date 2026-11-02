@@ -1,5 +1,39 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.7.2 — 2026-11-02
+
+Nevada County CA's owner mailing addresses are served, and Hamilton County IN's refusal is recorded. `totals` are
+unchanged.
+
+**Patch**: no exported type changed. A caller that reads `owner_mailing_address` for `ca-nevada` now gets
+`available`, not `restricted` with a `permission_pending` basis. A caller that reads `owner_name` or
+`owner_mailing_address` for `in-hamilton` still gets `restricted`, now with a `county_cited_statute` basis, not
+`permission_pending`.
+
+- **Hamilton County IN** (`in-hamilton`, FIPS 18057): the county's GIS office answered on 2 November 2026 that
+  county data may not be used behind a pay service, under the county's GIS terms of service and Hamilton County
+  Ordinance 11-26-07-B, Section 5 (Ind. Code 5-14-3-3(e)), which the county also reads as barring use of its mailing
+  lists or addresses to sell, advertise or solicit. `owner_name` and `owner_mailing_address` stay `restricted`, now
+  with a `county_cited_statute` basis attributed to Hamilton County, Indiana (the 0.7.1 `permission_pending` basis
+  said we were still asking). The columns stay documented and not searchable, `ownerFieldNote` and `notes` say the
+  county declined, and paid lookups for the county stay off. The 0.7.1 instructions to switch Hamilton back on no
+  longer apply.
+
+- **Nevada County CA** (`ca-nevada`, FIPS 06057): the county's GIS Division answered on 2 November 2026 that we
+  may use the publicly available data from its Open Data Portal as we described, as long as we abide by the
+  CC BY 4.0 licence. Our question was whether we may show owner mailing addresses without names, and the
+  county's "Parcel Information" item carries them, so the `owner_mailing_address` override is removed and the
+  field reads `available`. `MailingAddress` and `MailPO_Zip` stay documented and not searchable. The owner name
+  stays `not_published` (`endpoint_schema`): the county does not distribute it.
+- **`credit`** for `ca-nevada` now carries the county's disclaimer after the CC BY 4.0 attribution, word for word
+  as the county asked: "Every reasonable effort has been made to assure the accuracy of the maps and data
+  provided ..." (782 characters in all).
+- The validator's cap on `credit` (`CREDIT_MAX` in `scripts/atlas-rules.mjs`) moves from 600 to 900 characters so
+  that statement is not shortened; it stays under the CSV reader's 1,000-character cell cap. The site's label
+  sheet tool (`CsvToLabelsPage`) joins a file's `Data credit` values under the same cap, now 900.
+- **Billing on the hosted API** (the site, not this package): a Nevada row now carries `mailing_address` while the
+  layer has no owner name, so it bills as mailing-only; those rows were free while withheld.
+
 ## 0.7.1 — 2026-11-02
 
 Hamilton County IN's owner data is withheld while we ask the county for permission. `totals` are unchanged.

@@ -71,6 +71,21 @@ describe("reviewed capability survives into the published bundle", () => {
     expect(names.filter((n) => /^(NAME[12]|ADDRESS[1-4])$/.test(n))).toEqual([]);
   });
 
+  it("Hamilton IN: owner name and mailing address survive as restricted, the county's cited ordinance attributed to it, not pending", () => {
+    const county = findCounty("indiana", "hamilton-county");
+    expect(county, "Hamilton missing from the bundled atlas").toBeTruthy();
+    for (const field of ["owner_name", "owner_mailing_address"] as const) {
+      const record = reviewedCapability(county!, field);
+      expect(record?.status, field).toBe("restricted");
+      expect(record?.basis.type, field).toBe("county_cited_statute");
+      expect(record?.basis.attributedTo, field).toBe("Hamilton County, Indiana");
+      expect(record?.basis.citation, field).toContain("11-26-07-B");
+      expect(record?.basis.note, field).toMatch(/pay service/);
+      expect(record?.lawfulAlternativeUrl, field).toBeTruthy();
+      expect(isReviewedUnservable(county!, field), field).toBe(true);
+    }
+  });
+
   it("San Diego: the reviewed not_published record survives into the bundle", () => {
     const county = findCounty("california", "san-diego-county");
     expect(county).toBeTruthy();
@@ -80,7 +95,7 @@ describe("reviewed capability survives into the published bundle", () => {
     expect(isReviewedUnservable(county!, "owner_name")).toBe(true);
   });
 
-  it("York, Nevada, Boone and Hamilton: the permission_pending records are exactly the expected set, and York's survives into the bundle", () => {
+  it("York and Boone: the permission_pending records are exactly the expected set, York's survives into the bundle, and neither Nevada's mailing address (switched on in 0.7.2) nor Hamilton (declined, 0.7.2) is among them", () => {
     const counties: CountyRecord[] = [...atlas.byStateSlug.values()].flatMap((s) => s.counties);
     const pending: string[] = [];
     for (const county of counties) {
@@ -88,7 +103,7 @@ describe("reviewed capability survives into the published bundle", () => {
         if (entry.basis.type === "permission_pending") pending.push(`${county.id}:${field}`);
       }
     }
-    expect(pending.sort()).toEqual(["ca-nevada:owner_mailing_address", "in-boone:owner_mailing_address", "in-boone:owner_name", "in-hamilton:owner_mailing_address", "in-hamilton:owner_name", "sc-york:owner_mailing_address", "sc-york:owner_name"]);
+    expect(pending.sort()).toEqual(["in-boone:owner_mailing_address", "in-boone:owner_name", "sc-york:owner_mailing_address", "sc-york:owner_name"]);
     const york = findCounty("south-carolina", "york-county");
     expect(york, "York missing from the bundled atlas").toBeTruthy();
     expect(york!.id).toBe("sc-york");
@@ -96,6 +111,11 @@ describe("reviewed capability survives into the published bundle", () => {
     expect(record?.status).toBe("restricted");
     expect(record?.basis?.type).toBe("permission_pending");
     expect(isReviewedUnservable(york!, "owner_name")).toBe(true);
+    const nevada = findCounty("california", "nevada-county");
+    expect(nevada, "Nevada missing from the bundled atlas").toBeTruthy();
+    expect(reviewedCapability(nevada!, "owner_mailing_address"), "the mailing role carries no reviewed record").toBeNull();
+    expect(isReviewedUnservable(nevada!, "owner_mailing_address")).toBe(false);
+    expect(isReviewedUnservable(nevada!, "owner_name"), "the owner name stays unpublished").toBe(true);
   });
 });
 
