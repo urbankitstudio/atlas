@@ -351,12 +351,12 @@ describe("coverageAnswerText: one text, carried as message", () => {
     expect(npr.message).not.toMatch(/when it ships/);
   });
 
-  it("a record's recheck date reaches the block and the text (Columbia PA, 2026-10-24)", () => {
+  it("a record's recheck date reaches the block and the text (Columbia PA, 2027-01-26)", () => {
     const columbia = findCountyByFips("42037")!;
     const a = coverageAnswer(columbia, { state: "PA", county: columbia.county, fips: "42037" })!;
-    expect(a.recheck).toBe("2026-10-24");
+    expect(a.recheck).toBe("2027-01-26");
     const lines = a.message.split("\n");
-    expect(lines.indexOf("Next check: 2026-10-24")).toBe(lines.indexOf(`Checked: ${columbia.coverage!.checked}`) + 1);
+    expect(lines.indexOf("Next check: 2027-01-26")).toBe(lines.indexOf(`Checked: ${columbia.coverage!.checked}`) + 1);
     // Control: a record with no recheck date, and a county with no record, carry null and no line.
     expect(npr.recheck).toBeNull();
     expect(typo.recheck).toBeNull();

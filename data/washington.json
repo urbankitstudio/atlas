@@ -2,7 +2,7 @@
   "stateSlug": "washington",
   "stateName": "Washington",
   "stateAbbrev": "WA",
-  "lastUpdated": "2026-10-20",
+  "lastUpdated": "2026-11-01",
   "counties": [
     {
       "id": "wa-king",
@@ -251,32 +251,112 @@
       "county": "Pierce",
       "countySlug": "pierce-county",
       "countyFips": "53053",
-      "hasPublicRest": false,
-      "endpoints": [],
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/arcgis/rest/services/Tax_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "TaxParcelNumber",
+              "label": "Parcel Number (10 digits, text)",
+              "searchable": true
+            },
+            {
+              "name": "Site_Address",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Delivery_Address",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "City_State",
+              "label": "Owner Mailing City and State",
+              "searchable": false
+            },
+            {
+              "name": "Zipcode",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Business_Name",
+              "label": "Business or mobile home park name (set by the commercial appraiser)",
+              "searchable": false
+            },
+            {
+              "name": "Use_Code",
+              "label": "Use Code",
+              "searchable": false
+            },
+            {
+              "name": "Landuse_Description",
+              "label": "Land Use Description",
+              "searchable": false
+            },
+            {
+              "name": "Land_Acres",
+              "label": "Land Acres",
+              "searchable": false
+            },
+            {
+              "name": "Land_Value",
+              "label": "Assessed Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Improvement_Value",
+              "label": "Assessed Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "Taxable_Value",
+              "label": "Taxable Value",
+              "searchable": false
+            },
+            {
+              "name": "Legal_Description",
+              "label": "Legal Description",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=UPPER%28Site_Address%29+LIKE+%27%25PACIFIC+AVE%25%27&outFields=TaxParcelNumber,Site_Address,Use_Code,Landuse_Description,Taxable_Value&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://matterhorn.piercecountywa.gov/Disclaimer/PierceCountyGISDataTermsofUse.pdf",
+          "status": "live",
+          "lastVerified": "2026-11-01",
+          "verifiedBy": "manual"
+        }
+      ],
       "contact": {
-        "department": "Pierce County Assessor-Treasurer",
-        "url": "https://www.piercecountywa.gov/91/Assessor---Treasurer",
-        "email": null
+        "department": "Pierce County Finance and Enterprise Services, Information Technology (GIS); parcel attributes from the Assessor-Treasurer",
+        "url": "https://www.piercecountywa.gov/736/Data-Downloads",
+        "email": "PC_GIS_Support@piercecountywa.gov"
       },
-      "notes": "Pierce County, Washington (FIPS 53053). The county's public parcel data has no taxpayer name field. The county's layer metadata says taxpayer names are removed from public requests and cites RCW 42.17.260(9); that is the county's reading, recorded here as its claim. Without an owner name the data cannot answer an owner lookup, so this atlas does not index Pierce County. Parcel and sales records are available through the Assessor-Treasurer's parcel search.",
+      "notes": "Pierce County, Washington (FIPS 53053; Tacoma). The county publishes its tax parcels on ArcGIS Online as Tax_Parcels FeatureServer layer 0 (owner PCWA_OpenData): 340,158 rows on 2026-11-01, including condo units in 3D; the county's own query for one row per parcel (TaxParcelType = 'Base Parcel' OR TaxParcelType = 'Tax Purpose Only' OR Land_Acres > 0) returns 328,958. NO TAXPAYER NAME: the county's metadata says the Tax Payer Name attribute is removed from public requests per RCW 42.17.260(9), so owner search is not offered. The layer does carry the taxpayer MAILING address: Delivery_Address (street), City_State (mailing city and state, NOT the site city) and Zipcode. Site_Address has no city of its own and reads 'Undetermined Situs' on unaddressed land. Business_Name (43,370 rows) is, in the county's metadata, '(Business Name) A commercial property business name, or mobile home park name. The field is populated and maintained by the commercial appraisers.' The same metadata adds: 'Business names are determined by the appraiser and may be set to be the parcel owner, rather than the name of a strip mall or a specific business.' Also Use_Code, Landuse_Description, Land_Acres, Land, Improvement and Taxable values, Tax_Area_Code, Exemption_Code, Legal_Description. EditDate max 2026-10-29. CORS open (*). Terms: the Pierce County GIS Data Terms of Use (May 29, 2026) make the data free on condition that users pass the county's no-warranty disclaimers to their end users and do not present products as county products or use the county logo; no commercial or resale restriction. Verified live 2026-11-01: Site_Address LIKE '%PACIFIC AVE%' returned rows (first 0319042012), a point in downtown Tacoma (47.25450, -122.44090) returned 2009060020 at 914 BROADWAY, and a point at the county's internal point returned designated forest land 0518151002. Credit: Pierce County GIS data (Pierce County Assessor-Treasurer). Pierce County does not warrant the Data in any way and makes each of the disclaimers set out in its GIS Data Terms of Use (https://matterhorn.piercecountywa.gov/Disclaimer/PierceCountyGISDataTermsofUse.pdf). This is not a Pierce County product.",
       "addedAt": "2026-10-17",
       "capabilityOverrides": {
         "owner_name": {
           "status": "not_published",
           "basis": {
             "type": "county_cited_statute",
-            "note": "Pierce County's public parcel data has no taxpayer name field. The county's layer metadata says taxpayer names are removed from public requests and cites RCW 42.17.260(9). This records the county's own claim; the statute itself was not reviewed here.",
+            "note": "Pierce County's public parcel data has no taxpayer name field. The county's layer metadata says the Tax Payer Name attribute is removed from public requests and cites RCW 42.17.260(9). This records the county's own claim; the statute itself was not reviewed here.",
             "citation": "RCW 42.17.260(9)",
-            "attributedTo": "Pierce County"
+            "attributedTo": "Pierce County",
+            "sourceUrl": "https://matterhorn.piercecountywa.gov/GISmetadata/pdbparc_taxparcel.html"
           },
           "lawfulAlternativeUrl": "https://www.piercecountywa.gov/91/Assessor---Treasurer"
         }
       },
-      "coverage": {
-        "reason": "attributes-missing",
-        "summary": "Pierce County leaves taxpayer names out of its public parcel data, citing a state records law, so we don't index it. Search the Assessor-Treasurer's parcel search, or request it and we'll tell you if that changes.",
-        "checked": "2026-10-10"
-      }
+      "credit": "Pierce County GIS data (Pierce County Assessor-Treasurer). Pierce County does not warrant the Data in any way and makes each of the disclaimers set out in its GIS Data Terms of Use (https://matterhorn.piercecountywa.gov/Disclaimer/PierceCountyGISDataTermsofUse.pdf). This is not a Pierce County product."
     }
   ]
 }

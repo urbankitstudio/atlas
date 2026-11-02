@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-10-25",
+  "lastUpdated": "2026-11-01",
   "totals": {
     "states": 51,
-    "counties": 503,
-    "endpoints": 498,
-    "countiesWithEndpoint": 471,
+    "counties": 509,
+    "endpoints": 502,
+    "countiesWithEndpoint": 475,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -45,8 +45,8 @@
       "slug": "california",
       "name": "California",
       "abbrev": "CA",
-      "countyCount": 16,
-      "endpointCount": 16,
+      "countyCount": 17,
+      "endpointCount": 17,
       "populated": true
     },
     {
@@ -117,8 +117,8 @@
       "slug": "illinois",
       "name": "Illinois",
       "abbrev": "IL",
-      "countyCount": 10,
-      "endpointCount": 9,
+      "countyCount": 11,
+      "endpointCount": 10,
       "populated": true
     },
     {
@@ -149,7 +149,7 @@
       "slug": "kentucky",
       "name": "Kentucky",
       "abbrev": "KY",
-      "countyCount": 25,
+      "countyCount": 26,
       "endpointCount": 16,
       "populated": true
     },
@@ -189,7 +189,7 @@
       "slug": "michigan",
       "name": "Michigan",
       "abbrev": "MI",
-      "countyCount": 6,
+      "countyCount": 7,
       "endpointCount": 5,
       "populated": true
     },
@@ -381,8 +381,8 @@
       "slug": "virginia",
       "name": "Virginia",
       "abbrev": "VA",
-      "countyCount": 8,
-      "endpointCount": 7,
+      "countyCount": 10,
+      "endpointCount": 8,
       "populated": true
     },
     {
@@ -390,7 +390,7 @@
       "name": "Washington",
       "abbrev": "WA",
       "countyCount": 7,
-      "endpointCount": 5,
+      "endpointCount": 6,
       "populated": true
     },
     {

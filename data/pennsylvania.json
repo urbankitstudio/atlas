@@ -2,7 +2,7 @@
   "stateSlug": "pennsylvania",
   "stateName": "Pennsylvania",
   "stateAbbrev": "PA",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-11-01",
   "counties": [
     {
       "id": "pa-allegheny",
@@ -576,16 +576,16 @@
       "endpoints": [],
       "contact": {
         "department": "Columbia County GIS Department",
-        "url": "http://gis.columbiapa.org/",
+        "url": "https://gismaps.columbiapa.org/webapps/parcel",
         "email": "gis@columbiapa.org"
       },
-      "notes": "Columbia County, Pennsylvania (county seat Bloomsburg; FIPS 42037). The county's parcel layer on PASDA, Columbia County Tax Parcels 202402 (34,249 parcels, last edited 2024-02-14), carries a parcel number (PIN) and geometry only, with no owner name, site address, mailing address, land use or value. The same query against Bradford County's PASDA layer returns owner names, so the gap lies in Columbia's data. The county's own map host, gismaps.columbiapa.org, has an expired TLS certificate, the county GIS page posts a notice that online mapping is down for that reason, and its REST paths return HTTP 403. Re-check once the county map server is back.",
+      "notes": "Columbia County, Pennsylvania (county seat Bloomsburg; FIPS 42037). The county's parcel layer on PASDA, Columbia County Tax Parcels 202402 (34,249 parcels, last edited 2024-02-14), carries a parcel number (PIN) and geometry only, with no owner name, site address, mailing address, land use or value. The same query against Bradford County's PASDA layer returns owner names, so the gap lies in Columbia's data. The county's own parcel viewer, a Web AppBuilder app at https://gismaps.columbiapa.org/webapps/parcel, shows owner and address, but the service behind it (Overlays/ColumbiaParcelsOverlay/MapServer on the county's ArcGIS Enterprise 11.3) answers every direct request with 499 Token Required and is reached only through the viewer's proxy; the portal's copy returns 403. The county GIS Director confirmed on 2026-10-26 that the county makes a public web map available, but not a feature service. The viewer's disclaimer is warranty-only. gis.columbiapa.org still serves a certificate for another host name; gismaps.columbiapa.org is the working host.",
       "addedAt": "2026-10-17",
       "coverage": {
-        "reason": "attributes-missing",
-        "summary": "Columbia County's public parcel layer has parcel numbers only, with no owner names or addresses, and the county's own map server is down behind an expired certificate, so we don't index it. Check the county GIS office, or request it and we'll tell you if that changes.",
-        "checked": "2026-10-17",
-        "recheck": "2026-10-24"
+        "reason": "no-public-service",
+        "summary": "Columbia County shows owner and address only in its own web map, and the service behind it needs a token; its public parcel layer has parcel numbers only. Use the county's parcel viewer, or request it and we'll tell you if that changes.",
+        "checked": "2026-10-26",
+        "recheck": "2027-01-26"
       }
     }
   ]

@@ -2,7 +2,7 @@
   "stateSlug": "california",
   "stateName": "California",
   "stateAbbrev": "CA",
-  "lastUpdated": "2026-10-20",
+  "lastUpdated": "2026-11-01",
   "counties": [
     {
       "id": "ca-los-angeles",
@@ -920,6 +920,89 @@
       "notes": "San Francisco is a consolidated city and county (FIPS 06075). Its parcels are served from the City's ArcGIS Online organisation (org Zs2aNLFN00jrS4gG, item f81b5f0adb8c4d6a95282bec1ce10378, owner account vll_sfgis) as 'Active Parcels (from DataSF, pulled daily)', FeatureServer layer 0: SFGIS's daily copy of the DataSF dataset 'Parcels - Active and Retired' (data.sf.gov/d/acdm-wktn), filtered to active parcels. 227,695 rows on 2026-10-20, every one active (min of the active flag is 1); 211,970 are flagged as on the current Assessor secured roll and 211,695 carry both a house number and a street name. maxRecordCount 2000, resultRecordCount and resultOffset accepted, capabilities Query only, native spatial reference Web Mercator (wkid 102100), so add outSR=4326 for longitude and latitude. CORS is open (Access-Control-Allow-Origin: *). THE LAYER PUBLISHES NO OWNER NAME and no owner mailing address; the Assessor-Recorder says it does not post ownership online and offers it for purchase or free inspection at its office. The parcel number is blklot, a TEXT value of block plus lot (0787001 is block 0787, lot 001); blocks and lots can carry letter suffixes (0499002B, 0306T002A), so compare it as a string. mapblklot is the lowest parcel number of a condominium set that shares one footprint. The situs is split: from_address_num and to_address_num give the house-number range (small integers), street_name and street_type the street (DR CARLTON B GOODLETT, PL); there is no single address column, so the address lookup composes from_address_num and street_name as the situs (House Number plus Street Name), and a parcel whose range spans several house numbers (1640 to 1656 MISSION ST) matches an address only at its low end. Other attributes: zoning_code and zoning_district (current Planning zoning), analysis_neighborhood, supervisor and police districts, planning district, centroid_latitude and centroid_longitude, and Public Works recording and mapping dates. Currency: the item says it was pushed to ArcGIS Online on October 20, 2026 by SFGIS; the layer was last edited 2026-10-20 12:32 UTC; the newest data_as_of is 2026-10-17 and the newest recorded-parcel addition 2026-08-04. Licence: the item's licence is the Open Data Commons Public Domain Dedication and License (PDDL), the same licence DataSF puts on the source dataset, and the DataSF terms of use make PDDL the default for its data. Credit: City and County of San Francisco (DataSF, SFGIS). FALLBACK: if SFGIS stops the daily push, SF Planning's PlanningData MapServer layer 23 'Parcels' on sfplanninggis.org (226,413 rows on 2026-10-20, no owner, no zoning columns, CORS reflects the request Origin) carries the same parcels. Verified live 2026-10-20: a count (227,695), a paged query (resultOffset 2000), a point query at City Hall (37.77927, -122.41924) that returned parcel 0787001, 1 DR CARLTON B GOODLETT PL, zoning P (PUBLIC), Tenderloin, and street_name LIKE '%GOODLETT%' with 2 rows, each answered with Access-Control-Allow-Origin: *.",
       "credit": "City and County of San Francisco (DataSF, SFGIS)",
       "addedAt": "2026-10-20"
+    },
+    {
+      "id": "ca-san-mateo",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "San Mateo",
+      "countySlug": "san-mateo-county",
+      "countyFips": "06081",
+      "ownerFieldNote": {
+        "body": "San Mateo County's Assessor parcel layer publishes no owner name and no owner mailing address, so San Mateo lookups carry neither. Parcel number, site address and city are available. For ownership, contact the San Mateo County Assessor.",
+        "source": {
+          "label": "San Mateo County GIS",
+          "url": "https://www.smcgov.org/tsd/gis"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The Assessor's public parcel layer (ACRE/ACTIVE_PARCELS, layer 0) has no owner-name column: its 20 fields are the APN, situs address parts, mobile home park fields, an area code and geometry measures.",
+            "sourceUrl": "https://gis.smcgov.org/maps/rest/services/ACRE/ACTIVE_PARCELS/MapServer/0"
+          },
+          "lawfulAlternativeUrl": "https://smcacre.gov/assessor"
+        },
+        "owner_mailing_address": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The Assessor's public parcel layer carries the APN and situs address parts only; its field list has no owner mailing-address column.",
+            "sourceUrl": "https://gis.smcgov.org/maps/rest/services/ACRE/ACTIVE_PARCELS/MapServer/0"
+          }
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.smcgov.org/maps/rest/services/ACRE/ACTIVE_PARCELS/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "ACTIVE_PARCELS_APN",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "APN",
+              "label": "Assessor Parcel Number (APN, 9 digits, text)",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_ADDR",
+              "label": "Situs Address (street line, city appended)",
+              "searchable": true
+            },
+            {
+              "name": "SITUS_CITY",
+              "label": "Situs City",
+              "searchable": true
+            },
+            {
+              "name": "UNINC",
+              "label": "Unincorporated Area Flag",
+              "searchable": false
+            }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://gis.smcgov.org/maps/rest/services/ACRE/ACTIVE_PARCELS/MapServer/0/query?where=UPPER%28SITUS_ADDR%29+LIKE+%27%25BROADWAY%25%27+AND+SITUS_CITY%3D%27REDWOOD+CITY%27&outFields=APN,SITUS_ADDR,SITUS_CITY,UNINC&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.smcgov.org/planning/gis-terms-use",
+          "status": "live",
+          "lastVerified": "2026-11-01",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "County of San Mateo, Technology Services Department, GIS Team",
+        "url": "https://www.smcgov.org/tsd/gis",
+        "email": "countygis@smcgov.org"
+      },
+      "notes": "San Mateo County, California (FIPS 06081; county seat Redwood City; Daly City, San Mateo, South San Francisco, Half Moon Bay) serves its parcels from the county's ArcGIS Server (11.1) at gis.smcgov.org/maps. The record uses the Assessor's ACRE/ACTIVE_PARCELS MapServer layer 0 (ACTIVE_PARCELS_APN): 235,492 rows on 2026-11-01. APN is 9-digit text (052367010); SITUS_ADDR is the street line with the city appended ('2200 BROADWAY, REDWOOD CITY'), SITUS_CITY is the city (null on 3,208 rows) and UNINC marks unincorporated area. NO OWNER DATA: the layer has no owner name, owner mailing address, use code or assessed value. A separate county GIS service carries an owner-names column; it is not registered, so no surface requests or shows a San Mateo owner name. maxRecordCount 2000 with pagination, NAD83 California zone III feet (a point query sets inSR=4326), CORS reflects the caller's Origin. No currency field. The old host maps.smcgov.org timed out on 2026-11-01 and is dead; third-party ArcGIS Online items still point at it. Terms: the county's GIS Terms of Use say the data is provided 'as-is', ask users to tell third parties of that disclaimer and to state 'SMC Data and San Mateo County cannot vouch for the data or analyses derived from these data.' (the credit line carries both); no commercial, resale or redistribution term and no licence text on the service. Sibling Assessor layer: ACRE/Assessor_Office_Layers layer 0 (TAXPARCELS, 239,377 rows including retired parcels, adds legal description). Verified live 2026-11-01: APN 052367010 returned 2200 BROADWAY, REDWOOD CITY; a point at Redwood City (37.48663, -122.22972) returned that parcel; UPPER(SITUS_ADDR) LIKE '%MAIN ST%' returned 237 rows; a page at offset 235,000 returned rows. Contact: countygis@smcgov.org. Credit: County of San Mateo GIS. The data is provided as-is, and San Mateo County makes no representations or warranties of any kind with respect to it. SMC Data and San Mateo County cannot vouch for the data or analyses derived from these data.",
+      "credit": "County of San Mateo GIS. The data is provided as-is, and San Mateo County makes no representations or warranties of any kind with respect to it. SMC Data and San Mateo County cannot vouch for the data or analyses derived from these data.",
+      "addedAt": "2026-11-01"
     }
   ]
 }

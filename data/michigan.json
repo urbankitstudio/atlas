@@ -2,7 +2,7 @@
   "stateSlug": "michigan",
   "stateName": "Michigan",
   "stateAbbrev": "MI",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-11-01",
   "counties": [
     {
       "id": "mi-kent",
@@ -397,6 +397,29 @@
         "reason": "no-public-service",
         "summary": "Iron County's parcel map runs on a proprietary viewer with no public query service, and Michigan has no statewide parcel layer to use instead, so we don't index it. Search the county's BS&A Online portal, or request it and we'll tell you if that changes.",
         "checked": "2026-10-05"
+      }
+    },
+    {
+      "id": "mi-alcona",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Alcona",
+      "countySlug": "alcona-county",
+      "countyFips": "26001",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Alcona County Equalization Department (106 5th St., P.O. Box 322, Harrisville, MI 48740; 989-724-9430)",
+        "url": "https://alconacountymi.com/home/equalization-department/",
+        "email": null
+      },
+      "notes": "No public ArcGIS REST parcel layer with owner names was found for Alcona County, Michigan (county seat Harrisville; FIPS 26001) as of 2026-11-01. The county website's GIS Property Maps link opens a Schneider Beacon application (beacon.schneidercorp.com, AppID 1164), which answered a scripted request with a bot-check page, and its Equalization page links BS&A Online for assessing records; neither is a query service we can use. Michigan has no statewide public parcel layer. ArcGIS Online searches for Alcona parcels found a 2021 parcel layer covering Alcona Township only, a 2023 third-party copy in an aggregator's schema on a university account, and county broadband and boundary layers without parcels; none is a county parcel source. The same search shape finds Lenawee County's own parcel layer, registered in this file, so the absence is meaningful. Owner and tax records can be looked up on the county's Beacon map or BS&A Online, or by asking the Equalization Department at 989-724-9430. Re-check if the county publishes a public parcel service.",
+      "addedAt": "2026-11-01",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Alcona County shows parcels only on its Beacon map and BS&A Online, which have no public query service we can use, so we don't index it. Use the county's Beacon map, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-01"
       }
     }
   ]

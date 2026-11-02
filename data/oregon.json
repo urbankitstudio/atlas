@@ -2,7 +2,7 @@
   "stateSlug": "oregon",
   "stateName": "Oregon",
   "stateAbbrev": "OR",
-  "lastUpdated": "2026-10-06",
+  "lastUpdated": "2026-11-01",
   "counties": [
     {
       "id": "or-multnomah",
@@ -767,10 +767,10 @@
             }
           ],
           "sampleQuery": "https://maps.co.polk.or.us/arcserv2/rest/services/Klop_core/Acct_35/FeatureServer/0/query?where=UPPER(AcctTable_OwnerLine1)+LIKE+UPPER('%25SMITH%25')&outFields=TaxlotTemp_MapTaxlot,AcctTable_OwnerLine1,AcctTable_SiteAddNam,AcctTable_SiteAddCty,AcctTable_MailAdd1,AcctTable_MailCity&returnGeometry=false&resultRecordCount=10&f=json",
-          "license": "unknown",
-          "licenseUrl": "https://www.polkcountyor.gov/419/Geographic-Information-Systems-GIS",
+          "license": "restricted",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=0ed9d751cfab4078bd0d18d51d05f05f",
           "status": "live",
-          "lastVerified": "2026-10-06",
+          "lastVerified": "2026-11-01",
           "verifiedBy": "manual"
         }
       ],
@@ -779,7 +779,7 @@
         "url": "https://www.polkcountyor.gov/419/Geographic-Information-Systems-GIS",
         "email": "gis@co.polk.or.us"
       },
-      "notes": "Polk County, Oregon (Dallas, Monmouth, Independence, West Salem; FIPS 41053) was asked for through the free tools on 2026-10-04. The county's Hub-advertised public REST path, maps.co.polk.or.us/gis/ (the Assessor/Taxlots MapServer and the KLOP folder), has answered every request with HTTP 500 'Could not access any server machines' since at least 2026-10-05 (re-checked 2026-10-06, services root included); the same ArcGIS Server 11.5 answers on its second web adaptor, /arcserv2/, and this record uses its Klop_core/Acct_35 taxlot layer: 36,413 taxlots with the assessment account joined on. The sibling Klop_core/Taxlots layer has the same schema and no rows, and the county's ArcGIS Online 'Taxlots' hosted service is Lake County data despite its name; neither is used. The owner is AcctTable_OwnerLine1 (35,407 of the rows carry one; individuals read 'LAST FIRST MIDDLE' with no comma), the owner mailing address is MailAdd1/MailAdd2 plus MailCity/MailState/MailZip, the situs is SiteAddNam plus SiteAddCty and SiteZip (often blank on vacant land), and the parcel id is the Map Taxlot (TaxlotTemp_MapTaxlot, for example '7533CB 9100') alongside the statewide ORTaxlot key and the primary account number. The layer answers cross-origin requests (it reflects the request Origin in Access-Control-Allow-Origin; a probe without an Origin header sees no CORS header, which is not the browser case), so the browser tools query it directly. The roll is current: 1,717 instruments are dated 2026 (the layer exposes no editingInfo). Verified 2026-10-06 by a count, an owner sample query, a situs query on MAIN ST in Dallas, a point query at 161 SE Washington St (City of Dallas) and a paged read at offset 36,400. We wrote to the county GIS office (gis@co.polk.or.us) on 2026-10-06 about the dead /gis/ path and asked for notice if /arcserv2/ changes.",
+      "notes": "Polk County, Oregon (Dallas, Monmouth, Independence, West Salem; FIPS 41053) was asked for through the free tools on 2026-10-04. The county's Hub-advertised public REST path, maps.co.polk.or.us/gis/ (the Assessor/Taxlots MapServer and the KLOP folder), has answered every request with HTTP 500 'Could not access any server machines' since at least 2026-10-05 (re-checked 2026-10-06, services root included); the same ArcGIS Server 11.5 answers on its second web adaptor, /arcserv2/, and this record uses its Klop_core/Acct_35 taxlot layer: 36,413 taxlots with the assessment account joined on. The sibling Klop_core/Taxlots layer has the same schema and no rows, and the county's ArcGIS Online 'Taxlots' hosted service is Lake County data despite its name; neither is used. The owner is AcctTable_OwnerLine1 (35,407 of the rows carry one; individuals read 'LAST FIRST MIDDLE' with no comma), the owner mailing address is MailAdd1/MailAdd2 plus MailCity/MailState/MailZip, the situs is SiteAddNam plus SiteAddCty and SiteZip (often blank on vacant land), and the parcel id is the Map Taxlot (TaxlotTemp_MapTaxlot, for example '7533CB 9100') alongside the statewide ORTaxlot key and the primary account number. The layer answers cross-origin requests (it reflects the request Origin in Access-Control-Allow-Origin; a probe without an Origin header sees no CORS header, which is not the browser case), so the browser tools query it directly. The roll is current: 1,717 instruments are dated 2026 (the layer exposes no editingInfo). Verified 2026-10-06 by a count, an owner sample query, a situs query on MAIN ST in Dallas, a point query at 161 SE Washington St (City of Dallas) and a paged read at offset 36,400. We wrote to the county GIS office (gis@co.polk.or.us) on 2026-10-06 about the dead /gis/ path and asked for notice if /arcserv2/ changes. Re-checked 2026-11-01 after the county's GIS Coordinator pointed us to the Polk County Data Clearinghouse (polkdatadownload-polkor.hub.arcgis.com) on 2026-10-26: the clearinghouse's Taxlots item is this same Klop_core/Acct_35 service, so the endpoint stays (36,413 taxlots, 35,407 with an owner); the /gis/ path still answers HTTP 500. LICENCE: that item's licence reads 'Development of derivative products is encouraged; however, copying and selling the data is prohibited. Polk County reserves the right to discontinue availability of content at any time and for any reason.' and its first paragraph says the product is provided as is, for informational purposes only.",
       "addedAt": "2026-10-06"
     }
   ]

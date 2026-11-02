@@ -2,7 +2,7 @@
   "stateSlug": "texas",
   "stateName": "Texas",
   "stateAbbrev": "TX",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-11-01",
   "counties": [
     {
       "id": "tx-harris",
@@ -681,15 +681,15 @@
       "endpoints": [],
       "contact": {
         "department": "Webb County Appraisal District (Webb CAD)",
-        "url": "https://www.webbcad.org/",
+        "url": "https://www.webbcad.org/maps",
         "email": null
       },
-      "notes": "Webb County, Texas (county seat Laredo; FIPS 48479) was asked for through the free tools. Texas assesses by appraisal district, and Webb CAD publishes no public ArcGIS REST parcel layer with owner names that we could find on 2026-10-14. The district's own parcel map (www.webbcad.org/maps) is a single-page web app, and its GIS host gis.webbcad.org answers every request with a login page (/auth/login), so no query service is open. The only public Webb items on ArcGIS Online are partial: RGV_Webb_County_Parcels (641 parcels, data last edited 2020-06) and Webb_County_TX_parcels (395 parcels, last edited 2024-03); neither covers the county. The City of Laredo open-data organisation publishes OL_LandBase (85,157 platted lots, no owner field) and WebbCAD_Values_2025 (a downtown valuation summary), none with owner names. CONTROL: the same Hub search shape ('<County> parcels' against the ArcGIS Hub dataset search) returned the district-wide NuecesCADWebService layer for Nueces and an ArcGIS Online item per CAD for Midland, so the absence for Webb is not a search blind spot. The statewide TxGIO StratMap Land Parcels service (feature.geographic.texas.gov, Parcels/stratmap_land_parcels_48_most_recent MapServer layer 0) documents owner fields, but on 2026-10-14 it refused every query with ArcGIS error 400 ('Requested operation is not supported by this service'), so Webb is not registered against it. Re-check if Webb CAD or the City of Laredo publishes a parcel service; the district's own contact is the way to ask. Commercial parcel data for Webb exists (about 98,000 parcels) but is not public REST.",
+      "notes": "Webb County, Texas (county seat Laredo; FIPS 48479) was asked for through the free tools. Texas assesses by appraisal district, and Webb CAD publishes no public ArcGIS REST parcel layer with owner names that we could find on 2026-10-14. The district's own parcel map (www.webbcad.org/maps) is a single-page web app, and its GIS host gis.webbcad.org answers every request with a login page (/auth/login), so no query service is open. The only public Webb items on ArcGIS Online are partial: RGV_Webb_County_Parcels (641 parcels, data last edited 2020-06) and Webb_County_TX_parcels (395 parcels, last edited 2024-03); neither covers the county. The City of Laredo open-data organisation publishes OL_LandBase (85,157 platted lots, no owner field) and WebbCAD_Values_2025 (a downtown valuation summary), none with owner names. CONTROL: the same Hub search shape ('<County> parcels' against the ArcGIS Hub dataset search) returned the district-wide NuecesCADWebService layer for Nueces and an ArcGIS Online item per CAD for Midland, so the absence for Webb is not a search blind spot. The statewide TxGIO StratMap Land Parcels service (feature.geographic.texas.gov, Parcels/stratmap_land_parcels_48_most_recent MapServer layer 0) documents owner fields, but on 2026-10-14 it refused every query with ArcGIS error 400 ('Requested operation is not supported by this service'), so Webb is not registered against it. Re-check if Webb CAD or the City of Laredo publishes a parcel service; the district's own contact is the way to ask. Commercial parcel data for Webb exists (about 98,000 parcels) but is not public REST. Re-checked 2026-11-01 after Webb CAD pointed us to its maps portal (www.webbcad.org/maps) in reply to our Public Information Act request: the portal is a True Prodigy app whose parcels come from the vendor's own API with a session token (a tokenless request answers 401), not a public ArcGIS REST service, so there is still nothing to register. gis.webbcad.org is still a login page, and the TxGIO StratMap service still refuses queries. A private company re-hosts the 2025 StratMap Webb extract on ArcGIS Online (98,291 parcels); it is not a public-agency source and is not used.",
       "addedAt": "2026-10-14",
       "coverage": {
-        "reason": "login-required",
-        "summary": "Webb County's appraisal district keeps its parcel map behind a login, and the statewide Texas parcel service refused every query, so we don't index it. Search Webb CAD's own map, or request it and we'll tell you if that changes.",
-        "checked": "2026-10-14"
+        "reason": "no-public-service",
+        "summary": "Webb County's appraisal district shows parcels in its own public map but publishes no parcel service our tools can query, and the statewide Texas service refuses queries, so we don't index it. Search the map at webbcad.org/maps, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-01"
       }
     }
   ]

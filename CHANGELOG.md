@@ -1,5 +1,41 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.6.48 — 2026-11-01
+
+Three counties join, one more is served, three are recorded as not served, and six existing records change.
+`totals` move to 509 counties, 502 endpoints and 475 counties with an endpoint. No type changes.
+
+- **San Mateo County CA** (`ca-san-mateo`, FIPS 06081): the Assessor's `ACRE/ACTIVE_PARCELS` MapServer layer
+  0, 235,492 parcels with APN, site address and city. The layer has no owner name and no mailing address, so
+  `owner_name` and `owner_mailing_address` are `not_published`. The credit carries the county's disclaimer
+  and its required statement.
+- **Isle of Wight County VA** (`va-isle-of-wight`, FIPS 51093): the county GIS Department's own hosted
+  `IOW_Parcels` layer, 22,276 parcels, 22,124 with an owner (`NAME1`). Licence `unknown`: the only published
+  term is an as-is, no-warranty statement.
+- **Bureau County IL** (`il-bureau`, FIPS 17011): the Supervisor of Assessments' hosted
+  `BureauParcels_polygons` layer 29, 27,933 parcels, 27,675 with an owner (`PrimaryNam`). Licence `unknown`.
+  Its mailing column `PrimaryAdd` joins the street and the city, state and ZIP with `~`; the hosted API, the
+  hosted MCP and the site's paid lists serve it as one line separated by `, `, and a value that is only
+  separators is no mailing address and is not billed.
+- **Pierce County WA** (`wa-pierce`) is now served, owner-less: the county's `Tax_Parcels` FeatureServer layer
+  0, 340,158 rows with parcel number, site address, taxpayer mailing address, use and values. The county
+  removes taxpayer names from its public requests, so `owner_name` stays `not_published` and the coverage
+  block is gone. `City_State` is the taxpayer's mailing city, not the site city. `Business_Name` is, in the
+  county's words, "A commercial property business name, or mobile home park name", maintained by its
+  commercial appraisers, and the county adds: "Business names are determined by the appraiser and may be set
+  to be the parcel owner, rather than the name of a strip mall or a specific business." It is not
+  searchable. The credit carries the county's required disclaimer.
+- **Not served, with a stub each**: Henry County VA (`va-henry`; its map opens only behind a terms checkbox),
+  Edmonson County KY (`ky-edmonson`; qPublic only) and Alcona County MI (`mi-alcona`; Beacon and BS&A only).
+  Each carries a `coverage` block with reason `no-public-service`.
+- **Corrections**: Webb County TX (coverage reason `login-required` becomes `no-public-service`: the district's
+  map portal reads the vendor's own tokened API), Loudoun County VA (contact `mapping@loudoun.gov`, new
+  notes), Columbia County PA (the county's web map exists, the service behind it needs a token; contact URL
+  is the parcel viewer), Polk County OR (`license` is now `restricted` and the Taxlots item's licence is
+  recorded: derivative products are encouraged, copying and selling the data is prohibited) and Sullivan
+  County TN (its notes said Tennessee has no statewide parcel layer; the Comptroller publishes one that is
+  not licensed for commercial use, so it is not registered).
+
 ## 0.6.47 — 2026-10-26
 
 No data change. The hosted API, the hosted MCP and the site's free tools now read `safeValues`: they keep

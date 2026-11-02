@@ -2,7 +2,7 @@
   "stateSlug": "illinois",
   "stateName": "Illinois",
   "stateAbbrev": "IL",
-  "lastUpdated": "2026-10-18",
+  "lastUpdated": "2026-11-01",
   "counties": [
     {
       "id": "il-kane",
@@ -379,6 +379,67 @@
       },
       "notes": "Rock Island County, Illinois (FIPS 17161; county seat Rock Island). Served by the county GIS department's ArcGIS Online feature service (services9.arcgis.com, item 9cae8a64ab0e4cea99758f741ca43b3c, \"Parcels\", owner thirty34jb, the county GIS account): Parcels FeatureServer layer 0, \"parcel_layer\", 65,948 rows, last edited 2026-10-01, tax year 2025 (taxbill_year). The county's own host, gis.rockislandcountyil.gov (Hosted/Parcels/FeatureServer/0), now answers \"Token Required\", so this record points at the ArcGIS Online copy. Informational only and not a legal record: verify with the Rock Island County Assessor. Verified 2026-10-18: a bounded query counts 65,948 rows, and an address query for 1504 3RD AVE returns two county-owned parcels. Share of rows filled, read 2026-10-18: parcel_number 99.7% (65,763 rows), owner1_name 99.7% (every row with a parcel number), taxbill_name 99.7%, site_address 88.9% (58,640 rows, with Site_City and Site_Zip). The owner mailing address is owner1_address1, owner1_address2, Owner_City, Owner_State and Owner_Zip; the tax-bill address is a separate set (taxbill_addr1, taxbill_addr2, taxbill_csz). The layer also carries the assessed values (EMV, EAV, farm and non-farm land and building), the last sale (date_last_sale, gross_sale_price, net_sale_price), class, township, legal description, Zoning, YRBuilt, TOTSQFT and each parcel's longitude and latitude; the atlas lists the fields above. The native spatial reference is Illinois State Plane West, feet (WKID 3436), so a point query passes inSR=4326. The layer pages and declares maxRecordCount 2000. CORS: the server answers with Access-Control-Allow-Origin *. License: the ArcGIS Online item's license text (the licenseUrl) reads \"For use by the general public\". The county's Data Release Policy (https://rockislandcountyil.gov/DocumentCenter/View/1159/Data-Release-PDF) governs requested file releases: the data is provided as is with no warranty and with a source credit of Rock Island County GIS, and it states no resale ban and no fee; the county's site says data requests go to GIS for costs. Credit Rock Island County GIS.",
       "addedAt": "2026-10-18"
+    },
+    {
+      "id": "il-bureau",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Bureau",
+      "countySlug": "bureau-county",
+      "countyFips": "17011",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services7.arcgis.com/LiP3SciiR8VBXvcO/arcgis/rest/services/BureauParcels_polygons/FeatureServer/29",
+          "serviceType": "FeatureServer",
+          "layerIndex": 29,
+          "layerName": "BureauParcels_polygonsUpdated2",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel Number (PIN)",
+              "searchable": true
+            },
+            {
+              "name": "ParcelNumber",
+              "label": "Parcel Number (dashed)",
+              "searchable": true
+            },
+            {
+              "name": "PrimaryNam",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Address_91",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "PrimaryAdd",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services7.arcgis.com/LiP3SciiR8VBXvcO/arcgis/rest/services/BureauParcels_polygons/FeatureServer/29/query?where=UPPER(PrimaryNam)%20LIKE%20%27%25SMITH%25%27&outFields=PIN,PrimaryNam,PrimaryAdd,Address_91&resultRecordCount=10&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=0d193150393f40e18290468136f2e3f3",
+          "status": "live",
+          "lastVerified": "2026-11-01",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Bureau County Supervisor of Assessments (700 South Main St, Suite 12, Princeton, IL 61356; 815-875-6478)",
+        "url": "https://bureaucounty-il.gov/directory/supervisor-of-assessments/",
+        "email": null
+      },
+      "notes": "Bureau County, Illinois (FIPS 17011; county seat Princeton). Served by the ArcGIS Online feature service the Bureau County Supervisor of Assessments account publishes (item 0d193150393f40e18290468136f2e3f3, \"BureauParcels_polygons\", public; service summary \"Bureau parcels October 2025 with updated fields from Bureau County\"): layer 29, \"BureauParcels_polygonsUpdated2\", last edited 2026-10-26. The county's parcel viewer (the Sidwell Portico experience the Supervisor of Assessments page links) reads this layer. Informational only and not a legal record or a survey: verify with the Bureau County Supervisor of Assessments. Verified 2026-11-01: 27,933 rows; PIN filled on 27,929; owner name (PrimaryNam) and owner mailing address (PrimaryAdd, street then city, state and ZIP joined by a tilde) on 27,675 (99.1%); site address (Address_91, street, city and ZIP) on 23,844, of which about 14,700 begin with a house number and the rest carry only the city and ZIP. No withheld-owner placeholder (0 rows match CONFIDENTIAL, WITHHELD or REDACTED). A point query in downtown Princeton near the courthouse (41.3664, -89.4648) returns one parcel, 16-16-377-009, with a Princeton 61356 site address. The layer also carries the legal description, acreage, land, farmland and building assessed values, taxable value, tax code and district, zoning, the last sale price, document number and Date_Sold (newest 2026-10-15; 1,545 sales dated 2026). The native spatial reference is Web Mercator (WKID 102100), so a point query passes inSR=4326. The layer pages and declares maxRecordCount 2000. CORS: the server answers with Access-Control-Allow-Origin *. License: the item, service and layer carry no licence, copyright or access text; the viewer's disclaimer says the data is provided as is with no warranty of accuracy, timeliness or completeness and does not represent a survey. An older copy (Parcel_BureauIL FeatureServer 0, March 2026) and the legacy viewer's layers on another host are not used. Credit Bureau County Supervisor of Assessments.",
+      "addedAt": "2026-11-01"
     }
   ]
 }
