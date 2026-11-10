@@ -1,4 +1,20 @@
-import type { CountyRecord, CapabilityField, CapabilityOverrides, EndpointRecord } from "./types.js";
+import type { CountyRecord, CapabilityField, CapabilityOverrides, EndpointRecord, SearchField } from "./types.js";
+
+/**
+ * The column name to SEND for a field: in a `where` clause, in `outFields`,
+ * and as the key to read back off a returned row. That is `wireName` when the
+ * record carries one (a layer that answers with fully qualified
+ * `table.column` names) and `name` otherwise.
+ *
+ * No record carries a `wireName` yet, so this returns `name` for every field
+ * today. It exists now so that code written against it keeps working when a
+ * record does: go through it rather than reading `field.name` for a query.
+ * Keep using `name` and `label` to decide what a column IS (parcel id, owner,
+ * address); a qualified name carries table names that read like roles.
+ */
+export function queryFieldName(field: Pick<SearchField, "name" | "wireName">): string {
+  return field.wireName ?? field.name;
+}
 
 /**
  * Can this layer take a `where`-clause search at all (owner name, address text,

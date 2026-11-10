@@ -1,5 +1,50 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.0 (2026-11-10)
+
+Two record shapes are declared for counties whose owner data does not sit on the parcel layer itself. **No record
+uses either yet**, so the data is the 0.8.1 data and `totals` stay at 538 counties, 521 endpoints and 493 counties
+with an endpoint.
+
+**Minor.** Two exported types gain optional keys and one function is added. Nothing is removed or renamed, and
+code written against 0.8.x reads every record exactly as before.
+
+- **`ownerJoin`** (type `OwnerJoin`, optional on an endpoint): the owner rows live in a separate TABLE of the same
+  service, joined to the parcel polygons by a key. The polygons carry `parcelKey`, the table at `url` carries
+  `key`, and a parcel's owners are the table rows whose `key` equals its `parcelKey` value. The table has no
+  geometry: query it by key only (`<key> IN (...)`), never spatially, and check that each returned row's key is one
+  you asked for.
+  - The table's columns are listed in `ownerJoin.fields` only, never in the endpoint's `searchFields`. A reader
+    that ignores `ownerJoin` therefore sees a layer with a parcel id and no owner, and cannot ask the parcel layer
+    for a column it does not have.
+  - `orderField` (required) is a unique, stable column of the table: send it as `orderByFields` whenever you send
+    `resultOffset`, or a paged read can repeat a row or skip one.
+  - `multiple: "rows"` says a key with several rows stands for several ownership records, and it always comes with
+    `maxRowsPerKey`, an integer from 1 to the table's `maxRecordCount`: a key with more rows than that has no owner
+    you can state (one key can hold more rows than a query returns). Without `multiple`, treat any key with
+    several rows that way.
+  - `rowIdField` (optional) labels the rows of one key, an assessment unit for example. It is not unique, so
+    de-duplicate the rows of one key by the owner and mailing content you read, never by this column.
+- **`wireName`** (optional on a `SearchField`): the column's fully qualified name on a layer that answers with
+  `table.column` names, while `name` stays the bare last segment. The registry's validator refuses `wireName` on
+  every record until a later release, so **`name` is still the literal query column for every record today**.
+- **`queryFieldName(field)`** returns `field.wireName ?? field.name`: the column to send in a `where` clause or
+  `outFields`, and the key to read back off a row. It returns `name` for every field today. Build queries through
+  it and nothing needs to change when a record carries a `wireName`. Keep reading `name` and `label` to decide
+  what a column is.
+- The registry's validator now holds a record with an `ownerJoin` to these rules, among others:
+  - the two field lists share no name, and `ownerJoin.fields` names no column twice, letter case ignored;
+  - the parcel layer's own `searchFields` read as carrying no owner and no mailing column;
+  - the table is another layer of the endpoint's own service: the same host and the same service path, with
+    `MapServer` and `FeatureServer` read as one service. A table in another service on the same host is refused;
+  - no endpoint `url` names a layer that an `ownerJoin.url` names. Two URLs name one layer when they have the same
+    service and the same layer number, so the `/FeatureServer/1` spelling of a `/MapServer/1` table counts as that
+    table, and letter case, the scheme and a trailing slash do not make a second layer;
+  - an endpoint that carries `sharedService: true` carries no `ownerJoin`.
+- A layer URL has one spelling, on `url` and on `ownerJoin.url` alike: the validator refuses a layer id with a
+  leading zero (`/MapServer/01`), a `%` escape in the path and a host that ends in a dot. No existing record used
+  one, so no `url` changed.
+
 ## 0.8.1 (2026-11-10)
 
 Wording in `notes`, and one new record with no endpoint. `totals.counties` moves from 537 to 538. Endpoints and

@@ -95,6 +95,7 @@ For single-address owner lookups in the browser, the free [Owner Lookup](https:/
 | `offersAttributeSearch(endpoint)` | `false` when the layer refuses a `where` clause (`attributeSearch: "unsupported"`); query it by geometry instead |
 | `countyOffersAttributeSearch(county)` | `true` when any of the county's layers takes a `where` clause |
 | `offersPagination(endpoint)` | `false` when the layer refuses `resultRecordCount` and `resultOffset` (`supportsPagination: false`); send one request without them, see below |
+| `queryFieldName(field)` | the column to send for a field, in a `where` clause or `outFields`: its `wireName` when it has one, else its `name` (every record today), see below |
 | `slugify(s)`, `countySlugFromName(s)` | string helpers matching the atlas slug convention |
 | `statePath(slug)`, `countyPath(state, county)` | URL paths under `/parcel-atlas` |
 | `listCities(filter?)` | `CitySummary[]` — every covered city, narrowed by `state`, `kind` (`violations`, `permits`, `zoning`) or `countySlug` |
@@ -342,6 +343,45 @@ flagged.
 
 An absent `confidentialFlag` means the layer publishes no such column, not that no
 owner there is protected.
+
+## Some counties keep owners in a separate table
+
+Declared in 0.9.0 and **carried by no record yet**: the types are here so your
+code can be ready, and every record reads exactly as it did in 0.8.x.
+
+An endpoint may carry `ownerJoin` (type `OwnerJoin`). Its parcel layer has the
+polygons and a parcel id but no owner; the owner rows are in a table of the same
+service, at `ownerJoin.url`. A parcel's owners are the table rows whose
+`ownerJoin.key` column equals the parcel's `ownerJoin.parcelKey` value.
+
+- The table has no geometry. Query it by key only
+  (`<key> IN ('<value>', ...)`, each `'` doubled), never spatially: an ArcGIS
+  table ignores a geometry parameter and answers with arbitrary rows. Check that
+  each returned row's key is one you asked for.
+- The table's columns are in `ownerJoin.fields` only, never in the endpoint's
+  `searchFields`. If you ignore `ownerJoin`, you see a layer with no owner
+  column, which is true of the parcel layer.
+- `orderField` is a unique, stable column of the table. Send it as
+  `orderByFields` whenever you send `resultOffset`.
+- `multiple: "rows"` means a key with several rows stands for several ownership
+  records, up to `maxRowsPerKey` rows (always present with it, at most the
+  table's `maxRecordCount`). A key with more rows than that, or any key with
+  several rows when `multiple` is absent, has no owner you can state.
+- `rowIdField`, when present, labels the rows of one key. It is not unique:
+  de-duplicate the rows of one key by the owner and mailing content you read.
+
+A `SearchField` may carry `wireName`: the column's fully qualified name on a
+layer that answers with `table.column` names, while `name` stays the bare last
+segment. The registry's validator refuses it on every record until a later
+release, so `name` is the literal query column for every record today.
+`queryFieldName(field)` returns the name to send either way:
+
+```ts
+import { findCountyByFips, queryFieldName } from "@urbankitstudio/atlas";
+
+const endpoint = findCountyByFips("17089")!.endpoints[0];
+const outFields = endpoint.searchFields.map(queryFieldName).join(",");
+```
 
 ## `addedAt` is the one date that never moves
 

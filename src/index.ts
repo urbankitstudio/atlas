@@ -5,6 +5,7 @@ export type {
   VerifiedBy,
   SearchField,
   ConfidentialFlag,
+  OwnerJoin,
   EndpointRecord,
   ContactInfo,
   CountyRecord,
@@ -27,6 +28,7 @@ export {
   offersAttributeSearch,
   countyOffersAttributeSearch,
   offersPagination,
+  queryFieldName,
 } from "./capability.js";
 
 // The bundled `status` field is a publish-time claim; this is where to ask what

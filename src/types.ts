@@ -37,6 +37,72 @@ export interface SearchField {
   name: string;
   label: string;
   searchable: boolean;
+  /**
+   * The column's fully qualified name on a layer that answers with one (a
+   * server-side join publishes `table.column`, as in
+   * `SDE.mc_parcel_polygon.TAXPINNO`), while `name` stays the bare last
+   * segment. Declared since 0.9.0 and carried by NO record yet: the registry's
+   * validator refuses it until a later release, so `name` is the literal query
+   * column on every record today. Read the column to send through
+   * `queryFieldName(field)`, exported by this package, so your code is already
+   * right when a record does carry one.
+   */
+  wireName?: string;
+}
+
+/**
+ * Owner rows that live in a separate TABLE of the same service, joined to the
+ * endpoint's parcel polygons by a key: the polygons carry `parcelKey`, the
+ * table carries `key`, and a parcel's owners are the table rows whose `key`
+ * equals its `parcelKey` value. Declared since 0.9.0 and carried by NO record
+ * yet.
+ *
+ * The table has no geometry. Query it by key only
+ * (`<key> IN ('<value>', ...)`, each `'` doubled), never spatially: an ArcGIS
+ * table ignores a geometry parameter, so a spatial query would answer with
+ * arbitrary rows. Check that every returned row's `key` is one you asked for.
+ *
+ * The table's columns live ONLY in `fields`, never in the endpoint's
+ * `searchFields`. So a reader that ignores `ownerJoin` sees a layer with a
+ * parcel id and no owner, which is the safe reading: it cannot ask the polygon
+ * layer for a column that is not on it.
+ */
+export interface OwnerJoin {
+  /** The table's layer URL: another layer of the endpoint's own service (the
+   *  same host and service path; `MapServer` and `FeatureServer` are one
+   *  service). No endpoint `url` in the registry names this layer, under
+   *  either service type. */
+  url: string;
+  layerName: string;
+  /** The key column on the table. */
+  key: string;
+  /** The matching column on the endpoint's layer; one of its `searchFields`. */
+  parcelKey: string;
+  /** The table's documented columns: `key`, `rowIdField` and the owner columns. */
+  fields: SearchField[];
+  /** A column that labels the rows of one key (an assessment unit, say). It is
+   *  NOT unique: several rows can share one value and differ only in columns
+   *  that are not served. De-duplicate the rows of one key by the owner and
+   *  mailing content you read, never by this column. */
+  rowIdField?: string;
+  /** `"rows"`: a key with several rows stands for several ownership records,
+   *  up to `maxRowsPerKey` of them. Absent: treat a key with several rows as
+   *  having no single owner rather than picking one. */
+  multiple?: "rows";
+  /** The most table rows one key may hold and still be read as its ownership
+   *  records: an integer from 1 to `maxRecordCount`, present exactly when
+   *  `multiple` is `"rows"`. Treat a key with more rows as having no owner you
+   *  can state (a single key can hold more rows than one query returns). */
+  maxRowsPerKey?: number;
+  /** A unique, stable column to order the table's pages by: send it as
+   *  `orderByFields` whenever you send `resultOffset`, or a paged read can
+   *  repeat a row or skip one. */
+  orderField: string;
+  /** The most rows the table returns to one query, as its metadata declares;
+   *  `exceededTransferLimit` on the response is the authority. */
+  maxRecordCount: number;
+  /** ISO date the table and its key were last verified before publish. */
+  lastVerified: string;
 }
 
 /**
@@ -195,6 +261,9 @@ export interface EndpointRecord {
    *  `safeValues`. Absent means the layer publishes no
    *  such column, not that no owner there is protected. */
   confidentialFlag?: ConfidentialFlag;
+  /** The table that holds this layer's owner rows (see {@link OwnerJoin}).
+   *  Declared since 0.9.0; absent on every record today. */
+  ownerJoin?: OwnerJoin;
   sampleQuery: string | null;
   license: LicenseType;
   licenseUrl: string | null;

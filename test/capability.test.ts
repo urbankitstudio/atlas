@@ -10,7 +10,7 @@
  */
 import { describe, it, expect } from "vitest";
 import { findCounty } from "../src/findCounty.js";
-import { reviewedCapability, isReviewedUnservable, offersPagination } from "../src/capability.js";
+import { reviewedCapability, isReviewedUnservable, offersPagination, queryFieldName } from "../src/capability.js";
 import * as pkgEntry from "../src/index.js";
 import { atlas } from "../src/data.js";
 import type { CountyRecord, EndpointRecord } from "../src/types.js";
@@ -205,5 +205,31 @@ describe("offersPagination", () => {
       expect(e.sampleQuery, e.url).toBeTruthy();
       expect(e.sampleQuery!, e.url).not.toMatch(/[?&](resultRecordCount|resultOffset)=/i);
     }
+  });
+});
+
+describe("queryFieldName", () => {
+  it("is exported from the package entry point", () => {
+    expect(pkgEntry.queryFieldName).toBe(queryFieldName);
+  });
+
+  it("is the wire name when the field carries one, and the name otherwise", () => {
+    expect(queryFieldName({ name: "TAXPINNO" })).toBe("TAXPINNO");
+    expect(queryFieldName({ name: "TAXPINNO", wireName: undefined })).toBe("TAXPINNO");
+    expect(queryFieldName({ name: "TAXPINNO", wireName: "SDE.mc_parcel_polygon.TAXPINNO" })).toBe("SDE.mc_parcel_polygon.TAXPINNO");
+  });
+
+  // The CHANGELOG's 0.9.0 claim, held to the data: the types are declared and
+  // no record uses them, so `name` is still the literal query column everywhere.
+  // When the first record ships one, this test goes red and is rewritten with it.
+  it("no bundled record carries a wireName or an ownerJoin yet, so every field queries by its name", () => {
+    const endpoints: EndpointRecord[] = [...atlas.byStateSlug.values()]
+      .flatMap((s) => s.counties)
+      .flatMap((c) => c.endpoints);
+    expect(endpoints.length, "the bundled atlas did not load").toBeGreaterThan(100);
+    expect(endpoints.filter((e) => "ownerJoin" in e).map((e) => e.url)).toEqual([]);
+    const fields = endpoints.flatMap((e) => e.searchFields);
+    expect(fields.length).toBeGreaterThan(endpoints.length);
+    expect(fields.filter((f) => "wireName" in f || queryFieldName(f) !== f.name)).toEqual([]);
   });
 });
