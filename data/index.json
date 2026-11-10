@@ -3,7 +3,7 @@
   "lastUpdated": "2026-11-10",
   "totals": {
     "states": 51,
-    "counties": 537,
+    "counties": 538,
     "endpoints": 521,
     "countiesWithEndpoint": 493,
     "countiesUnprobeable": 1
@@ -125,7 +125,7 @@
       "slug": "indiana",
       "name": "Indiana",
       "abbrev": "IN",
-      "countyCount": 8,
+      "countyCount": 9,
       "endpointCount": 4,
       "populated": true
     },

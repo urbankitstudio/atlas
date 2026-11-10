@@ -113,7 +113,7 @@
         "url": "https://www.acimap.us/",
         "email": null
       },
-      "notes": "Allen County IN (Fort Wayne metro, county seat Fort Wayne) provides parcels via gis.acimap.us, a combined City of Fort Wayne / Allen County GIS platform branded 'iMap'. The parcels/MapServer/0 layer is a lean 11-field service: PIN, GIS_ID, OwnerofRecord, PropertyAddress1, TransferDate, lat_add_pt, long_add_pt, Shape_Area, Shape_Length, Shape, OBJECTID. Owner and address search confirmed working: UPPER(OwnerofRecord) LIKE '%SMITH%' returns real results (e.g., 'Smith Halery W & Anna Catherine' on Pleasant Center Rd). The acimap.us server uses TLS renegotiation. Direct curl calls may timeout on Windows; use HTTPS clients that handle renegotiation. The ASSESSOR folder at gis.acimap.us/services/rest/services/Assessor/ contains additional assessment data but requires authentication. Allen County IN (18003) must not be confused with other Allen counties."
+      "notes": "Allen County IN (Fort Wayne metro, county seat Fort Wayne) provides parcels via gis.acimap.us, a combined City of Fort Wayne / Allen County GIS platform branded 'iMap'. The parcels/MapServer/0 layer is a lean 11-field service: PIN, GIS_ID, OwnerofRecord, PropertyAddress1, TransferDate, lat_add_pt, long_add_pt, Shape_Area, Shape_Length, Shape, OBJECTID. Owner and address search confirmed working: UPPER(OwnerofRecord) LIKE '%SMITH%' returns real results. The acimap.us server uses TLS renegotiation. Direct curl calls may timeout on Windows; use HTTPS clients that handle renegotiation. The ASSESSOR folder at gis.acimap.us/services/rest/services/Assessor/ contains additional assessment data but requires authentication. Allen County IN (18003) must not be confused with other Allen counties."
     },
     {
       "id": "in-marion",
@@ -247,7 +247,7 @@
         "url": "https://www.co.dekalb.in.us/department/index.php?structureid=137",
         "email": null
       },
-      "notes": "DeKalb County, Indiana (Auburn; FIPS 18033) has no public ArcGIS REST service for parcels with owner names as of 2026-11-10. The county's GIS page, under the Department of Development Services, points the public to a Schneider Beacon web map and property search, and we found no query service behind it. The IndianaMap statewide parcel layer carries parcel ids and tax districts but no owner name, mailing address or site address. ArcGIS Online, the ArcGIS Hub and the county's pages show no county-hosted parcel layer. A county commissioners' meeting summary dated 2026-03-31 says the City of Auburn will stop hosting the county's GIS servers and the county will host its own. The county's Beacon site shows parcels. DeKalb County, Indiana (18033) must not be confused with DeKalb County, Illinois (17037) or DeKalb County, Georgia (13089).",
+      "notes": "DeKalb County, Indiana (Auburn; FIPS 18033) has no public ArcGIS REST service for parcels with owner names as of 2026-11-10. The county's GIS page, under the Department of Development Services, points the public to a Schneider Beacon web map and property search, and we found no query service behind it. The IndianaMap statewide parcel layer carries parcel ids and tax districts but no owner name, mailing address or site address. ArcGIS Online, the ArcGIS Hub and the county's pages show no county-hosted parcel layer. A county commissioners' meeting summary dated 2026-03-31 says the City of Auburn will stop hosting the county's GIS servers and the county will host its own. The county's Beacon site shows parcels. DeKalb County, Indiana (18033) must not be confused with DeKalb County, Illinois (17037) or DeKalb County, Georgia (13089). Request this county with an email address and we will send you one email when we serve it.",
       "addedAt": "2026-11-10",
       "coverage": {
         "reason": "no-public-service",
@@ -270,7 +270,7 @@
         "url": "https://www.in.gov/counties/white/",
         "email": null
       },
-      "notes": "White County, Indiana (Monticello; FIPS 18181) has no public ArcGIS REST service for parcels with owner names as of 2026-11-10. The county's page on in.gov links only the Schneider Beacon property search, the treasurer's tax site and the recorder's systems, and lists no GIS data service or data policy. The IndianaMap statewide parcel layer carries parcel ids and tax districts but no owner name, mailing address or site address, and an ArcGIS Online and ArcGIS Hub search found no White County parcel layer. The county's Beacon site shows parcels; for other requests contact the White County Area Plan Commission or the Assessor's Office through the county's page at in.gov/counties/white. White County, Indiana (18181) must not be confused with White County, Illinois (17193), which publishes its own parcel layer as of 2026-11-10.",
+      "notes": "White County, Indiana (Monticello; FIPS 18181) has no public ArcGIS REST service for parcels with owner names as of 2026-11-10. The county's page on in.gov links only the Schneider Beacon property search, the treasurer's tax site and the recorder's systems, and lists no GIS data service or data policy. The IndianaMap statewide parcel layer carries parcel ids and tax districts but no owner name, mailing address or site address, and an ArcGIS Online and ArcGIS Hub search found no White County parcel layer. The county's Beacon site shows parcels; for other requests contact the White County Area Plan Commission or the Assessor's Office through the county's page at in.gov/counties/white. White County, Indiana (18181) must not be confused with White County, Illinois (17193), which publishes its own parcel layer as of 2026-11-10. Request this county with an email address and we will send you one email when we serve it.",
       "addedAt": "2026-11-10",
       "coverage": {
         "reason": "no-public-service",
@@ -293,7 +293,7 @@
         "url": "https://delawarecounty.in.gov/departments/office-of-information-gis-services/",
         "email": null
       },
-      "notes": "Delaware County, Indiana (Muncie; FIPS 18035) publishes a parcel layer with owner names and mailing addresses on its ArcGIS Online open-data hub, but as of 2026-11-10 we have not confirmed that the county permits commercial redistribution of it. The county's code of ordinances (Delaware County Code section 1-7-32(C), from Ordinance 1999-006) says that no one other than persons the county authorizes may reproduce, store, grant access to, deliver or sell information obtained from a county office, and that a commercial user must pay the electronic-map fees and sign a copyright licensing agreement with the Delaware County Geographic Information Systems Management Committee. UrbanKit does not serve it without the county's permission. The copy of the code we read dates from about 2008 and may have been amended, and the layer itself carries only an as-is disclaimer. Search the county's own parcel tools. Delaware County, Indiana (18035) must not be confused with the Delaware counties of Ohio, Pennsylvania, New York, Iowa and Oklahoma.",
+      "notes": "Delaware County, Indiana (Muncie; FIPS 18035) publishes a parcel layer with owner names and mailing addresses on its ArcGIS Online open-data hub, but as of 2026-11-10 we have not confirmed that the county permits commercial redistribution of it. The county's code of ordinances (Delaware County Code section 1-7-32(C), from Ordinance 1999-006) says that no one other than persons the county authorizes may reproduce, store, grant access to, deliver or sell information obtained from a county office, and that a commercial user must pay the electronic-map fees and sign a copyright licensing agreement with the Delaware County Geographic Information Systems Management Committee. UrbanKit does not serve it without the county's permission. The copy of the code we read dates from about 2008 and may have been amended, and the layer itself carries only an as-is disclaimer. Search the county's own parcel tools. Delaware County, Indiana (18035) must not be confused with the Delaware counties of Ohio, Pennsylvania, New York, Iowa and Oklahoma. Request this county with an email address and we will send you one email when we serve it.",
       "addedAt": "2026-11-10",
       "coverage": {
         "reason": "owner-data-sold",
@@ -316,7 +316,7 @@
         "url": "https://www.sjcindiana.gov/1689/GIS",
         "email": null
       },
-      "notes": "St. Joseph County, Indiana (South Bend and Mishawaka; FIPS 18141) has parcels with owner names and mailing addresses on a City of South Bend server, and the county's GIS open-data portal has stated, in text we could read only as captured around 2021, that a whole-county layer requires a signed Provisional Data Usage Agreement and a $200 fee per layer; the free portal parcel layer has no owner names. We could not find, as of 2026-11-10, a county ordinance on electronic-map data and have not confirmed that commercial redistribution is permitted. UrbanKit does not serve it without the county's permission. St. Joseph County, Indiana (18141) must not be confused with St. Joseph County, Michigan (26149), which publishes its GIS data free as of 2026-11-10. Search the county's own tools.",
+      "notes": "St. Joseph County, Indiana (South Bend and Mishawaka; FIPS 18141) has parcels with owner names and mailing addresses on a City of South Bend server, and the county's GIS open-data portal has stated, in text we could read only as captured around 2021, that a whole-county layer requires a signed Provisional Data Usage Agreement and a $200 fee per layer; the free portal parcel layer has no owner names. We could not find, as of 2026-11-10, a county ordinance on electronic-map data and have not confirmed that commercial redistribution is permitted. UrbanKit does not serve it without the county's permission. St. Joseph County, Indiana (18141) must not be confused with St. Joseph County, Michigan (26149), which publishes its GIS data free as of 2026-11-10. Search the county's own tools. Request this county with an email address and we will send you one email when we serve it.",
       "addedAt": "2026-11-10",
       "coverage": {
         "reason": "owner-data-sold",
@@ -325,6 +325,29 @@
           "name": "St. Joseph County GIS whole-county layers (Provisional Data Usage Agreement)",
           "url": "https://sjcgis-stjocogis.hub.arcgis.com/"
         },
+        "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "in-sullivan",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Sullivan",
+      "countySlug": "sullivan-county",
+      "countyFips": "18153",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Sullivan County Assessor's Office",
+        "url": "https://www.sullivancounty.in.gov/council-administration/departments-and-elected-officials/assessor-s-office/",
+        "email": null
+      },
+      "notes": "Sullivan County, Indiana (Sullivan; FIPS 18153) has no county-published ArcGIS REST service for parcels with owner names as of 2026-11-10. The county's Maps page says it uses Think GIS, and the Assessor's page points the public to the same WTH Technology ThinkGIS web map at sullivanin.wthgis.com for property record cards. That map is a viewer with its own search and we found no query service behind it. The IndianaMap statewide parcel layer covers Sullivan with 18,585 parcels loaded 2025-08-28 and carries parcel ids, site addresses and tax districts but no owner name or mailing address. The county's pages link no ArcGIS map, Hub site or open-data page, and an ArcGIS Online title search returned no county-hosted parcel layer. ArcGIS Online does hold a public layer named Sullivan Indiana Parcels with owner fields, uploaded by a personal account on 2024-06-18 and not edited since, with no licence and no link to the county, and we do not use it. We found no county GIS data ordinance or fee schedule online. The county's ordinance portal offers a search form only, so one may exist unread. Sullivan County, Indiana (18153) must not be confused with the Sullivan counties in New York (36105), Tennessee (47163), Pennsylvania (42113), New Hampshire (33019) or Missouri (29211). Request this county with an email address and we will send you one email when we serve it.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Sullivan County, Indiana publishes parcels through a ThinkGIS web map and has no public query service with owner names, so we don't index it. Search the county's ThinkGIS map, or request it and we'll tell you if that changes.",
         "checked": "2026-11-10"
       }
     }

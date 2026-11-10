@@ -1,5 +1,24 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.8.1 (2026-11-10)
+
+Wording in `notes`, and one new record with no endpoint. `totals.counties` moves from 537 to 538. Endpoints and
+counties with an endpoint stay at 521 and 493, and no field or capability moved.
+
+- **New record with no endpoint**: Sullivan IN (`in-sullivan`, FIPS 18153), with a dated note. The county
+  publishes parcels through a ThinkGIS web map with no query service we could find behind it, and the IndianaMap
+  statewide layer carries no owner name for it, so `coverage.reason` is `no-public-service`.
+- **Sample rows in notes**: the notes on 45 older records no longer quote a private owner from a sample row,
+  whether a person, a trust or an LLC. Each still names the parcel id or says that the query returned rows, and a
+  note that showed the owner format now shows it with placeholders (`'LAST, FIRST M'`).
+- **Street addresses in notes**: the notes on 29 records, 6 of those 45 among them, no longer give a street
+  address taken from a sample row. A note that showed the address format now shows it with a placeholder
+  (`123 EXAMPLE RD`). An address stays where the note names a county, a city or a public landmark as the owner,
+  or where it is a county office's contact address.
+- **No-endpoint notes** on eight records now end with how to be told when the county is served: "Request this
+  county with an email address and we will send you one email when we serve it." They are Lehigh PA, Butler PA,
+  Delaware IN, St. Joseph IN, DeKalb IN, White IN, Lancaster SC and the new Sullivan IN.
+
 ## 0.8.0 (2026-11-10)
 
 Twenty-two county records are added, York SC's owner data is served and Gwinnett GA's endpoint is retired.
@@ -1927,7 +1946,7 @@ verified endpoint (was 233 of 239).
 - **Minnesota:** Mille Lacs County (FIPS 27095, Milaca), with a verified
   endpoint on the county's own `MilleLacs_Public_101` MapServer, layer 35
   (20,083 parcels with a taxpayer name). Searchable by taxpayer name
-  (`TAXPAYER_NAME`, stored `LAST/FIRST`, e.g. `SMITH/BRIAN & ASHLEY`), parcel
+  (`TAXPAYER_NAME`, stored `LAST/FIRST`), parcel
   number (`PARCELID`), site address (`PROPERTY_ADDRESS`, `CITY_TWP_NAME`) and
   the taxpayer mailing address (`TAXPAYER_ADDRESS_1` to `_4`). The layer also
   has an `OWNER_NAME` column, but it is blank on about 97 percent of rows and

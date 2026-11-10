@@ -91,7 +91,7 @@
         "url": "https://web-ebrgis.opendata.arcgis.com/",
         "email": null
       },
-      "notes": "East Baton Rouge Parish (Baton Rouge, pop. 456,000; state capital) Tax Parcel layer. Louisiana uses 'parish' instead of 'county'. East Baton Rouge Parish is the combined city/parish government. 21 fields confirmed: ID, ASSESSMENT_NUM, PRONO, OWNER, OWNER_ADDRESS, OWNER_CITY_STATE_ZIP, PHYSICAL_ADDRESS, SUBDIVISION, WARD_SECTION, LOT, BLOCK, LEGAL_DESCRIPTION, FLOOD_ZONE, SALE_YEAR, STATUS, SUM_HOMESTEAD_EXEMPTION, SUM_LOT_VALUE, SUM_LAND_VALUE, SUM_IMPROVEMENT_VALUE, SUM_FAIR_MARKET_VALUE, SUM_ASSESSED_VALUE. Verified 2026-05-15: SMITH returns Baton Rouge addresses (e.g., '12523 MERLIN AVE', '9758 W TAMS DR'). EBRGIS manages 200+ public datasets.",
+      "notes": "East Baton Rouge Parish (Baton Rouge, pop. 456,000; state capital) Tax Parcel layer. Louisiana uses 'parish' instead of 'county'. East Baton Rouge Parish is the combined city/parish government. 21 fields confirmed: ID, ASSESSMENT_NUM, PRONO, OWNER, OWNER_ADDRESS, OWNER_CITY_STATE_ZIP, PHYSICAL_ADDRESS, SUBDIVISION, WARD_SECTION, LOT, BLOCK, LEGAL_DESCRIPTION, FLOOD_ZONE, SALE_YEAR, STATUS, SUM_HOMESTEAD_EXEMPTION, SUM_LOT_VALUE, SUM_LAND_VALUE, SUM_IMPROVEMENT_VALUE, SUM_FAIR_MARKET_VALUE, SUM_ASSESSED_VALUE. Verified 2026-05-15: SMITH returns Baton Rouge addresses (e.g., '123 EXAMPLE AVE', '456 W EXAMPLE DR'). EBRGIS manages 200+ public datasets.",
       "ownerFieldNote": null,
       "capabilityOverrides": null
     },
