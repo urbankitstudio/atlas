@@ -2,7 +2,7 @@
   "stateSlug": "indiana",
   "stateName": "Indiana",
   "stateAbbrev": "IN",
-  "lastUpdated": "2026-11-02",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "in-hamilton",
@@ -231,6 +231,102 @@
       },
       "notes": "Boone County, Indiana (county seat Lebanon; FIPS 18011). Served by PARCELS, layer 1 of the county's own Boone_County_Parcel FeatureServer (ArcGIS Online organisation BooneIN, service item 0e7e47171bdc47d5996813ed48943b5d), the parcel layer of the county's public 'Boone County GIS' map and of its Notification Tool, both linked from the Assessor's page. Read 2026-11-02 by metadata and returnCountOnly only: 45,933 parcels; name and add1 are non-empty on 44,345, site on 44,355, oldpin and stpin on 44,494. maxRecordCount 2000, pagination supported, capabilities Query only, CORS open. The sample query is a name search verified 2026-11-02 at 574 rows with returnCountOnly. COLUMN MEANINGS, from metadata only: the layer fields carry no aliases and no description. The county's public viewer web map (item 95e64c76742648669f99eb7aa42b6738, 'Web Site Main Layer') and its Notification Tool web map label them in the popup: oldpin 'Parcel', stpin 'State ID', site 'Location', name 'Name', add1 'Address1', add2 'Address2', add3 'Address3', acreage 'Acreage', avalue 'Assessment', subdiv 'Subdivision', and the viewer builds its property record card link from oldpin. The popup hides newpin, stateid and pvalue. So the parcel number is oldpin and the state id is stpin; newpin (9 characters) and stateid (10) are not used. NOT CONFIRMED: no county label says 'owner' or 'mailing'. That name is the owner and add1 to add3 the owner's mailing address is inferred from the layer sitting behind a county Notification Tool and from count-only tests: 5,324 names contain 'LLC' and 42,299 add3 values contain ' IN '. The paid and free tools serve add1 alone as the mailing address, which is the street line without the city, state and ZIP that add3 holds. Also not confirmed: the value formats of oldpin and stpin, whether site carries the city, and whether add2 is a suite or a care-of line. IndianaMap's statewide Parcel_Boundaries_of_Indiana_Current layer covers Boone but carries no owner fields, so it is not used. TERMS: the county site shows only 'Boone County Government. All Rights Reserved.', the GIS site gis.boonein.com has no disclaimer or terms page, and the service items carry no licence, so the licence is recorded as unknown. ORDINANCE FOUND 2026-11-02: Boone County Code Section 34.24(F) (Electronic Maps/GIS Data Fees, Ord. 98-12), adopted under Indiana Code 5-14-3-3(e), says only those persons the county's fiscal body (the County Council) authorizes may reproduce, store, grant access to, deliver or sell information from the county's electronic maps or GIS data, and that the information may not be used for advertising, selling or solicitation; Section 34.23(H) (Ord. 97-16) says the same of copies from any county office, and a violation of either is an infraction fined up to $2,500. American Legal Publishing answered HTTP 403 to our fetch on 2026-11-02, so the code was read from a full text copy Leo downloaded. Owner name and mailing address are therefore restricted on a permission_pending basis: we asked the County Auditor, whose office maintains the County GIS System (Section 34.24(B)), on 2 November 2026, copying the Assessor, and the record serves neither until the county answers. TO SWITCH OWNER DATA ON when the county authorizes it: delete both capabilityOverrides entries and the ownerFieldNote, and set name and add1 searchable again.",
       "addedAt": "2026-11-02"
+    },
+    {
+      "id": "in-dekalb",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "DeKalb",
+      "countySlug": "dekalb-county",
+      "countyFips": "18033",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "DeKalb County Department of Development Services (GIS)",
+        "url": "https://www.co.dekalb.in.us/department/index.php?structureid=137",
+        "email": null
+      },
+      "notes": "DeKalb County, Indiana (Auburn; FIPS 18033) has no public ArcGIS REST service for parcels with owner names as of 2026-11-10. The county's GIS page, under the Department of Development Services, points the public to a Schneider Beacon web map and property search, and we found no query service behind it. The IndianaMap statewide parcel layer carries parcel ids and tax districts but no owner name, mailing address or site address. ArcGIS Online, the ArcGIS Hub and the county's pages show no county-hosted parcel layer. A county commissioners' meeting summary dated 2026-03-31 says the City of Auburn will stop hosting the county's GIS servers and the county will host its own. The county's Beacon site shows parcels. DeKalb County, Indiana (18033) must not be confused with DeKalb County, Illinois (17037) or DeKalb County, Georgia (13089).",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "DeKalb County, Indiana publishes its parcels through a Beacon web map and has no public query service with owner names, so we don't index it. Search the county's Beacon site, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "in-white",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "White",
+      "countySlug": "white-county",
+      "countyFips": "18181",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "White County Assessor's Office",
+        "url": "https://www.in.gov/counties/white/",
+        "email": null
+      },
+      "notes": "White County, Indiana (Monticello; FIPS 18181) has no public ArcGIS REST service for parcels with owner names as of 2026-11-10. The county's page on in.gov links only the Schneider Beacon property search, the treasurer's tax site and the recorder's systems, and lists no GIS data service or data policy. The IndianaMap statewide parcel layer carries parcel ids and tax districts but no owner name, mailing address or site address, and an ArcGIS Online and ArcGIS Hub search found no White County parcel layer. The county's Beacon site shows parcels; for other requests contact the White County Area Plan Commission or the Assessor's Office through the county's page at in.gov/counties/white. White County, Indiana (18181) must not be confused with White County, Illinois (17193), which publishes its own parcel layer as of 2026-11-10.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "White County, Indiana publishes parcels through a Beacon search and has no public query service with owner names, so we don't index it. Search the county's Beacon site, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "in-delaware",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Delaware",
+      "countySlug": "delaware-county",
+      "countyFips": "18035",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Delaware County Office of Information and GIS Services",
+        "url": "https://delawarecounty.in.gov/departments/office-of-information-gis-services/",
+        "email": null
+      },
+      "notes": "Delaware County, Indiana (Muncie; FIPS 18035) publishes a parcel layer with owner names and mailing addresses on its ArcGIS Online open-data hub, but as of 2026-11-10 we have not confirmed that the county permits commercial redistribution of it. The county's code of ordinances (Delaware County Code section 1-7-32(C), from Ordinance 1999-006) says that no one other than persons the county authorizes may reproduce, store, grant access to, deliver or sell information obtained from a county office, and that a commercial user must pay the electronic-map fees and sign a copyright licensing agreement with the Delaware County Geographic Information Systems Management Committee. UrbanKit does not serve it without the county's permission. The copy of the code we read dates from about 2008 and may have been amended, and the layer itself carries only an as-is disclaimer. Search the county's own parcel tools. Delaware County, Indiana (18035) must not be confused with the Delaware counties of Ohio, Pennsylvania, New York, Iowa and Oklahoma.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Delaware County's code requires a licence agreement and fees before its GIS data is used commercially, and we don't have the county's permission, so we don't index it. Search the county's own parcel tools, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "in-st-joseph",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "St. Joseph",
+      "countySlug": "st-joseph-county",
+      "countyFips": "18141",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "St. Joseph County GIS, Department of Infrastructure, Planning and Growth",
+        "url": "https://www.sjcindiana.gov/1689/GIS",
+        "email": null
+      },
+      "notes": "St. Joseph County, Indiana (South Bend and Mishawaka; FIPS 18141) has parcels with owner names and mailing addresses on a City of South Bend server, and the county's GIS open-data portal has stated, in text we could read only as captured around 2021, that a whole-county layer requires a signed Provisional Data Usage Agreement and a $200 fee per layer; the free portal parcel layer has no owner names. We could not find, as of 2026-11-10, a county ordinance on electronic-map data and have not confirmed that commercial redistribution is permitted. UrbanKit does not serve it without the county's permission. St. Joseph County, Indiana (18141) must not be confused with St. Joseph County, Michigan (26149), which publishes its GIS data free as of 2026-11-10. Search the county's own tools.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "St. Joseph County requires a data usage agreement and a $200 fee per layer for whole-county GIS layers, and we don't have the county's permission, so we don't index it. Request it and we'll tell you if that changes.",
+        "countyProduct": {
+          "name": "St. Joseph County GIS whole-county layers (Provisional Data Usage Agreement)",
+          "url": "https://sjcgis-stjocogis.hub.arcgis.com/"
+        },
+        "checked": "2026-11-10"
+      }
     }
   ]
 }

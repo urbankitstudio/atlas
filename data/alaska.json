@@ -2,7 +2,7 @@
   "stateSlug": "alaska",
   "stateName": "Alaska",
   "stateAbbrev": "AK",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "ak-anchorage",
@@ -47,6 +47,96 @@
         "email": null
       },
       "notes": "15 fields confirmed: OBJECTID, parcel_id, owner, alt_owner, property_type, property_use, land_value, building_value, total_value, local_gov, datetime_processed, feature_id, Shape__Area, Shape__Length, GlobalID. This is the Alaska Statewide Parcel FeatureServer, combining parcel data from various local government bodies in Alaska. Filter by local_gov field, use UPPER(local_gov) LIKE '%ANCHORAGE%' for Anchorage Municipality parcels (confirmed returning real parcels including United Airlines, residential, etc.). Owner query confirmed working. NOTE: Alaska does not have counties. It has boroughs and a small number of unified municipalities. Anchorage is officially the Municipality of Anchorage (FIPS 02020). This statewide service also covers Fairbanks North Star Borough, Matanuska-Susitna Borough, and other AK jurisdictions via the local_gov field. Coverage and completeness vary by participating jurisdiction."
+    },
+    {
+      "id": "ak-fairbanks-north-star",
+      "state": "AK",
+      "stateName": "Alaska",
+      "stateSlug": "alaska",
+      "county": "Fairbanks North Star Borough",
+      "countySlug": "fairbanks-north-star-borough",
+      "countyFips": "02090",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/f4rR7WnIfGBdVYFd/ArcGIS/rest/services/Tax_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Tax_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PAN",
+              "label": "Parcel Account Number (PAN)",
+              "searchable": true
+            },
+            {
+              "name": "Owner1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Owner2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "Mailing_Address",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "CityStateZip",
+              "label": "Owner Mailing City, State and ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL_SUB",
+              "label": "Subdivision",
+              "searchable": true
+            },
+            {
+              "name": "PARCEL_BLOCK",
+              "label": "Block",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL_LOT",
+              "label": "Lot",
+              "searchable": false
+            },
+            {
+              "name": "Land_Value",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Improvements",
+              "label": "Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "Total_Value",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.arcgis.com/f4rR7WnIfGBdVYFd/ArcGIS/rest/services/Tax_Parcels/FeatureServer/0/query?where=UPPER(Owner1)+LIKE+UPPER('%25SMITH%25')&outFields=PAN,Owner1,Mailing_Address,CityStateZip&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://www.fnsb.gov/1108/FNSB-GIS-Layer-REST-Services",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Fairbanks North Star Borough Community Planning (GIS), (907) 459-1260",
+        "url": "https://www.fnsb.gov/433/Geographic-Information-Services-GIS",
+        "email": null
+      },
+      "notes": "Fairbanks North Star Borough, Alaska (borough seat Fairbanks; FIPS 02090). Served by the borough's own ArcGIS Online layer Tax_Parcels (item 1237ad10e0434e498dbec7843c065c05, 'Parcels with Taxroll Information', account internet_gis_FNSB), which the borough's REST-services page lists among its 'freely available GIS data layers' and describes as the parcel data joined with a download of the borough taxroll. Read 2026-11-10: 63,949 parcels; Owner1 non-blank on 57,861 and Mailing_Address on 57,853, all on the 2026 tax year (the remaining rows are roadways, waterways and untaxed lots with no roll record); UPPER(Owner1) LIKE '%SMITH%' returns 310, the sample query's predicate. PAN (parcel account number) is an integer. CityStateZip carries the mailing city, state and ZIP+4 in one value ('WASILLA AK 99654 4323'). NO SITE ADDRESS: the layer has no situs column (PARCEL_POLY_NAME is a parcel name on a few thousand rows, not an address), so a lookup by street address has nothing to match against; the borough publishes situs addresses only as a CSV download. maxRecordCount 2000 with pagination, capabilities Query and Extract, native WKID 102633 (Alaska zone 3, feet), CORS open (Access-Control-Allow-Origin *). STATUS AND USE COLUMNS, NOT LISTED: Tax_Status carries exemption and delinquency labels ('PAST DUE TAXES: MUNI', 'Veteran Organization,Exmpt'), and Assessing_Primary_Use and Business are left out with it. TERMS: the item licence is an accuracy disclaimer ('should be used for informational purposes only, and none of it constitutes legal documentation'); the borough's older gisportal Parcels service says 'Per Fairbanks North Star Borough Use Policies', and no page of that name was found. The paid GIS data package ($150 to the general public) is a separate product. The Alaska statewide AK_Parcels layer registered for Anchorage is not used here: it is a non-authoritative compilation with no mailing or site address.",
+      "addedAt": "2026-11-10"
     }
   ]
 }

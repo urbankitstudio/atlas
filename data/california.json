@@ -2,7 +2,7 @@
   "stateSlug": "california",
   "stateName": "California",
   "stateAbbrev": "CA",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "ca-los-angeles",
@@ -1074,6 +1074,291 @@
       "notes": "Nevada County, California (FIPS 06057; county seat Nevada City; Grass Valley, Truckee, Penn Valley) serves its parcels from the county's own ArcGIS Server (ArcGIS 11.4) at maps.nevadacountyca.gov. The record uses web_public/parcel_mail_situs_external MapServer layer 0: 68,134 rows on 2026-11-01 for 64,349 distinct APNs, because a parcel with more than one site or mailing address is drawn as overlapping polygons (the service description says so). The layer is attached to the Assessor's roll bi-monthly; RollYear is 2026. APN is 12-digit text (005040055000) and APN_FORMATTED the hyphenated 9-digit form (005-040-055); compare both as strings. ADDRESS is the situs street line (non-blank on 67,903 rows) with PostOffice and ZipCode; the owner mailing address is MailingAddress (non-blank on 67,060 rows) with MailPO_Zip. Also UseCode, ZONING, GPDES, JURISDICTION, LegalDescription, AssessedAcreage, the land, improvement, fixture and personal-property values, exemption and gross and net roll values, TaxAreaCode and REPORT_URL. NO OWNER NAME: the service description reads 'Identical to internal version but owner name is hidden', and the county GIS FAQ says the GIS Division has been instructed not to distribute owner name to any entity, citing Gov. Code 7928.205 as amended by AB 1785; the same FAQ says owner mailing address is available in the data download and the My Neighborhood export. MAILING ADDRESS SERVED: UrbanKit asked the county on 2026-11-01 whether it may show the owner mailing address without names, and on 2026-11-02 the county's GIS Division confirmed that we may use the publicly available data from its Open Data Portal as described, as long as we abide by the CC BY 4.0 licence; the registered layer's mailing columns (MailingAddress, MailPO_Zip) are served, and the county asked us to show its disclaimer (it is in the credit line). maxRecordCount 2000 with pagination, Web Mercator (wkid 102100), CORS reflects the caller's Origin. LICENCE: the county publishes the same parcel attributes as open data under Creative Commons Attribution 4.0 (ArcGIS items 8f06e50a475c417bb4b39a47c4811cae 'Parcel Information' and 11bd68e8d5b648a3bb1ce983924c640c 'Parcel Situs Address', both 'public_authoritative', credit 'Nevada County GIS'); the county website's general copyright notice says its web material is for noncommercial use, but the data items carry the specific CC BY 4.0 licence. Open-data fallbacks on the same server: Open_Data_Layers_Nevada_County FeatureServer 100 (situs, CC BY 4.0) and Open_Data_Layers_Nevada_County_1 FeatureServer 200 (64,402 parcels, values, districts, mailing address, LastParcelUpdate max 2026-10-09, CC BY 4.0, no situs). Verified live 2026-11-01: UPPER(ADDRESS) LIKE '%BROAD ST%' returned rows (first 005-040-055, EAST BROAD STREET, Nevada City), a point at Nevada City (39.26162, -121.01606) returned APN 005-410-045 on Sacramento Street, and a point at the county's internal point returned one unincorporated parcel. Contact: MapInquiry@nevadacountyca.gov, (530) 265-1608; ownership questions go to assessor@nevadacountyca.gov. Credit: Nevada County GIS. Licensed under Creative Commons Attribution 4.0 International (https://creativecommons.org/licenses/by/4.0/). Parcel boundaries do not represent legal boundaries. Every reasonable effort has been made to assure the accuracy of the maps and data provided; nevertheless, some information may not be accurate. The County of Nevada assumes no responsibility arising from use of this information. THE MAPS AND ASSOCIATED DATA ARE PROVIDED WITHOUT WARRANTY OF ANY KIND, either expressed or implied, including but not limited to, the implied warranties of merchantability and fitness for a particular purpose. Before making decisions using the information provided on this map, contact the Nevada County Public Counter staff to confirm the validity of the data provided.",
       "credit": "Nevada County GIS. Licensed under Creative Commons Attribution 4.0 International (https://creativecommons.org/licenses/by/4.0/). Parcel boundaries do not represent legal boundaries. Every reasonable effort has been made to assure the accuracy of the maps and data provided; nevertheless, some information may not be accurate. The County of Nevada assumes no responsibility arising from use of this information. THE MAPS AND ASSOCIATED DATA ARE PROVIDED WITHOUT WARRANTY OF ANY KIND, either expressed or implied, including but not limited to, the implied warranties of merchantability and fitness for a particular purpose. Before making decisions using the information provided on this map, contact the Nevada County Public Counter staff to confirm the validity of the data provided.",
       "addedAt": "2026-11-01"
+    },
+    {
+      "id": "ca-napa",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Napa",
+      "countySlug": "napa-county",
+      "countyFips": "06055",
+      "ownerFieldNote": {
+        "body": "Napa County's public parcel layer has no owner-name column and no owner mailing address, so Napa County lookups carry neither. The county's own description says the parcel number is the link to the county databases that hold owner name and value. Parcel number, site address, ZIP, zoning, land use and acreage are available, and the parcel number and site address are searchable. Ownership is available from the Napa County Assessor.",
+        "source": {
+          "label": "Napa County Public Parcels (county open data)",
+          "url": "https://gisdata.napacounty.gov/datasets/napa-county-public-parcels"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The registered layer has no owner-name or owner-address column; the county's own Hosted/Napa_County_Parcels service on gis.napacounty.gov requires a token.",
+            "sourceUrl": "https://services1.arcgis.com/Ko5rxt00spOfjMqj/arcgis/rest/services/Napa_County_Public_Parcels/FeatureServer/1"
+          },
+          "lawfulAlternativeUrl": "https://gisdata.napacounty.gov/"
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services1.arcgis.com/Ko5rxt00spOfjMqj/arcgis/rest/services/Napa_County_Public_Parcels/FeatureServer/1",
+          "serviceType": "FeatureServer",
+          "layerIndex": 1,
+          "layerName": "Napa County Public Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "ASMT",
+              "label": "Assessor Parcel Number (APN, 12 digits)",
+              "searchable": true
+            },
+            {
+              "name": "ASMTWithDash",
+              "label": "APN (hyphenated)",
+              "searchable": true
+            },
+            {
+              "name": "StreetAddr",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "Zip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Community",
+              "label": "Community",
+              "searchable": false
+            },
+            {
+              "name": "Jurisdiction",
+              "label": "Jurisdiction",
+              "searchable": false
+            },
+            {
+              "name": "Zoning",
+              "label": "Zoning",
+              "searchable": false
+            },
+            {
+              "name": "LandUseDescription",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "Acres",
+              "label": "Acres",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services1.arcgis.com/Ko5rxt00spOfjMqj/arcgis/rest/services/Napa_County_Public_Parcels/FeatureServer/1/query?where=UPPER(StreetAddr)+LIKE+UPPER('%25BEARD%25')&outFields=ASMT,ASMTWithDash,StreetAddr,Zip&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://opendatacommons.org/licenses/pddl/1-0/",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Napa County GIS (Napa County Open Data Portal)",
+        "url": "https://gisdata.napacounty.gov/",
+        "email": null
+      },
+      "notes": "Napa County, California (county seat Napa; FIPS 06055). Served by the county's open-data feature service Napa_County_Public_Parcels on ArcGIS Online (item eef5363332e04774a6f52dfd40a04062, account Napa_County_GIS, flagged public_authoritative), layer 1; there is no layer 0. Read 2026-11-10: 51,295 parcels; ASMT on every row, StreetAddr non-blank on 44,589; UPPER(StreetAddr) LIKE '%BEARD%' returns 46, the sample query's predicate. ASMT is the 12-digit APN as text (001352015000) and ASMTWithDash the hyphenated form. maxRecordCount 2000 with pagination, capabilities Query and Extract, native WKID 2226 (California zone 2, feet), CORS open (Access-Control-Allow-Origin *); the layer was edited on 2026-11-10. NO OWNER: the layer has no owner name and no owner mailing address; the county's token-only Hosted/Napa_County_Parcels service on gis.napacounty.gov is not used. EXEMPTION COLUMNS, NOT LISTED: HomeOwnersExemption and OtherExemptions. LICENCE: the item's licence reads 'The Napa County Public Parcels layer is open and made available under the Public Domain Dedication and License version v1.0'; the item credits Napa County Public Works Surveying Services, the Assessor's Mapping Section and Information Technology Services and GIS. The county warns that parcel boundary accuracy 'can vary significantly, with errors ranging from a few feet to several hundred feet'.",
+      "addedAt": "2026-11-10"
+    },
+    {
+      "id": "ca-placer",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Placer",
+      "countySlug": "placer-county",
+      "countyFips": "06061",
+      "ownerFieldNote": {
+        "body": "Placer County's public parcel layer has no owner-name column and no owner mailing address, so Placer County lookups carry neither. The Placer County Assessor's Office sells owner names and mailing addresses, as of 2026-11-10, through its Request For Data form (PCA-503), with payment in advance. Parcel number, site address, ZIP, jurisdiction and assessed land and structure value are available, and the parcel number and site address are searchable.",
+        "source": {
+          "label": "Placer County GIS and Online Maps",
+          "url": "https://www.placer.ca.gov/2842/GIS-and-Online-Maps"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The registered layer has no owner-name or owner-address column. The county's GIS page sends requests that include parcel owner information to the Assessor's Office.",
+            "sourceUrl": "https://services6.arcgis.com/PArfeTGcwA9RGNzN/ArcGIS/rest/services/Public_Parcels/FeatureServer/0"
+          },
+          "lawfulAlternativeUrl": "https://www.placer.ca.gov/Faq.aspx?QID=461"
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/PArfeTGcwA9RGNzN/ArcGIS/rest/services/Public_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Public_Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "Apn",
+              "label": "Assessor Parcel Number (APN)",
+              "searchable": true
+            },
+            {
+              "name": "Asmt",
+              "label": "Assessment Number",
+              "searchable": true
+            },
+            {
+              "name": "SitusAddressFull",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "SitusZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Community",
+              "label": "Community",
+              "searchable": false
+            },
+            {
+              "name": "Jurisdiction",
+              "label": "Jurisdiction",
+              "searchable": false
+            },
+            {
+              "name": "Acres",
+              "label": "Acres",
+              "searchable": false
+            },
+            {
+              "name": "LandValue",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Structure",
+              "label": "Structure Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/PArfeTGcwA9RGNzN/ArcGIS/rest/services/Public_Parcels/FeatureServer/0/query?where=UPPER(SitusAddressFull)+LIKE+UPPER('%25FINLEY%25')&outFields=Apn,SitusAddressFull,Jurisdiction,LandValue&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://gis-placercounty.opendata.arcgis.com/",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Placer County Community Development Resource Agency GIS Division; owner data: Placer County Assessor's Office",
+        "url": "https://www.placer.ca.gov/2842/GIS-and-Online-Maps",
+        "email": null
+      },
+      "notes": "Placer County, California (county seat Auburn; FIPS 06061). Served by the Public_Parcels FeatureServer layer 0 on ArcGIS Online (item e7f94185f452428aad6136fa34a4fcaf, account PCGISAdmin), listed on the county's Land Development Open Data Portal. Read 2026-11-10: 199,347 rows, more than one row per parcel (the layer carries ParcelLevel and ParentID columns, and 188,210 rows have no ParcelLevel); Apn on every row and SitusAddressFull non-blank on 189,806, written as a full line ('420 FINLEY ST AUBURN CA 95603'); UPPER(SitusAddressFull) LIKE '%FINLEY%' returns 47, the sample query's predicate. maxRecordCount 2000 with pagination, capabilities Query and Extract, native WKID 2226 (California zone 2, feet), CORS open (Access-Control-Allow-Origin *); the layer was edited on 2026-11-10. NO OWNER: there is no owner name and no owner mailing address. Owner data is sold, as of 2026-11-10, by the Placer County Assessor's Office through its Request For Data form (PCA-503), whose Name/Address option is the current owner's name and mailing address, with payment before release. The county's FAQ says its free parcel download carries owner address fields, but the live layer has none. TERMS: the item has no licence, description or credit; sibling items on the same portal carry the county's no-warranty, planning-purposes-only disclaimer.",
+      "addedAt": "2026-11-10"
+    },
+    {
+      "id": "ca-tuolumne",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Tuolumne",
+      "countySlug": "tuolumne-county",
+      "countyFips": "06109",
+      "ownerFieldNote": {
+        "body": "Tuolumne County's public parcel layer carries the assessor parcel number and site address but no owner name and no owner mailing address, so Tuolumne County lookups carry neither. Parcel number, site address, zoning and land use are available, and the parcel number, site address and zoning are searchable. Ownership is held by the County Assessor.",
+        "source": {
+          "label": "Tuolumne County parcels with situs information (county GIS)",
+          "url": "https://www.arcgis.com/home/item.html?id=8870cd340c94487494f62257782b9a3c"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The registered layer, the county's cadastral parcels joined to the Assessor's situs information, has no owner-name or owner-address column.",
+            "sourceUrl": "https://services3.arcgis.com/afQpMaliVrwHS7Ud/arcgis/rest/services/Parcels_WithSiteAddress/FeatureServer/2"
+          },
+          "lawfulAlternativeUrl": "https://www.arcgis.com/home/item.html?id=8870cd340c94487494f62257782b9a3c"
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services3.arcgis.com/afQpMaliVrwHS7Ud/arcgis/rest/services/Parcels_WithSiteAddress/FeatureServer/2",
+          "serviceType": "FeatureServer",
+          "layerIndex": 2,
+          "layerName": "Parcels_WithSiteAddress",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "APN_Formatted",
+              "label": "APN (hyphenated)",
+              "searchable": true
+            },
+            {
+              "name": "Asmt",
+              "label": "Assessment Number (APN, 12 digits)",
+              "searchable": true
+            },
+            {
+              "name": "SitusConcat",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "SitusStreetZip",
+              "label": "Situs ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ZONING",
+              "label": "Zoning",
+              "searchable": true
+            },
+            {
+              "name": "LandUse1",
+              "label": "Land Use Code",
+              "searchable": false
+            },
+            {
+              "name": "TRA",
+              "label": "Tax Rate Area",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services3.arcgis.com/afQpMaliVrwHS7Ud/arcgis/rest/services/Parcels_WithSiteAddress/FeatureServer/2/query?where=UPPER(SitusConcat)+LIKE+UPPER('%25MAIN%25')&outFields=APN_Formatted,Asmt,SitusConcat,SitusStreetZip&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "http://opendatacommons.org/licenses/odbl/1.0/",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Tuolumne County GIS",
+        "url": "https://www.arcgis.com/home/item.html?id=8870cd340c94487494f62257782b9a3c",
+        "email": null
+      },
+      "notes": "Tuolumne County, California (county seat Sonora; FIPS 06109). Served by the Parcels_WithSiteAddress FeatureServer on ArcGIS Online (services3.arcgis.com, item 8870cd340c94487494f62257782b9a3c, accessInformation 'Tuolumne County GIS', flagged public_authoritative), whose only layer is 2: the county's cadastral parcels joined to the Assessor's situs information, source table TUOLUMNE.CDD.Parcels_Secured_Asmts_Formatted, service description 'Updated 10/20/2025'; the layer data was last edited 2026-05-22. Read 2026-11-10: 48,413 rows; APN_Formatted on 46,257; SitusConcat is non-null on 46,257 but non-blank on only 33,294, so about a third of parcels have no site address; UPPER(SitusConcat) LIKE '%MAIN%' returns 201, the sample query's predicate. maxRecordCount 2000 with pagination, capabilities Query, Extract and Sync, native WKID 2227 (California zone 3, feet), CORS open (Access-Control-Allow-Origin *). NO OWNER: there is no owner name and no owner mailing address. LICENCE: Open Database License 1.0 (item licence), with individual contents under the Database Contents License 1.0. ODbL requires attribution (see the credit), and its share-alike clause applies to a publicly used adapted database, so UrbanKit Studio queries this layer live and does not keep a copy of it. The county's other parcel items (OpenGovData layer 4, CadastralParcels_view) carry only APN, zoning and ordinance columns, and separate items such as the services5 'Parcels' layer carry a restrictive licence ('Only those parties which have been given or sold official copies of this data set by the County of Tuolumne are authorized to use it') and are not used. Credit: Tuolumne County GIS. Contains information from Parcels_WithSiteAddress (TUOLUMNE.CDD.Parcels_Secured_Asmts_Formatted), which is made available under the Open Database License (ODbL) 1.0, http://opendatacommons.org/licenses/odbl/1.0/.",
+      "credit": "Tuolumne County GIS. Contains information from Parcels_WithSiteAddress (TUOLUMNE.CDD.Parcels_Secured_Asmts_Formatted), which is made available under the Open Database License (ODbL) 1.0, http://opendatacommons.org/licenses/odbl/1.0/.",
+      "addedAt": "2026-11-10"
     }
   ]
 }

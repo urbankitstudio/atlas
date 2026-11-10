@@ -95,7 +95,7 @@ describe("reviewed capability survives into the published bundle", () => {
     expect(isReviewedUnservable(county!, "owner_name")).toBe(true);
   });
 
-  it("York and Boone: the permission_pending records are exactly the expected set, York's survives into the bundle, and neither Nevada's mailing address (switched on in 0.7.2) nor Hamilton (declined, 0.7.2) is among them", () => {
+  it("Boone: the permission_pending records are exactly the expected set and survive into the bundle; York (switched on 2026-11-10), Nevada's mailing address (switched on in 0.7.2) and Hamilton (declined, 0.7.2) are not among them", () => {
     const counties: CountyRecord[] = [...atlas.byStateSlug.values()].flatMap((s) => s.counties);
     const pending: string[] = [];
     for (const county of counties) {
@@ -103,14 +103,24 @@ describe("reviewed capability survives into the published bundle", () => {
         if (entry.basis.type === "permission_pending") pending.push(`${county.id}:${field}`);
       }
     }
-    expect(pending.sort()).toEqual(["in-boone:owner_mailing_address", "in-boone:owner_name", "sc-york:owner_mailing_address", "sc-york:owner_name"]);
-    const york = findCounty("south-carolina", "york-county");
-    expect(york, "York missing from the bundled atlas").toBeTruthy();
-    expect(york!.id).toBe("sc-york");
-    const record = reviewedCapability(york!, "owner_name");
+    expect(pending.sort()).toEqual(["in-boone:owner_mailing_address", "in-boone:owner_name"]);
+    const boone = findCounty("indiana", "boone-county");
+    expect(boone, "Boone missing from the bundled atlas").toBeTruthy();
+    expect(boone!.id).toBe("in-boone");
+    const record = reviewedCapability(boone!, "owner_name");
     expect(record?.status).toBe("restricted");
     expect(record?.basis?.type).toBe("permission_pending");
-    expect(isReviewedUnservable(york!, "owner_name")).toBe(true);
+    expect(isReviewedUnservable(boone!, "owner_name")).toBe(true);
+    // York's owner roles are served, and the bundle carries the S.C. Code 30-2-50 notice on both.
+    const york = findCounty("south-carolina", "york-county");
+    expect(york, "York missing from the bundled atlas").toBeTruthy();
+    for (const field of ["owner_name", "owner_mailing_address"] as const) {
+      const served = reviewedCapability(york!, field);
+      expect(served?.status, field).toBe("available");
+      expect(served?.basis?.type, field).toBe("statute");
+      expect(served?.basis?.citation, field).toBe("S.C. Code 30-2-50");
+      expect(isReviewedUnservable(york!, field), field).toBe(false);
+    }
     const nevada = findCounty("california", "nevada-county");
     expect(nevada, "Nevada missing from the bundled atlas").toBeTruthy();
     expect(reviewedCapability(nevada!, "owner_mailing_address"), "the mailing role carries no reviewed record").toBeNull();

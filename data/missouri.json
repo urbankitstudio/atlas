@@ -2,7 +2,7 @@
   "stateSlug": "missouri",
   "stateName": "Missouri",
   "stateAbbrev": "MO",
-  "lastUpdated": "2026-10-20",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "mo-jackson",
@@ -19,11 +19,15 @@
         "url": "https://jcgis.jacksongov.org/parcelviewer/",
         "email": null
       },
-      "notes": "No public ArcGIS REST layer with owner names was found for Jackson County, Missouri (Kansas City metro; FIPS 29095) as of 2026-10-17. The county's own current parcel layer, ParcelViewer/ParcelsAscendRelate FeatureServer layer 1 on jcgis.jacksongov.org, holds 311,163 parcels inside the county (extent about 94.61 to 94.11 W, 38.83 to 39.24 N) but carries ids only: parcel_id, the dashed parcel number in Name, PropertyID, and TCA and School code columns. It has no owner, situs or mailing column. The same service's Ascend_GisInfo table (layer 2) adds situs address, land use and values but no owner name, and it has no geometry. Owner names appear only on the county's PastYearParcels layers for 2017 to 2019, which are not current and are not used. The county's Parcel Viewer (jcgis.jacksongov.org/parcelviewer) shows parcels in the browser. Until 2026-10-17 this record pointed at gis.mijackson.org RealEstateParcels, which is Jackson County, Michigan: 78,038 parcels around 42.07 to 42.42 N, 84.13 to 84.72 W, with property state MI on 74,650 rows.",
+      "notes": "Jackson County, Missouri (Kansas City metro; FIPS 29095). The county does not publish current owner names on its open parcel layers. It sells them: its price sheet lists parcels with owner name of record, mailing address and market value at $0.05 per parcel, as of 2026-11-10. Its public layers carry owner names only for 2017 to 2019, which are not current and are not used. The county's current public layer, ParcelViewer/ParcelsAscendRelate FeatureServer layer 1 on jcgis.jacksongov.org, carries parcel ids only, and the county's Parcel Viewer fetches an owner one parcel at a time from a private page request, not from a query service. An unlisted owner layer exists: Parcel_Information FeatureServer layer 1 in the county's ArcGIS Online organisation carries owner names and mailing addresses (311,130 parcels, owner names on 310,718, read 2026-11-10) but has no licence text, so this atlas does not index it. We asked the county on 2026-11-10 whether that layer may be served and will update this record when it answers. Until 2026-10-17 this record pointed at gis.mijackson.org RealEstateParcels, which is Jackson County, Michigan.",
       "coverage": {
-        "reason": "attributes-missing",
-        "summary": "Jackson County's current public parcel layer has parcel ids but no owner names, and only its layers for 2017 to 2019 carry owners, so we don't index it. Search the county's Parcel Viewer, or request it and we'll tell you if that changes.",
-        "checked": "2026-10-17"
+        "reason": "owner-data-sold",
+        "summary": "Jackson County keeps owner names off the parcel layers it publishes openly and sells them, so we don't index it. We asked the county on 2026-11-10 about its unlisted owner layer. Request it and we'll tell you if that changes.",
+        "checked": "2026-11-10",
+        "countyProduct": {
+          "name": "Jackson County Assessment parcel data with owner names (county price sheet)",
+          "url": "https://www.jacksongov.org/files/sharedassets/public/v/1/departments/assessment/pricing-pdf.pdf"
+        }
       }
     },
     {
@@ -157,6 +161,92 @@
       "notes": "Greene County, Missouri (Springfield; FIPS 29077) was asked for through the free tools. No county-run parcel service was found (gis.greenecountymo.gov, gisweb.greenecountymo.gov and a Greene County ArcGIS Online organisation all returned nothing), so this record uses the copy the CITY of Springfield publishes for its GIS viewer: Maps/GisViewerGroups MapServer layer 18 ('Parcels') on maps.springfieldmo.gov. It is county-wide, not city-only: 123,884 parcels on 2026-10-10, about 61,200 in Springfield, about 45,300 in unincorporated Greene County, and the rest in Republic, Battlefield, Willard, Strafford, Ash Grove, Fair Grove, Rogersville and Walnut Grove (L_CITYNAME). 123,840 rows carry an owner. The owner is OWN1 (one owner line; there is no second owner column); the situs is PropAdr with L_CITYNAME and L_ZIP1 (PropAdr can start with a space where the house number is blank, and L_ZIP1 is often a single space); the owner mailing address is Own_Addr, ONE string holding street, city, state and ZIP together, so it is not split into city or ZIP here; the parcel id is PIN, twelve digits of text. GC_LINK links each parcel to the Greene County Assessor's record, the county's own source for owner data. The layer also carries legal description lines, acreage, the city's land-use and zoning classes, and a 4326 centroid in X_COORD/Y_COORD. There are no sale or value fields. CORS: the server echoes the request Origin in Access-Control-Allow-Origin. maxRecordCount is 1000 with pagination; the count query takes several seconds. VINTAGE UNKNOWN: the MapServer publishes no editing info, no description and no license or terms text, and the rows carry no date, so how far owners lag the county assessor is not stated; ask City of Springfield GIS. DURABILITY: a city-hosted copy of county data with no published service commitment, which can change without notice. Verified 2026-10-10: a count, resultRecordCount=1 and an owner LIKE query (1,006 rows for %SMITH%). TERMS: the MapServer itself publishes none, but the City of Springfield's website disclaimer (https://www.springfieldmo.gov/disclaimer), under Use of Data, requires any person, company or agency using data obtained from the City's open data systems to include its disclaimer on the website, software application or other means of distributing the data, so this record's credit is that statement, verbatim and never shortened. PAID USE PAUSED: the Greene County Assessor's disclaimer says the information is \"solely for personal use and cannot be sold\", so paid lookups are paused (county-access floor, 2026-10-21) while we ask for written permission. Credit: This site provides data that has been modified for use from its original source, www.springfieldmo.gov, the official website of the City of Springfield, Missouri. The City of Springfield makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk.",
       "credit": "This site provides data that has been modified for use from its original source, www.springfieldmo.gov, the official website of the City of Springfield, Missouri. The City of Springfield makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk.",
       "addedAt": "2026-10-10"
+    },
+    {
+      "id": "mo-jasper",
+      "state": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "county": "Jasper",
+      "countySlug": "jasper-county",
+      "countyFips": "29097",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://www.joplingis.org/hosting/rest/services/Hosted/JascoParcels52626_view/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "JascoParcels52626",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "pin",
+              "label": "Parcel Number (PIN)",
+              "searchable": true
+            },
+            {
+              "name": "fullpin",
+              "label": "Parcel Number (formatted)",
+              "searchable": true
+            },
+            {
+              "name": "own_name",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "own_addres",
+              "label": "Owner Mailing Address (street;CITY;ST;ZIP)",
+              "searchable": true
+            },
+            {
+              "name": "address",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "legal_desc",
+              "label": "Legal Description",
+              "searchable": true
+            },
+            {
+              "name": "zoning",
+              "label": "Zoning",
+              "searchable": false
+            },
+            {
+              "name": "mapacres",
+              "label": "Acreage",
+              "searchable": false
+            },
+            {
+              "name": "saledt",
+              "label": "Last Sale Date (DD-MON-YY)",
+              "searchable": false
+            },
+            {
+              "name": "price",
+              "label": "Last Sale Price",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://www.joplingis.org/hosting/rest/services/Hosted/JascoParcels52626_view/FeatureServer/0/query?where=UPPER(own_name)+LIKE+UPPER('%25SMITH%25')&outFields=pin,own_name,address,own_addres&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=5d47528e4f1c42dc806a55e28b7e1c19",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Jasper County GIS (IT Department); layer published by City of Joplin GIS",
+        "url": "https://www.jaspercountymo.gov/gis",
+        "email": "IT@jaspercountymo.gov"
+      },
+      "notes": "Jasper County, Missouri (Joplin and Carthage; FIPS 29097). Served from an unlisted City of Joplin republish of county data: the City of Joplin GIS hosts the county's May 2026 parcels on its own ArcGIS Enterprise server (joplingis.org, JascoParcels52626_view FeatureServer layer 0). The item is public but not listed in the City's catalogue, and its description says the parcel boundaries and attributes originate from Jasper County and that the City does not create, survey or verify them. The county's own copy on its ArcGIS Online hub stops at 2022 (its sale dates end in 2022), so it is not used. Read as of 2026-11-10: 62,322 parcels; own_name is non-blank on 62,285, own_addres on 62,272 and address on 61,825; 2,004 rows carry a 2026 sale date and 4,736 a 2025 one; UPPER(own_name) LIKE '%SMITH%' returns 663, the sample query's predicate. own_addres is one string in the form street;CITY;ST;ZIP with doubled spaces, and saledt is DD-MON-YY text ('05-AUG-14'). maxRecordCount 1000 with pagination, Query only, and the server reflects the caller's Origin for CORS. NOT LISTED: the free-text notes column, which can hold names. TERMS: the item's licence text says the data is for informational and general mapping purposes only and that users must verify it with Jasper County; it states no restriction on use or redistribution, and it is carried in full in the credit. Credit: Jasper County, Missouri parcel data, published by the City of Joplin GIS. This dataset is provided for informational and general mapping purposes only. It is not intended for use as a legal survey, title record, deed description, or authoritative determination of property boundaries or ownership. The City of Joplin makes no warranty regarding the accuracy, completeness, currency, or fitness of the data for a particular purpose. Users assume responsibility for independently verifying information with Jasper County or another appropriate authoritative source. The City of Joplin and Jasper County are not responsible for decisions, damages, or losses resulting from use of this dataset.",
+      "credit": "Jasper County, Missouri parcel data, published by the City of Joplin GIS. This dataset is provided for informational and general mapping purposes only. It is not intended for use as a legal survey, title record, deed description, or authoritative determination of property boundaries or ownership. The City of Joplin makes no warranty regarding the accuracy, completeness, currency, or fitness of the data for a particular purpose. Users assume responsibility for independently verifying information with Jasper County or another appropriate authoritative source. The City of Joplin and Jasper County are not responsible for decisions, damages, or losses resulting from use of this dataset.",
+      "addedAt": "2026-11-10"
     }
   ]
 }

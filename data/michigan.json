@@ -2,7 +2,7 @@
   "stateSlug": "michigan",
   "stateName": "Michigan",
   "stateAbbrev": "MI",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "mi-kent",
@@ -392,11 +392,11 @@
         "url": "https://ironmi.com/equalization",
         "email": null
       },
-      "notes": "No public ArcGIS REST parcel layer was found for Iron County, Michigan (county seat Crystal Falls) as of 2026-09-25, re-checked 2026-10-05 (the state ArcGIS server at gisagocss.state.mi.us lists no parcel layer in its OpenData, geographic_framework or boundaries folders; its only parcel-shaped layer is DNR state-owned land). The county's GIS map viewer, linked from its equalization page, runs on Colligo GIS, a proprietary web platform with no documented public query API. Michigan has no statewide public parcel REST layer to fall back on. Parcel and tax records can be searched by name, address or parcel number through the county's BS&A Online portal, which returns no geometry and offers no field-level API. Two same-name ArcGIS parcel applications belong to other states and do not cover this county: Iron County, Utah's 'County Parcel Locator' and Iron County, Missouri's assessment map hosted by the Southeast Missouri Regional Planning Commission.",
+      "notes": "Iron County, Michigan (Crystal Falls and Iron River; FIPS 26071) has no public ArcGIS REST service with owner names as of 2026-11-10. The county's Equalization Department links a Colligo GIS viewer, which is a proprietary web map with no query service, and the only Iron County parcel layer on ArcGIS Online, 'Parcels - MI - Iron County' (last modified 2022-07-27), answers 'Token Required'. No statewide public parcel layer with owner names was found as of 2026-11-10. Parcel and tax records can be searched through the county's BS&A Online portal, which returns no geometry and offers no field-level API, and through the Equalization Department's viewer. Two same-name ArcGIS parcel applications belong to other states and do not cover this county: Iron County, Utah's and Iron County, Missouri's.",
       "coverage": {
         "reason": "no-public-service",
-        "summary": "Iron County's parcel map runs on a proprietary viewer with no public query service, and Michigan has no statewide parcel layer to use instead, so we don't index it. Search the county's BS&A Online portal, or request it and we'll tell you if that changes.",
-        "checked": "2026-10-05"
+        "summary": "Iron County, Michigan shows parcels in a Colligo viewer and has no public query service with owner names, so we don't index it. Use the county's viewer or its BS&A Online portal, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
       }
     },
     {
@@ -414,13 +414,146 @@
         "url": "https://alconacountymi.com/home/equalization-department/",
         "email": null
       },
-      "notes": "No public ArcGIS REST parcel layer with owner names was found for Alcona County, Michigan (county seat Harrisville; FIPS 26001) as of 2026-11-01. The county website's GIS Property Maps link opens a Schneider Beacon application (beacon.schneidercorp.com, AppID 1164), which answered a scripted request with a bot-check page, and its Equalization page links BS&A Online for assessing records; neither is a query service we can use. Michigan has no statewide public parcel layer. ArcGIS Online searches for Alcona parcels found a 2021 parcel layer covering Alcona Township only, a 2023 third-party copy in an aggregator's schema on a university account, and county broadband and boundary layers without parcels; none is a county parcel source. The same search shape finds Lenawee County's own parcel layer, registered in this file, so the absence is meaningful. Owner and tax records can be looked up on the county's Beacon map or BS&A Online, or by asking the Equalization Department at 989-724-9430. Re-check if the county publishes a public parcel service.",
+      "notes": "No public ArcGIS REST parcel layer with owner names was found for Alcona County, Michigan (county seat Harrisville; FIPS 26001) as of 2026-11-01. The county website's GIS Property Maps link opens a Schneider Beacon application (beacon.schneidercorp.com, AppID 1164), which answered a scripted request with a bot-check page, and its Equalization page links BS&A Online for assessing records; neither is a query service we can use. No statewide public parcel layer with owner names was found as of 2026-11-10. ArcGIS Online searches for Alcona parcels found a 2021 parcel layer covering Alcona Township only, a 2023 third-party copy in an aggregator's schema on a university account, and county broadband and boundary layers without parcels; none is a county parcel source. The same search shape finds Lenawee County's own parcel layer, registered in this file, so the absence is meaningful. Owner and tax records can be looked up on the county's Beacon map or BS&A Online, or by asking the Equalization Department. Re-check if the county publishes a public parcel service.",
       "addedAt": "2026-11-01",
       "coverage": {
         "reason": "no-public-service",
         "summary": "Alcona County shows parcels only on its Beacon map and BS&A Online, which have no public query service we can use, so we don't index it. Use the county's Beacon map, or request it and we'll tell you if that changes.",
         "checked": "2026-11-01"
       }
+    },
+    {
+      "id": "mi-shiawassee",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Shiawassee",
+      "countySlug": "shiawassee-county",
+      "countyFips": "26155",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Shiawassee County GIS (Drain Office)",
+        "url": "https://shiawassee.net/gis/",
+        "email": null
+      },
+      "notes": "Shiawassee County, Michigan (Corunna; FIPS 26155) sells its parcel data and publishes no public ArcGIS REST service as of 2026-11-10. The county's GIS page offers a Fetch GIS web viewer, and its board-approved GIS pricing sheet lists parcel data at $7,500 for the entire county, with the condition that \"Reproduction and/or redistribution of the data provided by Shiawassee County is prohibited without the express written consent of Shiawassee County.\" Because that term requires written consent before the data is passed on, this atlas does not index Shiawassee County. The county's viewer shows parcels, and the county's Drain Office and GIS sell the parcel data.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Shiawassee County sells its parcel data and prohibits redistribution without its written consent, so we don't index it. Use the county's Fetch GIS viewer, or request it and we'll tell you if that changes.",
+        "countyProduct": {
+          "name": "Shiawassee County GIS parcel data (county price sheet)",
+          "url": "https://shiawassee.net/gis/"
+        },
+        "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "mi-muskegon",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Muskegon",
+      "countySlug": "muskegon-county",
+      "countyFips": "26121",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.muskegoncountygis.com/arcgis/rest/services/PropertyViewer/MapServer/25",
+          "serviceType": "MapServer",
+          "layerIndex": 25,
+          "layerName": "Parcels - LS",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel Number (PIN)",
+              "searchable": true
+            },
+            {
+              "name": "PIN_No_Cnty",
+              "label": "PIN without County Prefix",
+              "searchable": true
+            },
+            {
+              "name": "Owner_Name1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Owner_Name2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "Owner_CareOf",
+              "label": "Owner Care Of",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Address",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "Owner_Address_City",
+              "label": "Owner Mailing City",
+              "searchable": true
+            },
+            {
+              "name": "Owner_Address_State",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "Owner_Address_ZipCode",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "Property_Address_Combined",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "Property_Address_City",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "Property_Class_Description",
+              "label": "Property Class",
+              "searchable": false
+            },
+            {
+              "name": "Tax_Description",
+              "label": "Legal Description",
+              "searchable": true
+            },
+            {
+              "name": "Acreage_per_GIS",
+              "label": "Acreage",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.muskegoncountygis.com/arcgis/rest/services/PropertyViewer/MapServer/25/query?where=UPPER(Owner_Name1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,Owner_Name1,Property_Address_Combined,Owner_Address&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.muskegoncountygis.com/open_data/documents/MCGIS_Data_Download_Use_Agreement_v2026.pdf",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Muskegon County GIS",
+        "url": "https://co.muskegon.mi.us/727/GIS",
+        "email": null
+      },
+      "notes": "Muskegon County, Michigan (Muskegon, Norton Shores, Muskegon Heights; FIPS 26121). Served by the county's own ArcGIS Server at maps.muskegoncountygis.com, PropertyViewer MapServer layer 25 'Parcels - LS' (layers 23 and 24 draw the same parcels at other scales), which carries the Equalization Department's assessment data. Read as of 2026-11-10: 84,809 parcels; Owner_Name1 non-blank on 84,800, Owner_Address on 84,476, Property_Address_Combined (site) on 84,192; UPPER(Owner_Name1) LIKE '%SMITH%' returns 745, the sample query's predicate. The owner mailing address is Owner_Address with Owner_Address_City, Owner_Address_State and Owner_Address_ZipCode; Owner_CareOf holds a care-of line. Capabilities Map, Query and Data, maxRecordCount 1000 with pagination, native WKID 2253 (Michigan State Plane South, feet), and the server reflects the caller's Origin for CORS. The Parcels_Public and Equalization folders on the same server need a token and are not used. EXEMPTION COLUMN, NOT LISTED: PRE_Homestead_Pct is the principal-residence exemption percentage. LICENCE: the county's GIS Data Download / Use Agreement (v2026, https://gis.muskegoncountygis.com/open_data/documents/MCGIS_Data_Download_Use_Agreement_v2026.pdf), which the county's Open Data and Public Apps pages say governs use of its data and mapping applications, grants a non-exclusive, limited and revocable license to use, reproduce and distribute the Data. UrbanKit accepted it on 2026-11-10, including clause 6, under which the licensee defends and indemnifies the County, and clause 7, under which only the County may alter the Data. Clause 5 requires this disclaimer in the use agreement of any application of the Data, and it is in UrbanKit's Terms of Service, section 4: \"The Licensee agrees that the County and its elected officials, employees, and agents shall not be liable for damages of any kind (including, but not limited to, loss of use, time or data, inconvenience, commercial loss, business interruption, lost profits or savings, or the cost of computer equipment and software) arising from the use of the Data or any application that uses the Data including, but not limited to, direct, indirect, incidental, punitive and consequential, or special damages.\" Clause 8 requires the notice below on every derivative work, and it travels as this record's credit. The license is revocable, and clause 9 says that while some Data is provided at no charge at this time, the County may charge for the Data in the future. Credit: Reproduced with permission granted Muskegon County, Michigan. Some information has been provided subject to a non-exclusive, limited, and revocable license granted by Muskegon County, Michigan.",
+      "credit": "Reproduced with permission granted Muskegon County, Michigan. Some information has been provided subject to a non-exclusive, limited, and revocable license granted by Muskegon County, Michigan.",
+      "addedAt": "2026-11-10"
     }
   ]
 }

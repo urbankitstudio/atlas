@@ -2,7 +2,7 @@
   "stateSlug": "maryland",
   "stateName": "Maryland",
   "stateAbbrev": "MD",
-  "lastUpdated": "2026-09-26",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "md-montgomery",
@@ -287,6 +287,97 @@
         "email": null
       },
       "notes": "Baltimore County (county seat Towson; a separate jurisdiction from Baltimore City) publishes tax parcels as sub-layer 1 'Tax parcel' of the Property/Property MapServer on bcgis.baltimorecountymd.gov, and bcgisdata.baltimorecountymd.gov serves the identical service as a fallback. The layer carries the tax account number (TAXPIN), owner names (OWNER_NA1, OWNER_NA2 and the combined FULL_OWNER_NAME), the owner mailing address (ADDRESS_1, ADDRESS_2, OWNER_CITY, OWNERSTATE, OWNER_ZIP), the premise address (PREMISE_ADDRESS plus ST_NUM, STREETNAME, CITY and ZIP_CODE), land use, year built, total value and a link to the state SDAT record. CORS: the server reflects the request's Origin in Access-Control-Allow-Origin, and it also sends a misspelled Allow-Control-Allow-Origin: * header that browsers ignore. Re-verified 2026-09-26: the layer holds 374,909 parcels and an owner-name query returned live rows. Maryland's statewide MD_PropertyData layer carries owner mailing addresses but no owner names, so this county layer is the better source."
+    },
+    {
+      "id": "md-baltimore-city",
+      "state": "MD",
+      "stateName": "Maryland",
+      "stateSlug": "maryland",
+      "county": "Baltimore City",
+      "countySlug": "baltimore-city",
+      "countyFips": "24510",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://baltegis.baltimorecity.gov/mapping/rest/services/CityView/RealProperty_OB/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Property Information",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "BLOCKLOT",
+              "label": "Block and Lot",
+              "searchable": true
+            },
+            {
+              "name": "PIN",
+              "label": "PIN",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "OWNER_2",
+              "label": "Second Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "MAILTOADD",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "FULLADDR",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "ZIP_CODE",
+              "label": "Site ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ZONECODE",
+              "label": "Zoning",
+              "searchable": false
+            },
+            {
+              "name": "SALEPRIC",
+              "label": "Last Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "SALEDATE",
+              "label": "Last Sale Date (MMDDYYYY)",
+              "searchable": false
+            },
+            {
+              "name": "YEAR_BUILD",
+              "label": "Year Built",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://baltegis.baltimorecity.gov/mapping/rest/services/CityView/RealProperty_OB/FeatureServer/0/query?where=UPPER(OWNER_1)+LIKE+UPPER('%25SMITH%25')&outFields=BLOCKLOT,OWNER_1,FULLADDR,MAILTOADD&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "open-data",
+          "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Baltimore City GIS (Open Baltimore)",
+        "url": "https://catalog.data.gov/dataset/real-property-information",
+        "email": "gis@baltimorecity.gov"
+      },
+      "notes": "Baltimore City, Maryland (an independent city, so a county equivalent; FIPS 24510). Served by the city's own ArcGIS Server (11.5) at baltegis.baltimorecity.gov, CityView/RealProperty_OB FeatureServer layer 0 'Property Information', the layer the city's Open Baltimore 'Real Property Information' feed names. Read 2026-11-10: 237,424 rows; UPPER(OWNER_1) LIKE '%SMITH%' returns 2,015, the sample query's predicate. OLDER COPY, NOT USED: geodata.baltimorecity.gov/egis serves an identically named layer with the same columns (237,733 rows), but every row there carries an October 2026 LDATE while every baltegis row carries 11082026 and only baltegis has November sales, so we treat that copy as stale. Values are fixed-width and space padded (OWNER_1 is 33 characters, so a shorter name comes back with trailing spaces): trim before display and search with LIKE, never equality. MAILTOADD holds the owner's mailing street and ZIP joined by a comma ('1639 MORELAND AVE, 21216'). LDATE is the record's last update as MMDDYYYY text (11082026 on every row on 2026-11-10), and SALEDATE uses the same format. Capabilities Query only (no editing), maxRecordCount 2000 with pagination, native WKID 102685 (Maryland State Plane feet), CORS reflects the caller's Origin. TERMS: the dataset's data.gov record, published by Baltimore City, names the licence Creative Commons Attribution 3.0 (https://creativecommons.org/licenses/by/3.0), access level public, 'Data is updated on a weekly basis'. The city's own Open Baltimore page for the dataset (data.baltimorecity.gov/datasets/baltimore::real-property-information-2) was read on 2026-11-10 and renders no licence text to a plain fetch, so the licence is cited from data.gov. The REST service carries only the description 'Real Property Information' and no copyright. EXEMPTION AND CREDIT COLUMNS, NOT LISTED: CITYCRED, STATCRED, CCREDAMT, SCREDAMT, PERMHOME, LANDEXMP, IMPREXMP, EXMPLAND, EXMPIMPR, EXMPTYPE, EXMPCODE, AR_OWNER and OWNMDE hold tax-credit, exemption and owner-occupancy indicators, so none is a search field. Credit: Baltimore City, Open Baltimore: Real Property Information, licensed under Creative Commons Attribution 3.0 (https://creativecommons.org/licenses/by/3.0).",
+      "credit": "Baltimore City, Open Baltimore: Real Property Information, licensed under Creative Commons Attribution 3.0 (https://creativecommons.org/licenses/by/3.0).",
+      "addedAt": "2026-11-10"
     }
   ]
 }

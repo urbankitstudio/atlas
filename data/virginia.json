@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "va-fairfax",
@@ -447,12 +447,12 @@
         "url": "https://www.loudoun.gov/mapping",
         "email": "mapping@loudoun.gov"
       },
-      "notes": "Loudoun County, Virginia (FIPS 51107). The county's public parcel layers on logis.loudoun.gov (LMIS_ParcelsPlatfile, 132,900 parcels on 2026-11-01; LandRecords Parcel Boundaries; Parcels4DIT) and on its ArcGIS Online organisation (Loudoun Parcels System Links, 132,940 parcels) carry parcel keys, street addresses and subdivision fields only, with no owner name or mailing address. Owner names are shown one parcel at a time on the Commissioner of the Revenue's Real Estate Information Site, which can be searched by parcel ID, address or tax map number but not by owner name and has no query service. For parcel and owner records, use that site or contact the Commissioner of the Revenue, realestate@loudoun.gov, (703) 777-0260.",
+      "notes": "Loudoun County, Virginia (FIPS 51107). The county's public parcel layers on logis.loudoun.gov (LMIS_ParcelsPlatfile, 132,902 parcels on 2026-11-10; LandRecords Parcel Boundaries; Parcels4DIT) and on its ArcGIS Online organisation carry parcel keys, street addresses and subdivision fields only, with no owner name or mailing address, as of 2026-11-10. The Commissioner of the Revenue publishes a yearly bulk file on its public records page, '2026 Owner Legal Address Data (XLSX)': 153,888 rows with owner names and mailing addresses keyed on a 12-digit parcel id that matches the layers' parcel keys, with no terms of use stated. It is a download, not a query service, so this atlas does not serve it. Owner names are also shown one parcel at a time on the Commissioner of the Revenue's Real Estate Information Site. For parcel and owner records, use that site, the bulk file, or the Commissioner of the Revenue's office.",
       "addedAt": "2026-10-17",
       "coverage": {
         "reason": "attributes-missing",
-        "summary": "Loudoun County's public parcel layers have parcel keys, street and subdivision fields but no owner names or mailing addresses, so we don't index it. The Commissioner of the Revenue's property search shows owners one parcel at a time. Request it and we'll tell you if that changes.",
-        "checked": "2026-11-01"
+        "summary": "Loudoun County's public parcel layers have no owner names or mailing addresses, so we don't index it. The Commissioner of the Revenue publishes a yearly owner and mailing-address file and shows owners one parcel at a time. Request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
       }
     },
     {

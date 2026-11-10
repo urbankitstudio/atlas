@@ -2,7 +2,7 @@
   "stateSlug": "pennsylvania",
   "stateName": "Pennsylvania",
   "stateAbbrev": "PA",
-  "lastUpdated": "2026-11-02",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "pa-allegheny",
@@ -639,6 +639,60 @@
         }
       },
       "addedAt": "2026-11-02"
+    },
+    {
+      "id": "pa-lehigh",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Lehigh",
+      "countySlug": "lehigh-county",
+      "countyFips": "42077",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Lehigh County GIS Office (LCGIS)",
+        "url": "https://www.lehighcounty.org/departments/gis",
+        "email": null
+      },
+      "notes": "Lehigh County, Pennsylvania (Allentown; FIPS 42077) publishes an Assessment Parcels service with owner names and mailing addresses on its ArcGIS Online organization, but as of 2026-11-10 the item's only use text reads 'For use in Lehigh County Domains only', and the county sells GIS shapefiles through a paid account on its website. We have not asked the county what that text covers. UrbanKit does not serve it without the county's permission. Search the county's Parcel Viewer.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Lehigh County limits its parcel service to use 'in Lehigh County Domains only' and sells its GIS data, and we don't have the county's permission, so we don't index it. Search the county's Parcel Viewer, or request it and we'll tell you if that changes.",
+        "countyProduct": {
+          "name": "Lehigh County GIS shapefiles (paid account)",
+          "url": "https://www.lehighcounty.org/departments/gis"
+        },
+        "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "pa-butler",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Butler",
+      "countySlug": "butler-county",
+      "countyFips": "42019",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Butler County Mapping Department",
+        "url": "https://www.butlercountypa.gov/353/Mapping",
+        "email": null
+      },
+      "notes": "Butler County, Pennsylvania (FIPS 42019) publishes a public parcel layer with owner names and mailing addresses on its own ArcGIS server, but as of 2026-11-10 we have not confirmed that the county permits it to be redistributed through an API, so this atlas does not index it yet. The county's Mapping page says its maps are 'for tax assessment purposes only', and the county sells shapefiles with assessment data (listed at $10,000 for the whole county on its 2026 price list). We found no licence or commercial-use text. We asked the county on 2026-11-10 whether we may serve the layer and will update this record when it answers. Search the county's Tax Assessment Webmap. Butler County, Pennsylvania (42019) must not be confused with Butler County, Ohio (39017).",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Butler County sells its parcel data and publishes its maps for tax assessment purposes only. We asked the county on 2026-11-10 whether we may serve them, and until it answers we don't index it. Request it and we'll tell you if that changes.",
+        "countyProduct": {
+          "name": "Butler County shapefiles with assessment data (2026 price list)",
+          "url": "https://www.butlercountypa.gov/353/Mapping"
+        },
+        "checked": "2026-11-10"
+      }
     }
   ]
 }

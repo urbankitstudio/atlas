@@ -2,7 +2,7 @@
   "stateSlug": "georgia",
   "stateName": "Georgia",
   "stateAbbrev": "GA",
-  "lastUpdated": "2026-10-18",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "ga-fulton",
@@ -240,61 +240,19 @@
       "county": "Gwinnett",
       "countySlug": "gwinnett-county",
       "countyFips": "13135",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/Property_and_Tax/FeatureServer/3",
-          "serviceType": "FeatureServer",
-          "layerIndex": 3,
-          "layerName": "Tax Master Table",
-          "supportsQuery": true,
-          "corsEnabled": null,
-          "searchFields": [
-            {
-              "name": "OWNER1",
-              "label": "Owner Name 1",
-              "searchable": true
-            },
-            {
-              "name": "OWNER2",
-              "label": "Owner Name 2",
-              "searchable": true
-            },
-            {
-              "name": "PIN",
-              "label": "Parcel Identification Number",
-              "searchable": true
-            },
-            {
-              "name": "LOCADDR",
-              "label": "Property (Location) Address",
-              "searchable": true
-            },
-            {
-              "name": "LOCCITY",
-              "label": "Property City",
-              "searchable": false
-            },
-            {
-              "name": "LOCZIP",
-              "label": "Property ZIP",
-              "searchable": false
-            }
-          ],
-          "sampleQuery": "https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/Property_and_Tax/FeatureServer/3/query?where=UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,OWNER1,OWNER2,LOCADDR,LOCCITY,LOCZIP&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://gwin-gwinnettcounty.opendata.arcgis.com/",
-          "status": "live",
-          "lastVerified": "2026-06-20",
-          "verifiedBy": "manual"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Gwinnett County GIS / Tax Assessor",
         "url": "https://www.gwinnettcounty.com/web/gwinnett/departments/financialservices/taxassessorsoffice",
         "email": null
       },
-      "notes": "Gwinnett County (pop. ~975,000; Lawrenceville seat; Atlanta metro northeast, Georgia's second-most-populous county) publishes a Property_and_Tax FeatureServer. IMPORTANT: owner data lives on LAYER 3 (the 'Tax Master Table', a non-spatial Table with 35 fields including OWNER1, OWNER2, PIN, LOCADDR, LOCCITY, LOCZIP), NOT on layer 0, which is the parcel geometry layer carrying PIN but no owner name. Query layer 3 for owner-name search; join to layer 0 on PIN if geometry is needed. Verified 2026-06-20: layer 3 holds 314,998 records; UPPER(OWNER1) LIKE '%SMITH%' returns real owners with Duluth/Norcross addresses and ZIPs (e.g. '4078 STILLWATER DR, DULUTH 30096'). Because layer 3 is a Table, query results return no geometry. Cities within the county include Lawrenceville, Duluth, Norcross, Snellville, Suwanee, Lilburn, Buford, Sugar Hill, Grayson, Loganville, Berkeley Lake, Dacula, Auburn, Braselton, Peachtree Corners. For authoritative assessment/appeal records use the Gwinnett County Tax Assessor's office."
+      "notes": "Gwinnett County, Georgia (Lawrenceville; FIPS 13135) is not served by this atlas as of 2026-11-10. The county's open-data portal attaches this licence text to its parcel data: 'So as not to conflict or interfere with the data sales of Gwinnett County government, the copyrighted data shall be used for internal purposes by recipient only and may not be distributed or sold in any way to any person or entity.' UrbanKit does not serve it without the county's permission. Until 2026-11-10 this record listed layer 3 (the Tax Master Table) of the county's Property_and_Tax FeatureServer under the licence 'public', which was wrong; on 2026-11-10 that service no longer has a layer 3. The county's owner service, FYT_Owner_Data, is public but unlisted and carries no licence text of its own. Owner and mailing records are available through the Gwinnett County Tax Assessors' property search.",
+      "coverage": {
+        "reason": "licence-restricted",
+        "summary": "Gwinnett County's data licence limits its GIS data to internal use by the recipient, not for distribution or sale, so we don't serve it without the county's permission. Use the county's Tax Assessors property search, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
+      }
     },
     {
       "id": "ga-chatham",
@@ -436,6 +394,121 @@
         "reason": "attributes-missing",
         "summary": "Forsyth County's public parcel layer has parcel ids and site and postal addresses but no owner names, so we don't index it. Check with the county Board of Assessors, or request it and we'll tell you if that changes.",
         "checked": "2026-10-10"
+      }
+    },
+    {
+      "id": "ga-effingham",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Effingham",
+      "countySlug": "effingham-county",
+      "countyFips": "13103",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/9scQWTgPOi3GxJRr/arcgis/rest/services/Parcels2024/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels2024",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel PIN",
+              "searchable": true
+            },
+            {
+              "name": "LASTNAME",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "address1",
+              "label": "Owner Mailing Line 1",
+              "searchable": true
+            },
+            {
+              "name": "address2",
+              "label": "Owner Mailing Line 2",
+              "searchable": false
+            },
+            {
+              "name": "address3",
+              "label": "Owner Mailing Line 3",
+              "searchable": false
+            },
+            {
+              "name": "CityStateZ",
+              "label": "Owner Mailing City State ZIP",
+              "searchable": true
+            },
+            {
+              "name": "StreetAdd",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "TOTALACRES",
+              "label": "Total Acres",
+              "searchable": false
+            },
+            {
+              "name": "LEGAL_DESC",
+              "label": "Legal Description",
+              "searchable": false
+            },
+            {
+              "name": "SalesDate",
+              "label": "Last Sale Date",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services.arcgis.com/9scQWTgPOi3GxJRr/arcgis/rest/services/Parcels2024/FeatureServer/0/query?where=UPPER(LASTNAME)+LIKE+UPPER('%25SMITH%25')&outFields=PIN,LASTNAME,address1,address2,CityStateZ,StreetAdd&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=418183e9b970425f8dfce879e47e3878",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Effingham County GIS, Springfield GA",
+        "url": "https://www.effinghamcounty.org/190/Interactive-GIS-Map",
+        "email": null
+      },
+      "notes": "Effingham County, Georgia (county seat Springfield; FIPS 13103). Served by the county GIS's ArcGIS Online feature service Parcels2024 (account Effingham_GIS, item 418183e9b970425f8dfce879e47e3878, flagged public_authoritative, item modified 2026-11-05), the parcel layer behind the county's Interactive GIS Map. Read 2026-11-10: 34,313 parcels; LASTNAME (the owner, despite the column name) is non-blank on 34,075; UPPER(LASTNAME) LIKE '%SMITH%' returns 476, the sample query's predicate. The owner mailing address is spread over address1, address2 and address3 (one of them may hold a street, a c/o line or a P O Box, and the others are a single space) plus CityStateZ, which is space padded ('GUYTON               GA 31312'); site address is StreetAdd, also padded ('162 MIDDLETON   RD'). Capabilities Query only, maxRecordCount 1000 with pagination, WKID 102100, CORS open (Access-Control-Allow-Origin *). EXEMPTION COLUMN, NOT LISTED: HOMEEXEMPT holds homestead and senior exemption codes. NOT USED: Effingham_County_Parcels on services8.arcgis.com, which holds only a few hundred county-owned parcels. TERMS: no licence text on the item or the layer (licenseInfo empty, copyright empty), and the county's Interactive GIS Map page carries no data-use text.",
+      "dataVintage": {
+        "body": "The layer is named Parcels2024, but its sale dates and edit date are current: on 2026-11-10 the newest sale date was 2026-11-04, 3,010 parcels carry a sale dated in 2026, and the layer was last edited on 2026-11-05. Two rows carry a sale date in 2027, which looks like a data-entry error in the county's file.",
+        "source": {
+          "label": "Effingham County Parcels2024 (county ArcGIS Online item)",
+          "url": "https://www.arcgis.com/home/item.html?id=418183e9b970425f8dfce879e47e3878"
+        }
+      },
+      "addedAt": "2026-11-10"
+    },
+    {
+      "id": "ga-spalding",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Spalding",
+      "countySlug": "spalding-county",
+      "countyFips": "13255",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Spalding County Tax Assessor's Office",
+        "url": "https://qpublic.net/ga/spalding/",
+        "email": null
+      },
+      "notes": "Spalding County, Georgia (Griffin; FIPS 13255). The only public parcel layer found, Parcels_Public_View on the ArcGIS Online organisation maintained by the City of Griffin GIS team and published by the Spalding County Water Authority, has 33,712 parcel polygons with a parcel id and a jurisdiction field only, with no owner name, mailing address or site address, as of 2026-11-10; the same organisation's other layers carry no owner either. Owner names are shown one parcel at a time on the Spalding County Tax Assessor's property site (a Schneider qPublic portal), which has no public query service. For parcel and owner records, use that site or contact the Spalding County Tax Assessor's Office.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Spalding County's public parcel layer has parcel ids but no owner names or mailing addresses, so we don't index it. The Tax Assessor's property search shows owners one parcel at a time. Request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
       }
     }
   ]

@@ -2,7 +2,7 @@
   "stateSlug": "new-jersey",
   "stateName": "New Jersey",
   "stateAbbrev": "NJ",
-  "lastUpdated": "2026-10-24",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "nj-bergen",
@@ -741,6 +741,260 @@
         "email": null
       },
       "notes": "Essex County, New Jersey (county seat Newark) is served from the NJ Office of GIS statewide Parcels and MOD-IV composite, Parcels_Composite_NJ_WM FeatureServer layer 0 (Cad_parcel_mod4), the same layer Bergen County uses. Filter with COUNTY='ESSEX': 178,089 of the layer's 3,481,240 rows on 2026-10-04. OWNER_NAME is an empty string on every row statewide: COUNTY='ESSEX' AND OWNER_NAME<>'' returns 0, while the control COUNTY='ESSEX' AND ST_ADDRESS<>'' returns all 178,089. Test it with <>'' because IS NOT NULL passes on the blank strings. The column is deliberately not listed as a search field, because the owner classifier takes the first owner-looking field and would route owner lookups to a blank column. The service description says the field is redacted per Daniel's Law for public web access. Searchable: PAMS_PIN (municipality code, block and lot, e.g. 0707_301_6), PROP_LOC (property location), MUN_NAME. The layer also carries mailing-address columns (ST_ADDRESS, CITY_STATE, ZIP_CODE) that UrbanKit Studio does not request, search, list or return (see ownerFieldNote). Property class, land, improvement and net values, acreage, the last sale, year built (filled on 156,919 rows on 2026-10-04) and building description (121,070) come from MOD-IV. CORS is open (Access-Control-Allow-Origin: *), maxRecordCount is 2000 and the layer is Web Mercator. The item's licence text is a disclaimer that requests acknowledgement of NJOGIS and points to the State's conditions of use. Countywide shapefiles and the MOD-IV tax list are downloadable from NJGIN. Third-party Essex_County_Parcels copies on ArcGIS Online carry no owner column and are not registered. Verified live 2026-10-04: COUNTY='ESSEX' AND PROP_LOC LIKE '%BROAD%' returned rows (first PAMS_PIN 0707_301_6, 54 BROADWAY LANE, Fairfield Township)."
+    },
+    {
+      "id": "nj-passaic",
+      "state": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "county": "Passaic",
+      "countySlug": "passaic-county",
+      "ownerFieldNote": {
+        "body": "New Jersey's statewide cadastral parcel layer documents an OWNER_NAME column, but it is not populated on the public web service: on 2026-11-10 none of the 125,785 Passaic rows carried a value, so no query can retrieve ownership here. This service gives no reason. The NJ Office of GIS publishes the same statewide data as a composite service whose description says the field is redacted per Daniel's Law for public web access. Daniel's Law (N.J.S.A. 56:8-166.1) restricts disclosure of the home addresses of judicial officers, law enforcement officers, child protective investigators and prosecutors, and their household family members, and a parcel layer does not identify which parcels belong to them, so UrbanKit Studio also leaves owner mailing addresses for Passaic County parcels out of every tool, the API and the MCP server. PAMS parcel identifier, municipality, property location, assessed values and sale price are populated and searchable. Ownership is available from the municipal tax assessor.",
+        "source": {
+          "label": "New Jersey Office of GIS, statewide cadastral parcel layer",
+          "url": "https://www.nj.gov/njgin/"
+        }
+      },
+      "countyFips": "34031",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels (NJ Statewide Cadastral)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY",
+              "label": "County Name (use 'PASSAIC')",
+              "searchable": true
+            },
+            {
+              "name": "MUN_NAME",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PAMS_PIN",
+              "label": "PAMS Parcel Identifier (MUN_BLOCK_LOT)",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "IMPRVT_VAL",
+              "label": "Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "NET_VALUE",
+              "label": "Net Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "CALC_ACRE",
+              "label": "Calculated Acreage",
+              "searchable": false
+            },
+            {
+              "name": "YR_CONSTR",
+              "label": "Year of Construction",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "DEED_DATE",
+              "label": "Deed Date",
+              "searchable": false
+            },
+            {
+              "name": "BLDG_DESC",
+              "label": "Building Description",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=COUNTY%3D'PASSAIC'+AND+UPPER(PROP_LOC)+LIKE+'%25MAIN%25'&outFields=COUNTY,MUN_NAME,PAMS_PIN,PROP_LOC,NET_VALUE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nj.gov/njgin/",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = 'PASSAIC'"
+        }
+      ],
+      "contact": {
+        "department": "NJ Office of Information Technology, Office of GIS (NJOGIS)",
+        "url": "https://www.nj.gov/njgin/",
+        "email": null
+      },
+      "notes": "Passaic County, New Jersey is served from the NJ Office of GIS statewide cadastral MapServer at maps.nj.gov (Framework/Cadastral/MapServer/0), the layer the other New Jersey counties here use. Filter with COUNTY='PASSAIC': 125,785 rows on 2026-11-10. OWNER_NAME is an empty string on every row: COUNTY='PASSAIC' AND OWNER_NAME<>'' returns 0, while the control COUNTY='PASSAIC' AND ST_ADDRESS<>'' returns 125,785. Test it with <>'' because IS NOT NULL passes on the blank strings. The column is not listed as a search field, because the owner classifier takes the first owner-looking field and would route owner lookups to a blank column. The layer also carries mailing-address columns (ST_ADDRESS, CITY_STATE, ZIP_CODE) that UrbanKit Studio does not request, search, list or return (see ownerFieldNote). Searchable: COUNTY, MUN_NAME, PAMS_PIN (municipality code, block and lot), PROP_LOC (property location). Assessed values, the last sale price, acreage, year built and building description come from MOD-IV. The service answers cross-origin requests by reflecting the caller's origin, and returns at most 1,000 rows per query. Ownership is available from the municipal tax assessor. Verified live 2026-11-10: COUNTY='PASSAIC' AND UPPER(PROP_LOC) LIKE '%MAIN%' returned 1,503 rows (first PAMS_PIN 1601_5060_32, 129 MAIN STREET, Bloomingdale Boro). The county's own server (gis.passaiccountynj.org, Hosted/PC_Parcel_091025) carries the same blank owner column and is not used.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "restricted",
+          "basis": {
+            "type": "statute",
+            "note": "New Jersey's Daniel's Law (N.J.S.A. 56:8-166.1) restricts disclosure of the home addresses of judicial officers, law enforcement officers, child protective investigators and prosecutors, and their household family members. Parcel layers do not identify which parcels belong to covered persons, so UrbanKit Studio leaves owner names for Passaic County parcels out of every tool, the API and the MCP server.",
+            "citation": "N.J.S.A. 56:8-166.1 (Daniel's Law, P.L.2020, c.125, as amended)",
+            "sourceUrl": "https://danielslaw.nj.gov/"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "restricted",
+          "basis": {
+            "type": "statute",
+            "note": "New Jersey's Daniel's Law (N.J.S.A. 56:8-166.1) restricts disclosure of the home addresses of judicial officers, law enforcement officers, child protective investigators and prosecutors, and their household family members. The tax-record mailing address on a parcel layer can be a covered person's home address and the layer does not identify which, so UrbanKit Studio leaves owner mailing addresses for Passaic County parcels out of every tool, the API and the MCP server.",
+            "citation": "N.J.S.A. 56:8-166.1 (Daniel's Law, P.L.2020, c.125, as amended)",
+            "sourceUrl": "https://danielslaw.nj.gov/"
+          }
+        }
+      }
+    },
+    {
+      "id": "nj-sussex",
+      "state": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "county": "Sussex",
+      "countySlug": "sussex-county",
+      "ownerFieldNote": {
+        "body": "New Jersey's statewide cadastral parcel layer documents an OWNER_NAME column, but it is not populated on the public web service: on 2026-11-10 none of the 74,214 Sussex rows carried a value, so no query can retrieve ownership here. This service gives no reason. The NJ Office of GIS publishes the same statewide data as a composite service whose description says the field is redacted per Daniel's Law for public web access. Daniel's Law (N.J.S.A. 56:8-166.1) restricts disclosure of the home addresses of judicial officers, law enforcement officers, child protective investigators and prosecutors, and their household family members, and a parcel layer does not identify which parcels belong to them, so UrbanKit Studio also leaves owner mailing addresses for Sussex County parcels out of every tool, the API and the MCP server. PAMS parcel identifier, municipality, property location, assessed values and sale price are populated and searchable. Ownership is available from the municipal tax assessor.",
+        "source": {
+          "label": "New Jersey Office of GIS, statewide cadastral parcel layer",
+          "url": "https://www.nj.gov/njgin/"
+        }
+      },
+      "countyFips": "34037",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcels (NJ Statewide Cadastral)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "COUNTY",
+              "label": "County Name (use 'SUSSEX')",
+              "searchable": true
+            },
+            {
+              "name": "MUN_NAME",
+              "label": "Municipality Name",
+              "searchable": true
+            },
+            {
+              "name": "PAMS_PIN",
+              "label": "PAMS Parcel Identifier (MUN_BLOCK_LOT)",
+              "searchable": true
+            },
+            {
+              "name": "PROP_LOC",
+              "label": "Property Location / Address",
+              "searchable": true
+            },
+            {
+              "name": "PROP_CLASS",
+              "label": "Property Class Code",
+              "searchable": false
+            },
+            {
+              "name": "LAND_VAL",
+              "label": "Land Value",
+              "searchable": false
+            },
+            {
+              "name": "IMPRVT_VAL",
+              "label": "Improvement Value",
+              "searchable": false
+            },
+            {
+              "name": "NET_VALUE",
+              "label": "Net Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "CALC_ACRE",
+              "label": "Calculated Acreage",
+              "searchable": false
+            },
+            {
+              "name": "YR_CONSTR",
+              "label": "Year of Construction",
+              "searchable": false
+            },
+            {
+              "name": "SALE_PRICE",
+              "label": "Last Sale Price",
+              "searchable": false
+            },
+            {
+              "name": "DEED_DATE",
+              "label": "Deed Date",
+              "searchable": false
+            },
+            {
+              "name": "BLDG_DESC",
+              "label": "Building Description",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=COUNTY%3D'SUSSEX'+AND+UPPER(PROP_LOC)+LIKE+'%25MAIN%25'&outFields=COUNTY,MUN_NAME,PAMS_PIN,PROP_LOC,NET_VALUE&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://www.nj.gov/njgin/",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "COUNTY = 'SUSSEX'"
+        }
+      ],
+      "contact": {
+        "department": "NJ Office of Information Technology, Office of GIS (NJOGIS)",
+        "url": "https://www.nj.gov/njgin/",
+        "email": null
+      },
+      "notes": "Sussex County, New Jersey is served from the NJ Office of GIS statewide cadastral MapServer at maps.nj.gov (Framework/Cadastral/MapServer/0), the layer the other New Jersey counties here use. Filter with COUNTY='SUSSEX': 74,214 rows on 2026-11-10. OWNER_NAME is an empty string on every row: COUNTY='SUSSEX' AND OWNER_NAME<>'' returns 0, while the control COUNTY='SUSSEX' AND ST_ADDRESS<>'' returns 74,214. Test it with <>'' because IS NOT NULL passes on the blank strings. The column is not listed as a search field, because the owner classifier takes the first owner-looking field and would route owner lookups to a blank column. The layer also carries mailing-address columns (ST_ADDRESS, CITY_STATE, ZIP_CODE) that UrbanKit Studio does not request, search, list or return (see ownerFieldNote). Searchable: COUNTY, MUN_NAME, PAMS_PIN (municipality code, block and lot), PROP_LOC (property location). Assessed values, the last sale price, acreage, year built and building description come from MOD-IV. The service answers cross-origin requests by reflecting the caller's origin, and returns at most 1,000 rows per query. Ownership is available from the municipal tax assessor. Verified live 2026-11-10: COUNTY='SUSSEX' AND UPPER(PROP_LOC) LIKE '%MAIN%' returned 823 rows (first PAMS_PIN 1901_23_2, 141 MAIN ST, Andover Boro). The county's own TaxParcel service (gis.sussex.nj.us) shows the placeholder 'Current Owner' in its owner column and is not used.",
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "restricted",
+          "basis": {
+            "type": "statute",
+            "note": "New Jersey's Daniel's Law (N.J.S.A. 56:8-166.1) restricts disclosure of the home addresses of judicial officers, law enforcement officers, child protective investigators and prosecutors, and their household family members. Parcel layers do not identify which parcels belong to covered persons, so UrbanKit Studio leaves owner names for Sussex County parcels out of every tool, the API and the MCP server.",
+            "citation": "N.J.S.A. 56:8-166.1 (Daniel's Law, P.L.2020, c.125, as amended)",
+            "sourceUrl": "https://danielslaw.nj.gov/"
+          }
+        },
+        "owner_mailing_address": {
+          "status": "restricted",
+          "basis": {
+            "type": "statute",
+            "note": "New Jersey's Daniel's Law (N.J.S.A. 56:8-166.1) restricts disclosure of the home addresses of judicial officers, law enforcement officers, child protective investigators and prosecutors, and their household family members. The tax-record mailing address on a parcel layer can be a covered person's home address and the layer does not identify which, so UrbanKit Studio leaves owner mailing addresses for Sussex County parcels out of every tool, the API and the MCP server.",
+            "citation": "N.J.S.A. 56:8-166.1 (Daniel's Law, P.L.2020, c.125, as amended)",
+            "sourceUrl": "https://danielslaw.nj.gov/"
+          }
+        }
+      }
     }
   ]
 }

@@ -2,7 +2,7 @@
   "stateSlug": "kentucky",
   "stateName": "Kentucky",
   "stateAbbrev": "KY",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "ky-fayette",
@@ -1790,12 +1790,12 @@
         "url": "https://www.qpublic.net/ky/edmonson/",
         "email": null
       },
-      "notes": "No public REST parcel layer was found for Edmonson County, Kentucky (county seat Brownsville; FIPS 21061) as of 2026-11-01. The Edmonson County PVA (Property Valuation Administrator) publishes its parcel search through qPublic (qpublic.net/ky/edmonson, which links the Schneider qPublic application 'EdmonsonCountyKY'), which has no REST interface; on 2026-11-01 the Schneider search page answered automated requests with a browser challenge (HTTP 403), and the PVA's 'Tax Roll' link (qpublic5.qpublic.net) answered a Cloudflare origin DNS error. The PVA's Forms page lists exemption and tangible forms and no fee schedule. Searches of ArcGIS Online found one item, 'Parcels - KY - Edmonson County' (GDITAdmin, ECWD_online FeatureServer layer 12, modified 2022-07-21), whose layer answers 'Token Required'; the Barren River Area Development District's organisation (BRADD_Admin) publishes Edmonson address points, precincts and districts but no parcels. The same search shape (title:Simpson AND (parcel OR parcels OR PVA)) finds Simpson County's PVA parcel services, so the absence is meaningful. The Kentucky state server and the Kentucky_DGI organisation carry one PVA parcel service, Webster County's, and nothing for Edmonson; the state viewer path kygeonet.ky.gov/pva/edmonson returns HTTP 404 where kygeonet.ky.gov/pva/webster returns 200. The state's 'Addresses & Parcels' hub page (updated 2026-10-27) lists no statewide parcel service. If the PVA or the state publishes a parcel service with owner names, the record should be revisited with KRS 61.874 in view.",
+      "notes": "Edmonson County, Kentucky (Brownsville; FIPS 21061) has no public ArcGIS REST layer with owner names as of 2026-11-10. The only parcel layer on ArcGIS Online, 'Parcels - KY - Edmonson County' (layer 12 of an ECWD service, last modified 2022-07-21), answers every request with 'Token Required'; the Kentucky state GIS server carries one PVA parcel service for another county (Webster) and nothing for Edmonson; and the county's PVA page on kygeonet.ky.gov returns not found. The Edmonson County PVA (Property Valuation Administrator) publishes its parcel search through qPublic, which has no REST interface. The Kentucky Department of Revenue sells PVA GIS data: a $50 request fee plus 30 cents per parcel without ownership records and 40 cents per parcel with ownership records, with requests started at the local PVA office. Parcel and owner records are available through the Edmonson County PVA's office, or by that purchase route.",
       "addedAt": "2026-11-01",
       "coverage": {
         "reason": "no-public-service",
-        "summary": "Edmonson County's valuation office (PVA) offers only its own search website, not a data service we can connect to, so we can't look up Edmonson parcels. Search them on the PVA's qPublic site or call the PVA at (270) 597-2381. Request the county and we'll tell you if that changes.",
-        "checked": "2026-11-01"
+        "summary": "Edmonson County has no public parcel service with owner names, and Kentucky's Department of Revenue sells PVA parcel data, so we don't index it. Contact the county PVA, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-10"
       }
     }
   ]

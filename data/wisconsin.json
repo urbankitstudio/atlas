@@ -2,7 +2,7 @@
   "stateSlug": "wisconsin",
   "stateName": "Wisconsin",
   "stateAbbrev": "WI",
-  "lastUpdated": "2026-10-12",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "wi-dane",
@@ -327,50 +327,51 @@
       "hasPublicRest": true,
       "endpoints": [
         {
-          "url": "https://gis.browncountywi.gov/arcgis/rest/services/ParcelPolygons/MapServer/1",
+          "url": "https://bcgis.browncountywi.gov/arcgis/rest/services/Parcels/ParcelPolygons/MapServer/20",
           "serviceType": "MapServer",
-          "layerIndex": 1,
+          "layerIndex": 20,
           "layerName": "TaxParcel",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
             {
-              "name": "PARCELID",
+              "name": "ParcelID",
               "label": "Parcel ID",
               "searchable": true
             },
             {
-              "name": "OWNERNME1",
+              "name": "OwnerNme1",
               "label": "Owner Name 1",
               "searchable": true
             },
             {
-              "name": "OWNERNME2",
+              "name": "OwnerNme2",
               "label": "Owner Name 2",
               "searchable": true
             },
             {
-              "name": "SITEADRESS",
+              "name": "Location",
               "label": "Site Address",
               "searchable": true
             },
             {
-              "name": "PSTLADRESS",
+              "name": "PstlAdress",
               "label": "Postal Address",
               "searchable": true
             },
             {
-              "name": "Municipality",
+              "name": "Inc_Muni",
               "label": "Municipality",
               "searchable": false
             }
           ],
-          "sampleQuery": "https://gis.browncountywi.gov/arcgis/rest/services/ParcelPolygons/MapServer/1/query?where=UPPER(OWNERNME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PARCELID,OWNERNME1,SITEADRESS&returnGeometry=false&f=json&resultRecordCount=10",
+          "confidentialFlag": { "field": "Confidential", "values": ["1"], "safeValues": [0] },
+          "sampleQuery": "https://bcgis.browncountywi.gov/arcgis/rest/services/Parcels/ParcelPolygons/MapServer/20/query?where=UPPER(OwnerNme1)%20LIKE%20UPPER('%25SMITH%25')%20AND%20CAST(Confidential%20AS%20VARCHAR(255))%20NOT%20LIKE%20'%251%25'%20AND%20Confidential%20IN%20(0)&outFields=ParcelID,OwnerNme1,Location,Confidential&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
-          "licenseUrl": "https://gis.browncountywi.gov/",
+          "licenseUrl": "https://www.browncountywi.gov/departments/planning-and-land-services/land-information-office/",
           "status": "live",
-          "lastVerified": "2026-05-15",
-          "verifiedBy": "automated"
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
         }
       ],
       "contact": {
@@ -378,7 +379,7 @@
         "url": "https://www.browncountywi.gov/departments/planning-and-land-services/land-information-office/",
         "email": null
       },
-      "notes": "Brown County (Green Bay metro, county seat Green Bay) hosts ParcelPolygons/MapServer with 2 layers; layer 1 (TaxParcel) is the polygon tax parcel layer with ownership fields. Fields include PARCELID, ParcelType, Municipality, MunicipalZoning, OWNERNME1, OWNERNME2, PSTLADRESS, SITEADRESS, PublicOwner, FirstName1/LastName1/FirstName2/LastName2/StreetName fields (individual name parts), RecentOwnershipChangeDate, Parcels2005/2010/2014/2017 (historical vintage flags), Surveys, ROD (Register of Deeds). Query confirmed live: UPPER(OWNERNME1) LIKE '%SMITH%' returns real results (e.g., 'SMITH SUSAN C REVOCABLE TRUST' at '2674 FOXFIRE DR'). Layer 0 (TaxParcel-smallScale) is the same polygon layer rendered at smaller scales. ParcelslDynamic/MapServer/6 (TaxParcels) is an alternate service containing the same ownership data. The county's BrownDog Online GIS map at gis.browncountywi.gov is the public viewer. PublicOwner field is present but may be null for many records, use OWNERNME1/OWNERNME2 for owner search."
+      "notes": "Brown County, Wisconsin (Green Bay metro, county seat Green Bay; FIPS 55009). The Land Information Office moved its GIS to a new ArcGIS Server (12.1) at bcgis.browncountywi.gov; the old host gis.browncountywi.gov answered HTTP 503 on every path on 2026-11-09 and 2026-11-10, and the county's BrownDog 2.0 viewer (published 2026-10-30) reads the new one. The record uses Parcels/ParcelPolygons MapServer layer 20 'TaxParcel' (layer 10 'TaxParcel-smallScale' draws the same parcels at small scales; ParcelFeatures FeatureServer/0 holds the same 106,229 rows). Read 2026-11-10: 106,229 parcels; OwnerNme1 and Location non-blank on 105,860; UPPER(OwnerNme1) LIKE '%SMITH%' returns 378, the sample query's predicate. The schema changed with the move: names are now mixed case (ParcelID, OwnerNme1, OwnerNme2, PstlAdress, Location), and the old SITEADRESS and Municipality columns are gone. Location is the site address with ZIP+4 ('1007 COUNTRYSIDE DR DEPERE 54115 1834'), PstlAdress a postal address line, Inc_Muni the municipality (25 names, e.g. 'City of De Pere'), and OwnMail1-4 with OwnCity, OwnState and OwnZIP5 the owner mailing block. CONFIDENTIAL OWNERS: a Confidential column is 1 on 320 rows, and on those the county itself publishes 'NOT AVAILABLE' in OwnerNme1, OwnerNme2, OwnMail1 and PstlAdress, which the atlas reads as no owner. The record registers Confidential as its confidential-owner flag (1 is confidential, 0 is not; as of 2026-11-10, 105,909 rows held 0, 320 held 1 and none was NULL), so those rows stay without an owner if the county stops masking them. maxRecordCount 10000 with pagination, native WKID 103404, CORS reflects the caller's Origin. Service copyright 'Brown County WI'; its description reads 'ParcelPolygons contains tax parcel boundaries with many attributes including land owner name.'"
     },
     {
       "id": "wi-racine",

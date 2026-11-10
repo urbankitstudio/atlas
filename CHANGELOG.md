@@ -1,5 +1,61 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.8.0 (2026-11-10)
+
+Twenty-two county records are added, York SC's owner data is served and Gwinnett GA's endpoint is retired.
+`totals` move from 515 counties, 509 endpoints and 481 counties with an endpoint to 537, 521 and 493.
+
+**Minor.** No exported type changed. Four records change shape: `ga-gwinnett` now has no endpoint
+(`hasPublicRest: false`), and `tn-hamilton`, `al-mobile` and `wi-brown` point at new URLs with new field names. The
+dropped URLs are in the former-layers map, so a lookup by an old URL still resolves to its county.
+
+- **New counties with owner data**: Baltimore City MD (`md-baltimore-city`, the city's RealProperty_OB layer, CC
+  BY 3.0 credit), Effingham GA (`ga-effingham`), Hubbard MN (`mn-hubbard`), Fairbanks North Star AK
+  (`ak-fairbanks-north-star`), Randolph AR (`ar-randolph`, the statewide layer scoped to the county; owner mailing
+  reads `not_published`), Creek OK (`ok-creek`), Jasper MO (`mo-jasper`) and Muskegon MI (`mi-muskegon`).
+  - **Creek OK** is served from INCOG's (Indian Nations Council of Governments) Parcels_CreekCo layer and credits
+    the Creek County Assessor and INCOG with INCOG's disclaimer in full. INCOG labels the layer "last updated July
+    2023", but its rows carry 2026 sale dates (2,564 of them, the latest 09/30/2026), and `dataVintage` says so.
+    The homestead, freeze and cap columns are not listed.
+  - **Jasper MO** is served from the City of Joplin GIS's republish of the county's parcels, an item the City has
+    not listed publicly. The county's own hub copy stops at 2022. The item's licence text is the credit.
+  - **Muskegon MI** is served under the county's GIS Data Download / Use Agreement (v2026), which UrbanKit accepted
+    on 2026-11-10, its indemnity clause included. Its `credit` is the clause 8 notice word for word; its `notes`
+    carry the clause 5 disclaimer word for word and say the licence is revocable and that the county may charge for
+    the data in future (clause 9). `license` is `public` with `licenseUrl` set to the agreement: the enum has no
+    value for a conditional licence, and `restricted` would read as "do not use" where the county grants use,
+    reproduction and distribution. The clause 5 disclaimer is also in the site's Terms of Service, section 4.
+- **New counties without owner names**: Passaic NJ and Sussex NJ (`nj-passaic`, `nj-sussex`, on the Ocean
+  pattern), and Napa, Placer and Tuolumne CA (`ca-napa`, `ca-placer`, `ca-tuolumne`, on the Nevada pattern;
+  Tuolumne carries its ODbL credit).
+- **New records with no endpoint**, each with a dated note: DeKalb IN and White IN (Beacon only), Spalding GA (its
+  layer has parcel ids only), Shiawassee MI (the county sells the countywide layer and redistribution needs its
+  written consent), and the counties whose terms need their permission: Delaware IN (county code 1-7-32(C)),
+  St. Joseph IN (a data usage agreement and a fee per layer), Lehigh PA ("For use in Lehigh County Domains only"),
+  Lancaster SC (sold by ordinance) and Butler PA, which we asked on 2026-11-10.
+- **York SC** (`sc-york`): the county answered on 2026-11-03 that its parcel data is open data for public use, so
+  the `permission_pending` overrides and the `ownerFieldNote` are gone and `owner_name` and
+  `owner_mailing_address` read `available`. Both carry the S.C. Code 30-2-50 notice as an available statute basis
+  in `capabilityOverrides`, the notes state it, and since this release the `credit` ends with it too, so the
+  notice travels with every lookup, radius and enrich answer that carries the credit.
+- **Gwinnett GA** (`ga-gwinnett`): the county portal's licence limits its GIS data to internal use by the
+  recipient, not for distribution or sale, so the endpoint is removed and `coverage.reason` is
+  `licence-restricted`. The registry's earlier `license: "public"` for this layer was wrong.
+- **Hamilton TN** (`tn-hamilton`): the parcels moved from mapsdev.hamiltontn.gov (which no longer answers) to the
+  county's Parcels MapServer on gis.hamiltontn.gov, with owner names and the owner mailing address; the contact is
+  the county GIS mailbox.
+- **Mobile AL** (`al-mobile`): MCRC_Public_Parcels layer 1 (layer 0 is now road centerlines). **Brown WI**
+  (`wi-brown`): ParcelPolygons MapServer 20 on the county's new server, with its new field names. The endpoint
+  carries `confidentialFlag` (`Confidential`, `"1"`, safe value `0`): the county publishes "NOT AVAILABLE" in the
+  owner cells of its 320 flagged rows, and the flag keeps those rows withheld if it stops. The `sampleQuery`
+  requests the column and carries both clauses.
+- **Notes rewritten** for Jackson MO (the county does not publish current owner names on its open layers and sells
+  them; we asked the county on 2026-11-10), Dutchess NY (the state's tax parcel centroid points carry Dutchess
+  owners; not served yet), Montgomery TN (the layer now publishes owner columns; they stay unlisted for now),
+  Edmonson KY, Iron MI, Garfield OK and Loudoun VA.
+- **Sample rows in notes** name a parcel id only. The Mobile AL and Randolph AR notes no longer quote an owner
+  name or address from a sample row, and the Baltimore City MD note no longer quotes an owner name.
+
 ## 0.7.2 — 2026-11-02
 
 Nevada County CA's owner mailing addresses are served, and Hamilton County IN's refusal is recorded. `totals` are

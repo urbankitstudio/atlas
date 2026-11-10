@@ -2,7 +2,7 @@
   "stateSlug": "tennessee",
   "stateName": "Tennessee",
   "stateAbbrev": "TN",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "tn-davidson",
@@ -93,38 +93,94 @@
       "hasPublicRest": true,
       "endpoints": [
         {
-          "url": "https://mapsdev.hamiltontn.gov/hcwa03/rest/services/Live_Parcels/MapServer/0",
+          "url": "https://gis.hamiltontn.gov/server/rest/services/Parcels/MapServer/0",
           "serviceType": "MapServer",
           "layerIndex": 0,
           "layerName": "Parcels",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
-            { "name": "PBA_NUM", "label": "Parcel Book Account Number", "searchable": true },
-            { "name": "GISLINK", "label": "GIS Link (Parcel ID)", "searchable": true },
-            { "name": "OWNERNAME1", "label": "Owner Name 1", "searchable": true },
-            { "name": "OWNERNAME2", "label": "Owner Name 2", "searchable": false },
-            { "name": "ADDRESS", "label": "Site Address", "searchable": true },
-            { "name": "STNUM", "label": "Street Number", "searchable": false },
-            { "name": "STNAME", "label": "Street Name", "searchable": true },
-            { "name": "MAP", "label": "Map Number", "searchable": false },
-            { "name": "PARCEL", "label": "Parcel Code", "searchable": false }
+            {
+              "name": "PBA_NUM",
+              "label": "Parcel Book Account Number",
+              "searchable": true
+            },
+            {
+              "name": "GISLINK",
+              "label": "GIS Link (Parcel ID)",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME1",
+              "label": "Owner Name 1",
+              "searchable": true
+            },
+            {
+              "name": "OWNERNAME2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "MASTNAME",
+              "label": "Owner Mailing Street Address",
+              "searchable": true
+            },
+            {
+              "name": "MALINE2",
+              "label": "Owner Mailing Line 2",
+              "searchable": false
+            },
+            {
+              "name": "MACITY",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "MASTATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "MAZIP",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ADDRESS",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "STNAME",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "MAP",
+              "label": "Map Number",
+              "searchable": false
+            },
+            {
+              "name": "PARCEL",
+              "label": "Parcel Code",
+              "searchable": false
+            }
           ],
-          "sampleQuery": "https://mapsdev.hamiltontn.gov/hcwa03/rest/services/Live_Parcels/MapServer/0/query?where=UPPER(OWNERNAME1)+LIKE+UPPER('%25SMITH%25')&outFields=PBA_NUM,OWNERNAME1,ADDRESS,GISLINK&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://gis.hamiltontn.gov/server/rest/services/Parcels/MapServer/0/query?where=UPPER(OWNERNAME1)+LIKE+UPPER('%25SMITH%25')&outFields=PBA_NUM,OWNERNAME1,ADDRESS,GISLINK&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://gis.hamiltontn.gov/",
           "status": "live",
-          "lastVerified": "2026-08-29",
+          "lastVerified": "2026-11-10",
           "verifiedBy": "manual",
-          "notes": "Re-verified live 2026-08-29 (was stamped unreachable 2026-06-06 with no probe record, and the flag was wrong at least by 2026-08-29): the enrich-shape query (point + 30 m, OWNERNAME1/ADDRESS/PBA_NUM) at Chattanooga City Hall answered in 0.3 s with owner names; where=1=1 count 169,568. Rows mid-republish carry 'Update in Progress' in OWNERNAME1 with blank ADDRESS/PBA_NUM - the enrich path maps those to source-updating (refundable), not to an owner name."
+          "notes": "Read as of 2026-11-10 on the new host: 4 rows carry 'Update in Progress' in OWNERNAME1 while the county republishes them. The enrich path maps those to source-updating (refundable), not to an owner name."
         }
       ],
       "contact": {
         "department": "Hamilton County Geospatial Technology",
         "url": "https://gis.hamiltontn.gov/",
-        "email": null
+        "email": "GIS@HamiltonTN.gov"
       },
-      "notes": "Hamilton County (Chattanooga, pop. 375,000) Live_Parcels layer, service name 'Live' indicates real-time feed from the assessor. Service is on mapsdev.hamiltontn.gov (hcwa03 subdirectory). 15 fields confirmed: OBJECTID, PARCEL_TYP, PBA_NUM, GISLINK, OWNERNAME1/2, STNUM, DIRPFX, STNAME, TYPESFX, ADDRESS, MAP, GROUP_, PARCEL. PBA_NUM is the full parcel book/account number (e.g., '033006    00302P000'); GISLINK is the trimmed parcel ID. Verified 2026-05-15: SMITH returns addresses like '16909 DAYTON PIKE', '703 GRAYSVILLE RD'. Note: distinct from Hamilton County OH (Cincinnati, FIPS 39061) in the atlas. SERVICE RETIRED (verified 2026-06-06): Live_Parcels/MapServer was removed from mapsdev.hamiltontn.gov ('Could not find service'). No public REST replacement exists -- Live_RealProperty is a 155-record county-owned-property inventory, not a parcel layer, and assessor.hamiltontn.gov has no REST API. Status set to unreachable pending a county-side replacement."
+      "notes": "Hamilton County, Tennessee (Chattanooga; FIPS 47065), not to be confused with Hamilton County, Ohio (Cincinnati, 39061) or Hamilton County, Indiana (18057). The county serves its parcels, as of 2026-11-10, from gis.hamiltontn.gov/server (ArcGIS Server 11.3), Parcels MapServer layer 0; layer 1 is the same parcels as labels. The Live_Parcels service on mapsdev.hamiltontn.gov that this record listed until 2026-11-10 answers HTTP 522 (origin timed out). Read 2026-11-10: 170,205 parcels, OWNERNAME1 on all of them, the owner's mailing street MASTNAME on 170,193, MACITY on 170,201, MAZIP on 170,052 and the site ADDRESS on 170,201; UPPER(OWNERNAME1) LIKE '%SMITH%' returns 2,339, the sample query's predicate. PBA_NUM is the full parcel book and account number with internal spaces ('033157K N 00900P000'); GISLINK is the trimmed parcel ID ('033157K N 00900'). MASTNUM is blank on every row because MASTNAME holds the whole mailing street line, so MASTNUM is not listed. maxRecordCount 2000 with pagination, Map, Query and Data, and the server reflects the caller's Origin for CORS. EXEMPTION COLUMN, NOT LISTED: EXEMPTCODE is not a search field. TERMS: the layer, its service and its item information carry no licence or copyright text; the county's GIS page says parcels are provided by the Office of the Assessor of Property and that the data 'should be viewed only as a representation of reality'."
     },
     {
       "id": "tn-sullivan",
@@ -263,7 +319,7 @@
         "url": "http://montgomerytn.gov/assessor/gis",
         "email": null
       },
-      "notes": "Montgomery County, Tennessee (Clarksville; FIPS 47125). The county's public parcel layer, the one the Assessor of Property's Public Parcels page advertises, is PublicParcels MapServer layer 0 on the county GIS server (gis.montgomerytn.gov, ArcGIS Server): 99,863 rows on 2026-10-14. THIS LAYER PUBLISHES PARCEL IDS AND SITUS ADDRESSES BUT NO OWNER OR MAILING FIELDS, so owner lookups return nothing here; look a parcel up by parcel number, by street address or by point. The parcel id is ParcelNo (e.g. 066E A 00600 000) with GISLINK as the shorter link id (063066E A 00600); the situs is PropertyAddress with PropertyCity. The rows are one per building card, not one per parcel: a parcel with several buildings repeats its parcel id and situs on each row (one sampled parcel returned six), so counts of rows overstate counts of parcels. The layer also carries subdivision, lot and block, deed book and page, property type, taxing district, acreage, assessed and appraised values, building attributes and the last sale. The layer's name is PublicParcels, the wkid is 102736 (Tennessee State Plane, US feet; latestWkid 2274), and outSR=4326 returns longitude and latitude. maxRecordCount is 2000 with pagination. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, so a probe without an Origin header reads it as closed. No license or terms are published on the layer or on the assessor's pages. Verified 2026-10-14: a count of 99,863, a situs LIKE query on MAIN (120 rows) and an outSR=4326 query.",
+      "notes": "Montgomery County, Tennessee (Clarksville; FIPS 47125). The county's public parcel layer, the one the Assessor of Property's Public Parcels page invites users to add as a live GIS layer, is PublicParcels MapServer layer 0 on the county GIS server (gis.montgomerytn.gov, ArcGIS Server): 99,941 rows as of 2026-11-10. The layer now publishes owner columns: on 2026-11-10 it carries Owner1 (non-blank on 99,914 rows), Owner2, MailingAddress, MailCity, MailState and MailZip, which it did not carry on 2026-10-14. This record does not list them yet, so lookups here still return parcel ids and situs addresses only. No licence or terms are posted on the layer, its service, its item information or the assessor's pages. The county's server sits behind Cloudflare, which answers requests from our hosted servers with HTTP 403, so live lookups from this site can fail. The parcel id is ParcelNo (e.g. 066E A 00600 000) with GISLINK as the shorter link id (063066E A 00600); the situs is PropertyAddress with PropertyCity. The rows are one per building card, not one per parcel: a parcel with several buildings repeats its parcel id and situs on each row, so counts of rows overstate counts of parcels. The layer's wkid is 102736 (Tennessee State Plane, US feet; latestWkid 2274), and outSR=4326 returns longitude and latitude. maxRecordCount is 2000 with pagination. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, so a probe without an Origin header reads it as closed.",
       "addedAt": "2026-10-14"
     },
     {

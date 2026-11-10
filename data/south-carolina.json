@@ -2,7 +2,7 @@
   "stateSlug": "south-carolina",
   "stateName": "South Carolina",
   "stateAbbrev": "SC",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "sc-greenville",
@@ -131,33 +131,24 @@
       "county": "York",
       "countySlug": "york-county",
       "countyFips": "45091",
-      "ownerFieldNote": {
-        "body": "York County publishes owner names and mailing addresses on its public parcel layer. South Carolina Code 30-2-50 bars using personal information from public records for commercial solicitation, so we asked York County on 1 November 2026 for written permission to show them, and York County lookups carry neither until the county answers. Tax map number, property address, land use, acreage, appraised value and last sale are available. For ownership, the county's One Map Reports site shows one parcel at a time.",
-        "source": {
-          "label": "York County GIS Data Download",
-          "url": "https://www.yorkcountysc.gov/239/GIS-Data-Download"
-        }
-      },
       "capabilityOverrides": {
         "owner_name": {
-          "status": "restricted",
+          "status": "available",
           "basis": {
-            "type": "permission_pending",
-            "note": "We asked York County on 1 November 2026 for written permission to show owner names, because S.C. Code 30-2-50 bars using personal information from public records for commercial solicitation, and withhold them until it answers.",
+            "type": "statute",
+            "note": "South Carolina Code 30-2-50 makes it a misdemeanor to knowingly obtain or use personal information obtained from a state agency, a local government, or other political subdivision for commercial solicitation directed to any person in South Carolina. York County told UrbanKit Studio on 3 November 2026 that its parcel data is open data for public use, so owner names are shown. Do not use them for commercial solicitation directed to anyone in South Carolina.",
             "citation": "S.C. Code 30-2-50",
             "sourceUrl": "https://www.scstatehouse.gov/code/t30c002.php"
-          },
-          "lawfulAlternativeUrl": "https://www.yorkcountysc.gov/239/GIS-Data-Download"
+          }
         },
         "owner_mailing_address": {
-          "status": "restricted",
+          "status": "available",
           "basis": {
-            "type": "permission_pending",
-            "note": "We asked York County on 1 November 2026 for written permission to show owner mailing addresses, because S.C. Code 30-2-50 bars using personal information from public records for commercial solicitation, and withhold them until it answers.",
+            "type": "statute",
+            "note": "South Carolina Code 30-2-50 makes it a misdemeanor to knowingly obtain or use personal information obtained from a state agency, a local government, or other political subdivision for commercial solicitation directed to any person in South Carolina. York County told UrbanKit Studio on 3 November 2026 that its parcel data is open data for public use, so owner mailing addresses are shown. Do not use them for commercial solicitation directed to anyone in South Carolina.",
             "citation": "S.C. Code 30-2-50",
             "sourceUrl": "https://www.scstatehouse.gov/code/t30c002.php"
-          },
-          "lawfulAlternativeUrl": "https://www.yorkcountysc.gov/239/GIS-Data-Download"
+          }
         }
       },
       "hasPublicRest": true,
@@ -171,12 +162,12 @@
           "corsEnabled": true,
           "searchFields": [
             { "name": "TAXMAPID", "label": "Tax Map ID (parcel number)", "searchable": true },
-            { "name": "Owner1", "label": "Owner Name", "searchable": false },
+            { "name": "Owner1", "label": "Owner Name", "searchable": true },
             { "name": "Owner2", "label": "Owner Name 2", "searchable": false },
             { "name": "PropertyAddress", "label": "Situs Address", "searchable": true },
             { "name": "ParcelID", "label": "Parcel ID", "searchable": false },
             { "name": "AprAccNum", "label": "Appraisal Account Number", "searchable": false },
-            { "name": "MailAddr1", "label": "Owner Mailing Address (street line)", "searchable": false },
+            { "name": "MailAddr1", "label": "Owner Mailing Address (street line)", "searchable": true },
             { "name": "MailAddr2", "label": "Owner Mailing Address (line 2)", "searchable": false },
             { "name": "MailCity", "label": "Owner Mailing City", "searchable": false },
             { "name": "MailState", "label": "Owner Mailing State", "searchable": false },
@@ -188,11 +179,11 @@
             { "name": "DateSold", "label": "Last Sale Date", "searchable": false },
             { "name": "SalePrice", "label": "Last Sale Price", "searchable": false }
           ],
-          "sampleQuery": "https://services1.arcgis.com/2AGLxyiJoNiVHKwq/arcgis/rest/services/Parcels/FeatureServer/0/query?where=UPPER(PropertyAddress)+LIKE+UPPER('%25CONGRESS+ST%25')&outFields=TAXMAPID,PropertyAddress,LandUseDesc,AprTotVal&returnGeometry=false&resultRecordCount=10&f=json",
+          "sampleQuery": "https://services1.arcgis.com/2AGLxyiJoNiVHKwq/arcgis/rest/services/Parcels/FeatureServer/0/query?where=UPPER(Owner1)+LIKE+UPPER('%25SMITH%25')&outFields=TAXMAPID,Owner1,PropertyAddress,MailAddr1,MailCity&returnGeometry=false&resultRecordCount=10&f=json",
           "license": "unknown",
           "licenseUrl": "https://www.yorkcountysc.gov/239/GIS-Data-Download",
           "status": "live",
-          "lastVerified": "2026-11-01",
+          "lastVerified": "2026-11-10",
           "verifiedBy": "manual"
         }
       ],
@@ -201,9 +192,36 @@
         "url": "https://opendata-yorkcosc.hub.arcgis.com/",
         "email": "gis@yorkcountygov.com"
       },
-      "notes": "York County, South Carolina (county seat York; FIPS 45091) was searched on the site twice on 2026-10-28. The county GIS Division publishes its tax parcels with owner and mailing columns as the public hosted 'Parcels' feature service on the county's own ArcGIS Online organisation (York County, SC - GIS Online; item c27c00901daa4f0484c47a3719a8f03b), the layer listed on its Open Data hub (opendata-yorkcosc.hub.arcgis.com): 134,504 polygons on 2026-11-01, 134,489 with a non-blank Owner1. Condominium units are stacked polygons with their own TAXMAPID and the land parcel in ParentTaxID. The parcel id is TAXMAPID (134,497 rows); ParcelID and AprAccNum are alternative ids. The situs is PropertyAddress (125,557 rows). MAILING: MailAddr1 (133,880 rows), MailAddr2, MailApt, MailCity, MailState, MailZip. Values: AprTotVal (appraised), TaxTotVal, AsdTotVal; DateSold with SalePrice. Currency: the newest DateSold is 2026-10-29 (9,844 sales dated 2026, 2,065 since 2026-09-01) and the newest DATE_MODIFIED is 2026-10-29; the layer's dataLastEditDate is 2026-10-31. The layer has no placeholder for withheld owners (0 rows match CONFIDENTIAL, WITHHELD, REDACTED or RESTRICTED). NOT USED: HOMESTEAD (Y on 80,610 rows; it may reflect an age-, disability- or residence-based tax status, so it stays out), PreviousOwner (a second person's name). CORS: Access-Control-Allow-Origin * on the layer and every query. maxRecordCount 2000 with pagination; Web Mercator (wkid 102100). A point query with inSR 4326 north of the York courthouse returned one parcel on N Congress St; the point at the courthouse intersection itself falls in the street. WITHHELD WHILE WE ASK: on 2026-11-01 UrbanKit asked the county for written permission to use owner names and mailing addresses under S.C. Code 30-2-50, and every surface withholds Owner1, Owner2 and the Mail columns until the county answers, so Owner1 and MailAddr1 are marked not searchable and the sample query searches the situs. TERMS: the county's GIS Data Download page says the county provides GIS data 'at no cost' and offers 'a GeoService API to view individual data in your own application directly'; the item's licence is a no-warranty, not-a-legal-survey disclaimer; the hub has no terms page (its footer 'Terms of Service' link points nowhere). S.C. Code 30-2-50 makes it a misdemeanour to knowingly obtain or use personal information from public records for commercial solicitation directed to any person in South Carolina. Verified 2026-11-01: a count, owner coverage, an owner LIKE query (1,385 rows for %SMITH%), a situs LIKE query (182 rows for %CONGRESS ST%, the sample query's filter, re-counted the same day) and a point query. Credit: York County, SC GIS (Open Data). York County Government South Carolina and its mapping contractors do not warrant the accuracy of the displayed information and specifically disclaim any warranty for merchantability or fitness for a particular purpose. This map is not a legal survey.",
-      "credit": "York County, SC GIS (Open Data). York County Government South Carolina and its mapping contractors do not warrant the accuracy of the displayed information and specifically disclaim any warranty for merchantability or fitness for a particular purpose. This map is not a legal survey.",
+      "notes": "York County, South Carolina (county seat York; FIPS 45091) was searched on the site twice on 2026-10-28. The county GIS Division publishes its tax parcels with owner and mailing columns as the public hosted 'Parcels' feature service on the county's own ArcGIS Online organisation (York County, SC - GIS Online; item c27c00901daa4f0484c47a3719a8f03b), the layer listed on its Open Data hub (opendata-yorkcosc.hub.arcgis.com): 134,504 polygons on 2026-11-01, 134,489 with a non-blank Owner1. Condominium units are stacked polygons with their own TAXMAPID and the land parcel in ParentTaxID. The parcel id is TAXMAPID (134,497 rows); ParcelID and AprAccNum are alternative ids. The situs is PropertyAddress (125,557 rows). MAILING: MailAddr1 (133,880 rows), MailAddr2, MailApt, MailCity, MailState, MailZip. Values: AprTotVal (appraised), TaxTotVal, AsdTotVal; DateSold with SalePrice. Currency: the newest DateSold is 2026-10-29 (9,844 sales dated 2026, 2,065 since 2026-09-01) and the newest DATE_MODIFIED is 2026-10-29; the layer's dataLastEditDate is 2026-10-31. The layer has no placeholder for withheld owners (0 rows match CONFIDENTIAL, WITHHELD, REDACTED or RESTRICTED). NOT USED: HOMESTEAD (Y on 80,610 rows; it may reflect an age-, disability- or residence-based tax status, so it stays out), PreviousOwner (a second person's name). CORS: Access-Control-Allow-Origin * on the layer and every query. maxRecordCount 2000 with pagination; Web Mercator (wkid 102100). A point query with inSR 4326 north of the York courthouse returned one parcel on N Congress St; the point at the courthouse intersection itself falls in the street. OWNER DATA SERVED: on 2026-11-01 UrbanKit asked the county for written permission to use owner names and mailing addresses under S.C. Code 30-2-50, and on 2026-11-03 the county answered 'This data is open data for public use'. Owner1, Owner2 and the Mail columns are served, Owner1 and MailAddr1 are searchable, and the sample query is an owner search. The 30-2-50 notice travels as the capabilityOverrides basis on both owner roles. TERMS: the county's GIS Data Download page says the county provides GIS data 'at no cost' and offers 'a GeoService API to view individual data in your own application directly'; the item's licence is a no-warranty, not-a-legal-survey disclaimer; the hub has no terms page (its footer 'Terms of Service' link points nowhere). S.C. Code 30-2-50 makes it a misdemeanor to knowingly obtain or use personal information obtained from a state agency, a local government, or other political subdivision for commercial solicitation directed to any person in South Carolina. Verified 2026-11-01: a count, owner coverage, an owner LIKE query (1,385 rows for %SMITH%), a situs LIKE query (182 rows for %CONGRESS ST%) and a point query. Re-verified 2026-11-10: 134,515 polygons, Owner1 non-blank on 134,500, MailAddr1 on 133,894, and UPPER(Owner1) LIKE '%SMITH%' (the sample query's filter) 1,386 rows. The credit carries the 30-2-50 notice as of 2026-11-10, so it travels with every lookup, radius and enrich answer. Credit: York County, SC GIS (Open Data). York County Government South Carolina and its mapping contractors do not warrant the accuracy of the displayed information and specifically disclaim any warranty for merchantability or fitness for a particular purpose. This map is not a legal survey. S.C. Code 30-2-50 makes it a misdemeanor to knowingly obtain or use personal information obtained from a state agency, a local government, or other political subdivision for commercial solicitation directed to any person in South Carolina.",
+      "credit": "York County, SC GIS (Open Data). York County Government South Carolina and its mapping contractors do not warrant the accuracy of the displayed information and specifically disclaim any warranty for merchantability or fitness for a particular purpose. This map is not a legal survey. S.C. Code 30-2-50 makes it a misdemeanor to knowingly obtain or use personal information obtained from a state agency, a local government, or other political subdivision for commercial solicitation directed to any person in South Carolina.",
       "addedAt": "2026-11-01"
+    },
+    {
+      "id": "sc-lancaster",
+      "state": "SC",
+      "stateName": "South Carolina",
+      "stateSlug": "south-carolina",
+      "county": "Lancaster",
+      "countySlug": "lancaster-county",
+      "countyFips": "45057",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Lancaster County GIS Department",
+        "url": "https://www.lancastercountysc.gov/Directory.aspx?did=64",
+        "email": null
+      },
+      "notes": "Lancaster County, South Carolina (FIPS 45057) publishes a parcel layer with owner names and mailing addresses on its county ArcGIS Online organization. The layer's licence text, as of 2026-11-10, is an as-is disclaimer with no use restriction, but the county's GIS portal says it sells GIS digital data under its fee ordinance (Ordinance 2024-1924, sections 11.01 and 11.02), and South Carolina Code section 30-2-50 prohibits knowingly using personal information from local-government records 'for commercial solicitation directed to any person in this State' and requires the county to notify requestors. We have not asked the county. UrbanKit does not serve it without the county's permission. Lancaster County, South Carolina (45057) must not be confused with Lancaster County, Virginia (51103) or Lancaster County, Pennsylvania (42071). Search the county's own tools.",
+      "addedAt": "2026-11-10",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Lancaster County sells its GIS data by ordinance, and South Carolina bars using owner data from public records for commercial solicitation. We don't have the county's permission, so we don't index it. Request it and we'll tell you if that changes.",
+        "countyProduct": {
+          "name": "Lancaster County GIS digital data (fee ordinance)",
+          "url": "https://lancaster-launch-lancogis.hub.arcgis.com/pages/LANCOGIS::request-gis-services"
+        },
+        "checked": "2026-11-10"
+      }
     }
   ]
 }

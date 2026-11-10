@@ -2,7 +2,7 @@
   "stateSlug": "minnesota",
   "stateName": "Minnesota",
   "stateAbbrev": "MN",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "mn-ramsey",
@@ -211,6 +211,116 @@
         "email": null
       },
       "notes": "Mille Lacs County, Minnesota (county seat Milaca) publishes its parcels on its own ArcGIS Server 11.3 as MilleLacs_Public_101/MapServer layer 35 (Parcels), 20,083 rows with a taxpayer name on 2026-10-03. THE OWNER IS IN TAXPAYER_NAME, stored LAST/FIRST with a slash (SMITH/BRIAN & ASHLEY). A column called OWNER_NAME exists but is an empty string on about 97 percent of rows (544 of 20,083 populated on 2026-10-03; not NULL, so IS NOT NULL passes while the value is blank), and where it is populated it names a different party from TAXPAYER_NAME (a contract-for-deed holder or an LLC, for example), so the taxpayer is not always the owner of record. UPPER(OWNER_NAME) LIKE 'SMITH%' returns 0 features. OWNER_NAME is deliberately NOT listed as a search field here: the enrichment classifier takes the first owner-looking field, so listing it would route owner lookups to a mostly blank column. The mailing address is TAXPAYER_ADDRESS_1 to _4 (use _1 for the street); the matching OWNER_ADDRESS_1 to _4 columns were not checked. The site address is PROPERTY_ADDRESS with PROPERTY_ZIP and CITY_TWP_NAME. Search with UPPER(TAXPAYER_NAME) LIKE '%SMITH%'. maxRecordCount is 2000. CORS reflects the request Origin (Access-Control-Allow-Origin echoed back, credentials true), and named outFields work. No license text was found. Do not use the statewide Minnesota parcel layers for owner search: the DNR plan_parcels_minnesota layer has owner_name but no county, parcel id or address field, so a query bleeds into neighbouring counties, and the MnGeo plan_parcels_open layer filters by co_code 27095 (20,928 rows) but its owner_name is blank for all but 550 rows (control: Itasca 27061, 0 populated). The same county server also lists Assessors/TaxParcels/MapServer/0, which has only a parcel name and geometry. Verified live 2026-10-03: taxpayer SMITH returned rows (first SMITH/BRIAN & ASHLEY, parcel 11-010-0100, 17903 130TH AVE, Milaca Township)."
+    },
+    {
+      "id": "mn-hubbard",
+      "state": "MN",
+      "stateName": "Minnesota",
+      "stateSlug": "minnesota",
+      "county": "Hubbard",
+      "countySlug": "hubbard-county",
+      "countyFips": "27057",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.co.hubbard.mn.us/arcgis/rest/services/OpenData/Hubbard_County_Tax_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "hubbgis_GIS_Parcels_PIN",
+              "label": "Parcel Number (PIN)",
+              "searchable": true
+            },
+            {
+              "name": "DOTPIN",
+              "label": "Formatted PIN",
+              "searchable": true
+            },
+            {
+              "name": "PINAME1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "PINAME2",
+              "label": "Owner Name 2",
+              "searchable": true
+            },
+            {
+              "name": "PIADRLN1",
+              "label": "Owner Mailing Address",
+              "searchable": true
+            },
+            {
+              "name": "PIADRLN2",
+              "label": "Owner Mailing Address 2",
+              "searchable": false
+            },
+            {
+              "name": "PICITY",
+              "label": "Owner Mailing City",
+              "searchable": true
+            },
+            {
+              "name": "PISTATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "PIZIPCD6",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "PAADRLN1",
+              "label": "Site Address",
+              "searchable": true
+            },
+            {
+              "name": "PACITY",
+              "label": "Site City",
+              "searchable": true
+            },
+            {
+              "name": "PAZIPCD6",
+              "label": "Site ZIP",
+              "searchable": false
+            },
+            {
+              "name": "LGDSC",
+              "label": "Legal Description",
+              "searchable": true
+            },
+            {
+              "name": "Class1",
+              "label": "Property Class",
+              "searchable": false
+            },
+            {
+              "name": "hubbgis_GIS_Parcels_Acres",
+              "label": "Acreage",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.co.hubbard.mn.us/arcgis/rest/services/OpenData/Hubbard_County_Tax_Parcels/FeatureServer/0/query?where=UPPER(PINAME1)+LIKE+UPPER('%25SMITH%25')&outFields=hubbgis_GIS_Parcels_PIN,PINAME1,PAADRLN1,PIADRLN1&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://maps-hubbardcounty.opendata.arcgis.com/datasets/HubbardCounty::hubbard-county-tax-parcels",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Hubbard County GIS, Environmental Services",
+        "url": "https://maps-hubbardcounty.opendata.arcgis.com/",
+        "email": "gis@co.hubbard.mn.us"
+      },
+      "notes": "Hubbard County, Minnesota (county seat Park Rapids; FIPS 27057). Served by the county's own ArcGIS Server, OpenData/Hubbard_County_Tax_Parcels FeatureServer layer 0 'Tax Parcels' (also published on the county's open-data hub with CSV and Shapefile downloads), the county parcel fabric joined to its CAMA and tax data. Read 2026-11-10: 29,241 parcels; PINAME1 (owner) non-blank on 29,111, PIADRLN1 (owner mailing street) on 28,304, PAADRLN1 (site street) on 16,718, so many rural and seasonal parcels have no site address; UPPER(PINAME1) LIKE '%SMITH%' returns 176, the sample query's predicate. Many owners mail out of state (PICITY, PISTATE, PIZIPCD6). The newest SALE_DATE was 2026-11-02. maxRecordCount 2000 with pagination, native WKID 103703 (Hubbard County coordinate system, feet), CORS reflects the caller's Origin. UrbanKit Studio sends it GET queries only and nothing that writes. EXEMPTION AND STATUS COLUMNS, NOT LISTED: TX_EX_FLAG and EXCLS1_DSC, EXCLS2_DSC, EXCLS3_DSC (exemption classes) and DELINQUENT (a tax-delinquency flag). TERMS: the hub licence is an as-is disclaimer given under Minnesota Statutes 466.03, Subd. 21, and the layer says it is 'only an interpretation of property locations'; no commercial-use, resale or fee language was found.",
+      "addedAt": "2026-11-10"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "stateSlug": "arkansas",
   "stateName": "Arkansas",
   "stateAbbrev": "AR",
-  "lastUpdated": "2026-10-10",
+  "lastUpdated": "2026-11-10",
   "counties": [
     {
       "id": "ar-pulaski",
@@ -813,6 +813,97 @@
         "email": null
       },
       "notes": "Craighead County AR (Jonesboro; county seat Jonesboro; FIPS 05031) is served by the Arkansas statewide parcel layer. Filter countyfips='031' to scope to Craighead County. Same schema and endpoint as Pulaski, Benton and Washington counties (AR statewide FeatureServer/6). Verified 2026-10-10: countyfips='031' counts 54,896 rows with ownername populated on over 99.9% of them, and an owner-name SMITH search returns Craighead County rows. The layer carries no mailing-address field, only situs components (adrnum, pstrnam, adrcity, adrzip5, adrlabel). The statewide layer is compiled from county assessor data and may lag 6-12 months from deed recording."
+    },
+    {
+      "id": "ar-randolph",
+      "state": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "county": "Randolph",
+      "countySlug": "randolph-county",
+      "countyFips": "05121",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+          "serviceType": "FeatureServer",
+          "layerIndex": 6,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "parcelid",
+              "label": "Parcel ID",
+              "searchable": true
+            },
+            {
+              "name": "ownername",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "adrnum",
+              "label": "Address Number",
+              "searchable": false
+            },
+            {
+              "name": "pstrnam",
+              "label": "Street Name",
+              "searchable": true
+            },
+            {
+              "name": "adrcity",
+              "label": "City",
+              "searchable": true
+            },
+            {
+              "name": "adrzip5",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "adrlabel",
+              "label": "Full Address Label",
+              "searchable": true
+            },
+            {
+              "name": "countyfips",
+              "label": "County FIPS (121 = Randolph)",
+              "searchable": false
+            },
+            {
+              "name": "county",
+              "label": "County Name",
+              "searchable": false
+            },
+            {
+              "name": "assessvalue",
+              "label": "Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "totalvalue",
+              "label": "Total Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=countyfips%3D'121'+AND+UPPER(ownername)+LIKE+UPPER('%25SMITH%25')&outFields=parcelid,ownername,adrlabel,countyfips&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "public",
+          "licenseUrl": "https://gis.arkansas.gov/",
+          "status": "live",
+          "lastVerified": "2026-11-10",
+          "verifiedBy": "manual",
+          "scopeWhere": "countyfips = '121'"
+        }
+      ],
+      "contact": {
+        "department": "Arkansas GIS Office (AGISO)",
+        "url": "https://gis.arkansas.gov/",
+        "email": null
+      },
+      "notes": "Randolph County, Arkansas (Pocahontas, Maynard, Ravenden; FIPS 05121) is served by the Arkansas statewide parcel layer, the AGISO Planning_Cadastre FeatureServer/6 'PARCEL_POLYGON_CAMP' used by the other Arkansas counties here, compiled from county assessor CAMA data (dataprov DataScout OneMap). Filter countyfips='121' to scope to Randolph County. Verified 2026-11-10: countyfips='121' counts 18,122 rows, ownername is non-blank on all of them, and an owner LIKE SMITH search returns 241, the sample query's predicate (first row 001-09397-006). Randolph rows carry camadate 2026-08-27 and pubdate 2026-10-01. NO OWNER MAILING ADDRESS: the layer has only situs components (adrnum, predir, pstrnam, pstrtype, psufdir, adrcity, adrzip5, adrlabel), so Randolph County returns owner names but no address to mail them at; adrcity reads 'Rural' and adrzip5 0 on rural parcels, and adrlabel is null on some. maxRecordCount 200 (low) with pagination, native WKID 26915, CORS reflects the caller's Origin. The statewide layer is a periodic snapshot and can lag the county's own records.",
+      "addedAt": "2026-11-10"
     }
   ]
 }

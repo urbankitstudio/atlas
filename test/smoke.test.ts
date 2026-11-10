@@ -75,8 +75,8 @@ describe("@urbankitstudio/atlas smoke", () => {
     // file only runs at prepublishOnly. A root-suite guard
     // (src/lib/__tests__/atlas-package-parity.test.ts) now asserts these literals
     // match the bundled index, so the drift is caught at every gate.
-    expect(atlas.totals.counties).toBe(515);
-    expect(atlas.totals.endpoints).toBe(509);
+    expect(atlas.totals.counties).toBe(537);
+    expect(atlas.totals.endpoints).toBe(521);
     expect(atlasIndex.version).toBeDefined();
   });
 
@@ -143,20 +143,20 @@ describe("@urbankitstudio/atlas smoke", () => {
     }
   });
 
-  // York SC withholds its owner columns (permission_pending), so Owner1 and Owner2 are searchable:false. A link must
-  // never pre-select one, whatever the owner rule matches by name.
-  it("buildParcelLookupDeepLink: York's withheld owner columns are never the fieldHint", () => {
+  // York SC withheld its owner columns (permission_pending, searchable:false) until 2026-11-10, when the county said
+  // yes; Owner1 is searchable again, so a link pre-selects it. The searchable:false rule itself is the next case.
+  it("buildParcelLookupDeepLink: York's served owner column is the fieldHint", () => {
     const york = findCounty("south-carolina", "york-county")!;
     expect(york.countyFips).toBe("45091");
     const ep = york.endpoints[0];
     expect(offersAttributeSearch(ep)).toBe(true);
     const owners = ep.searchFields.filter((f) => /owner|taxpayer/i.test(f.name));
     expect(owners.map((f) => f.name)).toEqual(["Owner1", "Owner2"]);
-    expect(owners.every((f) => f.searchable === false)).toBe(true);
+    expect(owners.find((f) => f.name === "Owner1")?.searchable).toBe(true);
     for (const link of [buildParcelLookupDeepLink(ep), buildParcelLookupDeepLink(ep, undefined, york)]) {
       const url = new URL(link);
       expect(url.searchParams.get("endpoint")).toBe(ep.url);
-      expect(url.searchParams.has("fieldHint")).toBe(false);
+      expect(url.searchParams.get("fieldHint")).toBe("Owner1");
     }
   });
 
