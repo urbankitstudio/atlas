@@ -3,7 +3,7 @@
   "lastUpdated": "2026-11-11",
   "totals": {
     "states": 51,
-    "counties": 539,
+    "counties": 542,
     "endpoints": 522,
     "countiesWithEndpoint": 494,
     "countiesUnprobeable": 1
@@ -21,7 +21,7 @@
       "slug": "alaska",
       "name": "Alaska",
       "abbrev": "AK",
-      "countyCount": 2,
+      "countyCount": 3,
       "endpointCount": 2,
       "populated": true
     },
@@ -125,7 +125,7 @@
       "slug": "indiana",
       "name": "Indiana",
       "abbrev": "IN",
-      "countyCount": 9,
+      "countyCount": 10,
       "endpointCount": 4,
       "populated": true
     },
@@ -301,7 +301,7 @@
       "slug": "oklahoma",
       "name": "Oklahoma",
       "abbrev": "OK",
-      "countyCount": 3,
+      "countyCount": 4,
       "endpointCount": 2,
       "populated": true
     },

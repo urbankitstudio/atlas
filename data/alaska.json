@@ -2,7 +2,7 @@
   "stateSlug": "alaska",
   "stateName": "Alaska",
   "stateAbbrev": "AK",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-11",
   "counties": [
     {
       "id": "ak-anchorage",
@@ -137,6 +137,29 @@
       },
       "notes": "Fairbanks North Star Borough, Alaska (borough seat Fairbanks; FIPS 02090). Served by the borough's own ArcGIS Online layer Tax_Parcels (item 1237ad10e0434e498dbec7843c065c05, 'Parcels with Taxroll Information', account internet_gis_FNSB), which the borough's REST-services page lists among its 'freely available GIS data layers' and describes as the parcel data joined with a download of the borough taxroll. Read 2026-11-10: 63,949 parcels; Owner1 non-blank on 57,861 and Mailing_Address on 57,853, all on the 2026 tax year (the remaining rows are roadways, waterways and untaxed lots with no roll record); UPPER(Owner1) LIKE '%SMITH%' returns 310, the sample query's predicate. PAN (parcel account number) is an integer. CityStateZip carries the mailing city, state and ZIP+4 in one value ('WASILLA AK 99654 4323'). NO SITE ADDRESS: the layer has no situs column (PARCEL_POLY_NAME is a parcel name on a few thousand rows, not an address), so a lookup by street address has nothing to match against; the borough publishes situs addresses only as a CSV download. maxRecordCount 2000 with pagination, capabilities Query and Extract, native WKID 102633 (Alaska zone 3, feet), CORS open (Access-Control-Allow-Origin *). STATUS AND USE COLUMNS, NOT LISTED: Tax_Status carries exemption and delinquency labels ('PAST DUE TAXES: MUNI', 'Veteran Organization,Exmpt'), and Assessing_Primary_Use and Business are left out with it. TERMS: the item licence is an accuracy disclaimer ('should be used for informational purposes only, and none of it constitutes legal documentation'); the borough's older gisportal Parcels service says 'Per Fairbanks North Star Borough Use Policies', and no page of that name was found. The paid GIS data package ($150 to the general public) is a separate product. The Alaska statewide AK_Parcels layer registered for Anchorage is not used here: it is a non-authoritative compilation with no mailing or site address.",
       "addedAt": "2026-11-10"
+    },
+    {
+      "id": "ak-matanuska-susitna",
+      "state": "AK",
+      "stateName": "Alaska",
+      "stateSlug": "alaska",
+      "county": "Matanuska-Susitna Borough",
+      "countySlug": "matanuska-susitna-borough",
+      "countyFips": "02170",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Matanuska-Susitna Borough GIS Division (Information Technology)",
+        "url": "https://www.matsu.gov/departments/gis",
+        "email": "gis@matsu.gov"
+      },
+      "notes": "Matanuska-Susitna Borough, Alaska (borough seat Palmer; FIPS 02170) is not served by this atlas as of 2026-11-11. The Borough publishes a public parcel layer with owner names and mailing addresses, and its data licence restricts passing that data on to third parties. UrbanKit does not serve it without the Borough's written authorization. TERMS: the licence on the layer's item information, which is also the Distribution/Redistribution Policy for electronic GIS data at https://intranet.matsugov.us/gis/disclaimer, says: \"The Borough grants the Recipient the right to duplicate the electronic data for their personal or business' internal use and to use this digital data as a source for which to create other electronic data, electronic maps, or paper maps. Any transfer, sale, lease, or transmittal of the original data to any third party without value added or without the written authorization of the Borough Office of Information Technology may be considered a violation of this copyright and subject the Recipient to civil liability.\" It also requires a source citation on any hardcopy map or published dataset that uses the data. The Borough's GIS page takes orders for imagery, LiDAR and paper maps, and we found no fee or request form for parcel data. Owner records are available through the Borough's Parcel Viewer and its Assessment Division. Request this county with an email address and we will send you one email when we serve it.",
+      "addedAt": "2026-11-11",
+      "coverage": {
+        "reason": "licence-restricted",
+        "summary": "The Matanuska-Susitna Borough's data licence restricts passing its parcel data to third parties without its written authorization. We don't have it, so we don't index the Borough. Use the Borough's Parcel Viewer, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-11"
+      }
     }
   ]
 }

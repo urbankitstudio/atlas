@@ -2,7 +2,7 @@
   "stateSlug": "indiana",
   "stateName": "Indiana",
   "stateAbbrev": "IN",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-11",
   "counties": [
     {
       "id": "in-hamilton",
@@ -349,6 +349,29 @@
         "reason": "no-public-service",
         "summary": "Sullivan County, Indiana publishes parcels through a ThinkGIS web map and has no public query service with owner names, so we don't index it. Search the county's ThinkGIS map, or request it and we'll tell you if that changes.",
         "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "in-vigo",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Vigo",
+      "countySlug": "vigo-county",
+      "countyFips": "18167",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Vigo County Assessor",
+        "url": "https://www.vigocounty.in.gov/department/index.php?structureid=1",
+        "email": null
+      },
+      "notes": "Vigo County, Indiana (Terre Haute; FIPS 18167) has no public ArcGIS REST service for parcels as of 2026-11-11, and the county's GIS data terms bar commercial use without its written authorization. The county's GIS hub and its Assessor's page send the public to a Schneider Beacon property search for parcel, property and assessment records, a hosted viewer with its own search, and we found no public query service for the county's parcels. The county's ArcGIS Online organisation publishes 51 public feature services (districts, precincts, address points, legal drains, survey sections and vector-control maps among them) and none is a parcel layer. An ArcGIS Online search found no county-hosted parcel layer, while the same search for Boone County, Indiana returned that county's own layer. It found three third-party items that name Vigo parcels: one posted in 2019 points at a state service that no longer answers, and two are extracts of about 700 parcels each with no owner column. The IndianaMap statewide parcel layer covers Vigo with 59,288 parcels and carries parcel ids, site addresses and tax districts but no owner name or mailing address. TERMS: ten of those 51 services, the address points among them, carry licence text that says: 'This data may not be used for commercial purposes without prior written authorization from Vigo County. Prohibited commercial uses include, but are not limited to, selling, reselling, repackaging, sublicensing, redistributing for profit, incorporating into a paid product or service, or using the data as a primary input for commercial analysis, marketing, site selection, mailing lists, real estate products, delivery products, demographic products, emergency service products, utility products, construction products, or other revenue-generating services.' That is the wording on the address points; the list of products varies from service to service after the same opening. We found no county fee schedule or ordinance for GIS data online. The county's code site is a script-driven app we could not read, so one may exist unread. We asked the county on 2026-11-02 for written authorization to use its parcel data, and whether it has a parcel service we could query, and will update this record when it answers. Search the county's Beacon site. Request this county with an email address and we will send you one email when we serve it.",
+      "addedAt": "2026-11-11",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Vigo County publishes parcels through a Beacon search with no public query service, and its GIS data terms bar commercial use without written authorization. We asked the county about both on 2026-11-02. Search its Beacon site, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-11"
       }
     }
   ]

@@ -2,7 +2,7 @@
   "stateSlug": "oklahoma",
   "stateName": "Oklahoma",
   "stateAbbrev": "OK",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-11",
   "counties": [
     {
       "id": "ok-oklahoma",
@@ -163,6 +163,29 @@
           "label": "INCOG Parcels_CreekCo layer",
           "url": "https://map11.incog.org/arcgis11wa/rest/services/Parcels_CreekCo/MapServer/0"
         }
+      }
+    },
+    {
+      "id": "ok-johnston",
+      "state": "OK",
+      "stateName": "Oklahoma",
+      "stateSlug": "oklahoma",
+      "county": "Johnston",
+      "countySlug": "johnston-county",
+      "countyFips": "40069",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Johnston County Assessor",
+        "url": "https://johnston.okcounties.org/offices/county-assessor",
+        "email": "assessor@johnstoncountyok.gov"
+      },
+      "notes": "Johnston County, Oklahoma (Tishomingo; FIPS 40069) has no public ArcGIS REST service for parcels with owner names as of 2026-11-11. The county's Maps page holds one voter-precincts PDF, and its E911 and GIS Office page lists no parcel layer. The Assessor's page sends the public to an actDataScout property search, and the county's links page adds CrossPointData for the Assessor's records. Both are vendor search pages, not county query services. An ArcGIS Online search found no county-hosted parcel layer: the one public service that names Johnston County, Oklahoma is a third-party account's set of boundary, district, precinct and road layers with no parcels. The Oklahoma Office of Geographic Information publishes a Statewide Parcels map on okmaps.org that covers the county, a compiled dataset provided to it by Property Records Preservation, LLC (metadata titled 'Statewide Parcels -10/03/2026'). Its metadata says 'DATA IS FOR VIEWING ONLY OR THROUGH THE OGC WMS WEB SERVICE. DATA IS NOT AVAILABLE FOR DOWNLOAD.' and that the data 'is distributed by OGI free to the public at large for view only access'. The server behind the map is a GeoServer, and we found no ArcGIS REST service on okmaps.org. It also answers feature (WFS) requests for the parcel layer, which the metadata does not offer, and under those terms we do not use them. The layer holds 11,390 Johnston County parcels with the owner name and parcel id filled on every one, and it has no mailing address and no site address column, so it could not fill a mailing list or answer an address search in any case. We do not index it. Johnston County, Oklahoma (40069) must not be confused with Johnston County, North Carolina (37101), which this atlas serves from North Carolina's statewide parcel layer. Parcel and owner records are available through the Johnston County Assessor's office and its property search. Request this county with an email address and we will send you one email when we serve it.",
+      "addedAt": "2026-11-11",
+      "coverage": {
+        "reason": "no-public-service",
+        "summary": "Johnston County, Oklahoma publishes no parcel query service. The state's parcel data is offered for viewing only and has no mailing or site addresses, so we don't index it. Use the county Assessor's property search, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-11"
       }
     }
   ]

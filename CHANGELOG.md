@@ -1,5 +1,24 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.2 (2026-11-12)
+
+Three new records with no endpoint. `totals.counties` moves from 539 to 542. Endpoints and counties with an
+endpoint stay at 522 and 494, and no field, type or capability moved.
+
+- **Johnston OK** (`ok-johnston`, FIPS 40069), `coverage.reason` `no-public-service`. The county publishes no
+  parcel query service: the Assessor's records are on vendor search pages. The state's Statewide Parcels data on
+  okmaps.org is offered for viewing only ("DATA IS NOT AVAILABLE FOR DOWNLOAD"), on a GeoServer and not an
+  ArcGIS REST service, and it carries an owner name and a parcel id with no mailing or site address. This is not
+  Johnston County, North Carolina (`nc-johnston`, FIPS 37101), which has an endpoint.
+- **Matanuska-Susitna Borough AK** (`ak-matanuska-susitna`, FIPS 02170), `coverage.reason` `licence-restricted`.
+  The Borough publishes a parcel layer with owner names and mailing addresses under a licence that restricts
+  passing the data to third parties without its written authorization, which we do not have. The notes quote
+  the licence and give its URL.
+- **Vigo IN** (`in-vigo`, FIPS 18167), `coverage.reason` `no-public-service`. The county publishes parcels
+  through a Beacon search with no public query service, and the IndianaMap statewide layer carries no owner name
+  for it. The county's GIS data terms also bar commercial use without written authorization, which we asked for
+  on 2026-11-02.
+
 ## 0.9.1 (2026-11-11)
 
 One county is added, and it is the first whose owners come from a joined table. `totals` move from 538 counties,
