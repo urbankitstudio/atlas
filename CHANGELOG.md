@@ -1,5 +1,41 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.1 (2026-11-11)
+
+One county is added, and it is the first whose owners come from a joined table. `totals` move from 538 counties,
+521 endpoints and 493 counties with an endpoint to 539, 522 and 494.
+
+**Patch.** Data only: no type, function or existing record changed.
+
+- **Sussex County, Delaware** (`de-sussex`, FIPS 10005) is the first record that carries `ownerJoin` (declared
+  in 0.9.0). Its parcel layer, `Parcels_PIN/MapServer/0`, has the polygons and the parcel id in `Name`, and no
+  owner. The owner rows are in table 1 of the same service, `OwnershipInformation`, keyed by `PIN`: a parcel's
+  owners are the table rows whose `PIN` equals the parcel's `Name`.
+  - The endpoint's `searchFields` lists `Name` alone. The table's eight columns are in `ownerJoin.fields`, so
+    code that ignores `ownerJoin` sees a layer with a parcel id and no owner, which is true of the layer.
+  - The owner name is `FULLNAME`, and `Second_Owner_Name` holds a second owner. The owner's mailing address is
+    split over four columns: `MAILINGADDRESS` is the street line, and the city, state and ZIP are `CITY`,
+    `STATE` and `ZIPCODE`. Read each column's `label`.
+  - `multiple` is `"rows"` and `maxRowsPerKey` is 1000. About a fifth of the table's rows carry an assessment
+    unit, so one parcel can hold several ownership rows, and one PIN holds more rows than the table returns to
+    one query. `rowIdField` is `PINWASSEMENTUNIT`, which is not unique.
+  - Some parcels have no row in the table. Treat them as parcels with no owner on record, not as an error.
+  - The layer publishes no site address, so the record answers a search by PIN and a lookup by location.
+  - The service states no licence, so `license` is `unknown`. Its copyright text, `Sussex County Government`, is
+    the record's `credit`.
+- **What the hosted API returns for this county.** A paid radius list carries the owner name and the mailing
+  street line. The city, state and ZIP stay in the county table's columns and are not joined onto that line. The
+  hosted answers read the joined table too: they send no capability block for Sussex's owner name or owner
+  mailing address, which is how they mark a field plainly available, and an enrichment row says
+  `owner_data_available: true`. A single-address lookup or a bulk row still returns `source-incomplete` for
+  Sussex, because the layer has no site address to match.
+- **No function in this package reads `ownerJoin.fields`.** `reviewedCapability` returns reviewed records only,
+  as before, and `buildParcelLookupDeepLink` reads the layer's own `searchFields`. Read the owner columns from
+  `endpoint.ownerJoin.fields`.
+- The registry's validator gains one rule for a record with an `ownerJoin`: an owner's notice must be matchable
+  on it. The layer's `parcelKey` column has to read as a parcel id, and the table's `key` column must not read
+  as an address or a name.
+
 ## 0.9.0 (2026-11-10)
 
 Two record shapes are declared for counties whose owner data does not sit on the parcel layer itself. **No record

@@ -346,8 +346,9 @@ owner there is protected.
 
 ## Some counties keep owners in a separate table
 
-Declared in 0.9.0 and **carried by no record yet**: the types are here so your
-code can be ready, and every record reads exactly as it did in 0.8.x.
+Declared in 0.9.0 and carried by one record from 0.9.1: **Sussex County,
+Delaware** (`de-sussex`, FIPS 10005). Every other record reads exactly as it did
+in 0.8.x.
 
 An endpoint may carry `ownerJoin` (type `OwnerJoin`). Its parcel layer has the
 polygons and a parcel id but no owner; the owner rows are in a table of the same
@@ -364,11 +365,20 @@ service, at `ownerJoin.url`. A parcel's owners are the table rows whose
 - `orderField` is a unique, stable column of the table. Send it as
   `orderByFields` whenever you send `resultOffset`.
 - `multiple: "rows"` means a key with several rows stands for several ownership
-  records, up to `maxRowsPerKey` rows (always present with it, at most the
-  table's `maxRecordCount`). A key with more rows than that, or any key with
-  several rows when `multiple` is absent, has no owner you can state.
+  records, up to `maxRowsPerKey` distinct rows (always present with it, at most
+  the table's `maxRecordCount`), counted after de-duplication. A key with more
+  distinct rows than that, or any key with several distinct rows when
+  `multiple` is absent, has no owner you can state.
 - `rowIdField`, when present, labels the rows of one key. It is not unique:
-  de-duplicate the rows of one key by the owner and mailing content you read.
+  de-duplicate the rows of one key by the owner and mailing content you read,
+  and drop a row whose values another row of the key already carries.
+- Read each table column's `label` before you use it. Sussex splits the owner's
+  mailing address over four columns: `MAILINGADDRESS` is the street line, and
+  the city, state and ZIP are `CITY`, `STATE` and `ZIPCODE`.
+- No function in this package reads `ownerJoin.fields` for you
+  (`reviewedCapability` returns reviewed records only, and
+  `buildParcelLookupDeepLink` reads the layer's `searchFields`). On a joined
+  record, read the owner columns from `endpoint.ownerJoin.fields` yourself.
 
 A `SearchField` may carry `wireName`: the column's fully qualified name on a
 layer that answers with `table.column` names, while `name` stays the bare last
@@ -394,9 +404,9 @@ read `addedAt` and fall back to the oldest `lastVerified` only when it is absent
 
 ## Coverage today
 
-The atlas bundles **538 counties across all 50 US states and DC** (521 verified endpoints), covering the largest counties in each state, every county in Mississippi and all 100 of North Carolina's. Call `listStates()` to enumerate the full set.
+The atlas bundles **539 counties across all 50 US states and DC** (522 verified endpoints), covering the largest counties in each state, every county in Mississippi and all 100 of North Carolina's. Call `listStates()` to enumerate the full set.
 
-Every state has at least one county on record, and 493 of the 538 carry a verified endpoint. The other 45 have `hasPublicRest: false` and an empty `endpoints` array, with a `coverage` block that gives the reason code and one sentence to show as is, `notes` with the detail, and a `contact` for the county office (its `department`, `url` and, where the county publishes one, `email`). The reasons vary. A county sells its owner data, runs no public query service, puts one behind a login or under terms that bar us from serving it, publishes a layer without owner names or with them blank, or runs a service that is down, stale or technically unusable. They ship rather than being omitted, so `findCounty()` still resolves them, and `coverageAnswer()` turns any of them into the answer the hosted MCP server and the REST API give. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
+Every state has at least one county on record, and 494 of the 539 carry a verified endpoint. The other 45 have `hasPublicRest: false` and an empty `endpoints` array, with a `coverage` block that gives the reason code and one sentence to show as is, `notes` with the detail, and a `contact` for the county office (its `department`, `url` and, where the county publishes one, `email`). The reasons vary. A county sells its owner data, runs no public query service, puts one behind a login or under terms that bar us from serving it, publishes a layer without owner names or with them blank, or runs a service that is down, stale or technically unusable. They ship rather than being omitted, so `findCounty()` still resolves them, and `coverageAnswer()` turns any of them into the answer the hosted MCP server and the REST API give. **Check `hasPublicRest`** rather than assuming every county has an endpoint; `totals.countiesWithEndpoint` gives the queryable count directly.
 
 The city registries cover 30 cities with code-violation or building-permit datasets, 19 with zoning-case datasets. Call `listCities()` for the current set.
 
@@ -429,6 +439,7 @@ The parcel layers the atlas points to belong to their publishers. These publishe
 | `ok-creek` (0.8.0) | INCOG's Parcels_CreekCo [item](https://map11.incog.org/arcgis11wa/rest/services/Parcels_CreekCo/MapServer/0/iteminfo) credits the Creek County Assessor and carries INCOG's use-of-this-information disclaimer | Creek County Assessor; published by INCOG. USE OF THIS INFORMATION: This dataset has been created for illustrative purposes only. Although every effort has been made to produce the most current, correct and clearly expressed data possible, all geographic information has limitations due to scale, resolution, date and interpretation of the original source materials. This dataset is based on data collected from various sources that can change over time and without notice. Therefore, the dataset provided is not intended to replace any official source. You should not act or refrain from acting based upon this feature class without independently verifying the information and, if necessary, obtaining professional advice. The burden of determining the accuracy, completeness, timeliness of information rest solely on the user. Copyright © 2016 INCOG |
 | `mo-jasper` (0.8.0) | The City of Joplin's JascoParcels52626 [item](https://www.arcgis.com/home/item.html?id=5d47528e4f1c42dc806a55e28b7e1c19) licence text: informational and general mapping use, no warranty, verify with Jasper County | Jasper County, Missouri parcel data, published by the City of Joplin GIS. This dataset is provided for informational and general mapping purposes only. It is not intended for use as a legal survey, title record, deed description, or authoritative determination of property boundaries or ownership. The City of Joplin makes no warranty regarding the accuracy, completeness, currency, or fitness of the data for a particular purpose. Users assume responsibility for independently verifying information with Jasper County or another appropriate authoritative source. The City of Joplin and Jasper County are not responsible for decisions, damages, or losses resulting from use of this dataset. |
 | `mi-muskegon` (0.8.0) | The county's [GIS Data Download / Use Agreement](https://gis.muskegoncountygis.com/open_data/documents/MCGIS_Data_Download_Use_Agreement_v2026.pdf) (v2026), clause 8: this notice on every derivative work. Clause 5 also requires its disclaimer in the use agreement of any application of the Data, and the license is revocable (clause 9: the county may charge in future); see the record's `notes` | Reproduced with permission granted Muskegon County, Michigan. Some information has been provided subject to a non-exclusive, limited, and revocable license granted by Muskegon County, Michigan. |
+| `de-sussex` (0.9.1) | The Parcels_PIN service's copyright text names the county; the service states no licence, so `license` is `unknown` | Sussex County Government |
 | `md-montgomery` | Reuse allowed, attribution requested | Montgomery County Planning Department (M-NCPPC) |
 | `md-prince-georges` | Reuse allowed, attribution requested | Prince George's County Planning Department (M-NCPPC) |
 | `nc-wake` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Wake County (Wake County GIS, Wake County Revenue) |

@@ -67,7 +67,8 @@ export function countyOffersAttributeSearch(county: Pick<CountyRecord, "endpoint
  * Null is the common answer and it is not a failure: it means nobody has had to
  * write anything down about that field for that county, so the ordinary rules
  * apply. Read `county.endpoints[].searchFields` to see what the layer actually
- * documents.
+ * documents, and `endpoints[].ownerJoin.fields` for the owner columns of a
+ * layer that keeps them in a joined table.
  *
  * A non-null answer is the part worth branching on. It was entered by a human
  * who checked something a field list cannot show, and it outranks whatever the
@@ -88,7 +89,8 @@ export function reviewedCapability(
  * reason. Use it to decide whether to promise a user the field at all.
  *
  * False does NOT mean "available". It means no reviewed record says otherwise,
- * so fall back to the endpoint's documented `searchFields`.
+ * so fall back to the endpoint's documented `searchFields` (and its
+ * `ownerJoin.fields`, where it has a joined owner table).
  */
 export function isReviewedUnservable(
   county: Pick<CountyRecord, "capabilityOverrides">,

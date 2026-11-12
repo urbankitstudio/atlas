@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-11",
   "totals": {
     "states": 51,
-    "counties": 538,
-    "endpoints": 521,
-    "countiesWithEndpoint": 493,
+    "counties": 539,
+    "endpoints": 522,
+    "countiesWithEndpoint": 494,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -69,8 +69,8 @@
       "slug": "delaware",
       "name": "Delaware",
       "abbrev": "DE",
-      "countyCount": 1,
-      "endpointCount": 1,
+      "countyCount": 2,
+      "endpointCount": 2,
       "populated": true
     },
     {

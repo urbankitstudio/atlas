@@ -54,8 +54,8 @@ export interface SearchField {
  * Owner rows that live in a separate TABLE of the same service, joined to the
  * endpoint's parcel polygons by a key: the polygons carry `parcelKey`, the
  * table carries `key`, and a parcel's owners are the table rows whose `key`
- * equals its `parcelKey` value. Declared since 0.9.0 and carried by NO record
- * yet.
+ * equals its `parcelKey` value. Declared since 0.9.0; Sussex County, Delaware
+ * (0.9.1) is the first record that carries one.
  *
  * The table has no geometry. Query it by key only
  * (`<key> IN ('<value>', ...)`, each `'` doubled), never spatially: an ArcGIS
@@ -89,10 +89,13 @@ export interface OwnerJoin {
    *  up to `maxRowsPerKey` of them. Absent: treat a key with several rows as
    *  having no single owner rather than picking one. */
   multiple?: "rows";
-  /** The most table rows one key may hold and still be read as its ownership
-   *  records: an integer from 1 to `maxRecordCount`, present exactly when
-   *  `multiple` is `"rows"`. Treat a key with more rows as having no owner you
-   *  can state (a single key can hold more rows than one query returns). */
+  /** The most distinct ownership rows one key may hold and still be read as its
+   *  ownership records: an integer from 1 to `maxRecordCount`, present exactly
+   *  when `multiple` is `"rows"`. Count a key's rows after de-duplicating them
+   *  by the owner and mailing content you read and dropping any row that says
+   *  nothing another row of the key does not. Treat a key with more than that
+   *  as having no owner you can state (a single key can hold more rows than one
+   *  query returns). */
   maxRowsPerKey?: number;
   /** A unique, stable column to order the table's pages by: send it as
    *  `orderByFields` whenever you send `resultOffset`, or a paged read can
@@ -262,7 +265,8 @@ export interface EndpointRecord {
    *  such column, not that no owner there is protected. */
   confidentialFlag?: ConfidentialFlag;
   /** The table that holds this layer's owner rows (see {@link OwnerJoin}).
-   *  Declared since 0.9.0; absent on every record today. */
+   *  Declared since 0.9.0; carried by Sussex County, Delaware since 0.9.1 and
+   *  absent on every other record. */
   ownerJoin?: OwnerJoin;
   sampleQuery: string | null;
   license: LicenseType;
@@ -347,7 +351,9 @@ export interface CapabilityBasis {
  * deliberately does not derive it: a second implementation of that
  * classification would drift from the one the API bills against, and you would
  * have no way to tell which was right. Read `endpoints[].searchFields` for the
- * mechanical answer, and treat an entry here as outranking it.
+ * mechanical answer, plus `endpoints[].ownerJoin.fields` on a layer whose owner
+ * rows sit in a joined table (see {@link OwnerJoin}), and treat an entry here
+ * as outranking it.
  */
 export type CapabilityOverrides = Partial<
   Record<

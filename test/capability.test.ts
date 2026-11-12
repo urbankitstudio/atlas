@@ -219,16 +219,26 @@ describe("queryFieldName", () => {
     expect(queryFieldName({ name: "TAXPINNO", wireName: "SDE.mc_parcel_polygon.TAXPINNO" })).toBe("SDE.mc_parcel_polygon.TAXPINNO");
   });
 
-  // The CHANGELOG's 0.9.0 claim, held to the data: the types are declared and
-  // no record uses them, so `name` is still the literal query column everywhere.
-  // When the first record ships one, this test goes red and is rewritten with it.
-  it("no bundled record carries a wireName or an ownerJoin yet, so every field queries by its name", () => {
+  // The CHANGELOG's claims, held to the data. 0.9.0 declared both shapes with no
+  // record using either. 0.9.1 ships the first ownerJoin (Sussex County,
+  // Delaware) and still no wireName, so `name` is the literal query column
+  // everywhere, the join table's columns included. When a record ships a
+  // wireName, or a second join, this test goes red and is rewritten with it.
+  it("one bundled record carries an ownerJoin (Sussex DE), none carries a wireName, and every field queries by its name", () => {
     const endpoints: EndpointRecord[] = [...atlas.byStateSlug.values()]
       .flatMap((s) => s.counties)
       .flatMap((c) => c.endpoints);
     expect(endpoints.length, "the bundled atlas did not load").toBeGreaterThan(100);
-    expect(endpoints.filter((e) => "ownerJoin" in e).map((e) => e.url)).toEqual([]);
-    const fields = endpoints.flatMap((e) => e.searchFields);
+    const joined = endpoints.filter((e) => "ownerJoin" in e);
+    expect(joined.map((e) => e.url)).toEqual([
+      "https://map.sussexcountyde.gov/trdserver/rest/services/Geographic_Information_Office/Parcels_PIN/MapServer/0",
+    ]);
+    const join = joined[0].ownerJoin!;
+    expect([join.parcelKey, join.key, join.multiple, join.maxRowsPerKey, join.orderField]).toEqual(["Name", "PIN", "rows", 1000, "OBJECTID_1"]);
+    // The owner columns are the table's alone: the layer's own list has the parcel id and nothing else.
+    expect(joined[0].searchFields.map((f) => f.name)).toEqual(["Name"]);
+    expect(join.fields.map((f) => f.name)).toEqual(["PIN", "PINWASSEMENTUNIT", "FULLNAME", "Second_Owner_Name", "MAILINGADDRESS", "CITY", "STATE", "ZIPCODE"]);
+    const fields = endpoints.flatMap((e) => [...e.searchFields, ...(e.ownerJoin?.fields ?? [])]);
     expect(fields.length).toBeGreaterThan(endpoints.length);
     expect(fields.filter((f) => "wireName" in f || queryFieldName(f) !== f.name)).toEqual([]);
   });

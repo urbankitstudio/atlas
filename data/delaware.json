@@ -2,7 +2,7 @@
   "stateSlug": "delaware",
   "stateName": "Delaware",
   "stateAbbrev": "DE",
-  "lastUpdated": "2026-06-20",
+  "lastUpdated": "2026-11-11",
   "counties": [
     {
       "id": "de-new-castle",
@@ -41,6 +41,65 @@
         "email": null
       },
       "notes": "New Castle County DE (Wilmington/Newark metro; county seat Wilmington; FIPS 10003; most populous of Delaware's 3 counties, pop. ~570,000) publishes a public ArcGIS MapServer parcel layer hosted by NCCDE GIS (Foundation/Base_Layers/MapServer/0, 'Parcels', ~203,753 features, no token required). Key fields: PRCLID (parcel ID / APN), CNTCTLAST (owner last name / contact, the searchable owner field), OWNADDR (owner mailing address), ADDRESS (property situs address). Owner-name search via UPPER(CNTCTLAST) LIKE UPPER('%NAME%') works. Verified 2026-06-20: UPPER(CNTCTLAST) LIKE UPPER('%SMITH%') returns Wilmington-area parcels. Delaware has only 3 counties (New Castle, Kent, Sussex); Kent and Sussex are served separately. Do not confuse with New Castle in Pennsylvania (Lawrence County, PA)."
+    },
+    {
+      "id": "de-sussex",
+      "state": "DE",
+      "stateName": "Delaware",
+      "stateSlug": "delaware",
+      "county": "Sussex",
+      "countySlug": "sussex-county",
+      "countyFips": "10005",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://map.sussexcountyde.gov/trdserver/rest/services/Geographic_Information_Office/Parcels_PIN/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Tax Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "Name", "label": "Parcel ID (PIN)", "searchable": true }
+          ],
+          "ownerJoin": {
+            "url": "https://map.sussexcountyde.gov/trdserver/rest/services/Geographic_Information_Office/Parcels_PIN/MapServer/1",
+            "layerName": "OwnershipInformation",
+            "key": "PIN",
+            "parcelKey": "Name",
+            "fields": [
+              { "name": "PIN", "label": "Parcel ID (PIN)", "searchable": true },
+              { "name": "PINWASSEMENTUNIT", "label": "PIN with Assessment Unit", "searchable": false },
+              { "name": "FULLNAME", "label": "Owner Name", "searchable": true },
+              { "name": "Second_Owner_Name", "label": "Second Owner Name", "searchable": false },
+              { "name": "MAILINGADDRESS", "label": "Owner Mailing Address", "searchable": false },
+              { "name": "CITY", "label": "Owner Mailing City", "searchable": false },
+              { "name": "STATE", "label": "Owner Mailing State", "searchable": false },
+              { "name": "ZIPCODE", "label": "Owner Mailing ZIP", "searchable": false }
+            ],
+            "rowIdField": "PINWASSEMENTUNIT",
+            "multiple": "rows",
+            "maxRowsPerKey": 1000,
+            "orderField": "OBJECTID_1",
+            "maxRecordCount": 1000,
+            "lastVerified": "2026-11-11"
+          },
+          "sampleQuery": "https://map.sussexcountyde.gov/trdserver/rest/services/Geographic_Information_Office/Parcels_PIN/MapServer/0/query?where=Name%3D%27133-11.00-8.00%27&outFields=Name&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": null,
+          "status": "live",
+          "lastVerified": "2026-11-11",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Sussex County Government, Geographic Information Office (the name of the parcel service's folder)",
+        "url": "https://map.sussexcountyde.gov/trdserver/rest/services/Geographic_Information_Office/Parcels_PIN/MapServer",
+        "email": null
+      },
+      "notes": "Sussex County, Delaware (Georgetown; FIPS 10005). The county's own ArcGIS Server at map.sussexcountyde.gov publishes Geographic_Information_Office/Parcels_PIN, a MapServer it describes as 'Sussex County Delaware Tax Parcel Map with Related Ownership Information Table'. THE OWNERS ARE NOT ON THE PARCEL LAYER. Layer 0, 'Tax Parcels', holds the polygons (165,012 on 2026-11-11) and is documented here by one column: Name, which is the parcel's PIN (133-11.00-8.00: digits, dashes and dots, not zero-padded). It carries no owner and no site address. The owner rows are in table 1 of the same service, 'OwnershipInformation' (208,124 rows), keyed by PIN; the service itself relates the layer's Name to the table's PIN, one parcel to many rows, and this record names that table as the layer's owner join. The table has no geometry, so it is asked by key only (PIN IN a list of parcel PINs), never by location, and every row it returns must echo a key that was asked. On the table, FULLNAME is the owner (null or empty on none of its rows) and Second_Owner_Name a second owner; MAILINGADDRESS is the street line of the owner's mailing address (null or empty on 274 rows), and the city, state and ZIP are the separate columns CITY, STATE and ZIPCODE. A paid radius list carries the owner name and the mailing street line; the city, state and ZIP stay in the county table's columns and are not joined onto that line. SEVERAL ROWS PER PARCEL: 43,273 table rows (20.8%) carry an assessment unit, where PINWASSEMENTUNIT is the PIN, a dash and the unit; that column labels the rows of one PIN but is not unique, so a parcel's rows are told apart by the owner and mailing line they carry. One PIN holds 1,093 rows, more than the table returns to one query. Some parcels have no table row at all (51 neighbouring lots of map block 233-11.00 on 2026-11-10); they are served without an owner. NO SITE ADDRESS is published on the layer or the table, so an address lookup cannot be answered from this record: a search by PIN and a point or radius lookup are what it offers. Verified 2026-11-11: Name = '133-11.00-8.00' returned one parcel, the sample query's predicate; five PINs read off the layer were asked of the table and every row it returned echoed an asked key; UPPER(FULLNAME) LIKE '%SMITH%' counted 1,603 table rows. maxRecordCount is 1,000 on the layer and on the table, with pagination; capabilities Map, Query and Data; ArcGIS Server 11.3; native Web Mercator (WKID 102100); the server reflects the caller's Origin for CORS. TERMS: the service's copyright text reads 'Sussex County Government' and no license text is published on the service, so the license is recorded as unknown and the copyright text is carried as the credit. The contact URL is the parcel service's own page, which answered HTTP 200 on 2026-11-11; the county's website was not read. Credit: Sussex County Government",
+      "credit": "Sussex County Government",
+      "addedAt": "2026-11-11"
     }
   ]
 }
