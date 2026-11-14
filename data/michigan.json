@@ -2,7 +2,7 @@
   "stateSlug": "michigan",
   "stateName": "Michigan",
   "stateAbbrev": "MI",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-13",
   "counties": [
     {
       "id": "mi-kent",
@@ -12,72 +12,19 @@
       "county": "Kent",
       "countySlug": "kent-county",
       "countyFips": "26081",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://gis.kentcountymi.gov/agisprod/rest/services/ParcelsWithCondos/MapServer/0",
-          "serviceType": "MapServer",
-          "layerIndex": 0,
-          "layerName": "Parcels With Condos",
-          "supportsQuery": true,
-          "corsEnabled": null,
-          "searchFields": [
-            {
-              "name": "PPN",
-              "label": "Parcel Permanent Number",
-              "searchable": true
-            },
-            {
-              "name": "OWNERNAME1",
-              "label": "Owner Name (Primary)",
-              "searchable": true
-            },
-            {
-              "name": "OWNERNAME2",
-              "label": "Owner Name 2",
-              "searchable": true
-            },
-            {
-              "name": "OWNERADDRESS",
-              "label": "Owner Address",
-              "searchable": true
-            },
-            {
-              "name": "OWNERCITY",
-              "label": "Owner City",
-              "searchable": true
-            },
-            {
-              "name": "PROPERTYADDRESS",
-              "label": "Property Address",
-              "searchable": true
-            },
-            {
-              "name": "PROPADDRESSCITY",
-              "label": "Property Address City",
-              "searchable": true
-            },
-            {
-              "name": "PROPERTYCLASS",
-              "label": "Property Class",
-              "searchable": false
-            }
-          ],
-          "sampleQuery": "https://gis.kentcountymi.gov/agisprod/rest/services/ParcelsWithCondos/MapServer/0/query?where=UPPER(OWNERNAME1)%20LIKE%20UPPER('%25SMITH%25')&outFields=PPN,OWNERNAME1,PROPERTYADDRESS,PROPADDRESSCITY&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://www.kentcountymi-accesskent.opendata.arcgis.com/",
-          "status": "live",
-          "lastVerified": "2026-08-29",
-          "verifiedBy": "manual",
-          "notes": "Re-verified live 2026-08-29 (was stamped unreachable 2026-06-06 with no probe record, and the flag was wrong at least by 2026-08-29): the enrich-shape query (point + 30 m, OWNERNAME1/OWNERADDRESS/PROPERTYADDRESS/PPN) at Grand Rapids City Hall answered in 0.8 s with owner names and mailing addresses; where=1=1 count 232,036. Values are space-padded (trim before matching)."
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Kent County GIS",
         "url": "https://www.kentcountymi.gov/246/Geographic-Information-System-GIS",
         "email": null
       },
-      "notes": "Kent County (Grand Rapids metro) hosts ParcelsWithCondos/MapServer/0, a countywide parcel layer including condominium units. 22 fields: PPN, TAXPARCEL_FLAG, OWNERNAME1, OWNERNAME2, OWNERCAREOF, OWNERADDRESS, OWNERCITY, OWNERZIPCODE, PROPERTYADDRESS, PROPADDRESSCITY, PROPADDRESSSTATE_ZIPCODE, PROPERTYCLASS, GOVERNMENTALUNIT, SCHOOLDISTRICT, SEV/TAXABLE fields (2 tribunals), ACREAGE, PNUM, geometry. Query confirmed live: UPPER(OWNERNAME1) LIKE '%SMITH%' returns real owner names. Owner mailing address is in OWNERADDRESS/OWNERCITY/OWNERZIPCODE. The county's open data hub at kentcountymi-accesskent.opendata.arcgis.com mirrors the same data. Michigan parcel ID (PPN) format is 10-digit county-township-parcel. INFRASTRUCTURE OUTAGE (verified 2026-06-06): the entire agisprod ArcGIS server is offline ('Could not access any server machines') -- every service and the portal are affected. Looks transient rather than a retirement; recheck around 2026-07-06."
+      "notes": "RETIRED 2026-11-13, with the reason: around 2026-11-12 Kent County locked its public ArcGIS server (gis.kentcountymi.gov/agisprod). On 2026-11-13, anonymous requests for the registered layer (ParcelsWithCondos MapServer layer 0) and for its service answer ArcGIS error 499 'Token Required', and ParcelsWithCondos is no longer in the server's anonymous service list; the OpenData folder also answers 499 'Token Required'. The same request for the server's service list answers 200 and lists only BaseMap, Kent_County_Public_Incidents, MasterGeocoder, ParcelAnnotation, SafeMeds_SafeSharp and a Utilities folder, so the server is up and the parcel services are the part that went private. The open data hub address the record carried (www.kentcountymi-accesskent.opendata.arcgis.com) presents a TLS certificate issued for a different host name, so it is not a usable source either. No statewide public parcel layer with owner names was found for Michigan as of 2026-11-13, so there is no other public copy to point at. Re-register from the county's server if it republishes the parcel layer anonymously. Prior record (Kent County, Michigan; Grand Rapids metro; FIPS 26081; last verified live 2026-08-29): a countywide parcel layer including condominium units, 232,036 parcels, 22 fields: PPN, TAXPARCEL_FLAG, OWNERNAME1, OWNERNAME2, OWNERCAREOF, OWNERADDRESS, OWNERCITY, OWNERZIPCODE, PROPERTYADDRESS, PROPADDRESSCITY, PROPADDRESSSTATE_ZIPCODE, PROPERTYCLASS, GOVERNMENTALUNIT, SCHOOLDISTRICT, SEV and taxable value fields, ACREAGE, PNUM, geometry. PPN was a 10-digit county-township-parcel number and values were space-padded. The earlier 2026-06-06 outage note (the whole server was offline) is superseded: the server answered again by 2026-08-29 and is now locked on purpose.",
+      "coverage": {
+        "reason": "login-required",
+        "summary": "Around 2026-11-12 Kent County locked its GIS server: the parcel layer now needs a login token and no anonymous parcel service is listed, so we don't index it. Ask Kent County GIS, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-13"
+      }
     },
     {
       "id": "mi-oakland",

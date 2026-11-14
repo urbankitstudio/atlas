@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-11-11",
+  "lastUpdated": "2026-11-13",
   "totals": {
     "states": 51,
     "counties": 542,
-    "endpoints": 522,
-    "countiesWithEndpoint": 494,
+    "endpoints": 520,
+    "countiesWithEndpoint": 492,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -190,7 +190,7 @@
       "name": "Michigan",
       "abbrev": "MI",
       "countyCount": 9,
-      "endpointCount": 6,
+      "endpointCount": 5,
       "populated": true
     },
     {
@@ -350,7 +350,7 @@
       "name": "Tennessee",
       "abbrev": "TN",
       "countyCount": 8,
-      "endpointCount": 4,
+      "endpointCount": 3,
       "populated": true
     },
     {

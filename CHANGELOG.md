@@ -1,5 +1,35 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.3 (2026-11-13)
+
+One county is re-pointed to a live server and two lose their endpoint. `totals.counties` stays at 542;
+`totals.endpoints` moves from 522 to 520 and `totals.countiesWithEndpoint` from 494 to 492. **Patch.** Data only:
+no type, function or field of the package changed.
+
+- **Pinal AZ** (`az-pinal`, FIPS 04021), re-pointed to the county's own server. The old endpoint,
+  `rogue.casagrandeaz.gov` (the City of Casa Grande's mirror), is retired and now redirects to the city's homepage.
+  The record's endpoint is `https://gis.pinal.gov/mapping/rest/services/TaxParcels/FeatureServer/3` (was
+  `.../Pinal_County_Parcels/MapServer/0`), `serviceType` `FeatureServer`, `layerIndex` 3, `maxRecordCount` 2000,
+  288,912 parcel records, last updated 2026-11-10. **The column names change back to the short forms**: `PARCELID`,
+  `OWNERNME1`, `OWNERNME2`, `SITEADDRESS`, `PSTLADDRESS`, `PSTLCITY`, `PSTLSTATE`, `PSTLZIP5`, `PSTLZIP4`, `CVTTXCD`,
+  `CVTTXDSCRP`, `USECD`, `USEDSCRP`, `CLASSCD`, `CLASSDSCRP` and `PRPRTYDSCRP` replace `Parcel_Identification_Number`,
+  `First_Owner_Name`, `Second_Owner_Name`, `Site_Address`, `Postal_*`, `Tax_District_*`, `Assessing_Use_*`,
+  `Property_Class*` and `Property_Description`. The layer has no lowest-parcel-id column, so
+  `Lowest_Parcel_Identification_Number` is gone. Read the field by its `label`, not its name. The owner name, the
+  owner mailing address and the other roles are all still published.
+- **Kent MI** (`mi-kent`, FIPS 26081), endpoint removed: `hasPublicRest` is `false`, `endpoints` is `[]` and
+  `coverage.reason` is `login-required`, checked 2026-11-13. Around 2026-11-12 the county locked its ArcGIS server:
+  the registered `ParcelsWithCondos` layer and the `OpenData` folder answer ArcGIS error 499 `Token Required`, and
+  the parcel service is no longer in the anonymous service list. No statewide Michigan parcel layer with owner
+  names was found. The record's older "server offline, recheck around 2026-07-06" note is replaced.
+- **Montgomery TN** (`tn-montgomery`, FIPS 47125), endpoint removed: `hasPublicRest` is `false`, `endpoints` is
+  `[]` and `coverage.reason` is `technical`, checked 2026-11-13. The county's server answers a home connection
+  with 200 and our hosted servers with HTTP 403 every time (1,830 failed probes, no success), so it cannot be
+  served from a cloud host. A caller on its own machine can still reach the layer directly.
+
+For an agent: a lookup for Kent or Montgomery now returns the `coverage` answer (no public data we can serve, with
+the county's contact and a request path) in place of an endpoint, and a Pinal lookup reads the county's server.
+
 ## 0.9.2 (2026-11-12)
 
 Three new records with no endpoint. `totals.counties` moves from 539 to 542. Endpoints and counties with an

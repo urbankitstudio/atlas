@@ -2,7 +2,7 @@
   "stateSlug": "tennessee",
   "stateName": "Tennessee",
   "stateAbbrev": "TN",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-13",
   "counties": [
     {
       "id": "tn-davidson",
@@ -275,52 +275,20 @@
       "county": "Montgomery",
       "countySlug": "montgomery-county",
       "countyFips": "47125",
-      "hasPublicRest": true,
-      "endpoints": [
-        {
-          "url": "https://gis.montgomerytn.gov/gisserver/rest/services/PublicParcels/MapServer/0",
-          "serviceType": "MapServer",
-          "layerIndex": 0,
-          "layerName": "PublicParcels",
-          "supportsQuery": true,
-          "corsEnabled": true,
-          "searchFields": [
-            {
-              "name": "ParcelNo",
-              "label": "Parcel Number (e.g. 066E A 00600 000)",
-              "searchable": true
-            },
-            {
-              "name": "GISLINK",
-              "label": "GIS Link (Parcel ID, e.g. 063066E A 00600)",
-              "searchable": true
-            },
-            {
-              "name": "PropertyAddress",
-              "label": "Situs Address",
-              "searchable": true
-            },
-            {
-              "name": "PropertyCity",
-              "label": "Situs City",
-              "searchable": false
-            }
-          ],
-          "sampleQuery": "https://gis.montgomerytn.gov/gisserver/rest/services/PublicParcels/MapServer/0/query?where=UPPER(PropertyAddress)+LIKE+'%25MAIN%25'&outFields=ParcelNo,GISLINK,PropertyAddress,PropertyCity&returnGeometry=false&f=json",
-          "license": "unknown",
-          "licenseUrl": "http://montgomerytn.gov/assessor/public-parcels",
-          "status": "live",
-          "lastVerified": "2026-10-14",
-          "verifiedBy": "manual"
-        }
-      ],
+      "hasPublicRest": false,
+      "endpoints": [],
       "contact": {
         "department": "Montgomery County Assessor of Property",
         "url": "http://montgomerytn.gov/assessor/gis",
         "email": null
       },
-      "notes": "Montgomery County, Tennessee (Clarksville; FIPS 47125). The county's public parcel layer, the one the Assessor of Property's Public Parcels page invites users to add as a live GIS layer, is PublicParcels MapServer layer 0 on the county GIS server (gis.montgomerytn.gov, ArcGIS Server): 99,941 rows as of 2026-11-10. The layer now publishes owner columns: on 2026-11-10 it carries Owner1 (non-blank on 99,914 rows), Owner2, MailingAddress, MailCity, MailState and MailZip, which it did not carry on 2026-10-14. This record does not list them yet, so lookups here still return parcel ids and situs addresses only. No licence or terms are posted on the layer, its service, its item information or the assessor's pages. The county's server sits behind Cloudflare, which answers requests from our hosted servers with HTTP 403, so live lookups from this site can fail. The parcel id is ParcelNo (e.g. 066E A 00600 000) with GISLINK as the shorter link id (063066E A 00600); the situs is PropertyAddress with PropertyCity. The rows are one per building card, not one per parcel: a parcel with several buildings repeats its parcel id and situs on each row, so counts of rows overstate counts of parcels. The layer's wkid is 102736 (Tennessee State Plane, US feet; latestWkid 2274), and outSR=4326 returns longitude and latitude. maxRecordCount is 2000 with pagination. CORS: the server echoes the request Origin in Access-Control-Allow-Origin, so a probe without an Origin header reads it as closed.",
-      "addedAt": "2026-10-14"
+      "notes": "RETIRED 2026-11-13, with the reason: the county's server answers our hosted servers with HTTP 403 every time, so we cannot serve this county. The server (gis.montgomerytn.gov, ArcGIS Server, behind Cloudflare) answers an ordinary home connection with HTTP 200 and the layer's metadata, and that was checked again on 2026-11-13 with a plain request. From the hosted servers this site's liveness probe and lookups run on, every probe on record failed with 403: 1,830 failures and no success. The home connection gets 200 with any User-Agent and the hosted servers get 403 every time, so the block follows where the request comes from, not what it says. A caller on its own machine can still reach the layer directly. Re-register the layer if the county stops blocking cloud hosts. Prior record (Montgomery County, Tennessee; Clarksville; FIPS 47125; verified 2026-10-14): PublicParcels MapServer layer 0 on the Assessor of Property's public GIS server, 99,941 rows on 2026-11-10; registered fields ParcelNo (e.g. 066E A 00600 000), GISLINK (063066E A 00600), PropertyAddress and PropertyCity only. On 2026-11-10 the layer also carried Owner1, Owner2, MailingAddress, MailCity, MailState and MailZip, which the record never listed. Rows are one per building card, not one per parcel, so a parcel with several buildings repeats its parcel id and situs. The layer's wkid is 102736 (Tennessee State Plane, US feet; latestWkid 2274); maxRecordCount 2000 with pagination. No licence or terms are posted on the layer, its service, its item information or the assessor's pages.",
+      "addedAt": "2026-10-14",
+      "coverage": {
+        "reason": "technical",
+        "summary": "Montgomery County's GIS server answers every request from our hosted servers with HTTP 403 (it blocks cloud hosts) though it answers a home connection, so we can't serve it and don't index it. Use the Assessor's GIS page, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-13"
+      }
     },
     {
       "id": "tn-knox",
