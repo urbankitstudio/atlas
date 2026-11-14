@@ -1,5 +1,27 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.4 (2026-11-14)
+
+Nine New York records are re-pointed to the state's new server. `totals.counties` stays at 542 and
+`totals.endpoints` at 520. **Patch.** Data only: no type, function or field of the package changed.
+
+- **New York's state tax parcel layer** moved hosts. New York's ITS GIS office retired its legacy server
+  (`gisservices.its.ny.gov`) on 2026-11-13 and every URL on it now answers "Service ... not started". The same
+  service, `NYS_Tax_Parcels_Public` MapServer layer 1, lives at
+  `https://nysgeohub.ny.gov/arcgis/rest/services/Parcels/NYS_Tax_Parcels_Public/MapServer/1` (note the added
+  `Parcels/` folder). The layer index and the field names (`PRIMARY_OWNER`, `ADD_OWNER`, `MAIL_ADDR`,
+  `PARCEL_ADDR`, `SWIS_SBL_ID`, `PRINT_KEY`, `COUNTY_NAME`) are unchanged. `maxRecordCount` is 2000, JSON, GeoJSON
+  and PBF are supported, and the server echoes the request `Origin`, so `corsEnabled` is now `true`. Each
+  record's `url`, `sampleQuery` and `licenseUrl` move, and `lastVerified` is 2026-11-14 on all nine: Bronx
+  (`ny-bronx`), Kings (`ny-kings`), New York (`ny-new-york`), Queens (`ny-queens`), Richmond (`ny-richmond`),
+  Onondaga (`ny-onondaga`), Suffolk (`ny-suffolk`), Westchester (`ny-westchester`) and Cayuga (`ny-cayuga`). Each
+  scoped owner search answered anonymously with ten rows on 2026-11-14, and Cayuga counts 39,127 parcels.
+- The ArcGIS Online copy of the same layer (`services6.arcgis.com`, `NYS_Tax_Parcels_Public` FeatureServer layer 1,
+  org NYSGIS_GPO) is unchanged and still answers.
+
+For an agent: a New York county lookup that used the state server now reads `nysgeohub.ny.gov`. If your code pinned
+the old host, or built a URL from it, change it to the new one: the old host no longer answers.
+
 ## 0.9.3 (2026-11-13)
 
 One county is re-pointed to a live server and two lose their endpoint. `totals.counties` stays at 542;
