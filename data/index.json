@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-11-14",
+  "lastUpdated": "2026-11-15",
   "totals": {
     "states": 51,
-    "counties": 545,
-    "endpoints": 521,
-    "countiesWithEndpoint": 493,
+    "counties": 546,
+    "endpoints": 522,
+    "countiesWithEndpoint": 494,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -93,8 +93,8 @@
       "slug": "georgia",
       "name": "Georgia",
       "abbrev": "GA",
-      "countyCount": 9,
-      "endpointCount": 6,
+      "countyCount": 10,
+      "endpointCount": 7,
       "populated": true
     },
     {

@@ -1,5 +1,25 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.6 (2026-11-15)
+
+Dooly County, Georgia, which a user searched for, joins the atlas with an endpoint. `totals.counties` moves from
+545 to 546, `totals.endpoints` from 521 to 522 and `totals.countiesWithEndpoint` from 493 to 494. **Patch.** Data
+only: no type, function or field of the package changed.
+
+- **Dooly County, Georgia** (`ga-dooly`, FIPS 13093), on the county's own ArcGIS Online feature service
+  (`https://services9.arcgis.com/x9uoDq5JB3OouaRv/arcgis/rest/services/Parcel_Regions_w_WinGAP/FeatureServer/0`),
+  the standard WinGAP export that joins the tax roll to the parcel polygons: 7,344 parcels, last edited 2026-11-05.
+  The owner is `lastname`, which holds the whole owner string. There is no combined site-address column: the
+  situs is `house_no` (an integer) plus `street_nam`, listed as a house-number and street-name pair, with
+  `stdirect`, `sttype`, `extension` and `unit` beside them. The owner mailing address is `address2` (the street on
+  most rows), `address1` (a c/o line, or the street when `address2` is blank), `address3`, `city`, `state` and
+  `zip_code`. `Parcel_No` is a fixed-width id padded with spaces, so query its parts exactly (`Map`, `Block`,
+  `Parcel` and `SubParcel`) or match the full padded value. `license` is `unknown`: the item publishes no licence text, and the
+  county's Terms of Use say only that public records are available for reuse consistent with Georgia law.
+
+For an agent: `findCountyByFips("13093")` used to return `undefined`; it now returns this record. Trim string
+values: the layer pads them to the column width.
+
 ## 0.9.5 (2026-11-14)
 
 Three counties people searched for join the atlas. St. Mary's County, Maryland, has an endpoint; Plymouth County,
