@@ -3,9 +3,9 @@
   "lastUpdated": "2026-11-14",
   "totals": {
     "states": 51,
-    "counties": 542,
-    "endpoints": 520,
-    "countiesWithEndpoint": 492,
+    "counties": 545,
+    "endpoints": 521,
+    "countiesWithEndpoint": 493,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -173,15 +173,15 @@
       "slug": "maryland",
       "name": "Maryland",
       "abbrev": "MD",
-      "countyCount": 4,
-      "endpointCount": 4,
+      "countyCount": 5,
+      "endpointCount": 5,
       "populated": true
     },
     {
       "slug": "massachusetts",
       "name": "Massachusetts",
       "abbrev": "MA",
-      "countyCount": 1,
+      "countyCount": 2,
       "endpointCount": 2,
       "populated": true
     },
@@ -325,7 +325,7 @@
       "slug": "rhode-island",
       "name": "Rhode Island",
       "abbrev": "RI",
-      "countyCount": 1,
+      "countyCount": 2,
       "endpointCount": 0,
       "populated": true
     },

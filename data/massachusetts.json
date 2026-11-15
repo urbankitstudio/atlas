@@ -2,7 +2,7 @@
   "stateSlug": "massachusetts",
   "stateName": "Massachusetts",
   "stateAbbrev": "MA",
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-11-14",
   "counties": [
     {
       "id": "ma-statewide",
@@ -155,6 +155,29 @@
       "notes": "MassGIS Level 3 (L3) Standardized Assessors' Parcel data, a single statewide service covering all 351 Massachusetts municipalities including all 6 target counties: Suffolk (Boston), Middlesex, Worcester, Norfolk, Essex, and Plymouth. Parcels are organized by municipality (TOWN_ID numeric code), not by county. To filter by county: Suffolk towns include Boston (274), Chelsea (54), Revere (223), Winthrop (349); Middlesex includes Cambridge (49), Lowell (168), Newton (195); use the MassGIS town-code lookup at mass.gov for the full list. Two-layer workflow: layer 1 (Tax Parcels) carries polygon geometry and parcel ID; layer 4 (L3_ASSESS table, no geometry) carries owner name, address, and assessment data, join on LOC_ID. OWNER_NAME field is public.",
       "ownerFieldNote": null,
       "capabilityOverrides": null
+    },
+    {
+      "id": "ma-plymouth",
+      "state": "MA",
+      "stateName": "Massachusetts",
+      "stateSlug": "massachusetts",
+      "county": "Plymouth",
+      "countySlug": "plymouth-county",
+      "countyFips": "25023",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "MassGIS (Bureau of Geographic Information), Executive Office of Technology Services and Security",
+        "url": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+        "email": null
+      },
+      "notes": "Plymouth County, Massachusetts. Massachusetts counties do not assess property: each city and town does, and MassGIS publishes every municipality's standardized (Level 3) assessor parcels in one statewide service, the two layers the Massachusetts statewide record lists (FeatureServer layers 1 and 4), which carry Plymouth County's parcels. MassGIS also publishes the two joined as one flattened layer on ArcGIS Online (https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0, 2,559,749 rows read 2026-11-14), which selects towns by the same numeric TOWN_ID. WHY NO ENDPOINT YET: a county record on a shared layer needs a filter to the county's towns, and on these layers the only column that selects a town exactly is the numeric TOWN_ID. The atlas's county filter takes a list of quoted values only; the quoted form (TOWN_ID IN ('1','42')) is refused by the service with HTTP 400, and the unquoted numeric list the service accepts is not yet a filter the atlas takes. This record gets an endpoint when it does. The county's 27 municipalities by MassGIS TOWN_ID, taken on 2026-11-14 from MassGIS's Census 2020 Towns layer (AGOL/Census2020_Towns FeatureServer layer 2, FIPS_STCO20 = 25023): Abington 1, Bridgewater 42, Brockton 44, Carver 52, Duxbury 82, East Bridgewater 83, Halifax 118, Hanover 122, Hanson 123, Hingham 131, Hull 142, Kingston 145, Lakeville 146, Marion 169, Marshfield 171, Mattapoisett 173, Middleborough 182, Norwell 219, Pembroke 231, Plymouth 239, Plympton 240, Rochester 250, Rockland 251, Scituate 264, Wareham 310, West Bridgewater 322, Whitman 338. Filtered by those ids (TOWN_ID IN (1,42,...)) the layers hold 198,942 of the state's 2,197,531 parcel polygons on layer 1 and 215,720 of 2,553,985 assessment rows on layer 4, read 2026-11-14; layer 4 (GISDATA.L3_ASSESS) carries the owner, the site address and the owner mailing address, joined to layer 1 on LOC_ID. TERMS: MassGIS publishes the service with one use note, that assessor parcel mapping represents property boundaries and is not an authoritative source; it states no limit on commercial use or redistribution. To search Plymouth County now, use the Massachusetts statewide record's layers with that TOWN_ID filter.",
+      "addedAt": "2026-11-14",
+      "coverage": {
+        "reason": "technical",
+        "summary": "Massachusetts's statewide parcel layers, the atlas's Massachusetts statewide record, carry Plymouth County but select a county only by numeric town ids, which our county filter can't take yet. Use the statewide record, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-14"
+      }
     }
   ]
 }

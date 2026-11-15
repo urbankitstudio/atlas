@@ -2,7 +2,7 @@
   "stateSlug": "rhode-island",
   "stateName": "Rhode Island",
   "stateAbbrev": "RI",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-11-14",
   "counties": [
     {
       "id": "ri-providence",
@@ -19,11 +19,34 @@
         "url": "https://www.rigis.org/",
         "email": null
       },
-      "notes": "No public queryable REST endpoint found for Providence County parcel data. Rhode Island has no county government, GIS and parcel authority rests with individual municipalities. RIGIS (risegis.ri.gov) hosts only a MuniGIS_Resources MapServer that tracks metadata (last-updated status) per municipality, not actual parcel polygons. The state GIS server at gis.ri.gov/arcgis/rest/services/RIDOA/Muni_Parcel/MapServer was unreachable at time of research. Providence City has its own GIS portal (webgis.providenceri.gov, pvdgis.maps.arcgis.com) with parcel data, but the server was refusing connections in May 2026. Fallback: download shapefiles for individual RI cities and towns from RIGIS data distribution (rigis.org). Commercial options: Regrid covers RI with full parcel attribute data.",
+      "notes": "Providence County, Rhode Island. Rhode Island has no county government: each of the county's 16 cities and towns assesses its own property. RIGIS publishes the towns' assessor parcel polygons in one statewide layer, Tax_Parcels (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0; 394,167 parcels in 39 municipalities, read 2026-11-14), Providence County's among them. (These notes said until 2026-11-14 that RIGIS hosted only municipal metadata and the state parcel server was unreachable; the Tax_Parcels layer answers.) WHY NO ENDPOINT: the layer carries only the polygon, the plat-lot id (PlatLot) and the town code (TownCode), with acreage, land-cover and E911 fields; it has no owner name, no site address and no mailing address. VINTAGE: the service says its parcels were collected between 2019 and 2022 and are not the most current. TERMS: the service's item information (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/info/iteminfo) gives licenseInfo 'semi-restricted' and a use limitation that any public facing parcel viewer containing Rhode Island parcels must say the data is for general reference, informational, planning and guidance use only, is not a legally authoritative boundary and is not the product of a professional land survey; we found no published page that says what 'semi-restricted' allows. OUTREACH: pending, to RIGIS, the same question as for Kent County. The City of Providence's own GIS portal (webgis.providenceri.gov, pvdgis.maps.arcgis.com) refused connections in May 2026 and was not rechecked. For owner and address, use the city or town assessor's online database.",
       "coverage": {
-        "reason": "service-down",
-        "summary": "Rhode Island has no county government, so parcel data sits with each city and town, and the state and Providence parcel servers did not respond when we checked, so we don't index it. Download town parcel files from RIGIS, or request it and we'll tell you if that changes.",
-        "checked": "2026-05-15"
+        "reason": "attributes-missing",
+        "summary": "Rhode Island's statewide parcel layer carries Providence County's parcels with plat-lot numbers only, no owner or address, under terms it calls semi-restricted, so we don't index it. Use the town assessor's database, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-14"
+      }
+    },
+    {
+      "id": "ri-kent",
+      "state": "RI",
+      "stateName": "Rhode Island",
+      "stateSlug": "rhode-island",
+      "county": "Kent",
+      "countySlug": "kent-county",
+      "countyFips": "44003",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "RIGIS (Rhode Island Geographic Information System), with the RI Division of Statewide Planning",
+        "url": "https://www.rigis.org/pages/municipal-gis-resources",
+        "email": "rigis@uri.edu"
+      },
+      "notes": "Kent County, Rhode Island. Rhode Island has no county government: Warwick, West Warwick, Coventry, East Greenwich and West Greenwich each assess their own property, and we found no town-published parcel query service (Warwick's assessor database is a Vision Government Solutions search site). RIGIS publishes the towns' assessor parcel polygons in one statewide layer, Tax_Parcels (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0; 394,167 parcels in 39 municipalities, read 2026-11-14). Kent's five towns hold 68,877 of them under TownCode CO, EG, WG, WK and WW (Warwick 38,086, Coventry 13,272, West Warwick 10,049, East Greenwich 4,895, West Greenwich 2,575), the codes matched by querying the layer around each town's Census 2020 internal point. WHY NO ENDPOINT: the layer carries only the polygon, the plat-lot id (PlatLot) and the town code (TownCode), with acreage, land-cover and E911 fields; it has no owner name, no site address and no mailing address. VINTAGE: the service says its parcels were collected between 2019 and 2022 and are not the most current; Last_UPD reads January 2022 on all of Coventry and April 2018 on all but one East Greenwich parcel, is empty on most of Warwick, West Warwick and West Greenwich, and reads 2015 on the rest. TERMS: the service's item information (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/info/iteminfo) gives licenseInfo 'semi-restricted' and a use limitation that any public facing parcel viewer containing Rhode Island parcels must say the data is for general reference, informational, planning and guidance use only, is not a legally authoritative boundary and is not the product of a professional land survey; we found no published page that says what 'semi-restricted' allows. OUTREACH: pending, to RIGIS at this record's contact address (the RIGIS contact the Division of Statewide Planning names), asking whether 'semi-restricted' lets a commercial service serve the parcel layer with that disclaimer. For owner and address, use the town assessor's online database.",
+      "addedAt": "2026-11-14",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Rhode Island's statewide parcel layer carries Kent County's parcels with plat-lot numbers only, no owner or address, under terms it calls semi-restricted, so we don't index it. Use the town assessor's database, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-14"
       }
     }
   ]

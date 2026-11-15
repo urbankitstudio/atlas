@@ -1,5 +1,42 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.5 (2026-11-14)
+
+Three counties people searched for join the atlas. St. Mary's County, Maryland, has an endpoint; Plymouth County,
+Massachusetts, and Kent County, Rhode Island, are recorded with no endpoint and a `coverage` block saying why.
+Providence County, Rhode Island, keeps no endpoint, and its notes and `coverage` are corrected. `totals.counties`
+moves from 542 to 545, `totals.endpoints` from 520 to 521 and `totals.countiesWithEndpoint` from 492 to 493.
+**Patch.** Data only: no type, function or field of the package changed.
+
+- **St. Mary's County, Maryland** (`md-st-marys`, FIPS 24037), on MD iMAP's statewide Parcel Points layer
+  (`https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_PropertyData/MapServer/0`), scoped
+  `JURSCODE = 'STMA'`: 50,650 points, one per SDAT tax account. Fields: `ACCTID` (account), `ADDRESS` (site address),
+  the owner mailing address (`OWNADD1`, `OWNADD2`, `OWNCITY`, `OWNSTATE`, `OWNERZIP`) and the appraised value
+  (`NFMTTLVL`). **The layer has no owner-name column**, so this county answers with a mailing address and no owner
+  name, and `capabilityOverrides.owner_name` is `not_published`. `license` is `open-data` and the record carries a
+  `credit` line: MD iMAP's terms let the data be redistributed if the State of Maryland is acknowledged. The county's
+  own parcel layer has owner names, but it answers only with table-qualified column names, which the package cannot
+  query yet.
+- **Plymouth County, Massachusetts** (`ma-plymouth`, FIPS 25023), no endpoint, `coverage.reason` `technical`. The
+  two MassGIS layers of the `ma-statewide` record carry the county's parcels, but the only column on them that
+  selects a town exactly is the numeric `TOWN_ID`, and a county `scopeWhere` takes a quoted list only. The notes
+  list the county's 27 towns by `TOWN_ID` and the counts that filter gives. The `ma-statewide` record is unchanged
+  and still serves the whole state. `findCountyByFips("25023")` used to return `undefined`; it now returns this
+  record.
+- **Kent County, Rhode Island** (`ri-kent`, FIPS 44003), no endpoint, `coverage.reason` `attributes-missing`.
+  RIGIS's statewide Tax Parcels layer
+  (`https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0`) holds 68,877 Kent parcels, but it
+  carries only the plat-lot id and the town code, with no owner, site address or mailing address. The service calls
+  its licence "semi-restricted", and no published terms say what that allows.
+- **Providence County, Rhode Island** (`ri-providence`, FIPS 44007) keeps no endpoint. Its notes said RIGIS hosted
+  only municipal metadata and the state parcel server was unreachable; they now describe the same Tax Parcels
+  layer as Kent's, and `coverage.reason` moves from `service-down` to `attributes-missing`, checked 2026-11-14.
+
+For an agent: `findCountyByFips` now answers for 24037, 25023 and 44003. An attribute search on St. Mary's must
+AND the endpoint's `scopeWhere`, or it reads the whole state. St. Mary's publishes no owner name; ask the county
+assessor for one. For Plymouth, Kent and Providence, `coverageAnswer` gives the reason and a request body. For a
+Plymouth County address, the `ma-statewide` record's layers still answer.
+
 ## 0.9.4 (2026-11-14)
 
 Nine New York records are re-pointed to the state's new server. `totals.counties` stays at 542 and
