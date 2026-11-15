@@ -1,5 +1,68 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.7 (2026-11-15)
+
+A field can now declare an opt-in role, and Dooly County, Georgia, is the first record that declares any. `totals`
+stay at 546 counties, 522 endpoints and 494 counties with an endpoint. **Additive.** `SearchField` gains an
+optional key and the type `SearchFieldRole` is exported. Nothing is removed or renamed, and code written against
+0.9.6 reads every record exactly as before: it reads Dooly's `address1` and `stdirect` as the plain columns they
+were.
+
+- **`SearchField.role`** (type `SearchFieldRole`, optional): a role the column plays beside the ones its name and
+  label suggest. Read every other column as you would without it. At most one field per role on an endpoint, and
+  never on an endpoint with an `ownerJoin`.
+  - `"mailing-fallback"`: a second owner-mailing line. Read it ONLY when the endpoint's primary mailing column is
+    blank or a placeholder such as "N/A" (never when the primary is masked, like `"*, *, * #####"`,
+    `"#####-####"`, `"(***)"` or `"#, #, #"`: no letter or digit outside one trailing ZIP, and an asterisk, two or
+    more "#" or a mask glyph such as a bullet or a block; never when it is withheld from you; a lone "#", "-",
+    "?", "." or "~" is no mask), and ONLY when the value, invisible characters ignored, is a mailing line: a whole
+    house number then a word (`"123 MAIN ST"`, `"123 1/2 MAIN ST"`; not `"1/2 INT ..."`, not numbers only), a P O
+    Box or P O Drawer with its number (`"P O BOX 77"`, `"PO BOX 77"`, `"POST OFFICE BOX 77"`), or a rural route
+    box (`"RR 2 BOX 15"`, `"HC 63 BOX 1"`), with no owner-entity, share, c/o or attention word on it (LLC, INC,
+    INCORPORATED, CORP, CORPORATION, COMPANY, LTD, LP, LLP, TRUST, TRUSTEE(S), ESTATE, HEIRS, ET AL, ET UX, INT,
+    INTEREST, OWNER(S), PERCENT, PER CENT, PCT, "%", "1 OF 2", C/O, C\O, C/0, CARE OF, ATTN, ATTENTION) and no
+    word that says a value is withheld (CONFIDENTIAL, REDACTED, WITHHELD, PROTECTED, SUPPRESSED, RESTRICTED, NOT
+    DISCLOSED). The words are read after Unicode NFKC and split on anything that is not a letter or digit (a
+    control or zero-width character too), with a run of single letters as one word, so `"L.L.C."`, `"L L C"`, a
+    fullwidth LLC and an LLC behind a NUL are LLC. A spelled-out entity word directly before a street suffix is
+    part of a street name (`"123 ESTATE DR"`, `"40 TRUST RD"`, `"9 COMPANY ST"`) only when nothing follows the
+    suffix, or only one unit word (APT, UNIT, STE, SUITE, FL, FLOOR, RM, ROOM) and its value, a letter or up to
+    four digits or the two together (`"123 ESTATE DR APT 5"`); after any other tail it is the owner's (`"100 TEST
+    FAMILY TRUST ST LOUIS MO"`, `"5 TEST TRUST CT 06001"`, `"7 TEST ESTATE PT 2"`, `"123 TEST ESTATE DR N"`).
+    Bare CO is no entity word (`"123 CO RD 45"`). A c/o line or a second owner name is not the address. A county
+    redaction marker on the fallback line ("CONFIDENTIAL") withholds the whole row, owner included, whatever the
+    primary holds, as one in the primary would.
+  - `"situs-directional"`: the directional of a site address split into a house-number column and a street-name
+    column. Compose the address as house number, directional, street name, using the value only when it is a
+    direction (N, S, E, W, NE, NW, SE, SW, or the word spelled out), and never into a house number and street
+    that are a redaction marker ("0 CONFIDENTIAL" stays as it is, and the row is withheld). A redaction marker in
+    the directional column itself withholds the whole row. Only on a column whose name or label names a
+    direction ("dir", "direction" or "directional" as a word of its own, a pre, post, st or suf prefix allowed:
+    `PRE_DIR`, "Street Direction"; not `DIRECTOR` or "Direct Bill Flag"), and never on one that reads as the
+    owner, the parcel id, a mailing column, the house number, the street name, or a unit or suffix.
+- **Dooly County, Georgia** (`ga-dooly`): `address1` is the `"mailing-fallback"` for `address2`, and `stdirect` is
+  the `"situs-directional"`. On 1,255 parcels `address2` is blank and `address1` holds the line (1,053 start with a
+  digit, 194 are P O Boxes, 2 are c/o lines and 6 are something else), and 1,247 of them are mailing lines under
+  the rule above (every digit-led line and every P O Box); 686 parcels carry a directional, one of them a "Q" that
+  is not a direction. The record's notes say the same.
+
+For an agent: on `ga-dooly`, when `address2` is blank, read `address1` under the rule above before you report the
+owner's mailing address as missing, and put `stdirect` between `house_no` and `street_nam` when you show or match
+a site address.
+
+Billing on the hosted paid paths (enrich, bulk, MCP `enrich_address`, `radius_owners`): a Dooly row whose mailing
+address comes from `address1` bills as delivered, 1 unit, also where its owner is blank or a county "update in
+progress" notice (before, such a row billed 0: a parcel-only row, or a refunded source-updating row). A row
+withheld on a redaction marker in `address1` or in `stdirect` bills 0. A geocoded address carrying the directional
+can now match a Dooly parcel exactly, and bills as any exact match does. Some rows that bill 0 before and after
+change only their reason: a refunded source-updating row is now a withheld parcel-only row where a marker in
+`address1` or `stdirect` withholds it, where its fallback fills the mailing beside a marker site, or where the
+directional resolves a decline to a withheld parcel; a decline that the directional now resolves to a withheld or
+owner-blank parcel is now that parcel-only row; and an owner-blank parcel-only row withheld on a marker in
+`address1` or `stdirect` now reads as withheld (`parcel-only-owner-unavailable`, not `parcel-only-owner-blank`).
+On `radius_owners`, a Dooly row with a blank parcel id and no object id is deduplicated on its owner, mailing and
+site, which now carry the fallback and the directional, so two such rows that read alike before can count as two.
+
 ## 0.9.6 (2026-11-15)
 
 Dooly County, Georgia, which a user searched for, joins the atlas with an endpoint. `totals.counties` moves from

@@ -393,6 +393,57 @@ const endpoint = findCountyByFips("17089")!.endpoints[0];
 const outFields = endpoint.searchFields.map(queryFieldName).join(",");
 ```
 
+A `SearchField` may also carry `role` (type `SearchFieldRole`, since 0.9.7), an
+opt-in role beside the ones its name and label suggest. Dooly County, Georgia
+(`ga-dooly`) is the only record that declares any:
+
+- `"mailing-fallback"` (Dooly's `address1`): a second owner-mailing line. Read
+  it only when the primary mailing column (Dooly's `address2`) is blank or a
+  placeholder such as "N/A", never when the primary is masked (an asterisk,
+  two or more "#" or a mask glyph, and no letter or digit outside a ZIP) or
+  was withheld, and only when the value is a mailing line: a whole house
+  number then a word, a P O Box or Drawer with its number, or a rural route
+  box, with no owner-entity, share, c/o or attention word on it (LLC, CORP,
+  COMPANY, TRUST, TRUSTEE, ESTATE, HEIRS, ET AL, ET UX, INT, OWNERS, PERCENT,
+  PCT, "1 OF 2", C/O, C\O, C/0, CARE OF, ATTN, ATTENTION and the like) and no
+  word that says a value is withheld (CONFIDENTIAL, REDACTED and the like).
+  Read the words after NFKC, split on anything that is not a letter or digit,
+  with a run of single letters as one word ("L.L.C." is LLC). A spelled-out
+  entity word directly before a street suffix is part of a street name
+  ("123 ESTATE DR", "40 TRUST RD") only when nothing follows the suffix, or
+  only a unit word and its value ("123 ESTATE DR APT 5"); after anything else
+  it is the owner's ("100 TEST FAMILY TRUST ST LOUIS MO", "5 TEST TRUST CT
+  06001"). Bare CO is a county road ("123 CO RD 45"). A c/o line or a second
+  owner name on that line is not the address. A redaction marker on the
+  fallback line ("CONFIDENTIAL") withholds the whole row, whatever the primary
+  holds.
+- `"situs-directional"` (Dooly's `stdirect`): the directional of a site address
+  split into house-number and street-name columns. Compose it between the two
+  when it is a direction (N, S, E, W, NE, NW, SE, SW, or spelled out), but
+  never into a house number and street that are a redaction marker
+  ("0 CONFIDENTIAL" stays as it is). A redaction marker in the directional
+  column itself withholds the whole row. Tag only a column whose name or label
+  names a direction ("dir", "direction" or "directional" as a word of its own,
+  a pre, post, st or suf prefix allowed; not DIRECTOR), never one that reads as
+  the owner, the parcel id, a mailing column, the house number, the street
+  name, or a unit or suffix.
+
+Every other column reads as it would without the tag.
+
+Billing on the hosted paid paths moves only on Dooly: a row whose mailing
+address comes from the fallback bills like any delivered row; a row withheld
+on a marker in the fallback or the directional bills 0; a geocoded address
+carrying the directional can match exactly. Some unbilled rows change only
+their reason (a refunded "source-updating" row that a marker in the fallback
+or the directional withholds, or whose fallback fills beside a marker site, or
+that the directional resolves to a withheld parcel, now reads as a withheld
+parcel-only row; a decline the directional now resolves to a withheld or
+owner-blank parcel reads as that parcel-only row; an owner-blank row withheld
+on a marker in the fallback or the directional reads as withheld, not
+owner-blank), and on `radius_owners` a row with a blank parcel id and no object
+id is told apart from another by its composed site and fallback mailing, so two
+such rows can now count as two.
+
 ## `addedAt` is the one date that never moves
 
 A county may carry `addedAt` (YYYY-MM-DD): the date it entered the atlas. It is

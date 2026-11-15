@@ -48,7 +48,74 @@ export interface SearchField {
    * right when a record does carry one.
    */
   wireName?: string;
+  /**
+   * An opt-in role the column plays. Absent on almost every field; since 0.9.7
+   * Dooly County, Georgia (`ga-dooly`) is the first record that declares any.
+   * A tag adds a role: read every other column as you would without it.
+   *
+   * - `"mailing-fallback"`: a second owner-mailing line. Read it ONLY when the
+   *   endpoint's primary mailing column holds nothing (a blank cell, or a
+   *   placeholder such as "N/A"; never when the primary is masked, like
+   *   `"*, *, * #####"`, `"#####-####"`, `"(***)"` or `"#, #, #"`: no letter
+   *   or digit outside one trailing ZIP, and an asterisk, two or more "#", or a
+   *   mask glyph such as a bullet or a block; nor when it was withheld from
+   *   you; a lone "#", "-", "?", "." or "~" is no mask), and ONLY
+   *   when the value, with invisible characters ignored, is a mailing line: a
+   *   whole house number then a word (`"123 MAIN ST"`, `"123 1/2 MAIN ST"`;
+   *   not `"1/2 INT ..."`, not numbers only), a P O Box or P O Drawer with its
+   *   number (`"P O BOX 77"`, `"PO BOX 77"`, `"POST OFFICE BOX 77"`), or a
+   *   rural route box (`"RR 2 BOX 15"`, `"HC 63 BOX 1"`), and carries no
+   *   owner-entity, share, c/o or attention word (LLC, INC, INCORPORATED,
+   *   CORP, CORPORATION, COMPANY, LTD, LP, LLP, TRUST, TRUSTEE(S), ESTATE,
+   *   HEIRS, ET AL, ET UX, INT, INTEREST, OWNER(S), PERCENT, PER CENT, PCT,
+   *   "%", "1 OF 2", C/O, C\O, C/0, CARE OF, ATTN, ATTENTION) and no word
+   *   that says a value is withheld
+   *   (CONFIDENTIAL, REDACTED, WITHHELD, PROTECTED, SUPPRESSED, RESTRICTED,
+   *   NOT DISCLOSED). Read the words after Unicode NFKC, split on anything
+   *   that is not a letter or digit (a control or zero-width character too),
+   *   with a run of single letters as one word ("L.L.C." is LLC). One
+   *   exception: a spelled-out entity word (INCORPORATED, CORPORATION,
+   *   COMPANY, TRUST, TRUSTEE(S), ESTATE, HEIRS) directly before a street
+   *   suffix is part of a street name (`"123 ESTATE DR"`, `"40 TRUST RD"`)
+   *   only when nothing follows the suffix, or only one unit word (APT, UNIT,
+   *   STE, SUITE, FL, FLOOR, RM, ROOM) and its value, a letter or up to four
+   *   digits or the two together (`"123 ESTATE DR APT 5"`); after any other
+   *   tail it is the owner's (`"100 TEST FAMILY TRUST ST LOUIS MO"`,
+   *   `"5 TEST TRUST CT 06001"`, `"7 TEST ESTATE PT 2"`). Bare CO is no entity
+   *   word (`"123 CO RD 45"`). Anything else on that
+   *   line (a c/o line, a second owner name) is not the address.
+   *   A county REDACTION MARKER on the fallback line ("CONFIDENTIAL",
+   *   "REDACTED PER KRS 61.878") withholds the whole row, owner included,
+   *   whatever the primary holds, exactly as one in the primary would.
+   *   Dooly's primary is `address2`; `address1` is its fallback.
+   * - `"situs-directional"`: the street directional of a split site address
+   *   (house number + street name columns, no single address column). Compose
+   *   the site address as house number, directional, street name, and use the
+   *   value only when it is a direction (N, S, E, W, NE, NW, SE, SW, or the
+   *   word spelled out); Dooly's `stdirect` holds one "Q" that is not. Never
+   *   compose it into a house number and street that together are a
+   *   redaction marker ("0 CONFIDENTIAL" stays as it is, and the row is
+   *   withheld). A redaction marker in the directional column itself
+   *   ("CONFIDENTIAL") withholds the whole row. The tagged column is never
+   *   itself the house number, the street name, the owner, the parcel id, a
+   *   mailing column or a unit or suffix qualifier, and its name or label
+   *   names a direction ("dir", "direction" or "directional" as a word of
+   *   its own, a pre, post, st or suf prefix allowed: `PRE_DIR`, "Street
+   *   Direction"; not `DIRECTOR` or "Direct Bill Flag"). A geocoded address without
+   *   the directional still names the parcel when only one parcel at that
+   *   number shares the street name; with it, the directional counts only
+   *   beside a shared street-name word that is not itself a direction, and a
+   *   parcel it alone singles out does not win over one at the same number
+   *   and street whose directional is blank.
+   *
+   * At most one field per role on an endpoint, and never on
+   * `ownerJoin.fields`.
+   */
+  role?: SearchFieldRole;
 }
+
+/** The opt-in column roles a record may declare ({@link SearchField.role}). Since 0.9.7. */
+export type SearchFieldRole = "mailing-fallback" | "situs-directional";
 
 /**
  * Owner rows that live in a separate TABLE of the same service, joined to the

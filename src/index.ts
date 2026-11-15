@@ -4,6 +4,7 @@ export type {
   EndpointStatus,
   VerifiedBy,
   SearchField,
+  SearchFieldRole,
   ConfidentialFlag,
   OwnerJoin,
   EndpointRecord,
