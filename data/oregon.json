@@ -2,7 +2,7 @@
   "stateSlug": "oregon",
   "stateName": "Oregon",
   "stateAbbrev": "OR",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "or-multnomah",
@@ -781,6 +781,29 @@
       },
       "notes": "Polk County, Oregon (Dallas, Monmouth, Independence, West Salem; FIPS 41053) was asked for through the free tools on 2026-10-04. The county's Hub-advertised public REST path, maps.co.polk.or.us/gis/ (the Assessor/Taxlots MapServer and the KLOP folder), has answered every request with HTTP 500 'Could not access any server machines' since at least 2026-10-05 (re-checked 2026-10-06, services root included); the same ArcGIS Server 11.5 answers on its second web adaptor, /arcserv2/, and this record uses its Klop_core/Acct_35 taxlot layer: 36,413 taxlots with the assessment account joined on. The sibling Klop_core/Taxlots layer has the same schema and no rows, and the county's ArcGIS Online 'Taxlots' hosted service is Lake County data despite its name; neither is used. The owner is AcctTable_OwnerLine1 (35,407 of the rows carry one; individuals read 'LAST FIRST MIDDLE' with no comma), the owner mailing address is MailAdd1/MailAdd2 plus MailCity/MailState/MailZip, the situs is SiteAddNam plus SiteAddCty and SiteZip (often blank on vacant land), and the parcel id is the Map Taxlot (TaxlotTemp_MapTaxlot, for example '7533CB 9100') alongside the statewide ORTaxlot key and the primary account number. The layer answers cross-origin requests (it reflects the request Origin in Access-Control-Allow-Origin; a probe without an Origin header sees no CORS header, which is not the browser case), so the browser tools query it directly. The roll is current: 1,717 instruments are dated 2026 (the layer exposes no editingInfo). Verified 2026-10-06 by a count, an owner sample query, a situs query on MAIN ST in Dallas, a point query at 161 SE Washington St (City of Dallas) and a paged read at offset 36,400. We wrote to the county GIS office (gis@co.polk.or.us) on 2026-10-06 about the dead /gis/ path and asked for notice if /arcserv2/ changes. Re-checked 2026-11-01 after the county's GIS Coordinator pointed us to the Polk County Data Clearinghouse (polkdatadownload-polkor.hub.arcgis.com) on 2026-10-26: the clearinghouse's Taxlots item is this same Klop_core/Acct_35 service, so the endpoint stays (36,413 taxlots, 35,407 with an owner); the /gis/ path still answers HTTP 500. LICENCE: that item's licence reads 'Development of derivative products is encouraged; however, copying and selling the data is prohibited. Polk County reserves the right to discontinue availability of content at any time and for any reason.' and its first paragraph says the product is provided as is, for informational purposes only.",
       "addedAt": "2026-10-06"
+    },
+    {
+      "id": "or-deschutes",
+      "state": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "county": "Deschutes",
+      "countySlug": "deschutes-county",
+      "countyFips": "41017",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Deschutes County Assessor's Office (assessment and tax lot data, DIAL), with Deschutes County Information Technology GIS",
+        "url": "https://deschutescounty.gov/it/page/gis-staff-contacts",
+        "email": null
+      },
+      "notes": "Deschutes County, Oregon (FIPS 41017; Bend, Redmond, Sisters, La Pine). The county serves its taxlots from its own ArcGIS Server at maps.deschutes.org: Dial2_Taxlots MapServer layer 0 (https://maps.deschutes.org/arcgis/rest/services/Dial2_Taxlots/MapServer/0), the layer behind the county's DIAL property application, the taxlot polygons joined to the assessor account (situs address, city, ZIP, subdivision) and to the GIS_MAILING table (account id, owner, in-care-of, mailing address). Read 2026-11-21: 112,536 rows for 109,608 distinct taxlots (a taxlot with more than one account appears once per account, so de-duplicate by TAXLOT for a parcel count); owner present on 112,427 rows (99.9%), situs address on 104,267. WHY NO ENDPOINT YET: it is a joined layer, and it answers only to table-qualified field names (Taxlot_Assessor_Account.TAXLOT, dbo_GIS_MAILING.OWNER): on 2026-11-21 a where clause on the bare name TAXLOT returned HTTP 400 ('Failed to execute query'), while the qualified name with outFields=* returned the row. The atlas's lookups send bare column names, so this record gets an endpoint when the atlas supports joined-layer field names. The server answers JSON with a text/plain content type and reflects the caller's Origin for CORS; maxRecordCount 1000 with pagination. LICENCE: the county publishes the same taxlots and the GIS OWNERS, GIS MAILING and GIS ASSESSOR ACCOUNT tables as open data on its Data Portal (data.deschutes.org; ArcGIS item 901cdd4a5ca24cc3b72cc8e3e0f11f02 'Taxlots', accessInformation 'Deschutes County - Assessor's Office') with the licence 'Free to download and use'; the county website's General Disclaimer and User Agreement disclaims warranties and liability and states no commercial-use or resale limit. Open-data alternative: services1.arcgis.com/znO8Hz1SuVVohYhZ/arcgis/rest/services/Taxlots/FeatureServer (layer 0 polygons with TAXLOT only; tables 1 assessor account, 4 mailing, 5 owners), which needs a join by account. For owner and parcel records now, use the county's DIAL property search.",
+      "addedAt": "2026-11-21",
+      "coverage": {
+        "reason": "technical",
+        "summary": "Deschutes County's parcel layer answers only to joined, table-qualified field names, which our lookups can't send yet. Use the county's DIAL property search, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-21"
+      }
     }
   ]
 }

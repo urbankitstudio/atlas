@@ -1,5 +1,65 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.8 (2026-11-21)
+
+Nineteen counties people asked for join the atlas: twelve with an endpoint, seven recorded with none. `totals.counties`
+moves from 546 to 565, `totals.endpoints` from 522 to 535 and `totals.countiesWithEndpoint` from 494 to 506. DuPage
+IL now carries the credit line its open-data licence requires. **Patch.** Data only: no type, function or field of
+the package changed.
+
+With an endpoint:
+
+- **Madison County, Illinois** (`il-madison`, FIPS 17119): the county's ArcGIS Online `County_Parcels` layer 12,
+  136,799 parcels. Owner `OWN_FULL`, mailing `OWN_ADD`, `OWN_CITY`, `OWN_STATE`, `OWN_ZIP`; situs `NUM` plus `ST_NAME`.
+- **Madison County, Virginia** (`va-madison`, 51113): the county's `MadisonCo_WebGIS1` MapServer layer 22 on
+  webgis.net, 9,812 parcels. Owner `AMNAME`, mailing `AMADR1` and the lines after it.
+- **Kennebec County, Maine** (`me-kennebec`, 23011), a PARTIAL county: the Maine GeoLibrary statewide parcel
+  service the Cumberland and York records use. Layer 10, scoped `COUNTY = 'Kennebec'`, holds 55,126 parcels in 20
+  towns with no owner column; layer 9, scoped to those towns' `GEOCODE`s, is the assessor table (39,824 rows, owners
+  for 13 of them). Towns that do not submit to the GeoLibrary are not covered; `notes` lists them.
+- **Indiana County, Pennsylvania** (`pa-indiana`, 42063): PASDA's `IndianaCounty` layer 5, 43,993 parcels. The layer
+  is labelled 202311, but its export date is 2021-05-05, so owners can lag the county by about five years.
+- **Hays County, Texas** (`tx-hays`, 48209): the county's `Hays_County_Parcels` layer (Hays CAD roll), 120,913
+  parcels. Split situs (`situs_num`, `situs_street`) as on Hill CAD's layer; 46 owners read `CONFIDENTIAL` with no
+  flag column, a Texas Tax Code 25.025 placeholder, not a name. `license` is `unknown`.
+- **Curry County, New Mexico** (`nm-curry`, 35009): the county's `Parcel_Layer` MapServer layer 0, 25,859 parcels.
+  The situs pads the house number with spaces, so search on a street word. `license` is `unknown`.
+- **Carroll County, Arkansas** (`ar-carroll`, 05015): the state's `Planning_Cadastre` layer 6 scoped
+  `countyfips = '015'`, as the other Arkansas records are, 25,764 parcels. `maxRecordCount` is 200.
+- **Limestone County, Alabama** (`al-limestone`, 01083): the county's `Limestone_Public_ISV_ReMap` layer 103,
+  68,889 parcels.
+- **Union County, New Jersey** (`nj-union`, 34039) and **Middlesex County, New Jersey** (`nj-middlesex`, 34023): the
+  NJ parcel composite the other New Jersey records use, scoped `COUNTY='UNION'` (147,628) and `COUNTY='MIDDLESEX'`
+  (243,019). Owner name and mailing address are `restricted` under Daniel's Law, as on the other eight.
+- **Carter County, Tennessee** (`tn-carter`, 47019): the City of Johnson City's regional `TaxParcels` layer that
+  Sullivan's record queries, scoped `COUNTYNAME='Carter County'`, 32,108 parcels. `license` is `restricted` (the
+  service bars resale and reproduction without written permission), so paid lookups are off here, as for Sullivan,
+  until they can run on the Tennessee Comptroller's parcel data, which allows commercial use.
+- **Sedgwick County, Kansas** (`ks-sedgwick`, 20173): the county's `Op_MyLocalTaxes_Cached_SP` layer 0, 238,753
+  parcels. Owner `Owner`, mailing `Owner_madd`. Kansas law (K.S.A. 45-230) bars selling lists of names and addresses
+  from public records, so owner mailing lists are off on paid plans here and in Shawnee; single lookups work.
+
+With no endpoint (each with a `coverage` block): Gordon GA (`ga-gordon`, `attributes-missing`), Genesee MI
+(`mi-genesee`, `owner-data-sold`), Norfolk MA (`ma-norfolk`, `technical`, like Plymouth: `ma-statewide` still
+answers for it), Washington RI (`ri-washington`, `attributes-missing`, like Kent), Warren MO and Bates MO
+(`mo-warren`, `mo-bates`, `login-required`: Integrity GIS services that need a token) and Deschutes OR
+(`or-deschutes`, `technical`: its joined layer answers only to table-qualified field names, which the atlas cannot
+send yet).
+
+Changed records:
+
+- **DuPage County, Illinois** (`il-dupage`): `license` moves from `public` to `open-data`, `licenseUrl` is the Open
+  Geo-Spatial Data License - DuPage County 1.0, and the record carries the statement that licence requires as
+  `credit`. Show it wherever DuPage data is shown.
+- **Williamson County, Tennessee** (`tn-williamson`): still no endpoint; `coverage` and `notes` now name the 2022
+  copy on the county's server as well as the 2003 one, and `contact.url` is the Assessor's property search.
+- **Cumberland and York, Maine** (`me-cumberland`, `me-york`): `licenseUrl` and `contact.url` pointed at a Maine
+  GeoLibrary page that now answers 404; they point at the service's ArcGIS item and the GeoLibrary home.
+
+For an agent: `findCountyByFips()` used to return `undefined` for 17119, 51113, 23011, 42063, 48209, 35009, 05015,
+01083, 34039, 34023, 47019, 20173, 13129, 26049, 44009, 29219, 29013 and 41017; it now returns these records.
+25021 now returns `ma-norfolk`, which has no endpoint: query `ma-statewide` for Norfolk parcels.
+
 ## 0.9.7 (2026-11-15)
 
 A field can now declare an opt-in role, and Dooly County, Georgia, is the first record that declares any. `totals`

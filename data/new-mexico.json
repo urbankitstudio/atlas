@@ -2,7 +2,7 @@
   "stateSlug": "new-mexico",
   "stateName": "New Mexico",
   "stateAbbrev": "NM",
-  "lastUpdated": "2026-06-05",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "nm-bernalillo",
@@ -44,6 +44,49 @@
         "email": null
       },
       "notes": "Bernalillo County is New Mexico's most populous county (pop. 680,000; county seat Albuquerque, which contains roughly 90% of the county population). The Public_Access_Parcel_Data_EAT MapServer on assessormap.bernco.gov (ArcGIS Server 11.1) is the Bernalillo County Assessor's enterprise assessment and tax parcel layer. Live query confirmed 256,034 parcels with full owner-name and situs-address exposure. Key fields: UPC (Unique Parcel Code, a 20-character alphanumeric ID, e.g. '102106049820341601AL'), TAXYR, OWNER, SITUSADD (full situs address, e.g. '123 EXAMPLE BLVD NE J1'), SITUSCITY, SITUSSTATE, SITUSZIP, OWNADD, OWNADD2, OWNCITY, OWNSTATE, OWNCOUNTRY, OWNZIPCODE, OWNZIP4 (full owner mailing address), TAXDIST, LEGALDESC, ROLLTYPE, VALCLASS, PROPCLASS, LANDVALUE, AGVALUE, IMPTVALUE, TOTVALUE, TOTTXBLE, NETTAXABLE, ACREAGE. UPC format encodes township/range/section/parcel in a compound alphanumeric string. Owner-name search via UPPER() LIKE on OWNER works. The assessor also maintains a public property search UI at assessor.bernco.gov. Note: assessormap.bernco.gov is a separate subdomain from the county's PDS GIS server at pdsgismaps.bernco.gov. Both are public; only assessormap.bernco.gov has the parcel-with-owner layer. The county GIS server at pdsgismaps.bernco.gov has the canvass parcel polygons (BernCo_Public_Canvass_Update/MapServer layer 6) but that layer has only UPC + situs address, not owner name."
+    },
+    {
+      "id": "nm-curry",
+      "state": "NM",
+      "stateName": "New Mexico",
+      "stateSlug": "new-mexico",
+      "county": "Curry",
+      "countySlug": "curry-county",
+      "countyFips": "35009",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://maps.currycounty.org/server/rest/services/Parcel_Layer/MapServer/0",
+          "serviceType": "MapServer",
+          "layerIndex": 0,
+          "layerName": "Parcel Layer",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "UPCPRP", "label": "Parcel ID (13-digit property code)", "searchable": true },
+            { "name": "UPCPRP_1", "label": "15-digit Property Code", "searchable": false },
+            { "name": "GONAM", "label": "Owner Name", "searchable": true },
+            { "name": "GOCON", "label": "Co-Owner(s)", "searchable": false },
+            { "name": "GACOM", "label": "Property Address (house number padded with spaces before the street)", "searchable": true },
+            { "name": "GOMA", "label": "Owner Mailing Address (one line)", "searchable": true },
+            { "name": "LegalDesci", "label": "Legal Description", "searchable": true },
+            { "name": "ACREAGE", "label": "Approximate Acreage", "searchable": false }
+          ],
+          "sampleQuery": "https://maps.currycounty.org/server/rest/services/Parcel_Layer/MapServer/0/query?where=UPPER(GONAM)%20LIKE%20UPPER('%25SMITH%25')&outFields=UPCPRP,GONAM,GACOM,GOMA&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://maps.currycounty.org/portal/apps/experiencebuilder/experience/?id=947044a512844d0390afb5642eeef420",
+          "status": "live",
+          "lastVerified": "2026-11-21",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Curry County Assessor's Office (parcel layer on the county GIS server)",
+        "url": "https://maps.currycounty.org/portal/apps/experiencebuilder/experience/?id=947044a512844d0390afb5642eeef420",
+        "email": null
+      },
+      "notes": "Curry County, New Mexico (county seat Clovis; FIPS 35009), not to be confused with Curry County, Oregon (41015), was searched on the site in November 2026. The county publishes its parcels on its own ArcGIS Enterprise server as the Parcel_Layer MapServer layer 0 (portal item 'Parcel Layer', 'Curry County Parcels', modified 2026-11-20), the layer behind the county's Parcel Look Up App: 25,859 parcels on 2026-11-21, 25,824 with an owner. The owner is GONAM, with co-owners in GOCON; the parcel id is UPCPRP (13-digit property code, e.g. 1211011254046), with the 15-digit form in UPCPRP_1. The owner mailing address is GOMA, one line (25,718 rows). The site address is GACOM (22,261 rows) with a run of spaces between the house number and the street name, so search on a street word and compare the house number separately; a LIKE on the number and the street joined by one space finds nothing. The layer has no value, sale or date columns. CORS reflects the caller's Origin. maxRecordCount 2000 with pagination; New Mexico East state plane, US feet (wkid 102712/2257). TERMS: the item, service and layer carry no licence text; the Parcel Look Up App's disclaimer says the map is for illustrative purposes only and must not be used to settle boundary disputes. New Mexico law (NMSA 14-3-18) lets a county charge fees for GIS products by ordinance but sets no commercial-use condition for county records. The older path maps.currycounty.org/arcgis/rest/services/Parcels/MapServer/0 answers 404. Verified 2026-11-21: a count, an owner LIKE query (174 rows for %SMITH%), a GACOM LIKE query (315 rows for MAIN), an exact UPCPRP round trip and a point query in downtown Clovis.",
+      "addedAt": "2026-11-21"
     }
   ]
 }

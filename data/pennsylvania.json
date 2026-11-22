@@ -2,7 +2,7 @@
   "stateSlug": "pennsylvania",
   "stateName": "Pennsylvania",
   "stateAbbrev": "PA",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "pa-allegheny",
@@ -693,6 +693,54 @@
         },
         "checked": "2026-11-10"
       }
+    },
+    {
+      "id": "pa-indiana",
+      "state": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "county": "Indiana",
+      "countySlug": "indiana-county",
+      "countyFips": "42063",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/IndianaCounty/MapServer/5",
+          "serviceType": "MapServer",
+          "layerIndex": 5,
+          "layerName": "Indiana County - Parcels 202311",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "PARCEL_ID", "label": "Parcel ID (tax map number)", "searchable": true },
+            { "name": "CONTROL_NU", "label": "Control Number", "searchable": true },
+            { "name": "LAST_NAME", "label": "Owner Name", "searchable": true },
+            { "name": "FIRST_NAME", "label": "Owner First Name", "searchable": false },
+            { "name": "COMBINED_S", "label": "Situs Address", "searchable": true },
+            { "name": "ADDRESS_1", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "CITY", "label": "Owner Mailing City", "searchable": false },
+            { "name": "STATE", "label": "Owner Mailing State", "searchable": false },
+            { "name": "ZIP", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "DISTRICT_N", "label": "Tax District", "searchable": false },
+            { "name": "DEEDED_ACR", "label": "Deeded Acres", "searchable": false },
+            { "name": "NEW_MV_TOT", "label": "Total Market Value", "searchable": false }
+          ],
+          "maxRecordCount": 1000,
+          "sampleQuery": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/IndianaCounty/MapServer/5/query?where=UPPER(LAST_NAME)%20LIKE%20%27%25SMITH%25%27&outFields=PARCEL_ID,LAST_NAME,FIRST_NAME,COMBINED_S,ADDRESS_1,CITY&resultRecordCount=10&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=1943",
+          "status": "live",
+          "lastVerified": "2026-11-21",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Indiana County Tax Assessment Office (supplies the data; Courthouse, 825 Philadelphia St., Indiana, PA 15701; 724-465-3812); PASDA, Penn State (hosts the layer)",
+        "url": "https://www.indianacountypa.gov/departments/tax-assessment/",
+        "email": null
+      },
+      "notes": "Indiana County, Pennsylvania (FIPS 42063; county seat Indiana). The county's parcels are published through PASDA (Pennsylvania Spatial Data Access, the state clearinghouse run by Penn State) as IndianaCounty MapServer layer 5, 'Indiana County - Parcels 202311' (PASDA dataset 1943; metadata originator Indiana County, Pennsylvania). The host is PASDA, not the county. THE OWNER DATA IS OLDER THAN THE NAME SAYS: the layer is labelled 202311 (November 2023), but its EXPORT_DAT field is at most 2021-05-05 and sale dates run through 2021 only (579 rows dated 2021, none in 2022 or 2023), so owners can lag the assessment office by about five years. Verified 2026-11-21: 43,993 rows; owner (LAST_NAME, which holds the full owner name, with FIRST_NAME, NAME_EXT, SHORT_NAME and CARE_OF) on 43,545 (99.0%); owner mailing address (ADDRESS_1, ADDRESS_2, CITY, STATE, ZIP) on 43,207; situs address in COMBINED_S on 39,686 (90%; some rows hold a road description such as 'RTE 954 HWY N'); SITUS_2 and A911_Addre are nearly empty (24 and 7 rows) and are not used. The parcel id is PARCEL_ID in the form 39-001-130.00..-000 (GIS_PIN and PARCEL_NUM repeat it); CONTROL_NU is the assessment control number. Owner LIKE %SMITH% returns 393 rows; COMBINED_S LIKE %MAIN% 586; an exact PARCEL_ID query returns 1; a point query at 40.6215, -79.1525 (Indiana borough) returns one parcel. The layer carries market values (NEW_MV_LAN, NEW_MV_BLD, NEW_MV_TOT), deeded acres, land use, neighborhood, sale date and price and many CAMA building fields. maxRecordCount 1000 with pagination; the service is in NAD83 geographic (GCS_North_American_1983), so a point query passes inSR=4326. CORS: the server echoes the request Origin. PASDA republishes under a new name, so the layer index may change: list the service's layers and pick the one named 'Indiana County - Parcels'. License: PASDA's metadata for the dataset says Access_Constraints None and Use_Constraints None, with a standard indemnity and no-warranty Distribution_Liability; the service and item carry no licence text. The county sells online property records through a CourthouseOnline subscription; that is a separate product. Informational only and not a survey: verify with the Indiana County Tax Assessment Office. Credit Indiana County, Pennsylvania (via PASDA).",
+      "addedAt": "2026-11-21"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "stateSlug": "massachusetts",
   "stateName": "Massachusetts",
   "stateAbbrev": "MA",
-  "lastUpdated": "2026-11-14",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "ma-statewide",
@@ -177,6 +177,29 @@
         "reason": "technical",
         "summary": "Massachusetts's statewide parcel layers, the atlas's Massachusetts statewide record, carry Plymouth County but select a county only by numeric town ids, which our county filter can't take yet. Use the statewide record, or request it and we'll tell you if that changes.",
         "checked": "2026-11-14"
+      }
+    },
+    {
+      "id": "ma-norfolk",
+      "state": "MA",
+      "stateName": "Massachusetts",
+      "stateSlug": "massachusetts",
+      "county": "Norfolk",
+      "countySlug": "norfolk-county",
+      "countyFips": "25021",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "MassGIS (Bureau of Geographic Information), Executive Office of Technology Services and Security",
+        "url": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+        "email": null
+      },
+      "notes": "Norfolk County, Massachusetts. Massachusetts counties do not assess property: each city and town does, and MassGIS publishes every municipality's standardized (Level 3) assessor parcels in one statewide service, the two layers the Massachusetts statewide record lists (FeatureServer layers 1 and 4), which carry Norfolk County's parcels. MassGIS also publishes the two joined as one flattened layer on ArcGIS Online (https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0). WHY NO ENDPOINT YET: the same reason as the Plymouth County record. A county record on a shared layer needs a filter to the county's towns, and the only column that selects a town exactly is the numeric TOWN_ID. The atlas's county filter takes a list of quoted values only; on 2026-11-21 the quoted form (TOWN_ID IN ('40','73')) was again refused by layer 4 with HTTP 400 ('Query with count request failed'), and on the flattened ArcGIS Online layer it timed out. The flattened layer's text column TOWNID_UC joins the town id and the use code (e.g. 40_101), so it cannot select a town by equality either. This record gets an endpoint when the atlas takes an unquoted numeric list. The county's 28 municipalities by MassGIS TOWN_ID, taken on 2026-11-21 from MassGIS's Census 2020 Towns layer (AGOL/Census2020_Towns FeatureServer layer 2, FIPS_STCO20 = 25021): Avon 18, Bellingham 25, Braintree 40, Brookline 46, Canton 50, Cohasset 65, Dedham 73, Dover 78, Foxborough 99, Franklin 101, Holbrook 133, Medfield 175, Medway 177, Millis 187, Milton 189, Needham 199, Norfolk 208, Norwood 220, Plainville 238, Quincy 243, Randolph 244, Sharon 266, Stoughton 285, Walpole 307, Wellesley 317, Westwood 335, Weymouth 336, Wrentham 350. Filtered by those ids (TOWN_ID IN (18,25,...,350)) the layers hold 207,367 of the state's 2,197,531 parcel polygons on layer 1 and 246,227 of 2,553,985 assessment rows on layer 4, read 2026-11-21. Layer 4 (GISDATA.L3_ASSESS) carries the owner (OWNER1, present on 246,062 rows), the site address (SITE_ADDR, 235,328) and the owner mailing address (OWN_ADDR, 245,890), joined to layer 1 on LOC_ID; fiscal years run FY2022 (Holbrook) to FY2027. On this server an empty-string comparison (OWNER1 <> '') matches no rows at all, so count present values with IS NOT NULL. TERMS: MassGIS publishes the service with one use note, that assessor parcel mapping represents property boundaries and is not an authoritative source; it states no limit on commercial use or redistribution. To search Norfolk County now, use the Massachusetts statewide record's layers with that TOWN_ID filter.",
+      "addedAt": "2026-11-21",
+      "coverage": {
+        "reason": "technical",
+        "summary": "Massachusetts's statewide parcel layers, the atlas's Massachusetts statewide record, carry Norfolk County but select a county only by numeric town ids, which our county filter can't take yet. Use the statewide record, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-21"
       }
     }
   ]

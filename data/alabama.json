@@ -2,7 +2,7 @@
   "stateSlug": "alabama",
   "stateName": "Alabama",
   "stateAbbrev": "AL",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "al-shelby",
@@ -140,6 +140,59 @@
         "email": null
       },
       "notes": "Mobile County, Alabama (Mobile; FIPS 01097) publishes its parcels as the 'Mobile County Alabama Tax Parcels' FeatureServer, authored by the Mobile County Revenue Commission's Mapping Department and updated 2026-10-27. 214,092 parcels, countywide, on LAYER 1: on 2026-10-27 the county added a Road_Centerlines layer at index 0 and moved the parcels to index 1 of the same service (the item is unchanged), so the record moved with them on 2026-11-10. The owner is in Name1 (and Name2), the parcel id in Parcel_Number (ParcelNo is the formatted form), and the site address in PropAddr1 with PropCity and PropZip. The layer has NO owner mailing-address fields (its columns are OBJECTID, Parcel_Number, Account_Number, ParcelNo, Name1, Name2, PropAddr1, PropAddr2, PropCity, PropState, PropZip, Acreage, Sqft, KeyNum), so it serves owner names and site addresses, not mailing addresses. String fields are space padded (Name1 is 255 wide), so trim them and search with UPPER(Name1) LIKE 'SMITH%', never equality. The spatial reference is wkid 102630, so send outSR=4326 if you need longitude and latitude. CORS answers Access-Control-Allow-Origin *. No open-data license is stated; the item carries only an informational-use disclaimer. Verified live 2026-11-10 on layer 1: all eight search fields present, UPPER(Name1) LIKE 'SMITH%' returned 2,491 rows (first parcel 0104430000006.000)."
+    },
+    {
+      "id": "al-limestone",
+      "state": "AL",
+      "stateName": "Alabama",
+      "stateSlug": "alabama",
+      "county": "Limestone",
+      "countySlug": "limestone-county",
+      "countyFips": "01083",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.limestonecounty-al.gov/arcgis/rest/services/Limestone_Public_ISV_ReMap/MapServer/103",
+          "serviceType": "MapServer",
+          "layerIndex": 103,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "ParcelNo", "label": "Parcel ID", "searchable": true },
+            { "name": "OwnerName", "label": "Owner Name", "searchable": true },
+            { "name": "OwnerName2", "label": "Owner Name 2", "searchable": false },
+            { "name": "PropertyAddr1", "label": "Site Address", "searchable": true },
+            { "name": "PropertyCity", "label": "Site City", "searchable": false },
+            { "name": "PropertyZip", "label": "Site ZIP", "searchable": false },
+            { "name": "MailAddress1", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "MailAddress2", "label": "Owner Mailing Address 2", "searchable": false },
+            { "name": "MailCity", "label": "Owner Mailing City", "searchable": false },
+            { "name": "MailState", "label": "Owner Mailing State", "searchable": false },
+            { "name": "MailZip", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "PID", "label": "Account (PID)", "searchable": false },
+            { "name": "AssessmentClass", "label": "Assessment Class", "searchable": false },
+            { "name": "SubDiv1", "label": "Subdivision", "searchable": false },
+            { "name": "CALC_ACRE", "label": "Acres (GIS)", "searchable": false },
+            { "name": "TotalLandValue", "label": "Land Value", "searchable": false },
+            { "name": "TotalImpValue", "label": "Improvement Value", "searchable": false },
+            { "name": "TotalValue", "label": "Total Value", "searchable": false }
+          ],
+          "sampleQuery": "https://gis.limestonecounty-al.gov/arcgis/rest/services/Limestone_Public_ISV_ReMap/MapServer/103/query?where=UPPER(OwnerName)+LIKE+UPPER('%25SMITH%25')&outFields=ParcelNo,OwnerName,PropertyAddr1,PropertyCity,MailAddress1,MailCity,MailState&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://gis.limestonecounty-al.gov/arcgis/rest/services/Limestone_Public_ISV_ReMap/MapServer/info/iteminfo?f=pjson",
+          "status": "live",
+          "lastVerified": "2026-11-21",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Limestone County Revenue Commission (mapping, appraisal, assessment and collection), 100 South Clinton Street, 1st Floor Suite A, Athens, AL 35611, (256) 233-6433",
+        "url": "https://www.limestonecounty-al.gov/departments/revenue-commission",
+        "email": null
+      },
+      "notes": "Limestone County, Alabama (county seat Athens; FIPS 01083). The Revenue Commission's parcels are served from the county's ArcGIS Server (11.5), hosted by its GIS vendor KCS, as layer 103 'Parcels' of the Limestone_Public_ISV_ReMap MapServer (document title 'Limestone County Revenue GIS (Public)'), the layer the Revenue Commissioner's public ArcGIS Online parcel viewer draws: 68,889 polygons on 2026-11-21 for 64,352 distinct ParcelNo values, last_edited_date max 2026-10-30. OwnerName is non-blank on 66,431 (every row with a 2026 tax record; the other 2,458 have no RecordYear); UPPER(OwnerName) LIKE '%SMITH%' returns 1,015, the sample query's predicate. The situs is PropertyAddr1 (60,604 rows) with PropertyCity and PropertyZip; UPPER(PropertyAddr1) LIKE '%MAIN%' returns 40. MAILING: MailAddress1 (66,429 rows; a c/o or ATTN line on 134), MailAddress2 (557), MailCity, MailState, MailZip. PARCEL ID: ParcelNo is space padded ('01 02 03 0 000 006.000' followed by blanks); the padded value or ParcelNo LIKE '01 02 03 0 000 006.000%' each return exactly 1; text columns are padded, so trim. PID is the account number. Also OwnerName2, AssessmentClass, Neighborhood, SubDiv1, deed book and page, lot and block, MunicipalityCode, CALC_ACRE, ForestAcreage, TotalLandValue, TotalImpValue, TotalValue, TIFDist. maxRecordCount 2000 with pagination; CORS reflects the caller's Origin. A point at the county's internal point (34.81024, -86.9814) returned one Athens parcel. NOT USED: Limestone_Parcels FeatureServer/0, same schema but 26,991 rows (partial); the Limestone_Viewer service, described as for internal use. 0 rows match CONFIDENTIAL, WITHHELD or REDACTED. TERMS: no licence text on the layer or service (accessInformation 'KCS'); the county's Revenue Commission page has no use restriction; the Citizen Access portal's disclaimer is loaded by script and was not read on 2026-11-21.",
+      "addedAt": "2026-11-21"
     }
   ]
 }

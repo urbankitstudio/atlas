@@ -2,7 +2,7 @@
   "stateSlug": "illinois",
   "stateName": "Illinois",
   "stateAbbrev": "IL",
-  "lastUpdated": "2026-11-02",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "il-kane",
@@ -97,7 +97,7 @@
           "layerIndex": 0,
           "layerName": "ParcelsRealEstate",
           "supportsQuery": true,
-          "corsEnabled": null,
+          "corsEnabled": true,
           "searchFields": [
             { "name": "PIN", "label": "Property Index Number", "searchable": true },
             { "name": "BILLNAME", "label": "Billing Name (Taxpayer)", "searchable": true },
@@ -106,11 +106,11 @@
             { "name": "MUNICIPALITY", "label": "Municipality", "searchable": false }
           ],
           "sampleQuery": "https://gis.dupageco.org/arcgis/rest/services/DuPage_County_IL/ParcelsWithRealEstateCC/MapServer/0/query?where=PIN%3D%270101101001%27&outFields=PIN,BILLNAME,PROPSTNAME,PROPCITY&returnGeometry=false&f=json",
-          "license": "public",
-          "licenseUrl": "https://gisdata-dupage.opendata.arcgis.com/",
+          "license": "open-data",
+          "licenseUrl": "https://videos.dupagecounty.gov/gis/Open%20Geo-Spatial%20Data%20License%201.0%20Final%202015.pdf",
           "status": "live",
-          "lastVerified": "2026-05-15",
-          "verifiedBy": "automated"
+          "lastVerified": "2026-11-21",
+          "verifiedBy": "manual"
         }
       ],
       "contact": {
@@ -118,7 +118,8 @@
         "url": "https://www.dupagecounty.gov/government/departments/gis/",
         "email": null
       },
-      "notes": "DuPage County migrated their public GIS server from gis.dupagecounty.gov to gis.dupageco.org in 2026. The old hostname now NXDOMAINs. The ParcelsWithRealEstateCC MapServer joins the parcel polygon layer to the weekly real estate file, exposing 60+ fields including PIN, BILLNAME (taxpayer billing name), BILLSTNUM/BILLSTNAME (billing address), PROPSTNUM/PROPSTNAME/PROPCITY (property address), BILLVALUE, TAXAMOUNT, MUNICIPALITY, and taxing district fields. 337k features. The open-data portal at gisdata-dupage.opendata.arcgis.com mirrors the same data. Note on BILLNAME: this is the taxpayer of record for the current tax bill. It can differ from the legal owner when a recent sale has been deeded but the billing file has not yet been updated, or when a trust holds title but the trustee name appears as BILLNAME. For the chain-of-title legal owner, cross-reference the DuPage County Recorder's instrument search at recorder.dupageco.org. DuPage is Illinois's third-most populous county (pop. 930,000, county seat Wheaton)."
+      "notes": "DuPage County migrated their public GIS server from gis.dupagecounty.gov to gis.dupageco.org in 2026. The old hostname now NXDOMAINs. The ParcelsWithRealEstateCC MapServer joins the parcel polygon layer to the weekly real estate file, exposing 60+ fields including PIN, BILLNAME (taxpayer billing name), BILLSTNUM/BILLSTNAME (billing address), PROPSTNUM/PROPSTNAME/PROPCITY (property address), BILLVALUE, TAXAMOUNT, MUNICIPALITY, and taxing district fields. 337k features. The open-data portal at gisdata-dupage.opendata.arcgis.com mirrors the same data. Note on BILLNAME: this is the taxpayer of record for the current tax bill. It can differ from the legal owner when a recent sale has been deeded but the billing file has not yet been updated, or when a trust holds title but the trustee name appears as BILLNAME. For the chain-of-title legal owner, cross-reference the DuPage County Recorder's instrument search at recorder.dupageco.org. DuPage is Illinois's third-most populous county (pop. 930,000, county seat Wheaton). LICENCE: the county's Open Data site lists this service as the 'ParcelsRealEstate' dataset (ArcGIS item b47d0bd9cef14b2fbeec45bc0df50935, modified 2026-11-05), whose terms of use are the Open Geo-Spatial Data License - DuPage County 1.0 (2015), linked as licenseUrl. The licence allows commercial use and requires every use to carry the county's attribution statement; the county's GIS team pointed us to the Open Data site and that licence on 2026-11-16, so the pause on paid lookups held while we asked is lifted. An older ArcGIS item for the map service (f47068d8e8d54a1c8f61eae66c288406, last modified 2024-07-29) still carries a no-repackaging sentence that the 2026 item replaced with the licence. CORS: the server reflects the caller's Origin (2026-11-21). Credit: Contains information licensed under the Open Geo-Spatial Data License – DuPage County.",
+      "credit": "Contains information licensed under the Open Geo-Spatial Data License – DuPage County."
     },
     {
       "id": "il-dekalb",
@@ -483,6 +484,53 @@
       },
       "notes": "Massac County, Illinois (county seat Metropolis; FIPS 17127). Served by ReachParcels FeatureServer layer 0 on ArcGIS Online (services7.arcgis.com), the parcel layer behind the county's official Supervisor of Assessments map, the 'Massac County REACH' ArcGIS Experience at massac-il.bhamaps.com, built by Bruce Harris & Associates. Read 2026-11-02 by metadata and returnCountOnly only: 10,827 parcels; Owner populated on 10,628, MailingAddress on 10,626, SiteAddress on 10,575, ParcelNumber and PIN on 10,631. MailingAddress holds a full line: 9,947 of its values contain 'IL ' (a state abbreviation beside the ZIP). maxRecordCount 2000, pagination supported, capabilities Query and Extract (no editing), CORS open (Access-Control-Allow-Origin *). The viewer keys parcels on ParcelNumber, so it comes first. The sample query is an owner search verified 2026-11-02 at 128 rows with returnCountOnly. EXEMPTION COLUMNS, SHOWN NOWHERE: the layer also carries ExemptAmt1, HomeImprovement, OwnerOccupied, ElderyHomeowner, SeniorFreeze, DisabledPerson, ReturningVet and DisabledVet0to30Pct, DisabledVet30to49Pct, DisabledVet50to69Pct and DisabledVet70to100Pct. Nine of them (all but HomeImprovement and OwnerOccupied) say whether an owner is elderly, disabled or a veteran, or hold an exemption amount, so none is listed in searchFields. WHO REQUESTS THEM: the paid paths (REST lookup, bulk and radius, and the hosted MCP's enrich_address and radius_owners) and Owner Lookup ask only for the role columns, so they never request one. Parcel Lookup and the GeoJSON converter read the layer's field list and leave the nine out of their request. Find My Parcel Number asks the county for every column (outFields=*) because it never reads the field list, so the nine do reach the browser there. WHO SHOWS THEM: no surface shows or exports one. Every free tool that handles a raw row drops ExemptAmt1, ElderyHomeowner, SeniorFreeze, DisabledPerson, ReturningVet and the four DisabledVet columns by name before display (sensitive-fields.ts and age-fields.ts; massac-exemption-columns.test.tsx holds them to the layer's live field list and pins which pages request which columns). HomeImprovement and OwnerOccupied are not status columns, are not listed, and are shown by the free tools that show every column. NOT USED: the older copy on ags.bhamaps.com, whose *.bhamaps.com certificate expired 2026-05-19. TERMS: the viewer's disclaimer says the cadastral maps are for 'reference purposes only' and are not a 'legal description', and the service item carries no licence, so the licence is recorded as unknown. The county's separate tax-inquiry site (propertytaxonline.org) says it is 'not intended for the commercial use of for-profit enterprise'; that covers that site, not this layer. NOT CONFIRMED: no feature row was read, so the value format of ParcelNumber and PIN is unseen, and the layer metadata has no aliases or description, so the column meanings rest on the viewer and the names.",
       "addedAt": "2026-11-02"
+    },
+    {
+      "id": "il-madison",
+      "state": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "county": "Madison",
+      "countySlug": "madison-county",
+      "countyFips": "17119",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services.arcgis.com/Z0kKj2K728ngqqrp/arcgis/rest/services/County_Parcels/FeatureServer/12",
+          "serviceType": "FeatureServer",
+          "layerIndex": 12,
+          "layerName": "County Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "PIN", "label": "Parcel Number (PIN, dashed)", "searchable": true },
+            { "name": "CO_PIN", "label": "Parcel Number (undashed)", "searchable": true },
+            { "name": "OWN_FULL", "label": "Owner Name", "searchable": true },
+            { "name": "ST_NAME", "label": "Site Street Name", "searchable": true },
+            { "name": "NUM", "label": "Site House Number", "searchable": false },
+            { "name": "CITY", "label": "Site City", "searchable": true },
+            { "name": "OWN_ADD", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "OWN_CITY", "label": "Owner Mailing City", "searchable": false },
+            { "name": "OWN_STATE", "label": "Owner Mailing State", "searchable": false },
+            { "name": "OWN_ZIP", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "ACRES", "label": "Acres", "searchable": false }
+          ],
+          "maxRecordCount": 2000,
+          "sampleQuery": "https://services.arcgis.com/Z0kKj2K728ngqqrp/arcgis/rest/services/County_Parcels/FeatureServer/12/query?where=UPPER(OWN_FULL)%20LIKE%20%27%25SMITH%25%27&outFields=PIN,OWN_FULL,NUM,ST_NAME,CITY,OWN_ADD&resultRecordCount=10&returnGeometry=false&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=1bd63878b0194f85862cf55d69759db6",
+          "status": "live",
+          "lastVerified": "2026-11-21",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Madison County GIS Department, Information Technology (157 North Main Street, Suite 29, Edwardsville, IL 62025; 618-296-4707)",
+        "url": "https://www.madisoncountyil.gov/departments/information_technology/geographic_information_system.php",
+        "email": "gis@madisoncountyil.gov"
+      },
+      "notes": "Madison County, Illinois (FIPS 17119; county seat Edwardsville; Metro East St. Louis). Served by the ArcGIS Online feature service the county GIS account publishes (item 1bd63878b0194f85862cf55d69759db6, 'Madison County Parcels', owner MadCoGISAdmin, public, modified 2026-11-05), listed on the county's GIS Open Data hub (gis-data-madcoil.hub.arcgis.com) with CSV and shapefile downloads; the item description names 'Address and owner lookup' among its use cases. Layer 12, 'County Parcels', last data edit 2026-10-21 (schema and layer last edited 2026-11-03). Verified 2026-11-21: 136,799 rows, one per PIN (count of PIN = 136,799); owner name (OWN_FULL, with OWN_FIRST, OWN_MID_IN, OWN_LAST and OWN_SUFF) on 136,330 (99.7%); owner mailing address (OWN_ADD, OWN_ADD_2, OWN_CITY, OWN_STATE, OWN_ZIP) on 136,319; site street name (ST_NAME, with NUM, ST_PRE, ST_TYPE, ST_POST, CITY, ZIP, COMM) on 136,412. No withheld-owner placeholder (0 rows match CONFIDENTIAL, WITHHELD or REDACTED). PIN is the dashed form (07-1-11-12-00-000-008.001); CO_PIN is the same number without punctuation. Owner LIKE %SMITH% returns 972 rows; ST_NAME LIKE %MAIN% returns 1,762; an exact PIN query returns 1 row; a point query at 38.8114, -89.9532 (Edwardsville) returns one parcel. The native spatial reference is Illinois State Plane West (WKID 102672), so a point query passes inSR=4326. maxRecordCount 2000 with pagination. CORS: Access-Control-Allow-Origin *. The layer carries no value, sale or tax fields (parcel size only). License: the item, service and layer carry no licence or copyright text; the hub's GIS Disclaimer says the county is not liable for any use of or reliance upon the data and makes no warranty. The county also sells parcel shapefiles under a Geographic Spatial Data Set Agreement (revised 08/25) whose terms bind buyers of those files; this atlas uses the free published service, not purchased files. Informational only and not a survey: verify with the Madison County Chief County Assessment Office. Credit Madison County GIS.",
+      "addedAt": "2026-11-21"
     }
   ]
 }

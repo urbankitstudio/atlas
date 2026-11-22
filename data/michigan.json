@@ -2,7 +2,7 @@
   "stateSlug": "michigan",
   "stateName": "Michigan",
   "stateAbbrev": "MI",
-  "lastUpdated": "2026-11-13",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "mi-kent",
@@ -501,6 +501,33 @@
       "notes": "Muskegon County, Michigan (Muskegon, Norton Shores, Muskegon Heights; FIPS 26121). Served by the county's own ArcGIS Server at maps.muskegoncountygis.com, PropertyViewer MapServer layer 25 'Parcels - LS' (layers 23 and 24 draw the same parcels at other scales), which carries the Equalization Department's assessment data. Read as of 2026-11-10: 84,809 parcels; Owner_Name1 non-blank on 84,800, Owner_Address on 84,476, Property_Address_Combined (site) on 84,192; UPPER(Owner_Name1) LIKE '%SMITH%' returns 745, the sample query's predicate. The owner mailing address is Owner_Address with Owner_Address_City, Owner_Address_State and Owner_Address_ZipCode; Owner_CareOf holds a care-of line. Capabilities Map, Query and Data, maxRecordCount 1000 with pagination, native WKID 2253 (Michigan State Plane South, feet), and the server reflects the caller's Origin for CORS. The Parcels_Public and Equalization folders on the same server need a token and are not used. EXEMPTION COLUMN, NOT LISTED: PRE_Homestead_Pct is the principal-residence exemption percentage. LICENCE: the county's GIS Data Download / Use Agreement (v2026, https://gis.muskegoncountygis.com/open_data/documents/MCGIS_Data_Download_Use_Agreement_v2026.pdf), which the county's Open Data and Public Apps pages say governs use of its data and mapping applications, grants a non-exclusive, limited and revocable license to use, reproduce and distribute the Data. UrbanKit accepted it on 2026-11-10, including clause 6, under which the licensee defends and indemnifies the County, and clause 7, under which only the County may alter the Data. Clause 5 requires this disclaimer in the use agreement of any application of the Data, and it is in UrbanKit's Terms of Service, section 4: \"The Licensee agrees that the County and its elected officials, employees, and agents shall not be liable for damages of any kind (including, but not limited to, loss of use, time or data, inconvenience, commercial loss, business interruption, lost profits or savings, or the cost of computer equipment and software) arising from the use of the Data or any application that uses the Data including, but not limited to, direct, indirect, incidental, punitive and consequential, or special damages.\" Clause 8 requires the notice below on every derivative work, and it travels as this record's credit. The license is revocable, and clause 9 says that while some Data is provided at no charge at this time, the County may charge for the Data in the future. Credit: Reproduced with permission granted Muskegon County, Michigan. Some information has been provided subject to a non-exclusive, limited, and revocable license granted by Muskegon County, Michigan.",
       "credit": "Reproduced with permission granted Muskegon County, Michigan. Some information has been provided subject to a non-exclusive, limited, and revocable license granted by Muskegon County, Michigan.",
       "addedAt": "2026-11-10"
+    },
+    {
+      "id": "mi-genesee",
+      "state": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "county": "Genesee",
+      "countySlug": "genesee-county",
+      "countyFips": "26049",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Genesee County GIS (324 S. Saginaw St., Suite 8A, Flint, MI 48502; (810) 257-3163)",
+        "url": "https://www.geneseecountymi.gov/departments/gis/gis_data_pricing.php",
+        "email": null
+      },
+      "notes": "Genesee County, Michigan (Flint, Burton, Grand Blanc, Fenton; FIPS 26049) sells its parcel data under an enhanced access policy and its own ArcGIS Online parcel service needs a sign-in, as of 2026-11-21. The county GIS department's GIS Data Pricing page lists 'Parcel Data with attributes' at $10,000 for the county, under the Genesee County Enhanced Access Policy. That policy says 'Persons obtaining enhanced access to Genesee County records shall agree not to sell or lease said data to third parties', and the county's GIS Data Request & Release Agreement says 'Requester agrees not to sell, loan or otherwise convey said data to third parties in any digital form.' The county's parcel feature service (services2.arcgis.com/5ckbIY7K9TUKoseK Parcels) answers 'Token Required'. A Genesee County Drain Commission copy on ArcGIS Online (GC_Parcels, Parcels2025County, 189,790 parcels with owner names, last edited 2026-03-04) carries the county's same no-convey licence and is not used. Because the county sells the parcel data and bars passing it on, this atlas does not index Genesee County. The county's FetchGIS viewer shows parcels.",
+      "addedAt": "2026-11-21",
+      "coverage": {
+        "reason": "owner-data-sold",
+        "summary": "Genesee County sells its parcel data and bars passing it on to others, so we don't index it. Use the county's FetchGIS viewer, or request it and we'll tell you if that changes.",
+        "countyProduct": {
+          "name": "Genesee County GIS parcel data (GIS Data Pricing, enhanced access)",
+          "url": "https://www.geneseecountymi.gov/departments/gis/gis_data_pricing.php"
+        },
+        "checked": "2026-11-21"
+      }
     }
   ]
 }

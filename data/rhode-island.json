@@ -2,7 +2,7 @@
   "stateSlug": "rhode-island",
   "stateName": "Rhode Island",
   "stateAbbrev": "RI",
-  "lastUpdated": "2026-11-14",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "ri-providence",
@@ -47,6 +47,29 @@
         "reason": "attributes-missing",
         "summary": "Rhode Island's statewide parcel layer carries Kent County's parcels with plat-lot numbers only, no owner or address, under terms it calls semi-restricted, so we don't index it. Use the town assessor's database, or request it and we'll tell you if that changes.",
         "checked": "2026-11-14"
+      }
+    },
+    {
+      "id": "ri-washington",
+      "state": "RI",
+      "stateName": "Rhode Island",
+      "stateSlug": "rhode-island",
+      "county": "Washington",
+      "countySlug": "washington-county",
+      "countyFips": "44009",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "RIGIS (Rhode Island Geographic Information System), with the RI Division of Statewide Planning",
+        "url": "https://www.rigis.org/pages/municipal-gis-resources",
+        "email": "rigis@uri.edu"
+      },
+      "notes": "Washington County, Rhode Island (South County). Rhode Island has no county government: Charlestown, Exeter, Hopkinton, Narragansett, New Shoreham (Block Island), North Kingstown, Richmond, South Kingstown and Westerly each assess their own property. RIGIS publishes the towns' assessor parcel polygons in one statewide layer, Tax_Parcels (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0; 394,167 parcels in 39 municipalities). Washington County's nine towns hold 66,101 of them, read 2026-11-21, under TownCode SK 12,676, WY (Westerly) 12,028, NK 11,672, NA 10,385, CH 6,122, RI (Richmond) 3,905, HO 3,980, EX 3,132 and BI (New Shoreham) 2,201, the codes matched by querying the layer at a point in each town. WHY NO ENDPOINT: the layer carries only the polygon, the plat-lot id (PlatLot) and the town code (TownCode), with acreage, land-cover and E911 fields; it has no owner name, no site address and no mailing address. VINTAGE: the service says its parcels were collected between 2019 and 2022 and are not the most current. TERMS: the service's item information (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/info/iteminfo) gives licenseInfo 'semi-restricted' and a use limitation that any public facing parcel viewer containing Rhode Island parcels must say the data is for general reference, informational, planning and guidance use only, is not a legally authoritative boundary and is not the product of a professional land survey. OUTREACH: pending since 2026-11-14, to RIGIS at this record's contact address, asking whether 'semi-restricted' lets a commercial service serve the parcel layer with that disclaimer; the same question covers this county. No town in the county publishes an open owner layer: Westerly's town parcel service asks for a sign-in, and South Kingstown's town basemap parcels carry plat, lot, zoning and use but no owner or address. For owner and address, use the town assessor's online database.",
+      "addedAt": "2026-11-21",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Rhode Island's statewide parcel layer carries Washington County's parcels with plat-lot numbers only, no owner or address, under terms it calls semi-restricted, so we don't index it. Use the town assessor's database, or request it and we'll tell you if that changes.",
+        "checked": "2026-11-21"
       }
     }
   ]

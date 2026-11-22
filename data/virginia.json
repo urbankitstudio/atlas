@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "va-fairfax",
@@ -669,6 +669,60 @@
         "summary": "Henry County publishes parcels only through its Interactive GIS map, which has no query service, and Virginia's statewide layer has no owner names or addresses, so we don't index it. Use the county's map, or request it and we'll tell you if that changes.",
         "checked": "2026-11-01"
       }
+    },
+    {
+      "id": "va-madison",
+      "state": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "county": "Madison",
+      "countySlug": "madison-county",
+      "countyFips": "51113",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://www.webgis.net/arcgis/rest/services/VA/MadisonCo_WebGIS1/MapServer/22",
+          "serviceType": "MapServer",
+          "layerIndex": 22,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "AMNAME", "label": "Owner Name", "searchable": true },
+            { "name": "PIN2", "label": "Parcel ID", "searchable": true },
+            { "name": "AMPSTN", "label": "Situs Street Name", "searchable": true },
+            { "name": "AMADR1", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "AMNAM2", "label": "Second Owner Name", "searchable": false },
+            { "name": "AMADR2", "label": "Owner Mailing Address 2", "searchable": false },
+            { "name": "AMADR3", "label": "Owner Mailing City State", "searchable": false },
+            { "name": "AMZIP1", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "AMPST_", "label": "Situs House Number", "searchable": false },
+            { "name": "PropertyCity", "label": "Situs City", "searchable": false },
+            { "name": "AMAACR", "label": "Acres", "searchable": false },
+            { "name": "CurrentLandValue", "label": "Land Value", "searchable": false },
+            { "name": "CurrentImprovementsValue", "label": "Improvement Value", "searchable": false },
+            { "name": "CurrentTotalValue", "label": "Total Assessed Value", "searchable": false },
+            { "name": "CurrentAssessmentYear", "label": "Assessment Year", "searchable": false },
+            { "name": "AMCDAT", "label": "Last Sale Date", "searchable": false },
+            { "name": "AMCAMT", "label": "Last Sale Price", "searchable": false },
+            { "name": "YearBuilt", "label": "Year Built", "searchable": false }
+          ],
+          "maxRecordCount": 1000,
+          "sampleQuery": "https://www.webgis.net/arcgis/rest/services/VA/MadisonCo_WebGIS1/MapServer/22/query?where=UPPER(AMNAME)+LIKE+UPPER('%25SMITH%25')&outFields=PIN2,AMNAME,AMPST_,AMPSTN,AMADR1,AMADR3,AMZIP1&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.webgis.net/va/madison/",
+          "status": "live",
+          "lastVerified": "2026-11-21",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Madison County Commissioner of the Revenue (WebGIS contact), (540) 948-4421",
+        "url": "https://www.madisonco.virginia.gov/574/Real-Estate",
+        "email": "realestatetax@madisonco.virginia.gov"
+      },
+      "notes": "Madison County, Virginia (FIPS 51113) has no ArcGIS Online organisation; its public map is the WebGIS site at www.webgis.net/va/madison, built and hosted by Hurt & Proffitt, Inc., which the county's Real Estate page links. The data comes from the MadisonCo_WebGIS1 MapServer on www.webgis.net, layer 22 (Parcels): 9,812 rows on 2026-11-21, 9,778 with an owner (99.7%). The owner is AMNAME with a second owner in AMNAM2; the owner mailing address is AMADR1, AMADR2 and AMADR3 (city and state) with AMZIP1 and AMZIP4; the situs is AMPST_ (house number, a double) plus AMPSTN (street name, filled on 8,400 rows), with PropertyCity. Use PIN2 as the parcel id (39-83J): PIN holds the same value padded with spaces ('39        83J'), and both round-trip to one row. Current and previous land, improvement and total values carry their assessment year (2027 is the newest), AMCDAT and AMCAMT are the last sale date and amount (newest sale 2026-07-31), and AMAACR is acreage. The server reflects the request Origin in Access-Control-Allow-Origin, maxRecordCount is 1000 with pagination, and the layer is in Virginia State Plane North feet (2283), so a point query must set inSR=4326 (one returned PIN2 39A-72C). No withheld-owner placeholder appears. Terms: the viewer's only text is a disclaimer that the information is believed accurate but not guaranteed, is not a survey and does not replace the official source, and that the county and its consultants are not liable; the service, layer and item carry no licence or copyright text, so the licence is recorded as unknown as for Isle of Wight and Stafford. Property cards are on the county's Concise CAMA site. Informational only and not a survey; verify with the Madison County Commissioner of the Revenue.",
+      "addedAt": "2026-11-21"
     }
   ]
 }

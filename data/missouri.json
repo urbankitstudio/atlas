@@ -2,7 +2,7 @@
   "stateSlug": "missouri",
   "stateName": "Missouri",
   "stateAbbrev": "MO",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "mo-jackson",
@@ -247,6 +247,52 @@
       "notes": "Jasper County, Missouri (Joplin and Carthage; FIPS 29097). Served from an unlisted City of Joplin republish of county data: the City of Joplin GIS hosts the county's May 2026 parcels on its own ArcGIS Enterprise server (joplingis.org, JascoParcels52626_view FeatureServer layer 0). The item is public but not listed in the City's catalogue, and its description says the parcel boundaries and attributes originate from Jasper County and that the City does not create, survey or verify them. The county's own copy on its ArcGIS Online hub stops at 2022 (its sale dates end in 2022), so it is not used. Read as of 2026-11-10: 62,322 parcels; own_name is non-blank on 62,285, own_addres on 62,272 and address on 61,825; 2,004 rows carry a 2026 sale date and 4,736 a 2025 one; UPPER(own_name) LIKE '%SMITH%' returns 663, the sample query's predicate. own_addres is one string in the form street;CITY;ST;ZIP with doubled spaces, and saledt is DD-MON-YY text ('05-AUG-14'). maxRecordCount 1000 with pagination, Query only, and the server reflects the caller's Origin for CORS. NOT LISTED: the free-text notes column, which can hold names. TERMS: the item's licence text says the data is for informational and general mapping purposes only and that users must verify it with Jasper County; it states no restriction on use or redistribution, and it is carried in full in the credit. Credit: Jasper County, Missouri parcel data, published by the City of Joplin GIS. This dataset is provided for informational and general mapping purposes only. It is not intended for use as a legal survey, title record, deed description, or authoritative determination of property boundaries or ownership. The City of Joplin makes no warranty regarding the accuracy, completeness, currency, or fitness of the data for a particular purpose. Users assume responsibility for independently verifying information with Jasper County or another appropriate authoritative source. The City of Joplin and Jasper County are not responsible for decisions, damages, or losses resulting from use of this dataset.",
       "credit": "Jasper County, Missouri parcel data, published by the City of Joplin GIS. This dataset is provided for informational and general mapping purposes only. It is not intended for use as a legal survey, title record, deed description, or authoritative determination of property boundaries or ownership. The City of Joplin makes no warranty regarding the accuracy, completeness, currency, or fitness of the data for a particular purpose. Users assume responsibility for independently verifying information with Jasper County or another appropriate authoritative source. The City of Joplin and Jasper County are not responsible for decisions, damages, or losses resulting from use of this dataset.",
       "addedAt": "2026-11-10"
+    },
+    {
+      "id": "mo-warren",
+      "state": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "county": "Warren",
+      "countySlug": "warren-county",
+      "countyFips": "29219",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Warren County Assessor's Office, 101 Mockingbird Lane, Warrenton, MO 63383; (636) 456-8885",
+        "url": "https://warrencoassessor.com/contact/",
+        "email": null
+      },
+      "notes": "No public REST parcel layer was found for Warren County, Missouri (FIPS 29219; county seat Warrenton) as of 2026-11-21. The Assessor's parcel map is an Integrity GIS (SAM) Geocortex site (warrengis.integritygis.com, viewer warren_basic), and the Assessor's 'Web GIS Site' page says 'To use this resource, you must have a subscription.' Its parcel service, services8.integritygis.com MO/Warren_Assessor_Data MapServer, answered 'Token Required' (code 499) to an anonymous request on 2026-11-21, the same gate measured on every Integrity GIS county on 2026-11-15. ArcGIS Online searches for Warren County, Missouri parcels found only a third-party web map whose layers belong to the City of Troy (Lincoln County); the same search shape finds St. Charles County and Wentzville parcel services next door, so the absence is meaningful. The Assessor's office takes questions by phone and a web form; the Missouri State Tax Commission's assessor directory lists an office email. We asked the Assessor on 2026-11-21 for an open service or a parcel export and will update this record when it answers.",
+      "addedAt": "2026-11-21",
+      "coverage": {
+        "reason": "login-required",
+        "summary": "Warren County's parcel map is on a subscription site whose data service needs a sign-in, so we can't look up Warren parcels yet. Search them on the Assessor's real estate search or call the Assessor at (636) 456-8885. Request the county and we'll tell you if that changes.",
+        "checked": "2026-11-21"
+      }
+    },
+    {
+      "id": "mo-bates",
+      "state": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "county": "Bates",
+      "countySlug": "bates-county",
+      "countyFips": "29013",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Bates County Assessor's Office, Administration Building, 103 W Dakota St, Rm 4, Butler, MO 64730; (660) 386-7776, option 4",
+        "url": "https://batescounty.net/bates-county-assessors-office/",
+        "email": null
+      },
+      "notes": "No public REST parcel layer was found for Bates County, Missouri (FIPS 29013; county seat Butler) as of 2026-11-21. The county's Maps page sends visitors to the Bates County GIS site, an Integrity GIS (SAM) Geocortex viewer (batesgis.integritygis.com, viewer bates). Its parcel service, services8.integritygis.com MO/Bates_Assessor_Data MapServer, answered 'Token Required' (code 499) to an anonymous request on 2026-11-15 and again on 2026-11-21, the same gate measured on every Integrity GIS county on 2026-11-15. No ArcGIS Online organisation, Hub item or MSDIS layer was found for the county on 2026-11-15. The Assessor's page gives the office's address and phone number and offers no data service or download; plat books are sold at the office. We asked the Assessor on 2026-11-15 for an open service or a parcel export and will update this record when it answers.",
+      "addedAt": "2026-11-21",
+      "coverage": {
+        "reason": "login-required",
+        "summary": "Bates County's parcel map is on a vendor site whose data service needs a sign-in, so we can't look up Bates parcels yet. Call the Assessor at (660) 386-7776. Request the county and we'll tell you if that changes.",
+        "checked": "2026-11-21"
+      }
     }
   ]
 }

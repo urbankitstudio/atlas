@@ -2,7 +2,7 @@
   "stateSlug": "texas",
   "stateName": "Texas",
   "stateAbbrev": "TX",
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "tx-harris",
@@ -691,6 +691,59 @@
         "summary": "Webb County's appraisal district shows parcels in its own public map but publishes no parcel service our tools can query, and the statewide Texas service refuses queries, so we don't index it. Search the map at webbcad.org/maps, or request it and we'll tell you if that changes.",
         "checked": "2026-11-01"
       }
+    },
+    {
+      "id": "tx-hays",
+      "state": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "county": "Hays",
+      "countySlug": "hays-county",
+      "countyFips": "48209",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/bVphnK8rPe5MHUSr/arcgis/rest/services/Hays_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "countygis.DBO.Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "prop_id", "label": "Parcel ID (Hays CAD property id)", "searchable": true },
+            { "name": "geo_id", "label": "Geographic ID", "searchable": true },
+            { "name": "file_as_name", "label": "Owner Name", "searchable": true },
+            { "name": "situs_street", "label": "Situs Address (street name; house number is situs_num)", "searchable": true },
+            { "name": "situs_num", "label": "Situs House Number", "searchable": true },
+            { "name": "situs_street_prefx", "label": "Situs Street Prefix", "searchable": false },
+            { "name": "situs_street_sufix", "label": "Situs Street Suffix", "searchable": false },
+            { "name": "situs_city", "label": "Situs City", "searchable": true },
+            { "name": "situs_zip", "label": "Situs ZIP", "searchable": false },
+            { "name": "addr_line1", "label": "Owner Mailing Address (street line)", "searchable": true },
+            { "name": "addr_line2", "label": "Owner Mailing Address line 2", "searchable": false },
+            { "name": "addr_line3", "label": "Owner Mailing Address line 3", "searchable": false },
+            { "name": "addr_city", "label": "Owner Mailing City", "searchable": true },
+            { "name": "addr_state", "label": "Owner Mailing State", "searchable": false },
+            { "name": "zip", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "legal_desc", "label": "Legal Description", "searchable": true },
+            { "name": "legal_acreage", "label": "Legal Acreage", "searchable": false },
+            { "name": "market", "label": "Market Value", "searchable": false }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/bVphnK8rPe5MHUSr/arcgis/rest/services/Hays_County_Parcels/FeatureServer/0/query?where=UPPER(file_as_name)%20LIKE%20UPPER('%25SMITH%25')&outFields=prop_id,geo_id,file_as_name,situs_num,situs_street,situs_city,addr_line1,addr_city&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://hays-county-haysgis.hub.arcgis.com",
+          "status": "live",
+          "lastVerified": "2026-11-21",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Hays County GIS (Hays County Development Services); appraisal data from Hays Central Appraisal District",
+        "url": "https://hays-county-haysgis.hub.arcgis.com",
+        "email": "hayscounty.gis@co.hays.tx.us"
+      },
+      "notes": "Hays County, Texas (county seat San Marcos; Kyle, Buda, Wimberley, Dripping Springs; FIPS 48209) was searched on the site in November 2026. The parcels are Hays Central Appraisal District (Hays CAD) roll data published by Hays County GIS on the county's own ArcGIS Online organisation (Hays County Development Services) as the Hays_County_Parcels FeatureServer layer 0 (item 9ee3a90ccbd744d9a3a7a6dd93b19b69, 'last updated March 2026'): 120,913 parcels on 2026-11-21, 119,468 with an owner. The 1,445 rows with no owner also have no prop_id (polygons the roll did not join). The owner is file_as_name (the display field); the parcel id is prop_id (an integer) with geo_id (e.g. 11-8416-000A-00100-2). SPLIT SITUS, as on Hill CAD's layer: the house number is situs_num and the street is situs_street (117,984 rows), with situs_street_prefx, situs_street_sufix, situs_city and situs_zip; search an address on situs_street (LIKE on a street word) and add situs_num when there is one. The owner mailing address is addr_line1 (the street line, 118,478 rows) with addr_line2 and addr_line3 as continuation lines, addr_city, addr_state and zip. CONFIDENTIAL OWNERS: there is no flag column; 46 rows read exactly 'CONFIDENTIAL' in file_as_name with every mailing line blank. Texas Tax Code 25.025 lets protected persons have their information withheld from appraisal records, and that word is a placeholder, not an owner name. No exemption, photo or sketch column is published (Tax Code 25.027). CORS answers Access-Control-Allow-Origin *. maxRecordCount 2000 with pagination; the layer is Texas South Central state plane, US feet (wkid 102740/2278). Currency: dataLastEditDate 2026-03-17 and owner_tax_yr 2026; Deed_Date is text (1,525 rows dated 2026, the latest in March 2026), so the layer trails the appraisal district's monthly exports by months. TERMS: the item, service and layer carry no licence or copyright text; the county's open data hub (hays-county-haysgis.hub.arcgis.com) carries only a general-planning, no-warranty disclaimer. Hays CAD posts its full property data exports for download on hayscad.com. The CAD's own map viewer (gis.bisclient.com/hayscad) shows a vendor splash saying the data 'cannot be used without consent'; that viewer is not this layer. NOT USED: HaysCADWebService1 (https://services6.arcgis.com/j94FvPaik4etwHFk/arcgis/rest/services/HaysCADWebService1/FeatureServer/0, the CAD's GIS vendor BIS Consultants' copy behind the CAD map: same schema, 123,924 rows, data edited 2026-11-21, so fresher than this layer, but it is the source the CAD viewer's 'cannot be used without consent' splash covers, which is why Hill CAD's equivalent service is paid-off; switch to it only with the Hill treatment or Hays CAD's consent); maps.co.hays.tx.us DevelopmentServices/HaysCountyParcels (Token Required); third-party copies (GBRA 2024, Jacob's Well 2025, university and broker accounts). Verified 2026-11-21: a count, an owner LIKE query (713 rows for %SMITH%), a situs_street LIKE query (180 rows for MAIN), an exact prop_id round trip and a point query.",
+      "addedAt": "2026-11-21"
     }
   ]
 }

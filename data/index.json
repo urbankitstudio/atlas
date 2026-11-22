@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-11-15",
+  "lastUpdated": "2026-11-21",
   "totals": {
     "states": 51,
-    "counties": 546,
-    "endpoints": 522,
-    "countiesWithEndpoint": 494,
+    "counties": 565,
+    "endpoints": 535,
+    "countiesWithEndpoint": 506,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -13,8 +13,8 @@
       "slug": "alabama",
       "name": "Alabama",
       "abbrev": "AL",
-      "countyCount": 3,
-      "endpointCount": 3,
+      "countyCount": 4,
+      "endpointCount": 4,
       "populated": true
     },
     {
@@ -37,8 +37,8 @@
       "slug": "arkansas",
       "name": "Arkansas",
       "abbrev": "AR",
-      "countyCount": 10,
-      "endpointCount": 10,
+      "countyCount": 11,
+      "endpointCount": 11,
       "populated": true
     },
     {
@@ -93,7 +93,7 @@
       "slug": "georgia",
       "name": "Georgia",
       "abbrev": "GA",
-      "countyCount": 10,
+      "countyCount": 11,
       "endpointCount": 7,
       "populated": true
     },
@@ -117,8 +117,8 @@
       "slug": "illinois",
       "name": "Illinois",
       "abbrev": "IL",
-      "countyCount": 12,
-      "endpointCount": 11,
+      "countyCount": 13,
+      "endpointCount": 12,
       "populated": true
     },
     {
@@ -141,8 +141,8 @@
       "slug": "kansas",
       "name": "Kansas",
       "abbrev": "KS",
-      "countyCount": 1,
-      "endpointCount": 1,
+      "countyCount": 2,
+      "endpointCount": 2,
       "populated": true
     },
     {
@@ -165,8 +165,8 @@
       "slug": "maine",
       "name": "Maine",
       "abbrev": "ME",
-      "countyCount": 2,
-      "endpointCount": 4,
+      "countyCount": 3,
+      "endpointCount": 6,
       "populated": true
     },
     {
@@ -181,7 +181,7 @@
       "slug": "massachusetts",
       "name": "Massachusetts",
       "abbrev": "MA",
-      "countyCount": 2,
+      "countyCount": 3,
       "endpointCount": 2,
       "populated": true
     },
@@ -189,7 +189,7 @@
       "slug": "michigan",
       "name": "Michigan",
       "abbrev": "MI",
-      "countyCount": 9,
+      "countyCount": 10,
       "endpointCount": 5,
       "populated": true
     },
@@ -213,7 +213,7 @@
       "slug": "missouri",
       "name": "Missouri",
       "abbrev": "MO",
-      "countyCount": 5,
+      "countyCount": 7,
       "endpointCount": 4,
       "populated": true
     },
@@ -253,16 +253,16 @@
       "slug": "new-jersey",
       "name": "New Jersey",
       "abbrev": "NJ",
-      "countyCount": 8,
-      "endpointCount": 8,
+      "countyCount": 10,
+      "endpointCount": 10,
       "populated": true
     },
     {
       "slug": "new-mexico",
       "name": "New Mexico",
       "abbrev": "NM",
-      "countyCount": 1,
-      "endpointCount": 1,
+      "countyCount": 2,
+      "endpointCount": 2,
       "populated": true
     },
     {
@@ -309,7 +309,7 @@
       "slug": "oregon",
       "name": "Oregon",
       "abbrev": "OR",
-      "countyCount": 8,
+      "countyCount": 9,
       "endpointCount": 8,
       "populated": true
     },
@@ -317,15 +317,15 @@
       "slug": "pennsylvania",
       "name": "Pennsylvania",
       "abbrev": "PA",
-      "countyCount": 14,
-      "endpointCount": 10,
+      "countyCount": 15,
+      "endpointCount": 11,
       "populated": true
     },
     {
       "slug": "rhode-island",
       "name": "Rhode Island",
       "abbrev": "RI",
-      "countyCount": 2,
+      "countyCount": 3,
       "endpointCount": 0,
       "populated": true
     },
@@ -349,16 +349,16 @@
       "slug": "tennessee",
       "name": "Tennessee",
       "abbrev": "TN",
-      "countyCount": 8,
-      "endpointCount": 3,
+      "countyCount": 9,
+      "endpointCount": 4,
       "populated": true
     },
     {
       "slug": "texas",
       "name": "Texas",
       "abbrev": "TX",
-      "countyCount": 16,
-      "endpointCount": 15,
+      "countyCount": 17,
+      "endpointCount": 16,
       "populated": true
     },
     {
@@ -381,8 +381,8 @@
       "slug": "virginia",
       "name": "Virginia",
       "abbrev": "VA",
-      "countyCount": 10,
-      "endpointCount": 8,
+      "countyCount": 11,
+      "endpointCount": 9,
       "populated": true
     },
     {

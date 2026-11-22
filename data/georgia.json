@@ -2,7 +2,7 @@
   "stateSlug": "georgia",
   "stateName": "Georgia",
   "stateAbbrev": "GA",
-  "lastUpdated": "2026-11-15",
+  "lastUpdated": "2026-11-21",
   "counties": [
     {
       "id": "ga-fulton",
@@ -564,6 +564,29 @@
       },
       "notes": "Dooly County, Georgia (county seat Vienna; FIPS 13093). Served by the county's own ArcGIS Online organisation (the one that also publishes the county's 911 addresses, voting districts and zoning layers): feature service Parcel_Regions_w_WinGAP, item 1f883189ff944f74b71e8748c39a2d0d, public, the standard WinGAP parcel export that joins the tax roll to the parcel polygons. Read 2026-11-15: 7,344 parcels, layer last edited 2026-11-05; lastname (the whole owner string, despite the column name) is non-blank on 7,324; firstname and middle are blank on all but a handful of rows and are not listed; UPPER(lastname) LIKE '%SMITH%' returns 143, the sample query's predicate. SITUS is split across columns with no combined situs column: house_no (an integer, 0 where the parcel has no number) and street_nam, with the directional in stdirect, the suffix in sttype and a house-number suffix and unit in extension and unit; the house number and street name are listed as the composite pair (as Hennepin MN's HOUSE_NO and STREET_NM are), and stdirect is declared the pair's directional (role situs-directional, atlas 0.9.7): 686 parcels carry one (E 254, N 196, W 134, S 101, and one Q, which is not a direction and is ignored), and the site address reads house_no, stdirect, street_nam. The owner MAILING address is spread over address1, address2 and address3 plus city, state and zip_code: address2 holds the street or P O Box on most rows (6,023), address1 holds a c/o or second-name line, or the street when address2 is blank (2,373 rows non-blank), so read all three. The record's mailing column is address2, and address1 is its declared fallback (role mailing-fallback, atlas 0.9.7), read only when address2 is blank: on the 1,255 rows whose street or P O Box sits in address1 alone (address2 blank), address1 is read only when it is a mailing line (a whole house number then a word, a P O Box or Drawer with its number, or a rural route box, with no owner-entity, share, c/o, attention or withheld word such as LLC, COMPANY, TRUSTEE, HEIRS, ET AL, INT, C/O, CARE OF, ATTN, ATTENTION, CONFIDENTIAL or 1 OF 2, however it is spelled, where an entity word directly before a street suffix is part of the street name when nothing but a unit and its number follows the suffix): 1,053 start with a digit and 194 are P O Boxes, and on 2026-11-15 1,247 of them are read, while 8 stay blank (the 2 c/o lines and 6 other values). A redaction marker in address1 or in stdirect withholds the row whatever address2 holds; none does on 2026-11-15. PARCEL ID: Parcel_No is a fixed-width string padded with spaces, the map, block and parcel in fixed columns (' 23     25' is map 23 parcel 25; 'U 5   1  1' is map U5 block 1 parcel 1). The id typed with single spaces ('23 25') matches nothing, and a LIKE with % between the parts can match more than one parcel (Parcel_No LIKE 'U 5%1%1' matched 2 on 2026-11-15), so query the parts exactly (Map = 'U5' AND Block = '1' AND Parcel = '1', with SubParcel for a lettered split) or match the full padded value. Realkey is the integer CAMA key, and qPub_Link deep-links each row's report on the county's qPublic site. String columns are padded, so trim the values. Capabilities Query only, maxRecordCount 2000 with pagination, WKID 102100, CORS open (Access-Control-Allow-Origin *). No row carries the no_release withhold flag. EXEMPTION COLUMN, NOT LISTED: homeexempt holds the homestead exemption codes. NOT USED: the regional commission's Dooly_County_Parcels layer, whose data is from 2022. TERMS: the ArcGIS Online item carries no licence, access or description text, and the county's Terms of Use (doolycountyga.gov/terms) say only that public records and government works are available for reuse consistent with Georgia law; no limit on sale or commercial use was found.",
       "addedAt": "2026-11-15"
+    },
+    {
+      "id": "ga-gordon",
+      "state": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "county": "Gordon",
+      "countySlug": "gordon-county",
+      "countyFips": "13129",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Gordon County GIS Office (under the Tax Assessors office), Gordon County Plaza 1st Floor, 215 North Wall St, Calhoun, GA 30701, 706-629-6812",
+        "url": "https://gordoncountyga.gov/211/Geographic-Information-System-GIS",
+        "email": "gis@gordoncountyga.gov"
+      },
+      "notes": "Gordon County, Georgia (county seat Calhoun; FIPS 13129). The only public parcel layer found, GC Parcels (layer 3 of the OpenGov feature service on the county's ArcGIS Online organisation, published for the county's OpenGov permitting system), has 28,878 parcel polygons with a parcel id (PIN), acreage, a property class and a city code, and no owner name, site address or mailing address, as of 2026-11-21; the same service's address points carry addresses and parcel numbers but no owners. The county's GIS page links only to the Tax Assessor's property site (a Schneider qPublic/Beacon portal), which shows owners one parcel at a time and has no public query service. The county sells GIS layers as shapefiles under a signed disclaimer (GIS Fee Schedule, 2008). For parcel and owner records, use the qPublic site or contact the Gordon County GIS Office.",
+      "addedAt": "2026-11-21",
+      "coverage": {
+        "reason": "attributes-missing",
+        "summary": "Gordon County's public parcel layer has parcel ids but no owner names or addresses, so we don't index it. The Tax Assessor's property search shows owners one parcel at a time. Request it and we'll tell you if that changes.",
+        "checked": "2026-11-21"
+      }
     }
   ]
 }
