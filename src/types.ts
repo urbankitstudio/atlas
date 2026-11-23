@@ -125,9 +125,12 @@ export type SearchFieldRole = "mailing-fallback" | "situs-directional";
  * (0.9.1) is the first record that carries one.
  *
  * The table has no geometry. Query it by key only
- * (`<key> IN ('<value>', ...)`, each `'` doubled), never spatially: an ArcGIS
+ * (`<key> IN ('<value>', ...)`, each `'` doubled, with `tableWhere` ANDed in
+ * when the join carries one), never spatially: an ArcGIS
  * table ignores a geometry parameter, so a spatial query would answer with
- * arbitrary rows. Check that every returned row's `key` is one you asked for.
+ * arbitrary rows. Check that every returned row's `key` is one you asked for,
+ * and, where the join carries `layerScope`, attach rows only to the polygons it
+ * admits.
  *
  * The table's columns live ONLY in `fields`, never in the endpoint's
  * `searchFields`. So a reader that ignores `ownerJoin` sees a layer with a
@@ -138,13 +141,32 @@ export interface OwnerJoin {
   /** The table's layer URL: another layer of the endpoint's own service (the
    *  same host and service path; `MapServer` and `FeatureServer` are one
    *  service). No endpoint `url` in the registry names this layer, under
-   *  either service type. */
+   *  either service type, except an endpoint of the same county whose
+   *  `scopeWhere` holds this join's `tableWhere` (Maine, since 0.9.13: the
+   *  table is also registered for owner-name search). */
   url: string;
   layerName: string;
   /** The key column on the table. */
   key: string;
-  /** The matching column on the endpoint's layer; one of its `searchFields`. */
+  /** The matching column on the endpoint's layer; one of its `searchFields`.
+   *  It may have the key's name (Maine: `STATE_ID` on both). */
   parcelKey: string;
+  /** Since 0.9.13. A predicate to AND into every query of the table:
+   *  `(<tableWhere>) AND <key> IN ('<value>', ...)`. Always of the form
+   *  `<column> IN ('<value>', ...)`. Present where the polygon layer is shared
+   *  (the endpoint carries `scopeWhere`), because the table then holds other
+   *  counties' rows too; Maine's records list their covered towns' `GEOCODE`s,
+   *  so rows of a town the record does not cover are never joined. */
+  tableWhere?: string;
+  /** Since 0.9.13. The polygon side of the scope: attach a table row only to a
+   *  polygon whose `field` (one of the endpoint's `searchFields`) is exactly one
+   *  of `values`, and read every other polygon as having no owner, even where its
+   *  key matches a row. Present wherever `tableWhere` is: a table scope admits a
+   *  row by the row's own code, and a polygon of an uncovered town can carry a
+   *  covered town's code (Maine: Alfred's parcels carry Arundel's `GEOCODE`).
+   *  Where the record has `partialCoverage`, `values` are its `covers`. Maine:
+   *  `TOWN`. */
+  layerScope?: { field: string; values: string[] };
   /** The table's documented columns: `key`, `rowIdField` and the owner columns. */
   fields: SearchField[];
   /** A column that labels the rows of one key (an assessment unit, say). It is
@@ -371,9 +393,10 @@ export interface CountyAdvisory {
  * Bureau names its county subdivisions, without a "town" or "city" suffix:
  *
  * - `covers`: where the record returns parcels WITH their owners.
- * - `notCovered`: every other city or town of the county. An address there may
- *   find no parcel, or a parcel with no owner. An empty answer in a notCovered
- *   place means this record has no owner data there.
+ * - `notCovered`: every other city or town of the county, where the record's
+ *   parcel layer does not return owners. An address there may find no parcel,
+ *   or a parcel with no owner. Owners there may still be searchable by name on
+ *   another of the record's endpoints: read `notes`.
  *
  * Every name in both lists is also in `notes`.
  *

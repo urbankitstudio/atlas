@@ -1,5 +1,104 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.13 (2026-11-23)
+
+Maine's three county records now join their parcel polygons to the statewide assessor table, so a paid radius ring
+returns Maine owners. Totals do not move (566 counties, 538 endpoints, 509 counties with an endpoint). **Patch.** Two
+optional fields are added to `OwnerJoin`, and no existing type, function or field changed.
+
+- **`OwnerJoin.tableWhere?: string`.** A scope sent on every request to the join's table, as
+  `(<tableWhere>) AND <key> IN (...)`. It is always `<column> IN ('<value>', ...)`, and a join beside a layer's
+  `scopeWhere` needs one: a shared layer's scope does not scope its table. The hosted capability answers carry it as
+  `owner_join.table_where`, null on a join without one (OpenAPI 1.17.0), and the `owner_join` note says to send it.
+- **`OwnerJoin.layerScope?: { field: string; values: string[] }`.** The polygon side of that scope, present wherever
+  `tableWhere` is: a row is the owner only of a polygon whose `field` value is one of `values`, and any other polygon
+  has no owner, even where its key matches a row. `tableWhere` admits a row by the row's own code, and a polygon of
+  an uncovered town can carry a covered town's code: 1,634 of Alfred's polygons carry Arundel's GEOCODE, and York's
+  `tableWhere` admits Arundel's rows. Maine's field is `TOWN`, with the record's `partialCoverage.covers` as the
+  values, spelled as layer 10 writes them (read live on 2026-11-23). The capability answers carry it as
+  `owner_join.layer_scope`, null without one (OpenAPI 1.17.0), and the `owner_join` note says to read it.
+- **Maine, owners through the join** (`me-cumberland`, `me-york`, `me-kennebec`). Layer 10, the polygons, now carries
+  `ownerJoin` to layer 9, the assessor table with no geometry, keyed `STATE_ID` to `STATE_ID`, with a `tableWhere`
+  that names the GEOCODEs of the record's covered towns only. Read on the full live data on 2026-11-23:
+  - Owners joined in covered towns: Cumberland 104,237, York 53,685, Kennebec 25,784. Rows with a mailing address
+    and no owner: 6, 6 and 0.
+  - No parcel joined another town's row (0 in all three counties; the same check on `MAP_BK_LOT` alone matched
+    104,864), and no row of a town the record lists as not covered can be reached.
+  - Keys with several distinct assessor rows are served without an owner: Cumberland 1,599 (Westbrook 1,116), York
+    3,786 (Old Orchard Beach 2,824), Kennebec 6.
+  - **Billing.** A Maine ring used to ask layer 9, which refuses a geometry query that carries no where clause, as
+    a ring's does (beside a where clause it ignores the geometry), and came back with no rows, refunded. It now charges one unit per returned row with an owner name or a mailing address, as on any ring,
+    which here means a joined row in a covered town. A parcel whose
+    key has several rows is not charged, and neither is a parcel in a town the answer lists as not covered: its
+    `TOWN` is outside the join's `layerScope`, so it comes back with no owner and no mailing address. A
+    `count_only` preview of a Maine ring (MCP `radius_owners`) moves the same way: 1 unit where it was 0 when the
+    ring holds a row with an owner or a mailing address, and still nothing when it holds none.
+  - **Parcel id.** `STATE_ID` (GEOCODE and MAP_BK_LOT, e.g. `11100_037143`) is now layer 10's parcel id, so a Maine
+    `parcel_id` in a radius row, an MCP `enrich_address` answer and a `POST /api/atlas/bulk` row is the STATE_ID
+    value, where it was the MAP_BK_LOT value. `MAP_BK_LOT` stays searchable on both layers, relabelled as the lot
+    number within its town (it repeats across towns).
+  - **Notice list.** Each county's layer 9 registration now documents `STATE_ID` (State Parcel ID) too, so both of
+    its endpoints read `STATE_ID` as the parcel id and a written notice for a Maine parcel can be listed under it.
+    Layer 9 read no id column before, and the list refused every Maine entry.
+  - The list's value rule reads `_` as a space, so a `STATE_ID` whose lot id starts with letters (`<GEOCODE>_AB12-3`)
+    read as a house number and a street word, and the list refused it. A leading five digits and `_` is now an id
+    prefix: such a value is also accepted when the lot id after it passes the rule on its own and does not open
+    with a one- or two-letter word (`RT_9`, `N_5TH`). The rule only accepts more; every value it accepted before
+    still goes. Read on 2026-11-23, the list now accepts 451 more of Cumberland's sold keys and 2 more of York's;
+    35, 8 and 3 (Kennebec) are still refused, for letters in the lot id that read as a name or a street.
+  - York's join and its layer 9 registration now document `OWN_STATE` and `OWN_ZIP`, as Cumberland's and Kennebec's
+    do (York's table carries both: `OWN_STATE` on 62,912 of the 64,531 rows in its scope, `OWN_ZIP` on 36,164). A
+    radius row still carries one mailing column, the street line.
+  - Enrichment does not read the table: a Maine enrich row still has no owner, `owner_data_available` stays false,
+    and its billing is unchanged. With layer 10 down it no longer falls back to layer 9's own registration: the
+    row is `county-unavailable` and not charged, as before, but `owner_data_available` stays false, where the
+    fallback read it off the table's owner columns before the table refused the query. Enrichment answers cached
+    before this release are not read (the parcel cache key moves to v5): one cached for a Maine location lacks
+    `STATE_ID`, and would come back with no parcel id for the notice list to match.
+  - `partialCoverage`: Freeport and South Portland (Cumberland) and Kennebunk and Acton (York) move to `notCovered`.
+    They have owner rows, but no parcel's STATE_ID matches them: Freeport 0 of 4,356 parcels and South Portland 0 of
+    8,822; Kennebunk's parcels write `-` where its rows write `_` (5,634 of 7,183 join read that way); Acton's
+    parcels carry a doubled STATE_ID (2,992 of 3,056 match exactly one row on GEOCODE plus MAP_BK_LOT). The notes say
+    how to join each. Cumberland now covers 20 of 28 towns and York 14 of 29; Kennebec is unchanged at 8 of 30.
+  - Notes: join layer 9 to layer 10 on `STATE_ID`, or on `GEOCODE` plus `MAP_BK_LOT`; `MAP_BK_LOT` alone matches
+    other towns' parcels.
+- **The registry's rules** (`validate-atlas`): a join's key may share its name with the layer when it is also
+  `parcelKey`; a join beside `scopeWhere` needs a `tableWhere` of the one form; a join with a `tableWhere`, or beside
+  `scopeWhere`, needs a registration of its table in its own county whose `scopeWhere` holds that `tableWhere`, since
+  nothing else says the list names that county's rows; and a join's table may stay registered as an endpoint only
+  where each county that registers it also joins it, with a `tableWhere` inside that registration's `scopeWhere`. Maine keeps layer 9 registered for owner-name search by attribute. A county with a
+  joined layer must be able to hold a notice-list entry in its join key column, judged on every endpoint the county
+  answers from, not on the joined layer alone. A join with a `tableWhere` needs a `layerScope` whose field is one of
+  the layer's `searchFields` and whose values are written as the layer writes them, once each; where the record has
+  `partialCoverage`, they are exactly its `covers`.
+- **`PartialCoverage.notCovered`, reworded.** It names the places where the record's parcel layer does not return
+  owners. Owners there may still be searchable by name on another of the record's endpoints (Maine's layer 9
+  registration holds rows of towns the join leaves out); `notes` says where. The docs no longer say an empty
+  answer there means the record has no owner data there. The field and its values are unchanged.
+- **Hosted answers.**
+  - Radius never uses a county's own join table as the ring's layer, even where the county registers it.
+  - Radius reads a join's `tableWhere` in the one form and rebuilds it on every table request, each value
+    re-quoted; it never copies the record's text, and runs no join whose `tableWhere` does not parse. The
+    liveness probe asks a scoped table that same request and checks that the table still has the scope's column.
+  - Radius asks layer 10 for the `layerScope` column beside the key, never asks the table the key of a polygon
+    outside the scope, and attaches no row to one. Its parcel cache key carries the column, so an entry stored
+    without it is not read.
+  - The /pricing coverage checker reads Maine's owners as coming through the join, which only a radius ring reads.
+  - A radius answer's `partial_coverage`, for a county whose discovery is withheld, is served only when every place
+    name and the date pass the same filter as the rest of the record, and is absent otherwise, as is its sentence
+    in `note`. All four records list plain town names, so no answer changes today.
+  - The paid owner lookup (MCP `enrich_address`, `POST /api/atlas/bulk`) treats a whole-buffer answer that lacks a
+    parcel the capped page held as cut: `source-incomplete`, not charged, instead of a pick from a partial list. On
+    2026-11-22 the page was a subset of the whole answer on all 13 measured layers, so no measured lookup changes.
+- **Wording.** Rutherford County, Tennessee's notes say its disclaimer grants no license and states no commercial use,
+  resale or attribution term. Three `coverage.summary` texts spell "license" (Matanuska-Susitna AK, Gwinnett GA,
+  Delaware IN). The `coverage.reason` value `licence-restricted` keeps its spelling on purpose: it is a published
+  token in `openapi.json`, this package and the CLI.
+
+For an agent: on a record whose join carries `tableWhere`, send it on every table request. The stdio MCP server
+(`@urbankitstudio/mcp-atlas`) reads no join beside `scopeWhere` yet, so it ignores Maine's joins and keeps answering
+Maine owner-name search through layer 9.
+
 ## 0.9.12 (2026-11-23)
 
 No data, type or function in this package changes, and totals do not move (566 counties, 538 endpoints, 509

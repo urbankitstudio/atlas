@@ -250,7 +250,7 @@
       "notes": "Gwinnett County, Georgia (Lawrenceville; FIPS 13135) is not served by this atlas as of 2026-11-10. The county's open-data portal attaches this license text to its parcel data: 'So as not to conflict or interfere with the data sales of Gwinnett County government, the copyrighted data shall be used for internal purposes by recipient only and may not be distributed or sold in any way to any person or entity.' UrbanKit does not serve it without the county's permission. Until 2026-11-10 this record listed layer 3 (the Tax Master Table) of the county's Property_and_Tax FeatureServer under the license 'public', which was wrong; on 2026-11-10 that service no longer has a layer 3. The county's owner service, FYT_Owner_Data, is public but unlisted and carries no license text of its own. Owner and mailing records are available through the Gwinnett County Tax Assessors' property search.",
       "coverage": {
         "reason": "licence-restricted",
-        "summary": "Gwinnett County's data licence limits its GIS data to internal use by the recipient, not for distribution or sale, so we don't serve it without the county's permission. Use the county's Tax Assessors property search, or request it and we'll tell you if that changes.",
+        "summary": "Gwinnett County's data license limits its GIS data to internal use by the recipient, not for distribution or sale, so we don't serve it without the county's permission. Use the county's Tax Assessors property search, or request it and we'll tell you if that changes.",
         "checked": "2026-11-10"
       }
     },

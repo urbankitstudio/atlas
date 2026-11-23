@@ -157,7 +157,7 @@
       "addedAt": "2026-11-11",
       "coverage": {
         "reason": "licence-restricted",
-        "summary": "The Matanuska-Susitna Borough's data licence restricts passing its parcel data to third parties without its written authorization. We don't have it, so we don't index the Borough. Use the Borough's Parcel Viewer, or request it and we'll tell you if that changes.",
+        "summary": "The Matanuska-Susitna Borough's data license restricts passing its parcel data to third parties without its written authorization. We don't have it, so we don't index the Borough. Use the Borough's Parcel Viewer, or request it and we'll tell you if that changes.",
         "checked": "2026-11-11"
       }
     }

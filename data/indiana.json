@@ -297,7 +297,7 @@
       "addedAt": "2026-11-10",
       "coverage": {
         "reason": "owner-data-sold",
-        "summary": "Delaware County's code requires a licence agreement and fees before its GIS data is used commercially, and we don't have the county's permission, so we don't index it. Search the county's own parcel tools, or request it and we'll tell you if that changes.",
+        "summary": "Delaware County's code requires a license agreement and fees before its GIS data is used commercially, and we don't have the county's permission, so we don't index it. Search the county's own parcel tools, or request it and we'll tell you if that changes.",
         "checked": "2026-11-10"
       }
     },

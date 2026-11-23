@@ -221,23 +221,35 @@ describe("queryFieldName", () => {
 
   // The CHANGELOG's claims, held to the data. 0.9.0 declared both shapes with no
   // record using either. 0.9.1 ships the first ownerJoin (Sussex County,
-  // Delaware) and still no wireName, so `name` is the literal query column
-  // everywhere, the join table's columns included. When a record ships a
-  // wireName, or a second join, this test goes red and is rewritten with it.
-  it("one bundled record carries an ownerJoin (Sussex DE), none carries a wireName, and every field queries by its name", () => {
-    const endpoints: EndpointRecord[] = [...atlas.byStateSlug.values()]
+  // Delaware); 0.9.13 adds Maine's three, each keyed on STATE_ID (also the
+  // layer's parcel id) and scoped to its covered towns by tableWhere. Still no
+  // wireName, so `name` is the literal query column everywhere, the join table's
+  // columns included. When a record ships a wireName, or another join, this test
+  // goes red and is rewritten with it.
+  it("four bundled records carry an ownerJoin (Sussex DE, Maine's three), none carries a wireName, and every field queries by its name", () => {
+    const records = [...atlas.byStateSlug.values()]
       .flatMap((s) => s.counties)
-      .flatMap((c) => c.endpoints);
+      .flatMap((c) => c.endpoints.map((e: EndpointRecord) => ({ id: c.id, e })));
+    const endpoints: EndpointRecord[] = records.map((r) => r.e);
     expect(endpoints.length, "the bundled atlas did not load").toBeGreaterThan(100);
-    const joined = endpoints.filter((e) => "ownerJoin" in e);
-    expect(joined.map((e) => e.url)).toEqual([
-      "https://map.sussexcountyde.gov/trdserver/rest/services/Geographic_Information_Office/Parcels_PIN/MapServer/0",
-    ]);
-    const join = joined[0].ownerJoin!;
+    const joined = records.filter((r) => "ownerJoin" in r.e);
+    expect(joined.map((r) => r.id).sort()).toEqual(["de-sussex", "me-cumberland", "me-kennebec", "me-york"]);
+    const sussex = joined.find((r) => r.id === "de-sussex")!.e;
+    expect(sussex.url).toBe("https://map.sussexcountyde.gov/trdserver/rest/services/Geographic_Information_Office/Parcels_PIN/MapServer/0");
+    const join = sussex.ownerJoin!;
     expect([join.parcelKey, join.key, join.multiple, join.maxRowsPerKey, join.orderField]).toEqual(["Name", "PIN", "rows", 1000, "OBJECTID_1"]);
+    expect(join.tableWhere).toBeUndefined();
     // The owner columns are the table's alone: the layer's own list has the parcel id and nothing else.
-    expect(joined[0].searchFields.map((f) => f.name)).toEqual(["Name"]);
+    expect(sussex.searchFields.map((f) => f.name)).toEqual(["Name"]);
     expect(join.fields.map((f) => f.name)).toEqual(["PIN", "PINWASSEMENTUNIT", "FULLNAME", "Second_Owner_Name", "MAILINGADDRESS", "CITY", "STATE", "ZIPCODE"]);
+    for (const { id, e } of joined.filter((r) => r.id.startsWith("me-"))) {
+      const j = e.ownerJoin!;
+      expect([j.key, j.parcelKey, j.multiple], id).toEqual(["STATE_ID", "STATE_ID", undefined]);
+      expect(j.tableWhere, id).toMatch(/^GEOCODE IN \('\d{5}'(,'\d{5}')*\)$/);
+      // The key is the one column the layer and the table share.
+      const own = new Set(e.searchFields.map((f) => f.name));
+      expect(j.fields.filter((f) => own.has(f.name)).map((f) => f.name), id).toEqual(["STATE_ID"]);
+    }
     const fields = endpoints.flatMap((e) => [...e.searchFields, ...(e.ownerJoin?.fields ?? [])]);
     expect(fields.length).toBeGreaterThan(endpoints.length);
     expect(fields.filter((f) => "wireName" in f || queryFieldName(f) !== f.name)).toEqual([]);

@@ -346,9 +346,10 @@ owner there is protected.
 
 ## Some counties keep owners in a separate table
 
-Declared in 0.9.0 and carried by one record from 0.9.1: **Sussex County,
-Delaware** (`de-sussex`, FIPS 10005). Every other record reads exactly as it did
-in 0.8.x.
+Declared in 0.9.0 and carried by four records: **Sussex County, Delaware**
+(`de-sussex`, FIPS 10005) from 0.9.1, and Maine's **Cumberland**, **York** and
+**Kennebec** (`me-cumberland`, `me-york`, `me-kennebec`) from 0.9.13. Every other
+record reads exactly as it did in 0.8.x.
 
 An endpoint may carry `ownerJoin` (type `OwnerJoin`). Its parcel layer has the
 polygons and a parcel id but no owner; the owner rows are in a table of the same
@@ -359,9 +360,24 @@ service, at `ownerJoin.url`. A parcel's owners are the table rows whose
   (`<key> IN ('<value>', ...)`, each `'` doubled), never spatially: an ArcGIS
   table ignores a geometry parameter and answers with arbitrary rows. Check that
   each returned row's key is one you asked for.
+- When `ownerJoin.tableWhere` is present (since 0.9.13), the table also holds
+  rows of places the record does not cover: send
+  `(<tableWhere>) AND <key> IN (...)` on every request. It is always
+  `<column> IN ('<value>', ...)`. Maine's table holds the whole state, and each
+  county's `tableWhere` names the GEOCODEs of its covered towns only.
+- `ownerJoin.layerScope` (since 0.9.13, present wherever `tableWhere` is) is
+  the polygon side of that scope: a row is the owner only of a polygon whose
+  `layerScope.field` value is one of `layerScope.values`. Read no owner for any
+  other polygon, even one whose key matches a row: `tableWhere` admits a row by
+  the row's own code, and a polygon of an uncovered town can carry a covered
+  town's code (Maine's Alfred parcels carry Arundel's GEOCODE). Maine's field
+  is `TOWN` and its values are the record's `partialCoverage.covers`.
 - The table's columns are in `ownerJoin.fields` only, never in the endpoint's
-  `searchFields`. If you ignore `ownerJoin`, you see a layer with no owner
-  column, which is true of the parcel layer.
+  `searchFields`, except the key when it is also `parcelKey` (Maine joins
+  `STATE_ID` to `STATE_ID`). If you ignore `ownerJoin`, you see a layer with no
+  owner column, which is true of the parcel layer. Maine also registers its
+  table as an endpoint of its own (scoped by `scopeWhere`) for owner-name
+  search by attribute; that endpoint has no geometry.
 - `orderField` is a unique, stable column of the table. Send it as
   `orderByFields` whenever you send `resultOffset`.
 - `multiple: "rows"` means a key with several rows stands for several ownership
@@ -461,7 +477,7 @@ carries `partialCoverage`, and every other county does not:
 ```ts
 interface PartialCoverage {
   covers: string[];     // cities and towns where the record returns parcels with owners
-  notCovered: string[]; // every other city or town of the county
+  notCovered: string[]; // every other city or town: the parcel layer returns no owners there
   checked: string;      // YYYY-MM-DD the two lists were read
 }
 ```
@@ -471,10 +487,11 @@ none of the county's other 15 cities and towns), and `me-cumberland`, `me-york`
 and `me-kennebec` (Maine's statewide service holds owners for only some of each
 county's towns). Names are the Census Bureau's county subdivision names
 without their "town" or "city" suffix, and every name in both lists is also in
-the record's `notes`. An address in a `notCovered` place may find no parcel, or a
-parcel with no owner. An empty answer in a notCovered place means this record has
-no owner data there. Match an address to a place by its city or town, not its ZIP
-code. The shape is stable. Fields may be added, never renamed or removed, within
+the record's `notes`. A `notCovered` place is one where the record's parcel layer
+does not return owners: an address there may find no parcel, or a parcel with no
+owner. Owners there may still be searchable by name on another of the record's
+endpoints; `notes` says where. Match an address to a place by its city or town,
+not its ZIP code. The shape is stable. Fields may be added, never renamed or removed, within
 0.x.
 
 ```ts

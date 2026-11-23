@@ -39,7 +39,7 @@
             },
             {
               "name": "MAP_BK_LOT",
-              "label": "Map-Book-Lot Parcel ID",
+              "label": "Map-Book-Lot (lot number within its town; repeats across towns)",
               "searchable": true
             },
             {
@@ -63,6 +63,78 @@
               "searchable": false
             }
           ],
+          "ownerJoin": {
+            "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9",
+            "layerName": "Maine Parcels Organized Towns ADB (assessor table)",
+            "key": "STATE_ID",
+            "parcelKey": "STATE_ID",
+            "tableWhere": "GEOCODE IN ('05020','05030','05040','05050','05060','05070','05100','05110','05130','05140','05150','05170','05180','05190','05200','05210','05230','05240','05250','05260')",
+            "layerScope": {
+              "field": "TOWN",
+              "values": [
+                "Bridgton",
+                "Brunswick",
+                "Cape Elizabeth",
+                "Casco",
+                "Cumberland",
+                "Falmouth",
+                "Gray",
+                "Harpswell",
+                "Naples",
+                "New Gloucester",
+                "North Yarmouth",
+                "Portland",
+                "Pownal",
+                "Raymond",
+                "Scarborough",
+                "Sebago",
+                "Standish",
+                "Westbrook",
+                "Windham",
+                "Yarmouth"
+              ]
+            },
+            "fields": [
+              {
+                "name": "STATE_ID",
+                "label": "State Parcel ID (join key)",
+                "searchable": true
+              },
+              {
+                "name": "OWNER1",
+                "label": "Owner Name (line 1)",
+                "searchable": true
+              },
+              {
+                "name": "OWNER2",
+                "label": "Owner Name (line 2)",
+                "searchable": true
+              },
+              {
+                "name": "OWN_ADDR1",
+                "label": "Owner Mailing Address Line 1",
+                "searchable": false
+              },
+              {
+                "name": "OWN_CITY",
+                "label": "Owner Mailing City",
+                "searchable": false
+              },
+              {
+                "name": "OWN_STATE",
+                "label": "Owner Mailing State",
+                "searchable": false
+              },
+              {
+                "name": "OWN_ZIP",
+                "label": "Owner Mailing ZIP",
+                "searchable": false
+              }
+            ],
+            "orderField": "OBJECTID",
+            "maxRecordCount": 2000,
+            "lastVerified": "2026-11-23"
+          },
           "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/10/query?where=COUNTY%3D'CUMBERLAND'+AND+UPPER(PROP_LOC)+LIKE+UPPER('%25MAIN%25')&outFields=COUNTY,TOWN,PROP_LOC,MAP_BK_LOT,STATE_ID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.arcgis.com/home/item.html?id=346131b710a645ffb624f448a9cba6d4",
@@ -80,8 +152,13 @@
           "corsEnabled": null,
           "searchFields": [
             {
+              "name": "STATE_ID",
+              "label": "State Parcel ID",
+              "searchable": true
+            },
+            {
               "name": "MAP_BK_LOT",
-              "label": "Map-Book-Lot (join key to polygon layer 10)",
+              "label": "Map-Book-Lot (join key to polygon layer 10, with GEOCODE)",
               "searchable": true
             },
             {
@@ -149,7 +226,7 @@
         "url": "https://www.maine.gov/geolib/",
         "email": null
       },
-      "notes": "Maine GeoLibrary statewide organized-towns parcel service. Layer 10 carries polygon geometry with COUNTY, TOWN, and location fields. Layer 9 is the assessor attribute table (no geometry) with OWNER1/OWNER2 and mailing address, join on MAP_BK_LOT. Filter Cumberland County with COUNTY='CUMBERLAND'; includes Portland, South Portland, Westbrook, Scarborough, Gorham, Windham, etc. Note: submissions are voluntary from municipalities and some towns may have stale data (updated irregularly). Unorganized territories use a separate service (gis.maine.gov/mapservices). Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 28 towns and cities in Cumberland County, and 22 of them have parcels on layer 10 and assessor rows with an owner on layer 9. Covered: Bridgton, Brunswick, Cape Elizabeth, Casco, Cumberland, Falmouth, Freeport, Gray, Harpswell, Naples, New Gloucester, North Yarmouth, Portland, Pownal, Raymond, Scarborough, Sebago, South Portland, Standish, Westbrook, Windham and Yarmouth. Not covered: Baldwin and Harrison have parcels but no assessor rows, so no owner. Gorham and Long Island have parcels and assessor rows, but every owner in those rows is blank, so no owner. Chebeague Island and Frye Island have no parcels in the service. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
+      "notes": "Maine GeoLibrary statewide organized-towns parcel service. Layer 10 carries polygon geometry with COUNTY, TOWN, and location fields. Layer 9 is the assessor attribute table (no geometry) with OWNER1/OWNER2 and mailing address. Join it to layer 10 on STATE_ID, or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Filter Cumberland County with COUNTY='CUMBERLAND'; includes Portland, South Portland, Westbrook, Scarborough, Gorham, Windham, etc. Note: submissions are voluntary from municipalities and some towns may have stale data (updated irregularly). Unorganized territories use a separate service (gis.maine.gov/mapservices). Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 28 towns and cities in Cumberland County, and 20 of them have parcels on layer 10 whose STATE_ID joins an assessor row with an owner on layer 9. Covered: Bridgton, Brunswick, Cape Elizabeth, Casco, Cumberland, Falmouth, Gray, Harpswell, Naples, New Gloucester, North Yarmouth, Portland, Pownal, Raymond, Scarborough, Sebago, Standish, Westbrook, Windham and Yarmouth. Not covered: Freeport and South Portland have parcels and assessor rows with owners, but no parcel joins one: their assessor rows write MAP_BK_LOT, and so STATE_ID, in another format than their parcels, and none of Freeport's 4,356 parcels or South Portland's 8,822 matches a row on either key (read 2026-11-23). Search their owners by name on layer 9. Baldwin and Harrison have parcels but no assessor rows, so no owner. Gorham and Long Island have parcels and assessor rows, but every owner in those rows is blank, so no owner. Chebeague Island and Frye Island have no parcels in the service. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
       "partialCoverage": {
         "covers": [
           "Bridgton",
@@ -158,7 +235,6 @@
           "Casco",
           "Cumberland",
           "Falmouth",
-          "Freeport",
           "Gray",
           "Harpswell",
           "Naples",
@@ -169,13 +245,14 @@
           "Raymond",
           "Scarborough",
           "Sebago",
-          "South Portland",
           "Standish",
           "Westbrook",
           "Windham",
           "Yarmouth"
         ],
         "notCovered": [
+          "Freeport",
+          "South Portland",
           "Baldwin",
           "Harrison",
           "Gorham",
@@ -221,7 +298,7 @@
             },
             {
               "name": "MAP_BK_LOT",
-              "label": "Map-Book-Lot Parcel ID",
+              "label": "Map-Book-Lot (lot number within its town; repeats across towns)",
               "searchable": true
             },
             {
@@ -230,6 +307,72 @@
               "searchable": true
             }
           ],
+          "ownerJoin": {
+            "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9",
+            "layerName": "Maine Parcels Organized Towns ADB (assessor table)",
+            "key": "STATE_ID",
+            "parcelKey": "STATE_ID",
+            "tableWhere": "GEOCODE IN ('31030','31050','31060','31080','31090','31120','31140','31160','31170','31197','31200','31220','31230','31250')",
+            "layerScope": {
+              "field": "TOWN",
+              "values": [
+                "Arundel",
+                "Biddeford",
+                "Buxton",
+                "Dayton",
+                "Eliot",
+                "Kennebunkport",
+                "Lebanon",
+                "Limington",
+                "Lyman",
+                "Ogunquit",
+                "Old Orchard Beach",
+                "Saco",
+                "Sanford",
+                "South Berwick"
+              ]
+            },
+            "fields": [
+              {
+                "name": "STATE_ID",
+                "label": "State Parcel ID (join key)",
+                "searchable": true
+              },
+              {
+                "name": "OWNER1",
+                "label": "Owner Name (line 1)",
+                "searchable": true
+              },
+              {
+                "name": "OWNER2",
+                "label": "Owner Name (line 2)",
+                "searchable": true
+              },
+              {
+                "name": "OWN_ADDR1",
+                "label": "Owner Mailing Address Line 1",
+                "searchable": false
+              },
+              {
+                "name": "OWN_CITY",
+                "label": "Owner Mailing City",
+                "searchable": false
+              },
+              {
+                "name": "OWN_STATE",
+                "label": "Owner Mailing State",
+                "searchable": false
+              },
+              {
+                "name": "OWN_ZIP",
+                "label": "Owner Mailing ZIP",
+                "searchable": false
+              }
+            ],
+            "orderField": "OBJECTID",
+            "maxRecordCount": 2000,
+            "lastVerified": "2026-11-23"
+          },
           "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/10/query?where=COUNTY%3D'YORK'&outFields=COUNTY,TOWN,PROP_LOC,MAP_BK_LOT,STATE_ID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.arcgis.com/home/item.html?id=346131b710a645ffb624f448a9cba6d4",
@@ -247,8 +390,13 @@
           "corsEnabled": null,
           "searchFields": [
             {
+              "name": "STATE_ID",
+              "label": "State Parcel ID",
+              "searchable": true
+            },
+            {
               "name": "MAP_BK_LOT",
-              "label": "Map-Book-Lot (join key to polygon layer 10)",
+              "label": "Map-Book-Lot (join key to polygon layer 10, with GEOCODE)",
               "searchable": true
             },
             {
@@ -272,6 +420,16 @@
               "searchable": false
             },
             {
+              "name": "OWN_STATE",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "OWN_ZIP",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
               "name": "LAND_VAL",
               "label": "Land Value",
               "searchable": false
@@ -291,16 +449,14 @@
         "url": "https://www.maine.gov/geolib/",
         "email": null
       },
-      "notes": "York County is Maine's southernmost county and its most densely populated outside the Portland area, with seasonal coastal communities driving heavy property-lookup demand. The data comes from the same Maine GeoLibrary statewide organized-towns service used by Cumberland County. Layer 10 (FeatureServer/10) carries polygon geometry with COUNTY, TOWN, PROP_LOC, MAP_BK_LOT, and STATE_ID. Layer 9 (FeatureServer/9) is the assessor attribute table -- no geometry -- carrying OWNER1/OWNER2 and mailing address fields; join to layer 10 on MAP_BK_LOT. Filter to York County with COUNTY='YORK'; municipalities include Biddeford, Saco, Sanford, Kennebunk, York, Kittery, Wells, and Berwick. Important caveat: GeoLibrary submissions are voluntary and asynchronous -- some towns update quarterly, others lag by a year or more. For current ownership or assessment, check the individual town assessor's office or the Maine Revenue Services PAS database. Unorganized territories in York County use a separate MEGIS service. Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 29 towns and cities in York County, and 16 of them have parcels on layer 10 and assessor rows with an owner on layer 9. Covered: Acton, Arundel, Biddeford, Buxton, Dayton, Eliot, Kennebunk, Kennebunkport, Lebanon, Limington, Lyman, Ogunquit, Old Orchard Beach, Saco, Sanford and South Berwick. Not covered: Berwick, Kittery, Limerick, Shapleigh, Wells and York have parcels but no assessor rows, so no owner. Hollis and North Berwick have parcels and assessor rows, but every owner in those rows is blank, so no owner. Cornish, Newfield, Parsonsfield and Waterboro have no parcels in the service. Alfred gets no owner here either: layer 10 codes Alfred's parcels GEOCODE 31030, the code of Arundel's parcels and assessor rows, while Alfred's own assessor rows (1,671, every one with an owner) sit under GEOCODE 31020, which this record's layer 9 scope leaves out. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
+      "notes": "York County is Maine's southernmost county and its most densely populated outside the Portland area, with seasonal coastal communities driving heavy property-lookup demand. The data comes from the same Maine GeoLibrary statewide organized-towns service used by Cumberland County. Layer 10 (FeatureServer/10) carries polygon geometry with COUNTY, TOWN, PROP_LOC, MAP_BK_LOT, and STATE_ID. Layer 9 (FeatureServer/9) is the assessor attribute table, with no geometry, carrying OWNER1/OWNER2 and mailing address fields. Join it to layer 10 on STATE_ID, or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Filter to York County with COUNTY='YORK'; municipalities include Biddeford, Saco, Sanford, Kennebunk, York, Kittery, Wells, and Berwick. Important caveat: GeoLibrary submissions are voluntary and asynchronous: some towns update quarterly, others lag by a year or more. For current ownership or assessment, check the individual town assessor's office or the Maine Revenue Services PAS database. Unorganized territories in York County use a separate MEGIS service. Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 29 towns and cities in York County, and 14 of them have parcels on layer 10 whose STATE_ID joins an assessor row with an owner on layer 9. Covered: Arundel, Biddeford, Buxton, Dayton, Eliot, Kennebunkport, Lebanon, Limington, Lyman, Ogunquit, Old Orchard Beach, Saco, Sanford and South Berwick. Not covered: Kennebunk and Acton have parcels and assessor rows with owners, but their parcels' STATE_ID does not match their rows' (read 2026-11-23). Kennebunk's parcels write '-' where its assessor rows write '_': read each '-' as '_' and 5,634 of its 7,183 parcels join. Acton's parcels carry a doubled STATE_ID, so only 2 of its 3,056 join on it: join Acton on GEOCODE plus MAP_BK_LOT instead, where 2,992 parcels match exactly one assessor row. Berwick, Kittery, Limerick, Shapleigh, Wells and York have parcels but no assessor rows, so no owner. Hollis and North Berwick have parcels and assessor rows, but every owner in those rows is blank, so no owner. Cornish, Newfield, Parsonsfield and Waterboro have no parcels in the service. Alfred gets no owner here either: layer 10 codes Alfred's parcels GEOCODE 31030, the code of Arundel's parcels and assessor rows, while Alfred's own assessor rows (1,671, every one with an owner) sit under GEOCODE 31020, which this record's layer 9 scope leaves out. Those rows match Alfred's parcels (TOWN = 'Alfred') on MAP_BK_LOT: 1,596 of its 1,634 parcels match exactly one row, and no row's MAP_BK_LOT repeats (read 2026-11-23). A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
       "partialCoverage": {
         "covers": [
-          "Acton",
           "Arundel",
           "Biddeford",
           "Buxton",
           "Dayton",
           "Eliot",
-          "Kennebunk",
           "Kennebunkport",
           "Lebanon",
           "Limington",
@@ -312,6 +468,8 @@
           "South Berwick"
         ],
         "notCovered": [
+          "Kennebunk",
+          "Acton",
           "Berwick",
           "Kittery",
           "Limerick",
@@ -364,7 +522,7 @@
             },
             {
               "name": "MAP_BK_LOT",
-              "label": "Map-Book-Lot Parcel ID",
+              "label": "Map-Book-Lot (lot number within its town; repeats across towns)",
               "searchable": true
             },
             {
@@ -388,6 +546,66 @@
               "searchable": false
             }
           ],
+          "ownerJoin": {
+            "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9",
+            "layerName": "Maine Parcels Organized Towns ADB (assessor table)",
+            "key": "STATE_ID",
+            "parcelKey": "STATE_ID",
+            "tableWhere": "GEOCODE IN ('11020','11100','11130','11160','11190','11210','11240','11250')",
+            "layerScope": {
+              "field": "TOWN",
+              "values": [
+                "Augusta",
+                "Gardiner",
+                "Manchester",
+                "Oakland",
+                "Readfield",
+                "Sidney",
+                "Waterville",
+                "Wayne"
+              ]
+            },
+            "fields": [
+              {
+                "name": "STATE_ID",
+                "label": "State Parcel ID (join key)",
+                "searchable": true
+              },
+              {
+                "name": "OWNER1",
+                "label": "Owner Name (line 1)",
+                "searchable": true
+              },
+              {
+                "name": "OWNER2",
+                "label": "Owner Name (line 2)",
+                "searchable": true
+              },
+              {
+                "name": "OWN_ADDR1",
+                "label": "Owner Mailing Address Line 1",
+                "searchable": false
+              },
+              {
+                "name": "OWN_CITY",
+                "label": "Owner Mailing City",
+                "searchable": false
+              },
+              {
+                "name": "OWN_STATE",
+                "label": "Owner Mailing State",
+                "searchable": false
+              },
+              {
+                "name": "OWN_ZIP",
+                "label": "Owner Mailing ZIP",
+                "searchable": false
+              }
+            ],
+            "orderField": "OBJECTID",
+            "maxRecordCount": 2000,
+            "lastVerified": "2026-11-23"
+          },
           "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/10/query?where=COUNTY%3D'Kennebec'+AND+UPPER(PROP_LOC)+LIKE+UPPER('%25MAIN%25')&outFields=COUNTY,TOWN,PROP_LOC,MAP_BK_LOT,STATE_ID&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.arcgis.com/home/item.html?id=346131b710a645ffb624f448a9cba6d4",
@@ -404,6 +622,11 @@
           "supportsQuery": true,
           "corsEnabled": true,
           "searchFields": [
+            {
+              "name": "STATE_ID",
+              "label": "State Parcel ID",
+              "searchable": true
+            },
             {
               "name": "MAP_BK_LOT",
               "label": "Map-Book-Lot (join key to polygon layer 10, with GEOCODE)",
@@ -474,7 +697,7 @@
         "url": "https://www.maine.gov/geolib/",
         "email": "GeolibraryBoard.OIT@maine.gov"
       },
-      "notes": "Kennebec County, Maine (FIPS 23011; Augusta, Waterville, Gardiner, Hallowell, Winslow). Maine counties do not assess property: each organized town does, and towns submit parcels voluntarily to the Maine GeoLibrary Parcel Project, published as one statewide service (the same layers the Cumberland and York records use). Layer 10 (polygons) holds 55,126 Kennebec parcels in 20 towns, read 2026-11-21, filtered by COUNTY = 'Kennebec': Augusta 8,448, Waterville 5,661, Winslow 3,746, Winthrop 3,577, Oakland 3,350, China 3,340, Litchfield 2,808, Monmouth 2,743, Gardiner 2,634, Sidney 2,603, Vassalboro 2,580, Mount Vernon 2,026, Clinton 2,002, Readfield 1,787, Fayette 1,592, Chelsea 1,495, Manchester 1,395, Hallowell 1,385, Wayne 1,166, Randolph 788 (GEOCODE 11xxx). PROP_LOC (situs) is non-blank on 39,947 of them. Layer 9 (assessor table, no geometry) holds 39,824 rows for 13 of those towns (Augusta, China, Gardiner, Hallowell, Manchester, Monmouth, Oakland, Randolph, Readfield, Sidney, Waterville, Wayne, Winthrop); OWNER1 is non-blank on 27,822 and OWN_ADDR1 on 25,933, and every non-blank owner is in Augusta, Gardiner, Manchester, Oakland, Readfield, Sidney, Waterville or Wayne (read 2026-11-23). Join layer 9 to layer 10 on GEOCODE plus MAP_BK_LOT, or on STATE_ID (GEOCODE_MAPBKLOT, e.g. 11100_037143), which returned exactly one row on each layer. Not covered: Fayette, Vassalboro, Litchfield, Winslow, Mount Vernon, Chelsea and Clinton have parcels but no assessor rows, so no owner. China, Hallowell, Monmouth, Randolph and Winthrop have parcels and assessor rows, but every owner in those rows is empty: null in China, an empty string in the other four, so no owner. Albion, Belgrade, Benton, Farmingdale, Pittston, Rome, Vienna, West Gardiner and Windsor have no parcels in the service, and Unity Township (unorganized) sits on the separate Maine Parcels Unorganized Territory service, not checked. Freshness: FMUPDAT reads 2010 to 2012 for Augusta, Waterville, Hallowell, Gardiner, Oakland, Sidney, Monmouth, Winthrop, Wayne, Readfield, Randolph and Manchester, 2014 for Chelsea, 2022 to 2025 for Clinton, Winslow, China, Fayette, Litchfield and Mount Vernon; the item itself says data for many towns is more than fifteen years old. Terms: the item's licenseInfo reads 'Access: Public. Use: User assumes risk.' with a disclaimer that the data is for assessing and planning purposes only and not survey-grade, and 5 M.R.S. section 2005 says copyright or licensing restrictions may not be fixed to information made available through the Maine Library of Geographic Information. Credit: Maine GeoLibrary; MaineIT GIS. CORS: Access-Control-Allow-Origin * on every request. maxRecordCount 2000 with pagination.",
+      "notes": "Kennebec County, Maine (FIPS 23011; Augusta, Waterville, Gardiner, Hallowell, Winslow). Maine counties do not assess property: each organized town does, and towns submit parcels voluntarily to the Maine GeoLibrary Parcel Project, published as one statewide service (the same layers the Cumberland and York records use). Layer 10 (polygons) holds 55,126 Kennebec parcels in 20 towns, read 2026-11-21, filtered by COUNTY = 'Kennebec': Augusta 8,448, Waterville 5,661, Winslow 3,746, Winthrop 3,577, Oakland 3,350, China 3,340, Litchfield 2,808, Monmouth 2,743, Gardiner 2,634, Sidney 2,603, Vassalboro 2,580, Mount Vernon 2,026, Clinton 2,002, Readfield 1,787, Fayette 1,592, Chelsea 1,495, Manchester 1,395, Hallowell 1,385, Wayne 1,166, Randolph 788 (GEOCODE 11xxx). PROP_LOC (situs) is non-blank on 39,947 of them. Layer 9 (assessor table, no geometry) holds 39,824 rows for 13 of those towns (Augusta, China, Gardiner, Hallowell, Manchester, Monmouth, Oakland, Randolph, Readfield, Sidney, Waterville, Wayne, Winthrop); OWNER1 is non-blank on 27,822 and OWN_ADDR1 on 25,933, and every non-blank owner is in Augusta, Gardiner, Manchester, Oakland, Readfield, Sidney, Waterville or Wayne (read 2026-11-23). Join layer 9 to layer 10 on STATE_ID (GEOCODE_MAPBKLOT, e.g. 11100_037143), or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Not covered: Fayette, Vassalboro, Litchfield, Winslow, Mount Vernon, Chelsea and Clinton have parcels but no assessor rows, so no owner. China, Hallowell, Monmouth, Randolph and Winthrop have parcels and assessor rows, but every owner in those rows is empty: null in China, an empty string in the other four, so no owner. Albion, Belgrade, Benton, Farmingdale, Pittston, Rome, Vienna, West Gardiner and Windsor have no parcels in the service, and Unity Township (unorganized) sits on the separate Maine Parcels Unorganized Territory service, not checked. Freshness: FMUPDAT reads 2010 to 2012 for Augusta, Waterville, Hallowell, Gardiner, Oakland, Sidney, Monmouth, Winthrop, Wayne, Readfield, Randolph and Manchester, 2014 for Chelsea, 2022 to 2025 for Clinton, Winslow, China, Fayette, Litchfield and Mount Vernon; the item itself says data for many towns is more than fifteen years old. Terms: the item's licenseInfo reads 'Access: Public. Use: User assumes risk.' with a disclaimer that the data is for assessing and planning purposes only and not survey-grade, and 5 M.R.S. section 2005 says copyright or licensing restrictions may not be fixed to information made available through the Maine Library of Geographic Information. Credit: Maine GeoLibrary; MaineIT GIS. CORS: Access-Control-Allow-Origin * on every request. maxRecordCount 2000 with pagination.",
       "partialCoverage": {
         "covers": [
           "Augusta",
