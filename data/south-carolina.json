@@ -2,7 +2,7 @@
   "stateSlug": "south-carolina",
   "stateName": "South Carolina",
   "stateAbbrev": "SC",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-23",
   "counties": [
     {
       "id": "sc-greenville",
@@ -221,6 +221,29 @@
           "url": "https://lancaster-launch-lancogis.hub.arcgis.com/pages/LANCOGIS::request-gis-services"
         },
         "checked": "2026-11-10"
+      }
+    },
+    {
+      "id": "sc-lexington",
+      "state": "SC",
+      "stateName": "South Carolina",
+      "stateSlug": "south-carolina",
+      "county": "Lexington",
+      "countySlug": "lexington-county",
+      "countyFips": "45063",
+      "hasPublicRest": false,
+      "endpoints": [],
+      "contact": {
+        "department": "Lexington County Department of Planning and GIS",
+        "url": "https://lex-co.sc.gov/departments/planning-gis/gis-disclaimer/online-mapping",
+        "email": "gishelp@lexingtoncounty.sc.gov"
+      },
+      "notes": "Lexington County, South Carolina (county seat Lexington; FIPS 45063) is not served by this atlas as of 2026-11-23. The county's Department of Planning and GIS publishes a public parcel layer, the Parcels layer of the Property map service on the county's own ArcGIS Server, which the county's One Map uses: 147,081 parcels on 2026-11-21, with the TMS parcel number, the property address, owner names (non-blank on 146,837) and owner mailing addresses, market, taxable and assessed values, the last sale date and price, zoning, property type and acreage. The county also sells its GIS layers, the countywide parcel layer among them, through the GIS Data Price List on its Planning and GIS Data page. On 2026-11-21 UrbanKit asked the county for written permission to show those fields one parcel at a time, owner names and mailing addresses included, free on the website and paid through the API, with no copy of the dataset kept or offered for download. On 2026-11-23 the Planning & GIS Department answered: \"At this time, Lexington County cannot provide permission for UrbanKit Studio to utilize its Property map service as you've described.\" UrbanKit does not serve the layer, and lookups, owner search and mailing lists are off for the county on every surface. S.C. Code 30-2-50 makes it a misdemeanour to knowingly obtain or use personal information from local-government records for commercial solicitation directed to any person in South Carolina. Request this county with an email address and we will send you one email when we serve it.",
+      "addedAt": "2026-11-23",
+      "coverage": {
+        "reason": "licence-restricted",
+        "summary": "Lexington County's Planning & GIS Department told us it can't give permission for our use of its parcel map service, so we don't index it. If you'd like this to change, ask the county at gishelp@lexingtoncounty.sc.gov.",
+        "checked": "2026-11-23"
       }
     }
   ]

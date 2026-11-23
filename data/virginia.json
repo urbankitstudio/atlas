@@ -2,7 +2,7 @@
   "stateSlug": "virginia",
   "stateName": "Virginia",
   "stateAbbrev": "VA",
-  "lastUpdated": "2026-11-21",
+  "lastUpdated": "2026-11-23",
   "counties": [
     {
       "id": "va-fairfax",
@@ -28,8 +28,8 @@
             { "name": "SRC_CONTROL", "label": "Source Control", "searchable": false }
           ],
           "sampleQuery": "https://www.fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/MapServer/0/query?where=PIN+LIKE+%270304%25%27&outFields=PIN,PARCEL_TYPE&returnGeometry=false&f=json&resultRecordCount=10",
-          "license": "public",
-          "licenseUrl": "https://www.fairfaxcounty.gov/maps/",
+          "license": "restricted",
+          "licenseUrl": "https://www.fairfaxcounty.gov/maps/disclaimer",
           "status": "live",
           "lastVerified": "2026-05-11",
           "verifiedBy": "manual"
@@ -40,7 +40,7 @@
         "url": "https://www.fairfaxcounty.gov/maps/",
         "email": null
       },
-      "notes": "Fairfax County (Northern Virginia, pop. 1.15 million) is the most populous jurisdiction in Virginia and covers 406 square miles, entirely distinct from Fairfax City -- a separate independent city (FIPS 51600) that sits geographically within the county but is governed and assessed independently. The county-direct parcel layer at fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/MapServer/0 exposes PIN, PARCEL_KEY, PARCEL_TYPE (ORDINARY vs. CONDO), and SRC_CONTROL -- but no owner name. Fairfax keeps ownership data in a non-spatial table not exposed on this REST endpoint. For owner-name lookup, use the Fairfax County Real Estate Assessment Database at realestate.fairfaxcounty.gov; it supports search by address, parcel ID, and owner name. The GIS/Property MapServer at fairfaxcounty.gov/euclid/rest has 54 layers (parcels, tax districts, easements, flood zones, annotations) but also does not surface owner in the queryable parcel layer. PIN format is space-padded with section/block/lot grouping (e.g., '0304 39  0029'). Verified 2026-05-11: 369,267 polygon parcels. Updated daily from county cadastral."
+      "notes": "Fairfax County (Northern Virginia, pop. 1.15 million) is the most populous jurisdiction in Virginia and covers 406 square miles, entirely distinct from Fairfax City -- a separate independent city (FIPS 51600) that sits geographically within the county but is governed and assessed independently. The county-direct parcel layer at fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/MapServer/0 exposes PIN, PARCEL_KEY, PARCEL_TYPE (ORDINARY vs. CONDO), and SRC_CONTROL -- but no owner name. Fairfax keeps ownership data in a non-spatial table not exposed on this REST endpoint. For property records, use the county's Property Search at https://icare.fairfaxcounty.gov/ffxcare/; it searches by address or by tax map number, not by owner name. The GIS/Property MapServer at fairfaxcounty.gov/euclid/rest has 54 layers (parcels, tax districts, easements, flood zones, annotations) but also does not surface owner in the queryable parcel layer. PIN format is space-padded with section/block/lot grouping (e.g., '0304 39  0029'). Verified 2026-05-11: 369,267 polygon parcels. Updated daily from county cadastral. On 2026-11-23 the county's GIS Division (Department of Information Technology, Agency Geospatial Services) answered our request for written permission: \"At this time, we will not be providing authorization for commercial use of our data.\" The county's GIS disclaimer (https://www.fairfaxcounty.gov/maps/disclaimer, read 2026-11-23) grants only this: \"Authorization to reproduce material for internal or personal use by any user of this information is granted by Fairfax County, the copyright owner.\" Paid lookups, paused since 2026-10-17 while we asked, stay off, and free lookups continue. The endpoint's license is restricted from 2026-11-23: the county grants reproduction only for internal or personal use."
     },
     {
       "id": "va-prince-william",

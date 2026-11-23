@@ -2,7 +2,7 @@
   "stateSlug": "indiana",
   "stateName": "Indiana",
   "stateAbbrev": "IN",
-  "lastUpdated": "2026-11-11",
+  "lastUpdated": "2026-11-23",
   "counties": [
     {
       "id": "in-hamilton",
@@ -373,6 +373,56 @@
         "summary": "Vigo County publishes parcels through a Beacon search with no public query service, and its GIS data terms bar commercial use without written authorization. We asked the county about both on 2026-11-02. Search its Beacon site, or request it and we'll tell you if that changes.",
         "checked": "2026-11-11"
       }
+    },
+    {
+      "id": "in-lake",
+      "state": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "county": "Lake",
+      "countySlug": "lake-county",
+      "countyFips": "18089",
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services5.arcgis.com/8CXRnvSfSpwdf0R6/arcgis/rest/services/Lake_County_Parcels/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "LakeCountyParcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            { "name": "PARCELID", "label": "Parcel Number", "searchable": true },
+            { "name": "mdeededOwner", "label": "Owner Name", "searchable": true },
+            { "name": "Mail_Add", "label": "Owner Mailing Address", "searchable": true },
+            { "name": "mailcity", "label": "Owner Mailing City", "searchable": false },
+            { "name": "mailstate", "label": "Owner Mailing State", "searchable": false },
+            { "name": "mailzipCode", "label": "Owner Mailing ZIP", "searchable": false },
+            { "name": "Situs_Add", "label": "Property Address", "searchable": true },
+            { "name": "Loccity", "label": "Property City", "searchable": false },
+            { "name": "LoczipCode", "label": "Property ZIP", "searchable": false },
+            { "name": "mpropertyclass", "label": "Property Class", "searchable": false },
+            { "name": "mlegalDescription", "label": "Legal Description", "searchable": true },
+            { "name": "macres", "label": "Acreage", "searchable": false },
+            { "name": "Township", "label": "Township", "searchable": false },
+            { "name": "IncMuni", "label": "Municipality", "searchable": false }
+          ],
+          "sampleQuery": "https://services5.arcgis.com/8CXRnvSfSpwdf0R6/arcgis/rest/services/Lake_County_Parcels/FeatureServer/0/query?where=UPPER(mdeededOwner)+LIKE+UPPER('%25SMITH%25')&outFields=PARCELID,mdeededOwner,Situs_Add,Mail_Add&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "restricted",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=18b6b08c8c7e403cbd9451360c8f5a61",
+          "status": "live",
+          "lastVerified": "2026-11-23",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Lake County Surveyor's Office, GIS",
+        "url": "https://lakecountyhub-lakeingispro.hub.arcgis.com/",
+        "email": null
+      },
+      "notes": "Lake County, Indiana (Crown Point, Gary, Hammond, Merrillville; FIPS 18089). Served by the Lake County Surveyor's Office GIS on ArcGIS Online (org 8CXRnvSfSpwdf0R6, owner lakecountyod), item 18b6b08c8c7e403cbd9451360c8f5a61 'Lake County Parcels' (item and layer last edited 2026-11-20); the service's copyright text is \"Lake County Surveyor's Office\". The item says the parcel layer is maintained within the Lake County Auditor's Office using the parcel fabric. Read as of 2026-11-23: 245,171 parcels; mdeededOwner non-blank on 243,228 (99.2%), Mail_Add on 243,227, Situs_Add on 242,654, mlegalDescription on 243,797; UPPER(mdeededOwner) LIKE '%SMITH%' returns 1,646, the sample query's predicate, and UPPER(Situs_Add) LIKE '%BROADWAY%' returns 1,449. PARCELID is the 18-digit state number in the form 45-08-33-283-027.000-004 (that number's round trip returned 1 row), but it is not unique across the layer: 245,171 rows carry 244,165 distinct values. 356 real state numbers repeat, on 1,105 rows (320 of them twice, one 330 times), so a lookup by number can return several rows for one parcel; the rows of each repeated number carry the same owner and addresses and differ at most in macres and, for 14 numbers, in SecTwpRng, Township or IncMuni. Six other values (null and short non-state codes) repeat on 262 rows. The street parts are also split (LocstreetNumber/Direction/Name/Suffix, mailstreetNumber...), with tax set, TIF, deductions, SPA and RecorderLink/AssessorLink/TreasurerLink columns. Capabilities Query and Extract, maxRecordCount 2000 with pagination, native WKID 2966 (NAD83 Indiana West, ftUS), Access-Control-Allow-Origin * on the layer and on the sample query. 67 owner values contain PROTECTED, all of them business or trust names, and none matches CONFIDENTIAL, WITHHELD or REDACTED, so the layer has no placeholder owners. Licence: the item's licenseInfo reads 'Any redistribution of this data, either in it's original form or any transformed or built upon state, must give contribution to the Lake County Surveyor's Office and may not be used for commercial purposes.' Permission: on 2026-11-21 UrbanKit asked the county for written permission for lookups that query this layer one parcel at a time and show the parcel number, owner name, property address, owner mailing address, property class and legal description, credited to the Lake County Surveyor's Office, free on the website and paid through the API, with no copy of the dataset kept or offered for download. On 2026-11-23 the GIS Administrator of the Office of the Lake County Surveyor answered: \"You have our permission to use the parcel data within your app.\" That permission covers the use the request described, so the county is served on free and paid plans with owner names and mailing addresses. It is UrbanKit's permission: the item's licence above still governs anyone else's use, which is why the endpoint's license is restricted. The licence's credit travels as this record's credit, naming the Surveyor's Office and the Auditor's Office that maintains the layer. Credit: Lake County Surveyor's Office, Lake County, Indiana. The parcel layer is maintained by the Lake County Auditor's Office.",
+      "credit": "Lake County Surveyor's Office, Lake County, Indiana. The parcel layer is maintained by the Lake County Auditor's Office.",
+      "addedAt": "2026-11-23"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-11-22",
+  "lastUpdated": "2026-11-23",
   "totals": {
     "states": 51,
-    "counties": 566,
-    "endpoints": 538,
-    "countiesWithEndpoint": 509,
+    "counties": 568,
+    "endpoints": 539,
+    "countiesWithEndpoint": 510,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -125,8 +125,8 @@
       "slug": "indiana",
       "name": "Indiana",
       "abbrev": "IN",
-      "countyCount": 10,
-      "endpointCount": 4,
+      "countyCount": 11,
+      "endpointCount": 5,
       "populated": true
     },
     {
@@ -333,7 +333,7 @@
       "slug": "south-carolina",
       "name": "South Carolina",
       "abbrev": "SC",
-      "countyCount": 5,
+      "countyCount": 6,
       "endpointCount": 2,
       "populated": true
     },

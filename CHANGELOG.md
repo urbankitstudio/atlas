@@ -1,5 +1,39 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.14 (2026-11-23)
+
+Four counties answered our permission requests. Totals move to 568 counties, 539 endpoints and 510 counties with an
+endpoint (from 566, 538 and 509). **Patch.** No type or function changes; one record is added with an endpoint, one
+without, and two records change.
+
+- **Lake County IN** (`in-lake`, FIPS 18089), added with its endpoint, owner names and mailing addresses. The
+  Surveyor's Office Lake County Parcels layer (245,171 parcels, read on 2026-11-23) carries a licence that requires
+  credit to the Lake County Surveyor's Office and bars commercial use. The county's GIS Administrator gave UrbanKit
+  written permission on 2026-11-23 for the lookups we described, free and paid. That permission is UrbanKit's, so
+  the endpoint's `license` is `restricted`: for anyone else the layer's own licence applies. The record's `credit`
+  names the Surveyor's Office first, then the Auditor's Office, which the item says maintains the layer. The layer
+  also carries deduction columns (`mdeduction`, `mdeduction1` to `mdeduction3`, `mhasmoredeductions`) whose values
+  name veteran deductions, which Indiana grants only with a disability: none is listed in `searchFields`, and the
+  free tools now drop every column whose name or alias contains "deduction", in any case, as they drop exemption
+  lists (never requested, offered, searched or shown). `PARCELID` repeats on some rows: 245,171 rows carry 244,165
+  distinct values, so a lookup by number can return several rows for one parcel.
+- **Lexington County SC** (`sc-lexington`, FIPS 45063), `coverage.reason` `licence-restricted`, no endpoint. The
+  county publishes a public parcel layer with owner names, and its Planning & GIS Department told us on 2026-11-23
+  that it cannot give permission for our use of that service. The notes say what the county publishes and quote its
+  answer. Once the county-access migration of 2026-11-23 is applied, the hosted answers pause the county on every
+  surface; until then only the built-in floor pauses it, and only while the county-access table cannot be read.
+- **Fairfax County VA** (`va-fairfax`): the endpoint stays, and its `license` moves from `public` to `restricted`.
+  The county told us on 2026-11-23 that it will not authorize commercial use of its data, and its disclaimer grants
+  reproduction only for internal or personal use; the notes quote both. Paid hosted lookups stay paused; free
+  lookups continue. The notes' property-search link moves from realestate.fairfaxcounty.gov, which no longer
+  resolves, to the county's Property Search at icare.fairfaxcounty.gov, which searches by address or tax map number.
+- **Kent County MI** (`mi-kent`): the notes add the Bureau of Equalization's 2026 fee schedule for parcel exports
+  ($0.025 or $0.05 per record, 227,169 real parcels), and the `coverage.summary` names the per-record price. The
+  reason stays `login-required`.
+
+For an agent: show a Lake County answer with its `credit`, as for every record that carries one. Read `license`
+as the layer's terms for you, not as UrbanKit's permission.
+
 ## 0.9.13 (2026-11-23)
 
 Maine's three county records now join their parcel polygons to the statewide assessor table, so a paid radius ring
