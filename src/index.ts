@@ -14,6 +14,7 @@ export type {
   StateIndexEntry,
   AtlasIndex,
   CountyAdvisory,
+  PartialCoverage,
   CapabilityField,
   CapabilityStatus,
   CapabilityBasisType,

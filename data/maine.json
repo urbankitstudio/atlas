@@ -149,7 +149,42 @@
         "url": "https://www.maine.gov/geolib/",
         "email": null
       },
-      "notes": "Maine GeoLibrary statewide organized-towns parcel service. Layer 10 carries polygon geometry with COUNTY, TOWN, and location fields. Layer 9 is the assessor attribute table (no geometry) with OWNER1/OWNER2 and mailing address, join on MAP_BK_LOT. Filter Cumberland County with COUNTY='CUMBERLAND'; includes Portland, South Portland, Westbrook, Scarborough, Gorham, Windham, etc. Note: submissions are voluntary from municipalities and some towns may have stale data (updated irregularly). Unorganized territories use a separate service (gis.maine.gov/mapservices)."
+      "notes": "Maine GeoLibrary statewide organized-towns parcel service. Layer 10 carries polygon geometry with COUNTY, TOWN, and location fields. Layer 9 is the assessor attribute table (no geometry) with OWNER1/OWNER2 and mailing address, join on MAP_BK_LOT. Filter Cumberland County with COUNTY='CUMBERLAND'; includes Portland, South Portland, Westbrook, Scarborough, Gorham, Windham, etc. Note: submissions are voluntary from municipalities and some towns may have stale data (updated irregularly). Unorganized territories use a separate service (gis.maine.gov/mapservices). Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 28 towns and cities in Cumberland County, and 22 of them have parcels on layer 10 and assessor rows with an owner on layer 9. Covered: Bridgton, Brunswick, Cape Elizabeth, Casco, Cumberland, Falmouth, Freeport, Gray, Harpswell, Naples, New Gloucester, North Yarmouth, Portland, Pownal, Raymond, Scarborough, Sebago, South Portland, Standish, Westbrook, Windham and Yarmouth. Not covered: Baldwin and Harrison have parcels but no assessor rows, so no owner. Gorham and Long Island have parcels and assessor rows, but every owner in those rows is blank, so no owner. Chebeague Island and Frye Island have no parcels in the service. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
+      "partialCoverage": {
+        "covers": [
+          "Bridgton",
+          "Brunswick",
+          "Cape Elizabeth",
+          "Casco",
+          "Cumberland",
+          "Falmouth",
+          "Freeport",
+          "Gray",
+          "Harpswell",
+          "Naples",
+          "New Gloucester",
+          "North Yarmouth",
+          "Portland",
+          "Pownal",
+          "Raymond",
+          "Scarborough",
+          "Sebago",
+          "South Portland",
+          "Standish",
+          "Westbrook",
+          "Windham",
+          "Yarmouth"
+        ],
+        "notCovered": [
+          "Baldwin",
+          "Harrison",
+          "Gorham",
+          "Long Island",
+          "Chebeague Island",
+          "Frye Island"
+        ],
+        "checked": "2026-11-23"
+      }
     },
     {
       "id": "me-york",
@@ -256,7 +291,43 @@
         "url": "https://www.maine.gov/geolib/",
         "email": null
       },
-      "notes": "York County is Maine's southernmost county and its most densely populated outside the Portland area, with seasonal coastal communities driving heavy property-lookup demand. The data comes from the same Maine GeoLibrary statewide organized-towns service used by Cumberland County. Layer 10 (FeatureServer/10) carries polygon geometry with COUNTY, TOWN, PROP_LOC, MAP_BK_LOT, and STATE_ID. Layer 9 (FeatureServer/9) is the assessor attribute table -- no geometry -- carrying OWNER1/OWNER2 and mailing address fields; join to layer 10 on MAP_BK_LOT. Filter to York County with COUNTY='YORK'; municipalities include Biddeford, Saco, Sanford, Kennebunk, York, Kittery, Wells, and Berwick. Important caveat: GeoLibrary submissions are voluntary and asynchronous -- some towns update quarterly, others lag by a year or more. For current ownership or assessment, check the individual town assessor's office or the Maine Revenue Services PAS database. Unorganized territories in York County use a separate MEGIS service."
+      "notes": "York County is Maine's southernmost county and its most densely populated outside the Portland area, with seasonal coastal communities driving heavy property-lookup demand. The data comes from the same Maine GeoLibrary statewide organized-towns service used by Cumberland County. Layer 10 (FeatureServer/10) carries polygon geometry with COUNTY, TOWN, PROP_LOC, MAP_BK_LOT, and STATE_ID. Layer 9 (FeatureServer/9) is the assessor attribute table -- no geometry -- carrying OWNER1/OWNER2 and mailing address fields; join to layer 10 on MAP_BK_LOT. Filter to York County with COUNTY='YORK'; municipalities include Biddeford, Saco, Sanford, Kennebunk, York, Kittery, Wells, and Berwick. Important caveat: GeoLibrary submissions are voluntary and asynchronous -- some towns update quarterly, others lag by a year or more. For current ownership or assessment, check the individual town assessor's office or the Maine Revenue Services PAS database. Unorganized territories in York County use a separate MEGIS service. Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 29 towns and cities in York County, and 16 of them have parcels on layer 10 and assessor rows with an owner on layer 9. Covered: Acton, Arundel, Biddeford, Buxton, Dayton, Eliot, Kennebunk, Kennebunkport, Lebanon, Limington, Lyman, Ogunquit, Old Orchard Beach, Saco, Sanford and South Berwick. Not covered: Berwick, Kittery, Limerick, Shapleigh, Wells and York have parcels but no assessor rows, so no owner. Hollis and North Berwick have parcels and assessor rows, but every owner in those rows is blank, so no owner. Cornish, Newfield, Parsonsfield and Waterboro have no parcels in the service. Alfred gets no owner here either: layer 10 codes Alfred's parcels GEOCODE 31030, the code of Arundel's parcels and assessor rows, while Alfred's own assessor rows (1,671, every one with an owner) sit under GEOCODE 31020, which this record's layer 9 scope leaves out. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
+      "partialCoverage": {
+        "covers": [
+          "Acton",
+          "Arundel",
+          "Biddeford",
+          "Buxton",
+          "Dayton",
+          "Eliot",
+          "Kennebunk",
+          "Kennebunkport",
+          "Lebanon",
+          "Limington",
+          "Lyman",
+          "Ogunquit",
+          "Old Orchard Beach",
+          "Saco",
+          "Sanford",
+          "South Berwick"
+        ],
+        "notCovered": [
+          "Berwick",
+          "Kittery",
+          "Limerick",
+          "Shapleigh",
+          "Wells",
+          "York",
+          "Hollis",
+          "North Berwick",
+          "Cornish",
+          "Newfield",
+          "Parsonsfield",
+          "Waterboro",
+          "Alfred"
+        ],
+        "checked": "2026-11-23"
+      }
     },
     {
       "id": "me-kennebec",
@@ -403,7 +474,44 @@
         "url": "https://www.maine.gov/geolib/",
         "email": "GeolibraryBoard.OIT@maine.gov"
       },
-      "notes": "Kennebec County, Maine (FIPS 23011; Augusta, Waterville, Gardiner, Hallowell, Winslow). Maine counties do not assess property: each organized town does, and towns submit parcels voluntarily to the Maine GeoLibrary Parcel Project, published as one statewide service (the same layers the Cumberland and York records use). Layer 10 (polygons) holds 55,126 Kennebec parcels in 20 towns, read 2026-11-21, filtered by COUNTY = 'Kennebec': Augusta 8,448, Waterville 5,661, Winslow 3,746, Winthrop 3,577, Oakland 3,350, China 3,340, Litchfield 2,808, Monmouth 2,743, Gardiner 2,634, Sidney 2,603, Vassalboro 2,580, Mount Vernon 2,026, Clinton 2,002, Readfield 1,787, Fayette 1,592, Chelsea 1,495, Manchester 1,395, Hallowell 1,385, Wayne 1,166, Randolph 788 (GEOCODE 11xxx). PROP_LOC (situs) is non-blank on 39,947 of them. Layer 9 (assessor table, no geometry) holds 39,824 rows for 13 of those towns (Augusta, China, Gardiner, Hallowell, Manchester, Monmouth, Oakland, Randolph, Readfield, Sidney, Waterville, Wayne, Winthrop); OWNER1 is non-blank on 27,822 and OWN_ADDR1 on 25,933. Join layer 9 to layer 10 on GEOCODE plus MAP_BK_LOT, or on STATE_ID (GEOCODE_MAPBKLOT, e.g. 11100_037143), which returned exactly one row on each layer. NOT COVERED: Fayette, Vassalboro, Litchfield, Winslow, Mount Vernon, Chelsea and Clinton have polygons but no assessor rows (no owner); Albion, Belgrade, Benton, Farmingdale, Pittston, Rome, Vienna, West Gardiner and Windsor have no parcels in the service at all, and Unity Township (unorganized) sits on the separate Maine Parcels Unorganized Territory service, not checked. FRESHNESS: FMUPDAT reads 2010 to 2012 for Augusta, Waterville, Hallowell, Gardiner, Oakland, Sidney, Monmouth, Winthrop, Wayne, Readfield, Randolph and Manchester, 2014 for Chelsea, 2022 to 2025 for Clinton, Winslow, China, Fayette, Litchfield and Mount Vernon; the item itself says data for many towns is more than fifteen years old. TERMS: the item's licenseInfo reads 'Access: Public. Use: User assumes risk.' with a disclaimer that the data is for assessing and planning purposes only and not survey-grade, and 5 M.R.S. section 2005 says copyright or licensing restrictions may not be fixed to information made available through the Maine Library of Geographic Information. Credit: Maine GeoLibrary; MaineIT GIS. CORS: Access-Control-Allow-Origin * on every request. maxRecordCount 2000 with pagination.",
+      "notes": "Kennebec County, Maine (FIPS 23011; Augusta, Waterville, Gardiner, Hallowell, Winslow). Maine counties do not assess property: each organized town does, and towns submit parcels voluntarily to the Maine GeoLibrary Parcel Project, published as one statewide service (the same layers the Cumberland and York records use). Layer 10 (polygons) holds 55,126 Kennebec parcels in 20 towns, read 2026-11-21, filtered by COUNTY = 'Kennebec': Augusta 8,448, Waterville 5,661, Winslow 3,746, Winthrop 3,577, Oakland 3,350, China 3,340, Litchfield 2,808, Monmouth 2,743, Gardiner 2,634, Sidney 2,603, Vassalboro 2,580, Mount Vernon 2,026, Clinton 2,002, Readfield 1,787, Fayette 1,592, Chelsea 1,495, Manchester 1,395, Hallowell 1,385, Wayne 1,166, Randolph 788 (GEOCODE 11xxx). PROP_LOC (situs) is non-blank on 39,947 of them. Layer 9 (assessor table, no geometry) holds 39,824 rows for 13 of those towns (Augusta, China, Gardiner, Hallowell, Manchester, Monmouth, Oakland, Randolph, Readfield, Sidney, Waterville, Wayne, Winthrop); OWNER1 is non-blank on 27,822 and OWN_ADDR1 on 25,933, and every non-blank owner is in Augusta, Gardiner, Manchester, Oakland, Readfield, Sidney, Waterville or Wayne (read 2026-11-23). Join layer 9 to layer 10 on GEOCODE plus MAP_BK_LOT, or on STATE_ID (GEOCODE_MAPBKLOT, e.g. 11100_037143), which returned exactly one row on each layer. Not covered: Fayette, Vassalboro, Litchfield, Winslow, Mount Vernon, Chelsea and Clinton have parcels but no assessor rows, so no owner. China, Hallowell, Monmouth, Randolph and Winthrop have parcels and assessor rows, but every owner in those rows is empty: null in China, an empty string in the other four, so no owner. Albion, Belgrade, Benton, Farmingdale, Pittston, Rome, Vienna, West Gardiner and Windsor have no parcels in the service, and Unity Township (unorganized) sits on the separate Maine Parcels Unorganized Territory service, not checked. Freshness: FMUPDAT reads 2010 to 2012 for Augusta, Waterville, Hallowell, Gardiner, Oakland, Sidney, Monmouth, Winthrop, Wayne, Readfield, Randolph and Manchester, 2014 for Chelsea, 2022 to 2025 for Clinton, Winslow, China, Fayette, Litchfield and Mount Vernon; the item itself says data for many towns is more than fifteen years old. Terms: the item's licenseInfo reads 'Access: Public. Use: User assumes risk.' with a disclaimer that the data is for assessing and planning purposes only and not survey-grade, and 5 M.R.S. section 2005 says copyright or licensing restrictions may not be fixed to information made available through the Maine Library of Geographic Information. Credit: Maine GeoLibrary; MaineIT GIS. CORS: Access-Control-Allow-Origin * on every request. maxRecordCount 2000 with pagination.",
+      "partialCoverage": {
+        "covers": [
+          "Augusta",
+          "Gardiner",
+          "Manchester",
+          "Oakland",
+          "Readfield",
+          "Sidney",
+          "Waterville",
+          "Wayne"
+        ],
+        "notCovered": [
+          "Fayette",
+          "Vassalboro",
+          "Litchfield",
+          "Winslow",
+          "Mount Vernon",
+          "Chelsea",
+          "Clinton",
+          "China",
+          "Hallowell",
+          "Monmouth",
+          "Randolph",
+          "Winthrop",
+          "Albion",
+          "Belgrade",
+          "Benton",
+          "Farmingdale",
+          "Pittston",
+          "Rome",
+          "Vienna",
+          "West Gardiner",
+          "Windsor",
+          "Unity Township"
+        ],
+        "checked": "2026-11-23"
+      },
       "addedAt": "2026-11-21"
     }
   ]

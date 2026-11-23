@@ -1,5 +1,44 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.11 (2026-11-23)
+
+A county record that serves only part of its county now says so in a field, not only in `notes`. Totals do not move
+(566 counties, 538 endpoints, 509 counties with an endpoint). **Patch.** One optional field and one exported type are
+added, and no existing type, function or field changed.
+
+- **`partialCoverage?: PartialCoverage`** on `CountyRecord`, exported as `PartialCoverage`:
+  `{ covers: string[]; notCovered: string[]; checked: string }`. `covers` names the towns or cities where the record
+  returns parcels with owners, `notCovered` names the ones where it returns no owner answer (no parcel, or a parcel
+  with no owner row), and `checked` is the YYYY-MM-DD the lists were read. Names are the Census county subdivision
+  names without a "town" or "city" suffix. Match a place by its city or town, not by ZIP. A record without the field
+  covers its whole county. Four records carry it.
+  - **Providence County, Rhode Island** (`ri-providence`, FIPS 44007): covers Providence. The other 15 of the
+    county's 16 municipalities are not covered.
+  - **Kennebec County, Maine** (`me-kennebec`, 23011): 8 of the county's 30 towns covered. Fayette, Vassalboro,
+    Litchfield, Winslow, Mount Vernon, Chelsea and Clinton have parcels but no assessor rows, so no owner. China,
+    Hallowell, Monmouth, Randolph and Winthrop have assessor rows whose owners are all null or blank, so no owner. Nine towns
+    have no parcels in the service, and Unity Township is on a separate service.
+  - **Cumberland County, Maine** (`me-cumberland`, 23005): 22 of the county's 28 towns and cities covered. Baldwin and
+    Harrison have parcels but no assessor rows, so no owner. Gorham and Long Island have assessor rows whose owners are
+    all blank. Chebeague Island and Frye Island have no parcels in the service.
+  - **York County, Maine** (`me-york`, 23031): 16 of 29 covered. Berwick, Kittery, Limerick, Shapleigh, Wells and York
+    have parcels but no assessor rows, so no owner. Hollis and North Berwick have assessor rows whose owners are all
+    blank. Cornish, Newfield, Parsonsfield and Waterboro have no parcels in the service. Alfred's parcels carry
+    Arundel's GEOCODE (31030), and Alfred's own assessor rows sit under 31020, outside this record's scope.
+
+  The Maine lists count an owner only where `OWNER1` or `OWNER2` holds more than blanks: layer 9 stores a missing
+  owner as an empty string, not null. Read live on 2026-11-23, which is each Maine record's `checked`.
+- **Notes wording.** In 160 records, label runs written in capitals (`TERMS:`, `NOT COVERED:`, `RETIRED <date>`,
+  `WHY NO ENDPOINT YET:` and the like) are now sentence case. In 68 records, single words written in capitals for
+  emphasis (`is NOT exposed`, `the WHOLE county`) are lower case. "Licence" is spelled "license" (90 places in 60
+  records). Providence's note on why Cranston's layer is not registered is in plain words. Acronyms, field names, owner
+  placeholder values and quoted publisher text keep their case, and no fact, number, URL or field name changed outside
+  the Maine records above. An agent that matched an upper-case label in `notes` should match it case-insensitively.
+
+For an agent: `findCountyByFips("44007")?.partialCoverage?.notCovered` lists the 15 Rhode Island municipalities an
+address lookup in that record cannot answer for. Check `partialCoverage` before reading an empty answer as "no parcel
+here".
+
 ## 0.9.10 (2026-11-22)
 
 Yolo County, California, joins the atlas with an endpoint. `totals.counties` moves from 565 to 566, `totals.endpoints`
@@ -33,7 +72,7 @@ type, function or field of the package changed.
   and the mailing street, city and ZIP are filled on 122,995 rows, the state on 122,992, and `MailingAddress2` holds a
   second line on 201; situs `FormattedLocation`; parcel id `ParcelID`. The publisher is the city, not the county Property
   Assessor, whose CAMA records the layer carries. `license` is `unknown`: the only terms found are the city's GIS data
-  disclaimer (a warranty and liability disclaimer that grants no licence and restricts no use), read at `licenseUrl`,
+  disclaimer (a warranty and liability disclaimer that grants no licence and states no commercial use, resale or attribution term), read at `licenseUrl`,
   and nobody has asked the city about paid use. The server answers a point buffer of `distance=30` with
   `units=esriSRUnit_Meter` as if it were 98.4 m (30 m converted to feet, then read as metres), so send a polygon when
   the distance matters. The record's `coverage` block is gone.

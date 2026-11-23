@@ -453,6 +453,39 @@ re-verification, so a county verified yesterday can look brand new. When you
 need to know whether a county is new to the atlas rather than recently checked,
 read `addedAt` and fall back to the oldest `lastVerified` only when it is absent.
 
+## `partialCoverage`: a county the record covers only in part
+
+Since 0.9.11 a served county whose record answers for only part of the county
+carries `partialCoverage`, and every other county does not:
+
+```ts
+interface PartialCoverage {
+  covers: string[];     // cities and towns where the record returns parcels with owners
+  notCovered: string[]; // every other city or town of the county
+  checked: string;      // YYYY-MM-DD the two lists were read
+}
+```
+
+Four records carry it: `ri-providence` (the City of Providence's own layer,
+none of the county's other 15 cities and towns), and `me-cumberland`, `me-york`
+and `me-kennebec` (Maine's statewide service holds owners for only some of each
+county's towns). Names are the Census Bureau's county subdivision names
+without their "town" or "city" suffix, and every name in both lists is also in
+the record's `notes`. An address in a `notCovered` place may find no parcel, or a
+parcel with no owner. An empty answer in a notCovered place means this record has
+no owner data there. Match an address to a place by its city or town, not its ZIP
+code. The shape is stable. Fields may be added, never renamed or removed, within
+0.x.
+
+```ts
+import { findCountyByFips } from "@urbankitstudio/atlas";
+
+const c = findCountyByFips("44007");
+if (c?.partialCoverage) {
+  console.log(`Covers ${c.partialCoverage.covers.join(", ")} only`);
+}
+```
+
 ## Coverage today
 
 The atlas bundles **566 counties across all 50 US states and DC** (538 verified endpoints), covering the largest counties in each state, every county in Mississippi and all 100 of North Carolina's. Call `listStates()` to enumerate the full set.

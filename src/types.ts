@@ -358,6 +358,35 @@ export interface CountyAdvisory {
   source?: { label: string; url: string };
 }
 
+/**
+ * A served county whose record answers for only PART of the county. Since
+ * 0.9.11; absent means the record answers for the whole county.
+ *
+ * Four records carry it in 0.9.11: Providence County, Rhode Island (the City of
+ * Providence's own layer, none of the county's other 15 cities and towns) and
+ * Cumberland, York and Kennebec counties, Maine (the statewide service holds
+ * owners for only some towns).
+ *
+ * Both lists are place names, the county's cities and towns as the Census
+ * Bureau names its county subdivisions, without a "town" or "city" suffix:
+ *
+ * - `covers`: where the record returns parcels WITH their owners.
+ * - `notCovered`: every other city or town of the county. An address there may
+ *   find no parcel, or a parcel with no owner. An empty answer in a notCovered
+ *   place means this record has no owner data there.
+ *
+ * Every name in both lists is also in `notes`.
+ *
+ * Match an address to a place by its city or town, not by ZIP code: a ZIP can
+ * cross a town line.
+ */
+export interface PartialCoverage {
+  covers: string[];
+  notCovered: string[];
+  /** YYYY-MM-DD the two lists were read. */
+  checked: string;
+}
+
 /** The fields a caller can ask a county about. */
 export type CapabilityField =
   | "apn"
@@ -472,6 +501,8 @@ export interface CountyRecord {
    * `coverageAnswer()`.
    */
   coverage?: CountyCoverage | null;
+  /** The record answers for only part of the county (see {@link PartialCoverage}). Since 0.9.11. */
+  partialCoverage?: PartialCoverage;
   relatedZoningCitySlug?: string | null;
   relatedPropertyCitySlug?: string | null;
 }
