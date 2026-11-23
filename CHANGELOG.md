@@ -1,5 +1,25 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.10 (2026-11-22)
+
+Yolo County, California, joins the atlas with an endpoint. `totals.counties` moves from 565 to 566, `totals.endpoints`
+from 537 to 538 and `totals.countiesWithEndpoint` from 508 to 509. This is a data-only patch. No type, function or field of
+the package changed.
+
+- **Yolo County, California** (`ca-yolo`, FIPS 06113): the county's own ArcGIS Enterprise layer
+  `Public/Parcels_Public/FeatureServer/0` ("Parcels") on `gis.yolocounty.gov`, with 66,145 parcels covering Woodland, Davis,
+  West Sacramento, Winters and the unincorporated county. Parcel id `MPTS_ASMT_NUMBER` (the 12-digit assessment
+  number), with `Name` (the fee parcel number in 9 characters) beside it. Each has 65,990 distinct values, so an id can
+  return more than one polygon. Situs `Situs_Address`, non-blank on 62,851 rows. **No owner name and no owner mailing
+  address**. `capabilityOverrides.owner_name` is `not_published`, and the record's `ownerFieldNote` sends owner
+  questions to the Yolo County Assessor, which answers them by phone. maxRecordCount 2000 with pagination, native WKID
+  2226, CORS open. `license` is `unknown`. The portal item has no license text, and the only terms found are the
+  county's disclaimer on its ArcGIS Online copy of the layer (no warranty, provided as a courtesy, no responsibility
+  for third party use), which states no commercial use, resale or attribution term. That copy (`Yolo_County_Tax_Parcels_Open_Data_`) is not registered because it lags the county
+  server. In an 8-parcel test, its 30 m point buffer matched a true 30 m circle every time.
+
+`findCountyByFips("06113")` now returns this record, with `hasPublicRest: true`.
+
 ## 0.9.9 (2026-11-22)
 
 Rutherford County, Tennessee, and Providence County, Rhode Island, gain an endpoint. `totals.counties` stays at 565,

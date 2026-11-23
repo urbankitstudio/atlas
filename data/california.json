@@ -2,7 +2,7 @@
   "stateSlug": "california",
   "stateName": "California",
   "stateAbbrev": "CA",
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-22",
   "counties": [
     {
       "id": "ca-los-angeles",
@@ -1359,6 +1359,109 @@
       "notes": "Tuolumne County, California (county seat Sonora; FIPS 06109). Served by the Parcels_WithSiteAddress FeatureServer on ArcGIS Online (services3.arcgis.com, item 8870cd340c94487494f62257782b9a3c, accessInformation 'Tuolumne County GIS', flagged public_authoritative), whose only layer is 2: the county's cadastral parcels joined to the Assessor's situs information, source table TUOLUMNE.CDD.Parcels_Secured_Asmts_Formatted, service description 'Updated 10/20/2025'; the layer data was last edited 2026-05-22. Read 2026-11-10: 48,413 rows; APN_Formatted on 46,257; SitusConcat is non-null on 46,257 but non-blank on only 33,294, so about a third of parcels have no site address; UPPER(SitusConcat) LIKE '%MAIN%' returns 201, the sample query's predicate. maxRecordCount 2000 with pagination, capabilities Query, Extract and Sync, native WKID 2227 (California zone 3, feet), CORS open (Access-Control-Allow-Origin *). NO OWNER: there is no owner name and no owner mailing address. LICENCE: Open Database License 1.0 (item licence), with individual contents under the Database Contents License 1.0. ODbL requires attribution (see the credit), and its share-alike clause applies to a publicly used adapted database, so UrbanKit Studio queries this layer live and does not keep a copy of it. The county's other parcel items (OpenGovData layer 4, CadastralParcels_view) carry only APN, zoning and ordinance columns, and separate items such as the services5 'Parcels' layer carry a restrictive licence ('Only those parties which have been given or sold official copies of this data set by the County of Tuolumne are authorized to use it') and are not used. Credit: Tuolumne County GIS. Contains information from Parcels_WithSiteAddress (TUOLUMNE.CDD.Parcels_Secured_Asmts_Formatted), which is made available under the Open Database License (ODbL) 1.0, http://opendatacommons.org/licenses/odbl/1.0/.",
       "credit": "Tuolumne County GIS. Contains information from Parcels_WithSiteAddress (TUOLUMNE.CDD.Parcels_Secured_Asmts_Formatted), which is made available under the Open Database License (ODbL) 1.0, http://opendatacommons.org/licenses/odbl/1.0/.",
       "addedAt": "2026-11-10"
+    },
+    {
+      "id": "ca-yolo",
+      "state": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "county": "Yolo",
+      "countySlug": "yolo-county",
+      "countyFips": "06113",
+      "ownerFieldNote": {
+        "body": "Yolo County's public parcel layer has no owner-name column and no owner mailing address, so Yolo County lookups carry neither. The Yolo County Assessor gives the current owner and the owner's mailing address by phone, three parcels per call. Assessment number, fee parcel number, site address, city, ZIP, jurisdiction, land use, acreage and assessed land and structure values are available, and the assessment number, fee parcel number and site address are searchable.",
+        "source": {
+          "label": "Yolo County Assessor: What's Available",
+          "url": "https://ace.yolocounty.gov/191/Whats-Available"
+        }
+      },
+      "capabilityOverrides": {
+        "owner_name": {
+          "status": "not_published",
+          "basis": {
+            "type": "endpoint_schema",
+            "note": "The registered layer has no owner-name or owner-address column, and neither has the county's ArcGIS Online copy of it.",
+            "sourceUrl": "https://gis.yolocounty.gov/ext/rest/services/Public/Parcels_Public/FeatureServer/0"
+          },
+          "lawfulAlternativeUrl": "https://ace.yolocounty.gov/191/Whats-Available"
+        }
+      },
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://gis.yolocounty.gov/ext/rest/services/Public/Parcels_Public/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "MPTS_ASMT_NUMBER",
+              "label": "Parcel Assessment Number (12 digits)",
+              "searchable": true
+            },
+            {
+              "name": "Name",
+              "label": "Fee Parcel Number (APN, 9 characters)",
+              "searchable": true
+            },
+            {
+              "name": "Situs_Address",
+              "label": "Situs Address",
+              "searchable": true
+            },
+            {
+              "name": "CITY",
+              "label": "City",
+              "searchable": false
+            },
+            {
+              "name": "ZIP",
+              "label": "ZIP Code",
+              "searchable": false
+            },
+            {
+              "name": "Jurisdiction",
+              "label": "Jurisdiction (City, County or State)",
+              "searchable": false
+            },
+            {
+              "name": "LU_Descr",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "GIS_Acres",
+              "label": "GIS Acres",
+              "searchable": false
+            },
+            {
+              "name": "Roll_Land",
+              "label": "Assessed Land Value",
+              "searchable": false
+            },
+            {
+              "name": "Roll_Structure",
+              "label": "Assessed Structure Value",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://gis.yolocounty.gov/ext/rest/services/Public/Parcels_Public/FeatureServer/0/query?where=UPPER(Situs_Address)+LIKE+UPPER('%25MAIN%25')&outFields=Name,MPTS_ASMT_NUMBER,Situs_Address,CITY&returnGeometry=false&f=json&resultRecordCount=10",
+          "license": "unknown",
+          "licenseUrl": "https://www.arcgis.com/home/item.html?id=867d6a5e7a2c44c7a4f6e996b2d89561",
+          "status": "live",
+          "lastVerified": "2026-11-22",
+          "verifiedBy": "manual"
+        }
+      ],
+      "contact": {
+        "department": "Yolo County GIS (Innovation and Technology Services); owner data: Yolo County Assessor",
+        "url": "https://www.yolocounty.gov/government/general-government-departments/innovation-and-technology-services/geographical-information-system",
+        "email": null
+      },
+      "notes": "Yolo County, California (county seat Woodland; FIPS 06113). Served by the county's own ArcGIS Enterprise server, Public/Parcels_Public FeatureServer layer 0 ('Parcels') on gis.yolocounty.gov (portal item 8b6b4696d29b4a84aef0cea3d8a886d3, public). Read 2026-11-22: 66,145 parcels covering Woodland, Davis, West Sacramento, Winters and the unincorporated county (Jurisdiction City on 55,325 rows, County on 10,422, State on 159, blank on 239). The parcel id is MPTS_ASMT_NUMBER, the 12-digit assessment number (as 058360054000), on every row; Name, beside it, is the fee parcel number in 9 characters (the same digits without the trailing 000) and is on every row too. Each has 65,990 distinct values, so a parcel id can return more than one polygon. Roll_Asmt repeats the assessment number but is blank on 332 rows, so it is not listed. Situs_Address is non-blank on 62,851 rows. UPPER(Situs_Address) LIKE '%MAIN%' returns 578, the sample query's predicate. maxRecordCount 2000 with pagination (two resultOffset pages of 2,000, no overlap), capabilities Query and Extract, native WKID 2226 (NAD83 California zone 2, US feet), CORS is open. The server echoes the Origin (Access-Control-Allow-Origin https://urbankitstudio.com, credentials allowed). In an 8-parcel test, a 30 m point buffer (units esriSRUnit_Meter) returned the same polygon count as a true 30 m circle at all 8 centroids and matched a 98.4 m circle at none, so the server read the buffer unit correctly in that test. The layer has no owner name and no owner mailing address. The Yolo County Assessor gives the current owner and the owner's mailing address by phone, three parcels per call, and sells property characteristics for a fee. The county also publishes Yolo County Tax Parcels Open Data on ArcGIS Online (item 867d6a5e7a2c44c7a4f6e996b2d89561, the same columns, 66,143 rows, described as Q2 2025). That copy is missing 18 of the 300 most recently revised parcels on the county server, so the county server is the one registered. The portal item has no license text. The ArcGIS Online copy's license field holds the county's disclaimer. It says the maps and information \"are maintained by the County of Yolo for the County's internal use, and are provided to the public as a courtesy\", disclaims any warranty, and says the County is not responsible for any third party use, manipulation or adaptation. The disclaimer states no commercial use, resale or attribution term, so the license is recorded as unknown and the layer is not called open data. That copy credits the Yolo County GIS Cooperative.",
+      "addedAt": "2026-11-22"
     }
   ]
 }
