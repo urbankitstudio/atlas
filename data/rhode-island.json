@@ -2,7 +2,7 @@
   "stateSlug": "rhode-island",
   "stateName": "Rhode Island",
   "stateAbbrev": "RI",
-  "lastUpdated": "2026-11-21",
+  "lastUpdated": "2026-11-22",
   "counties": [
     {
       "id": "ri-providence",
@@ -12,19 +12,96 @@
       "county": "Providence",
       "countySlug": "providence-county",
       "countyFips": "44007",
-      "hasPublicRest": false,
-      "endpoints": [],
+      "hasPublicRest": true,
+      "endpoints": [
+        {
+          "url": "https://services6.arcgis.com/wv9mHoqblhTsnqdG/arcgis/rest/services/Parcel_Zoning_FL/FeatureServer/0",
+          "serviceType": "FeatureServer",
+          "layerIndex": 0,
+          "layerName": "Parcels with CAMA (City of Providence only)",
+          "supportsQuery": true,
+          "corsEnabled": true,
+          "searchFields": [
+            {
+              "name": "PIN",
+              "label": "Parcel PIN",
+              "searchable": true
+            },
+            {
+              "name": "MAP_PAR_ID",
+              "label": "Map-Parcel ID (plat, block, lot)",
+              "searchable": true
+            },
+            {
+              "name": "ParcAddress",
+              "label": "Property Address",
+              "searchable": true
+            },
+            {
+              "name": "Owner1",
+              "label": "Owner Name",
+              "searchable": true
+            },
+            {
+              "name": "Owner2",
+              "label": "Owner Name 2",
+              "searchable": false
+            },
+            {
+              "name": "OwnerAddress",
+              "label": "Owner Mailing Address",
+              "searchable": false
+            },
+            {
+              "name": "OwnerCity",
+              "label": "Owner Mailing City",
+              "searchable": false
+            },
+            {
+              "name": "OwnerState",
+              "label": "Owner Mailing State",
+              "searchable": false
+            },
+            {
+              "name": "OwnerZip",
+              "label": "Owner Mailing ZIP",
+              "searchable": false
+            },
+            {
+              "name": "ZONING",
+              "label": "Zoning",
+              "searchable": false
+            },
+            {
+              "name": "MuniUseCodeDesc",
+              "label": "Land Use",
+              "searchable": false
+            },
+            {
+              "name": "AssessedValueTotal",
+              "label": "Total Assessed Value",
+              "searchable": false
+            },
+            {
+              "name": "TaxRollYear",
+              "label": "Tax Roll Year",
+              "searchable": false
+            }
+          ],
+          "sampleQuery": "https://services6.arcgis.com/wv9mHoqblhTsnqdG/arcgis/rest/services/Parcel_Zoning_FL/FeatureServer/0/query?where=UPPER(Owner1)%20LIKE%20%27%25SMITH%25%27&outFields=Owner1,PIN,ParcAddress,OwnerAddress,OwnerCity&returnGeometry=false&resultRecordCount=10&f=json",
+          "license": "unknown",
+          "licenseUrl": "https://www.providenceri.gov/wp-content/uploads/2023/10/City-of-Providence-GIS-Data-Request.pdf",
+          "status": "live",
+          "lastVerified": "2026-11-22",
+          "verifiedBy": "manual"
+        }
+      ],
       "contact": {
-        "department": "RIGIS (Rhode Island Geographic Information System) / RI Division of Statewide Planning",
-        "url": "https://www.rigis.org/",
+        "department": "City of Providence Information Technology, GIS Program (publisher of this layer)",
+        "url": "https://www.providenceri.gov/wp-content/uploads/2023/10/City-of-Providence-GIS-Data-Request.pdf",
         "email": null
       },
-      "notes": "Providence County, Rhode Island. Rhode Island has no county government: each of the county's 16 cities and towns assesses its own property. RIGIS publishes the towns' assessor parcel polygons in one statewide layer, Tax_Parcels (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0; 394,167 parcels in 39 municipalities, read 2026-11-14), Providence County's among them. (These notes said until 2026-11-14 that RIGIS hosted only municipal metadata and the state parcel server was unreachable; the Tax_Parcels layer answers.) WHY NO ENDPOINT: the layer carries only the polygon, the plat-lot id (PlatLot) and the town code (TownCode), with acreage, land-cover and E911 fields; it has no owner name, no site address and no mailing address. VINTAGE: the service says its parcels were collected between 2019 and 2022 and are not the most current. TERMS: the service's item information (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/info/iteminfo) gives licenseInfo 'semi-restricted' and a use limitation that any public facing parcel viewer containing Rhode Island parcels must say the data is for general reference, informational, planning and guidance use only, is not a legally authoritative boundary and is not the product of a professional land survey; we found no published page that says what 'semi-restricted' allows. OUTREACH: pending, to RIGIS, the same question as for Kent County. The City of Providence's own GIS portal (webgis.providenceri.gov, pvdgis.maps.arcgis.com) refused connections in May 2026 and was not rechecked. For owner and address, use the city or town assessor's online database.",
-      "coverage": {
-        "reason": "attributes-missing",
-        "summary": "Rhode Island's statewide parcel layer carries Providence County's parcels with plat-lot numbers only, no owner or address, under terms it calls semi-restricted, so we don't index it. Use the town assessor's database, or request it and we'll tell you if that changes.",
-        "checked": "2026-11-14"
-      }
+      "notes": "Providence County, Rhode Island (FIPS 44007). PARTIAL COVERAGE: THIS RECORD ANSWERS FOR THE CITY OF PROVIDENCE ONLY. Rhode Island has no county government: each of the county's 16 cities and towns assesses its own property, and the one open owner layer we registered is the City of Providence's, so the other 15 are not covered. NOT COVERED (no parcel or owner layer in this record): Burrillville, Central Falls, Cranston, Cumberland, East Providence, Foster, Glocester, Johnston, Lincoln, North Providence, North Smithfield, Pawtucket, Scituate, Smithfield and Woonsocket (the 16 county subdivisions on the Census Bureau's TIGERweb list for state 44, county 007, read 2026-11-22, are these 15 and Providence). An address in one of them finds no parcel in this layer. Cranston's own ArcGIS Server also publishes a parcel layer with owner names (Parcels FeatureServer layer 54); it is not registered, because enrich and radius stop at the first endpoint that answers, an empty answer from it ends the search, and the registry has no per-endpoint extent, so a second endpoint for another city would never be asked. The other towns' polygons sit in RIGIS's statewide Tax_Parcels layer (https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0) with a plat-lot id and a town code only, no owner and no address, collected 2019 to 2022 and licensed 'semi-restricted'; it is not registered. For owner and address in those towns, use the town assessor's online database. THE PUBLISHER IS THE CITY OF PROVIDENCE (its GIS Program, in City Information Technology): the City's own ArcGIS Online organization serves the item 'Parcel_Zoning_FL' (item 41ccf74c50ab494cb2931015e26be646, public, owner PVDGIS_Admin, last modified 2026-09-11); layer 0, 'Parcels with CAMA', is the one registered. Credit: City of Providence GIS Program, as the publisher. This is a courtesy: the terms found state no attribution requirement, so the record carries no credit field. ROWS (read 2026-11-22 with Origin https://urbankitstudio.com): 44,346 polygons, of which 44,138 have POLY_TYPE PARCEL and the rest are water, right-of-way, island, other or untyped. MuniName reads Providence on 43,599, is blank on 559 and null on 188. OWNER: Owner1 is the owner name, non-blank on 43,909 rows (99.0%; 44,158 are not null), with Owner2 on 15,130. MAILING: OwnerAddress (street line) on 43,062, OwnerCity on 43,930, OwnerState on 43,924 and OwnerZip on 43,903; Owner2Address, Owner2City, Owner2State and Owner2Zip carry a second owner's mailing address and are not registered. OwnerState reads RI on 40,719 rows. SITUS: ParcAddress (house number and street, no city; ZipCode and MuniName hold the rest) on 44,132. PARCEL ID: the registered id is PIN (44,313 rows non-blank, 40,308 distinct values), with MAP_PAR_ID (44,259 non-blank, 40,282 distinct); neither is unique per polygon, so an id query can return more than one row (a PIN of one row was read, not the rule). TaxRollYear reads 2025 on 43,884 rows and is null on 462. A page of 5 rows at offset 44,000 came back; maxRecordCount 2000 with pagination (a request for 5,000 rows came back as 2,000 with exceededTransferLimit); capabilities Query only; CORS answers Access-Control-Allow-Origin * on the layer and on queries; the sample query returns 10 rows. NATIVE SPATIAL REFERENCE: NAD83 Rhode Island State Plane feet (WKID 102730, latest 3438), so a point query passes inSR=4326. BUFFER DISTANCE: the server's point buffer is wider than 30 m, the same misread the Rutherford TN record notes. On 2026-11-22 at 8 parcel centroids, a point buffer with distance=30 and units=esriSRUnit_Meter returned 543, 57, 72, 70, 39, 37, 63 and 72 polygons; a POSTed 64-vertex 30 m circle returned 539, 12, 16, 21, 8, 1, 14 and 15; a 98.4 m circle returned 543, 57, 72, 70, 40, 37, 62 and 71. The server matched the 30 m circle at none of the 8 centroids and the 98.4 m circle to within one polygon at all 8 (exactly at 5). The first centroid returned 539 to 543 polygons under every shape. Send a polygon when the distance matters. TERMS: no licence is published. The item's licenseInfo and accessInformation are blank. The only terms found are on the City's GIS Digital Data Request Form (read at the licenseUrl), which lists 'Parcel (property) Boundaries' with attribute data 'Owner, Address' at no charge and carries a disclaimer: GIS data are for planning purposes only, the user must judge their suitability, the actual or relative position of a feature is only as accurate as its source, and the City 'provides this data as is, with all faults' with no representations or warranties and no liability for indirect or consequential damages. That is a warranty and liability disclaimer: it grants no licence, and the form states no commercial-use, resale, redistribution or attribution term, so the licence is recorded as unknown and is not called open data. We have not asked the City GIS Program about commercial or paid use; a courtesy question to it is open. PRIVACY: R.I. Gen. Laws section 8-15-12 (the Rhode Island Judicial Security Act) requires a data aggregator to remove a protected judge's personal information, including a residence address, within 10 business days of the judge's written request; such a request to UrbanKit Studio hides the parcel in every tool, the API and the MCP server through the notice-suppression list, keyed on PIN. Informational only and not a survey: verify with the City of Providence assessor."
     },
     {
       "id": "ri-kent",

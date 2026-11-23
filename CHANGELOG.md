@@ -1,5 +1,45 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.9 (2026-11-22)
+
+Rutherford County, Tennessee, and Providence County, Rhode Island, gain an endpoint. `totals.counties` stays at 565,
+`totals.endpoints` moves from 535 to 537 and `totals.countiesWithEndpoint` from 506 to 508. **Patch.** Data only: no
+type, function or field of the package changed.
+
+- **Rutherford County, Tennessee** (`tn-rutherford`, FIPS 47149): the `Parcel_Data` layer 1 ("Parcels") that the
+  City of Murfreesboro publishes on ArcGIS Online, which carries the whole county: 123,334 parcels, every one with
+  `COUNTY = '075'`, in Murfreesboro, Smyrna, La Vergne and the county's other places. Owner `Owner1` (with `Owner2` and
+  `Owner3`), mailing `MailingAddress`, `MailingAddress2`, `MailingCity`, `MailingState`, `MailingZipCode`. The owner
+  and the mailing street, city and ZIP are filled on 122,995 rows, the state on 122,992, and `MailingAddress2` holds a
+  second line on 201; situs `FormattedLocation`; parcel id `ParcelID`. The publisher is the city, not the county Property
+  Assessor, whose CAMA records the layer carries. `license` is `unknown`: the only terms found are the city's GIS data
+  disclaimer (a warranty and liability disclaimer that grants no licence and restricts no use), read at `licenseUrl`,
+  and nobody has asked the city about paid use. The server answers a point buffer of `distance=30` with
+  `units=esriSRUnit_Meter` as if it were 98.4 m (30 m converted to feet, then read as metres), so send a polygon when
+  the distance matters. The record's `coverage` block is gone.
+
+- **Providence County, Rhode Island** (`ri-providence`, FIPS 44007): PARTIAL coverage. The one endpoint is the City of
+  Providence's `Parcel_Zoning_FL` layer 0 ("Parcels with CAMA") on ArcGIS Online, which holds 44,346
+  polygons. 43,599 of them have `MuniName` Providence and 747 have it blank or null. Rhode Island has no county government, and
+  the other 15 of the county's 16 municipalities are NOT covered: Burrillville, Central Falls, Cranston, Cumberland,
+  East Providence, Foster, Glocester, Johnston, Lincoln, North Providence, North Smithfield, Pawtucket, Scituate,
+  Smithfield and Woonsocket. An address there finds no parcel in this layer. Cranston publishes a layer of its own
+  with owner names; it is not registered, because enrich and radius stop at the first endpoint that answers and a
+  record has no per-endpoint extent, so a second city's layer would never be asked. Owner `Owner1` (non-blank on
+  43,909 rows, with `Owner2` on 15,130), mailing `OwnerAddress`, `OwnerCity`, `OwnerState`, `OwnerZip`, situs
+  `ParcAddress`, parcel id `PIN`; `PIN` is not unique per polygon (40,308 distinct values over 44,313 rows).
+  `license` is `unknown`: the item's `licenseInfo` is blank and the only terms found are the City's GIS Data Request
+  Form, a warranty and liability disclaimer ("as is, with all faults") that grants no license and states no commercial use, resale or
+  attribution term. Nobody has asked the City about paid use. There is no `credit`: the terms found state no attribution requirement.
+  This layer has the same buffer misread as Rutherford's: at 8 parcel centroids the 30 m point buffer matched a 98.4 m
+  circle to within one polygon every time and a true 30 m circle never, so send a polygon when the distance matters.
+  The record's `coverage` block is gone.
+
+For an agent: `findCountyByFips("47149")` used to return a record with no endpoint (`coverage.reason`
+`no-public-service`); it now returns this one, with `hasPublicRest: true`. So does `findCountyByFips("44007")`, which
+returned a record with `coverage.reason` `attributes-missing`; read its `notes` for the 15 municipalities it does not
+cover.
+
 ## 0.9.8 (2026-11-21)
 
 Nineteen counties people asked for join the atlas: twelve with an endpoint, seven recorded with none. `totals.counties`

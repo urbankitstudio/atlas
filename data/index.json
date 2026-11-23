@@ -1,11 +1,11 @@
 {
   "version": "0.3.0",
-  "lastUpdated": "2026-11-21",
+  "lastUpdated": "2026-11-22",
   "totals": {
     "states": 51,
     "counties": 565,
-    "endpoints": 535,
-    "countiesWithEndpoint": 506,
+    "endpoints": 537,
+    "countiesWithEndpoint": 508,
     "countiesUnprobeable": 1
   },
   "states": [
@@ -326,7 +326,7 @@
       "name": "Rhode Island",
       "abbrev": "RI",
       "countyCount": 3,
-      "endpointCount": 0,
+      "endpointCount": 1,
       "populated": true
     },
     {
@@ -350,7 +350,7 @@
       "name": "Tennessee",
       "abbrev": "TN",
       "countyCount": 9,
-      "endpointCount": 4,
+      "endpointCount": 5,
       "populated": true
     },
     {
