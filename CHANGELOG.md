@@ -1,5 +1,31 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.12 (2026-11-23)
+
+No data, type or function in this package changes, and totals do not move (566 counties, 538 endpoints, 509
+counties with an endpoint). **Patch.** It records two changes to the hosted answers built from these records.
+
+- **A radius owner list says when the county is covered only in part.** A covered answer from
+  `POST /api/atlas/radius` and from the MCP `radius_owners` tool (a full call and a `count_only` preview) for a
+  county whose record carries `partialCoverage` now carries `partial_coverage: { covers, not_covered, checked }`,
+  the record's lists with `notCovered` as `not_covered`, and a sentence in `note` naming the places the record does
+  not cover. A ring that reaches into one of them is missing those owners, and before this it read as complete.
+  The lists come from the field, never from `notes`. A ring served from the parcel cache carries them too. The
+  answer for every other county is unchanged, and so is billing: `charged` counts the returned rows that carry an
+  owner name or a mailing address, as on any ring. The four records are the ones 0.9.11 lists.
+- **`source-incomplete` when the county server cut the parcels around an address.** The paid owner lookup (MCP
+  `enrich_address` and `POST /api/atlas/bulk` rows) asked a paged layer for 40 parcels and read the answer as every
+  parcel within 30 m. When the server cut that page, it now asks once more for the whole buffer. A cut answer that
+  cannot be fetched whole is now `source-incomplete` on every layer, not charged, instead of an owner picked from a
+  partial list that could be the wrong one. That includes the layers answered in one request: Connecticut's
+  statewide layer, whose uncapped answer used to be cut to its first 40 rows and picked from, and Florida's FDOR
+  layer, whose 501-row page used to be picked from when the server cut it. Before, only a layer that refuses
+  pagination was refused on a cut page. The OpenAPI description of `source-incomplete` now names this case beside
+  the one it named (every parcel at the point lacks the field needed to identify it).
+
+For an agent: when a radius answer has `partial_coverage`, check whether the ring reaches into a `not_covered` place
+before treating the list as everyone within the radius.
+
 ## 0.9.11 (2026-11-23)
 
 A county record that serves only part of its county now says so in a field, not only in `notes`. Totals do not move

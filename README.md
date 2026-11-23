@@ -486,6 +486,11 @@ if (c?.partialCoverage) {
 }
 ```
 
+Since 0.9.12 the hosted radius owner list (`POST /api/atlas/radius` and the MCP
+`radius_owners` tool) carries the same lists on a covered answer for such a
+county, as `partial_coverage: { covers, not_covered, checked }`, with a sentence
+in `note`. A ring that reaches into a `notCovered` place is missing those owners.
+
 ## Coverage today
 
 The atlas bundles **566 counties across all 50 US states and DC** (538 verified endpoints), covering the largest counties in each state, every county in Mississippi and all 100 of North Carolina's. Call `listStates()` to enumerate the full set.
