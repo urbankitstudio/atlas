@@ -2,7 +2,7 @@
   "stateSlug": "maine",
   "stateName": "Maine",
   "stateAbbrev": "ME",
-  "lastUpdated": "2026-11-21",
+  "lastUpdated": "2026-11-23",
   "counties": [
     {
       "id": "me-cumberland",
@@ -68,7 +68,7 @@
             "layerName": "Maine Parcels Organized Towns ADB (assessor table)",
             "key": "STATE_ID",
             "parcelKey": "STATE_ID",
-            "tableWhere": "GEOCODE IN ('05020','05030','05040','05050','05060','05070','05100','05110','05130','05140','05150','05170','05180','05190','05200','05210','05230','05240','05250','05260')",
+            "tableWhere": "GEOCODE IN ('05020','05030','05040','05050','05060','05070','05080','05100','05110','05130','05140','05150','05170','05180','05190','05200','05210','05220','05230','05240','05250','05260')",
             "layerScope": {
               "field": "TOWN",
               "values": [
@@ -78,6 +78,7 @@
                 "Casco",
                 "Cumberland",
                 "Falmouth",
+                "Freeport",
                 "Gray",
                 "Harpswell",
                 "Naples",
@@ -88,11 +89,153 @@
                 "Raymond",
                 "Scarborough",
                 "Sebago",
+                "South Portland",
                 "Standish",
                 "Westbrook",
                 "Windham",
                 "Yarmouth"
               ]
+            },
+            "places": {
+              "Bridgton": {
+                "tableCode": "05020",
+                "mailing": "OWN_ADDR1"
+              },
+              "Brunswick": {
+                "tableCode": "05030",
+                "mailing": "OWN_ADDR1"
+              },
+              "Cape Elizabeth": {
+                "tableCode": "05040",
+                "mailing": "OWN_ADDR2"
+              },
+              "Casco": {
+                "tableCode": "05050",
+                "mailing": "OWN_ADDR2"
+              },
+              "Cumberland": {
+                "tableCode": "05060",
+                "mailing": "OWN_ADDR2"
+              },
+              "Falmouth": {
+                "tableCode": "05070",
+                "mailing": "OWN_ADDR2"
+              },
+              "Freeport": {
+                "tableCode": "05080",
+                "key": [
+                  {
+                    "tableCode": true
+                  },
+                  {
+                    "text": "_"
+                  },
+                  {
+                    "field": "MAP_BK_LOT",
+                    "split": "/",
+                    "tokens": [
+                      {
+                        "digits": 3
+                      },
+                      {
+                        "digits": 3
+                      },
+                      {
+                        "digits": 3,
+                        "letters": 3
+                      },
+                      {
+                        "digits": 3
+                      }
+                    ],
+                    "join": ""
+                  }
+                ],
+                "mailing": "OWN_ADDR2"
+              },
+              "Gray": {
+                "tableCode": "05100",
+                "mailing": "OWN_ADDR2"
+              },
+              "Harpswell": {
+                "tableCode": "05110",
+                "mailing": "OWN_ADDR1"
+              },
+              "Naples": {
+                "tableCode": "05130",
+                "mailing": "OWN_ADDR2"
+              },
+              "New Gloucester": {
+                "tableCode": "05140",
+                "mailing": "OWN_ADDR2"
+              },
+              "North Yarmouth": {
+                "tableCode": "05150",
+                "mailing": "OWN_ADDR2"
+              },
+              "Portland": {
+                "tableCode": "05170",
+                "mailing": "OWN_ADDR2"
+              },
+              "Pownal": {
+                "tableCode": "05180",
+                "mailing": "OWN_ADDR2"
+              },
+              "Raymond": {
+                "tableCode": "05190",
+                "mailing": "OWN_ADDR2"
+              },
+              "Scarborough": {
+                "tableCode": "05200",
+                "mailing": "OWN_ADDR1"
+              },
+              "Sebago": {
+                "tableCode": "05210",
+                "mailing": "OWN_ADDR2"
+              },
+              "South Portland": {
+                "tableCode": "05220",
+                "key": [
+                  {
+                    "tableCode": true
+                  },
+                  {
+                    "text": "_"
+                  },
+                  {
+                    "field": "MAP_BK_LOT",
+                    "split": "-",
+                    "tokens": [
+                      {
+                        "digits": 3
+                      },
+                      {
+                        "digits": 3,
+                        "suffix": 1,
+                        "noSuffix": "*"
+                      }
+                    ],
+                    "join": "*0000*"
+                  }
+                ],
+                "mailing": "OWN_ADDR1"
+              },
+              "Standish": {
+                "tableCode": "05230",
+                "mailing": "OWN_ADDR2"
+              },
+              "Westbrook": {
+                "tableCode": "05240",
+                "mailing": "OWN_ADDR2"
+              },
+              "Windham": {
+                "tableCode": "05250",
+                "mailing": "OWN_ADDR2"
+              },
+              "Yarmouth": {
+                "tableCode": "05260",
+                "mailing": "OWN_ADDR2"
+              }
             },
             "fields": [
               {
@@ -112,7 +255,12 @@
               },
               {
                 "name": "OWN_ADDR1",
-                "label": "Owner Mailing Address Line 1",
+                "label": "Owner Mailing Address Line 1, as each town writes it: the mailing street, a care-of line, or the property's own street (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
+                "searchable": false
+              },
+              {
+                "name": "OWN_ADDR2",
+                "label": "Owner Mailing Address Line 2, as each town writes it: the mailing street where Line 1 holds the property's own street or a care-of line (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
                 "searchable": false
               },
               {
@@ -173,7 +321,12 @@
             },
             {
               "name": "OWN_ADDR1",
-              "label": "Owner Mailing Address Line 1",
+              "label": "Owner Mailing Address Line 1, as each town writes it: the mailing street, a care-of line, or the property's own street (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
+              "searchable": false
+            },
+            {
+              "name": "OWN_ADDR2",
+              "label": "Owner Mailing Address Line 2, as each town writes it: the mailing street where Line 1 holds the property's own street or a care-of line (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
               "searchable": false
             },
             {
@@ -212,7 +365,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('05010'%2C'05020'%2C'05030'%2C'05040'%2C'05050'%2C'05060'%2C'05070'%2C'05080'%2C'05090'%2C'05100'%2C'05110'%2C'05120'%2C'05125'%2C'05130'%2C'05140'%2C'05150'%2C'05170'%2C'05180'%2C'05190'%2C'05200'%2C'05210'%2C'05220'%2C'05230'%2C'05240'%2C'05250'%2C'05260'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL,BLDG_VAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('05010'%2C'05020'%2C'05030'%2C'05040'%2C'05050'%2C'05060'%2C'05070'%2C'05080'%2C'05090'%2C'05100'%2C'05110'%2C'05120'%2C'05125'%2C'05130'%2C'05140'%2C'05150'%2C'05170'%2C'05180'%2C'05190'%2C'05200'%2C'05210'%2C'05220'%2C'05230'%2C'05240'%2C'05250'%2C'05260'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_ADDR2,OWN_CITY,OWN_STATE,GEOCODE,MAP_BK_LOT,LAND_VAL,BLDG_VAL&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.arcgis.com/home/item.html?id=346131b710a645ffb624f448a9cba6d4",
           "status": "live",
@@ -226,7 +379,7 @@
         "url": "https://www.maine.gov/geolib/",
         "email": null
       },
-      "notes": "Maine GeoLibrary statewide organized-towns parcel service. Layer 10 carries polygon geometry with COUNTY, TOWN, and location fields. Layer 9 is the assessor attribute table (no geometry) with OWNER1/OWNER2 and mailing address. Join it to layer 10 on STATE_ID, or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Filter Cumberland County with COUNTY='CUMBERLAND'; includes Portland, South Portland, Westbrook, Scarborough, Gorham, Windham, etc. Note: submissions are voluntary from municipalities and some towns may have stale data (updated irregularly). Unorganized territories use a separate service (gis.maine.gov/mapservices). Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 28 towns and cities in Cumberland County, and 20 of them have parcels on layer 10 whose STATE_ID joins an assessor row with an owner on layer 9. Covered: Bridgton, Brunswick, Cape Elizabeth, Casco, Cumberland, Falmouth, Gray, Harpswell, Naples, New Gloucester, North Yarmouth, Portland, Pownal, Raymond, Scarborough, Sebago, Standish, Westbrook, Windham and Yarmouth. Not covered: Freeport and South Portland have parcels and assessor rows with owners, but no parcel joins one: their assessor rows write MAP_BK_LOT, and so STATE_ID, in another format than their parcels, and none of Freeport's 4,356 parcels or South Portland's 8,822 matches a row on either key (read 2026-11-23). Search their owners by name on layer 9. Baldwin and Harrison have parcels but no assessor rows, so no owner. Gorham and Long Island have parcels and assessor rows, but every owner in those rows is blank, so no owner. Chebeague Island and Frye Island have no parcels in the service. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
+      "notes": "Maine GeoLibrary statewide organized-towns parcel service. Layer 10 carries polygon geometry with COUNTY, TOWN, and location fields. Layer 9 is the assessor attribute table (no geometry) with OWNER1/OWNER2 and mailing address. Join it to layer 10 on STATE_ID, or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Filter Cumberland County with COUNTY='CUMBERLAND'; includes Portland, South Portland, Westbrook, Scarborough, Gorham, Windham, etc. Note: submissions are voluntary from municipalities and some towns may have stale data (updated irregularly). Unorganized territories use a separate service (gis.maine.gov/mapservices). Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 28 towns and cities in Cumberland County, and 22 of them have parcels on layer 10 that join an assessor row with an owner on layer 9. Covered: Bridgton, Brunswick, Cape Elizabeth, Casco, Cumberland, Falmouth, Freeport, Gray, Harpswell, Naples, New Gloucester, North Yarmouth, Portland, Pownal, Raymond, Scarborough, Sebago, South Portland, Standish, Westbrook, Windham and Yarmouth. The radius joins each covered town on its own GEOCODE: it asks layer 9 (GEOCODE IN ('<the town's code>')) AND STATE_ID IN (...), and reads a row as a parcel's owner only where the row's GEOCODE is that town's code. Twenty towns join on STATE_ID as layer 10 writes it. Freeport and South Portland join on a key built from the parcel's MAP_BK_LOT, which is then the parcel id the radius serves, because their assessor rows write the lot id in a fixed-width form (read 2026-11-23). Freeport: '05080_', then the four parts of its MAP_BK_LOT between the '/', each number written as three digits with leading zeros and each letter part padded with spaces to three characters (11/50/A/0 joins 05080_011050A  000); 3,583 of its 4,356 parcels join one owner, and 470 have a MAP_BK_LOT outside that form (a letter where it has a number, or a lone 0; none is blank), so no key and no owner. South Portland: '05220_', then the map and the lot of its MAP_BK_LOT, split at the '-', each written as three digits, the lot followed by its letter or by '*' where it has none, joined by '*0000*' (12-3A joins 05220_012*0000*003A); 6,972 of its 8,822 parcels join one owner, and 149 have no key and no owner: 46 a blank MAP_BK_LOT and 103 one outside that form. On the full data no parcel of either town joins a row of another town, and a joined parcel's area disagrees with its row's LOT_SIZE about as often as in the towns that join on STATE_ID. Not covered: Baldwin and Harrison have parcels but no assessor rows, so no owner. Gorham and Long Island have parcels and assessor rows, but every owner in those rows is blank, so no owner. Chebeague Island and Frye Island have no parcels in the service. None of them has an owner on layer 9 to join. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL. Mailing street (places[town].mailing, measured 2026-11-23): the towns of layer 9 do not all write the owner's mailing street in one column, since several keep the parcel's own location in OWN_ADDR1 and the mailing street in OWN_ADDR2, so each covered town names its column, and a row whose column is empty serves no mailing address: no other column stands in. The evidence per town: how often OWN_ADDR1 agrees with PROP_LOC (house number and first street word, over the parcels that join one owner), and how often OWN_ADDR2 is filled on the town's layer 9 rows whose OWN_STATE is not ME. OWN_ADDR2: Cape Elizabeth (3,049 of 3,058 agree; OWN_ADDR2 on 321 of 323), Casco (2,447 of 2,447 agree; OWN_ADDR2 on 1,015 of 1,017), Cumberland (2,999 of 2,999 agree; OWN_ADDR2 on 131 of 131), Falmouth (4,623 of 4,623 agree; OWN_ADDR2 on 289 of 289), Freeport (3,368 of 3,576 agree; OWN_ADDR2 on 430 of 430), Gray (4,330 of 4,330 agree; OWN_ADDR2 on 420 of 420), Naples (2,994 of 2,994 agree; OWN_ADDR2 on 1,405 of 1,407), New Gloucester (2,847 of 2,847 agree; OWN_ADDR2 on 165 of 165), North Yarmouth (1,618 of 1,618 agree; OWN_ADDR2 on 59 of 60), Portland (17,904 of 18,770 agree; OWN_ADDR2 on 1,826 of 1,826), Pownal (no agreement to measure; OWN_ADDR2 on 35 of 36; OWN_ADDR1 one of the town's streets on 26 of 30 and a PO box on no row), Raymond (3,533 of 3,533 agree; OWN_ADDR2 on 868 of 872), Sebago (1,389 of 1,389 agree; OWN_ADDR2 on 636 of 636), Standish (4,875 of 4,875 agree; OWN_ADDR2 on 539 of 539), Westbrook (5,830 of 5,830 agree; OWN_ADDR2 on 213 of 213), Windham (7,083 of 7,089 agree; OWN_ADDR2 on 469 of 469) and Yarmouth (3,171 of 3,172 agree; OWN_ADDR2 on 241 of 241). OWN_ADDR1: Bridgton (no agreement to measure; OWN_ADDR2 on 170 of 1,861), Brunswick (no agreement to measure; OWN_ADDR2 on 68 of 487), Harpswell (no agreement to measure; OWN_ADDR2 on 0 of 1,098), Scarborough (no agreement to measure; OWN_ADDR2 on 0 of 989) and South Portland (no agreement to measure; OWN_ADDR2 on 321 of 569, read 2026-11-24: OWN_ADDR1 is the mailing street, a PO box on 378 of 7,804 rows and, read 2026-11-23, one of the town's streets on 19 of 567 out-of-state rows). In these OWN_ADDR1 towns some rows hold a care-of line or a name in OWN_ADDR1 and the street in OWN_ADDR2, and lists serve that OWN_ADDR1 line, so their mailing address names no street (read 2026-11-23, count only: OWN_ADDR1 with no digit and no PO box, beside an OWN_ADDR2 that opens with a digit or is a PO box): Bridgton 320 of 5,364 rows (6.0%; 245 open with C/O or ATTN), Brunswick 91 of 7,085 (1.3%; 31) and South Portland 363 of 7,805 (4.7%; 271), none in Harpswell or Scarborough. Among the rows whose owner's mailing state is not Maine (OWN_STATE filled and not ME; read 2026-11-24, count only) the share is higher: Bridgton 135 of 1,861 (7.3%), Brunswick 30 of 487 (6.2%) and South Portland 263 of 569 (46.2%). Layer 9's own registration (owner-name search) has both lines, OWN_ADDR1 and OWN_ADDR2, and its sample query returns them with GEOCODE: a row's GEOCODE is its town's tableCode, and places[town].mailing names which of the two is that town's mailing street.",
       "partialCoverage": {
         "covers": [
           "Bridgton",
@@ -235,6 +388,7 @@
           "Casco",
           "Cumberland",
           "Falmouth",
+          "Freeport",
           "Gray",
           "Harpswell",
           "Naples",
@@ -245,14 +399,13 @@
           "Raymond",
           "Scarborough",
           "Sebago",
+          "South Portland",
           "Standish",
           "Westbrook",
           "Windham",
           "Yarmouth"
         ],
         "notCovered": [
-          "Freeport",
-          "South Portland",
           "Baldwin",
           "Harrison",
           "Gorham",
@@ -312,15 +465,18 @@
             "layerName": "Maine Parcels Organized Towns ADB (assessor table)",
             "key": "STATE_ID",
             "parcelKey": "STATE_ID",
-            "tableWhere": "GEOCODE IN ('31030','31050','31060','31080','31090','31120','31140','31160','31170','31197','31200','31220','31230','31250')",
+            "tableWhere": "GEOCODE IN ('31010','31020','31030','31050','31060','31080','31090','31110','31120','31140','31160','31170','31197','31200','31220','31230','31250')",
             "layerScope": {
               "field": "TOWN",
               "values": [
+                "Acton",
+                "Alfred",
                 "Arundel",
                 "Biddeford",
                 "Buxton",
                 "Dayton",
                 "Eliot",
+                "Kennebunk",
                 "Kennebunkport",
                 "Lebanon",
                 "Limington",
@@ -331,6 +487,115 @@
                 "Sanford",
                 "South Berwick"
               ]
+            },
+            "places": {
+              "Acton": {
+                "tableCode": "31010",
+                "key": [
+                  {
+                    "tableCode": true
+                  },
+                  {
+                    "text": "_"
+                  },
+                  {
+                    "field": "MAP_BK_LOT"
+                  }
+                ],
+                "mailing": "OWN_ADDR1"
+              },
+              "Alfred": {
+                "tableCode": "31020",
+                "key": [
+                  {
+                    "tableCode": true
+                  },
+                  {
+                    "text": "_"
+                  },
+                  {
+                    "field": "MAP_BK_LOT"
+                  }
+                ],
+                "mailing": null
+              },
+              "Arundel": {
+                "tableCode": "31030",
+                "mailing": "OWN_ADDR2"
+              },
+              "Biddeford": {
+                "tableCode": "31050",
+                "mailing": "OWN_ADDR2"
+              },
+              "Buxton": {
+                "tableCode": "31060",
+                "mailing": "OWN_ADDR2"
+              },
+              "Dayton": {
+                "tableCode": "31080",
+                "mailing": null
+              },
+              "Eliot": {
+                "tableCode": "31090",
+                "mailing": "OWN_ADDR1"
+              },
+              "Kennebunk": {
+                "tableCode": "31110",
+                "key": [
+                  {
+                    "tableCode": true
+                  },
+                  {
+                    "text": "_"
+                  },
+                  {
+                    "field": "MAP_BK_LOT",
+                    "replace": [
+                      [
+                        "-",
+                        "_"
+                      ]
+                    ]
+                  }
+                ],
+                "mailing": "OWN_ADDR2"
+              },
+              "Kennebunkport": {
+                "tableCode": "31120",
+                "mailing": "OWN_ADDR2"
+              },
+              "Lebanon": {
+                "tableCode": "31140",
+                "mailing": "OWN_ADDR1"
+              },
+              "Limington": {
+                "tableCode": "31160",
+                "mailing": "OWN_ADDR2"
+              },
+              "Lyman": {
+                "tableCode": "31170",
+                "mailing": "OWN_ADDR2"
+              },
+              "Ogunquit": {
+                "tableCode": "31197",
+                "mailing": "OWN_ADDR2"
+              },
+              "Old Orchard Beach": {
+                "tableCode": "31200",
+                "mailing": "OWN_ADDR2"
+              },
+              "Saco": {
+                "tableCode": "31220",
+                "mailing": "OWN_ADDR2"
+              },
+              "Sanford": {
+                "tableCode": "31230",
+                "mailing": "OWN_ADDR2"
+              },
+              "South Berwick": {
+                "tableCode": "31250",
+                "mailing": "OWN_ADDR1"
+              }
             },
             "fields": [
               {
@@ -350,7 +615,12 @@
               },
               {
                 "name": "OWN_ADDR1",
-                "label": "Owner Mailing Address Line 1",
+                "label": "Owner Mailing Address Line 1, as each town writes it: the mailing street, a care-of line, or the property's own street (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
+                "searchable": false
+              },
+              {
+                "name": "OWN_ADDR2",
+                "label": "Owner Mailing Address Line 2, as each town writes it: the mailing street where Line 1 holds the property's own street or a care-of line (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
                 "searchable": false
               },
               {
@@ -411,7 +681,12 @@
             },
             {
               "name": "OWN_ADDR1",
-              "label": "Owner Mailing Address Line 1",
+              "label": "Owner Mailing Address Line 1, as each town writes it: the mailing street, a care-of line, or the property's own street (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
+              "searchable": false
+            },
+            {
+              "name": "OWN_ADDR2",
+              "label": "Owner Mailing Address Line 2, as each town writes it: the mailing street where Line 1 holds the property's own street or a care-of line (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
               "searchable": false
             },
             {
@@ -435,13 +710,13 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('31010'%2C'31030'%2C'31040'%2C'31050'%2C'31060'%2C'31080'%2C'31090'%2C'31100'%2C'31110'%2C'31120'%2C'31130'%2C'31140'%2C'31150'%2C'31160'%2C'31170'%2C'31190'%2C'31197'%2C'31200'%2C'31220'%2C'31230'%2C'31240'%2C'31250'%2C'31270'%2C'31280'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('31010'%2C'31020'%2C'31030'%2C'31040'%2C'31050'%2C'31060'%2C'31080'%2C'31090'%2C'31100'%2C'31110'%2C'31120'%2C'31130'%2C'31140'%2C'31150'%2C'31160'%2C'31170'%2C'31190'%2C'31197'%2C'31200'%2C'31220'%2C'31230'%2C'31240'%2C'31250'%2C'31270'%2C'31280'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_ADDR2,OWN_CITY,OWN_STATE,GEOCODE,MAP_BK_LOT,LAND_VAL&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.arcgis.com/home/item.html?id=346131b710a645ffb624f448a9cba6d4",
           "status": "live",
-          "lastVerified": "2026-08-29",
+          "lastVerified": "2026-11-23",
           "verifiedBy": "manual",
-          "scopeWhere": "GEOCODE IN ('31010','31030','31040','31050','31060','31080','31090','31100','31110','31120','31130','31140','31150','31160','31170','31190','31197','31200','31220','31230','31240','31250','31270','31280')"
+          "scopeWhere": "GEOCODE IN ('31010','31020','31030','31040','31050','31060','31080','31090','31100','31110','31120','31130','31140','31150','31160','31170','31190','31197','31200','31220','31230','31240','31250','31270','31280')"
         }
       ],
       "contact": {
@@ -449,14 +724,17 @@
         "url": "https://www.maine.gov/geolib/",
         "email": null
       },
-      "notes": "York County is Maine's southernmost county and its most densely populated outside the Portland area, with seasonal coastal communities driving heavy property-lookup demand. The data comes from the same Maine GeoLibrary statewide organized-towns service used by Cumberland County. Layer 10 (FeatureServer/10) carries polygon geometry with COUNTY, TOWN, PROP_LOC, MAP_BK_LOT, and STATE_ID. Layer 9 (FeatureServer/9) is the assessor attribute table, with no geometry, carrying OWNER1/OWNER2 and mailing address fields. Join it to layer 10 on STATE_ID, or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Filter to York County with COUNTY='YORK'; municipalities include Biddeford, Saco, Sanford, Kennebunk, York, Kittery, Wells, and Berwick. Important caveat: GeoLibrary submissions are voluntary and asynchronous: some towns update quarterly, others lag by a year or more. For current ownership or assessment, check the individual town assessor's office or the Maine Revenue Services PAS database. Unorganized territories in York County use a separate MEGIS service. Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 29 towns and cities in York County, and 14 of them have parcels on layer 10 whose STATE_ID joins an assessor row with an owner on layer 9. Covered: Arundel, Biddeford, Buxton, Dayton, Eliot, Kennebunkport, Lebanon, Limington, Lyman, Ogunquit, Old Orchard Beach, Saco, Sanford and South Berwick. Not covered: Kennebunk and Acton have parcels and assessor rows with owners, but their parcels' STATE_ID does not match their rows' (read 2026-11-23). Kennebunk's parcels write '-' where its assessor rows write '_': read each '-' as '_' and 5,634 of its 7,183 parcels join. Acton's parcels carry a doubled STATE_ID, so only 2 of its 3,056 join on it: join Acton on GEOCODE plus MAP_BK_LOT instead, where 2,992 parcels match exactly one assessor row. Berwick, Kittery, Limerick, Shapleigh, Wells and York have parcels but no assessor rows, so no owner. Hollis and North Berwick have parcels and assessor rows, but every owner in those rows is blank, so no owner. Cornish, Newfield, Parsonsfield and Waterboro have no parcels in the service. Alfred gets no owner here either: layer 10 codes Alfred's parcels GEOCODE 31030, the code of Arundel's parcels and assessor rows, while Alfred's own assessor rows (1,671, every one with an owner) sit under GEOCODE 31020, which this record's layer 9 scope leaves out. Those rows match Alfred's parcels (TOWN = 'Alfred') on MAP_BK_LOT: 1,596 of its 1,634 parcels match exactly one row, and no row's MAP_BK_LOT repeats (read 2026-11-23). A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL.",
+      "notes": "York County is Maine's southernmost county and its most densely populated outside the Portland area, with seasonal coastal communities driving heavy property-lookup demand. The data comes from the same Maine GeoLibrary statewide organized-towns service used by Cumberland County. Layer 10 (FeatureServer/10) carries polygon geometry with COUNTY, TOWN, PROP_LOC, MAP_BK_LOT, and STATE_ID. Layer 9 (FeatureServer/9) is the assessor attribute table, with no geometry, carrying OWNER1/OWNER2 and mailing address fields. Join it to layer 10 on STATE_ID, or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Filter to York County with COUNTY='YORK'; municipalities include Biddeford, Saco, Sanford, Kennebunk, York, Kittery, Wells, and Berwick. Important caveat: GeoLibrary submissions are voluntary and asynchronous: some towns update quarterly, others lag by a year or more. For current ownership or assessment, check the individual town assessor's office or the Maine Revenue Services PAS database. Unorganized territories in York County use a separate MEGIS service. Partial coverage, read 2026-11-23: the Census Bureau's TIGERweb list names 29 towns and cities in York County, and 17 of them have parcels on layer 10 that join an assessor row with an owner on layer 9. Covered: Acton, Alfred, Arundel, Biddeford, Buxton, Dayton, Eliot, Kennebunk, Kennebunkport, Lebanon, Limington, Lyman, Ogunquit, Old Orchard Beach, Saco, Sanford and South Berwick. The radius joins each covered town on its own GEOCODE: it asks layer 9 (GEOCODE IN ('<the town's code>')) AND STATE_ID IN (...), and reads a row as a parcel's owner only where the row's GEOCODE is that town's code. Fourteen towns join on STATE_ID as layer 10 writes it. Three join on a key built from the parcel's MAP_BK_LOT, which is then the parcel id the radius serves (read 2026-11-23): Kennebunk on '31110_' and its MAP_BK_LOT with each '-' written '_', as its assessor rows write it (5,503 of its 7,183 parcels join one owner; 39 have a blank MAP_BK_LOT, so no key and no owner; the swap is one way, so a lot id written with '_' would build the same key as its '-' twin, and none of the 7,183 carries a '_', read 2026-11-23); Acton on '31010_' and its MAP_BK_LOT, because its parcels carry a doubled STATE_ID (2,990 of 3,056 join); and Alfred on '31020_' and its MAP_BK_LOT, because layer 10 codes Alfred's parcels GEOCODE 31030, Arundel's code, while Alfred's assessor rows sit under 31020 (1,596 of its 1,634 parcels join). No Alfred parcel is read against an Arundel row, and Arundel joins exactly as before. Not covered: Berwick, Kittery, Limerick, Shapleigh, Wells and York have parcels but no assessor rows, so no owner. Hollis and North Berwick have parcels and assessor rows, but every owner in those rows is blank, so no owner. Cornish, Newfield, Parsonsfield and Waterboro have no parcels in the service. None of them has an owner on layer 9 to join. A blank owner is stored as an empty string, not null, so count owners with CHAR_LENGTH(TRIM(BOTH ' ' FROM OWNER1)) > 0, not IS NOT NULL. Mailing street (places[town].mailing, measured 2026-11-23): the towns of layer 9 do not all write the owner's mailing street in one column, since several keep the parcel's own location in OWN_ADDR1 and the mailing street in OWN_ADDR2, so each covered town names its column, and a row whose column is empty serves no mailing address: no other column stands in. The evidence per town: how often OWN_ADDR1 agrees with PROP_LOC (house number and first street word, over the parcels that join one owner), and how often OWN_ADDR2 is filled on the town's layer 9 rows whose OWN_STATE is not ME. OWN_ADDR2: Arundel (1,494 of 1,494 agree; OWN_ADDR2 on 163 of 163), Biddeford (6,944 of 6,944 agree; OWN_ADDR2 on 987 of 987), Buxton (3,125 of 3,125 agree; OWN_ADDR2 on 177 of 177), Kennebunk (4,888 of 4,890 agree; OWN_ADDR2 on 1,339 of 1,339), Kennebunkport (its table holds the property location in OWN_ADDR1: on 1,331 of its 1,532 out-of-state rows OWN_ADDR1 is one of the town's own streets, and on none of its 3,975 filled rows a PO box; a mailing street is in OWN_ADDR2 on only 53 of 1,532 out-of-state rows, so most lists give the owner and the property address), Limington (1,888 of 1,888 agree; OWN_ADDR2 on 202 of 202), Lyman (2,029 of 2,029 agree; OWN_ADDR2 on 353 of 396), Ogunquit (no agreement to measure; OWN_ADDR2 on 3,983 of 3,983; OWN_ADDR1 one of the town's streets on 3,697 of 3,983 and a PO box on no row), Old Orchard Beach (3,740 of 3,740 agree; OWN_ADDR2 on 2,083 of 2,084), Saco (6,349 of 6,349 agree; OWN_ADDR2 on 660 of 660) and Sanford (7,401 of 7,401 agree; OWN_ADDR2 on 716 of 717). OWN_ADDR1: Acton (no agreement to measure; OWN_ADDR2 on 60 of 1,294), Eliot (2,281 of 2,634 agree; OWN_ADDR2 on 17 of 283), Lebanon (1 of 3 agree, too few to measure; OWN_ADDR2 on 48 of 608) and South Berwick (no agreement to measure; OWN_ADDR2 on 0 of 288). In these OWN_ADDR1 towns some rows hold a care-of line or a name in OWN_ADDR1 and the street in OWN_ADDR2, and lists serve that OWN_ADDR1 line, so their mailing address names no street (read 2026-11-23, count only: OWN_ADDR1 with no digit and no PO box, beside an OWN_ADDR2 that opens with a digit or is a PO box): Acton 19 of 2,977 rows (0.6%; 17 open with C/O or ATTN), Eliot 50 of 3,368 (1.5%; 37) and Lebanon 68 of 3,446 (2.0%; 55), none in South Berwick. Among the rows whose owner's mailing state is not Maine (OWN_STATE filled and not ME; read 2026-11-24, count only) the share is higher: Acton 13 of 1,294 (1.0%), Eliot 10 of 283 (3.5%) and Lebanon 28 of 608 (4.6%). None, so the town's table carries no owner mailing address and lists give the owner and the property address only: Alfred (OWN_ADDR1 is the property location, 1,266 of 1,266 agree, and OWN_ADDR2 is empty on all 1,671 rows) and Dayton (OWN_ADDR1 and OWN_ADDR2 are empty on all 913 rows). Layer 9's own registration (owner-name search) has both lines, OWN_ADDR1 and OWN_ADDR2, and its sample query returns them with GEOCODE: a row's GEOCODE is its town's tableCode, and places[town].mailing names which of the two is that town's mailing street.",
       "partialCoverage": {
         "covers": [
+          "Acton",
+          "Alfred",
           "Arundel",
           "Biddeford",
           "Buxton",
           "Dayton",
           "Eliot",
+          "Kennebunk",
           "Kennebunkport",
           "Lebanon",
           "Limington",
@@ -468,8 +746,6 @@
           "South Berwick"
         ],
         "notCovered": [
-          "Kennebunk",
-          "Acton",
           "Berwick",
           "Kittery",
           "Limerick",
@@ -481,8 +757,7 @@
           "Cornish",
           "Newfield",
           "Parsonsfield",
-          "Waterboro",
-          "Alfred"
+          "Waterboro"
         ],
         "checked": "2026-11-23"
       }
@@ -565,6 +840,40 @@
                 "Wayne"
               ]
             },
+            "places": {
+              "Augusta": {
+                "tableCode": "11020",
+                "mailing": "OWN_ADDR1"
+              },
+              "Gardiner": {
+                "tableCode": "11100",
+                "mailing": "OWN_ADDR1"
+              },
+              "Manchester": {
+                "tableCode": "11130",
+                "mailing": "OWN_ADDR1"
+              },
+              "Oakland": {
+                "tableCode": "11160",
+                "mailing": "OWN_ADDR1"
+              },
+              "Readfield": {
+                "tableCode": "11190",
+                "mailing": null
+              },
+              "Sidney": {
+                "tableCode": "11210",
+                "mailing": "OWN_ADDR1"
+              },
+              "Waterville": {
+                "tableCode": "11240",
+                "mailing": "OWN_ADDR1"
+              },
+              "Wayne": {
+                "tableCode": "11250",
+                "mailing": "OWN_ADDR1"
+              }
+            },
             "fields": [
               {
                 "name": "STATE_ID",
@@ -583,7 +892,12 @@
               },
               {
                 "name": "OWN_ADDR1",
-                "label": "Owner Mailing Address Line 1",
+                "label": "Owner Mailing Address Line 1, as each town writes it: the mailing street, a care-of line, or the property's own street (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
+                "searchable": false
+              },
+              {
+                "name": "OWN_ADDR2",
+                "label": "Owner Mailing Address Line 2, as each town writes it: the mailing street where Line 1 holds the property's own street or a care-of line (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
                 "searchable": false
               },
               {
@@ -644,7 +958,12 @@
             },
             {
               "name": "OWN_ADDR1",
-              "label": "Owner Mailing Address Line 1",
+              "label": "Owner Mailing Address Line 1, as each town writes it: the mailing street, a care-of line, or the property's own street (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
+              "searchable": false
+            },
+            {
+              "name": "OWN_ADDR2",
+              "label": "Owner Mailing Address Line 2, as each town writes it: the mailing street where Line 1 holds the property's own street or a care-of line (ownerJoin.places[town].mailing on this county's polygon endpoint names each town's mailing street column)",
               "searchable": false
             },
             {
@@ -683,7 +1002,7 @@
               "searchable": false
             }
           ],
-          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('11020'%2C'11050'%2C'11060'%2C'11070'%2C'11090'%2C'11100'%2C'11110'%2C'11120'%2C'11130'%2C'11140'%2C'11150'%2C'11160'%2C'11180'%2C'11190'%2C'11210'%2C'11220'%2C'11240'%2C'11250'%2C'11280'%2C'11290'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_CITY,OWN_STATE,MAP_BK_LOT,LAND_VAL,BLDG_VAL&returnGeometry=false&f=json&resultRecordCount=10",
+          "sampleQuery": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer/9/query?where=(GEOCODE+IN+('11020'%2C'11050'%2C'11060'%2C'11070'%2C'11090'%2C'11100'%2C'11110'%2C'11120'%2C'11130'%2C'11140'%2C'11150'%2C'11160'%2C'11180'%2C'11190'%2C'11210'%2C'11220'%2C'11240'%2C'11250'%2C'11280'%2C'11290'))+AND+UPPER(OWNER1)+LIKE+UPPER('%25SMITH%25')&outFields=OWNER1,OWN_ADDR1,OWN_ADDR2,OWN_CITY,OWN_STATE,GEOCODE,MAP_BK_LOT,LAND_VAL,BLDG_VAL&returnGeometry=false&f=json&resultRecordCount=10",
           "license": "public",
           "licenseUrl": "https://www.arcgis.com/home/item.html?id=346131b710a645ffb624f448a9cba6d4",
           "status": "live",
@@ -697,7 +1016,7 @@
         "url": "https://www.maine.gov/geolib/",
         "email": "GeolibraryBoard.OIT@maine.gov"
       },
-      "notes": "Kennebec County, Maine (FIPS 23011; Augusta, Waterville, Gardiner, Hallowell, Winslow). Maine counties do not assess property: each organized town does, and towns submit parcels voluntarily to the Maine GeoLibrary Parcel Project, published as one statewide service (the same layers the Cumberland and York records use). Layer 10 (polygons) holds 55,126 Kennebec parcels in 20 towns, read 2026-11-21, filtered by COUNTY = 'Kennebec': Augusta 8,448, Waterville 5,661, Winslow 3,746, Winthrop 3,577, Oakland 3,350, China 3,340, Litchfield 2,808, Monmouth 2,743, Gardiner 2,634, Sidney 2,603, Vassalboro 2,580, Mount Vernon 2,026, Clinton 2,002, Readfield 1,787, Fayette 1,592, Chelsea 1,495, Manchester 1,395, Hallowell 1,385, Wayne 1,166, Randolph 788 (GEOCODE 11xxx). PROP_LOC (situs) is non-blank on 39,947 of them. Layer 9 (assessor table, no geometry) holds 39,824 rows for 13 of those towns (Augusta, China, Gardiner, Hallowell, Manchester, Monmouth, Oakland, Randolph, Readfield, Sidney, Waterville, Wayne, Winthrop); OWNER1 is non-blank on 27,822 and OWN_ADDR1 on 25,933, and every non-blank owner is in Augusta, Gardiner, Manchester, Oakland, Readfield, Sidney, Waterville or Wayne (read 2026-11-23). Join layer 9 to layer 10 on STATE_ID (GEOCODE_MAPBKLOT, e.g. 11100_037143), or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. Not covered: Fayette, Vassalboro, Litchfield, Winslow, Mount Vernon, Chelsea and Clinton have parcels but no assessor rows, so no owner. China, Hallowell, Monmouth, Randolph and Winthrop have parcels and assessor rows, but every owner in those rows is empty: null in China, an empty string in the other four, so no owner. Albion, Belgrade, Benton, Farmingdale, Pittston, Rome, Vienna, West Gardiner and Windsor have no parcels in the service, and Unity Township (unorganized) sits on the separate Maine Parcels Unorganized Territory service, not checked. Freshness: FMUPDAT reads 2010 to 2012 for Augusta, Waterville, Hallowell, Gardiner, Oakland, Sidney, Monmouth, Winthrop, Wayne, Readfield, Randolph and Manchester, 2014 for Chelsea, 2022 to 2025 for Clinton, Winslow, China, Fayette, Litchfield and Mount Vernon; the item itself says data for many towns is more than fifteen years old. Terms: the item's licenseInfo reads 'Access: Public. Use: User assumes risk.' with a disclaimer that the data is for assessing and planning purposes only and not survey-grade, and 5 M.R.S. section 2005 says copyright or licensing restrictions may not be fixed to information made available through the Maine Library of Geographic Information. Credit: Maine GeoLibrary; MaineIT GIS. CORS: Access-Control-Allow-Origin * on every request. maxRecordCount 2000 with pagination.",
+      "notes": "Kennebec County, Maine (FIPS 23011; Augusta, Waterville, Gardiner, Hallowell, Winslow). Maine counties do not assess property: each organized town does, and towns submit parcels voluntarily to the Maine GeoLibrary Parcel Project, published as one statewide service (the same layers the Cumberland and York records use). Layer 10 (polygons) holds 55,126 Kennebec parcels in 20 towns, read 2026-11-21, filtered by COUNTY = 'Kennebec': Augusta 8,448, Waterville 5,661, Winslow 3,746, Winthrop 3,577, Oakland 3,350, China 3,340, Litchfield 2,808, Monmouth 2,743, Gardiner 2,634, Sidney 2,603, Vassalboro 2,580, Mount Vernon 2,026, Clinton 2,002, Readfield 1,787, Fayette 1,592, Chelsea 1,495, Manchester 1,395, Hallowell 1,385, Wayne 1,166, Randolph 788 (GEOCODE 11xxx). PROP_LOC (situs) is non-blank on 39,947 of them. Layer 9 (assessor table, no geometry) holds 39,824 rows for 13 of those towns (Augusta, China, Gardiner, Hallowell, Manchester, Monmouth, Oakland, Randolph, Readfield, Sidney, Waterville, Wayne, Winthrop); OWNER1 is non-blank on 27,822 and OWN_ADDR1 on 25,933, and every non-blank owner is in Augusta, Gardiner, Manchester, Oakland, Readfield, Sidney, Waterville or Wayne (read 2026-11-23). Join layer 9 to layer 10 on STATE_ID (GEOCODE_MAPBKLOT, e.g. 11100_037143), or on GEOCODE plus MAP_BK_LOT; MAP_BK_LOT alone matches other towns' parcels. The radius joins each covered town on its own GEOCODE: it asks layer 9 (GEOCODE IN ('<the town's code>')) AND STATE_ID IN (...), and reads a row as a parcel's owner only where the row's GEOCODE is that town's code. Not covered: Fayette, Vassalboro, Litchfield, Winslow, Mount Vernon, Chelsea and Clinton have parcels but no assessor rows, so no owner. China, Hallowell, Monmouth, Randolph and Winthrop have parcels and assessor rows, but every owner in those rows is empty: null in China, an empty string in the other four, so no owner. Albion, Belgrade, Benton, Farmingdale, Pittston, Rome, Vienna, West Gardiner and Windsor have no parcels in the service, and Unity Township (unorganized) sits on the separate Maine Parcels Unorganized Territory service, not checked. Freshness: FMUPDAT reads 2010 to 2012 for Augusta, Waterville, Hallowell, Gardiner, Oakland, Sidney, Monmouth, Winthrop, Wayne, Readfield, Randolph and Manchester, 2014 for Chelsea, 2022 to 2025 for Clinton, Winslow, China, Fayette, Litchfield and Mount Vernon; the item itself says data for many towns is more than fifteen years old. Terms: the item's licenseInfo reads 'Access: Public. Use: User assumes risk.' with a disclaimer that the data is for assessing and planning purposes only and not survey-grade, and 5 M.R.S. section 2005 says copyright or licensing restrictions may not be fixed to information made available through the Maine Library of Geographic Information. Credit: Maine GeoLibrary; MaineIT GIS. CORS: Access-Control-Allow-Origin * on every request. maxRecordCount 2000 with pagination. Mailing street (places[town].mailing, measured 2026-11-23): the towns of layer 9 do not all write the owner's mailing street in one column, since several keep the parcel's own location in OWN_ADDR1 and the mailing street in OWN_ADDR2, so each covered town names its column, and a row whose column is empty serves no mailing address: no other column stands in. The evidence per town: how often OWN_ADDR1 agrees with PROP_LOC (house number and first street word, over the parcels that join one owner), and how often OWN_ADDR2 is filled on the town's layer 9 rows whose OWN_STATE is not ME. OWN_ADDR1: Augusta (no agreement to measure; OWN_ADDR2 on 232 of 688), Gardiner (no agreement to measure; OWN_ADDR2 on 17 of 117), Manchester (no agreement to measure; OWN_ADDR2 on 0 of 129), Oakland (no agreement to measure; OWN_ADDR2 on 0 of 354), Sidney (1,316 of 2,386 agree; OWN_ADDR2 on 0 of 177), Waterville (no agreement to measure; OWN_ADDR2 on 0 of 300) and Wayne (no agreement to measure; OWN_ADDR2 on 0 of 285). In these OWN_ADDR1 towns some rows hold a care-of line or a name in OWN_ADDR1 and the street in OWN_ADDR2, and lists serve that OWN_ADDR1 line, so their mailing address names no street (read 2026-11-23, count only: OWN_ADDR1 with no digit and no PO box, beside an OWN_ADDR2 that opens with a digit or is a PO box): Augusta 686 of 9,385 rows (7.3%; 570 open with C/O or ATTN) and Gardiner 24 of 2,517 (1.0%; 8), none in Manchester, Oakland, Sidney, Waterville or Wayne. Among the rows whose owner's mailing state is not Maine (OWN_STATE filled and not ME; read 2026-11-24, count only) the share is higher: Augusta 145 of 688 (21.1%) and Gardiner 6 of 117 (5.1%). None, so the town's table carries no owner mailing address and lists give the owner and the property address only: Readfield (OWN_ADDR1 and OWN_ADDR2 are empty on all 1,852 rows). Layer 9's own registration (owner-name search) has both lines, OWN_ADDR1 and OWN_ADDR2, and its sample query returns them with GEOCODE: a row's GEOCODE is its town's tableCode, and places[town].mailing names which of the two is that town's mailing street.",
       "partialCoverage": {
         "covers": [
           "Augusta",

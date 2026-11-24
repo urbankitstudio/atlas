@@ -125,8 +125,8 @@ export type SearchFieldRole = "mailing-fallback" | "situs-directional";
  * (0.9.1) is the first record that carries one.
  *
  * The table has no geometry. Query it by key only
- * (`<key> IN ('<value>', ...)`, each `'` doubled, with `tableWhere` ANDed in
- * when the join carries one), never spatially: an ArcGIS
+ * (`<key> IN ('<value>', ...)`, each `'` doubled, and where the join carries a
+ * `tableWhere` under one place's code at a time, see `places`), never spatially: an ArcGIS
  * table ignores a geometry parameter, so a spatial query would answer with
  * arbitrary rows. Check that every returned row's `key` is one you asked for,
  * and, where the join carries `layerScope`, attach rows only to the polygons it
@@ -151,9 +151,10 @@ export interface OwnerJoin {
   /** The matching column on the endpoint's layer; one of its `searchFields`.
    *  It may have the key's name (Maine: `STATE_ID` on both). */
   parcelKey: string;
-  /** Since 0.9.13. A predicate to AND into every query of the table:
-   *  `(<tableWhere>) AND <key> IN ('<value>', ...)`. Always of the form
-   *  `<column> IN ('<value>', ...)`. Present where the polygon layer is shared
+  /** Since 0.9.13. The table's scope, always of the form
+   *  `<column> IN ('<value>', ...)`. Ask the table under ONE place's code at a
+   *  time (see `places`), `(<column> IN ('<tableCode>')) AND <key> IN ('<value>', ...)`,
+   *  never under the whole list: one key can belong to rows of two towns. Present where the polygon layer is shared
    *  (the endpoint carries `scopeWhere`), because the table then holds other
    *  counties' rows too; Maine's records list their covered towns' `GEOCODE`s,
    *  so rows of a town the record does not cover are never joined. */
@@ -162,11 +163,25 @@ export interface OwnerJoin {
    *  polygon whose `field` (one of the endpoint's `searchFields`) is exactly one
    *  of `values`, and read every other polygon as having no owner, even where its
    *  key matches a row. Present wherever `tableWhere` is: a table scope admits a
-   *  row by the row's own code, and a polygon of an uncovered town can carry a
+   *  row by the row's own code, and a polygon of another town can carry a
    *  covered town's code (Maine: Alfred's parcels carry Arundel's `GEOCODE`).
    *  Where the record has `partialCoverage`, `values` are its `covers`. Maine:
    *  `TOWN`. */
   layerScope?: { field: string; values: string[] };
+  /** Since 0.9.15. Each `layerScope` value's table code and, where it needs one, its key form.
+   *  Present wherever `tableWhere` is, one entry per `layerScope` value, and every
+   *  `tableWhere` value is some place's `tableCode`. To join a polygon: read its
+   *  `layerScope.field` value (trimmed), take that place, build the key (its `key`
+   *  form, or the polygon's `parcelKey` value trimmed), and ask the table
+   *  `(<tableWhere column> IN ('<tableCode>')) AND <key> IN (...)`. Keep a row only
+   *  where its own value in the `tableWhere` column is that `tableCode` and its
+   *  `key` is the built key. A polygon whose form cannot be built has no owner.
+   *  Maine's Alfred: `{ "tableCode": "31020", "key": [{ "tableCode": true },
+   *  { "text": "_" }, { "field": "MAP_BK_LOT" }], "mailing": null }` (its polygons carry Arundel's
+   *  `GEOCODE`, its rows sit under 31020). The hosted radius serves a built key as
+   *  the parcel id, and no parcel id for a polygon whose form cannot be built (never
+   *  its own `parcelKey` value, which in Alfred carries Arundel's code). */
+  places?: Record<string, OwnerJoinPlace>;
   /** The table's documented columns: `key`, `rowIdField` and the owner columns. */
   fields: SearchField[];
   /** A column that labels the rows of one key (an assessment unit, say). It is
@@ -195,6 +210,54 @@ export interface OwnerJoin {
   maxRecordCount: number;
   /** ISO date the table and its key were last verified before publish. */
   lastVerified: string;
+}
+
+/** One place of a scoped join ({@link OwnerJoin.places}): a `layerScope` value. */
+export interface OwnerJoinPlace {
+  /** The code this place's table rows carry in the `tableWhere` column. */
+  tableCode: string;
+  /** How this place's polygons build their key, the parts joined in order. Absent:
+   *  the polygon's `parcelKey` value, trimmed. */
+  key?: OwnerJoinKeyPart[];
+  /** The table column this place's rows give as the owner's mailing
+   *  street (one of {@link OwnerJoin.fields}), or `null` where the town's table
+   *  carries no owner mailing address (Maine: Alfred, Dayton, Readfield). Always
+   *  present: towns that share one table can write the mailing street in different
+   *  columns (several Maine towns put the property's own street on OWN_ADDR1 and the
+   *  mailing street on OWN_ADDR2). Where this column is empty, or it is `null`, the
+   *  row has no mailing street; read no other column in its place. */
+  mailing: string | null;
+}
+
+/**
+ * One part of a place's key form:
+ * - `{ tableCode: true }`: the place's `tableCode`;
+ * - `{ text }`: that text (1 to 8 of letters, digits and `_ - / . *`);
+ * - `{ field, replace? }`: the polygon's value in `field`, trimmed, with each character
+ *   that is the first of a `replace` pair `[from, to]` written as its `to`. One way only:
+ *   a `to` already in the value stays as it is (Kennebunk's `[["-", "_"]]` writes
+ *   `12-34` and `12_34` alike as `12_34`);
+ * - `{ field, split, tokens, join? }`: the value cut at `split` into exactly as many
+ *   pieces as `tokens`, each piece written as its {@link OwnerJoinKeyToken} says,
+ *   joined with `join` (none when absent).
+ * A field with no value, or a value that does not fit, means the polygon has no key.
+ */
+export type OwnerJoinKeyPart =
+  | { tableCode: true }
+  | { text: string }
+  | { field: string; replace?: Array<[string, string]> }
+  | { field: string; split: string; tokens: OwnerJoinKeyToken[]; join?: string };
+
+/** One piece of a split field: 1 to `digits` digits, zero-padded on the left to
+ *  `digits`; or 1 to `letters` capital letters, space-padded on the right to
+ *  `letters`; or, with `suffix`, 1 to `digits` digits then 1 to `suffix` capital
+ *  letters, the digits padded and the letters kept, with a piece of digits alone
+ *  ending in `noSuffix`. Any other piece does not fit. */
+export interface OwnerJoinKeyToken {
+  digits?: number;
+  letters?: number;
+  suffix?: number;
+  noSuffix?: string;
 }
 
 /**

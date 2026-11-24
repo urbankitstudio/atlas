@@ -458,11 +458,6 @@
               "searchable": true
             },
             {
-              "name": "DESCLU",
-              "label": "Land Use",
-              "searchable": false
-            },
-            {
               "name": "YEARBLT",
               "label": "Year Built",
               "searchable": false

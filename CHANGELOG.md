@@ -1,5 +1,86 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.15 (2026-11-23)
+
+Maine owner lists now use the owner's mailing street, not the property street, in the towns listed (in the
+`OWN_ADDR1` towns, 1,621 of 74,301 rows still give a care-of line or a name where the street should be; see below).
+Each covered Maine town is now joined under its own code, five more towns join their owners, and totals do not move
+(568 counties, 539 endpoints, 510 counties with an endpoint). **Patch.** One optional field is added to `OwnerJoin`
+and three types are exported; no existing type, function or field changed.
+
+- **`OwnerJoin.places?: Record<string, OwnerJoinPlace>`**, present wherever `tableWhere` is, one entry per
+  `layerScope` value: `tableCode` (the place's code in the `tableWhere` column), `key?` (how its polygons build the
+  table's key, where it is not their `parcelKey` value) and `mailing` (the table column its rows give as the owner's
+  mailing street, or `null` where the town's table carries none). New exported types: `OwnerJoinPlace`,
+  `OwnerJoinKeyPart`, `OwnerJoinKeyToken`. The hosted capability answers carry it as `owner_join.places`, null on a
+  join without one (OpenAPI 1.18.0).
+- **One code per request.** A scoped join's table is now asked `(<column> IN ('<tableCode>')) AND <key> IN (...)`,
+  one place at a time, never under the whole `tableWhere` list, and a row is read as a polygon's owner only where
+  the row's own code is that polygon's place's. On the full live data of the three counties (305,923 polygons,
+  read 2026-11-23) no polygon is joined to another town's row. A row under another town's code that carries the
+  very key asked is never a polygon's owner, and its arrival fails the answer's key echo (a unit test on one planted
+  row, `radius-join-core.test.ts`), where matching on the key alone would attach it.
+- **Key forms.** A place's `key` builds the table's key from the polygon's own columns: the place's code, a literal
+  text, and a column read as is (with `replace` pairs) or cut at `split` into fixed-width `tokens`. A polygon whose
+  form cannot be built has no key and no owner, is not billed, and is served with no parcel id (never its own
+  `parcelKey` value, which in Alfred carries Arundel's code). The radius serves a built key as the parcel id, and a
+  notice-list entry names that id.
+- **Older readers.** Alfred is one of York's `layerScope.values`, and its polygons carry Arundel-form ids
+  (`31030_...`), so a reader that joins by `parcelKey` under the whole `tableWhere` gets Arundel's owners for
+  Alfred's parcels. Read `places` and ask one code per request. mcp-atlas 0.4.9 reads none of the three fields and
+  refuses any join on an endpoint with a `scopeWhere`, which every Maine join has (J16 below), so it is safe.
+- **Coverage.** Cumberland now covers Freeport (3,583 of its 4,356 parcels join one owner) and South Portland
+  (6,972 of 8,822), 22 towns of 28. York now covers Kennebunk (5,503 of 7,183), Acton (2,990 of 3,056) and Alfred
+  (1,596 of 1,634: layer 10 codes Alfred's parcels with Arundel's GEOCODE, and its rows sit under 31020), 17 towns
+  of 29. Kennebec is unchanged. Each record's notes give the form and the no-key counts. A polygon has no key
+  when its `MAP_BK_LOT` is blank or does not fit its town's form (read 2026-11-24): Freeport 470 (none blank),
+  South Portland 149 (46 blank, 103 outside the form), Kennebunk 39 (all blank), Acton and Alfred none.
+- **Mailing street, town by town** (measured 2026-11-23; the notes give each town's counts). Several towns keep the
+  parcel's own location in `OWN_ADDR1` and the mailing street in `OWN_ADDR2`. A row whose column is empty serves
+  no mailing address, and no other column stands in.
+  - `OWN_ADDR2`: Arundel, Biddeford, Buxton, Kennebunk, Kennebunkport, Limington, Lyman, Ogunquit, Old Orchard
+    Beach, Saco, Sanford, Cape Elizabeth, Casco, Cumberland, Falmouth, Freeport, Gray, Naples, New Gloucester,
+    North Yarmouth, Portland, Pownal, Raymond, Sebago, Standish, Westbrook, Windham and Yarmouth. Kennebunkport's
+    table holds the property location in `OWN_ADDR1` and a mailing street in `OWN_ADDR2` on only 53 of its 1,532
+    out-of-state rows, so most of its lists give the owner and the property address.
+  - `OWN_ADDR1`: Acton, Eliot, Lebanon, South Berwick, Bridgton, Brunswick, Harpswell, Scarborough, South
+    Portland, Augusta, Gardiner, Manchester, Oakland, Sidney, Waterville and Wayne. In these towns 1,621 of 74,301
+    rows hold a care-of line or a name in `OWN_ADDR1` (1,234 open with C/O or ATTN) and the street in `OWN_ADDR2`,
+    which lists do not serve yet, so those rows' mailing address names no street: Augusta 686 (7.3%), South
+    Portland 363 (4.7%), Bridgton 320 (6.0%), Brunswick 91, Lebanon 68, Eliot 50, Gardiner 24 and Acton 19. These
+    rows served the same line before this release. Among the rows whose owner's mailing state is not Maine
+    (`OWN_STATE` filled and not `ME`; read 2026-11-24) the share is higher: 630 of 9,527 (6.6%), South Portland
+    263 of 569 (46.2%), Augusta 145 of 688 (21.1%) and Bridgton 135 of 1,861 (7.3%).
+  - None (`mailing: null`): Alfred, Dayton and Readfield, whose tables carry no owner mailing address, so their
+    lists give the owner and the property address only.
+- **The table's registration.** Each Maine county's registration of the assessor table (layer 9) now lists
+  `OWN_ADDR2` beside `OWN_ADDR1`, labels both as each town writes them, and its sample query returns both lines
+  with `GEOCODE`, the row's town code: `places[town].mailing` names which line is that town's mailing street.
+- **Validation.** `validate-atlas` ties every `layerScope` town to one code of the `tableWhere` and every code to a
+  town (J13), bounds every key form (J14), and requires every place's `mailing`: a column of `ownerJoin.fields`
+  that reads as a mailing street and not a city, state or ZIP one, or `null` (J15). It refuses a join with a
+  `tableWhere`, `layerScope` or `places` on an endpoint without a `scopeWhere` (J16), the one guard readers before
+  0.9.13 act on. CI refuses a record in any of these states. The hosted radius itself refuses a join whose
+  `places`, `layerScope` or `tableWhere` is deleted, or that does not stand beside its own county's registration of
+  the table.
+- **Notice list.** The id rule (in the site and in the list generator) now also accepts a Maine id whose lot id
+  carries one word of at most six letters glued to a digit, joined by a hyphen to a piece with a digit, or a range
+  word between two numbers (`99999_9999-9999-AAAA`). Every id the rule accepted before is still accepted. Of the
+  202,584 ids the radius serves with an owner (read 2026-11-24), the rule still cannot list 2, in New Gloucester
+  and Ogunquit: those owners cannot be opted out of the radius yet. Of the 203,144 served ids that match any table
+  row, 85 more cannot be listed, and none of their rows carries an owner. In a county that joins per town, an
+  entry names its town in `place`, and its id must open with that town's `tableCode` and `_` and name a parcel
+  after it: the parcel id the radius serves. So a polygon-form Alfred id (`31030_...`, Arundel's code) is refused,
+  and so, in a key-form town, is an id holding a character the form consumes and never writes (`/` in Freeport,
+  `-` in South Portland and Kennebunk) or a lot written twice (Acton). For now the list takes no entry at all in
+  Cumberland, Kennebec or York: it matches ids with their punctuation removed, so one entry could withhold a
+  different parcel whose id differs only in punctuation, and enrich serves a key-form town's polygon under the
+  polygon's own id. A follow-up lifts that. On the county route and in FindMyParcelNumber the free tools check a
+  key-form town's polygon under the same built key, and one whose key cannot be built fails closed.
+- **St. Mary's MD.** `DESCLU` is removed from md-st-marys `searchFields`: with `LU` it gives back Maryland's
+  disabled-veteran exemption on owner-occupied homes, and 1,812 of the 1,970 exempt-land-use parcels in St. Mary's
+  are owner-occupied.
+
 ## 0.9.14 (2026-11-23)
 
 Four counties answered our permission requests. Totals move to 568 counties, 539 endpoints and 510 counties with an

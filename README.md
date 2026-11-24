@@ -354,24 +354,46 @@ record reads exactly as it did in 0.8.x.
 An endpoint may carry `ownerJoin` (type `OwnerJoin`). Its parcel layer has the
 polygons and a parcel id but no owner; the owner rows are in a table of the same
 service, at `ownerJoin.url`. A parcel's owners are the table rows whose
-`ownerJoin.key` column equals the parcel's `ownerJoin.parcelKey` value.
+`ownerJoin.key` column equals the parcel's `ownerJoin.parcelKey` value, or, on a
+join with `places`, the key the parcel's place builds.
 
 - The table has no geometry. Query it by key only
   (`<key> IN ('<value>', ...)`, each `'` doubled), never spatially: an ArcGIS
   table ignores a geometry parameter and answers with arbitrary rows. Check that
   each returned row's key is one you asked for.
 - When `ownerJoin.tableWhere` is present (since 0.9.13), the table also holds
-  rows of places the record does not cover: send
-  `(<tableWhere>) AND <key> IN (...)` on every request. It is always
-  `<column> IN ('<value>', ...)`. Maine's table holds the whole state, and each
-  county's `tableWhere` names the GEOCODEs of its covered towns only.
+  rows of places the record does not cover. It is always
+  `<column> IN ('<value>', ...)`, one code per covered place: ask the table under
+  one place's code at a time (see `places`), never under the whole list, since
+  one key can belong to rows of two towns. Maine's table holds the whole state,
+  and each county's `tableWhere` names the GEOCODEs of its covered towns only.
 - `ownerJoin.layerScope` (since 0.9.13, present wherever `tableWhere` is) is
   the polygon side of that scope: a row is the owner only of a polygon whose
   `layerScope.field` value is one of `layerScope.values`. Read no owner for any
   other polygon, even one whose key matches a row: `tableWhere` admits a row by
-  the row's own code, and a polygon of an uncovered town can carry a covered
+  the row's own code, and a polygon of another town can carry a covered
   town's code (Maine's Alfred parcels carry Arundel's GEOCODE). Maine's field
   is `TOWN` and its values are the record's `partialCoverage.covers`.
+- `ownerJoin.places` (since 0.9.15, present wherever `tableWhere` is) gives each
+  `layerScope` value its place. To join a polygon, read its `layerScope.field`
+  value, take that place and build the key: the place's `key` form where it has
+  one, the polygon's `parcelKey` value otherwise. Ask
+  `(<column> IN ('<tableCode>')) AND <key> IN (...)`, and keep a row only where
+  its own value in that column is the place's `tableCode`. A `key` form's parts
+  are written in order: `{ tableCode: true }` is the place's code, `{ text }` is
+  written as is, and a `field` part is that column of this layer, trimmed, read
+  as is (each `replace` pair's first mark written as its second) or cut at
+  `split` into exactly as many pieces as `tokens`, each padded to its width and
+  joined with `join`. A polygon whose form cannot be built (a blank column, a
+  piece too long or of the wrong shape) has no key and no owner. Maine's Alfred:
+  `{ "tableCode": "31020", "key": [{ "tableCode": true }, { "text": "_" },
+  { "field": "MAP_BK_LOT" }], "mailing": null }`.
+- A place's `mailing` is the table column its rows give as the owner's mailing
+  street, or `null` where the town's table carries none. Read a row's mailing
+  street from that column only: where it is empty, or `mailing` is `null`, the
+  row has no mailing street. Several Maine towns keep the parcel's own location
+  in `OWN_ADDR1` and the mailing street in `OWN_ADDR2`, so the column differs
+  from town to town in one table.
 - The table's columns are in `ownerJoin.fields` only, never in the endpoint's
   `searchFields`, except the key when it is also `parcelKey` (Maine joins
   `STATE_ID` to `STATE_ID`). If you ignore `ownerJoin`, you see a layer with no
