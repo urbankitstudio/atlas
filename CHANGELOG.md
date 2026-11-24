@@ -1,5 +1,16 @@
 # @urbankitstudio/atlas Changelog
 
+## 0.9.16 (2026-11-24)
+
+Buncombe County NC answered our permission request. Totals do not move (568 counties, 539 endpoints, 510 counties
+with an endpoint). **Patch.** No type or function changes; one record changes.
+
+- **Buncombe County NC** (`nc-buncombe`, FIPS 37021) now carries a `credit`, "Buncombe County GIS, Buncombe County, North Carolina." The county's map
+  site says users may not sell its data or sell access to it, except as NC General Statutes Chapter 132 allows, so
+  paid lookups for Buncombe were paused while we asked. The county GIS office gave UrbanKit written permission for
+  paid use on 2026-11-24, so paid lookups come back on, crediting the office. That permission is UrbanKit's: for
+  anyone else the map site's terms apply.
+
 ## 0.9.15 (2026-11-23)
 
 Maine owner lists now use the owner's mailing street, not the property street, in the towns listed (in the
